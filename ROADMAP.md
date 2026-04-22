@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] Add more details to the ROADMAP.md (#6)
 - [ ] Download all necessary standard, manuals, handbooks, etc. to `specifictions` and convewrt to ".md" if pdf retrieved (#5)
 - [ ] Implement next Roadmap step (#4)
 - [ ] Implement next Roadmap step (#3)
