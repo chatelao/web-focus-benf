@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] Download all necessary standard, manuals, handbooks, etc. to `specifictions` and convewrt to ".md" if pdf retrieved (#8)
 - [ ] Create a comprehensive test suite for the parser using real-world WebFOCUS samples
 - [ ] Develop a CLI tool for automated WebFOCUS code analysis
 - [ ] Integrate parser results into the documentation generator
