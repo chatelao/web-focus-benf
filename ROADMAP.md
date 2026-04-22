@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] Implement next Roadmap step (#4)
 - [ ] Implement next Roadmap step (#3)
 
 - [ ] Setup the empty CI/CD pipeline
