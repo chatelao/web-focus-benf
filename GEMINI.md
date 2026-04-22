@@ -6,7 +6,7 @@ Define the WebFOCUS programming language syntax and functionality in a formal wa
 
 - `CONCEPT.md`: The overall structure of the product, including Business Cases & Use Cases as well as the overall High-Level Architecture, etc.
 - `DESIGN.md`: The detailed design of the solution, including the architecture, used tech stack for development, production and testing, etc.
-- `ROADMAP.md`: The list of accomplished and planned steps of the project, it should be  grouped into Phases, Tasks and Subtasks if necessary. Checkboxes show the progress to be updated with every increment.
+- `ROADMAP.md`: The list of accomplished and planned steps of the project, it should be  grouped into Phases, Tasks and Subtasks if necessary. Checkboxes show the progress to be updated with every increment. Split and add new tasks if reasonable.
 - `TECHNICAL_DEBTS.md`: If you find technical debts, like outdate components, security flaws, old patterns, etc. log them here, but don’t fix them until asked to do so.
 - `/specification/`: External Know-How as datasheet, standards, etc. Should be converted to Markdown if PDF, etc.
 - `/src/`: The source code of the project
