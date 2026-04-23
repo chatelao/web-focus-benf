@@ -2,7 +2,7 @@
 - [x] roadmap - split the lexer and parser parts if reasonable or find another way to break the implementation in smaller steps e.g. language feature etc. (#14) (completed at 2026-04-23 10:09:07)
 
 ## Chapter 1: Project Foundation & Meta
-- [ ] Merge Agents.md into gemini.md (#12)
+- [x] Merge Agents.md into gemini.md (#12) (completed at 2026-04-23 13:24:59)
 - [x] Please reorder the ROADMAP.md - Keep topics per Chapter (and subchapters if necessary) (#11) (completed at 2026-04-23 10:04:12)
 - [x] Add more details to the ROADMAP.md (#6) (completed at 2026-04-22 12:05:23)
 - [ ] Reverse engineer the WebFOCUS programming language syntax and functionality
