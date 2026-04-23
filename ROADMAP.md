@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] https://github.com/chatelao/web-focus-benf/tree/main/specifications - Move each manual into one subdirectory and split it per chapter (#10)
 - [x] Download all necessary standard, manuals, handbooks, etc. to `specifictions` and convewrt to ".md" if pdf retrieved (#8) (completed at 2026-04-23 09:07:44)
 - [ ] Create a comprehensive test suite for the parser using real-world WebFOCUS samples
 - [ ] Develop a CLI tool for automated WebFOCUS code analysis
