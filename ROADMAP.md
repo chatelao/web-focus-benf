@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] roadmap - split the lexer and parser parts if reasonable or find another way to break the implementation in smaller steps e.g. language feature etc. (#14)
+- [x] roadmap - split the lexer and parser parts if reasonable or find another way to break the implementation in smaller steps e.g. language feature etc. (#14) (completed at 2026-04-23 10:09:07)
 
 ## Chapter 1: Project Foundation & Meta
 - [ ] Merge Agents.md into gemini.md (#12)
@@ -15,8 +15,11 @@
 - [x] Download all necessary standard, manuals, handbooks, etc. to `specifications` and convert to ".md" if pdf retrieved (#5) (completed at 2026-04-23 09:07:44)
 
 ## Chapter 3: Core Parser & Grammar
-- [ ] Define the formal EBNF grammar for WebFOCUS (#4)
-- [ ] Implement a Lexer and Parser for WebFOCUS core syntax in Python (#3)
+- [ ] Implement a Lexer for WebFOCUS core syntax in Python (using a framework suitable for later AST representation)
+- [ ] Define EBNF and Implement Parser for Master Files (Describing Data)
+- [ ] Define EBNF and Implement Parser for basic TABLE FILE requests (Creating Reports)
+- [ ] Define EBNF and Implement Parser for Expressions and WHERE clauses
+- [ ] Define EBNF and Implement Parser for Dialogue Manager commands (-SET, -IF, etc.)
 
 ## Chapter 4: Tooling & Integration
 - [ ] Integrate parser results into the documentation generator
