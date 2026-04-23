@@ -10,7 +10,7 @@
 - [ ] Setup the empty CI/CD pipeline
 
 ## Chapter 2: Specifications & Manuals
-- [ ] https://github.com/chatelao/web-focus-benf/tree/main/specifications - Move each manual into one subdirectory and split it per chapter (#10)
+- [x] https://github.com/chatelao/web-focus-benf/tree/main/specifications - Move each manual into one subdirectory and split it per chapter (#10) (completed at 2026-04-23 13:27:16)
 - [x] Download all necessary standard, manuals, handbooks, etc. to `specifictions` and convewrt to ".md" if pdf retrieved (#8) (completed at 2026-04-23 09:07:44)
 - [x] Download all necessary standard, manuals, handbooks, etc. to `specifications` and convert to ".md" if pdf retrieved (#5) (completed at 2026-04-23 09:07:44)
 
