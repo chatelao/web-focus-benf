@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] roadmap - split the lexer and parser parts if reasonable or find another way to break the implementation in smaller steps e.g. language feature etc. (#14)
 
 ## Chapter 1: Project Foundation & Meta
 - [ ] Merge Agents.md into gemini.md (#12)
