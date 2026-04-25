@@ -1,4 +1,4 @@
-# Generated from src/WebFocusReport.g4 by ANTLR 4.13.1
+# Generated from WebFocusReport.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
     from .WebFocusReportParser import WebFocusReportParser
@@ -76,6 +76,21 @@ class WebFocusReportVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by WebFocusReportParser#sort_options.
     def visitSort_options(self, ctx:WebFocusReportParser.Sort_optionsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#heading_command.
+    def visitHeading_command(self, ctx:WebFocusReportParser.Heading_commandContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#footing_command.
+    def visitFooting_command(self, ctx:WebFocusReportParser.Footing_commandContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#on_command.
+    def visitOn_command(self, ctx:WebFocusReportParser.On_commandContext):
         return self.visitChildren(ctx)
 
 

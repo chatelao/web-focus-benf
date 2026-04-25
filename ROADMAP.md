@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] 0.9 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#56)
+- [x] 0.9 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#56) (completed at 2026-04-25 20:50:04)
 - [x] 0.8 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#54) (completed at 2026-04-25 20:34:54)
 - [x] 0.7 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#51) (completed at 2026-04-25 19:33:12)
 
@@ -49,7 +49,7 @@
   - [x] 3.4.6 Support SUBHEAD and SUBFOOT commands (completed at 2026-04-25 05:00:17)
   - [x] 3.4.7 Support SUB-TOTAL and SUMMARIZE commands (completed at 2026-04-25 08:54:11)
   - [x] 3.4.8 Support ON TABLE formatting commands (PCHOLD, etc.) (completed at 2026-04-25 08:53:59)
-  - [ ] 3.4.9 Support HEADING and other formatting commands
+  - [x] 3.4.9 Support HEADING and other formatting commands (completed at 2026-04-25 20:49:39)
 - [ ] 3.5 Define EBNF and Implement Parser for Expressions and WHERE clauses
 
 ## Chapter 4: Middle-tier - Semantic Analysis & Optimization

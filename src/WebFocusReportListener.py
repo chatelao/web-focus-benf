@@ -1,4 +1,4 @@
-# Generated from src/WebFocusReport.g4 by ANTLR 4.13.1
+# Generated from WebFocusReport.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
     from .WebFocusReportParser import WebFocusReportParser
@@ -131,6 +131,33 @@ class WebFocusReportListener(ParseTreeListener):
 
     # Exit a parse tree produced by WebFocusReportParser#sort_options.
     def exitSort_options(self, ctx:WebFocusReportParser.Sort_optionsContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#heading_command.
+    def enterHeading_command(self, ctx:WebFocusReportParser.Heading_commandContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#heading_command.
+    def exitHeading_command(self, ctx:WebFocusReportParser.Heading_commandContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#footing_command.
+    def enterFooting_command(self, ctx:WebFocusReportParser.Footing_commandContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#footing_command.
+    def exitFooting_command(self, ctx:WebFocusReportParser.Footing_commandContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#on_command.
+    def enterOn_command(self, ctx:WebFocusReportParser.On_commandContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#on_command.
+    def exitOn_command(self, ctx:WebFocusReportParser.On_commandContext):
         pass
 
 

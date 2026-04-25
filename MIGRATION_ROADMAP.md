@@ -15,7 +15,7 @@ The frontend is split into two distinct ANTLR4 grammars to reflect the dual natu
   - [x] **1.2.1 Core request structure:** TABLE FILE verb, END command, and qualified names. (Implemented in `src/WebFocusReport.g4`)
   - [x] **1.2.2 Verb commands:** PRINT, SUM, LIST, COUNT, WRITE, ADD and field lists with AS phrases. (Implemented in `src/WebFocusReport.g4`)
   - [x] **1.2.3 Sort phrases:** BY and ACROSS with sort options (HIGHEST, LOWEST, etc.). (Implemented in `src/WebFocusReport.g4`)
-  - [ ] **1.2.4 Formatting:** HEADING, FOOTING, and ON (SUBHEAD/SUBFOOT).
+  - [x] **1.2.4 Formatting:** HEADING, FOOTING, and ON (SUBHEAD/SUBFOOT). (Implemented in `src/WebFocusReport.g4`)
   - [ ] **1.2.5 Summarization and Output:** SUBTOTAL, SUMMARIZE, RECOMPUTE and ON TABLE (HOLD, PCHOLD, etc.).
 - [ ] **1.3 Dialogue Manager Grammar:** Define ANTLR4 grammar rules for procedural Dialogue Manager commands (-SET, -IF, -GOTO, etc.).
 - [ ] **1.4 Unified Lexer/Parser:** Ensure the ANTLR4 frontend can handle the context-sensitive nature of WebFOCUS where Dialogue Manager and TABLE FILE requests are interleaved.

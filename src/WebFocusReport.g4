@@ -2,7 +2,7 @@ grammar WebFocusReport;
 
 start: request EOF;
 
-request: table_file (verb_command | by_command | across_command)* end_command;
+request: table_file (verb_command | by_command | across_command | heading_command | footing_command | on_command)* end_command;
 
 table_file: TABLE FILE qualified_name;
 
@@ -28,6 +28,12 @@ across_command: ACROSS sort_options? field NOPRINT?;
 
 sort_options: (HIGHEST | LOWEST | TOP | BOTTOM) NUMBER?
             | NUMBER;
+
+heading_command: HEADING CENTER? STRING+;
+
+footing_command: FOOTING CENTER? STRING+;
+
+on_command: ON (qualified_name | TABLE) (SUBHEAD | SUBFOOT) CENTER? STRING+;
 
 end_command: END;
 
@@ -60,6 +66,13 @@ AS: [aA][sS];
 THE: [tT][hH][eE];
 AND: [aA][nN][dD];
 
+HEADING: [hH][eE][aA][dD][iI][nN][gG];
+FOOTING: [fF][oO][oO][tT][iI][nN][gG];
+ON: [oO][nN];
+SUBHEAD: [sS][uU][bB][hH][eE][aA][dD];
+SUBFOOT: [sS][uU][bB][fF][oO][oO][tT];
+CENTER: [cC][eE][nN][tT][eE][rR];
+
 AVE: [aA][vV][eE];
 MIN: [mM][iI][nN];
 MAX: [mM][aA][xX];
@@ -85,12 +98,5 @@ STRING: '\'' ~[']* '\''
       | '"' ~["]* '"';
 
 NAME: [a-zA-Z_] [a-zA-Z0-9_]*;
-
-// Ensure keywords are not matched as NAME
-// Note: In ANTLR4, lexer rules are matched in order.
-// Since keywords are defined before NAME, they will be matched as keywords.
-// However, to be extra safe and follow the requirement to "exclude",
-// we rely on the order or use a gated semantic predicate if needed.
-// For now, order is sufficient.
 
 WS: [ \t\r\n]+ -> skip;
