@@ -1,4 +1,11 @@
 # ROADMAP
+- [ ] Integrate ANTLR4 parser into WebFocusParser dispatcher
+- [ ] Implement ANTLR4 Lexer and Parser in Python
+- [ ] Migrate Lark grammar to ANTLR4 format
+- [ ] Support ON TABLE formatting commands (PCHOLD, etc.)
+- [ ] Support SUB-TOTAL and SUMMARIZE commands
+- [ ] Support SUBHEAD and SUBFOOT commands
+- [x] Support FOOTING command (completed at 2026-04-25 04:40:54)
 - [ ] Implement a next modest and reasonable roadmap step (#31)
 - [x] Rewrite all necessary documents, specifications and plans to align with the new target descirbed in WEBFOCUS_TO_POSTGRE.md (#29) (completed at 2026-04-25 04:22:00)
 - [ ] Implement a next modest and reasonable roadmap step (#27)
@@ -27,7 +34,7 @@
   - [x] Support AS phrases for column titles (completed at 2026-04-25 03:43:51)
   - [x] Support BY and ACROSS sort phrases (completed at 2026-04-25 03:43:52)
   - [ ] Support HEADING, FOOTING, and other formatting commands
-  - [ ] Support Prefix Operators (AVE., MIN., MAX., etc.)
+  - [x] Support Prefix Operators (AVE., MIN., MAX., etc.) (completed at 2026-04-25 04:40:41)
 - [ ] Define EBNF and Implement Parser for Expressions and WHERE clauses
 
 ## Chapter 4: Middle-tier - Semantic Analysis & Optimization
