@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] Add a MIGRATION_ROADMAP.md from the current system to the new antlr/ninja final solution (#41)
 - [ ] Add numbers to each roadmap task, if you find steps way too big, cut them in smaller parts (#40)
 - [ ] Move to the final target stack with ANT4LR (#39)
 - [x] Implement a next modest, feasible and reasonable roadmap step (#37) (completed at 2026-04-25 08:53:59)
