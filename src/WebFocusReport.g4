@@ -2,7 +2,7 @@ grammar WebFocusReport;
 
 start: request EOF;
 
-request: table_file verb_command* end_command;
+request: table_file (verb_command | by_command | across_command)* end_command;
 
 table_file: TABLE FILE qualified_name;
 
@@ -22,6 +22,13 @@ as_phrase: AS STRING;
 
 asterisk: '*';
 
+by_command: RANKED? BY sort_options? field NOPRINT?;
+
+across_command: ACROSS sort_options? field NOPRINT?;
+
+sort_options: (HIGHEST | LOWEST | TOP | BOTTOM) NUMBER?
+            | NUMBER;
+
 end_command: END;
 
 qualified_name: NAME (DOT NAME)*;
@@ -39,6 +46,15 @@ LIST: [lL][iI][sS][tT];
 COUNT: [cC][oO][uU][nN][tT];
 WRITE: [wW][rR][iI][tT][eE];
 ADD: [aA][dD][dD];
+
+BY: [bB][yY];
+ACROSS: [aA][cC][rR][oO][sS][sS];
+RANKED: [rR][aA][nN][kK][eE][dD];
+HIGHEST: [hH][iI][gG][hH][eE][sS][tT];
+LOWEST: [lL][oO][wW][eE][sS][tT];
+TOP: [tT][oO][pP];
+BOTTOM: [bB][oO][tT][tT][oO][mM];
+NOPRINT: [nN][oO][pP][rR][iI][nN][tT];
 
 AS: [aA][sS];
 THE: [tT][hH][eE];
@@ -63,9 +79,18 @@ CT: [cC][tT];
 DOT: '.';
 COMMA: ',';
 
+NUMBER: [0-9]+;
+
 STRING: '\'' ~[']* '\''
       | '"' ~["]* '"';
 
 NAME: [a-zA-Z_] [a-zA-Z0-9_]*;
+
+// Ensure keywords are not matched as NAME
+// Note: In ANTLR4, lexer rules are matched in order.
+// Since keywords are defined before NAME, they will be matched as keywords.
+// However, to be extra safe and follow the requirement to "exclude",
+// we rely on the order or use a gated semantic predicate if needed.
+// For now, order is sufficient.
 
 WS: [ \t\r\n]+ -> skip;
