@@ -22,7 +22,8 @@ class TestWebFocusParser(unittest.TestCase):
 
         # Check table_file
         table_file = next(tree.find_data('table_file'))
-        self.assertIn('EMPDATA', [str(t) for t in table_file.children])
+        qn = next(table_file.find_data('qualified_name'))
+        self.assertIn('EMPDATA', [str(t) for t in qn.children])
 
     def test_complex_request(self):
         code = """
@@ -120,9 +121,64 @@ class TestWebFocusParser(unittest.TestCase):
         """
         tree = self.parser.parse(code)
         by_cmd = next(tree.find_data('by_command'))
-        self.assertTrue(list(by_cmd.find_data('as_phrase')))
+        field = next(by_cmd.find_data('field'))
+        self.assertTrue(list(field.find_data('as_phrase')))
         across_cmd = next(tree.find_data('across_command'))
-        self.assertTrue(list(across_cmd.find_data('as_phrase')))
+        field_across = next(across_cmd.find_data('field'))
+        self.assertTrue(list(field_across.find_data('as_phrase')))
+
+    def test_prefix_operators(self):
+        code = """
+        TABLE FILE EMPDATA
+        SUM AVE.EXPENSES AS 'Avg Exp' MAX.SALARY MIN.SALARY CNT.PIN
+        END
+        """
+        tree = self.parser.parse(code)
+        field_list = next(tree.find_data('field_list'))
+        prefixed_fields = list(field_list.find_data('field_or_prefixed'))
+        self.assertEqual(len(prefixed_fields), 4)
+
+        # Verify AVE.EXPENSES
+        f1 = prefixed_fields[0]
+        self.assertEqual(str(next(f1.find_data('prefix_operator')).children[0]), 'AVE')
+
+        # Verify multiple prefixes (WebFOCUS supports recursive prefixes)
+        code_multi = "TABLE FILE EMPDATA\nSUM TOT.AVE.SALARY\nEND"
+        tree_multi = self.parser.parse(code_multi)
+        f_multi = next(tree_multi.find_data('field_or_prefixed'))
+        prefixes = [str(p.children[0]) for p in f_multi.find_data('prefix_operator')]
+        self.assertEqual(prefixes, ['TOT', 'AVE'])
+
+    def test_footing_command(self):
+        code = """
+        TABLE FILE EMPDATA
+        PRINT SALARY
+        FOOTING CENTER "END OF REPORT"
+        END
+        """
+        tree = self.parser.parse(code)
+        footing_cmd = next(tree.find_data('footing_command'))
+        self.assertIn('FOOTING', [str(t) for t in footing_cmd.children if hasattr(t, 'type')])
+        self.assertIn('"END OF REPORT"', [str(t) for t in footing_cmd.children if hasattr(t, 'type')])
+
+    def test_qualified_names(self):
+        code = """
+        TABLE FILE SEG1.MASTER
+        PRINT SEG1.FIELD1 SEG2.FIELD2
+        WHERE SEG1.FIELD1 EQ 'VAL'
+        END
+        """
+        tree = self.parser.parse(code)
+        # Table name
+        table_file = next(tree.find_data('table_file'))
+        qn = next(table_file.find_data('qualified_name'))
+        self.assertEqual([str(t) for t in qn.children], ['SEG1', 'MASTER'])
+
+        # Fields
+        field_list = next(tree.find_data('field_list'))
+        qns = [next(f.find_data('qualified_name')) for f in field_list.find_data('field')]
+        self.assertEqual([str(t) for t in qns[0].children], ['SEG1', 'FIELD1'])
+        self.assertEqual([str(t) for t in qns[1].children], ['SEG2', 'FIELD2'])
 
     def test_samples(self):
         samples_dir = os.path.join(os.path.dirname(__file__), 'samples')
