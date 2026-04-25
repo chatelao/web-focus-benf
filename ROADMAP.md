@@ -1,12 +1,12 @@
 # ROADMAP
-- [ ] Implement a next modest, feasible and reasonable roadmap step (#37)
+- [x] Implement a next modest, feasible and reasonable roadmap step (#37) (completed at 2026-04-25 08:53:59)
 - [x] Implement a next modest, feasible and reasonable roadmap step (#34) (completed at 2026-04-25 08:47:08)
 - [x] Solve the technical debts in modest and reasonable steps (#33) (completed at 2026-04-25 08:46:43)
 - [ ] Integrate ANTLR4 parser into WebFocusParser dispatcher
 - [ ] Implement ANTLR4 Lexer and Parser in Python
 - [ ] Migrate Lark grammar to ANTLR4 format
-- [ ] Support ON TABLE formatting commands (PCHOLD, etc.)
-- [ ] Support SUB-TOTAL and SUMMARIZE commands
+- [x] Support ON TABLE formatting commands (PCHOLD, etc.) (completed at 2026-04-25 08:53:59)
+- [x] Support SUB-TOTAL and SUMMARIZE commands (completed at 2026-04-25 08:54:11)
 - [x] Support SUBHEAD and SUBFOOT commands (completed at 2026-04-25 05:00:17)
 - [x] Support FOOTING command (completed at 2026-04-25 04:40:54)
 - [x] Implement a next modest and reasonable roadmap step (#31) (completed at 2026-04-25 04:54:24)
