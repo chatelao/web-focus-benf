@@ -1,133 +1,35 @@
-from lark import Lark
+from antlr4 import InputStream, CommonTokenStream
+try:
+    from WebFocusReportLexer import WebFocusReportLexer
+    from WebFocusReportParser import WebFocusReportParser as GeneratedWebFocusReportParser
+except ImportError:
+    from .WebFocusReportLexer import WebFocusReportLexer
+    from .WebFocusReportParser import WebFocusReportParser as GeneratedWebFocusReportParser
+from antlr4.error.ErrorListener import ErrorListener
 import sys
 from master_file_parser import MasterFileParser
 
-# A basic grammar for a subset of WebFOCUS TABLE requests
-wf_grammar = r"""
-    ?start: request
+class BailErrorListener(ErrorListener):
+    def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
+        raise Exception(f"Syntax error at line {line}:{column}: {msg}")
 
-    request: table_file verb_command* end_command
+class ReportParser:
+    def parse(self, text):
+        input_stream = InputStream(text)
+        lexer = WebFocusReportLexer(input_stream)
+        lexer.removeErrorListeners()
+        lexer.addErrorListener(BailErrorListener())
 
-    table_file: TABLE FILE qualified_name
+        stream = CommonTokenStream(lexer)
+        parser = GeneratedWebFocusReportParser(stream)
+        parser.removeErrorListeners()
+        parser.addErrorListener(BailErrorListener())
 
-    ?verb_command: display_command
-                 | by_command
-                 | across_command
-                 | where_command
-                 | heading_command
-                 | footing_command
-                 | on_command
-
-    display_command: verb (field_list | asterisk)
-
-    asterisk: "*"
-
-    verb: SUM_K | PRINT_K | LIST_K | COUNT_K | WRITE_K | ADD_K
-
-    field_list: [THE] field_or_prefixed (([AND] [THE]) field_or_prefixed)*
-
-    field_or_prefixed: (prefix_operator ".")* field
-
-    field: qualified_name (as_phrase)?
-
-    as_phrase: AS STRING
-
-    by_command: [RANKED] BY sort_options? field [summarize_command] [NOPRINT]
-    across_command: ACROSS sort_options? field [NOPRINT]
-
-    sort_options: (HIGHEST | LOWEST | TOP | BOTTOM) NUMBER?
-                | NUMBER
-
-    where_command: WHERE qualified_name EQ (qualified_name | NUMBER | STRING)
-    heading_command: HEADING CENTER? STRING+
-    footing_command: FOOTING CENTER? STRING+
-    on_command: ON (qualified_name | TABLE) (SUBHEAD | SUBFOOT) CENTER? STRING+
-              | ON (qualified_name | TABLE) summarize_command
-              | ON TABLE (COLUMN_TOTAL | ROW_TOTAL)
-              | ON TABLE output_command
-
-    summarize_command: (SUBTOTAL | SUB_TOTAL | SUMMARIZE | RECOMPUTE) (ROLL_DOT? (prefix_operator ".")*)? field? (as_phrase)?
-
-    ROLL_DOT: /ROLL\./i
-
-    output_command: (HOLD | PCHOLD | SAVE | SAVB) [AS qualified_name] [FORMAT NAME]
-
-    end_command: END
-
-    qualified_name: NAME ("." NAME)*
-
-    prefix_operator: AVE | MIN | MAX | CNT | FST | LST | ASQ | MDN | MDE | PCT | RPCT | RNK | DST | TOT | SUM_K | CT
-
-    TABLE: /TABLE/i
-    FILE: /FILE/i
-    SUM_K: /SUM/i
-    PRINT_K: /PRINT/i
-    LIST_K: /LIST/i
-    COUNT_K: /COUNT/i
-    WRITE_K: /WRITE/i
-    ADD_K: /ADD/i
-    BY: /BY/i
-    ACROSS: /ACROSS/i
-    ON: /ON/i
-    RANKED: /RANKED/i
-    HIGHEST: /HIGHEST/i
-    LOWEST: /LOWEST/i
-    TOP: /TOP/i
-    BOTTOM: /BOTTOM/i
-    NOPRINT: /NOPRINT/i
-    WHERE: /WHERE/i
-    EQ: /EQ/i
-    AS: /AS/i
-    HEADING: /HEADING/i
-    FOOTING: /FOOTING/i
-    SUBHEAD: /SUBHEAD/i
-    SUBFOOT: /SUBFOOT/i
-    CENTER: /CENTER/i
-    AND: /AND/i
-    THE: /THE/i
-    END: /END/i
-
-    SUBTOTAL: /SUBTOTAL/i
-    SUB_TOTAL: /SUB-TOTAL/i
-    SUMMARIZE: /SUMMARIZE/i
-    RECOMPUTE: /RECOMPUTE/i
-    COLUMN_TOTAL: /COLUMN-TOTAL/i
-    ROW_TOTAL: /ROW-TOTAL/i
-    HOLD: /HOLD/i
-    PCHOLD: /PCHOLD/i
-    SAVE: /SAVE/i
-    SAVB: /SAVB/i
-    FORMAT: /FORMAT/i
-
-    AVE: /AVE/i
-    MIN: /MIN/i
-    MAX: /MAX/i
-    CNT: /CNT/i
-    FST: /FST/i
-    LST: /LST/i
-    ASQ: /ASQ/i
-    MDN: /MDN/i
-    MDE: /MDE/i
-    PCT: /PCT/i
-    RPCT: /RPCT/i
-    RNK: /RNK/i
-    DST: /DST/i
-    TOT: /TOT/i
-    CT: /CT/i
-
-    NAME: /(?!(TABLE|FILE|SUM|PRINT|LIST|COUNT|WRITE|ADD|BY|ACROSS|ON|RANKED|HIGHEST|LOWEST|TOP|BOTTOM|NOPRINT|WHERE|EQ|AS|HEADING|FOOTING|SUBHEAD|SUBFOOT|CENTER|AND|THE|END|AVE|MIN|MAX|CNT|FST|LST|ASQ|MDN|MDE|PCT|RPCT|RNK|DST|TOT|CT|SUBTOTAL|SUB-TOTAL|SUMMARIZE|RECOMPUTE|COLUMN-TOTAL|ROW-TOTAL|HOLD|PCHOLD|SAVE|SAVB|FORMAT)\b)[a-zA-Z_][a-zA-Z0-9_]*/i
-
-    %import common.NUMBER
-    %import common.WS
-    %ignore WS
-
-    STRING: "'" /[^']*/ "'"
-          | "\"" /[^"]*/ "\""
-"""
+        return parser.start()
 
 class WebFocusParser:
     def __init__(self):
-        self.report_parser = Lark(wf_grammar, start='start', parser='earley')
+        self.report_parser = ReportParser()
         self.master_parser = MasterFileParser()
 
     def parse(self, text):
@@ -155,7 +57,7 @@ if __name__ == "__main__":
     print("--- Parsing Report Request ---")
     try:
         tree = parser.parse(sample_report)
-        print(tree.pretty())
+        print(tree.toStringTree(recog=None))
     except Exception as e:
         print(f"Error parsing report:\n{e}")
 
@@ -167,6 +69,6 @@ if __name__ == "__main__":
     print("\n--- Parsing Master File ---")
     try:
         tree = parser.parse(sample_master)
-        print(tree.pretty())
+        print(tree.toStringTree(recog=None))
     except Exception as e:
         print(f"Error parsing Master File:\n{e}")

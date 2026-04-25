@@ -3,6 +3,7 @@ from antlr4 import *
 from antlr4.error.ErrorListener import ErrorListener
 from src.WebFocusReportLexer import WebFocusReportLexer
 from src.WebFocusReportParser import WebFocusReportParser
+import os
 
 class TestAntlrWebFocusParser(unittest.TestCase):
     def parse(self, text):
@@ -53,6 +54,70 @@ class TestAntlrWebFocusParser(unittest.TestCase):
                 self.parse(code)
             except Exception as e:
                 self.fail(f"Failed to parse output command '{code}': {e}")
+
+    def test_where_clauses(self):
+        variations = [
+            "TABLE FILE EMPDATA PRINT SALARY WHERE DEPARTMENT EQ 'SALES' END",
+            "TABLE FILE EMPDATA SUM SALARY WHERE YEAR EQ 1991 END",
+            "TABLE FILE EMPDATA LIST SALARY WHERE SALARY EQ CURR_SAL END",
+            "TABLE FILE EMPDATA PRINT * WHERE DIV EQ 'NORTH' END"
+        ]
+        for code in variations:
+            try:
+                self.parse(code)
+            except Exception as e:
+                self.fail(f"Failed to parse WHERE clause '{code}': {e}")
+
+    def test_basic_requests(self):
+        variations = [
+            "TABLE FILE EMPDATA SUM SALARY END",
+            "TABLE FILE EMPDATA PRINT LAST_NAME FIRST_NAME END",
+            "TABLE FILE EMPDATA LIST * END"
+        ]
+        for code in variations:
+            try:
+                self.parse(code)
+            except Exception as e:
+                self.fail(f"Failed to parse basic request '{code}': {e}")
+
+    def test_sort_phrases(self):
+        variations = [
+            "TABLE FILE EMPDATA SUM SALARY BY DEPT END",
+            "TABLE FILE EMPDATA SUM SALARY ACROSS DIV END",
+            "TABLE FILE EMPDATA SUM SALARY BY HIGHEST 5 SALARY END",
+            "TABLE FILE EMPDATA SUM SALARY BY LOWEST CURR_SAL END"
+        ]
+        for code in variations:
+            try:
+                self.parse(code)
+            except Exception as e:
+                self.fail(f"Failed to parse sort phrase '{code}': {e}")
+
+    def test_formatting_commands(self):
+        variations = [
+            "TABLE FILE EMPDATA HEADING 'My Report' SUM SALARY END",
+            "TABLE FILE EMPDATA PRINT SALARY FOOTING 'End of Page' END",
+            "TABLE FILE EMPDATA SUM SALARY ON DEPT SUBHEAD 'Dept: <DEPT' END"
+        ]
+        for code in variations:
+            try:
+                self.parse(code)
+            except Exception as e:
+                self.fail(f"Failed to parse formatting command '{code}': {e}")
+
+    def test_samples(self):
+        samples_dir = 'test/samples'
+        if not os.path.exists(samples_dir):
+            return
+        for filename in os.listdir(samples_dir):
+            if filename.endswith('.fex'):
+                filepath = os.path.join(samples_dir, filename)
+                with open(filepath, 'r') as f:
+                    code = f.read()
+                try:
+                    self.parse(code)
+                except Exception as e:
+                    self.fail(f"Failed to parse {filename}: {e}")
 
 if __name__ == '__main__':
     unittest.main()

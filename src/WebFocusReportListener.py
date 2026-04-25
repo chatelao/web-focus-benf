@@ -134,6 +134,15 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by WebFocusReportParser#where_command.
+    def enterWhere_command(self, ctx:WebFocusReportParser.Where_commandContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#where_command.
+    def exitWhere_command(self, ctx:WebFocusReportParser.Where_commandContext):
+        pass
+
+
     # Enter a parse tree produced by WebFocusReportParser#heading_command.
     def enterHeading_command(self, ctx:WebFocusReportParser.Heading_commandContext):
         pass

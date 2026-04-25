@@ -79,6 +79,11 @@ class WebFocusReportVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by WebFocusReportParser#where_command.
+    def visitWhere_command(self, ctx:WebFocusReportParser.Where_commandContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by WebFocusReportParser#heading_command.
     def visitHeading_command(self, ctx:WebFocusReportParser.Heading_commandContext):
         return self.visitChildren(ctx)
