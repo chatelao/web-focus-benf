@@ -1,6 +1,6 @@
 # ROADMAP
 - [ ] Implement a next modest, feasible and reasonable roadmap step (#34)
-- [ ] Solve the technical debts in modest and reasonable steps (#33)
+- [x] Solve the technical debts in modest and reasonable steps (#33) (completed at 2026-04-25 08:46:43)
 - [ ] Integrate ANTLR4 parser into WebFocusParser dispatcher
 - [ ] Implement ANTLR4 Lexer and Parser in Python
 - [ ] Migrate Lark grammar to ANTLR4 format
