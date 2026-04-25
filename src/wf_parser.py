@@ -12,6 +12,7 @@ wf_grammar = r"""
 
     ?verb_command: display_command
                  | by_command
+                 | across_command
                  | where_command
                  | heading_command
 
@@ -26,7 +27,12 @@ wf_grammar = r"""
     field: NAME (as_phrase)?
     as_phrase: AS STRING
 
-    by_command: BY NAME [NOPRINT]
+    by_command: [RANKED] BY sort_options? NAME (as_phrase)? [NOPRINT]
+    across_command: ACROSS sort_options? NAME (as_phrase)? [NOPRINT]
+
+    sort_options: (HIGHEST | LOWEST | TOP | BOTTOM) NUMBER?
+                | NUMBER
+
     where_command: WHERE NAME EQ (NAME | NUMBER | STRING)
     heading_command: HEADING CENTER? STRING
 
@@ -41,6 +47,12 @@ wf_grammar = r"""
     WRITE: /WRITE/i
     ADD: /ADD/i
     BY: /BY/i
+    ACROSS: /ACROSS/i
+    RANKED: /RANKED/i
+    HIGHEST: /HIGHEST/i
+    LOWEST: /LOWEST/i
+    TOP: /TOP/i
+    BOTTOM: /BOTTOM/i
     NOPRINT: /NOPRINT/i
     WHERE: /WHERE/i
     EQ: /EQ/i
@@ -51,7 +63,7 @@ wf_grammar = r"""
     THE: /THE/i
     END: /END/i
 
-    NAME: /(?!(TABLE|FILE|SUM|PRINT|LIST|COUNT|WRITE|ADD|BY|NOPRINT|WHERE|EQ|AS|HEADING|CENTER|AND|THE|END)\b)[a-zA-Z_][a-zA-Z0-9_.]+/i
+    NAME: /(?!(TABLE|FILE|SUM|PRINT|LIST|COUNT|WRITE|ADD|BY|ACROSS|RANKED|HIGHEST|LOWEST|TOP|BOTTOM|NOPRINT|WHERE|EQ|AS|HEADING|CENTER|AND|THE|END)\b)[a-zA-Z_][a-zA-Z0-9_.]+/i
 
     %import common.NUMBER
     %import common.WS
