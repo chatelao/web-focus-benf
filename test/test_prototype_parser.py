@@ -207,6 +207,47 @@ class TestWebFocusParser(unittest.TestCase):
         self.assertEqual([str(t) for t in qns[0].children], ['SEG1', 'FIELD1'])
         self.assertEqual([str(t) for t in qns[1].children], ['SEG2', 'FIELD2'])
 
+    def test_summarization_commands(self):
+        variations = [
+            "BY DEPARTMENT SUBTOTAL",
+            "BY DEPARTMENT SUB-TOTAL",
+            "BY DEPARTMENT SUMMARIZE",
+            "BY DEPARTMENT RECOMPUTE",
+            "ON DEPARTMENT SUBTOTAL",
+            "ON DEPARTMENT SUB-TOTAL",
+            "ON DEPARTMENT SUMMARIZE",
+            "ON DEPARTMENT RECOMPUTE",
+            "ON DEPARTMENT SUBTOTAL AVE. SALARY",
+            "ON DEPARTMENT SUBTOTAL AVE. SALARY AS 'Average'",
+            "ON DEPARTMENT SUBTOTAL ROLL.AVE. SALARY",
+            "ON TABLE SUBTOTAL",
+            "ON TABLE COLUMN-TOTAL",
+            "ON TABLE ROW-TOTAL"
+        ]
+        for var in variations:
+            code = f"TABLE FILE EMPDATA\nSUM SALARY\n{var}\nEND"
+            try:
+                self.parser.parse(code)
+            except Exception as e:
+                self.fail(f"Failed to parse summarization command '{var}': {e}")
+
+    def test_output_commands(self):
+        variations = [
+            "ON TABLE HOLD",
+            "ON TABLE PCHOLD",
+            "ON TABLE SAVE",
+            "ON TABLE SAVB",
+            "ON TABLE HOLD AS MYFILE",
+            "ON TABLE HOLD FORMAT ALPHA",
+            "ON TABLE HOLD AS MYFILE FORMAT FOCUS"
+        ]
+        for var in variations:
+            code = f"TABLE FILE EMPDATA\nSUM SALARY\n{var}\nEND"
+            try:
+                self.parser.parse(code)
+            except Exception as e:
+                self.fail(f"Failed to parse output command '{var}': {e}")
+
     def test_samples(self):
         samples_dir = os.path.join(os.path.dirname(__file__), 'samples')
         for filename in os.listdir(samples_dir):

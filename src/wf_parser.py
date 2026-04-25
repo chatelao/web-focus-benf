@@ -32,7 +32,7 @@ wf_grammar = r"""
 
     as_phrase: AS STRING
 
-    by_command: [RANKED] BY sort_options? field [NOPRINT]
+    by_command: [RANKED] BY sort_options? field [summarize_command] [NOPRINT]
     across_command: ACROSS sort_options? field [NOPRINT]
 
     sort_options: (HIGHEST | LOWEST | TOP | BOTTOM) NUMBER?
@@ -42,6 +42,15 @@ wf_grammar = r"""
     heading_command: HEADING CENTER? STRING+
     footing_command: FOOTING CENTER? STRING+
     on_command: ON (qualified_name | TABLE) (SUBHEAD | SUBFOOT) CENTER? STRING+
+              | ON (qualified_name | TABLE) summarize_command
+              | ON TABLE (COLUMN_TOTAL | ROW_TOTAL)
+              | ON TABLE output_command
+
+    summarize_command: (SUBTOTAL | SUB_TOTAL | SUMMARIZE | RECOMPUTE) (ROLL_DOT? (prefix_operator ".")*)? field? (as_phrase)?
+
+    ROLL_DOT: /ROLL\./i
+
+    output_command: (HOLD | PCHOLD | SAVE | SAVB) [AS qualified_name] [FORMAT NAME]
 
     end_command: END
 
@@ -78,6 +87,18 @@ wf_grammar = r"""
     THE: /THE/i
     END: /END/i
 
+    SUBTOTAL: /SUBTOTAL/i
+    SUB_TOTAL: /SUB-TOTAL/i
+    SUMMARIZE: /SUMMARIZE/i
+    RECOMPUTE: /RECOMPUTE/i
+    COLUMN_TOTAL: /COLUMN-TOTAL/i
+    ROW_TOTAL: /ROW-TOTAL/i
+    HOLD: /HOLD/i
+    PCHOLD: /PCHOLD/i
+    SAVE: /SAVE/i
+    SAVB: /SAVB/i
+    FORMAT: /FORMAT/i
+
     AVE: /AVE/i
     MIN: /MIN/i
     MAX: /MAX/i
@@ -94,7 +115,7 @@ wf_grammar = r"""
     TOT: /TOT/i
     CT: /CT/i
 
-    NAME: /(?!(TABLE|FILE|SUM|PRINT|LIST|COUNT|WRITE|ADD|BY|ACROSS|ON|RANKED|HIGHEST|LOWEST|TOP|BOTTOM|NOPRINT|WHERE|EQ|AS|HEADING|FOOTING|SUBHEAD|SUBFOOT|CENTER|AND|THE|END|AVE|MIN|MAX|CNT|FST|LST|ASQ|MDN|MDE|PCT|RPCT|RNK|DST|TOT|CT)\b)[a-zA-Z_][a-zA-Z0-9_]*/i
+    NAME: /(?!(TABLE|FILE|SUM|PRINT|LIST|COUNT|WRITE|ADD|BY|ACROSS|ON|RANKED|HIGHEST|LOWEST|TOP|BOTTOM|NOPRINT|WHERE|EQ|AS|HEADING|FOOTING|SUBHEAD|SUBFOOT|CENTER|AND|THE|END|AVE|MIN|MAX|CNT|FST|LST|ASQ|MDN|MDE|PCT|RPCT|RNK|DST|TOT|CT|SUBTOTAL|SUB-TOTAL|SUMMARIZE|RECOMPUTE|COLUMN-TOTAL|ROW-TOTAL|HOLD|PCHOLD|SAVE|SAVB|FORMAT)\b)[a-zA-Z_][a-zA-Z0-9_]*/i
 
     %import common.NUMBER
     %import common.WS
