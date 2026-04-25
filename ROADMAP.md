@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] Implement a next modest and reasonable roadmap step (#22)
 - [x] Implement a next modest and reasonable roadmap step (#20) (completed at 2026-04-25 02:46:03)
 - [x] Find a use a modern compiler framework to lex, parse and build a AST from the language syntax with the goal to transform to sql (#18) (completed at 2026-04-25 02:12:11)
 - [x] roadmap - split the lexer and parser parts if reasonable or find another way to break the implementation in smaller steps e.g. language feature etc. (#14) (completed at 2026-04-23 10:09:07)
