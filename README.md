@@ -4,6 +4,8 @@ This project implements a Multi-Pass Source-to-Source Compiler (Transpiler) to m
 
 ## Overview
 
+![System Overview](https://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/chatelao/web-focus-benf/main/SYSTEM_OVERVIEW.plantuml)
+
 The transpiler moves beyond simple syntax parsing to understand the semantic context of WebFOCUS requests, including Dialogue Manager state and procedural logic, optimizing them for set-based execution in PostgreSQL.
 
 ## Structure
