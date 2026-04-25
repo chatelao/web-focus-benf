@@ -13,7 +13,7 @@ The frontend is split into two distinct ANTLR4 grammars to reflect the dual natu
 - [x] **1.1 Master File Grammar:** Complete the transition of Master File parsing from Lark to ANTLR4. (Completed: `src/MasterFile.g4` is implemented and used by `src/master_file_parser.py`)
 - [ ] **1.2 WebFOCUS Report Grammar:** Port the EBNF grammar from `src/wf_parser.py` to ANTLR4 (.g4) format.
   - [x] **1.2.1 Core request structure:** TABLE FILE verb, END command, and qualified names. (Implemented in `src/WebFocusReport.g4`)
-  - [ ] **1.2.2 Verb commands:** PRINT, SUM, LIST, COUNT, WRITE, ADD and field lists with AS phrases.
+  - [x] **1.2.2 Verb commands:** PRINT, SUM, LIST, COUNT, WRITE, ADD and field lists with AS phrases. (Implemented in `src/WebFocusReport.g4`)
   - [ ] **1.2.3 Sort phrases:** BY and ACROSS with sort options (HIGHEST, LOWEST, etc.).
   - [ ] **1.2.4 Formatting:** HEADING, FOOTING, and ON (SUBHEAD/SUBFOOT).
   - [ ] **1.2.5 Summarization and Output:** SUBTOTAL, SUMMARIZE, RECOMPUTE and ON TABLE (HOLD, PCHOLD, etc.).
