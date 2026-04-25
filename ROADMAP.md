@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] Create a concept "WEBFOCUS_TO_POSTGRE.md" to migrate a WebFocus Codebase to PostGre as good as possible - DON'T WRITE AND TESTS AND CODE, only this one document (#25)
+- [x] Implement a next modest and reasonable roadmap step (#24) (completed at 2026-04-25 03:43:52)
 - [ ] Implement a next modest and reasonable roadmap step (#24)
 - [ ] Implement a next modest and reasonable roadmap step
 - [x] Implement a next modest and reasonable roadmap step (#22) (completed at 2026-04-25 03:26:35)
@@ -25,8 +25,8 @@
 - [x] Define EBNF and Implement Parser for Master Files (Describing Data) (completed at 2026-04-25 02:46:02)
 - [ ] Define EBNF and Implement Parser for basic TABLE FILE requests (Creating Reports)
   - [x] Support basic verbs (PRINT, LIST, SUM, COUNT, WRITE, ADD) and wildcard (*) (completed at 2026-04-25 03:26:52)
-  - [ ] Support AS phrases for column titles
-  - [ ] Support BY and ACROSS sort phrases
+  - [x] Support AS phrases for column titles (completed at 2026-04-25 03:43:51)
+  - [x] Support BY and ACROSS sort phrases (completed at 2026-04-25 03:43:52)
   - [ ] Support HEADING, FOOTING, and other formatting commands
   - [ ] Support Prefix Operators (AVE., MIN., MAX., etc.)
 - [ ] Define EBNF and Implement Parser for Expressions and WHERE clauses

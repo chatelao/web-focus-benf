@@ -71,6 +71,59 @@ class TestWebFocusParser(unittest.TestCase):
         fields = list(field_list.find_data('field'))
         self.assertEqual(len(fields), 2)
 
+    def test_across_command(self):
+        code = """
+        TABLE FILE EMPDATA
+        SUM SALARY
+        ACROSS DEPARTMENT
+        END
+        """
+        tree = self.parser.parse(code)
+        across_cmds = list(tree.find_data('across_command'))
+        self.assertEqual(len(across_cmds), 1)
+
+    def test_sort_options(self):
+        variations = [
+            "BY HIGHEST 5 SALARY",
+            "BY LOWEST SALARY",
+            "BY TOP 10 SALARY",
+            "BY BOTTOM SALARY",
+            "BY 12 SALARY",
+            "ACROSS HIGHEST 3 DEPT",
+            "ACROSS TOP DEPT"
+        ]
+        for var in variations:
+            code = f"TABLE FILE EMPDATA\nSUM SALARY\n{var}\nEND"
+            try:
+                self.parser.parse(code)
+            except Exception as e:
+                self.fail(f"Failed to parse sort option '{var}': {e}")
+
+    def test_ranked_by(self):
+        code = """
+        TABLE FILE EMPLOYEE
+        PRINT LAST_NAME
+        RANKED BY HIGHEST 5 CURR_SAL
+        END
+        """
+        tree = self.parser.parse(code)
+        by_cmd = next(tree.find_data('by_command'))
+        self.assertTrue(any(t.type == 'RANKED' for t in by_cmd.children if hasattr(t, 'type')))
+
+    def test_sort_as_phrase(self):
+        code = """
+        TABLE FILE EMPLOYEE
+        SUM SALARY
+        BY DEPARTMENT AS 'Dept. Title'
+        ACROSS BANK_NAME AS 'Bank Name'
+        END
+        """
+        tree = self.parser.parse(code)
+        by_cmd = next(tree.find_data('by_command'))
+        self.assertTrue(list(by_cmd.find_data('as_phrase')))
+        across_cmd = next(tree.find_data('across_command'))
+        self.assertTrue(list(across_cmd.find_data('as_phrase')))
+
     def test_samples(self):
         samples_dir = os.path.join(os.path.dirname(__file__), 'samples')
         for filename in os.listdir(samples_dir):
