@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] Rewrite all necessary documents, specifications and plans to align with the new target descirbed in WEBFOCUS_TO_POSTGRE.md (#29)
+- [x] Rewrite all necessary documents, specifications and plans to align with the new target descirbed in WEBFOCUS_TO_POSTGRE.md (#29) (completed at 2026-04-25 04:22:00)
 - [ ] Implement a next modest and reasonable roadmap step (#27)
 - [x] Find a use a modern compiler framework to lex, parse and build a AST from the language syntax with the goal to transform to sql (#18) (completed at 2026-04-25 02:12:11)
 - [x] roadmap - split the lexer and parser parts if reasonable or find another way to break the implementation in smaller steps e.g. language feature etc. (#14) (completed at 2026-04-23 10:09:07)
@@ -17,8 +17,9 @@
 - [x] Download all necessary standard, manuals, handbooks, etc. to `specifictions` and convewrt to ".md" if pdf retrieved (#8) (completed at 2026-04-23 09:07:44)
 - [x] Download all necessary standard, manuals, handbooks, etc. to `specifications` and convert to ".md" if pdf retrieved (#5) (completed at 2026-04-23 09:07:44)
 
-## Chapter 3: Core Parser & Grammar
-- [ ] Implement a Lexer for WebFOCUS core syntax in Python
+## Chapter 3: Frontend - ANTLR4 Parser & Grammar
+- [ ] Migrate core parser from Lark to ANTLR4
+- [ ] Define ANTLR4 grammar for Dialogue Manager commands (-SET, -IF, etc.)
 - [x] Define EBNF and Implement Parser for Master Files (Describing Data) (completed at 2026-04-25 02:46:02)
 - [ ] Define EBNF and Implement Parser for basic TABLE FILE requests (Creating Reports)
   - [x] Support basic verbs (PRINT, LIST, SUM, COUNT, WRITE, ADD) and wildcard (*) (completed at 2026-04-25 03:26:52)
@@ -27,12 +28,20 @@
   - [ ] Support HEADING, FOOTING, and other formatting commands
   - [ ] Support Prefix Operators (AVE., MIN., MAX., etc.)
 - [ ] Define EBNF and Implement Parser for Expressions and WHERE clauses
-- [ ] Define EBNF and Implement Parser for Dialogue Manager commands (-SET, -IF, etc.)
 
-## Chapter 4: Tooling & Integration
+## Chapter 4: Middle-tier - Semantic Analysis & Optimization
+- [ ] Implement Abstract Semantic Graph (ASG) and Symbol Table
+- [ ] Develop SSA-based Intermediate Representation (IR) for optimization
+- [ ] Implement set-based optimization passes for common TABLE FILE patterns
+
+## Chapter 5: Backend - PL/pgSQL Emission
+- [ ] Implement PL/pgSQL Emitter using Jinja2
+- [ ] Map WebFOCUS formatting commands to decoupled presentation logic
+
+## Chapter 6: Tooling & Integration
 - [ ] Integrate parser results into the documentation generator
 - [ ] Develop a CLI tool for automated WebFOCUS code analysis
-- [ ] Create a comprehensive test suite for the parser using real-world WebFOCUS samples
+- [ ] Create a comprehensive test suite for the transpiler using real-world WebFOCUS samples
   - [x] Collect and organize real-world WebFOCUS samples in `test/samples/` (completed at 2026-04-25 03:28:06)
   - [ ] Implement an automated test runner for samples
   - [ ] Verify grammar coverage against samples
