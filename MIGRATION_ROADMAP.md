@@ -14,7 +14,7 @@ The frontend is split into two distinct ANTLR4 grammars to reflect the dual natu
 - [ ] **1.2 WebFOCUS Report Grammar:** Port the EBNF grammar from `src/wf_parser.py` to ANTLR4 (.g4) format.
   - [x] **1.2.1 Core request structure:** TABLE FILE verb, END command, and qualified names. (Implemented in `src/WebFocusReport.g4`)
   - [x] **1.2.2 Verb commands:** PRINT, SUM, LIST, COUNT, WRITE, ADD and field lists with AS phrases. (Implemented in `src/WebFocusReport.g4`)
-  - [ ] **1.2.3 Sort phrases:** BY and ACROSS with sort options (HIGHEST, LOWEST, etc.).
+  - [x] **1.2.3 Sort phrases:** BY and ACROSS with sort options (HIGHEST, LOWEST, etc.). (Implemented in `src/WebFocusReport.g4`)
   - [ ] **1.2.4 Formatting:** HEADING, FOOTING, and ON (SUBHEAD/SUBFOOT).
   - [ ] **1.2.5 Summarization and Output:** SUBTOTAL, SUMMARIZE, RECOMPUTE and ON TABLE (HOLD, PCHOLD, etc.).
 - [ ] **1.3 Dialogue Manager Grammar:** Define ANTLR4 grammar rules for procedural Dialogue Manager commands (-SET, -IF, -GOTO, etc.).
