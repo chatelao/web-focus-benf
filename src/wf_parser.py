@@ -1,4 +1,6 @@
 from lark import Lark
+import sys
+from master_file_parser import MasterFileParser
 
 # A basic grammar for a subset of WebFOCUS TABLE requests
 wf_grammar = r"""
@@ -47,14 +49,19 @@ wf_grammar = r"""
 
 class WebFocusParser:
     def __init__(self):
-        self.parser = Lark(wf_grammar, start='start', parser='earley')
+        self.report_parser = Lark(wf_grammar, start='start', parser='earley')
+        self.master_parser = MasterFileParser()
 
     def parse(self, text):
-        return self.parser.parse(text)
+        # A simple dispatcher: if it contains 'FILENAME', assume it's a Master File
+        # Otherwise, assume it's a report request.
+        if 'FILENAME' in text.upper() or 'SEGNAME' in text.upper():
+            return self.master_parser.parse(text)
+        else:
+            return self.report_parser.parse(text)
 
 if __name__ == "__main__":
-    import sys
-    sample_code = """
+    sample_report = """
     TABLE FILE EMPDATA
     HEADING CENTER "Education Cost vs. Salary"
     SUM EXPENSES AS 'Education,Cost' SALARY AS 'Current,Salary'
@@ -63,10 +70,25 @@ if __name__ == "__main__":
     WHERE YEAR EQ 1991
     END
     """
+
+    sample_master = """
+    FILENAME=EMPLOYEE, SUFFIX=FOC, $
+    SEGNAME=EMPINFO, SEGTYPE=S1, $
+    FIELDNAME=EMP_ID, ALIAS=EID, FORMAT=A9, $
+    """
+
     parser = WebFocusParser()
+
+    print("--- Parsing Report Request ---")
     try:
-        tree = parser.parse(sample_code)
+        tree = parser.parse(sample_report)
         print(tree.pretty())
     except Exception as e:
-        print(f"Error parsing:\n{e}")
-        sys.exit(1)
+        print(f"Error parsing report:\n{e}")
+
+    print("\n--- Parsing Master File ---")
+    try:
+        tree = parser.parse(sample_master)
+        print(tree.pretty())
+    except Exception as e:
+        print(f"Error parsing Master File:\n{e}")
