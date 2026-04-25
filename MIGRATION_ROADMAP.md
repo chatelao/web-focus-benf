@@ -7,6 +7,11 @@ The current Lark-based parsers (`wf_parser.py` and `master_file_parser.py`) are 
 
 - [ ] **1.1 Master File Grammar:** Complete the transition of Master File parsing from Lark to ANTLR4 (already partially started with `src/MasterFile.g4`).
 - [ ] **1.2 WebFOCUS Report Grammar:** Port the EBNF grammar from `src/wf_parser.py` to ANTLR4 (.g4) format.
+  - [x] **1.2.1 Core request structure:** TABLE FILE verb, END command, and qualified names.
+  - [ ] **1.2.2 Verb commands:** PRINT, SUM, LIST, COUNT, WRITE, ADD and field lists with AS phrases.
+  - [ ] **1.2.3 Sort phrases:** BY and ACROSS with sort options (HIGHEST, LOWEST, etc.).
+  - [ ] **1.2.4 Formatting:** HEADING, FOOTING, and ON (SUBHEAD/SUBFOOT).
+  - [ ] **1.2.5 Summarization and Output:** SUBTOTAL, SUMMARIZE, RECOMPUTE and ON TABLE (HOLD, PCHOLD, etc.).
 - [ ] **1.3 Dialogue Manager Grammar:** Define ANTLR4 grammar rules for procedural Dialogue Manager commands (-SET, -IF, -GOTO, etc.).
 - [ ] **1.4 Unified Lexer/Parser:** Ensure the ANTLR4 frontend can handle the context-sensitive nature of WebFOCUS where Dialogue Manager and TABLE FILE requests are interleaved.
 
