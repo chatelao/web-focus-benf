@@ -1,4 +1,4 @@
-# Generated from WebFocusReport.g4 by ANTLR 4.13.2
+# Generated from src/WebFocusReport.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
     from .WebFocusReportParser import WebFocusReportParser
@@ -158,6 +158,51 @@ class WebFocusReportListener(ParseTreeListener):
 
     # Exit a parse tree produced by WebFocusReportParser#on_command.
     def exitOn_command(self, ctx:WebFocusReportParser.On_commandContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#on_table_options.
+    def enterOn_table_options(self, ctx:WebFocusReportParser.On_table_optionsContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#on_table_options.
+    def exitOn_table_options(self, ctx:WebFocusReportParser.On_table_optionsContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#on_field_options.
+    def enterOn_field_options(self, ctx:WebFocusReportParser.On_field_optionsContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#on_field_options.
+    def exitOn_field_options(self, ctx:WebFocusReportParser.On_field_optionsContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#summarize_command.
+    def enterSummarize_command(self, ctx:WebFocusReportParser.Summarize_commandContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#summarize_command.
+    def exitSummarize_command(self, ctx:WebFocusReportParser.Summarize_commandContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#summarize_options.
+    def enterSummarize_options(self, ctx:WebFocusReportParser.Summarize_optionsContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#summarize_options.
+    def exitSummarize_options(self, ctx:WebFocusReportParser.Summarize_optionsContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#output_command.
+    def enterOutput_command(self, ctx:WebFocusReportParser.Output_commandContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#output_command.
+    def exitOutput_command(self, ctx:WebFocusReportParser.Output_commandContext):
         pass
 
 
