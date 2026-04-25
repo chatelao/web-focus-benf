@@ -32,4 +32,4 @@ Transpile WebFOCUS programming language codebases to PostgreSQL (PL/pgSQL) using
 - The `ROADMAP.md` is automatically managed by the `Jules Automation` workflow.
 - When working on tasks from the `ROADMAP.md`, always **execute from bottom to top**.
 - New tasks are added to the top of the list.
-- Tasks are marked as completed with a timestamp when the corresponding issue is closed.
+- Tasks are marked as completed with a timestamp and the corresponding issue id when the issue is closed.
