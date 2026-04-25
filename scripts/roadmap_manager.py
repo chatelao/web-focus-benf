@@ -1,5 +1,6 @@
 import sys
 import os
+import re
 from datetime import datetime
 
 ROADMAP_FILE = 'ROADMAP.md'
@@ -32,13 +33,23 @@ def add_task(task_text):
     if not found_roadmap_header and not header:
         header = ['# ROADMAP\n\n']
 
-    new_task = f"- [ ] {task_text}\n"
+    # Find the highest 0.X number in the existing tasks
+    max_num = 0
+    for line in tasks:
+        match = re.search(r'- \[[ x ]\] 0\.(\d+)', line)
+        if match:
+            num = int(match.group(1))
+            if num > max_num:
+                max_num = num
+
+    new_num = max_num + 1
+    new_task = f"- [ ] 0.{new_num} {task_text}\n"
 
     # Insert new tasks on the top of the list
     new_tasks = [new_task] + tasks
 
     write_roadmap(header + new_tasks)
-    print(f"Added task: {task_text}")
+    print(f"Added task: {task_text} (assigned 0.{new_num})")
 
 def complete_task(task_text):
     lines = read_roadmap()
