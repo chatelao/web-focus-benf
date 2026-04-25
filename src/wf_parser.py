@@ -16,6 +16,7 @@ wf_grammar = r"""
                  | where_command
                  | heading_command
                  | footing_command
+                 | on_command
 
     display_command: verb (field_list | asterisk)
 
@@ -38,8 +39,9 @@ wf_grammar = r"""
                 | NUMBER
 
     where_command: WHERE qualified_name EQ (qualified_name | NUMBER | STRING)
-    heading_command: HEADING CENTER? STRING
-    footing_command: FOOTING CENTER? STRING
+    heading_command: HEADING CENTER? STRING+
+    footing_command: FOOTING CENTER? STRING+
+    on_command: ON (qualified_name | TABLE) (SUBHEAD | SUBFOOT) CENTER? STRING+
 
     end_command: END
 
@@ -57,6 +59,7 @@ wf_grammar = r"""
     ADD_K: /ADD/i
     BY: /BY/i
     ACROSS: /ACROSS/i
+    ON: /ON/i
     RANKED: /RANKED/i
     HIGHEST: /HIGHEST/i
     LOWEST: /LOWEST/i
@@ -68,6 +71,8 @@ wf_grammar = r"""
     AS: /AS/i
     HEADING: /HEADING/i
     FOOTING: /FOOTING/i
+    SUBHEAD: /SUBHEAD/i
+    SUBFOOT: /SUBFOOT/i
     CENTER: /CENTER/i
     AND: /AND/i
     THE: /THE/i
@@ -89,7 +94,7 @@ wf_grammar = r"""
     TOT: /TOT/i
     CT: /CT/i
 
-    NAME: /(?!(TABLE|FILE|SUM|PRINT|LIST|COUNT|WRITE|ADD|BY|ACROSS|RANKED|HIGHEST|LOWEST|TOP|BOTTOM|NOPRINT|WHERE|EQ|AS|HEADING|FOOTING|CENTER|AND|THE|END|AVE|MIN|MAX|CNT|FST|LST|ASQ|MDN|MDE|PCT|RPCT|RNK|DST|TOT|CT)\b)[a-zA-Z_][a-zA-Z0-9_]*/i
+    NAME: /(?!(TABLE|FILE|SUM|PRINT|LIST|COUNT|WRITE|ADD|BY|ACROSS|ON|RANKED|HIGHEST|LOWEST|TOP|BOTTOM|NOPRINT|WHERE|EQ|AS|HEADING|FOOTING|SUBHEAD|SUBFOOT|CENTER|AND|THE|END|AVE|MIN|MAX|CNT|FST|LST|ASQ|MDN|MDE|PCT|RPCT|RNK|DST|TOT|CT)\b)[a-zA-Z_][a-zA-Z0-9_]*/i
 
     %import common.NUMBER
     %import common.WS
