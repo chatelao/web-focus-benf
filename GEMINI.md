@@ -4,9 +4,9 @@ Transpile WebFOCUS programming language codebases to PostgreSQL (PL/pgSQL) using
 
 # Structure
 
-- `CONCEPT.md`: High-level architecture (Frontend, ASG, IR, Backend) and Business/Use Cases.
-- `DESIGN.md`: Detailed design of the transpiler pipeline and the chosen tech stack (ANTLR4, SSA IR, Jinja2).
-- `ROADMAP.md`: Task tracking for the transpiler development, organized by chapters.
+- `CONCEPT.md`: Business Cases with 1:N Use Cases each as well as a High-level business architecture
+- `DESIGN.md` : Detailed design of the application (transpiler pipeline) and the chosen tech stack (ANTLR4, SSA IR, Jinja2).
+- `ROADMAP.md`: Task tracking for the transpiler development, organized by chapters, 
 - `TECHNICAL_DEBTS.md`: Log of architectural or implementation debts.
 - `WEBFOCUS_TO_POSTGRE.md`: The core strategy and technical reasoning for the migration target.
 - `/specifications/`: External documentation and manuals converted to Markdown.
@@ -21,7 +21,7 @@ Transpile WebFOCUS programming language codebases to PostgreSQL (PL/pgSQL) using
 
 # Testing Locally & with Github Action Workflow
 
-- Maintain a CI/CD pipeline that runs on every commit.
+- Maintain a CI/CD pipeline that runs on every commit and every push.
 - Use `test/install.sh` to install testing-specific dependencies.
 - Verify transpilation results against expected PL/pgSQL patterns.
 - Add caching to the Github action workflows to speed up builds.
@@ -32,4 +32,4 @@ Transpile WebFOCUS programming language codebases to PostgreSQL (PL/pgSQL) using
 - The `ROADMAP.md` is automatically managed by the `Jules Automation` workflow.
 - When working on tasks from the `ROADMAP.md`, always **execute from bottom to top**.
 - New tasks are added to the top of the list.
-- Tasks are marked as completed with a timestamp when the corresponding issue is closed.
+- Tasks are marked as completed with a timestamp and the corresponding issue id when the issue is closed.
