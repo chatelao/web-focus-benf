@@ -1,8 +1,9 @@
 # ROADMAP
+- [ ] 0.5 Analyze why there are 2 .g4 files in `/src`and update MIGRATION_ROADMAP.md according the task open (#48)
 - [x] 0.4 Erstelle ein .plantuml mit einer Systemübersicht, füge als "note" überall die offenen Punkte hinzug (#45) (completed at 2026-04-25 19:10:51)
-- [ ] 0.3 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#44)
-- [x] 0.1 Add a MIGRATION_ROADMAP.md from the current system to the new antlr/ninja final solution (#41) (completed at 2026-04-25 18:41:52)
+- [x] 0.3 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#44) (completed at 2026-04-25 19:01:32)
 - [ ] 0.2 Implement a next modest and reasonable roadmap step (#27)
+- [x] 0.1 Add a MIGRATION_ROADMAP.md from the current system to the new antlr/ninja final solution (#41) (completed at 2026-04-25 18:41:52)
 
 ## Chapter 1: Project Foundation & Meta
 - [x] 1.1 Merge Agents.md into gemini.md (#12) (completed at 2026-04-23 13:24:59)
