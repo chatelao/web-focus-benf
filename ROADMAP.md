@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] 0.8 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#54)
 - [x] 0.7 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#51) (completed at 2026-04-25 19:33:12)
 
 - [x] 0.6 Add an on the fly rendered SYSTEM_OVERVIEW.plantuml to the README.md and insure it is shown in rtd too (#49) (completed at 2026-04-25 20:17:55)
