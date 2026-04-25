@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] 0.7 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#51)
 
 - [ ] 0.6 Add an on the fly rendered SYSTEM_OVERVIEW.plantuml to the README.md and insure it is shown in rtd too (#49)
 - [x] 0.5 Analyze why there are 2 .g4 files in `/src`and update MIGRATION_ROADMAP.md according the task open (#48) (completed at 2026-04-25 19:18:42)
