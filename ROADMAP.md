@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] Implement a next modest and reasonable roadmap step (#20)
+- [x] Implement a next modest and reasonable roadmap step (#20) (completed at 2026-04-25 02:46:03)
 - [x] Find a use a modern compiler framework to lex, parse and build a AST from the language syntax with the goal to transform to sql (#18) (completed at 2026-04-25 02:12:11)
 - [x] roadmap - split the lexer and parser parts if reasonable or find another way to break the implementation in smaller steps e.g. language feature etc. (#14) (completed at 2026-04-23 10:09:07)
 
@@ -9,7 +9,7 @@
 - [x] Add more details to the ROADMAP.md (#6) (completed at 2026-04-22 12:05:23)
 - [ ] Reverse engineer the WebFOCUS programming language syntax and functionality
 - [ ] Create a 'readthedocs' documentation of the analytics
-- [ ] Setup the empty CI/CD pipeline
+- [x] Setup the empty CI/CD pipeline (completed at 2026-04-25 02:46:03)
 
 ## Chapter 2: Specifications & Manuals
 - [x] https://github.com/chatelao/web-focus-benf/tree/main/specifications - Move each manual into one subdirectory and split it per chapter (#10) (completed at 2026-04-23 13:27:16)
@@ -18,7 +18,7 @@
 
 ## Chapter 3: Core Parser & Grammar
 - [ ] Implement a Lexer for WebFOCUS core syntax in Python
-- [ ] Define EBNF and Implement Parser for Master Files (Describing Data)
+- [x] Define EBNF and Implement Parser for Master Files (Describing Data) (completed at 2026-04-25 02:46:02)
 - [ ] Define EBNF and Implement Parser for basic TABLE FILE requests (Creating Reports)
 - [ ] Define EBNF and Implement Parser for Expressions and WHERE clauses
 - [ ] Define EBNF and Implement Parser for Dialogue Manager commands (-SET, -IF, etc.)
