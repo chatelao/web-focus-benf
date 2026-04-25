@@ -1,5 +1,6 @@
 # ROADMAP
 - [x] Implement a next modest and reasonable roadmap step (#24) (completed at 2026-04-25 03:43:52)
+- [ ] Implement a next modest and reasonable roadmap step (#24)
 - [ ] Implement a next modest and reasonable roadmap step
 - [x] Implement a next modest and reasonable roadmap step (#22) (completed at 2026-04-25 03:26:35)
 - [x] Implement a next modest and reasonable roadmap step (#20) (completed at 2026-04-25 02:46:03)
