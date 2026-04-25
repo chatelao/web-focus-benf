@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] Find a use a modern compiler framework to lex, parse and build a AST from the language syntax with the goal to transform to sql (#18)
 - [x] roadmap - split the lexer and parser parts if reasonable or find another way to break the implementation in smaller steps e.g. language feature etc. (#14) (completed at 2026-04-23 10:09:07)
 
 ## Chapter 1: Project Foundation & Meta
