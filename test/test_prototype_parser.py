@@ -37,9 +37,9 @@ class TestWebFocusParser(unittest.TestCase):
         tree = self.parser.parse(code)
         self.assertEqual(tree.data, 'request')
 
-        # Check sum_command
-        sum_commands = list(tree.find_data('sum_command'))
-        self.assertEqual(len(sum_commands), 1)
+        # Check display_command
+        display_commands = list(tree.find_data('display_command'))
+        self.assertEqual(len(display_commands), 1)
 
         # Check by_commands
         by_commands = list(tree.find_data('by_command'))
@@ -49,6 +49,39 @@ class TestWebFocusParser(unittest.TestCase):
         code = "INVALID REQUEST"
         with self.assertRaises(Exception):
             self.parser.parse(code)
+
+    def test_verbs_and_wildcard(self):
+        verbs = ['PRINT', 'LIST', 'COUNT', 'SUM', 'WRITE', 'ADD']
+        for verb in verbs:
+            code = f"TABLE FILE EMPDATA\n{verb} *\nEND"
+            tree = self.parser.parse(code)
+            display_cmd = next(tree.find_data('display_command'))
+            self.assertEqual(str(next(display_cmd.find_data('verb')).children[0]), verb)
+            self.assertTrue(list(display_cmd.find_data('asterisk')))
+
+    def test_optional_keywords(self):
+        code = """
+        TABLE FILE EMPLOYEE
+        PRINT THE LAST_NAME AND THE FIRST_NAME
+        END
+        """
+        tree = self.parser.parse(code)
+        display_cmd = next(tree.find_data('display_command'))
+        field_list = next(display_cmd.find_data('field_list'))
+        fields = list(field_list.find_data('field'))
+        self.assertEqual(len(fields), 2)
+
+    def test_samples(self):
+        samples_dir = os.path.join(os.path.dirname(__file__), 'samples')
+        for filename in os.listdir(samples_dir):
+            if filename.endswith('.fex'):
+                filepath = os.path.join(samples_dir, filename)
+                with open(filepath, 'r') as f:
+                    code = f.read()
+                try:
+                    self.parser.parse(code)
+                except Exception as e:
+                    self.fail(f"Failed to parse {filename}: {e}")
 
 if __name__ == '__main__':
     unittest.main()

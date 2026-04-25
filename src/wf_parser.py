@@ -6,38 +6,52 @@ from master_file_parser import MasterFileParser
 wf_grammar = r"""
     ?start: request
 
-    request: table_file command* end_command
+    request: table_file verb_command* end_command
 
     table_file: TABLE FILE NAME
 
-    ?command: sum_command
-            | by_command
-            | where_command
-            | heading_command
+    ?verb_command: display_command
+                 | by_command
+                 | where_command
+                 | heading_command
 
-    sum_command: SUM field_list
-    by_command: BY NAME
-    where_command: WHERE NAME EQ (NAME | NUMBER | STRING)
-    heading_command: HEADING CENTER? STRING
+    display_command: verb (field_list | asterisk)
 
-    field_list: field (field)*
+    asterisk: "*"
+
+    verb: SUM | PRINT | LIST | COUNT | WRITE | ADD
+
+    field_list: [THE] field (([AND] [THE]) field)*
+
     field: NAME (as_phrase)?
     as_phrase: AS STRING
+
+    by_command: BY NAME [NOPRINT]
+    where_command: WHERE NAME EQ (NAME | NUMBER | STRING)
+    heading_command: HEADING CENTER? STRING
 
     end_command: END
 
     TABLE: /TABLE/i
     FILE: /FILE/i
     SUM: /SUM/i
+    PRINT: /PRINT/i
+    LIST: /LIST/i
+    COUNT: /COUNT/i
+    WRITE: /WRITE/i
+    ADD: /ADD/i
     BY: /BY/i
+    NOPRINT: /NOPRINT/i
     WHERE: /WHERE/i
     EQ: /EQ/i
     AS: /AS/i
     HEADING: /HEADING/i
     CENTER: /CENTER/i
+    AND: /AND/i
+    THE: /THE/i
     END: /END/i
 
-    NAME: /(?!(TABLE|FILE|SUM|BY|WHERE|EQ|AS|HEADING|CENTER|END)\b)[a-zA-Z_][a-zA-Z0-9_]*/i
+    NAME: /(?!(TABLE|FILE|SUM|PRINT|LIST|COUNT|WRITE|ADD|BY|NOPRINT|WHERE|EQ|AS|HEADING|CENTER|AND|THE|END)\b)[a-zA-Z_][a-zA-Z0-9_.]+/i
 
     %import common.NUMBER
     %import common.WS

@@ -1,5 +1,6 @@
 # ROADMAP
-- [ ] Implement a next modest and reasonable roadmap step (#22)
+- [ ] Implement a next modest and reasonable roadmap step
+- [x] Implement a next modest and reasonable roadmap step (#22) (completed at 2026-04-25 03:26:35)
 - [x] Implement a next modest and reasonable roadmap step (#20) (completed at 2026-04-25 02:46:03)
 - [x] Find a use a modern compiler framework to lex, parse and build a AST from the language syntax with the goal to transform to sql (#18) (completed at 2026-04-25 02:12:11)
 - [x] roadmap - split the lexer and parser parts if reasonable or find another way to break the implementation in smaller steps e.g. language feature etc. (#14) (completed at 2026-04-23 10:09:07)
@@ -21,6 +22,11 @@
 - [ ] Implement a Lexer for WebFOCUS core syntax in Python
 - [x] Define EBNF and Implement Parser for Master Files (Describing Data) (completed at 2026-04-25 02:46:02)
 - [ ] Define EBNF and Implement Parser for basic TABLE FILE requests (Creating Reports)
+  - [x] Support basic verbs (PRINT, LIST, SUM, COUNT, WRITE, ADD) and wildcard (*) (completed at 2026-04-25 03:26:52)
+  - [ ] Support AS phrases for column titles
+  - [ ] Support BY and ACROSS sort phrases
+  - [ ] Support HEADING, FOOTING, and other formatting commands
+  - [ ] Support Prefix Operators (AVE., MIN., MAX., etc.)
 - [ ] Define EBNF and Implement Parser for Expressions and WHERE clauses
 - [ ] Define EBNF and Implement Parser for Dialogue Manager commands (-SET, -IF, etc.)
 
@@ -28,3 +34,6 @@
 - [ ] Integrate parser results into the documentation generator
 - [ ] Develop a CLI tool for automated WebFOCUS code analysis
 - [ ] Create a comprehensive test suite for the parser using real-world WebFOCUS samples
+  - [x] Collect and organize real-world WebFOCUS samples in `test/samples/` (completed at 2026-04-25 03:28:06)
+  - [ ] Implement an automated test runner for samples
+  - [ ] Verify grammar coverage against samples
