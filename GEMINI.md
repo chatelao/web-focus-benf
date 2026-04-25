@@ -18,6 +18,7 @@ Transpile WebFOCUS programming language codebases to PostgreSQL (PL/pgSQL) using
 - Keep `src/install.sh` to install all tools and dependencies (including ANTLR4 runtime).
 - Develop the ANTLR4 grammar based on the official manuals in `/specifications/`.
 - Use `https://docs.tibco.com/pub/wf-wf/8207.27.0/doc/pdf/TIB_wfwf_8207.27.0_cr_language.pdf` as the primary reference.
+- **ANTLR4 Tip:** When generating the parser from the root, always use `-o src src/WebFocusReport.g4` to ensure files are placed directly in the `src/` directory and avoid accidental `src/src/` nesting.
 
 # Testing Locally & with Github Action Workflow
 

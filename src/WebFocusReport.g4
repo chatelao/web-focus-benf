@@ -22,7 +22,7 @@ as_phrase: AS STRING;
 
 asterisk: '*';
 
-by_command: RANKED? BY sort_options? field NOPRINT?;
+by_command: RANKED? BY sort_options? field summarize_command? NOPRINT?;
 
 across_command: ACROSS sort_options? field NOPRINT?;
 
@@ -33,7 +33,23 @@ heading_command: HEADING CENTER? STRING+;
 
 footing_command: FOOTING CENTER? STRING+;
 
-on_command: ON (qualified_name | TABLE) (SUBHEAD | SUBFOOT) CENTER? STRING+;
+on_command: ON TABLE on_table_options
+          | ON qualified_name on_field_options;
+
+on_table_options: (SUBHEAD | SUBFOOT) CENTER? STRING+
+                | COLUMN_TOTAL
+                | ROW_TOTAL
+                | output_command
+                | summarize_command;
+
+on_field_options: (SUBHEAD | SUBFOOT) CENTER? STRING+
+                | summarize_command;
+
+summarize_command: (SUBTOTAL | SUB_TOTAL | SUMMARIZE | RECOMPUTE) (summarize_options? (field as_phrase? | as_phrase) | summarize_options)?;
+
+summarize_options: ROLL_DOT (prefix_operator DOT)* | (prefix_operator DOT)+;
+
+output_command: (HOLD | PCHOLD | SAVE | SAVB) (AS qualified_name)? (FORMAT (NAME | verb))?;
 
 end_command: END;
 
@@ -72,6 +88,19 @@ ON: [oO][nN];
 SUBHEAD: [sS][uU][bB][hH][eE][aA][dD];
 SUBFOOT: [sS][uU][bB][fF][oO][oO][tT];
 CENTER: [cC][eE][nN][tT][eE][rR];
+
+SUBTOTAL: [sS][uU][bB][tT][oO][tT][aA][lL];
+SUB_TOTAL: [sS][uU][bB] '-' [tT][oO][tT][aA][lL];
+SUMMARIZE: [sS][uU][mM][mM][aA][rR][iI][zZ][eE];
+RECOMPUTE: [rR][eE][cC][oO][mM][pP][uU][tT][eE];
+COLUMN_TOTAL: [cC][oO][lL][uU][mM][nN] '-' [tT][oO][tT][aA][lL];
+ROW_TOTAL: [rR][oO][wW] '-' [tT][oO][tT][aA][lL];
+HOLD: [hH][oO][lL][dD];
+PCHOLD: [pP][cC][hH][oO][lL][dD];
+SAVE: [sS][aA][vV][eE];
+SAVB: [sS][aA][vV][bB];
+FORMAT: [fF][oO][rR][mM][aA][tT];
+ROLL_DOT: [rR][oO][lL][lL] '.';
 
 AVE: [aA][vV][eE];
 MIN: [mM][iI][nN];
