@@ -6,7 +6,7 @@
 - [ ] Support SUB-TOTAL and SUMMARIZE commands
 - [ ] Support SUBHEAD and SUBFOOT commands
 - [x] Support FOOTING command (completed at 2026-04-25 04:40:54)
-- [ ] Implement a next modest and reasonable roadmap step (#31)
+- [x] Implement a next modest and reasonable roadmap step (#31) (completed at 2026-04-25 04:54:24)
 - [x] Rewrite all necessary documents, specifications and plans to align with the new target descirbed in WEBFOCUS_TO_POSTGRE.md (#29) (completed at 2026-04-25 04:22:00)
 - [ ] Implement a next modest and reasonable roadmap step (#27)
 - [x] Find a use a modern compiler framework to lex, parse and build a AST from the language syntax with the goal to transform to sql (#18) (completed at 2026-04-25 02:12:11)
