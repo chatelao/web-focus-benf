@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] 0.1 Add a MIGRATION_ROADMAP.md from the current system to the new antlr/ninja final solution (#41)
+- [x] 0.1 Add a MIGRATION_ROADMAP.md from the current system to the new antlr/ninja final solution (#41) (completed at 2026-04-25 18:41:52)
 - [ ] 0.2 Implement a next modest and reasonable roadmap step (#27)
 
 ## Chapter 1: Project Foundation & Meta
