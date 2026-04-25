@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] 0.4 Erstelle ein .plantuml mit einer Systemübersicht, füge als "note" überall die offenen Punkte hinzug (#45)
+- [x] 0.4 Erstelle ein .plantuml mit einer Systemübersicht, füge als "note" überall die offenen Punkte hinzug (#45) (completed at 2026-04-25 19:10:51)
 - [ ] 0.3 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#44)
 - [x] 0.1 Add a MIGRATION_ROADMAP.md from the current system to the new antlr/ninja final solution (#41) (completed at 2026-04-25 18:41:52)
 - [ ] 0.2 Implement a next modest and reasonable roadmap step (#27)
