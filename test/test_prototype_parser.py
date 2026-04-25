@@ -153,13 +153,40 @@ class TestWebFocusParser(unittest.TestCase):
         code = """
         TABLE FILE EMPDATA
         PRINT SALARY
-        FOOTING CENTER "END OF REPORT"
+        FOOTING CENTER "END OF REPORT" "Line 2"
         END
         """
         tree = self.parser.parse(code)
         footing_cmd = next(tree.find_data('footing_command'))
         self.assertIn('FOOTING', [str(t) for t in footing_cmd.children if hasattr(t, 'type')])
         self.assertIn('"END OF REPORT"', [str(t) for t in footing_cmd.children if hasattr(t, 'type')])
+        self.assertIn('"Line 2"', [str(t) for t in footing_cmd.children if hasattr(t, 'type')])
+
+    def test_on_commands(self):
+        code = """
+        TABLE FILE EMPLOYEE
+        PRINT CURR_SAL
+        BY LAST_NAME
+        ON TABLE SUBHEAD
+        "CONFIDENTIAL"
+        ON LAST_NAME SUBHEAD
+        "ID: <EMP_ID"
+        ON LAST_NAME SUBFOOT
+        "End of Last Name"
+        ON TABLE SUBFOOT
+        "Grand Total"
+        END
+        """
+        tree = self.parser.parse(code)
+        on_cmds = list(tree.find_data('on_command'))
+        self.assertEqual(len(on_cmds), 4)
+
+        # Verify specific content
+        subheads = [c for c in on_cmds if any(t.type == 'SUBHEAD' for t in c.children if hasattr(t, 'type'))]
+        self.assertEqual(len(subheads), 2)
+
+        subfoots = [c for c in on_cmds if any(t.type == 'SUBFOOT' for t in c.children if hasattr(t, 'type'))]
+        self.assertEqual(len(subfoots), 2)
 
     def test_qualified_names(self):
         code = """

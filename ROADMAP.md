@@ -6,7 +6,7 @@
 - [ ] Migrate Lark grammar to ANTLR4 format
 - [ ] Support ON TABLE formatting commands (PCHOLD, etc.)
 - [ ] Support SUB-TOTAL and SUMMARIZE commands
-- [ ] Support SUBHEAD and SUBFOOT commands
+- [x] Support SUBHEAD and SUBFOOT commands (completed at 2026-04-25 05:00:17)
 - [x] Support FOOTING command (completed at 2026-04-25 04:40:54)
 - [x] Implement a next modest and reasonable roadmap step (#31) (completed at 2026-04-25 04:54:24)
 - [x] Rewrite all necessary documents, specifications and plans to align with the new target descirbed in WEBFOCUS_TO_POSTGRE.md (#29) (completed at 2026-04-25 04:22:00)
