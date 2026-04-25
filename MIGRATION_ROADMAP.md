@@ -5,9 +5,14 @@ This document outlines the strategic transition from the legacy Lark-based parse
 ## Phase 1: Frontend Migration (Lark to ANTLR4)
 The current Lark-based parsers (`wf_parser.py` and `master_file_parser.py`) are legacy technical debt and must be replaced by ANTLR4 grammars.
 
-- [ ] **1.1 Master File Grammar:** Complete the transition of Master File parsing from Lark to ANTLR4 (already partially started with `src/MasterFile.g4`).
+**Note on Dual Grammar Architecture:**
+The frontend is split into two distinct ANTLR4 grammars to reflect the dual nature of WebFOCUS:
+1. `MasterFile.g4`: Handles data descriptions and metadata (Synonyms).
+2. `WebFocusReport.g4`: Handles procedural report logic and `TABLE FILE` requests.
+
+- [x] **1.1 Master File Grammar:** Complete the transition of Master File parsing from Lark to ANTLR4. (Completed: `src/MasterFile.g4` is implemented and used by `src/master_file_parser.py`)
 - [ ] **1.2 WebFOCUS Report Grammar:** Port the EBNF grammar from `src/wf_parser.py` to ANTLR4 (.g4) format.
-  - [x] **1.2.1 Core request structure:** TABLE FILE verb, END command, and qualified names.
+  - [x] **1.2.1 Core request structure:** TABLE FILE verb, END command, and qualified names. (Implemented in `src/WebFocusReport.g4`)
   - [ ] **1.2.2 Verb commands:** PRINT, SUM, LIST, COUNT, WRITE, ADD and field lists with AS phrases.
   - [ ] **1.2.3 Sort phrases:** BY and ACROSS with sort options (HIGHEST, LOWEST, etc.).
   - [ ] **1.2.4 Formatting:** HEADING, FOOTING, and ON (SUBHEAD/SUBFOOT).
