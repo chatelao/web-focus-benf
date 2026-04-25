@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] Create a concept "WEBFOCUS_TO_POSTGRE.md" to migrate a WebFocus Codebase to PostGre as good as possible - DON'T WRITE AND TESTS AND CODE, only this one document (#25)
 - [ ] Implement a next modest and reasonable roadmap step (#24)
 - [ ] Implement a next modest and reasonable roadmap step
 - [x] Implement a next modest and reasonable roadmap step (#22) (completed at 2026-04-25 03:26:35)
