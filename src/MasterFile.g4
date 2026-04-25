@@ -1,0 +1,56 @@
+grammar MasterFile;
+
+start: item* EOF;
+
+item: declaration
+    | TERMINATOR
+    ;
+
+declaration: file_decl
+           | segment_decl
+           | field_decl
+           | define_decl
+           | compute_decl
+           | variable_decl
+           | other_decl
+           ;
+
+file_decl: FILENAME_KW (EQUALS | COMMA)? value (COMMA attr_val)* COMMA? TERMINATOR;
+segment_decl: SEGNAME_KW (EQUALS | COMMA)? value (COMMA attr_val)* COMMA? TERMINATOR;
+field_decl: FIELDNAME_KW (EQUALS | COMMA)? value (COMMA attr_val)* COMMA? TERMINATOR;
+variable_decl: VARIABLE_KW (attr_val | COMMA)* TERMINATOR;
+
+define_decl: DEFINE_KW name_format EQUALS expression SEMICOLON (COMMA attr_val)* COMMA? TERMINATOR;
+compute_decl: COMPUTE_KW name_format EQUALS expression SEMICOLON (COMMA attr_val)* COMMA? TERMINATOR;
+
+other_decl: ATTR EQUALS value (COMMA attr_val)* COMMA? TERMINATOR;
+
+attr_val: assignment | value;
+assignment: ATTR EQUALS value;
+
+name_format: value (SLASH value)?;
+
+value: STRING | ATTR | UNQUOTED_VALUE;
+
+expression: expression_part+;
+expression_part: ATTR | UNQUOTED_VALUE | STRING | COMMA | EQUALS | SLASH | FILENAME_KW | SEGNAME_KW | FIELDNAME_KW | VARIABLE_KW | DEFINE_KW | COMPUTE_KW ;
+
+FILENAME_KW: [fF][iI][lL][eE][nN][aA][mM][eE] | [fF][iI][lL][eE];
+SEGNAME_KW: [sS][eE][gG][nN][aA][mM][eE] | [sS][eE][gG][mM][eE][nN][tT];
+FIELDNAME_KW: [fF][iI][eE][lL][dD][nN][aA][mM][eE] | [fF][iI][eE][lL][dD];
+VARIABLE_KW: [vV][aA][rR][iI][aA][bB][lL][eE];
+DEFINE_KW: [dD][eE][fF][iI][nN][eE];
+COMPUTE_KW: [cC][oO][mM][pP][uU][tT][eE];
+
+TERMINATOR: '$' ~[\r\n]*;
+
+COMMA: ',';
+EQUALS: '=';
+SLASH: '/';
+SEMICOLON: ';';
+
+ATTR: [a-zA-Z_] [a-zA-Z0-9_.]*;
+UNQUOTED_VALUE: [a-zA-Z0-9_./&%#@<>:*\-()+]+;
+STRING: '\'' ~'\''* '\'' | '"' ~'"'* '"';
+
+WS: [ \t\r\n]+ -> skip;

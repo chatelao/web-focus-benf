@@ -1,69 +1,36 @@
-from lark import Lark
+from antlr4 import InputStream, CommonTokenStream
+from MasterFileLexer import MasterFileLexer
+from MasterFileParser import MasterFileParser as GeneratedMasterFileParser
+from antlr4.error.ErrorListener import ErrorListener
 import sys
 
-# Master File grammar
-# It needs to be flexible enough to handle the variety of WebFOCUS Master File syntaxes.
-# Declarations usually end with a '$'.
-# Attributes can be named (ATTR=VAL) or positional.
+class BailErrorListener(ErrorListener):
+    def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
+        raise Exception(f"Syntax error at line {line}:{column}: {msg}")
 
-mf_grammar = r"""
-    ?start: (item)*
+class MasterFileParserWrapper:
+    def __init__(self):
+        pass
 
-    ?item: declaration
-         | comment
-         | _WS
+    def parse(self, text):
+        input_stream = InputStream(text)
+        lexer = MasterFileLexer(input_stream)
+        lexer.removeErrorListeners()
+        lexer.addErrorListener(BailErrorListener())
 
-    ?declaration: file_decl
-                | segment_decl
-                | field_decl
-                | define_decl
-                | compute_decl
-                | variable_decl
-                | other_decl
+        stream = CommonTokenStream(lexer)
+        parser = GeneratedMasterFileParser(stream)
+        parser.removeErrorListeners()
+        parser.addErrorListener(BailErrorListener())
 
-    file_decl: FILENAME_KW ["="] VALUE ("," attr_val)* [","] DOLLAR
-    segment_decl: SEGNAME_KW ["="] VALUE ("," attr_val)* [","] DOLLAR
-    field_decl: FIELDNAME_KW ["="] VALUE ("," attr_val)* [","] DOLLAR
-    variable_decl: VARIABLE_KW (attr_val | ",")* DOLLAR
-
-    define_decl: DEFINE_KW name_format "=" expression ";" ("," attr_val)* [","] DOLLAR
-    compute_decl: COMPUTE_KW name_format "=" expression ";" ("," attr_val)* [","] DOLLAR
-
-    other_decl: ATTR "=" VALUE ("," attr_val)* [","] DOLLAR
-
-    ?attr_val: assignment | VALUE
-    assignment: ATTR "=" VALUE
-
-    name_format: UNQUOTED_VALUE ["/" UNQUOTED_VALUE]
-    expression: /[^;]+/
-
-    FILENAME_KW.2: /FILENAME|FILE/i
-    SEGNAME_KW.2: /SEGNAME|SEGMENT/i
-    FIELDNAME_KW.2: /FIELDNAME|FIELD/i
-    VARIABLE_KW.2: /VARIABLE/i
-    DEFINE_KW.2: /DEFINE/i
-    COMPUTE_KW.2: /COMPUTE/i
-
-    ATTR: /[a-zA-Z_][a-zA-Z0-9_.]*/
-    VALUE: STRING | UNQUOTED_VALUE
-
-    UNQUOTED_VALUE: /[a-zA-Z0-9_.\/&%#@<>:*-]+/
-    STRING: /'[^']*'/ | /"[^"]*"/
-
-    DOLLAR: "$"
-    comment: DOLLAR /[^\n]+/
-
-    %import common.WS
-    %ignore WS
-    _WS: WS
-"""
+        return parser.start()
 
 class MasterFileParser:
     def __init__(self):
-        self.parser = Lark(mf_grammar, start='start', parser='earley')
+        self.wrapper = MasterFileParserWrapper()
 
     def parse(self, text):
-        return self.parser.parse(text)
+        return self.wrapper.parse(text)
 
 if __name__ == "__main__":
     sample_mf = """
@@ -77,7 +44,7 @@ if __name__ == "__main__":
     parser = MasterFileParser()
     try:
         tree = parser.parse(sample_mf)
-        print(tree.pretty())
+        print(tree.toStringTree(recog=None))
     except Exception as e:
         print(f"Error parsing Master File:\n{e}")
         sys.exit(1)
