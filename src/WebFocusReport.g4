@@ -4,9 +4,16 @@ start: (request | dm_command)* EOF;
 
 request: table_file (verb_command | by_command | across_command | where_command | heading_command | footing_command | on_command | dm_command)* end_command;
 
-dm_command: dm_set;
+dm_command: dm_set
+          | dm_goto
+          | dm_label
+          ;
 
 dm_set: SET_DM amper_var EQ dm_expression SEMI?;
+
+dm_goto: GOTO_DM NAME SEMI?;
+
+dm_label: LABEL_DM;
 
 dm_expression: dm_term (CONCAT dm_term)*
              | IF dm_logical_expression THEN dm_expression ELSE dm_expression;
@@ -79,6 +86,8 @@ prefix_operator: AVE | MIN | MAX | CNT | FST | LST | ASQ | MDN | MDE | PCT | RPC
 
 // Keywords
 SET_DM: '-' [sS][eE][tT];
+GOTO_DM: '-' [gG][oO][tT][oO];
+LABEL_DM: '-' [a-zA-Z_] [a-zA-Z0-9_]*;
 
 TABLE: [tT][aA][bB][lL][eE];
 FILE: [fF][iI][lL][eE];
