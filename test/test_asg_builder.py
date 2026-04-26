@@ -256,5 +256,45 @@ class TestASGBuilder(unittest.TestCase):
         self.assertTrue(isinstance(expr, asg.BinaryOperation))
         self.assertEqual(expr.operator, "OR")
 
+    def test_join_basic(self):
+        code = "JOIN EMP_ID IN EMPDATA TO EMP_ID IN TRAINING AS J1"
+        asg_nodes = self.build_asg(code)
+        self.assertEqual(len(asg_nodes), 1)
+        node = asg_nodes[0]
+        self.assertTrue(isinstance(node, asg.Join))
+        self.assertEqual(node.left_field, "EMP_ID")
+        self.assertEqual(node.left_file, "EMPDATA")
+        self.assertEqual(node.right_field, "EMP_ID")
+        self.assertEqual(node.right_file, "TRAINING")
+        self.assertEqual(node.join_as, "J1")
+        self.assertFalse(node.outer)
+
+    def test_join_left_outer(self):
+        code = "JOIN LEFT OUTER EMP_ID IN EMPDATA TO EMP_ID IN TRAINING"
+        asg_nodes = self.build_asg(code)
+        node = asg_nodes[0]
+        self.assertTrue(isinstance(node, asg.Join))
+        self.assertTrue(node.outer)
+
+    def test_join_clear(self):
+        code = "JOIN CLEAR *"
+        asg_nodes = self.build_asg(code)
+        node = asg_nodes[0]
+        self.assertTrue(isinstance(node, asg.JoinClear))
+
+    def test_set_command(self):
+        code = "SET PAGE = NOPAGE;"
+        asg_nodes = self.build_asg(code)
+        node = asg_nodes[0]
+        self.assertTrue(isinstance(node, asg.SetCommand))
+        self.assertEqual(node.parameter, "PAGE")
+        self.assertEqual(node.value, "NOPAGE")
+
+    def test_set_command_numeric(self):
+        code = "SET LINES = 66"
+        asg_nodes = self.build_asg(code)
+        node = asg_nodes[0]
+        self.assertEqual(node.value, "66")
+
 if __name__ == '__main__':
     unittest.main()

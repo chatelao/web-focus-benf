@@ -72,9 +72,9 @@ Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands th
       - [ ] 2.4.4.5.2 ON TABLE/field commands (SUBTOTAL, SUMMARIZE, etc.).
       - [x] 2.4.4.5.3 COMPUTE command for calculated values. (Implemented in `src/asg_builder.py`)
   - [ ] 2.4.5 Environment Builder:
-    - [ ] 2.4.5.1 Environment Commands:
-      - [ ] 2.4.5.1.1 JOIN command (CLEAR, LEFT OUTER, AS).
-      - [ ] 2.4.5.1.2 SET command for environment parameters.
+    - [x] 2.4.5.1 Environment Commands:
+      - [x] 2.4.5.1.1 JOIN command (CLEAR, LEFT OUTER, AS). (Implemented in `src/asg_builder.py`)
+      - [x] 2.4.5.1.2 SET command for environment parameters. (Implemented in `src/asg_builder.py`)
     - [ ] 2.4.5.2 Virtual Fields:
       - [ ] 2.4.5.2.1 DEFINE FILE block structure.
       - [ ] 2.4.5.2.2 DEFINE assignments with formats and expressions.

@@ -169,6 +169,10 @@ class Join(Command):
     def __init__(self, left_file, left_field, right_file, right_field, join_as=None, outer=False, **kwargs):
         super().__init__(left_file=left_file, left_field=left_field, right_file=right_file, right_field=right_field, join_as=join_as, outer=outer, **kwargs)
 
+class JoinClear(Command):
+    """Represents a JOIN CLEAR * command."""
+    pass
+
 class SetCommand(Command):
     """Represents a SET (non-Dialogue Manager) command."""
     def __init__(self, parameter, value, **kwargs):
