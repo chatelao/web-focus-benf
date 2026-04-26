@@ -78,8 +78,18 @@ class IfDM(Command):
 
 class Repeat(Command):
     """Represents a Dialogue Manager -REPEAT command."""
-    def __init__(self, label, **kwargs):
-        super().__init__(label=label, **kwargs)
+    def __init__(self, label, condition=None, condition_type=None, times=None, loop_var=None, start_val=None, end_val=None, step_val=None, **kwargs):
+        super().__init__(
+            label=label,
+            condition=condition,
+            condition_type=condition_type,
+            times=times,
+            loop_var=loop_var,
+            start_val=start_val,
+            end_val=end_val,
+            step_val=step_val,
+            **kwargs
+        )
 
 class SetDM(Command):
     """Represents a Dialogue Manager -SET command."""
