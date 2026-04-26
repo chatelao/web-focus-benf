@@ -60,8 +60,15 @@ Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands th
   - [x] 2.4.1 Visitor Infrastructure: Base visitor class and dispatcher. (Implemented in `src/asg_builder.py`)
   - [ ] 2.4.2 Expression Builder: Support all arithmetic and logical expressions.
   - [x] 2.4.3 Dialogue Manager Builder: Support -SET, -IF, -GOTO, -REPEAT, etc. (Implemented in `src/asg_builder.py`)
-  - [ ] 2.4.4 Report Request Builder: Support TABLE FILE, Verbs, BY/ACROSS, WHERE.
-  - [ ] 2.4.5 Environment Builder: Support JOIN, SET, and DEFINE.
+  - [ ] 2.4.4 Report Request Builder:
+    - [x] 2.4.4.1 Core structure: TABLE FILE and END command. (Implemented in `src/asg_builder.py`)
+    - [x] 2.4.4.2 Verbs and Fields: PRINT, SUM, etc., with AS phrases and prefix operators. (Implemented in `src/asg_builder.py`)
+    - [x] 2.4.4.3 Sort phrases: BY and ACROSS with sort options. (Implemented in `src/asg_builder.py`)
+    - [ ] 2.4.4.4 Filtering: WHERE and WHERE TOTAL clauses.
+    - [ ] 2.4.4.5 Formatting and Summarization: HEADING, FOOTING, ON, COMPUTE.
+  - [ ] 2.4.5 Environment Builder:
+    - [ ] 2.4.5.1 Environment Commands: Support JOIN and SET.
+    - [ ] 2.4.5.2 Virtual Fields: Support DEFINE FILE blocks.
 
 ## Phase 3: Optimization (SSA-based IR)
 Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment (SSA) form to enable relational optimizations.
