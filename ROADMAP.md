@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] 0.28 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#86)
 - [ ] 0.27 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#86)
 - [x] 0.26 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#84) (completed at 2026-04-26 15:45:00)
 - [x] 0.25 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#82) (completed at 2026-04-26 14:14:19)
