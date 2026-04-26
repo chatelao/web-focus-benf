@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] 0.16 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#68)
+- [x] 0.16 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#68) (completed at 2026-04-26 06:20:00)
 - [x] 0.15 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#66) (completed at 2026-04-26 05:46:00)
 - [x] 0.14 Implement Dialogue Manager Labels and -GOTO in src/WebFocusReport.g4 (completed at 2026-04-26 05:21:15)
 - [x] 0.13 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#64) (completed at 2026-04-26 05:20:33)
@@ -48,6 +48,7 @@
 - [ ] 3.2 Define ANTLR4 grammar for Dialogue Manager commands (-SET, -IF, etc.)
   - [x] 3.2.1 Support -SET command and ampersand variables (completed at 2026-04-26 04:55:00)
   - [x] 3.2.2 Support -IF, -TYPE and comments (-*) (completed at 2026-04-26 05:40:00)
+  - [x] 3.2.3 Support -INCLUDE, -RUN and -EXIT (completed at 2026-04-26 06:20:00)
 - [x] 3.3 Define EBNF and Implement Parser for Master Files (Describing Data) (completed at 2026-04-25 02:46:02)
 - [ ] 3.4 Define EBNF and Implement Parser for basic TABLE FILE requests (Creating Reports)
   - [x] 3.4.1 Support basic verbs (PRINT, LIST, SUM, COUNT, WRITE, ADD) and wildcard (*) (completed at 2026-04-25 03:26:52)

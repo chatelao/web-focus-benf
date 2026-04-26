@@ -176,6 +176,27 @@ class TestWebFocusParser(unittest.TestCase):
         # &VAR1, &&VAR2, &VAR3, &VAR1, &IN_TABLE, &YEAR, &AFTER
         self.assertEqual(len(amper_vars), 7)
 
+    def test_dm_misc_commands(self):
+        code = """
+        -INCLUDE GGHDR.FEX
+        TABLE FILE EMPDATA
+        PRINT *
+        -RUN
+        END
+        -EXIT
+        """
+        tree = self.parser.parse(code)
+
+        includes = find_context(tree, 'Dm_includeContext')
+        self.assertEqual(len(includes), 1)
+        self.assertEqual(includes[0].getText().upper(), '-INCLUDEGGHDR.FEX')
+
+        runs = find_context(tree, 'Dm_runContext')
+        self.assertEqual(len(runs), 1)
+
+        exits = find_context(tree, 'Dm_exitContext')
+        self.assertEqual(len(exits), 1)
+
     def test_samples(self):
         samples_dir = os.path.join(os.path.dirname(__file__), 'samples')
         for filename in os.listdir(samples_dir):

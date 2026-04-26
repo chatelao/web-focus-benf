@@ -25,8 +25,8 @@ The frontend is split into two distinct ANTLR4 grammars to reflect the dual natu
     - [x] 1.3.2.2 Conditional Branching: -IF ... THEN ... ELSE ... (Implemented in `src/WebFocusReport.g4`)
     - [ ] 1.3.2.3 Loops: -REPEAT with WHILE/UNTIL/STEP.
   - [ ] 1.3.3 File/Execution and Misc:
-    - [ ] 1.3.3.1 File Inclusion: -INCLUDE.
-    - [ ] 1.3.3.2 Execution Control: -RUN and -EXIT.
+    - [x] 1.3.3.1 File Inclusion: -INCLUDE. (Implemented in `src/WebFocusReport.g4`)
+    - [x] 1.3.3.2 Execution Control: -RUN and -EXIT. (Implemented in `src/WebFocusReport.g4`)
     - [x] 1.3.3.3 Output and Comments: -TYPE and -*. (Implemented in `src/WebFocusReport.g4`)
 - [ ] **1.4 Unified Lexer/Parser:** Ensure the ANTLR4 frontend can handle the context-sensitive nature of WebFOCUS where Dialogue Manager and TABLE FILE requests are interleaved.
 
