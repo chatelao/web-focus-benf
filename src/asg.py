@@ -8,6 +8,51 @@ class Expression(ASGNode):
     """Base class for all expression nodes in the ASG."""
     pass
 
+class Literal(Expression):
+    """Represents a literal value (number, string, etc.)."""
+    def __init__(self, value, **kwargs):
+        super().__init__(value=value, **kwargs)
+
+class Identifier(Expression):
+    """Represents a field or variable name."""
+    def __init__(self, name, **kwargs):
+        super().__init__(name=name, **kwargs)
+
+class AmperVar(Expression):
+    """Represents a Dialogue Manager variable (e.g., &VAR)."""
+    def __init__(self, name, **kwargs):
+        super().__init__(name=name, **kwargs)
+
+class BinaryOperation(Expression):
+    """Represents a binary operation (e.g., a + b, a AND b)."""
+    def __init__(self, left, operator, right, **kwargs):
+        super().__init__(left=left, operator=operator, right=right, **kwargs)
+
+class UnaryOperation(Expression):
+    """Represents a unary operation (e.g., -a, NOT a)."""
+    def __init__(self, operator, operand, **kwargs):
+        super().__init__(operator=operator, operand=operand, **kwargs)
+
+class FunctionCall(Expression):
+    """Represents a function call (e.g., ABS(field))."""
+    def __init__(self, function_name, arguments=None, **kwargs):
+        super().__init__(function_name=function_name, arguments=arguments or [], **kwargs)
+
+class IfExpression(Expression):
+    """Represents an inline IF expression (IF condition THEN expr1 ELSE expr2)."""
+    def __init__(self, condition, then_expr, else_expr, **kwargs):
+        super().__init__(condition=condition, then_expr=then_expr, else_expr=else_expr, **kwargs)
+
+class BetweenExpression(Expression):
+    """Represents a BETWEEN or FROM...TO expression."""
+    def __init__(self, expression, lower, upper, **kwargs):
+        super().__init__(expression=expression, lower=lower, upper=upper, **kwargs)
+
+class InExpression(Expression):
+    """Represents an IN expression (e.g., field IN (val1, val2))."""
+    def __init__(self, expression, values, **kwargs):
+        super().__init__(expression=expression, values=values, **kwargs)
+
 class Statement(ASGNode):
     """Base class for all statement nodes in the ASG."""
     pass
