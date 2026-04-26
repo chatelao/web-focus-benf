@@ -82,9 +82,9 @@
 
 ## Chapter 4: Middle-tier - Semantic Analysis & Optimization
 - [ ] 4.1 Implement Abstract Semantic Graph (ASG) and Symbol Table
-  - [ ] 4.1.1 Define ASG node classes for WebFOCUS constructs
-  - [ ] 4.1.2 Implement Symbol Table for variable scope and type tracking
-  - [ ] 4.1.3 Implement ASG builder from ANTLR4 AST
+  - [x] 4.1.1 Define ASG node classes for WebFOCUS constructs (completed at 2026-04-26 15:45:00)
+  - [x] 4.1.2 Implement Symbol Table for variable scope and type tracking (completed at 2026-04-26 15:45:00)
+  - [ ] 4.1.3 Implement ASG builder from ANTLR4 AST (Infrastructure and DM basics completed at 2026-04-26 16:00:00)
 - [ ] 4.2 Develop SSA-based Intermediate Representation (IR) for optimization
   - [ ] 4.2.1 Define IR instruction set and CFG structure
   - [ ] 4.2.2 Implement CFG generator from ASG

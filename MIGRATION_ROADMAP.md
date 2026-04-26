@@ -49,7 +49,7 @@ Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands th
   - [x] 2.1.5 Environment and Virtual Field nodes: Implement nodes for JOIN, SET, and DEFINE. (Implemented in `src/asg.py`)
   - [x] 2.1.6 Expression nodes: Implement nodes for arithmetic and logical operations. (Implemented in `src/asg.py`)
 - [ ] **2.2 Symbol Table:**
-  - [ ] 2.2.1 Scoping: Implement block-level and global scopes.
+  - [x] 2.2.1 Scoping: Implement block-level and global scopes. (Implemented in `src/symbol_table.py`)
   - [ ] 2.2.2 Variable Resolution: Handle Dialogue Manager variables and field references.
   - [ ] 2.2.3 Metadata Integration: Load and resolve symbols from Master Files.
 - [ ] **2.3 Type Inference:**
@@ -57,7 +57,7 @@ Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands th
   - [ ] 2.3.2 Expression Typing: Propagate types through arithmetic and logical operators.
   - [ ] 2.3.3 Metadata Typing: Resolve field types from Master File metadata.
 - [ ] **2.4 ASG Builder:** Implement the visitor to transform ANTLR4 parse tree to ASG.
-  - [ ] 2.4.1 Visitor Infrastructure: Base visitor class and dispatcher.
+  - [x] 2.4.1 Visitor Infrastructure: Base visitor class and dispatcher. (Implemented in `src/asg_builder.py`)
   - [ ] 2.4.2 Expression Builder: Support all arithmetic and logical expressions.
   - [ ] 2.4.3 Dialogue Manager Builder: Support -SET, -IF, -GOTO, -REPEAT, etc.
   - [ ] 2.4.4 Report Request Builder: Support TABLE FILE, Verbs, BY/ACROSS, WHERE.
