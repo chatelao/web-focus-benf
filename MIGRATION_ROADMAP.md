@@ -39,7 +39,7 @@ The frontend is split into two distinct ANTLR4 grammars to reflect the dual natu
 ## Phase 2: Semantic Analysis (ASG Construction)
 Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands the meaning of the code.
 
-- [ ] **2.1 Custom Object Model:**
+- [x] **2.1 Custom Object Model:**
   - [x] 2.1.1 Base ASG nodes: Implement base classes for Expressions, Commands, and Statements. (Implemented in `src/asg.py`)
   - [x] 2.1.2 Data Model nodes: Implement nodes for Master Files, Segments, and Fields. (Implemented in `src/asg.py`)
   - [x] 2.1.3 Procedural nodes:
@@ -56,6 +56,12 @@ Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands th
   - [ ] 2.3.1 Basic Types: Infer types for literal constants.
   - [ ] 2.3.2 Expression Typing: Propagate types through arithmetic and logical operators.
   - [ ] 2.3.3 Metadata Typing: Resolve field types from Master File metadata.
+- [ ] **2.4 ASG Builder:** Implement the visitor to transform ANTLR4 parse tree to ASG.
+  - [ ] 2.4.1 Visitor Infrastructure: Base visitor class and dispatcher.
+  - [ ] 2.4.2 Expression Builder: Support all arithmetic and logical expressions.
+  - [ ] 2.4.3 Dialogue Manager Builder: Support -SET, -IF, -GOTO, -REPEAT, etc.
+  - [ ] 2.4.4 Report Request Builder: Support TABLE FILE, Verbs, BY/ACROSS, WHERE.
+  - [ ] 2.4.5 Environment Builder: Support JOIN, SET, and DEFINE.
 
 ## Phase 3: Optimization (SSA-based IR)
 Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment (SSA) form to enable relational optimizations.
