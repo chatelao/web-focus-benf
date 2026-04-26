@@ -23,7 +23,7 @@ The frontend is split into two distinct ANTLR4 grammars to reflect the dual natu
   - [ ] 1.3.2 Control Flow:
     - [x] 1.3.2.1 Labels and -GOTO. (Implemented in `src/WebFocusReport.g4`)
     - [x] 1.3.2.2 Conditional Branching: -IF ... THEN ... ELSE ... (Implemented in `src/WebFocusReport.g4`)
-    - [ ] 1.3.2.3 Loops: -REPEAT with WHILE/UNTIL/STEP.
+    - [x] 1.3.2.3 Loops: -REPEAT with WHILE/UNTIL/STEP. (Implemented in `src/WebFocusReport.g4`)
   - [ ] 1.3.3 File/Execution and Misc:
     - [x] 1.3.3.1 File Inclusion: -INCLUDE. (Implemented in `src/WebFocusReport.g4`)
     - [x] 1.3.3.2 Execution Control: -RUN and -EXIT. (Implemented in `src/WebFocusReport.g4`)

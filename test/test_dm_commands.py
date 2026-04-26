@@ -64,5 +64,21 @@ class TestDMCommands(unittest.TestCase):
         tree = self.parse(text)
         self.assertIsNotNone(tree)
 
+    def test_dm_repeat_while(self):
+        tree = self.parse("-REPEAT ENDLP WHILE &DONE EQ 'N';")
+        self.assertIsNotNone(tree)
+
+    def test_dm_repeat_until(self):
+        tree = self.parse("-REPEAT ENDLP UNTIL &DONE EQ 'Y';")
+        self.assertIsNotNone(tree)
+
+    def test_dm_repeat_times(self):
+        tree = self.parse("-REPEAT ENDLP 10 TIMES")
+        self.assertIsNotNone(tree)
+
+    def test_dm_repeat_for(self):
+        tree = self.parse("-REPEAT ENDLP FOR &I FROM 1 TO 10 STEP 1")
+        self.assertIsNotNone(tree)
+
 if __name__ == '__main__':
     unittest.main()

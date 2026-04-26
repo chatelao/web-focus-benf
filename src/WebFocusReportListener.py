@@ -53,6 +53,15 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by WebFocusReportParser#dm_repeat.
+    def enterDm_repeat(self, ctx:WebFocusReportParser.Dm_repeatContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#dm_repeat.
+    def exitDm_repeat(self, ctx:WebFocusReportParser.Dm_repeatContext):
+        pass
+
+
     # Enter a parse tree produced by WebFocusReportParser#dm_label.
     def enterDm_label(self, ctx:WebFocusReportParser.Dm_labelContext):
         pass

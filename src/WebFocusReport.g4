@@ -12,11 +12,17 @@ dm_command: dm_set
           | dm_include
           | dm_run
           | dm_exit
+          | dm_repeat
           ;
 
 dm_set: SET_DM amper_var EQ dm_expression SEMI?;
 
 dm_goto: GOTO_DM NAME SEMI?;
+
+dm_repeat: REPEAT_DM NAME (WHILE dm_logical_expression
+                          | UNTIL dm_logical_expression
+                          | dm_term TIMES
+                          | FOR amper_var FROM dm_term TO dm_term (STEP dm_term)?) SEMI?;
 
 dm_label: LABEL_DM;
 
@@ -105,6 +111,7 @@ prefix_operator: AVE | MIN | MAX | CNT | FST | LST | ASQ | MDN | MDE | PCT | RPC
 // Keywords
 SET_DM: '-' [sS][eE][tT];
 GOTO_DM: '-' [gG][oO][tT][oO];
+REPEAT_DM: '-' [rR][eE][pP][eE][aA][tT];
 IF_DM: '-' [iI][fF];
 TYPE_DM: '-' [tT][yY][pP][eE];
 INCLUDE_DM: '-' [iI][nN][cC][lL][uU][dD][eE];
@@ -135,6 +142,13 @@ GT: [gG][tT] | '>';
 LE: [lL][eE] | '<=';
 GE: [gG][eE] | '>=';
 RANKED: [rR][aA][nN][kK][eE][dD];
+WHILE: [wW][hH][iI][lL][eE];
+UNTIL: [uU][nN][tT][iI][lL];
+TIMES: [tT][iI][mM][eE][sS];
+FOR: [fF][oO][rR];
+FROM: [fF][rR][oO][mM];
+TO: [tT][oO];
+STEP: [sS][tT][eE][pP];
 HIGHEST: [hH][iI][gG][hH][eE][sS][tT];
 LOWEST: [lL][oO][wW][eE][sS][tT];
 TOP: [tT][oO][pP];
