@@ -34,10 +34,8 @@ class TestAntlrWebFocusParser(unittest.TestCase):
             "TABLE FILE EMPDATA SUM SALARY ON TABLE ROW-TOTAL END"
         ]
         for code in variations:
-            try:
+            with self.subTest(code=code):
                 self.parse(code)
-            except Exception as e:
-                self.fail(f"Failed to parse summarization command '{code}': {e}")
 
     def test_output_commands(self):
         variations = [
@@ -50,10 +48,8 @@ class TestAntlrWebFocusParser(unittest.TestCase):
             "TABLE FILE EMPDATA SUM SALARY ON TABLE HOLD AS MYFILE FORMAT FOCUS END"
         ]
         for code in variations:
-            try:
+            with self.subTest(code=code):
                 self.parse(code)
-            except Exception as e:
-                self.fail(f"Failed to parse output command '{code}': {e}")
 
     def test_where_clauses(self):
         variations = [
@@ -63,10 +59,8 @@ class TestAntlrWebFocusParser(unittest.TestCase):
             "TABLE FILE EMPDATA PRINT * WHERE DIV EQ 'NORTH' END"
         ]
         for code in variations:
-            try:
+            with self.subTest(code=code):
                 self.parse(code)
-            except Exception as e:
-                self.fail(f"Failed to parse WHERE clause '{code}': {e}")
 
     def test_basic_requests(self):
         variations = [
@@ -75,10 +69,8 @@ class TestAntlrWebFocusParser(unittest.TestCase):
             "TABLE FILE EMPDATA LIST * END"
         ]
         for code in variations:
-            try:
+            with self.subTest(code=code):
                 self.parse(code)
-            except Exception as e:
-                self.fail(f"Failed to parse basic request '{code}': {e}")
 
     def test_sort_phrases(self):
         variations = [
@@ -88,10 +80,8 @@ class TestAntlrWebFocusParser(unittest.TestCase):
             "TABLE FILE EMPDATA SUM SALARY BY LOWEST CURR_SAL END"
         ]
         for code in variations:
-            try:
+            with self.subTest(code=code):
                 self.parse(code)
-            except Exception as e:
-                self.fail(f"Failed to parse sort phrase '{code}': {e}")
 
     def test_formatting_commands(self):
         variations = [
@@ -100,24 +90,20 @@ class TestAntlrWebFocusParser(unittest.TestCase):
             "TABLE FILE EMPDATA SUM SALARY ON DEPT SUBHEAD 'Dept: <DEPT' END"
         ]
         for code in variations:
-            try:
+            with self.subTest(code=code):
                 self.parse(code)
-            except Exception as e:
-                self.fail(f"Failed to parse formatting command '{code}': {e}")
 
     def test_samples(self):
         samples_dir = 'test/samples'
         if not os.path.exists(samples_dir):
             return
-        for filename in os.listdir(samples_dir):
+        for filename in sorted(os.listdir(samples_dir)):
             if filename.endswith('.fex'):
                 filepath = os.path.join(samples_dir, filename)
                 with open(filepath, 'r') as f:
                     code = f.read()
-                try:
+                with self.subTest(filename=filename):
                     self.parse(code)
-                except Exception as e:
-                    self.fail(f"Failed to parse {filename}: {e}")
 
 if __name__ == '__main__':
     unittest.main()

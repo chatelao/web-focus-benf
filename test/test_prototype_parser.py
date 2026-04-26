@@ -199,15 +199,13 @@ class TestWebFocusParser(unittest.TestCase):
 
     def test_samples(self):
         samples_dir = os.path.join(os.path.dirname(__file__), 'samples')
-        for filename in os.listdir(samples_dir):
+        for filename in sorted(os.listdir(samples_dir)):
             if filename.endswith('.fex'):
                 filepath = os.path.join(samples_dir, filename)
                 with open(filepath, 'r') as f:
                     code = f.read()
-                try:
+                with self.subTest(filename=filename):
                     self.parser.parse(code)
-                except Exception as e:
-                    self.fail(f"Failed to parse {filename}: {e}")
 
 if __name__ == '__main__':
     unittest.main()
