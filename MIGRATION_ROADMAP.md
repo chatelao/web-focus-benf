@@ -75,9 +75,9 @@ Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands th
     - [x] 2.4.5.1 Environment Commands:
       - [x] 2.4.5.1.1 JOIN command (CLEAR, LEFT OUTER, AS). (Implemented in `src/asg_builder.py`)
       - [x] 2.4.5.1.2 SET command for environment parameters. (Implemented in `src/asg_builder.py`)
-    - [ ] 2.4.5.2 Virtual Fields:
-      - [ ] 2.4.5.2.1 DEFINE FILE block structure.
-      - [ ] 2.4.5.2.2 DEFINE assignments with formats and expressions.
+    - [x] 2.4.5.2 Virtual Fields:
+      - [x] 2.4.5.2.1 DEFINE FILE block structure. (Implemented in `src/asg_builder.py`)
+      - [x] 2.4.5.2.2 DEFINE assignments with formats and expressions. (Implemented in `src/asg_builder.py`)
 
 ## Phase 3: Optimization (SSA-based IR)
 Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment (SSA) form to enable relational optimizations.

@@ -296,5 +296,29 @@ class TestASGBuilder(unittest.TestCase):
         node = asg_nodes[0]
         self.assertEqual(node.value, "66")
 
+    def test_define_file(self):
+        code = """
+        DEFINE FILE CAR
+        SALES_K/D12.2 = SALES / 1000;
+        TAX/D12.2 = SALES * 0.08;
+        END
+        """
+        asg_nodes = self.build_asg(code)
+        self.assertEqual(len(asg_nodes), 1)
+        node = asg_nodes[0]
+        self.assertTrue(isinstance(node, asg.DefineFile))
+        self.assertEqual(node.filename, "CAR")
+        self.assertEqual(len(node.assignments), 2)
+
+        a1 = node.assignments[0]
+        self.assertEqual(a1.name, "SALES_K")
+        self.assertEqual(a1.format, "D12.2")
+        self.assertTrue(isinstance(a1.expression, asg.BinaryOperation))
+
+        a2 = node.assignments[1]
+        self.assertEqual(a2.name, "TAX")
+        self.assertEqual(a2.format, "D12.2")
+        self.assertTrue(isinstance(a2.expression, asg.BinaryOperation))
+
 if __name__ == '__main__':
     unittest.main()
