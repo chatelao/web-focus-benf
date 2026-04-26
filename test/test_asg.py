@@ -3,7 +3,9 @@ from src.asg import (
     Expression, Statement, Command, MasterFile, Segment, Field,
     Goto, Label, IfDM, Repeat, SetDM, TypeDM, IncludeDM, RunDM, ExitDM,
     ReportRequest, VerbCommand, FieldSelection, SortCommand, WhereClause,
-    Heading, Footing, OnCommand, ComputeCommand, Join, SetCommand, DefineFile
+    Heading, Footing, OnCommand, ComputeCommand, Join, SetCommand, DefineFile,
+    Literal, Identifier, AmperVar, BinaryOperation, UnaryOperation, FunctionCall,
+    IfExpression, BetweenExpression, InExpression
 )
 
 class TestASGNodes(unittest.TestCase):
@@ -129,6 +131,43 @@ class TestASGNodes(unittest.TestCase):
         define = DefineFile(filename="EMPLOYEE", assignments=[{"name": "FULLNAME", "expression": "FIRSTNAME || LASTNAME"}])
         self.assertEqual(define.filename, "EMPLOYEE")
         self.assertEqual(len(define.assignments), 1)
+
+    def test_expression_nodes(self):
+        lit = Literal(value=100)
+        self.assertEqual(lit.value, 100)
+
+        ident = Identifier(name="SALARY")
+        self.assertEqual(ident.name, "SALARY")
+
+        amper = AmperVar(name="&DATE")
+        self.assertEqual(amper.name, "&DATE")
+
+        bin_op = BinaryOperation(left=ident, operator="+", right=lit)
+        self.assertEqual(bin_op.left, ident)
+        self.assertEqual(bin_op.operator, "+")
+        self.assertEqual(bin_op.right, lit)
+
+        un_op = UnaryOperation(operator="NOT", operand=bin_op)
+        self.assertEqual(un_op.operator, "NOT")
+        self.assertEqual(un_op.operand, bin_op)
+
+        func = FunctionCall(function_name="ABS", arguments=[lit])
+        self.assertEqual(func.function_name, "ABS")
+        self.assertEqual(func.arguments[0], lit)
+
+        if_expr = IfExpression(condition=ident, then_expr=lit, else_expr=Literal(value=0))
+        self.assertEqual(if_expr.condition, ident)
+        self.assertEqual(if_expr.then_expr, lit)
+        self.assertEqual(if_expr.else_expr.value, 0)
+
+        between = BetweenExpression(expression=ident, lower=Literal(value=10), upper=Literal(value=20))
+        self.assertEqual(between.expression, ident)
+        self.assertEqual(between.lower.value, 10)
+        self.assertEqual(between.upper.value, 20)
+
+        in_expr = InExpression(expression=ident, values=[Literal(value=1), Literal(value=2)])
+        self.assertEqual(in_expr.expression, ident)
+        self.assertEqual(len(in_expr.values), 2)
 
 if __name__ == '__main__':
     unittest.main()
