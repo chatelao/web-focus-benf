@@ -7,6 +7,8 @@ request: table_file (verb_command | by_command | across_command | where_command 
 dm_command: dm_set
           | dm_goto
           | dm_label
+          | dm_if
+          | dm_type
           ;
 
 dm_set: SET_DM amper_var EQ dm_expression SEMI?;
@@ -14,6 +16,10 @@ dm_set: SET_DM amper_var EQ dm_expression SEMI?;
 dm_goto: GOTO_DM NAME SEMI?;
 
 dm_label: LABEL_DM;
+
+dm_if: IF_DM dm_logical_expression (THEN GOTO? | GOTO) NAME (ELSE GOTO NAME)? SEMI?;
+
+dm_type: TYPE_DM (dm_term)* SEMI?;
 
 dm_expression: dm_term (CONCAT dm_term)*
              | IF dm_logical_expression THEN dm_expression ELSE dm_expression;
@@ -25,7 +31,10 @@ dm_term: qualified_name
 
 amper_var: AMPER_VAR;
 
-dm_logical_expression: dm_term dm_relational_op dm_term;
+dm_logical_expression: dm_logical_expression (AND | OR) dm_logical_expression
+                     | NOT dm_logical_expression
+                     | '(' dm_logical_expression ')'
+                     | dm_term dm_relational_op dm_term;
 
 dm_relational_op: EQ | NE | LE | GE | LT | GT;
 
@@ -87,7 +96,10 @@ prefix_operator: AVE | MIN | MAX | CNT | FST | LST | ASQ | MDN | MDE | PCT | RPC
 // Keywords
 SET_DM: '-' [sS][eE][tT];
 GOTO_DM: '-' [gG][oO][tT][oO];
+IF_DM: '-' [iI][fF];
+TYPE_DM: '-' [tT][yY][pP][eE];
 LABEL_DM: '-' [a-zA-Z_] [a-zA-Z0-9_]*;
+COMMENT_DM: '-*' ~[\r\n]* -> skip;
 
 TABLE: [tT][aA][bB][lL][eE];
 FILE: [fF][iI][lL][eE];
@@ -103,6 +115,7 @@ ADD: [aA][dD][dD];
 BY: [bB][yY];
 ACROSS: [aA][cC][rR][oO][sS][sS];
 WHERE: [wW][hH][eE][rR][eE];
+GOTO: [gG][oO][tT][oO];
 EQ: [eE][qQ] | '=';
 NE: [nN][eE] | '!=';
 LT: [lL][tT] | '<';
@@ -119,6 +132,8 @@ NOPRINT: [nN][oO][pP][rR][iI][nN][tT];
 AS: [aA][sS];
 THE: [tT][hH][eE];
 AND: [aA][nN][dD];
+OR: [oO][rR];
+NOT: [nN][oO][tT];
 THEN: [tT][hH][eE][nN];
 ELSE: [eE][lL][sS][eE];
 IF: [iI][fF];
