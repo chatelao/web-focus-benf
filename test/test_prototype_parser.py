@@ -155,6 +155,27 @@ class TestWebFocusParser(unittest.TestCase):
         self.assertEqual(qns[0].getText().upper(), 'SEG1.FIELD1')
         self.assertEqual(qns[1].getText().upper(), 'SEG2.FIELD2')
 
+    def test_dm_set(self):
+        code = """
+        -SET &VAR1 = 10;
+        -SET &&VAR2 = 'HELLO' | ' WORLD';
+        -SET &VAR3 = IF &VAR1 EQ 10 THEN 'YES' ELSE 'NO';
+        TABLE FILE EMPDATA
+        -SET &IN_TABLE = 1;
+        PRINT *
+        WHERE YEAR EQ &YEAR
+        END
+        -SET &AFTER = 'DONE';
+        """
+        tree = self.parser.parse(code)
+        dm_sets = find_context(tree, 'Dm_setContext')
+        self.assertEqual(len(dm_sets), 5)
+
+        # Check if variables are recognized
+        amper_vars = find_context(tree, 'Amper_varContext')
+        # &VAR1, &&VAR2, &VAR3, &VAR1, &IN_TABLE, &YEAR, &AFTER
+        self.assertEqual(len(amper_vars), 7)
+
     def test_samples(self):
         samples_dir = os.path.join(os.path.dirname(__file__), 'samples')
         for filename in os.listdir(samples_dir):

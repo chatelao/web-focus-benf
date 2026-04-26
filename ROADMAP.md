@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] 0.12 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#62)
+- [x] 0.12 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#62) (completed at 2026-04-26 04:47:21)
 - [x] 0.11 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#60) (completed at 2026-04-26 04:33:38)
 - [x] 0.10 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#58) (completed at 2026-04-25 21:27:58)
 - [x] 0.9 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#56) (completed at 2026-04-25 20:50:04)
@@ -42,6 +42,7 @@
   - [ ] 3.1.3 Integrate ANTLR4 parser into WebFocusParser dispatcher
   - [ ] 3.1.4 Migrate existing Lark test cases to ANTLR4
 - [ ] 3.2 Define ANTLR4 grammar for Dialogue Manager commands (-SET, -IF, etc.)
+  - [x] 3.2.1 Support -SET command and ampersand variables (completed at 2026-04-26 04:55:00)
 - [x] 3.3 Define EBNF and Implement Parser for Master Files (Describing Data) (completed at 2026-04-25 02:46:02)
 - [ ] 3.4 Define EBNF and Implement Parser for basic TABLE FILE requests (Creating Reports)
   - [x] 3.4.1 Support basic verbs (PRINT, LIST, SUM, COUNT, WRITE, ADD) and wildcard (*) (completed at 2026-04-25 03:26:52)
