@@ -188,6 +188,87 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by WebFocusReportParser#dm_logical_expression.
+    def enterDm_logical_expression(self, ctx:WebFocusReportParser.Dm_logical_expressionContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#dm_logical_expression.
+    def exitDm_logical_expression(self, ctx:WebFocusReportParser.Dm_logical_expressionContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#dm_relational_expression.
+    def enterDm_relational_expression(self, ctx:WebFocusReportParser.Dm_relational_expressionContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#dm_relational_expression.
+    def exitDm_relational_expression(self, ctx:WebFocusReportParser.Dm_relational_expressionContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#dm_relational_op.
+    def enterDm_relational_op(self, ctx:WebFocusReportParser.Dm_relational_opContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#dm_relational_op.
+    def exitDm_relational_op(self, ctx:WebFocusReportParser.Dm_relational_opContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#is_not_op.
+    def enterIs_not_op(self, ctx:WebFocusReportParser.Is_not_opContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#is_not_op.
+    def exitIs_not_op(self, ctx:WebFocusReportParser.Is_not_opContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#is_from_op.
+    def enterIs_from_op(self, ctx:WebFocusReportParser.Is_from_opContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#is_from_op.
+    def exitIs_from_op(self, ctx:WebFocusReportParser.Is_from_opContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#not_from_op.
+    def enterNot_from_op(self, ctx:WebFocusReportParser.Not_from_opContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#not_from_op.
+    def exitNot_from_op(self, ctx:WebFocusReportParser.Not_from_opContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#is_less_op.
+    def enterIs_less_op(self, ctx:WebFocusReportParser.Is_less_opContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#is_less_op.
+    def exitIs_less_op(self, ctx:WebFocusReportParser.Is_less_opContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#is_more_op.
+    def enterIs_more_op(self, ctx:WebFocusReportParser.Is_more_opContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#is_more_op.
+    def exitIs_more_op(self, ctx:WebFocusReportParser.Is_more_opContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#is_greater_op.
+    def enterIs_greater_op(self, ctx:WebFocusReportParser.Is_greater_opContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#is_greater_op.
+    def exitIs_greater_op(self, ctx:WebFocusReportParser.Is_greater_opContext):
+        pass
+
+
     # Enter a parse tree produced by WebFocusReportParser#dm_concat_expression.
     def enterDm_concat_expression(self, ctx:WebFocusReportParser.Dm_concat_expressionContext):
         pass
@@ -239,24 +320,6 @@ class WebFocusReportListener(ParseTreeListener):
 
     # Exit a parse tree produced by WebFocusReportParser#amper_var.
     def exitAmper_var(self, ctx:WebFocusReportParser.Amper_varContext):
-        pass
-
-
-    # Enter a parse tree produced by WebFocusReportParser#dm_logical_expression.
-    def enterDm_logical_expression(self, ctx:WebFocusReportParser.Dm_logical_expressionContext):
-        pass
-
-    # Exit a parse tree produced by WebFocusReportParser#dm_logical_expression.
-    def exitDm_logical_expression(self, ctx:WebFocusReportParser.Dm_logical_expressionContext):
-        pass
-
-
-    # Enter a parse tree produced by WebFocusReportParser#dm_relational_op.
-    def enterDm_relational_op(self, ctx:WebFocusReportParser.Dm_relational_opContext):
-        pass
-
-    # Exit a parse tree produced by WebFocusReportParser#dm_relational_op.
-    def exitDm_relational_op(self, ctx:WebFocusReportParser.Dm_relational_opContext):
         pass
 
 
@@ -464,6 +527,15 @@ class WebFocusReportListener(ParseTreeListener):
 
     # Exit a parse tree produced by WebFocusReportParser#qualified_name.
     def exitQualified_name(self, ctx:WebFocusReportParser.Qualified_nameContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#identifier.
+    def enterIdentifier(self, ctx:WebFocusReportParser.IdentifierContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#identifier.
+    def exitIdentifier(self, ctx:WebFocusReportParser.IdentifierContext):
         pass
 
 

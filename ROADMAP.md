@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] 0.24 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#80)
+- [x] 0.24 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#80) (completed at 2026-04-26 11:45:00)
 - [x] 0.23 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#78) (completed at 2026-04-26 10:53:03)
 - [x] 0.22 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#76) (completed at 2026-04-26 09:41:50)
 - [ ] 0.21 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#76)
@@ -69,8 +69,8 @@
   - [x] 3.4.7 Support SUB-TOTAL and SUMMARIZE commands (completed at 2026-04-25 08:54:11)
   - [x] 3.4.8 Support ON TABLE formatting commands (PCHOLD, etc.) (completed at 2026-04-25 08:53:59)
   - [x] 3.4.9 Support HEADING and other formatting commands (completed at 2026-04-25 20:49:39)
-  - [ ] 3.4.10 Support COMPUTE command for calculated fields in report requests
-- [x] 3.5 Define EBNF and Implement Parser for Expressions and WHERE clauses (completed at 2026-04-25 21:50:00)
+  - [x] 3.4.10 Support COMPUTE command for calculated fields in report requests (completed at 2026-04-26 11:45:00)
+- [x] 3.5 Define EBNF and Implement Parser for Expressions and WHERE clauses (completed at 2026-04-26 11:45:00)
 
 ## Chapter 4: Middle-tier - Semantic Analysis & Optimization
 - [ ] 4.1 Implement Abstract Semantic Graph (ASG) and Symbol Table

@@ -48,10 +48,41 @@ dm_run: RUN_DM SEMI?;
 
 dm_exit: EXIT_DM SEMI?;
 
-dm_expression: dm_if_expression
-             | dm_concat_expression;
+dm_expression: dm_if_expression;
 
-dm_if_expression: IF dm_logical_expression THEN dm_expression ELSE dm_expression;
+dm_if_expression: IF dm_logical_expression THEN dm_expression ELSE dm_expression
+                | dm_logical_expression;
+
+dm_logical_expression: '(' dm_logical_expression ')'
+                     | dm_relational_expression
+                     | NOT dm_logical_expression
+                     | dm_logical_expression AND dm_logical_expression
+                     | dm_logical_expression OR dm_logical_expression
+                     ;
+
+dm_relational_expression: dm_concat_expression (IS | EQ | NE | is_not_op)? MISSING
+                        | dm_concat_expression (FROM | is_from_op | not_from_op) dm_concat_expression TO dm_concat_expression
+                        | dm_concat_expression IN (FILE qualified_name | '(' dm_concat_expression (COMMA dm_concat_expression)* ')')
+                        | dm_concat_expression (INCLUDES | EXCLUDES) dm_concat_expression (AND dm_concat_expression)*
+                        | dm_concat_expression dm_relational_op (dm_concat_expression (OR dm_concat_expression)*)
+                        | dm_concat_expression
+                        ;
+
+dm_relational_op: EQ | NE | LE | GE | LT | GT | CONTAINS | OMITS | LIKE | EXCEEDS
+                | IS
+                | is_not_op
+                | is_less_op
+                | is_more_op
+                | is_greater_op
+                | NOT LIKE | NOT SUB_OP LIKE
+                ;
+
+is_not_op: IS_NOT | IS NOT | IS SUB_OP NOT;
+is_from_op: IS_FROM | IS FROM | IS SUB_OP FROM;
+not_from_op: NOT_FROM | NOT FROM | NOT SUB_OP FROM;
+is_less_op: IS_LESS_THAN | IS LESS THAN | IS SUB_OP LESS THAN;
+is_more_op: IS_MORE_THAN | IS MORE_KW THAN | IS SUB_OP MORE_KW THAN;
+is_greater_op: IS_GREATER_THAN | IS GREATER THAN | IS SUB_OP GREATER THAN;
 
 dm_concat_expression: dm_additive_expression (CONCAT dm_additive_expression)*;
 
@@ -70,13 +101,6 @@ dm_primary: NUMBER
 dm_float: NUMBER DOT NUMBER;
 
 amper_var: AMPER_VAR;
-
-dm_logical_expression: dm_logical_expression (AND | OR) dm_logical_expression
-                     | NOT dm_logical_expression
-                     | '(' dm_logical_expression ')'
-                     | dm_primary dm_relational_op dm_primary;
-
-dm_relational_op: EQ | NE | LE | GE | LT | GT;
 
 table_file: TABLE FILE qualified_name;
 
@@ -103,7 +127,7 @@ across_command: ACROSS sort_options? field NOPRINT?;
 sort_options: (HIGHEST | LOWEST | TOP | BOTTOM) NUMBER?
             | NUMBER;
 
-where_command: WHERE qualified_name EQ (qualified_name | NUMBER | STRING | amper_var);
+where_command: WHERE TOTAL? dm_logical_expression SEMI?;
 
 heading_command: HEADING CENTER? STRING+;
 
@@ -113,8 +137,8 @@ on_command: ON TABLE on_table_options
           | ON qualified_name on_field_options;
 
 on_table_options: (SUBHEAD | SUBFOOT) CENTER? STRING+
-                | COLUMN_TOTAL
-                | ROW_TOTAL
+                | COLUMN_TOTAL_KW
+                | ROW_TOTAL_KW
                 | output_command
                 | summarize_command
                 | set_command;
@@ -130,7 +154,13 @@ output_command: (HOLD | PCHOLD | SAVE | SAVB) (AS qualified_name)? (FORMAT (NAME
 
 end_command: END;
 
-qualified_name: (NAME | prefix_operator) (DOT (NAME | prefix_operator))*;
+qualified_name: identifier (DOT identifier)*;
+
+identifier: NAME
+          | prefix_operator
+          | IS | CONTAINS | OMITS | LIKE | TOTAL | MISSING | INCLUDES | EXCLUDES | EXCEEDS
+          | LESS | THAN | MORE_KW | GREATER
+          ;
 
 prefix_operator: AVE | MIN | MAX | CNT | FST | LST | ASQ | MDN | MDE | PCT | RPCT | RNK | DST | TOT | SUM | CT;
 
@@ -143,6 +173,18 @@ TYPE_DM: '-' [tT][yY][pP][eE];
 INCLUDE_DM: '-' [iI][nN][cC][lL][uU][dD][eE];
 RUN_DM: '-' [rR][uU][nN];
 EXIT_DM: '-' [eE][xX][iI][tT];
+
+SUB_TOTAL: [sS][uU][bB] '-' [tT][oO][tT][aA][lL];
+COLUMN_TOTAL_KW: [cC][oO][lL][uU][mM][nN] '-' [tT][oO][tT][aA][lL];
+ROW_TOTAL_KW: [rR][oO][wW] '-' [tT][oO][tT][aA][lL];
+
+IS_NOT: [iI][sS] '-' [nN][oO][tT];
+IS_FROM: [iI][sS] '-' [fF][rR][oO][mM];
+NOT_FROM: [nN][oO][tT] '-' [fF][rR][oO][mM];
+IS_LESS_THAN: [iI][sS] '-' [lL][eE][sS][sS] '-' [tT][hH][aA][nN];
+IS_MORE_THAN: [iI][sS] '-' [mM][oO][rR][eE] '-' [tT][hH][aA][nN];
+IS_GREATER_THAN: [iI][sS] '-' [gG][rR][eE][aA][tT][eE][rR] '-' [tT][hH][aA][nN];
+
 LABEL_DM: '-' [a-zA-Z_] [a-zA-Z0-9_]*;
 COMMENT_DM: '-*' ~[\r\n]* -> skip;
 
@@ -191,6 +233,21 @@ NOPRINT: [nN][oO][pP][rR][iI][nN][tT];
 
 AS: [aA][sS];
 IN: [iI][nN];
+CONTAINS: [cC][oO][nN][tT][aA][iI][nN][sS];
+OMITS: [oO][mM][iI][tT][sS];
+LIKE: [lL][iI][kK][eE];
+IS: [iI][sS];
+TOTAL: [tT][oO][tT][aA][lL];
+MISSING: [mM][iI][sS][sS][iI][nN][gG];
+INCLUDES: [iI][nN][cC][lL][uU][dD][eE][sS];
+EXCLUDES: [eE][xX][cC][lL][uU][dD][eE][sS];
+EXCEEDS: [eE][xX][cC][eE][eE][dD][sS];
+
+LESS: [lL][eE][sS][sS];
+THAN: [tT][hH][aA][nN];
+MORE_KW: [mM][oO][rR][eE];
+GREATER: [gG][rR][eE][aA][tT][eE][rR];
+
 THE: [tT][hH][eE];
 AND: [aA][nN][dD];
 OR: [oO][rR];
@@ -207,11 +264,8 @@ SUBFOOT: [sS][uU][bB][fF][oO][oO][tT];
 CENTER: [cC][eE][nN][tT][eE][rR];
 
 SUBTOTAL: [sS][uU][bB][tT][oO][tT][aA][lL];
-SUB_TOTAL: [sS][uU][bB] '-' [tT][oO][tT][aA][lL];
 SUMMARIZE: [sS][uU][mM][mM][aA][rR][iI][zZ][eE];
 RECOMPUTE: [rR][eE][cC][oO][mM][pP][uU][tT][eE];
-COLUMN_TOTAL: [cC][oO][lL][uU][mM][nN] '-' [tT][oO][tT][aA][lL];
-ROW_TOTAL: [rR][oO][wW] '-' [tT][oO][tT][aA][lL];
 HOLD: [hH][oO][lL][dD];
 PCHOLD: [pP][cC][hH][oO][lL][dD];
 SAVE: [sS][aA][vV][eE];
