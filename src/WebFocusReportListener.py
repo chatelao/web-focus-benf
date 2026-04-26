@@ -44,6 +44,15 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by WebFocusReportParser#compute_command.
+    def enterCompute_command(self, ctx:WebFocusReportParser.Compute_commandContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#compute_command.
+    def exitCompute_command(self, ctx:WebFocusReportParser.Compute_commandContext):
+        pass
+
+
     # Enter a parse tree produced by WebFocusReportParser#format_name.
     def enterFormat_name(self, ctx:WebFocusReportParser.Format_nameContext):
         pass

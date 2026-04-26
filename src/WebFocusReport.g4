@@ -2,11 +2,13 @@ grammar WebFocusReport;
 
 start: (request | dm_command | join_command | set_command | define_file)* EOF;
 
-request: table_file (verb_command | by_command | across_command | where_command | heading_command | footing_command | on_command | dm_command)* end_command;
+request: table_file (verb_command | by_command | across_command | where_command | heading_command | footing_command | on_command | compute_command | dm_command)* end_command;
 
 define_file: DEFINE FILE qualified_name (define_assignment)* end_command;
 
 define_assignment: qualified_name (SLASH format_name)? EQ dm_expression SEMI?;
+
+compute_command: COMPUTE qualified_name (SLASH format_name)? EQ dm_expression SEMI?;
 
 format_name: NAME (DOT NUMBER)? (NAME | NUMBER)*;
 
@@ -59,6 +61,7 @@ dm_multiplicative_expression: dm_primary ((MUL | SLASH) dm_primary)*;
 
 dm_primary: NUMBER
           | dm_float
+          | qualified_name '(' (dm_expression (COMMA dm_expression)*)? ')'
           | qualified_name
           | amper_var
           | STRING
@@ -127,7 +130,7 @@ output_command: (HOLD | PCHOLD | SAVE | SAVB) (AS qualified_name)? (FORMAT (NAME
 
 end_command: END;
 
-qualified_name: NAME (DOT NAME)*;
+qualified_name: (NAME | prefix_operator) (DOT (NAME | prefix_operator))*;
 
 prefix_operator: AVE | MIN | MAX | CNT | FST | LST | ASQ | MDN | MDE | PCT | RPCT | RNK | DST | TOT | SUM | CT;
 
@@ -146,6 +149,7 @@ COMMENT_DM: '-*' ~[\r\n]* -> skip;
 TABLE: [tT][aA][bB][lL][eE];
 FILE: [fF][iI][lL][eE];
 DEFINE: [dD][eE][fF][iI][nN][eE];
+COMPUTE: [cC][oO][mM][pP][uU][tT][eE];
 END: [eE][nN][dD];
 
 PRINT: [pP][rR][iI][nN][tT];
