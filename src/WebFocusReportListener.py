@@ -62,6 +62,24 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by WebFocusReportParser#dm_if.
+    def enterDm_if(self, ctx:WebFocusReportParser.Dm_ifContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#dm_if.
+    def exitDm_if(self, ctx:WebFocusReportParser.Dm_ifContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#dm_type.
+    def enterDm_type(self, ctx:WebFocusReportParser.Dm_typeContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#dm_type.
+    def exitDm_type(self, ctx:WebFocusReportParser.Dm_typeContext):
+        pass
+
+
     # Enter a parse tree produced by WebFocusReportParser#dm_expression.
     def enterDm_expression(self, ctx:WebFocusReportParser.Dm_expressionContext):
         pass
