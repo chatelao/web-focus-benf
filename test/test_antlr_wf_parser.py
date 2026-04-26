@@ -43,7 +43,22 @@ class TestAntlrWebFocusParser(unittest.TestCase):
             "DEFINE FILE GGSALES BONUS/D12.2 = DOLLARS * 0.1; END",
             "DEFINE FILE CAR NEW_C/A20 = COUNTRY | CAR; FLAG/A1 = 'Y'; END",
             "DEFINE FILE EMPDATA PREC = 1 + 2 * 3; END",
-            "DEFINE FILE EMPDATA PREC2 = (1 + 2) * 3; END"
+            "DEFINE FILE EMPDATA PREC2 = (1 + 2) * 3; END",
+            "DEFINE FILE EMPDATA ABS_VAL = ABS(SALARY); END",
+            "DEFINE FILE EMPDATA MULTI_ARG = MAX(SALARY, 50000); END",
+            "DEFINE FILE EMPDATA NO_ARG = GET_DATE(); END"
+        ]
+        for code in variations:
+            with self.subTest(code=code):
+                self.parse(code)
+
+    def test_compute_commands(self):
+        variations = [
+            "TABLE FILE EMPDATA SUM SALARY COMPUTE RATIO = SALARY / 1000; END",
+            "TABLE FILE EMPDATA SUM SALARY COMPUTE BONUS/D12.2 = SALARY * 0.1; END",
+            "TABLE FILE EMPDATA SUM SALARY BY DEPT COMPUTE DEPT_AVG = AVE.SALARY; END",
+            "TABLE FILE EMPDATA SUM SALARY COMPUTE FLAG/A1 = IF SALARY GT 50000 THEN 'H' ELSE 'L'; END",
+            "TABLE FILE EMPDATA SUM SALARY COMPUTE ROUNDED = ROUND(SALARY); END"
         ]
         for code in variations:
             with self.subTest(code=code):

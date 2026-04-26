@@ -30,10 +30,11 @@ The frontend is split into two distinct ANTLR4 grammars to reflect the dual natu
     - [x] 1.3.3.3 Output and Comments: -TYPE and -*. (Implemented in `src/WebFocusReport.g4`)
 - [ ] **1.4 Unified Lexer/Parser:** Ensure the ANTLR4 frontend can handle the context-sensitive nature of WebFOCUS where Dialogue Manager and TABLE FILE requests are interleaved.
   - [x] 1.4.1 Environment Commands: Support `JOIN` and `SET` (non-DM) commands. (Implemented in `src/WebFocusReport.g4`)
-  - [ ] 1.4.2 Virtual Fields: Support `DEFINE FILE ... END` for temporary field definitions.
-    - [ ] 1.4.2.1 Block Structure: Support `DEFINE FILE filename ... END`.
-    - [ ] 1.4.2.2 Basic Assignments: Support `field/format = expression;` within the block.
+  - [x] 1.4.2 Virtual Fields: Support `DEFINE FILE ... END` for temporary field definitions.
+    - [x] 1.4.2.1 Block Structure: Support `DEFINE FILE filename ... END`.
+    - [x] 1.4.2.2 Basic Assignments: Support `field/format = expression;` within the block.
     - [ ] 1.4.2.3 Expressions: Full support for arithmetic, character, and logical expressions in `DEFINE`.
+  - [ ] 1.4.3 Calculated Values: Support `COMPUTE field[/format] = expression;` within report requests.
 
 ## Phase 2: Semantic Analysis (ASG Construction)
 Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands the meaning of the code.

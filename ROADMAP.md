@@ -68,6 +68,7 @@
   - [x] 3.4.7 Support SUB-TOTAL and SUMMARIZE commands (completed at 2026-04-25 08:54:11)
   - [x] 3.4.8 Support ON TABLE formatting commands (PCHOLD, etc.) (completed at 2026-04-25 08:53:59)
   - [x] 3.4.9 Support HEADING and other formatting commands (completed at 2026-04-25 20:49:39)
+  - [ ] 3.4.10 Support COMPUTE command for calculated fields in report requests
 - [x] 3.5 Define EBNF and Implement Parser for Expressions and WHERE clauses (completed at 2026-04-25 21:50:00)
 
 ## Chapter 4: Middle-tier - Semantic Analysis & Optimization
