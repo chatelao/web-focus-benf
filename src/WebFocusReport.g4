@@ -1,8 +1,14 @@
 grammar WebFocusReport;
 
-start: (request | dm_command | join_command | set_command)* EOF;
+start: (request | dm_command | join_command | set_command | define_file)* EOF;
 
 request: table_file (verb_command | by_command | across_command | where_command | heading_command | footing_command | on_command | dm_command)* end_command;
+
+define_file: DEFINE FILE qualified_name (define_assignment)* end_command;
+
+define_assignment: qualified_name (SLASH format_name)? EQ dm_expression SEMI?;
+
+format_name: NAME (DOT NUMBER)? (NAME | NUMBER)*;
 
 join_command: JOIN (CLEAR asterisk | (LEFT? OUTER)? qualified_name IN qualified_name TO qualified_name IN qualified_name (AS NAME)?) SEMI?;
 
@@ -25,14 +31,14 @@ dm_goto: GOTO_DM NAME SEMI?;
 
 dm_repeat: REPEAT_DM NAME (WHILE dm_logical_expression
                           | UNTIL dm_logical_expression
-                          | dm_term TIMES
-                          | FOR amper_var FROM dm_term TO dm_term (STEP dm_term)?) SEMI?;
+                          | dm_primary TIMES
+                          | FOR amper_var FROM dm_primary TO dm_primary (STEP dm_primary)?) SEMI?;
 
 dm_label: LABEL_DM;
 
 dm_if: IF_DM dm_logical_expression (THEN GOTO? | GOTO) NAME (ELSE GOTO NAME)? SEMI?;
 
-dm_type: TYPE_DM (dm_term)* SEMI?;
+dm_type: TYPE_DM (dm_primary)* SEMI?;
 
 dm_include: INCLUDE_DM qualified_name SEMI?;
 
@@ -40,20 +46,32 @@ dm_run: RUN_DM SEMI?;
 
 dm_exit: EXIT_DM SEMI?;
 
-dm_expression: dm_term (CONCAT dm_term)*
-             | IF dm_logical_expression THEN dm_expression ELSE dm_expression;
+dm_expression: dm_if_expression
+             | dm_concat_expression;
 
-dm_term: qualified_name
-       | amper_var
-       | NUMBER
-       | STRING;
+dm_if_expression: IF dm_logical_expression THEN dm_expression ELSE dm_expression;
+
+dm_concat_expression: dm_additive_expression (CONCAT dm_additive_expression)*;
+
+dm_additive_expression: dm_multiplicative_expression ((ADD_OP | SUB_OP) dm_multiplicative_expression)*;
+
+dm_multiplicative_expression: dm_primary ((MUL | SLASH) dm_primary)*;
+
+dm_primary: NUMBER
+          | dm_float
+          | qualified_name
+          | amper_var
+          | STRING
+          | '(' dm_expression ')';
+
+dm_float: NUMBER DOT NUMBER;
 
 amper_var: AMPER_VAR;
 
 dm_logical_expression: dm_logical_expression (AND | OR) dm_logical_expression
                      | NOT dm_logical_expression
                      | '(' dm_logical_expression ')'
-                     | dm_term dm_relational_op dm_term;
+                     | dm_primary dm_relational_op dm_primary;
 
 dm_relational_op: EQ | NE | LE | GE | LT | GT;
 
@@ -127,6 +145,7 @@ COMMENT_DM: '-*' ~[\r\n]* -> skip;
 
 TABLE: [tT][aA][bB][lL][eE];
 FILE: [fF][iI][lL][eE];
+DEFINE: [dD][eE][fF][iI][nN][eE];
 END: [eE][nN][dD];
 
 PRINT: [pP][rR][iI][nN][tT];
@@ -215,6 +234,10 @@ CT: [cC][tT];
 DOT: '.';
 COMMA: ',';
 SEMI: ';';
+SLASH: '/';
+MUL: '*';
+ADD_OP: '+';
+SUB_OP: '-';
 CONCAT: '||' | '|';
 
 NUMBER: [0-9]+;

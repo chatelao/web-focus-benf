@@ -26,6 +26,33 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by WebFocusReportParser#define_file.
+    def enterDefine_file(self, ctx:WebFocusReportParser.Define_fileContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#define_file.
+    def exitDefine_file(self, ctx:WebFocusReportParser.Define_fileContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#define_assignment.
+    def enterDefine_assignment(self, ctx:WebFocusReportParser.Define_assignmentContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#define_assignment.
+    def exitDefine_assignment(self, ctx:WebFocusReportParser.Define_assignmentContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#format_name.
+    def enterFormat_name(self, ctx:WebFocusReportParser.Format_nameContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#format_name.
+    def exitFormat_name(self, ctx:WebFocusReportParser.Format_nameContext):
+        pass
+
+
     # Enter a parse tree produced by WebFocusReportParser#join_command.
     def enterJoin_command(self, ctx:WebFocusReportParser.Join_commandContext):
         pass
@@ -143,12 +170,57 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by WebFocusReportParser#dm_term.
-    def enterDm_term(self, ctx:WebFocusReportParser.Dm_termContext):
+    # Enter a parse tree produced by WebFocusReportParser#dm_if_expression.
+    def enterDm_if_expression(self, ctx:WebFocusReportParser.Dm_if_expressionContext):
         pass
 
-    # Exit a parse tree produced by WebFocusReportParser#dm_term.
-    def exitDm_term(self, ctx:WebFocusReportParser.Dm_termContext):
+    # Exit a parse tree produced by WebFocusReportParser#dm_if_expression.
+    def exitDm_if_expression(self, ctx:WebFocusReportParser.Dm_if_expressionContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#dm_concat_expression.
+    def enterDm_concat_expression(self, ctx:WebFocusReportParser.Dm_concat_expressionContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#dm_concat_expression.
+    def exitDm_concat_expression(self, ctx:WebFocusReportParser.Dm_concat_expressionContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#dm_additive_expression.
+    def enterDm_additive_expression(self, ctx:WebFocusReportParser.Dm_additive_expressionContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#dm_additive_expression.
+    def exitDm_additive_expression(self, ctx:WebFocusReportParser.Dm_additive_expressionContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#dm_multiplicative_expression.
+    def enterDm_multiplicative_expression(self, ctx:WebFocusReportParser.Dm_multiplicative_expressionContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#dm_multiplicative_expression.
+    def exitDm_multiplicative_expression(self, ctx:WebFocusReportParser.Dm_multiplicative_expressionContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#dm_primary.
+    def enterDm_primary(self, ctx:WebFocusReportParser.Dm_primaryContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#dm_primary.
+    def exitDm_primary(self, ctx:WebFocusReportParser.Dm_primaryContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#dm_float.
+    def enterDm_float(self, ctx:WebFocusReportParser.Dm_floatContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#dm_float.
+    def exitDm_float(self, ctx:WebFocusReportParser.Dm_floatContext):
         pass
 
 

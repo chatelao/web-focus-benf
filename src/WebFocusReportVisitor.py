@@ -19,6 +19,21 @@ class WebFocusReportVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by WebFocusReportParser#define_file.
+    def visitDefine_file(self, ctx:WebFocusReportParser.Define_fileContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#define_assignment.
+    def visitDefine_assignment(self, ctx:WebFocusReportParser.Define_assignmentContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#format_name.
+    def visitFormat_name(self, ctx:WebFocusReportParser.Format_nameContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by WebFocusReportParser#join_command.
     def visitJoin_command(self, ctx:WebFocusReportParser.Join_commandContext):
         return self.visitChildren(ctx)
@@ -84,8 +99,33 @@ class WebFocusReportVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by WebFocusReportParser#dm_term.
-    def visitDm_term(self, ctx:WebFocusReportParser.Dm_termContext):
+    # Visit a parse tree produced by WebFocusReportParser#dm_if_expression.
+    def visitDm_if_expression(self, ctx:WebFocusReportParser.Dm_if_expressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#dm_concat_expression.
+    def visitDm_concat_expression(self, ctx:WebFocusReportParser.Dm_concat_expressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#dm_additive_expression.
+    def visitDm_additive_expression(self, ctx:WebFocusReportParser.Dm_additive_expressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#dm_multiplicative_expression.
+    def visitDm_multiplicative_expression(self, ctx:WebFocusReportParser.Dm_multiplicative_expressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#dm_primary.
+    def visitDm_primary(self, ctx:WebFocusReportParser.Dm_primaryContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#dm_float.
+    def visitDm_float(self, ctx:WebFocusReportParser.Dm_floatContext):
         return self.visitChildren(ctx)
 
 
