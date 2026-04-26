@@ -309,6 +309,17 @@ class ReportASGBuilder(WebFocusReportVisitor):
             outer=outer
         )
 
+    def visitDefine_file(self, ctx: WebFocusReportParser.Define_fileContext):
+        filename = ctx.qualified_name().getText()
+        assignments = [self.visit(a) for a in ctx.define_assignment()]
+        return DefineFile(filename=filename, assignments=assignments)
+
+    def visitDefine_assignment(self, ctx: WebFocusReportParser.Define_assignmentContext):
+        name = ctx.qualified_name().getText()
+        format = ctx.format_name().getText() if ctx.format_name() else None
+        expression = self.visit(ctx.dm_expression())
+        return DefineAssignment(name=name, expression=expression, format=format)
+
     def visitSet_command(self, ctx: WebFocusReportParser.Set_commandContext):
         parameter = ctx.NAME(0).getText()
         if ctx.NAME(1):

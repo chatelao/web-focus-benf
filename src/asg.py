@@ -183,6 +183,11 @@ class DefineFile(Statement):
     def __init__(self, filename, assignments=None, **kwargs):
         super().__init__(filename=filename, assignments=assignments or [], **kwargs)
 
+class DefineAssignment(ASGNode):
+    """Represents a single assignment within a DEFINE FILE block."""
+    def __init__(self, name, expression, format=None, **kwargs):
+        super().__init__(name=name, expression=expression, format=format, **kwargs)
+
 class DataModelNode(ASGNode):
     """Base class for nodes related to the data model (Master Files)."""
     pass
