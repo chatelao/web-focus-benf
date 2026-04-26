@@ -9,6 +9,9 @@ dm_command: dm_set
           | dm_label
           | dm_if
           | dm_type
+          | dm_include
+          | dm_run
+          | dm_exit
           ;
 
 dm_set: SET_DM amper_var EQ dm_expression SEMI?;
@@ -20,6 +23,12 @@ dm_label: LABEL_DM;
 dm_if: IF_DM dm_logical_expression (THEN GOTO? | GOTO) NAME (ELSE GOTO NAME)? SEMI?;
 
 dm_type: TYPE_DM (dm_term)* SEMI?;
+
+dm_include: INCLUDE_DM qualified_name SEMI?;
+
+dm_run: RUN_DM SEMI?;
+
+dm_exit: EXIT_DM SEMI?;
 
 dm_expression: dm_term (CONCAT dm_term)*
              | IF dm_logical_expression THEN dm_expression ELSE dm_expression;
@@ -98,6 +107,9 @@ SET_DM: '-' [sS][eE][tT];
 GOTO_DM: '-' [gG][oO][tT][oO];
 IF_DM: '-' [iI][fF];
 TYPE_DM: '-' [tT][yY][pP][eE];
+INCLUDE_DM: '-' [iI][nN][cC][lL][uU][dD][eE];
+RUN_DM: '-' [rR][uU][nN];
+EXIT_DM: '-' [eE][xX][iI][tT];
 LABEL_DM: '-' [a-zA-Z_] [a-zA-Z0-9_]*;
 COMMENT_DM: '-*' ~[\r\n]* -> skip;
 
