@@ -31,20 +31,40 @@ The frontend is split into two distinct ANTLR4 grammars to reflect the dual natu
 - [ ] **1.4 Unified Lexer/Parser:** Ensure the ANTLR4 frontend can handle the context-sensitive nature of WebFOCUS where Dialogue Manager and TABLE FILE requests are interleaved.
   - [x] 1.4.1 Environment Commands: Support `JOIN` and `SET` (non-DM) commands. (Implemented in `src/WebFocusReport.g4`)
   - [ ] 1.4.2 Virtual Fields: Support `DEFINE FILE ... END` for temporary field definitions.
+    - [ ] 1.4.2.1 Block Structure: Support `DEFINE FILE filename ... END`.
+    - [ ] 1.4.2.2 Basic Assignments: Support `field/format = expression;` within the block.
+    - [ ] 1.4.2.3 Expressions: Full support for arithmetic, character, and logical expressions in `DEFINE`.
 
 ## Phase 2: Semantic Analysis (ASG Construction)
 Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands the meaning of the code.
 
-- [ ] **2.1 Custom Object Model:** Implement the Python classes representing WebFOCUS semantic constructs.
-- [ ] **2.2 Symbol Table:** Build a robust symbol table to track variable state, especially for Dialogue Manager variables (`&VARS`).
-- [ ] **2.3 Type Inference:** Implement logic to infer data types from Master Files and `DEFINE` statements.
+- [ ] **2.1 Custom Object Model:**
+  - [ ] 2.1.1 Base ASG nodes: Implement base classes for Expressions, Commands, and Statements.
+  - [ ] 2.1.2 Data Model nodes: Implement nodes for Master Files, Segments, and Fields.
+  - [ ] 2.1.3 Procedural nodes: Implement nodes for Dialogue Manager control flow.
+- [ ] **2.2 Symbol Table:**
+  - [ ] 2.2.1 Scoping: Implement block-level and global scopes.
+  - [ ] 2.2.2 Variable Resolution: Handle Dialogue Manager variables and field references.
+  - [ ] 2.2.3 Metadata Integration: Load and resolve symbols from Master Files.
+- [ ] **2.3 Type Inference:**
+  - [ ] 2.3.1 Basic Types: Infer types for literal constants.
+  - [ ] 2.3.2 Expression Typing: Propagate types through arithmetic and logical operators.
+  - [ ] 2.3.3 Metadata Typing: Resolve field types from Master File metadata.
 
 ## Phase 3: Optimization (SSA-based IR)
 Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment (SSA) form to enable relational optimizations.
 
-- [ ] **3.1 CFG Generation:** Map procedural logic to a graph-based representation.
-- [ ] **3.2 SSA Transformation:** Implement phi-nodes and variable renaming for precise analysis.
-- [ ] **3.3 Relational Lifting:** Identify row-based procedural loops that can be "lifted" into set-based SQL queries.
+- [ ] **3.1 CFG Generation:**
+  - [ ] 3.1.1 Basic Blocks: Partition procedural logic into basic blocks.
+  - [ ] 3.1.2 Control Flow Edges: Implement branching and looping edges in the graph.
+- [ ] **3.2 SSA Transformation:**
+  - [ ] 3.2.1 Dominator Analysis: Compute dominator tree and frontiers.
+  - [ ] 3.2.2 Variable Renaming: Implement versioning for all variables.
+  - [ ] 3.2.3 Phi-node Insertion: Handle merge points in control flow.
+- [ ] **3.3 Relational Lifting:**
+  - [ ] 3.3.1 Loop Analysis: Identify loops that iterate over data sources.
+  - [ ] 3.3.2 Predicate Pushdown: Identify filters that can be moved to SQL WHERE.
+  - [ ] 3.3.3 Projection Pruning: Identify unused fields.
 
 ## Phase 4: Backend Emission (Jinja2)
 Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.

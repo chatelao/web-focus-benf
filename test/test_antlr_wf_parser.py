@@ -37,6 +37,18 @@ class TestAntlrWebFocusParser(unittest.TestCase):
             with self.subTest(code=code):
                 self.parse(code)
 
+    def test_define_file(self):
+        variations = [
+            "DEFINE FILE EMPDATA MYFIELD = SALARY * 1.1; END",
+            "DEFINE FILE GGSALES BONUS/D12.2 = DOLLARS * 0.1; END",
+            "DEFINE FILE CAR NEW_C/A20 = COUNTRY | CAR; FLAG/A1 = 'Y'; END",
+            "DEFINE FILE EMPDATA PREC = 1 + 2 * 3; END",
+            "DEFINE FILE EMPDATA PREC2 = (1 + 2) * 3; END"
+        ]
+        for code in variations:
+            with self.subTest(code=code):
+                self.parse(code)
+
     def test_output_commands(self):
         variations = [
             "TABLE FILE EMPDATA SUM SALARY ON TABLE HOLD END",
