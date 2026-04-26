@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] 0.20 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#74)
 - [x] 0.19 Support -REPEAT with WHILE, UNTIL, TIMES, and FOR variants (completed at 2026-04-26 06:53:55)
 - [x] 0.18 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#72) (completed at 2026-04-26 06:54:19)
 - [x] 0.17 Show some more details about the tests run (#70) (completed at 2026-04-26 06:38:27)
