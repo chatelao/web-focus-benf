@@ -109,6 +109,51 @@ class WebFocusReportVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by WebFocusReportParser#dm_logical_expression.
+    def visitDm_logical_expression(self, ctx:WebFocusReportParser.Dm_logical_expressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#dm_relational_expression.
+    def visitDm_relational_expression(self, ctx:WebFocusReportParser.Dm_relational_expressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#dm_relational_op.
+    def visitDm_relational_op(self, ctx:WebFocusReportParser.Dm_relational_opContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#is_not_op.
+    def visitIs_not_op(self, ctx:WebFocusReportParser.Is_not_opContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#is_from_op.
+    def visitIs_from_op(self, ctx:WebFocusReportParser.Is_from_opContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#not_from_op.
+    def visitNot_from_op(self, ctx:WebFocusReportParser.Not_from_opContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#is_less_op.
+    def visitIs_less_op(self, ctx:WebFocusReportParser.Is_less_opContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#is_more_op.
+    def visitIs_more_op(self, ctx:WebFocusReportParser.Is_more_opContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#is_greater_op.
+    def visitIs_greater_op(self, ctx:WebFocusReportParser.Is_greater_opContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by WebFocusReportParser#dm_concat_expression.
     def visitDm_concat_expression(self, ctx:WebFocusReportParser.Dm_concat_expressionContext):
         return self.visitChildren(ctx)
@@ -136,16 +181,6 @@ class WebFocusReportVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by WebFocusReportParser#amper_var.
     def visitAmper_var(self, ctx:WebFocusReportParser.Amper_varContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by WebFocusReportParser#dm_logical_expression.
-    def visitDm_logical_expression(self, ctx:WebFocusReportParser.Dm_logical_expressionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by WebFocusReportParser#dm_relational_op.
-    def visitDm_relational_op(self, ctx:WebFocusReportParser.Dm_relational_opContext):
         return self.visitChildren(ctx)
 
 
@@ -261,6 +296,11 @@ class WebFocusReportVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by WebFocusReportParser#qualified_name.
     def visitQualified_name(self, ctx:WebFocusReportParser.Qualified_nameContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#identifier.
+    def visitIdentifier(self, ctx:WebFocusReportParser.IdentifierContext):
         return self.visitChildren(ctx)
 
 

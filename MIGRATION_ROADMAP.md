@@ -33,8 +33,8 @@ The frontend is split into two distinct ANTLR4 grammars to reflect the dual natu
   - [x] 1.4.2 Virtual Fields: Support `DEFINE FILE ... END` for temporary field definitions.
     - [x] 1.4.2.1 Block Structure: Support `DEFINE FILE filename ... END`.
     - [x] 1.4.2.2 Basic Assignments: Support `field/format = expression;` within the block.
-    - [ ] 1.4.2.3 Expressions: Full support for arithmetic, character, and logical expressions in `DEFINE`.
-  - [ ] 1.4.3 Calculated Values: Support `COMPUTE field[/format] = expression;` within report requests.
+    - [x] 1.4.2.3 Expressions: Full support for arithmetic, character, and logical expressions in `DEFINE`.
+  - [x] 1.4.3 Calculated Values: Support `COMPUTE field[/format] = expression;` within report requests.
 
 ## Phase 2: Semantic Analysis (ASG Construction)
 Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands the meaning of the code.
