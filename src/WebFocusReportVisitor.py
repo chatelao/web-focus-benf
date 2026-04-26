@@ -19,6 +19,41 @@ class WebFocusReportVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by WebFocusReportParser#dm_command.
+    def visitDm_command(self, ctx:WebFocusReportParser.Dm_commandContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#dm_set.
+    def visitDm_set(self, ctx:WebFocusReportParser.Dm_setContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#dm_expression.
+    def visitDm_expression(self, ctx:WebFocusReportParser.Dm_expressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#dm_term.
+    def visitDm_term(self, ctx:WebFocusReportParser.Dm_termContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#amper_var.
+    def visitAmper_var(self, ctx:WebFocusReportParser.Amper_varContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#dm_logical_expression.
+    def visitDm_logical_expression(self, ctx:WebFocusReportParser.Dm_logical_expressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#dm_relational_op.
+    def visitDm_relational_op(self, ctx:WebFocusReportParser.Dm_relational_opContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by WebFocusReportParser#table_file.
     def visitTable_file(self, ctx:WebFocusReportParser.Table_fileContext):
         return self.visitChildren(ctx)

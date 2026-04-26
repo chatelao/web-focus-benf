@@ -19,7 +19,7 @@ The frontend is split into two distinct ANTLR4 grammars to reflect the dual natu
   - [x] **1.2.5 Summarization and Output:** SUBTOTAL, SUMMARIZE, RECOMPUTE and ON TABLE (HOLD, PCHOLD, etc.). (Implemented in `src/WebFocusReport.g4`)
   - [x] 1.2.6 Expressions and WHERE clauses: Support filtering with relational operators. (Implemented in `src/WebFocusReport.g4`)
 - [ ] 1.3 Dialogue Manager Grammar: Define ANTLR4 grammar rules for procedural Dialogue Manager commands.
-  - [ ] 1.3.1 Variable Assignment: -SET and system variables.
+  - [x] 1.3.1 Variable Assignment: -SET and system variables. (Implemented in `src/WebFocusReport.g4`)
   - [ ] 1.3.2 Control Flow: -IF, -GOTO, -LABEL, and -REPEAT.
   - [ ] 1.3.3 File/Execution: -INCLUDE, -RUN, and -EXIT.
 - [ ] **1.4 Unified Lexer/Parser:** Ensure the ANTLR4 frontend can handle the context-sensitive nature of WebFOCUS where Dialogue Manager and TABLE FILE requests are interleaved.
