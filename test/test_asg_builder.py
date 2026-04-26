@@ -184,5 +184,77 @@ class TestASGBuilder(unittest.TestCase):
         verb = asg_nodes[0].components[0]
         self.assertEqual(verb.fields[0].name, "*")
 
+    def test_table_request_with_where(self):
+        code = "TABLE FILE CAR\nPRINT MODEL\nWHERE COUNTRY EQ 'ENGLAND';\nWHERE TOTAL SALES GT 1000\nEND"
+        asg_nodes = self.build_asg(code)
+        node = asg_nodes[0]
+        self.assertEqual(len(node.components), 3)
+        where1 = node.components[1]
+        where2 = node.components[2]
+        self.assertTrue(isinstance(where1, asg.WhereClause))
+        self.assertFalse(where1.is_total)
+        self.assertTrue(isinstance(where2, asg.WhereClause))
+        self.assertTrue(where2.is_total)
+
+    def test_table_request_with_heading_footing(self):
+        code = "TABLE FILE CAR\nHEADING CENTER 'My Report'\nFOOTING 'Page 1'\nPRINT MODEL\nEND"
+        asg_nodes = self.build_asg(code)
+        node = asg_nodes[0]
+        heading = node.components[0]
+        footing = node.components[1]
+        self.assertTrue(isinstance(heading, asg.Heading))
+        self.assertEqual(heading.text, "My Report")
+        self.assertTrue(heading.centered)
+        self.assertTrue(isinstance(footing, asg.Footing))
+        self.assertEqual(footing.text, "Page 1")
+        self.assertFalse(footing.centered)
+
+    def test_table_request_with_compute(self):
+        code = "TABLE FILE CAR\nSUM SALES\nCOMPUTE RATIO/D12.2 = SALES / 1000;\nEND"
+        asg_nodes = self.build_asg(code)
+        node = asg_nodes[0]
+        compute = node.components[1]
+        self.assertTrue(isinstance(compute, asg.ComputeCommand))
+        self.assertEqual(compute.name, "RATIO")
+        self.assertEqual(compute.format, "D12.2")
+        self.assertTrue(isinstance(compute.expression, asg.BinaryOperation))
+
+    def test_relational_missing(self):
+        code = "-SET &VAR = &X IS MISSING;"
+        asg_nodes = self.build_asg(code)
+        expr = asg_nodes[0].expression
+        self.assertTrue(isinstance(expr, asg.IsMissingExpression))
+        self.assertFalse(expr.inverted)
+
+    def test_relational_not_missing(self):
+        code = "-SET &VAR = &X IS-NOT MISSING;"
+        asg_nodes = self.build_asg(code)
+        expr = asg_nodes[0].expression
+        self.assertTrue(isinstance(expr, asg.IsMissingExpression))
+        self.assertTrue(expr.inverted)
+
+    def test_relational_between(self):
+        code = "-SET &VAR = &X FROM 1 TO 10;"
+        asg_nodes = self.build_asg(code)
+        expr = asg_nodes[0].expression
+        self.assertTrue(isinstance(expr, asg.BetweenExpression))
+        self.assertEqual(expr.lower.value, 1)
+        self.assertEqual(expr.upper.value, 10)
+
+    def test_relational_in(self):
+        code = "-SET &VAR = &X IN ('A', 'B', 'C');"
+        asg_nodes = self.build_asg(code)
+        expr = asg_nodes[0].expression
+        self.assertTrue(isinstance(expr, asg.InExpression))
+        self.assertEqual(len(expr.values), 3)
+
+    def test_relational_or_list(self):
+        code = "-SET &VAR = &X EQ 'A' OR 'B' OR 'C';"
+        asg_nodes = self.build_asg(code)
+        expr = asg_nodes[0].expression
+        # Should be (&X EQ 'A' OR &X EQ 'B') OR &X EQ 'C'
+        self.assertTrue(isinstance(expr, asg.BinaryOperation))
+        self.assertEqual(expr.operator, "OR")
+
 if __name__ == '__main__':
     unittest.main()
