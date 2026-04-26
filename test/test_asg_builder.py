@@ -138,5 +138,51 @@ class TestASGBuilder(unittest.TestCase):
         self.assertTrue(isinstance(expr.left, asg.BinaryOperation))
         self.assertEqual(expr.left.operator, "|")
 
+    def test_table_request_basic(self):
+        code = "TABLE FILE CAR\nPRINT MODEL\nEND"
+        asg_nodes = self.build_asg(code)
+        self.assertEqual(len(asg_nodes), 1)
+        node = asg_nodes[0]
+        self.assertTrue(isinstance(node, asg.ReportRequest))
+        self.assertEqual(node.filename, "CAR")
+        self.assertEqual(len(node.components), 1)
+        verb = node.components[0]
+        self.assertTrue(isinstance(verb, asg.VerbCommand))
+        self.assertEqual(verb.verb, "PRINT")
+        self.assertEqual(len(verb.fields), 1)
+        self.assertEqual(verb.fields[0].name, "MODEL")
+
+    def test_table_request_with_as_and_prefix(self):
+        code = "TABLE FILE CAR\nSUM AVE.PRICE AS 'Average Price'\nEND"
+        asg_nodes = self.build_asg(code)
+        verb = asg_nodes[0].components[0]
+        self.assertEqual(verb.verb, "SUM")
+        field = verb.fields[0]
+        self.assertEqual(field.name, "PRICE")
+        self.assertEqual(field.prefix_operators, ["AVE"])
+        self.assertEqual(field.alias, "Average Price")
+
+    def test_table_request_with_sort(self):
+        code = "TABLE FILE CAR\nPRINT MODEL\nBY COUNTRY\nACROSS HIGHEST 3 BODYTYPE\nEND"
+        asg_nodes = self.build_asg(code)
+        node = asg_nodes[0]
+        self.assertEqual(len(node.components), 3)
+        by_node = node.components[1]
+        across_node = node.components[2]
+        self.assertTrue(isinstance(by_node, asg.SortCommand))
+        self.assertEqual(by_node.sort_type, "BY")
+        self.assertEqual(by_node.field.name, "COUNTRY")
+        self.assertTrue(isinstance(across_node, asg.SortCommand))
+        self.assertEqual(across_node.sort_type, "ACROSS")
+        self.assertEqual(across_node.field.name, "BODYTYPE")
+        self.assertEqual(across_node.options["order"], "HIGHEST")
+        self.assertEqual(across_node.options["limit"], 3)
+
+    def test_table_request_with_asterisk(self):
+        code = "TABLE FILE CAR\nPRINT *\nEND"
+        asg_nodes = self.build_asg(code)
+        verb = asg_nodes[0].components[0]
+        self.assertEqual(verb.fields[0].name, "*")
+
 if __name__ == '__main__':
     unittest.main()

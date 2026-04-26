@@ -22,6 +22,80 @@ class ReportASGBuilder(WebFocusReportVisitor):
                         nodes.append(node)
         return nodes
 
+    def visitRequest(self, ctx: WebFocusReportParser.RequestContext):
+        filename = self.visit(ctx.table_file())
+        components = []
+        # Iterate through all children except table_file (first) and end_command (last)
+        for i in range(1, ctx.getChildCount() - 1):
+            child = ctx.getChild(i)
+            if isinstance(child, TerminalNode):
+                continue
+            node = self.visit(child)
+            if node:
+                if isinstance(node, list):
+                    components.extend(node)
+                else:
+                    components.append(node)
+        return ReportRequest(filename=filename, components=components)
+
+    def visitTable_file(self, ctx: WebFocusReportParser.Table_fileContext):
+        return ctx.qualified_name().getText()
+
+    def visitVerb_command(self, ctx: WebFocusReportParser.Verb_commandContext):
+        verb = self.visit(ctx.verb())
+        if ctx.field_list():
+            fields = self.visit(ctx.field_list())
+        else:
+            fields = [self.visit(ctx.asterisk())]
+        return VerbCommand(verb=verb, fields=fields)
+
+    def visitVerb(self, ctx: WebFocusReportParser.VerbContext):
+        return ctx.getText().upper()
+
+    def visitField_list(self, ctx: WebFocusReportParser.Field_listContext):
+        return [self.visit(f) for f in ctx.field_or_prefixed()]
+
+    def visitField_or_prefixed(self, ctx: WebFocusReportParser.Field_or_prefixedContext):
+        prefixes = [p.getText().upper() for p in ctx.prefix_operator()]
+        field_selection = self.visit(ctx.field())
+        field_selection.prefix_operators = prefixes
+        return field_selection
+
+    def visitField(self, ctx: WebFocusReportParser.FieldContext):
+        name = ctx.qualified_name().getText()
+        alias = self.visit(ctx.as_phrase()) if ctx.as_phrase() else None
+        return FieldSelection(name=name, alias=alias)
+
+    def visitAs_phrase(self, ctx: WebFocusReportParser.As_phraseContext):
+        val = ctx.STRING().getText()
+        return val[1:-1]
+
+    def visitAsterisk(self, ctx: WebFocusReportParser.AsteriskContext):
+        return FieldSelection(name='*')
+
+    def visitBy_command(self, ctx: WebFocusReportParser.By_commandContext):
+        sort_type = "BY"
+        options = self.visit(ctx.sort_options()) if ctx.sort_options() else {}
+        field = self.visit(ctx.field())
+        # Note: summarize_command and NOPRINT are not yet fully implemented in ASG
+        return SortCommand(sort_type=sort_type, field=field, options=options)
+
+    def visitAcross_command(self, ctx: WebFocusReportParser.Across_commandContext):
+        sort_type = "ACROSS"
+        options = self.visit(ctx.sort_options()) if ctx.sort_options() else {}
+        field = self.visit(ctx.field())
+        return SortCommand(sort_type=sort_type, field=field, options=options)
+
+    def visitSort_options(self, ctx: WebFocusReportParser.Sort_optionsContext):
+        options = {}
+        if ctx.HIGHEST(): options["order"] = "HIGHEST"
+        if ctx.LOWEST(): options["order"] = "LOWEST"
+        if ctx.TOP(): options["order"] = "TOP"
+        if ctx.BOTTOM(): options["order"] = "BOTTOM"
+        if ctx.NUMBER():
+            options["limit"] = int(ctx.NUMBER().getText())
+        return options
+
     def visitDm_set(self, ctx: WebFocusReportParser.Dm_setContext):
         variable = ctx.amper_var().getText()
         expression = self.visit(ctx.dm_expression())
