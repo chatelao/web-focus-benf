@@ -289,6 +289,40 @@ class ReportASGBuilder(WebFocusReportVisitor):
     def visitDm_exit(self, ctx: WebFocusReportParser.Dm_exitContext):
         return ExitDM()
 
+    def visitJoin_command(self, ctx: WebFocusReportParser.Join_commandContext):
+        if ctx.CLEAR():
+            return JoinClear()
+
+        left_field = ctx.qualified_name(0).getText()
+        left_file = ctx.qualified_name(1).getText()
+        right_field = ctx.qualified_name(2).getText()
+        right_file = ctx.qualified_name(3).getText()
+        join_as = ctx.NAME().getText() if ctx.NAME() else None
+        outer = ctx.OUTER() is not None
+
+        return Join(
+            left_file=left_file,
+            left_field=left_field,
+            right_file=right_file,
+            right_field=right_field,
+            join_as=join_as,
+            outer=outer
+        )
+
+    def visitSet_command(self, ctx: WebFocusReportParser.Set_commandContext):
+        parameter = ctx.NAME(0).getText()
+        if ctx.NAME(1):
+            value = ctx.NAME(1).getText()
+        elif ctx.NUMBER():
+            value = ctx.NUMBER().getText()
+        elif ctx.OFF():
+            value = "OFF"
+        elif ctx.ON():
+            value = "ON"
+        else:
+            value = None
+        return SetCommand(parameter=parameter, value=value)
+
     def visitDm_repeat(self, ctx: WebFocusReportParser.Dm_repeatContext):
         label = ctx.NAME().getText()
         kwargs = {"label": label}
