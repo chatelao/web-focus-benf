@@ -41,8 +41,11 @@ Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands th
 
 - [ ] **2.1 Custom Object Model:**
   - [x] 2.1.1 Base ASG nodes: Implement base classes for Expressions, Commands, and Statements. (Implemented in `src/asg.py`)
-  - [ ] 2.1.2 Data Model nodes: Implement nodes for Master Files, Segments, and Fields.
-  - [ ] 2.1.3 Procedural nodes: Implement nodes for Dialogue Manager control flow.
+  - [x] 2.1.2 Data Model nodes: Implement nodes for Master Files, Segments, and Fields. (Implemented in `src/asg.py`)
+  - [ ] 2.1.3 Procedural nodes:
+    - [ ] 2.1.3.1 DM Control Flow: Implement nodes for -GOTO, -IF, and -REPEAT.
+    - [ ] 2.1.3.2 DM Actions: Implement nodes for -SET, -TYPE, and -INCLUDE.
+  - [ ] 2.1.4 Report Request nodes: Implement nodes for TABLE FILE, Sort phrases, and Filters.
 - [ ] **2.2 Symbol Table:**
   - [ ] 2.2.1 Scoping: Implement block-level and global scopes.
   - [ ] 2.2.2 Variable Resolution: Handle Dialogue Manager variables and field references.
