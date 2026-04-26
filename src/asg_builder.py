@@ -77,14 +77,16 @@ class ReportASGBuilder(WebFocusReportVisitor):
         sort_type = "BY"
         options = self.visit(ctx.sort_options()) if ctx.sort_options() else {}
         field = self.visit(ctx.field())
-        # Note: summarize_command and NOPRINT are not yet fully implemented in ASG
-        return SortCommand(sort_type=sort_type, field=field, options=options)
+        summarize = self.visit(ctx.summarize_command()) if ctx.summarize_command() else None
+        noprint = ctx.NOPRINT() is not None
+        return SortCommand(sort_type=sort_type, field=field, options=options, summarize=summarize, noprint=noprint)
 
     def visitAcross_command(self, ctx: WebFocusReportParser.Across_commandContext):
         sort_type = "ACROSS"
         options = self.visit(ctx.sort_options()) if ctx.sort_options() else {}
         field = self.visit(ctx.field())
-        return SortCommand(sort_type=sort_type, field=field, options=options)
+        noprint = ctx.NOPRINT() is not None
+        return SortCommand(sort_type=sort_type, field=field, options=options, noprint=noprint)
 
     def visitWhere_command(self, ctx: WebFocusReportParser.Where_commandContext):
         is_total = ctx.TOTAL() is not None
@@ -100,6 +102,55 @@ class ReportASGBuilder(WebFocusReportVisitor):
         centered = ctx.CENTER() is not None
         text = " ".join([s.getText()[1:-1] for s in ctx.STRING()])
         return Footing(text=text, centered=centered)
+
+    def visitOn_command(self, ctx: WebFocusReportParser.On_commandContext):
+        if ctx.TABLE():
+            target = "TABLE"
+            actions = self.visit(ctx.on_table_options())
+        else:
+            target = ctx.qualified_name().getText()
+            actions = self.visit(ctx.on_field_options())
+
+        if not isinstance(actions, list):
+            actions = [actions]
+        return OnCommand(target=target, actions=actions)
+
+    def visitOn_table_options(self, ctx: WebFocusReportParser.On_table_optionsContext):
+        if ctx.SUBHEAD() or ctx.SUBFOOT():
+            centered = ctx.CENTER() is not None
+            text = " ".join([s.getText()[1:-1] for s in ctx.STRING()])
+            return Subhead(text=text, centered=centered) if ctx.SUBHEAD() else Subfoot(text=text, centered=centered)
+        if ctx.COLUMN_TOTAL_KW():
+            return SetCommand(parameter="COLUMN-TOTAL", value="ON")
+        if ctx.ROW_TOTAL_KW():
+            return SetCommand(parameter="ROW-TOTAL", value="ON")
+        if ctx.output_command():
+            return self.visit(ctx.output_command())
+        if ctx.summarize_command():
+            return self.visit(ctx.summarize_command())
+        if ctx.set_command():
+            return self.visit(ctx.set_command())
+        return None
+
+    def visitOn_field_options(self, ctx: WebFocusReportParser.On_field_optionsContext):
+        if ctx.SUBHEAD() or ctx.SUBFOOT():
+            centered = ctx.CENTER() is not None
+            text = " ".join([s.getText()[1:-1] for s in ctx.STRING()])
+            return Subhead(text=text, centered=centered) if ctx.SUBHEAD() else Subfoot(text=text, centered=centered)
+        if ctx.summarize_command():
+            return self.visit(ctx.summarize_command())
+        return None
+
+    def visitOutput_command(self, ctx: WebFocusReportParser.Output_commandContext):
+        output_type = ctx.getChild(0).getText().upper()
+        filename = ctx.qualified_name().getText() if ctx.qualified_name() else None
+        format = None
+        if ctx.FORMAT():
+            if ctx.NAME():
+                format = ctx.NAME().getText()
+            elif ctx.verb():
+                format = ctx.verb().getText()
+        return OutputCommand(output_type=output_type, filename=filename, format=format)
 
     def visitCompute_command(self, ctx: WebFocusReportParser.Compute_commandContext):
         name = ctx.qualified_name().getText()
@@ -319,6 +370,30 @@ class ReportASGBuilder(WebFocusReportVisitor):
         format = ctx.format_name().getText() if ctx.format_name() else None
         expression = self.visit(ctx.dm_expression())
         return DefineAssignment(name=name, expression=expression, format=format)
+
+    def visitSummarize_command(self, ctx: WebFocusReportParser.Summarize_commandContext):
+        verb = ctx.getChild(0).getText().upper()
+        options = self.visit(ctx.summarize_options()) if ctx.summarize_options() else {}
+
+        field_node = self.visit(ctx.field()) if ctx.field() else None
+        field_name = field_node.name if field_node else None
+        alias = field_node.alias if field_node else None
+
+        # If there's an explicit as_phrase in the summarize_command, it overrides
+        if ctx.as_phrase():
+            alias = self.visit(ctx.as_phrase())
+
+        return SummarizeCommand(verb=verb, field=field_name, alias=alias, options=options)
+
+    def visitSummarize_options(self, ctx: WebFocusReportParser.Summarize_optionsContext):
+        options = {}
+        if ctx.ROLL_DOT():
+            options["roll"] = True
+
+        prefixes = [p.getText().upper() for p in ctx.prefix_operator()]
+        if prefixes:
+            options["prefixes"] = prefixes
+        return options
 
     def visitSet_command(self, ctx: WebFocusReportParser.Set_commandContext):
         parameter = ctx.NAME(0).getText()

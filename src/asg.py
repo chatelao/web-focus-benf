@@ -136,8 +136,8 @@ class FieldSelection(ASGNode):
 
 class SortCommand(Command):
     """Represents a sort phrase (BY or ACROSS)."""
-    def __init__(self, sort_type, field, options=None, **kwargs):
-        super().__init__(sort_type=sort_type, field=field, options=options or {}, **kwargs)
+    def __init__(self, sort_type, field, options=None, summarize=None, noprint=False, **kwargs):
+        super().__init__(sort_type=sort_type, field=field, options=options or {}, summarize=summarize, noprint=noprint, **kwargs)
 
 class WhereClause(Command):
     """Represents a WHERE clause in a report request."""
@@ -153,6 +153,26 @@ class Footing(Command):
     """Represents a FOOTING command."""
     def __init__(self, text, centered=False, **kwargs):
         super().__init__(text=text, centered=centered, **kwargs)
+
+class Subhead(Command):
+    """Represents a SUBHEAD command."""
+    def __init__(self, text, centered=False, **kwargs):
+        super().__init__(text=text, centered=centered, **kwargs)
+
+class Subfoot(Command):
+    """Represents a SUBFOOT command."""
+    def __init__(self, text, centered=False, **kwargs):
+        super().__init__(text=text, centered=centered, **kwargs)
+
+class SummarizeCommand(Command):
+    """Represents a summarization command (SUBTOTAL, SUMMARIZE, etc.)."""
+    def __init__(self, verb, field=None, alias=None, options=None, **kwargs):
+        super().__init__(verb=verb, field=field, alias=alias, options=options or {}, **kwargs)
+
+class OutputCommand(Command):
+    """Represents an output command (HOLD, PCHOLD, SAVE, SAVB)."""
+    def __init__(self, output_type, filename=None, format=None, **kwargs):
+        super().__init__(output_type=output_type, filename=filename, format=format, **kwargs)
 
 class OnCommand(Command):
     """Represents an ON command (ON TABLE or ON field)."""

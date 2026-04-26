@@ -58,7 +58,7 @@ Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands th
   - [ ] 2.3.3 Metadata Typing: Resolve field types from Master File metadata.
 - [ ] **2.4 ASG Builder:** Implement the visitor to transform ANTLR4 parse tree to ASG.
   - [x] 2.4.1 Visitor Infrastructure: Base visitor class and dispatcher. (Implemented in `src/asg_builder.py`)
-  - [ ] 2.4.2 Expression Builder: Support all arithmetic and logical expressions.
+  - [x] 2.4.2 Expression Builder: Support all arithmetic and logical expressions. (Implemented in `src/asg_builder.py`)
   - [x] 2.4.3 Dialogue Manager Builder: Support -SET, -IF, -GOTO, -REPEAT, etc. (Implemented in `src/asg_builder.py`)
   - [ ] 2.4.4 Report Request Builder:
     - [x] 2.4.4.1 Core structure: TABLE FILE and END command. (Implemented in `src/asg_builder.py`)
@@ -67,9 +67,9 @@ Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands th
     - [x] 2.4.4.4 Filtering:
       - [x] 2.4.4.4.1 WHERE clauses with relational expressions. (Implemented in `src/asg_builder.py`)
       - [x] 2.4.4.4.2 WHERE TOTAL clauses for post-aggregation filtering. (Implemented in `src/asg_builder.py`)
-    - [ ] 2.4.4.5 Formatting and Summarization:
+    - [x] 2.4.4.5 Formatting and Summarization:
       - [x] 2.4.4.5.1 HEADING and FOOTING commands. (Implemented in `src/asg_builder.py`)
-      - [ ] 2.4.4.5.2 ON TABLE/field commands (SUBTOTAL, SUMMARIZE, etc.).
+      - [x] 2.4.4.5.2 ON TABLE/field commands (SUBTOTAL, SUMMARIZE, etc.). (Implemented in `src/asg_builder.py`)
       - [x] 2.4.4.5.3 COMPUTE command for calculated values. (Implemented in `src/asg_builder.py`)
   - [ ] 2.4.5 Environment Builder:
     - [x] 2.4.5.1 Environment Commands:
