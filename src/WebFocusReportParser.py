@@ -10,100 +10,105 @@ else:
 
 def serializedATN():
     return [
-        4,1,60,257,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,62,268,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
         2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,
-        7,20,2,21,7,21,2,22,7,22,2,23,7,23,2,24,7,24,1,0,1,0,1,0,1,1,1,1,
-        1,1,1,1,1,1,1,1,1,1,5,1,61,8,1,10,1,12,1,64,9,1,1,1,1,1,1,2,1,2,
-        1,2,1,2,1,3,1,3,1,3,3,3,75,8,3,1,4,1,4,1,5,3,5,80,8,5,1,5,1,5,3,
-        5,84,8,5,1,5,5,5,87,8,5,10,5,12,5,90,9,5,1,6,1,6,1,6,1,6,1,6,3,6,
-        97,8,6,1,7,1,7,1,7,5,7,102,8,7,10,7,12,7,105,9,7,1,7,1,7,1,8,1,8,
-        3,8,111,8,8,1,9,1,9,1,9,1,10,1,10,1,11,3,11,119,8,11,1,11,1,11,3,
-        11,123,8,11,1,11,1,11,3,11,127,8,11,1,11,3,11,130,8,11,1,12,1,12,
-        3,12,134,8,12,1,12,1,12,3,12,138,8,12,1,13,1,13,3,13,142,8,13,1,
-        13,3,13,145,8,13,1,14,1,14,3,14,149,8,14,1,14,4,14,152,8,14,11,14,
-        12,14,153,1,15,1,15,3,15,158,8,15,1,15,4,15,161,8,15,11,15,12,15,
-        162,1,16,1,16,1,16,1,16,1,16,1,16,1,16,3,16,172,8,16,1,17,1,17,3,
-        17,176,8,17,1,17,4,17,179,8,17,11,17,12,17,180,1,17,1,17,1,17,1,
-        17,3,17,187,8,17,1,18,1,18,3,18,191,8,18,1,18,4,18,194,8,18,11,18,
-        12,18,195,1,18,3,18,199,8,18,1,19,1,19,3,19,203,8,19,1,19,1,19,3,
-        19,207,8,19,1,19,3,19,210,8,19,1,19,3,19,213,8,19,1,20,1,20,1,20,
-        1,20,5,20,219,8,20,10,20,12,20,222,9,20,1,20,1,20,1,20,4,20,227,
-        8,20,11,20,12,20,228,3,20,231,8,20,1,21,1,21,1,21,3,21,236,8,21,
-        1,21,1,21,1,21,3,21,241,8,21,3,21,243,8,21,1,22,1,22,1,23,1,23,1,
-        23,5,23,250,8,23,10,23,12,23,253,9,23,1,24,1,24,1,24,0,0,25,0,2,
-        4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,
-        0,6,1,0,5,10,1,0,14,17,1,0,25,26,1,0,28,31,1,0,34,37,2,0,6,6,40,
-        54,280,0,50,1,0,0,0,2,53,1,0,0,0,4,67,1,0,0,0,6,71,1,0,0,0,8,76,
-        1,0,0,0,10,79,1,0,0,0,12,96,1,0,0,0,14,103,1,0,0,0,16,108,1,0,0,
-        0,18,112,1,0,0,0,20,115,1,0,0,0,22,118,1,0,0,0,24,131,1,0,0,0,26,
-        144,1,0,0,0,28,146,1,0,0,0,30,155,1,0,0,0,32,171,1,0,0,0,34,186,
-        1,0,0,0,36,198,1,0,0,0,38,200,1,0,0,0,40,230,1,0,0,0,42,232,1,0,
-        0,0,44,244,1,0,0,0,46,246,1,0,0,0,48,254,1,0,0,0,50,51,3,2,1,0,51,
-        52,5,0,0,1,52,1,1,0,0,0,53,62,3,4,2,0,54,61,3,6,3,0,55,61,3,22,11,
-        0,56,61,3,24,12,0,57,61,3,28,14,0,58,61,3,30,15,0,59,61,3,32,16,
-        0,60,54,1,0,0,0,60,55,1,0,0,0,60,56,1,0,0,0,60,57,1,0,0,0,60,58,
-        1,0,0,0,60,59,1,0,0,0,61,64,1,0,0,0,62,60,1,0,0,0,62,63,1,0,0,0,
-        63,65,1,0,0,0,64,62,1,0,0,0,65,66,3,44,22,0,66,3,1,0,0,0,67,68,5,
-        2,0,0,68,69,5,3,0,0,69,70,3,46,23,0,70,5,1,0,0,0,71,74,3,8,4,0,72,
-        75,3,10,5,0,73,75,3,20,10,0,74,72,1,0,0,0,74,73,1,0,0,0,75,7,1,0,
-        0,0,76,77,7,0,0,0,77,9,1,0,0,0,78,80,5,20,0,0,79,78,1,0,0,0,79,80,
-        1,0,0,0,80,81,1,0,0,0,81,88,3,14,7,0,82,84,3,12,6,0,83,82,1,0,0,
-        0,83,84,1,0,0,0,84,85,1,0,0,0,85,87,3,14,7,0,86,83,1,0,0,0,87,90,
-        1,0,0,0,88,86,1,0,0,0,88,89,1,0,0,0,89,11,1,0,0,0,90,88,1,0,0,0,
-        91,97,5,56,0,0,92,93,5,21,0,0,93,97,5,20,0,0,94,97,5,21,0,0,95,97,
-        5,20,0,0,96,91,1,0,0,0,96,92,1,0,0,0,96,94,1,0,0,0,96,95,1,0,0,0,
-        97,13,1,0,0,0,98,99,3,48,24,0,99,100,5,55,0,0,100,102,1,0,0,0,101,
-        98,1,0,0,0,102,105,1,0,0,0,103,101,1,0,0,0,103,104,1,0,0,0,104,106,
-        1,0,0,0,105,103,1,0,0,0,106,107,3,16,8,0,107,15,1,0,0,0,108,110,
-        3,46,23,0,109,111,3,18,9,0,110,109,1,0,0,0,110,111,1,0,0,0,111,17,
-        1,0,0,0,112,113,5,19,0,0,113,114,5,58,0,0,114,19,1,0,0,0,115,116,
-        5,1,0,0,116,21,1,0,0,0,117,119,5,13,0,0,118,117,1,0,0,0,118,119,
-        1,0,0,0,119,120,1,0,0,0,120,122,5,11,0,0,121,123,3,26,13,0,122,121,
-        1,0,0,0,122,123,1,0,0,0,123,124,1,0,0,0,124,126,3,16,8,0,125,127,
-        3,38,19,0,126,125,1,0,0,0,126,127,1,0,0,0,127,129,1,0,0,0,128,130,
-        5,18,0,0,129,128,1,0,0,0,129,130,1,0,0,0,130,23,1,0,0,0,131,133,
-        5,12,0,0,132,134,3,26,13,0,133,132,1,0,0,0,133,134,1,0,0,0,134,135,
-        1,0,0,0,135,137,3,16,8,0,136,138,5,18,0,0,137,136,1,0,0,0,137,138,
-        1,0,0,0,138,25,1,0,0,0,139,141,7,1,0,0,140,142,5,57,0,0,141,140,
-        1,0,0,0,141,142,1,0,0,0,142,145,1,0,0,0,143,145,5,57,0,0,144,139,
-        1,0,0,0,144,143,1,0,0,0,145,27,1,0,0,0,146,148,5,22,0,0,147,149,
-        5,27,0,0,148,147,1,0,0,0,148,149,1,0,0,0,149,151,1,0,0,0,150,152,
-        5,58,0,0,151,150,1,0,0,0,152,153,1,0,0,0,153,151,1,0,0,0,153,154,
-        1,0,0,0,154,29,1,0,0,0,155,157,5,23,0,0,156,158,5,27,0,0,157,156,
-        1,0,0,0,157,158,1,0,0,0,158,160,1,0,0,0,159,161,5,58,0,0,160,159,
-        1,0,0,0,161,162,1,0,0,0,162,160,1,0,0,0,162,163,1,0,0,0,163,31,1,
-        0,0,0,164,165,5,24,0,0,165,166,5,2,0,0,166,172,3,34,17,0,167,168,
-        5,24,0,0,168,169,3,46,23,0,169,170,3,36,18,0,170,172,1,0,0,0,171,
-        164,1,0,0,0,171,167,1,0,0,0,172,33,1,0,0,0,173,175,7,2,0,0,174,176,
-        5,27,0,0,175,174,1,0,0,0,175,176,1,0,0,0,176,178,1,0,0,0,177,179,
-        5,58,0,0,178,177,1,0,0,0,179,180,1,0,0,0,180,178,1,0,0,0,180,181,
-        1,0,0,0,181,187,1,0,0,0,182,187,5,32,0,0,183,187,5,33,0,0,184,187,
-        3,42,21,0,185,187,3,38,19,0,186,173,1,0,0,0,186,182,1,0,0,0,186,
-        183,1,0,0,0,186,184,1,0,0,0,186,185,1,0,0,0,187,35,1,0,0,0,188,190,
-        7,2,0,0,189,191,5,27,0,0,190,189,1,0,0,0,190,191,1,0,0,0,191,193,
-        1,0,0,0,192,194,5,58,0,0,193,192,1,0,0,0,194,195,1,0,0,0,195,193,
-        1,0,0,0,195,196,1,0,0,0,196,199,1,0,0,0,197,199,3,38,19,0,198,188,
-        1,0,0,0,198,197,1,0,0,0,199,37,1,0,0,0,200,212,7,3,0,0,201,203,3,
-        40,20,0,202,201,1,0,0,0,202,203,1,0,0,0,203,209,1,0,0,0,204,206,
-        3,16,8,0,205,207,3,18,9,0,206,205,1,0,0,0,206,207,1,0,0,0,207,210,
-        1,0,0,0,208,210,3,18,9,0,209,204,1,0,0,0,209,208,1,0,0,0,210,213,
-        1,0,0,0,211,213,3,40,20,0,212,202,1,0,0,0,212,211,1,0,0,0,212,213,
-        1,0,0,0,213,39,1,0,0,0,214,220,5,39,0,0,215,216,3,48,24,0,216,217,
-        5,55,0,0,217,219,1,0,0,0,218,215,1,0,0,0,219,222,1,0,0,0,220,218,
-        1,0,0,0,220,221,1,0,0,0,221,231,1,0,0,0,222,220,1,0,0,0,223,224,
-        3,48,24,0,224,225,5,55,0,0,225,227,1,0,0,0,226,223,1,0,0,0,227,228,
-        1,0,0,0,228,226,1,0,0,0,228,229,1,0,0,0,229,231,1,0,0,0,230,214,
-        1,0,0,0,230,226,1,0,0,0,231,41,1,0,0,0,232,235,7,4,0,0,233,234,5,
-        19,0,0,234,236,3,46,23,0,235,233,1,0,0,0,235,236,1,0,0,0,236,242,
-        1,0,0,0,237,240,5,38,0,0,238,241,5,59,0,0,239,241,3,8,4,0,240,238,
-        1,0,0,0,240,239,1,0,0,0,241,243,1,0,0,0,242,237,1,0,0,0,242,243,
-        1,0,0,0,243,43,1,0,0,0,244,245,5,4,0,0,245,45,1,0,0,0,246,251,5,
-        59,0,0,247,248,5,55,0,0,248,250,5,59,0,0,249,247,1,0,0,0,250,253,
-        1,0,0,0,251,249,1,0,0,0,251,252,1,0,0,0,252,47,1,0,0,0,253,251,1,
-        0,0,0,254,255,7,5,0,0,255,49,1,0,0,0,39,60,62,74,79,83,88,96,103,
-        110,118,122,126,129,133,137,141,144,148,153,157,162,171,175,180,
-        186,190,195,198,202,206,209,212,220,228,230,235,240,242,251
+        7,20,2,21,7,21,2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,1,0,1,0,1,
+        0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,64,8,1,10,1,12,1,67,9,1,1,
+        1,1,1,1,2,1,2,1,2,1,2,1,3,1,3,1,3,3,3,78,8,3,1,4,1,4,1,5,3,5,83,
+        8,5,1,5,1,5,3,5,87,8,5,1,5,5,5,90,8,5,10,5,12,5,93,9,5,1,6,1,6,1,
+        6,1,6,1,6,3,6,100,8,6,1,7,1,7,1,7,5,7,105,8,7,10,7,12,7,108,9,7,
+        1,7,1,7,1,8,1,8,3,8,114,8,8,1,9,1,9,1,9,1,10,1,10,1,11,3,11,122,
+        8,11,1,11,1,11,3,11,126,8,11,1,11,1,11,3,11,130,8,11,1,11,3,11,133,
+        8,11,1,12,1,12,3,12,137,8,12,1,12,1,12,3,12,141,8,12,1,13,1,13,3,
+        13,145,8,13,1,13,3,13,148,8,13,1,14,1,14,1,14,1,14,1,14,1,14,3,14,
+        156,8,14,1,15,1,15,3,15,160,8,15,1,15,4,15,163,8,15,11,15,12,15,
+        164,1,16,1,16,3,16,169,8,16,1,16,4,16,172,8,16,11,16,12,16,173,1,
+        17,1,17,1,17,1,17,1,17,1,17,1,17,3,17,183,8,17,1,18,1,18,3,18,187,
+        8,18,1,18,4,18,190,8,18,11,18,12,18,191,1,18,1,18,1,18,1,18,3,18,
+        198,8,18,1,19,1,19,3,19,202,8,19,1,19,4,19,205,8,19,11,19,12,19,
+        206,1,19,3,19,210,8,19,1,20,1,20,3,20,214,8,20,1,20,1,20,3,20,218,
+        8,20,1,20,3,20,221,8,20,1,20,3,20,224,8,20,1,21,1,21,1,21,1,21,5,
+        21,230,8,21,10,21,12,21,233,9,21,1,21,1,21,1,21,4,21,238,8,21,11,
+        21,12,21,239,3,21,242,8,21,1,22,1,22,1,22,3,22,247,8,22,1,22,1,22,
+        1,22,3,22,252,8,22,3,22,254,8,22,1,23,1,23,1,24,1,24,1,24,5,24,261,
+        8,24,10,24,12,24,264,9,24,1,25,1,25,1,25,0,0,26,0,2,4,6,8,10,12,
+        14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,0,6,1,0,
+        5,10,1,0,16,19,1,0,27,28,1,0,30,33,1,0,36,39,2,0,6,6,42,56,293,0,
+        52,1,0,0,0,2,55,1,0,0,0,4,70,1,0,0,0,6,74,1,0,0,0,8,79,1,0,0,0,10,
+        82,1,0,0,0,12,99,1,0,0,0,14,106,1,0,0,0,16,111,1,0,0,0,18,115,1,
+        0,0,0,20,118,1,0,0,0,22,121,1,0,0,0,24,134,1,0,0,0,26,147,1,0,0,
+        0,28,149,1,0,0,0,30,157,1,0,0,0,32,166,1,0,0,0,34,182,1,0,0,0,36,
+        197,1,0,0,0,38,209,1,0,0,0,40,211,1,0,0,0,42,241,1,0,0,0,44,243,
+        1,0,0,0,46,255,1,0,0,0,48,257,1,0,0,0,50,265,1,0,0,0,52,53,3,2,1,
+        0,53,54,5,0,0,1,54,1,1,0,0,0,55,65,3,4,2,0,56,64,3,6,3,0,57,64,3,
+        22,11,0,58,64,3,24,12,0,59,64,3,28,14,0,60,64,3,30,15,0,61,64,3,
+        32,16,0,62,64,3,34,17,0,63,56,1,0,0,0,63,57,1,0,0,0,63,58,1,0,0,
+        0,63,59,1,0,0,0,63,60,1,0,0,0,63,61,1,0,0,0,63,62,1,0,0,0,64,67,
+        1,0,0,0,65,63,1,0,0,0,65,66,1,0,0,0,66,68,1,0,0,0,67,65,1,0,0,0,
+        68,69,3,46,23,0,69,3,1,0,0,0,70,71,5,2,0,0,71,72,5,3,0,0,72,73,3,
+        48,24,0,73,5,1,0,0,0,74,77,3,8,4,0,75,78,3,10,5,0,76,78,3,20,10,
+        0,77,75,1,0,0,0,77,76,1,0,0,0,78,7,1,0,0,0,79,80,7,0,0,0,80,9,1,
+        0,0,0,81,83,5,22,0,0,82,81,1,0,0,0,82,83,1,0,0,0,83,84,1,0,0,0,84,
+        91,3,14,7,0,85,87,3,12,6,0,86,85,1,0,0,0,86,87,1,0,0,0,87,88,1,0,
+        0,0,88,90,3,14,7,0,89,86,1,0,0,0,90,93,1,0,0,0,91,89,1,0,0,0,91,
+        92,1,0,0,0,92,11,1,0,0,0,93,91,1,0,0,0,94,100,5,58,0,0,95,96,5,23,
+        0,0,96,100,5,22,0,0,97,100,5,23,0,0,98,100,5,22,0,0,99,94,1,0,0,
+        0,99,95,1,0,0,0,99,97,1,0,0,0,99,98,1,0,0,0,100,13,1,0,0,0,101,102,
+        3,50,25,0,102,103,5,57,0,0,103,105,1,0,0,0,104,101,1,0,0,0,105,108,
+        1,0,0,0,106,104,1,0,0,0,106,107,1,0,0,0,107,109,1,0,0,0,108,106,
+        1,0,0,0,109,110,3,16,8,0,110,15,1,0,0,0,111,113,3,48,24,0,112,114,
+        3,18,9,0,113,112,1,0,0,0,113,114,1,0,0,0,114,17,1,0,0,0,115,116,
+        5,21,0,0,116,117,5,60,0,0,117,19,1,0,0,0,118,119,5,1,0,0,119,21,
+        1,0,0,0,120,122,5,15,0,0,121,120,1,0,0,0,121,122,1,0,0,0,122,123,
+        1,0,0,0,123,125,5,11,0,0,124,126,3,26,13,0,125,124,1,0,0,0,125,126,
+        1,0,0,0,126,127,1,0,0,0,127,129,3,16,8,0,128,130,3,40,20,0,129,128,
+        1,0,0,0,129,130,1,0,0,0,130,132,1,0,0,0,131,133,5,20,0,0,132,131,
+        1,0,0,0,132,133,1,0,0,0,133,23,1,0,0,0,134,136,5,12,0,0,135,137,
+        3,26,13,0,136,135,1,0,0,0,136,137,1,0,0,0,137,138,1,0,0,0,138,140,
+        3,16,8,0,139,141,5,20,0,0,140,139,1,0,0,0,140,141,1,0,0,0,141,25,
+        1,0,0,0,142,144,7,1,0,0,143,145,5,59,0,0,144,143,1,0,0,0,144,145,
+        1,0,0,0,145,148,1,0,0,0,146,148,5,59,0,0,147,142,1,0,0,0,147,146,
+        1,0,0,0,148,27,1,0,0,0,149,150,5,13,0,0,150,151,3,48,24,0,151,155,
+        5,14,0,0,152,156,3,48,24,0,153,156,5,59,0,0,154,156,5,60,0,0,155,
+        152,1,0,0,0,155,153,1,0,0,0,155,154,1,0,0,0,156,29,1,0,0,0,157,159,
+        5,24,0,0,158,160,5,29,0,0,159,158,1,0,0,0,159,160,1,0,0,0,160,162,
+        1,0,0,0,161,163,5,60,0,0,162,161,1,0,0,0,163,164,1,0,0,0,164,162,
+        1,0,0,0,164,165,1,0,0,0,165,31,1,0,0,0,166,168,5,25,0,0,167,169,
+        5,29,0,0,168,167,1,0,0,0,168,169,1,0,0,0,169,171,1,0,0,0,170,172,
+        5,60,0,0,171,170,1,0,0,0,172,173,1,0,0,0,173,171,1,0,0,0,173,174,
+        1,0,0,0,174,33,1,0,0,0,175,176,5,26,0,0,176,177,5,2,0,0,177,183,
+        3,36,18,0,178,179,5,26,0,0,179,180,3,48,24,0,180,181,3,38,19,0,181,
+        183,1,0,0,0,182,175,1,0,0,0,182,178,1,0,0,0,183,35,1,0,0,0,184,186,
+        7,2,0,0,185,187,5,29,0,0,186,185,1,0,0,0,186,187,1,0,0,0,187,189,
+        1,0,0,0,188,190,5,60,0,0,189,188,1,0,0,0,190,191,1,0,0,0,191,189,
+        1,0,0,0,191,192,1,0,0,0,192,198,1,0,0,0,193,198,5,34,0,0,194,198,
+        5,35,0,0,195,198,3,44,22,0,196,198,3,40,20,0,197,184,1,0,0,0,197,
+        193,1,0,0,0,197,194,1,0,0,0,197,195,1,0,0,0,197,196,1,0,0,0,198,
+        37,1,0,0,0,199,201,7,2,0,0,200,202,5,29,0,0,201,200,1,0,0,0,201,
+        202,1,0,0,0,202,204,1,0,0,0,203,205,5,60,0,0,204,203,1,0,0,0,205,
+        206,1,0,0,0,206,204,1,0,0,0,206,207,1,0,0,0,207,210,1,0,0,0,208,
+        210,3,40,20,0,209,199,1,0,0,0,209,208,1,0,0,0,210,39,1,0,0,0,211,
+        223,7,3,0,0,212,214,3,42,21,0,213,212,1,0,0,0,213,214,1,0,0,0,214,
+        220,1,0,0,0,215,217,3,16,8,0,216,218,3,18,9,0,217,216,1,0,0,0,217,
+        218,1,0,0,0,218,221,1,0,0,0,219,221,3,18,9,0,220,215,1,0,0,0,220,
+        219,1,0,0,0,221,224,1,0,0,0,222,224,3,42,21,0,223,213,1,0,0,0,223,
+        222,1,0,0,0,223,224,1,0,0,0,224,41,1,0,0,0,225,231,5,41,0,0,226,
+        227,3,50,25,0,227,228,5,57,0,0,228,230,1,0,0,0,229,226,1,0,0,0,230,
+        233,1,0,0,0,231,229,1,0,0,0,231,232,1,0,0,0,232,242,1,0,0,0,233,
+        231,1,0,0,0,234,235,3,50,25,0,235,236,5,57,0,0,236,238,1,0,0,0,237,
+        234,1,0,0,0,238,239,1,0,0,0,239,237,1,0,0,0,239,240,1,0,0,0,240,
+        242,1,0,0,0,241,225,1,0,0,0,241,237,1,0,0,0,242,43,1,0,0,0,243,246,
+        7,4,0,0,244,245,5,21,0,0,245,247,3,48,24,0,246,244,1,0,0,0,246,247,
+        1,0,0,0,247,253,1,0,0,0,248,251,5,40,0,0,249,252,5,61,0,0,250,252,
+        3,8,4,0,251,249,1,0,0,0,251,250,1,0,0,0,252,254,1,0,0,0,253,248,
+        1,0,0,0,253,254,1,0,0,0,254,45,1,0,0,0,255,256,5,4,0,0,256,47,1,
+        0,0,0,257,262,5,61,0,0,258,259,5,57,0,0,259,261,5,61,0,0,260,258,
+        1,0,0,0,261,264,1,0,0,0,262,260,1,0,0,0,262,263,1,0,0,0,263,49,1,
+        0,0,0,264,262,1,0,0,0,265,266,7,5,0,0,266,51,1,0,0,0,40,63,65,77,
+        82,86,91,99,106,113,121,125,129,132,136,140,144,147,155,159,164,
+        168,173,182,186,191,197,201,206,209,213,217,220,223,231,239,241,
+        246,251,253,262
     ]
 
 class WebFocusReportParser ( Parser ):
@@ -129,13 +134,14 @@ class WebFocusReportParser ( Parser ):
                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>",
                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>",
                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>",
-                     "<INVALID>", "<INVALID>", "'.'", "','" ]
+                     "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>",
+                     "'.'", "','" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "TABLE", "FILE", "END",
                       "PRINT", "SUM", "LIST", "COUNT", "WRITE", "ADD", "BY",
-                      "ACROSS", "RANKED", "HIGHEST", "LOWEST", "TOP", "BOTTOM",
-                      "NOPRINT", "AS", "THE", "AND", "HEADING", "FOOTING",
-                      "ON", "SUBHEAD", "SUBFOOT", "CENTER", "SUBTOTAL",
+                      "ACROSS", "WHERE", "EQ", "RANKED", "HIGHEST", "LOWEST",
+                      "TOP", "BOTTOM", "NOPRINT", "AS", "THE", "AND", "HEADING",
+                      "FOOTING", "ON", "SUBHEAD", "SUBFOOT", "CENTER", "SUBTOTAL",
                       "SUB_TOTAL", "SUMMARIZE", "RECOMPUTE", "COLUMN_TOTAL",
                       "ROW_TOTAL", "HOLD", "PCHOLD", "SAVE", "SAVB", "FORMAT",
                       "ROLL_DOT", "AVE", "MIN", "MAX", "CNT", "FST", "LST",
@@ -157,22 +163,23 @@ class WebFocusReportParser ( Parser ):
     RULE_by_command = 11
     RULE_across_command = 12
     RULE_sort_options = 13
-    RULE_heading_command = 14
-    RULE_footing_command = 15
-    RULE_on_command = 16
-    RULE_on_table_options = 17
-    RULE_on_field_options = 18
-    RULE_summarize_command = 19
-    RULE_summarize_options = 20
-    RULE_output_command = 21
-    RULE_end_command = 22
-    RULE_qualified_name = 23
-    RULE_prefix_operator = 24
+    RULE_where_command = 14
+    RULE_heading_command = 15
+    RULE_footing_command = 16
+    RULE_on_command = 17
+    RULE_on_table_options = 18
+    RULE_on_field_options = 19
+    RULE_summarize_command = 20
+    RULE_summarize_options = 21
+    RULE_output_command = 22
+    RULE_end_command = 23
+    RULE_qualified_name = 24
+    RULE_prefix_operator = 25
 
     ruleNames =  [ "start", "request", "table_file", "verb_command", "verb",
                    "field_list", "field_separator", "field_or_prefixed",
                    "field", "as_phrase", "asterisk", "by_command", "across_command",
-                   "sort_options", "heading_command", "footing_command",
+                   "sort_options", "where_command", "heading_command", "footing_command",
                    "on_command", "on_table_options", "on_field_options",
                    "summarize_command", "summarize_options", "output_command",
                    "end_command", "qualified_name", "prefix_operator" ]
@@ -190,54 +197,56 @@ class WebFocusReportParser ( Parser ):
     ADD=10
     BY=11
     ACROSS=12
-    RANKED=13
-    HIGHEST=14
-    LOWEST=15
-    TOP=16
-    BOTTOM=17
-    NOPRINT=18
-    AS=19
-    THE=20
-    AND=21
-    HEADING=22
-    FOOTING=23
-    ON=24
-    SUBHEAD=25
-    SUBFOOT=26
-    CENTER=27
-    SUBTOTAL=28
-    SUB_TOTAL=29
-    SUMMARIZE=30
-    RECOMPUTE=31
-    COLUMN_TOTAL=32
-    ROW_TOTAL=33
-    HOLD=34
-    PCHOLD=35
-    SAVE=36
-    SAVB=37
-    FORMAT=38
-    ROLL_DOT=39
-    AVE=40
-    MIN=41
-    MAX=42
-    CNT=43
-    FST=44
-    LST=45
-    ASQ=46
-    MDN=47
-    MDE=48
-    PCT=49
-    RPCT=50
-    RNK=51
-    DST=52
-    TOT=53
-    CT=54
-    DOT=55
-    COMMA=56
-    NUMBER=57
-    STRING=58
-    NAME=59
-    WS=60
+    WHERE=13
+    EQ=14
+    RANKED=15
+    HIGHEST=16
+    LOWEST=17
+    TOP=18
+    BOTTOM=19
+    NOPRINT=20
+    AS=21
+    THE=22
+    AND=23
+    HEADING=24
+    FOOTING=25
+    ON=26
+    SUBHEAD=27
+    SUBFOOT=28
+    CENTER=29
+    SUBTOTAL=30
+    SUB_TOTAL=31
+    SUMMARIZE=32
+    RECOMPUTE=33
+    COLUMN_TOTAL=34
+    ROW_TOTAL=35
+    HOLD=36
+    PCHOLD=37
+    SAVE=38
+    SAVB=39
+    FORMAT=40
+    ROLL_DOT=41
+    AVE=42
+    MIN=43
+    MAX=44
+    CNT=45
+    FST=46
+    LST=47
+    ASQ=48
+    MDN=49
+    MDE=50
+    PCT=51
+    RPCT=52
+    RNK=53
+    DST=54
+    TOT=55
+    CT=56
+    DOT=57
+    COMMA=58
+    NUMBER=59
+    STRING=60
+    NAME=61
+    WS=62
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -288,9 +297,9 @@ class WebFocusReportParser ( Parser ):
         self.enterRule(localctx, 0, self.RULE_start)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 50
+            self.state = 52
             self.request()
-            self.state = 51
+            self.state = 53
             self.match(WebFocusReportParser.EOF)
         except RecognitionException as re:
             localctx.exception = re
@@ -335,6 +344,13 @@ class WebFocusReportParser ( Parser ):
                 return self.getTypedRuleContexts(WebFocusReportParser.Across_commandContext)
             else:
                 return self.getTypedRuleContext(WebFocusReportParser.Across_commandContext,i)
+
+
+        def where_command(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(WebFocusReportParser.Where_commandContext)
+            else:
+                return self.getTypedRuleContext(WebFocusReportParser.Where_commandContext,i)
 
 
         def heading_command(self, i:int=None):
@@ -385,47 +401,51 @@ class WebFocusReportParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 53
+            self.state = 55
             self.table_file()
-            self.state = 62
+            self.state = 65
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 29376480) != 0):
-                self.state = 60
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 117489632) != 0):
+                self.state = 63
                 self._errHandler.sync(self)
                 token = self._input.LA(1)
                 if token in [5, 6, 7, 8, 9, 10]:
-                    self.state = 54
+                    self.state = 56
                     self.verb_command()
                     pass
-                elif token in [11, 13]:
-                    self.state = 55
+                elif token in [11, 15]:
+                    self.state = 57
                     self.by_command()
                     pass
                 elif token in [12]:
-                    self.state = 56
+                    self.state = 58
                     self.across_command()
                     pass
-                elif token in [22]:
-                    self.state = 57
-                    self.heading_command()
-                    pass
-                elif token in [23]:
-                    self.state = 58
-                    self.footing_command()
+                elif token in [13]:
+                    self.state = 59
+                    self.where_command()
                     pass
                 elif token in [24]:
-                    self.state = 59
+                    self.state = 60
+                    self.heading_command()
+                    pass
+                elif token in [25]:
+                    self.state = 61
+                    self.footing_command()
+                    pass
+                elif token in [26]:
+                    self.state = 62
                     self.on_command()
                     pass
                 else:
                     raise NoViableAltException(self)
 
-                self.state = 64
+                self.state = 67
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
-            self.state = 65
+            self.state = 68
             self.end_command()
         except RecognitionException as re:
             localctx.exception = re
@@ -479,11 +499,11 @@ class WebFocusReportParser ( Parser ):
         self.enterRule(localctx, 4, self.RULE_table_file)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 67
+            self.state = 70
             self.match(WebFocusReportParser.TABLE)
-            self.state = 68
+            self.state = 71
             self.match(WebFocusReportParser.FILE)
-            self.state = 69
+            self.state = 72
             self.qualified_name()
         except RecognitionException as re:
             localctx.exception = re
@@ -539,17 +559,17 @@ class WebFocusReportParser ( Parser ):
         self.enterRule(localctx, 6, self.RULE_verb_command)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 71
-            self.verb()
             self.state = 74
+            self.verb()
+            self.state = 77
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [6, 20, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 59]:
-                self.state = 72
+            if token in [6, 22, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 61]:
+                self.state = 75
                 self.field_list()
                 pass
             elif token in [1]:
-                self.state = 73
+                self.state = 76
                 self.asterisk()
                 pass
             else:
@@ -616,7 +636,7 @@ class WebFocusReportParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 76
+            self.state = 79
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 2016) != 0)):
                 self._errHandler.recoverInline(self)
@@ -683,32 +703,32 @@ class WebFocusReportParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 79
+            self.state = 82
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==20:
-                self.state = 78
+            if _la==22:
+                self.state = 81
                 self.match(WebFocusReportParser.THE)
 
 
-            self.state = 81
+            self.state = 84
             self.field_or_prefixed()
-            self.state = 88
+            self.state = 91
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,5,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
-                    self.state = 83
+                    self.state = 86
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
-                    if (((_la) & ~0x3f) == 0 and ((1 << _la) & 72057594041073664) != 0):
-                        self.state = 82
+                    if (((_la) & ~0x3f) == 0 and ((1 << _la) & 288230376164294656) != 0):
+                        self.state = 85
                         self.field_separator()
 
 
-                    self.state = 85
+                    self.state = 88
                     self.field_or_prefixed()
-                self.state = 90
+                self.state = 93
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,5,self._ctx)
 
@@ -762,32 +782,32 @@ class WebFocusReportParser ( Parser ):
         localctx = WebFocusReportParser.Field_separatorContext(self, self._ctx, self.state)
         self.enterRule(localctx, 12, self.RULE_field_separator)
         try:
-            self.state = 96
+            self.state = 99
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,6,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 91
+                self.state = 94
                 self.match(WebFocusReportParser.COMMA)
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 92
+                self.state = 95
                 self.match(WebFocusReportParser.AND)
-                self.state = 93
+                self.state = 96
                 self.match(WebFocusReportParser.THE)
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 94
+                self.state = 97
                 self.match(WebFocusReportParser.AND)
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 95
+                self.state = 98
                 self.match(WebFocusReportParser.THE)
                 pass
 
@@ -852,19 +872,19 @@ class WebFocusReportParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 103
+            self.state = 106
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 36027697507336256) != 0):
-                self.state = 98
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 144110790029344832) != 0):
+                self.state = 101
                 self.prefix_operator()
-                self.state = 99
+                self.state = 102
                 self.match(WebFocusReportParser.DOT)
-                self.state = 105
+                self.state = 108
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
-            self.state = 106
+            self.state = 109
             self.field()
         except RecognitionException as re:
             localctx.exception = re
@@ -916,13 +936,13 @@ class WebFocusReportParser ( Parser ):
         self.enterRule(localctx, 16, self.RULE_field)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 108
+            self.state = 111
             self.qualified_name()
-            self.state = 110
+            self.state = 113
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,8,self._ctx)
             if la_ == 1:
-                self.state = 109
+                self.state = 112
                 self.as_phrase()
 
 
@@ -974,9 +994,9 @@ class WebFocusReportParser ( Parser ):
         self.enterRule(localctx, 18, self.RULE_as_phrase)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 112
+            self.state = 115
             self.match(WebFocusReportParser.AS)
-            self.state = 113
+            self.state = 116
             self.match(WebFocusReportParser.STRING)
         except RecognitionException as re:
             localctx.exception = re
@@ -1021,7 +1041,7 @@ class WebFocusReportParser ( Parser ):
         self.enterRule(localctx, 20, self.RULE_asterisk)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 115
+            self.state = 118
             self.match(WebFocusReportParser.T__0)
         except RecognitionException as re:
             localctx.exception = re
@@ -1087,39 +1107,39 @@ class WebFocusReportParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 118
+            self.state = 121
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==13:
-                self.state = 117
+            if _la==15:
+                self.state = 120
                 self.match(WebFocusReportParser.RANKED)
 
 
-            self.state = 120
+            self.state = 123
             self.match(WebFocusReportParser.BY)
-            self.state = 122
+            self.state = 125
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 144115188076101632) != 0):
-                self.state = 121
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 576460752304406528) != 0):
+                self.state = 124
                 self.sort_options()
 
 
-            self.state = 124
+            self.state = 127
             self.field()
-            self.state = 126
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 4026531840) != 0):
-                self.state = 125
-                self.summarize_command()
-
-
             self.state = 129
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==18:
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 16106127360) != 0):
                 self.state = 128
+                self.summarize_command()
+
+
+            self.state = 132
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            if _la==20:
+                self.state = 131
                 self.match(WebFocusReportParser.NOPRINT)
 
 
@@ -1180,23 +1200,23 @@ class WebFocusReportParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 131
+            self.state = 134
             self.match(WebFocusReportParser.ACROSS)
-            self.state = 133
+            self.state = 136
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 144115188076101632) != 0):
-                self.state = 132
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 576460752304406528) != 0):
+                self.state = 135
                 self.sort_options()
 
 
-            self.state = 135
+            self.state = 138
             self.field()
-            self.state = 137
+            self.state = 140
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==18:
-                self.state = 136
+            if _la==20:
+                self.state = 139
                 self.match(WebFocusReportParser.NOPRINT)
 
 
@@ -1257,31 +1277,116 @@ class WebFocusReportParser ( Parser ):
         self.enterRule(localctx, 26, self.RULE_sort_options)
         self._la = 0 # Token type
         try:
-            self.state = 144
+            self.state = 147
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [14, 15, 16, 17]:
+            if token in [16, 17, 18, 19]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 139
+                self.state = 142
                 _la = self._input.LA(1)
-                if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 245760) != 0)):
+                if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 983040) != 0)):
                     self._errHandler.recoverInline(self)
                 else:
                     self._errHandler.reportMatch(self)
                     self.consume()
-                self.state = 141
+                self.state = 144
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==57:
-                    self.state = 140
+                if _la==59:
+                    self.state = 143
                     self.match(WebFocusReportParser.NUMBER)
 
 
                 pass
-            elif token in [57]:
+            elif token in [59]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 143
+                self.state = 146
                 self.match(WebFocusReportParser.NUMBER)
+                pass
+            else:
+                raise NoViableAltException(self)
+
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class Where_commandContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def WHERE(self):
+            return self.getToken(WebFocusReportParser.WHERE, 0)
+
+        def qualified_name(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(WebFocusReportParser.Qualified_nameContext)
+            else:
+                return self.getTypedRuleContext(WebFocusReportParser.Qualified_nameContext,i)
+
+
+        def EQ(self):
+            return self.getToken(WebFocusReportParser.EQ, 0)
+
+        def NUMBER(self):
+            return self.getToken(WebFocusReportParser.NUMBER, 0)
+
+        def STRING(self):
+            return self.getToken(WebFocusReportParser.STRING, 0)
+
+        def getRuleIndex(self):
+            return WebFocusReportParser.RULE_where_command
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterWhere_command" ):
+                listener.enterWhere_command(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitWhere_command" ):
+                listener.exitWhere_command(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitWhere_command" ):
+                return visitor.visitWhere_command(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def where_command(self):
+
+        localctx = WebFocusReportParser.Where_commandContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 28, self.RULE_where_command)
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 149
+            self.match(WebFocusReportParser.WHERE)
+            self.state = 150
+            self.qualified_name()
+            self.state = 151
+            self.match(WebFocusReportParser.EQ)
+            self.state = 155
+            self._errHandler.sync(self)
+            token = self._input.LA(1)
+            if token in [61]:
+                self.state = 152
+                self.qualified_name()
+                pass
+            elif token in [59]:
+                self.state = 153
+                self.match(WebFocusReportParser.NUMBER)
+                pass
+            elif token in [60]:
+                self.state = 154
+                self.match(WebFocusReportParser.STRING)
                 pass
             else:
                 raise NoViableAltException(self)
@@ -1337,30 +1442,30 @@ class WebFocusReportParser ( Parser ):
     def heading_command(self):
 
         localctx = WebFocusReportParser.Heading_commandContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 28, self.RULE_heading_command)
+        self.enterRule(localctx, 30, self.RULE_heading_command)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 146
+            self.state = 157
             self.match(WebFocusReportParser.HEADING)
-            self.state = 148
+            self.state = 159
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==27:
-                self.state = 147
+            if _la==29:
+                self.state = 158
                 self.match(WebFocusReportParser.CENTER)
 
 
-            self.state = 151
+            self.state = 162
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 150
+                self.state = 161
                 self.match(WebFocusReportParser.STRING)
-                self.state = 153
+                self.state = 164
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==58):
+                if not (_la==60):
                     break
 
         except RecognitionException as re:
@@ -1414,30 +1519,30 @@ class WebFocusReportParser ( Parser ):
     def footing_command(self):
 
         localctx = WebFocusReportParser.Footing_commandContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 30, self.RULE_footing_command)
+        self.enterRule(localctx, 32, self.RULE_footing_command)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 155
+            self.state = 166
             self.match(WebFocusReportParser.FOOTING)
-            self.state = 157
+            self.state = 168
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==27:
-                self.state = 156
+            if _la==29:
+                self.state = 167
                 self.match(WebFocusReportParser.CENTER)
 
 
-            self.state = 160
+            self.state = 171
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 159
+                self.state = 170
                 self.match(WebFocusReportParser.STRING)
-                self.state = 162
+                self.state = 173
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==58):
+                if not (_la==60):
                     break
 
         except RecognitionException as re:
@@ -1497,28 +1602,28 @@ class WebFocusReportParser ( Parser ):
     def on_command(self):
 
         localctx = WebFocusReportParser.On_commandContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 32, self.RULE_on_command)
+        self.enterRule(localctx, 34, self.RULE_on_command)
         try:
-            self.state = 171
+            self.state = 182
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,21,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,22,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 164
+                self.state = 175
                 self.match(WebFocusReportParser.ON)
-                self.state = 165
+                self.state = 176
                 self.match(WebFocusReportParser.TABLE)
-                self.state = 166
+                self.state = 177
                 self.on_table_options()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 167
+                self.state = 178
                 self.match(WebFocusReportParser.ON)
-                self.state = 168
+                self.state = 179
                 self.qualified_name()
-                self.state = 169
+                self.state = 180
                 self.on_field_options()
                 pass
 
@@ -1591,60 +1696,60 @@ class WebFocusReportParser ( Parser ):
     def on_table_options(self):
 
         localctx = WebFocusReportParser.On_table_optionsContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 34, self.RULE_on_table_options)
+        self.enterRule(localctx, 36, self.RULE_on_table_options)
         self._la = 0 # Token type
         try:
-            self.state = 186
+            self.state = 197
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [25, 26]:
+            if token in [27, 28]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 173
+                self.state = 184
                 _la = self._input.LA(1)
-                if not(_la==25 or _la==26):
+                if not(_la==27 or _la==28):
                     self._errHandler.recoverInline(self)
                 else:
                     self._errHandler.reportMatch(self)
                     self.consume()
-                self.state = 175
+                self.state = 186
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==27:
-                    self.state = 174
+                if _la==29:
+                    self.state = 185
                     self.match(WebFocusReportParser.CENTER)
 
 
-                self.state = 178
+                self.state = 189
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 while True:
-                    self.state = 177
+                    self.state = 188
                     self.match(WebFocusReportParser.STRING)
-                    self.state = 180
+                    self.state = 191
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
-                    if not (_la==58):
+                    if not (_la==60):
                         break
 
                 pass
-            elif token in [32]:
+            elif token in [34]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 182
+                self.state = 193
                 self.match(WebFocusReportParser.COLUMN_TOTAL)
                 pass
-            elif token in [33]:
+            elif token in [35]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 183
+                self.state = 194
                 self.match(WebFocusReportParser.ROW_TOTAL)
                 pass
-            elif token in [34, 35, 36, 37]:
+            elif token in [36, 37, 38, 39]:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 184
+                self.state = 195
                 self.output_command()
                 pass
-            elif token in [28, 29, 30, 31]:
+            elif token in [30, 31, 32, 33]:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 185
+                self.state = 196
                 self.summarize_command()
                 pass
             else:
@@ -1708,45 +1813,45 @@ class WebFocusReportParser ( Parser ):
     def on_field_options(self):
 
         localctx = WebFocusReportParser.On_field_optionsContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 36, self.RULE_on_field_options)
+        self.enterRule(localctx, 38, self.RULE_on_field_options)
         self._la = 0 # Token type
         try:
-            self.state = 198
+            self.state = 209
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [25, 26]:
+            if token in [27, 28]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 188
+                self.state = 199
                 _la = self._input.LA(1)
-                if not(_la==25 or _la==26):
+                if not(_la==27 or _la==28):
                     self._errHandler.recoverInline(self)
                 else:
                     self._errHandler.reportMatch(self)
                     self.consume()
-                self.state = 190
+                self.state = 201
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==27:
-                    self.state = 189
+                if _la==29:
+                    self.state = 200
                     self.match(WebFocusReportParser.CENTER)
 
 
-                self.state = 193
+                self.state = 204
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 while True:
-                    self.state = 192
+                    self.state = 203
                     self.match(WebFocusReportParser.STRING)
-                    self.state = 195
+                    self.state = 206
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
-                    if not (_la==58):
+                    if not (_la==60):
                         break
 
                 pass
-            elif token in [28, 29, 30, 31]:
+            elif token in [30, 31, 32, 33]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 197
+                self.state = 208
                 self.summarize_command()
                 pass
             else:
@@ -1815,46 +1920,46 @@ class WebFocusReportParser ( Parser ):
     def summarize_command(self):
 
         localctx = WebFocusReportParser.Summarize_commandContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 38, self.RULE_summarize_command)
+        self.enterRule(localctx, 40, self.RULE_summarize_command)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 200
+            self.state = 211
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 4026531840) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 16106127360) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 212
+            self.state = 223
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,31,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,32,self._ctx)
             if la_ == 1:
-                self.state = 202
+                self.state = 213
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 36028247263150144) != 0):
-                    self.state = 201
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 144112989052600384) != 0):
+                    self.state = 212
                     self.summarize_options()
 
 
-                self.state = 209
+                self.state = 220
                 self._errHandler.sync(self)
                 token = self._input.LA(1)
-                if token in [59]:
-                    self.state = 204
+                if token in [61]:
+                    self.state = 215
                     self.field()
-                    self.state = 206
+                    self.state = 217
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
-                    if _la==19:
-                        self.state = 205
+                    if _la==21:
+                        self.state = 216
                         self.as_phrase()
 
 
                     pass
-                elif token in [19]:
-                    self.state = 208
+                elif token in [21]:
+                    self.state = 219
                     self.as_phrase()
                     pass
                 else:
@@ -1862,7 +1967,7 @@ class WebFocusReportParser ( Parser ):
 
 
             elif la_ == 2:
-                self.state = 211
+                self.state = 222
                 self.summarize_options()
 
 
@@ -1921,46 +2026,46 @@ class WebFocusReportParser ( Parser ):
     def summarize_options(self):
 
         localctx = WebFocusReportParser.Summarize_optionsContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 40, self.RULE_summarize_options)
+        self.enterRule(localctx, 42, self.RULE_summarize_options)
         try:
-            self.state = 230
+            self.state = 241
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [39]:
+            if token in [41]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 214
+                self.state = 225
                 self.match(WebFocusReportParser.ROLL_DOT)
-                self.state = 220
+                self.state = 231
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,32,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,33,self._ctx)
                 while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                     if _alt==1:
-                        self.state = 215
+                        self.state = 226
                         self.prefix_operator()
-                        self.state = 216
+                        self.state = 227
                         self.match(WebFocusReportParser.DOT)
-                    self.state = 222
+                    self.state = 233
                     self._errHandler.sync(self)
-                    _alt = self._interp.adaptivePredict(self._input,32,self._ctx)
+                    _alt = self._interp.adaptivePredict(self._input,33,self._ctx)
 
                 pass
-            elif token in [6, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54]:
+            elif token in [6, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 226
+                self.state = 237
                 self._errHandler.sync(self)
                 _alt = 1
                 while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                     if _alt == 1:
-                        self.state = 223
+                        self.state = 234
                         self.prefix_operator()
-                        self.state = 224
+                        self.state = 235
                         self.match(WebFocusReportParser.DOT)
 
                     else:
                         raise NoViableAltException(self)
-                    self.state = 228
+                    self.state = 239
                     self._errHandler.sync(self)
-                    _alt = self._interp.adaptivePredict(self._input,33,self._ctx)
+                    _alt = self._interp.adaptivePredict(self._input,34,self._ctx)
 
                 pass
             else:
@@ -2034,42 +2139,42 @@ class WebFocusReportParser ( Parser ):
     def output_command(self):
 
         localctx = WebFocusReportParser.Output_commandContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 42, self.RULE_output_command)
+        self.enterRule(localctx, 44, self.RULE_output_command)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 232
+            self.state = 243
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 257698037760) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 1030792151040) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 235
+            self.state = 246
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==19:
-                self.state = 233
+            if _la==21:
+                self.state = 244
                 self.match(WebFocusReportParser.AS)
-                self.state = 234
+                self.state = 245
                 self.qualified_name()
 
 
-            self.state = 242
+            self.state = 253
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==38:
-                self.state = 237
+            if _la==40:
+                self.state = 248
                 self.match(WebFocusReportParser.FORMAT)
-                self.state = 240
+                self.state = 251
                 self._errHandler.sync(self)
                 token = self._input.LA(1)
-                if token in [59]:
-                    self.state = 238
+                if token in [61]:
+                    self.state = 249
                     self.match(WebFocusReportParser.NAME)
                     pass
                 elif token in [5, 6, 7, 8, 9, 10]:
-                    self.state = 239
+                    self.state = 250
                     self.verb()
                     pass
                 else:
@@ -2119,10 +2224,10 @@ class WebFocusReportParser ( Parser ):
     def end_command(self):
 
         localctx = WebFocusReportParser.End_commandContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 44, self.RULE_end_command)
+        self.enterRule(localctx, 46, self.RULE_end_command)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 244
+            self.state = 255
             self.match(WebFocusReportParser.END)
         except RecognitionException as re:
             localctx.exception = re
@@ -2175,21 +2280,21 @@ class WebFocusReportParser ( Parser ):
     def qualified_name(self):
 
         localctx = WebFocusReportParser.Qualified_nameContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 46, self.RULE_qualified_name)
+        self.enterRule(localctx, 48, self.RULE_qualified_name)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 246
+            self.state = 257
             self.match(WebFocusReportParser.NAME)
-            self.state = 251
+            self.state = 262
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==55:
-                self.state = 247
+            while _la==57:
+                self.state = 258
                 self.match(WebFocusReportParser.DOT)
-                self.state = 248
+                self.state = 259
                 self.match(WebFocusReportParser.NAME)
-                self.state = 253
+                self.state = 264
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -2280,13 +2385,13 @@ class WebFocusReportParser ( Parser ):
     def prefix_operator(self):
 
         localctx = WebFocusReportParser.Prefix_operatorContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 48, self.RULE_prefix_operator)
+        self.enterRule(localctx, 50, self.RULE_prefix_operator)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 254
+            self.state = 265
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 36027697507336256) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 144110790029344832) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)

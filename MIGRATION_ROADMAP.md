@@ -11,13 +11,17 @@ The frontend is split into two distinct ANTLR4 grammars to reflect the dual natu
 2. `WebFocusReport.g4`: Handles procedural report logic and `TABLE FILE` requests.
 
 - [x] **1.1 Master File Grammar:** Complete the transition of Master File parsing from Lark to ANTLR4. (Completed: `src/MasterFile.g4` is implemented and used by `src/master_file_parser.py`)
-- [ ] **1.2 WebFOCUS Report Grammar:** Port the EBNF grammar from `src/wf_parser.py` to ANTLR4 (.g4) format.
+- [x] 1.2 WebFOCUS Report Grammar: Port the EBNF grammar from `src/wf_parser.py` to ANTLR4 (.g4) format.
   - [x] **1.2.1 Core request structure:** TABLE FILE verb, END command, and qualified names. (Implemented in `src/WebFocusReport.g4`)
   - [x] **1.2.2 Verb commands:** PRINT, SUM, LIST, COUNT, WRITE, ADD and field lists with AS phrases. (Implemented in `src/WebFocusReport.g4`)
   - [x] **1.2.3 Sort phrases:** BY and ACROSS with sort options (HIGHEST, LOWEST, etc.). (Implemented in `src/WebFocusReport.g4`)
   - [x] **1.2.4 Formatting:** HEADING, FOOTING, and ON (SUBHEAD/SUBFOOT). (Implemented in `src/WebFocusReport.g4`)
   - [x] **1.2.5 Summarization and Output:** SUBTOTAL, SUMMARIZE, RECOMPUTE and ON TABLE (HOLD, PCHOLD, etc.). (Implemented in `src/WebFocusReport.g4`)
-- [ ] **1.3 Dialogue Manager Grammar:** Define ANTLR4 grammar rules for procedural Dialogue Manager commands (-SET, -IF, -GOTO, etc.).
+  - [x] 1.2.6 Expressions and WHERE clauses: Support filtering with relational operators. (Implemented in `src/WebFocusReport.g4`)
+- [ ] 1.3 Dialogue Manager Grammar: Define ANTLR4 grammar rules for procedural Dialogue Manager commands.
+  - [ ] 1.3.1 Variable Assignment: -SET and system variables.
+  - [ ] 1.3.2 Control Flow: -IF, -GOTO, -LABEL, and -REPEAT.
+  - [ ] 1.3.3 File/Execution: -INCLUDE, -RUN, and -EXIT.
 - [ ] **1.4 Unified Lexer/Parser:** Ensure the ANTLR4 frontend can handle the context-sensitive nature of WebFOCUS where Dialogue Manager and TABLE FILE requests are interleaved.
 
 ## Phase 2: Semantic Analysis (ASG Construction)

@@ -2,7 +2,7 @@ grammar WebFocusReport;
 
 start: request EOF;
 
-request: table_file (verb_command | by_command | across_command | heading_command | footing_command | on_command)* end_command;
+request: table_file (verb_command | by_command | across_command | where_command | heading_command | footing_command | on_command)* end_command;
 
 table_file: TABLE FILE qualified_name;
 
@@ -28,6 +28,8 @@ across_command: ACROSS sort_options? field NOPRINT?;
 
 sort_options: (HIGHEST | LOWEST | TOP | BOTTOM) NUMBER?
             | NUMBER;
+
+where_command: WHERE qualified_name EQ (qualified_name | NUMBER | STRING);
 
 heading_command: HEADING CENTER? STRING+;
 
@@ -71,6 +73,8 @@ ADD: [aA][dD][dD];
 
 BY: [bB][yY];
 ACROSS: [aA][cC][rR][oO][sS][sS];
+WHERE: [wW][hH][eE][rR][eE];
+EQ: [eE][qQ];
 RANKED: [rR][aA][nN][kK][eE][dD];
 HIGHEST: [hH][iI][gG][hH][eE][sS][tT];
 LOWEST: [lL][oO][wW][eE][sS][tT];
