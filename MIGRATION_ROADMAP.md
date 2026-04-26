@@ -60,7 +60,7 @@ Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands th
   - [x] 2.4.1 Visitor Infrastructure: Base visitor class and dispatcher. (Implemented in `src/asg_builder.py`)
   - [x] 2.4.2 Expression Builder: Support all arithmetic and logical expressions. (Implemented in `src/asg_builder.py`)
   - [x] 2.4.3 Dialogue Manager Builder: Support -SET, -IF, -GOTO, -REPEAT, etc. (Implemented in `src/asg_builder.py`)
-  - [ ] 2.4.4 Report Request Builder:
+  - [x] 2.4.4 Report Request Builder:
     - [x] 2.4.4.1 Core structure: TABLE FILE and END command. (Implemented in `src/asg_builder.py`)
     - [x] 2.4.4.2 Verbs and Fields: PRINT, SUM, etc., with AS phrases and prefix operators. (Implemented in `src/asg_builder.py`)
     - [x] 2.4.4.3 Sort phrases: BY and ACROSS with sort options. (Implemented in `src/asg_builder.py`)
@@ -71,13 +71,14 @@ Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands th
       - [x] 2.4.4.5.1 HEADING and FOOTING commands. (Implemented in `src/asg_builder.py`)
       - [x] 2.4.4.5.2 ON TABLE/field commands (SUBTOTAL, SUMMARIZE, etc.). (Implemented in `src/asg_builder.py`)
       - [x] 2.4.4.5.3 COMPUTE command for calculated values. (Implemented in `src/asg_builder.py`)
-  - [ ] 2.4.5 Environment Builder:
+  - [x] 2.4.5 Environment Builder:
     - [x] 2.4.5.1 Environment Commands:
       - [x] 2.4.5.1.1 JOIN command (CLEAR, LEFT OUTER, AS). (Implemented in `src/asg_builder.py`)
       - [x] 2.4.5.1.2 SET command for environment parameters. (Implemented in `src/asg_builder.py`)
     - [x] 2.4.5.2 Virtual Fields:
       - [x] 2.4.5.2.1 DEFINE FILE block structure. (Implemented in `src/asg_builder.py`)
       - [x] 2.4.5.2.2 DEFINE assignments with formats and expressions. (Implemented in `src/asg_builder.py`)
+  - [x] 2.4.6 Master File Builder: Support FILENAME, SEGMENT, FIELD, and virtual fields in Master Files.
 
 ## Phase 3: Optimization (SSA-based IR)
 Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment (SSA) form to enable relational optimizations.
