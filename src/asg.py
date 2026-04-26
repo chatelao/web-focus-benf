@@ -53,6 +53,11 @@ class InExpression(Expression):
     def __init__(self, expression, values, **kwargs):
         super().__init__(expression=expression, values=values, **kwargs)
 
+class IsMissingExpression(Expression):
+    """Represents an IS MISSING expression."""
+    def __init__(self, expression, inverted=False, **kwargs):
+        super().__init__(expression=expression, inverted=inverted, **kwargs)
+
 class Statement(ASGNode):
     """Base class for all statement nodes in the ASG."""
     pass

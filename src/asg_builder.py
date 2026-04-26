@@ -86,6 +86,27 @@ class ReportASGBuilder(WebFocusReportVisitor):
         field = self.visit(ctx.field())
         return SortCommand(sort_type=sort_type, field=field, options=options)
 
+    def visitWhere_command(self, ctx: WebFocusReportParser.Where_commandContext):
+        is_total = ctx.TOTAL() is not None
+        condition = self.visit(ctx.dm_logical_expression())
+        return WhereClause(condition=condition, is_total=is_total)
+
+    def visitHeading_command(self, ctx: WebFocusReportParser.Heading_commandContext):
+        centered = ctx.CENTER() is not None
+        text = " ".join([s.getText()[1:-1] for s in ctx.STRING()])
+        return Heading(text=text, centered=centered)
+
+    def visitFooting_command(self, ctx: WebFocusReportParser.Footing_commandContext):
+        centered = ctx.CENTER() is not None
+        text = " ".join([s.getText()[1:-1] for s in ctx.STRING()])
+        return Footing(text=text, centered=centered)
+
+    def visitCompute_command(self, ctx: WebFocusReportParser.Compute_commandContext):
+        name = ctx.qualified_name().getText()
+        format = ctx.format_name().getText() if ctx.format_name() else None
+        expression = self.visit(ctx.dm_expression())
+        return ComputeCommand(name=name, format=format, expression=expression)
+
     def visitSort_options(self, ctx: WebFocusReportParser.Sort_optionsContext):
         options = {}
         if ctx.HIGHEST(): options["order"] = "HIGHEST"
@@ -133,11 +154,56 @@ class ReportASGBuilder(WebFocusReportVisitor):
 
     def visitDm_relational_expression(self, ctx: WebFocusReportParser.Dm_relational_expressionContext):
         if ctx.getChildCount() == 1:
-            return self.visit(ctx.getChild(0))
-        left = self.visit(ctx.getChild(0))
-        operator = ctx.getChild(1).getText().upper()
-        right = self.visit(ctx.getChild(2))
-        return BinaryOperation(left=left, operator=operator, right=right)
+            return self.visit(ctx.dm_concat_expression(0))
+
+        # Case: MISSING
+        if ctx.MISSING():
+            expr = self.visit(ctx.dm_concat_expression(0))
+            inverted = False
+            if ctx.NE() or ctx.is_not_op():
+                inverted = True
+            return IsMissingExpression(expression=expr, inverted=inverted)
+
+        # Case: FROM...TO
+        if ctx.TO():
+            expr = self.visit(ctx.dm_concat_expression(0))
+            lower = self.visit(ctx.dm_concat_expression(1))
+            upper = self.visit(ctx.dm_concat_expression(2))
+            node = BetweenExpression(expression=expr, lower=lower, upper=upper)
+            if ctx.not_from_op():
+                return UnaryOperation(operator='NOT', operand=node)
+            return node
+
+        # Case: IN
+        if ctx.IN():
+            expr = self.visit(ctx.dm_concat_expression(0))
+            if ctx.FILE():
+                filename = ctx.qualified_name().getText()
+                return InExpression(expression=expr, values=[], filename=filename)
+            else:
+                values = [self.visit(e) for i, e in enumerate(ctx.dm_concat_expression()) if i > 0]
+                return InExpression(expression=expr, values=values)
+
+        # Case: INCLUDES / EXCLUDES
+        if ctx.INCLUDES() or ctx.EXCLUDES():
+            left = self.visit(ctx.dm_concat_expression(0))
+            op = "INCLUDES" if ctx.INCLUDES() else "EXCLUDES"
+            values = [self.visit(e) for i, e in enumerate(ctx.dm_concat_expression()) if i > 0]
+            return BinaryOperation(left=left, operator=op, right=values)
+
+        # Case: Relational op with optional OR
+        if ctx.dm_relational_op():
+            left = self.visit(ctx.dm_concat_expression(0))
+            op_text = ctx.dm_relational_op().getText().upper().replace('-', ' ')
+            rights = [self.visit(e) for i, e in enumerate(ctx.dm_concat_expression()) if i > 0]
+
+            node = BinaryOperation(left=left, operator=op_text, right=rights[0])
+            for i in range(1, len(rights)):
+                right_expr = BinaryOperation(left=left, operator=op_text, right=rights[i])
+                node = BinaryOperation(left=node, operator="OR", right=right_expr)
+            return node
+
+        return self.visit(ctx.getChild(0))
 
     def visitDm_concat_expression(self, ctx: WebFocusReportParser.Dm_concat_expressionContext):
         if ctx.getChildCount() == 1:
