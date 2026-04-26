@@ -1,5 +1,8 @@
 import unittest
-from src.asg import Expression, Statement, Command, MasterFile, Segment, Field
+from src.asg import (
+    Expression, Statement, Command, MasterFile, Segment, Field,
+    Goto, Label, IfDM, Repeat, SetDM, TypeDM, IncludeDM, RunDM, ExitDM
+)
 
 class TestASGNodes(unittest.TestCase):
     def test_expression_instantiation(self):
@@ -44,6 +47,38 @@ class TestASGNodes(unittest.TestCase):
         self.assertEqual(mf.segments[0].name, "EMPDATA")
         self.assertEqual(len(mf.segments[0].fields), 1)
         self.assertEqual(mf.segments[0].fields[0].name, "LASTNAME")
+
+    def test_dm_control_flow_nodes(self):
+        goto_node = Goto(target="EXIT_REPORT")
+        self.assertEqual(goto_node.target, "EXIT_REPORT")
+
+        label_node = Label(name="EXIT_REPORT")
+        self.assertEqual(label_node.name, "EXIT_REPORT")
+
+        if_node = IfDM(condition="&VAR EQ 1", then_target="LABEL1", else_target="LABEL2")
+        self.assertEqual(if_node.condition, "&VAR EQ 1")
+        self.assertEqual(if_node.then_target, "LABEL1")
+        self.assertEqual(if_node.else_target, "LABEL2")
+
+        repeat_node = Repeat(label="LOOP_START")
+        self.assertEqual(repeat_node.label, "LOOP_START")
+
+    def test_dm_action_nodes(self):
+        set_node = SetDM(variable="&VAR", expression="100")
+        self.assertEqual(set_node.variable, "&VAR")
+        self.assertEqual(set_node.expression, "100")
+
+        type_node = TypeDM(messages=["Hello", "World"])
+        self.assertEqual(type_node.messages, ["Hello", "World"])
+
+        include_node = IncludeDM(filename="MYFEX.FEX")
+        self.assertEqual(include_node.filename, "MYFEX.FEX")
+
+        run_node = RunDM()
+        self.assertIsInstance(run_node, RunDM)
+
+        exit_node = ExitDM()
+        self.assertIsInstance(exit_node, ExitDM)
 
 if __name__ == '__main__':
     unittest.main()
