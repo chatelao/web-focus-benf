@@ -1,8 +1,12 @@
 grammar WebFocusReport;
 
-start: (request | dm_command)* EOF;
+start: (request | dm_command | join_command | set_command)* EOF;
 
 request: table_file (verb_command | by_command | across_command | where_command | heading_command | footing_command | on_command | dm_command)* end_command;
+
+join_command: JOIN (CLEAR asterisk | (LEFT? OUTER)? qualified_name IN qualified_name TO qualified_name IN qualified_name (AS NAME)?) SEMI?;
+
+set_command: SET NAME EQ (NAME | NUMBER | OFF | ON) SEMI?;
 
 dm_command: dm_set
           | dm_goto
@@ -91,7 +95,8 @@ on_table_options: (SUBHEAD | SUBFOOT) CENTER? STRING+
                 | COLUMN_TOTAL
                 | ROW_TOTAL
                 | output_command
-                | summarize_command;
+                | summarize_command
+                | set_command;
 
 on_field_options: (SUBHEAD | SUBFOOT) CENTER? STRING+
                 | summarize_command;
@@ -142,6 +147,12 @@ GT: [gG][tT] | '>';
 LE: [lL][eE] | '<=';
 GE: [gG][eE] | '>=';
 RANKED: [rR][aA][nN][kK][eE][dD];
+JOIN: [jJ][oO][iI][nN];
+CLEAR: [cC][lL][eE][aA][rR];
+LEFT: [lL][eE][fF][tT];
+OUTER: [oO][uU][tT][eE][rR];
+SET: [sS][eE][tT];
+OFF: [oO][fF][fF];
 WHILE: [wW][hH][iI][lL][eE];
 UNTIL: [uU][nN][tT][iI][lL];
 TIMES: [tT][iI][mM][eE][sS];
@@ -156,6 +167,7 @@ BOTTOM: [bB][oO][tT][tT][oO][mM];
 NOPRINT: [nN][oO][pP][rR][iI][nN][tT];
 
 AS: [aA][sS];
+IN: [iI][nN];
 THE: [tT][hH][eE];
 AND: [aA][nN][dD];
 OR: [oO][rR];

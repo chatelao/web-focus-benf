@@ -26,6 +26,24 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by WebFocusReportParser#join_command.
+    def enterJoin_command(self, ctx:WebFocusReportParser.Join_commandContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#join_command.
+    def exitJoin_command(self, ctx:WebFocusReportParser.Join_commandContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#set_command.
+    def enterSet_command(self, ctx:WebFocusReportParser.Set_commandContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#set_command.
+    def exitSet_command(self, ctx:WebFocusReportParser.Set_commandContext):
+        pass
+
+
     # Enter a parse tree produced by WebFocusReportParser#dm_command.
     def enterDm_command(self, ctx:WebFocusReportParser.Dm_commandContext):
         pass

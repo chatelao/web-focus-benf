@@ -19,6 +19,16 @@ class WebFocusReportVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by WebFocusReportParser#join_command.
+    def visitJoin_command(self, ctx:WebFocusReportParser.Join_commandContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#set_command.
+    def visitSet_command(self, ctx:WebFocusReportParser.Set_commandContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by WebFocusReportParser#dm_command.
     def visitDm_command(self, ctx:WebFocusReportParser.Dm_commandContext):
         return self.visitChildren(ctx)
