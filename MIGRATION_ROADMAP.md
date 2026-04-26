@@ -59,7 +59,7 @@ Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands th
 - [ ] **2.4 ASG Builder:** Implement the visitor to transform ANTLR4 parse tree to ASG.
   - [x] 2.4.1 Visitor Infrastructure: Base visitor class and dispatcher. (Implemented in `src/asg_builder.py`)
   - [ ] 2.4.2 Expression Builder: Support all arithmetic and logical expressions.
-  - [ ] 2.4.3 Dialogue Manager Builder: Support -SET, -IF, -GOTO, -REPEAT, etc.
+  - [x] 2.4.3 Dialogue Manager Builder: Support -SET, -IF, -GOTO, -REPEAT, etc. (Implemented in `src/asg_builder.py`)
   - [ ] 2.4.4 Report Request Builder: Support TABLE FILE, Verbs, BY/ACROSS, WHERE.
   - [ ] 2.4.5 Environment Builder: Support JOIN, SET, and DEFINE.
 

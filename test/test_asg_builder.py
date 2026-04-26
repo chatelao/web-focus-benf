@@ -65,5 +65,78 @@ class TestASGBuilder(unittest.TestCase):
         self.assertTrue(isinstance(expr, asg.BinaryOperation))
         self.assertEqual(expr.operator, "AND")
 
+    def test_dm_goto(self):
+        code = "-GOTO MYLABEL;"
+        asg_nodes = self.build_asg(code)
+        node = asg_nodes[0]
+        self.assertTrue(isinstance(node, asg.Goto))
+        self.assertEqual(node.target, "MYLABEL")
+
+    def test_dm_label(self):
+        code = "-MYLABEL"
+        asg_nodes = self.build_asg(code)
+        node = asg_nodes[0]
+        self.assertTrue(isinstance(node, asg.Label))
+        self.assertEqual(node.name, "MYLABEL")
+
+    def test_dm_if(self):
+        code = "-IF &X EQ 1 GOTO LABEL1 ELSE GOTO LABEL2;"
+        asg_nodes = self.build_asg(code)
+        node = asg_nodes[0]
+        self.assertTrue(isinstance(node, asg.IfDM))
+        self.assertEqual(node.then_target, "LABEL1")
+        self.assertEqual(node.else_target, "LABEL2")
+
+    def test_dm_include(self):
+        code = "-INCLUDE GGHDR.FEX"
+        asg_nodes = self.build_asg(code)
+        node = asg_nodes[0]
+        self.assertTrue(isinstance(node, asg.IncludeDM))
+        self.assertEqual(node.filename, "GGHDR.FEX")
+
+    def test_dm_run_exit(self):
+        code = "-RUN\n-EXIT"
+        asg_nodes = self.build_asg(code)
+        self.assertEqual(len(asg_nodes), 2)
+        self.assertTrue(isinstance(asg_nodes[0], asg.RunDM))
+        self.assertTrue(isinstance(asg_nodes[1], asg.ExitDM))
+
+    def test_dm_repeat_while(self):
+        code = "-REPEAT LOOP1 WHILE &X LT 10;"
+        asg_nodes = self.build_asg(code)
+        node = asg_nodes[0]
+        self.assertTrue(isinstance(node, asg.Repeat))
+        self.assertEqual(node.label, "LOOP1")
+        self.assertEqual(node.condition_type, "WHILE")
+
+    def test_dm_repeat_for(self):
+        code = "-REPEAT LOOP2 FOR &I FROM 1 TO 10 STEP 1;"
+        asg_nodes = self.build_asg(code)
+        node = asg_nodes[0]
+        self.assertTrue(isinstance(node, asg.Repeat))
+        self.assertEqual(node.loop_var, "&I")
+        self.assertEqual(node.start_val.value, 1)
+        self.assertEqual(node.end_val.value, 10)
+        self.assertEqual(node.step_val.value, 1)
+
+    def test_dm_if_expression(self):
+        code = "-SET &VAR = IF &X EQ 1 THEN 'YES' ELSE 'NO';"
+        asg_nodes = self.build_asg(code)
+        node = asg_nodes[0]
+        expr = node.expression
+        self.assertTrue(isinstance(expr, asg.IfExpression))
+        self.assertEqual(expr.then_expr.value, "YES")
+        self.assertEqual(expr.else_expr.value, "NO")
+
+    def test_dm_concat_expression(self):
+        code = "-SET &VAR = 'A' | 'B' || 'C';"
+        asg_nodes = self.build_asg(code)
+        node = asg_nodes[0]
+        expr = node.expression
+        self.assertTrue(isinstance(expr, asg.BinaryOperation))
+        self.assertEqual(expr.operator, "||")
+        self.assertTrue(isinstance(expr.left, asg.BinaryOperation))
+        self.assertEqual(expr.left.operator, "|")
+
 if __name__ == '__main__':
     unittest.main()
