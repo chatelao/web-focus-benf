@@ -59,6 +59,66 @@ class ExitDM(Command):
     """Represents a Dialogue Manager -EXIT command."""
     pass
 
+class ReportRequest(Statement):
+    """Represents a TABLE FILE report request."""
+    def __init__(self, filename, components=None, **kwargs):
+        super().__init__(filename=filename, components=components or [], **kwargs)
+
+class VerbCommand(Command):
+    """Represents a report verb command (PRINT, SUM, etc.)."""
+    def __init__(self, verb, fields=None, **kwargs):
+        super().__init__(verb=verb, fields=fields or [], **kwargs)
+
+class FieldSelection(ASGNode):
+    """Represents a field selection in a verb or sort command."""
+    def __init__(self, name, prefix_operators=None, alias=None, **kwargs):
+        super().__init__(name=name, prefix_operators=prefix_operators or [], alias=alias, **kwargs)
+
+class SortCommand(Command):
+    """Represents a sort phrase (BY or ACROSS)."""
+    def __init__(self, sort_type, field, options=None, **kwargs):
+        super().__init__(sort_type=sort_type, field=field, options=options or {}, **kwargs)
+
+class WhereClause(Command):
+    """Represents a WHERE clause in a report request."""
+    def __init__(self, condition, is_total=False, **kwargs):
+        super().__init__(condition=condition, is_total=is_total, **kwargs)
+
+class Heading(Command):
+    """Represents a HEADING command."""
+    def __init__(self, text, centered=False, **kwargs):
+        super().__init__(text=text, centered=centered, **kwargs)
+
+class Footing(Command):
+    """Represents a FOOTING command."""
+    def __init__(self, text, centered=False, **kwargs):
+        super().__init__(text=text, centered=centered, **kwargs)
+
+class OnCommand(Command):
+    """Represents an ON command (ON TABLE or ON field)."""
+    def __init__(self, target, actions=None, **kwargs):
+        super().__init__(target=target, actions=actions or [], **kwargs)
+
+class ComputeCommand(Command):
+    """Represents a COMPUTE command."""
+    def __init__(self, name, expression, format=None, **kwargs):
+        super().__init__(name=name, expression=expression, format=format, **kwargs)
+
+class Join(Command):
+    """Represents a JOIN command."""
+    def __init__(self, left_file, left_field, right_file, right_field, join_as=None, outer=False, **kwargs):
+        super().__init__(left_file=left_file, left_field=left_field, right_file=right_file, right_field=right_field, join_as=join_as, outer=outer, **kwargs)
+
+class SetCommand(Command):
+    """Represents a SET (non-Dialogue Manager) command."""
+    def __init__(self, parameter, value, **kwargs):
+        super().__init__(parameter=parameter, value=value, **kwargs)
+
+class DefineFile(Statement):
+    """Represents a DEFINE FILE block."""
+    def __init__(self, filename, assignments=None, **kwargs):
+        super().__init__(filename=filename, assignments=assignments or [], **kwargs)
+
 class DataModelNode(ASGNode):
     """Base class for nodes related to the data model (Master Files)."""
     pass

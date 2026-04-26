@@ -45,7 +45,9 @@ Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands th
   - [x] 2.1.3 Procedural nodes:
     - [x] 2.1.3.1 DM Control Flow: Implement nodes for -GOTO, -IF, and -REPEAT. (Implemented in `src/asg.py`)
     - [x] 2.1.3.2 DM Actions: Implement nodes for -SET, -TYPE, and -INCLUDE. (Implemented in `src/asg.py`)
-  - [ ] 2.1.4 Report Request nodes: Implement nodes for TABLE FILE, Sort phrases, and Filters.
+  - [x] 2.1.4 Report Request nodes: Implement nodes for TABLE FILE, Verbs, Sort phrases, Filters, and Formatting. (Implemented in `src/asg.py`)
+  - [x] 2.1.5 Environment and Virtual Field nodes: Implement nodes for JOIN, SET, and DEFINE. (Implemented in `src/asg.py`)
+  - [ ] 2.1.6 Expression nodes: Implement nodes for arithmetic and logical operations.
 - [ ] **2.2 Symbol Table:**
   - [ ] 2.2.1 Scoping: Implement block-level and global scopes.
   - [ ] 2.2.2 Variable Resolution: Handle Dialogue Manager variables and field references.

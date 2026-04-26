@@ -1,7 +1,9 @@
 import unittest
 from src.asg import (
     Expression, Statement, Command, MasterFile, Segment, Field,
-    Goto, Label, IfDM, Repeat, SetDM, TypeDM, IncludeDM, RunDM, ExitDM
+    Goto, Label, IfDM, Repeat, SetDM, TypeDM, IncludeDM, RunDM, ExitDM,
+    ReportRequest, VerbCommand, FieldSelection, SortCommand, WhereClause,
+    Heading, Footing, OnCommand, ComputeCommand, Join, SetCommand, DefineFile
 )
 
 class TestASGNodes(unittest.TestCase):
@@ -79,6 +81,54 @@ class TestASGNodes(unittest.TestCase):
 
         exit_node = ExitDM()
         self.assertIsInstance(exit_node, ExitDM)
+
+    def test_report_request_nodes(self):
+        report = ReportRequest(filename="EMPLOYEE")
+        self.assertEqual(report.filename, "EMPLOYEE")
+        self.assertEqual(report.components, [])
+
+        verb = VerbCommand(verb="PRINT", fields=[FieldSelection(name="LASTNAME")])
+        self.assertEqual(verb.verb, "PRINT")
+        self.assertEqual(verb.fields[0].name, "LASTNAME")
+
+        sort = SortCommand(sort_type="BY", field=FieldSelection(name="DEPARTMENT"))
+        self.assertEqual(sort.sort_type, "BY")
+        self.assertEqual(sort.field.name, "DEPARTMENT")
+
+        where = WhereClause(condition="SALARY GT 50000", is_total=False)
+        self.assertEqual(where.condition, "SALARY GT 50000")
+        self.assertFalse(where.is_total)
+
+        heading = Heading(text="Employee Report", centered=True)
+        self.assertEqual(heading.text, "Employee Report")
+        self.assertTrue(heading.centered)
+
+        footing = Footing(text="End of Report")
+        self.assertEqual(footing.text, "End of Report")
+        self.assertFalse(footing.centered)
+
+        on_table = OnCommand(target="TABLE", actions=["COLUMN-TOTAL"])
+        self.assertEqual(on_table.target, "TABLE")
+        self.assertEqual(on_table.actions, ["COLUMN-TOTAL"])
+
+        compute = ComputeCommand(name="BONUS", expression="SALARY * 0.1", format="D12.2")
+        self.assertEqual(compute.name, "BONUS")
+        self.assertEqual(compute.expression, "SALARY * 0.1")
+        self.assertEqual(compute.format, "D12.2")
+
+    def test_environment_and_virtual_field_nodes(self):
+        join = Join(left_file="EMP", left_field="ID", right_file="SAL", right_field="ID", join_as="EMPSAL", outer=True)
+        self.assertEqual(join.left_file, "EMP")
+        self.assertEqual(join.join_as, "EMPSAL")
+        self.assertTrue(join.outer)
+
+        set_cmd = SetCommand(parameter="NODATA", value="MISSING")
+        self.assertEqual(set_cmd.parameter, "NODATA")
+        self.assertEqual(set_cmd.value, "MISSING")
+
+        define = DefineFile(filename="EMPLOYEE", assignments=[{"name": "FULLNAME", "expression": "FIRSTNAME || LASTNAME"}])
+        self.assertEqual(define.filename, "EMPLOYEE")
+        self.assertEqual(len(define.assignments), 1)
 
 if __name__ == '__main__':
     unittest.main()
