@@ -86,3 +86,103 @@ class PostgresEmitter:
         Currently assuming SSA renaming has identified all variables as targets.
         """
         pass
+
+    def emit_expression(self, expr):
+        """
+        Translates ASG expression nodes to PostgreSQL SQL strings.
+        """
+        if expr is None:
+            return "NULL"
+
+        class_name = expr.__class__.__name__
+
+        if class_name == 'Literal':
+            if isinstance(expr.value, str):
+                # Simple string quoting, might need more robust escaping
+                return f"'{expr.value}'"
+            return str(expr.value)
+
+        elif class_name == 'AmperVar':
+            return self._sanitize_name(expr.name)
+
+        elif class_name == 'Identifier':
+            # Fields in SQL are usually handled in the context of a query,
+            # but for expressions in procedural logic they might be variables.
+            return self._sanitize_name(expr.name)
+
+        elif class_name == 'BinaryOperation':
+            left = self.emit_expression(expr.left)
+            right = self.emit_expression(expr.right)
+            op = expr.operator.upper()
+
+            # Map WebFOCUS operators to SQL
+            op_mapping = {
+                'EQ': '=',
+                'NE': '<>',
+                'GT': '>',
+                'GE': '>=',
+                'LT': '<',
+                'LE': '<=',
+                'AND': 'AND',
+                'OR': 'OR',
+                'CONCAT': '||'
+            }
+            sql_op = op_mapping.get(op, op)
+            return f"({left} {sql_op} {right})"
+
+        elif class_name == 'UnaryOperation':
+            operand = self.emit_expression(expr.operand)
+            op = expr.operator.upper()
+            op_mapping = {
+                'NOT': 'NOT ',
+            }
+            sql_op = op_mapping.get(op, op)
+            return f"{sql_op}({operand})"
+
+        elif class_name == 'FunctionCall':
+            args = [self.emit_expression(arg) for arg in expr.arguments]
+            return f"{expr.function_name}({', '.join(args)})"
+
+        elif class_name == 'IfExpression':
+            cond = self.emit_expression(expr.condition)
+            then_e = self.emit_expression(expr.then_expr)
+            else_e = self.emit_expression(expr.else_expr)
+            return f"(CASE WHEN {cond} THEN {then_e} ELSE {else_e} END)"
+
+        return f"/* Unknown expression: {class_name} */"
+
+    def emit_instruction(self, instr):
+        """
+        Translates IR instructions to PL/pgSQL statements.
+        """
+        class_name = instr.__class__.__name__
+
+        if class_name == 'Assign':
+            target = self._sanitize_name(instr.target)
+            source = self.emit_expression(instr.source)
+            return f"{target} := {source};"
+
+        elif class_name == 'Type':
+            # -TYPE messages can be complex, for now handle literal components
+            parts = []
+            for part in instr.messages:
+                parts.append(self.emit_expression(part))
+
+            # Concatenate parts for RAISE NOTICE
+            if not parts:
+                return "RAISE NOTICE '';"
+
+            # Using format string for RAISE NOTICE
+            format_str = " || ".join(parts)
+            return f"RAISE NOTICE '%', {format_str};"
+
+        elif class_name == 'Jump':
+            # Control flow instructions might be handled by a higher-level
+            # state machine or block dispatcher, but providing a basic mapping.
+            return f"/* JUMP to {instr.target} */"
+
+        elif class_name == 'Branch':
+            cond = self.emit_expression(instr.condition)
+            return f"/* BRANCH IF {cond} TO {instr.true_target} ELSE {instr.false_target} */"
+
+        return f"/* Unsupported instruction: {class_name} */"

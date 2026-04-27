@@ -126,19 +126,19 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
 ## Phase 4: Backend Emission (Jinja2)
 Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
 
-- [ ] **4.1 PL/pgSQL Emission Infrastructure:**
+- [x] **4.1 PL/pgSQL Emission Infrastructure:**
   - [x] 4.1.1 Template Environment: Setup Jinja2 and base layout templates.
-  - [ ] 4.1.2 Variable Mapping: Implement mapping between SSA versions and PL/pgSQL variables.
-    - [ ] 4.1.2.1 Variable Discovery: Identify all unique SSA variables in the CFG.
-    - [ ] 4.1.2.2 Name Sanitization: Map WebFOCUS/SSA names to SQL-safe identifiers.
-    - [ ] 4.1.2.3 Type Mapping: Map WebFOCUS types (I, F, A) to PostgreSQL types.
+  - [x] 4.1.2 Variable Mapping: Implement mapping between SSA versions and PL/pgSQL variables.
+    - [x] 4.1.2.1 Variable Discovery: Identify all unique SSA variables in the CFG. (Implemented in `src/emitter.py`)
+    - [x] 4.1.2.2 Name Sanitization: Map WebFOCUS/SSA names to SQL-safe identifiers. (Implemented in `src/emitter.py`)
+    - [x] 4.1.2.3 Type Mapping: Map WebFOCUS types (I, F, A) to PostgreSQL types. (Implemented in `src/emitter.py`)
 - [ ] **4.2 Procedural Logic Emission:**
-  - [ ] 4.2.1 Variable Declaration: Generate `DECLARE` section for all discovered variables.
-  - [ ] 4.2.2 Expression Translation: Transform WebFOCUS expressions to PostgreSQL-compatible SQL.
+  - [x] 4.2.1 Variable Declaration: Generate `DECLARE` section for all discovered variables. (Implemented in `src/templates/base.sql.j2`)
+  - [x] 4.2.2 Expression Translation: Transform WebFOCUS expressions to PostgreSQL-compatible SQL. (Implemented in `src/emitter.py`)
   - [ ] 4.2.3 Statement Emission:
-    - [ ] 4.2.3.1 Assignments: Generate `v_target := expression;` for `ir.Assign`.
+    - [x] 4.2.3.1 Assignments: Generate `v_target := expression;` for `ir.Assign`. (Implemented in `src/emitter.py`)
     - [ ] 4.2.3.2 Phi Resolution: Generate move instructions to resolve Phi nodes at block entries.
-    - [ ] 4.2.3.3 Messaging: Generate `RAISE NOTICE` for `ir.Type`.
+    - [x] 4.2.3.3 Messaging: Generate `RAISE NOTICE` for `ir.Type`. (Implemented in `src/emitter.py`)
   - [ ] 4.2.4 Control Flow (State Machine):
     - [ ] 4.2.4.1 Block Dispatcher: Implement a `WHILE` loop and `CASE` statement to navigate basic blocks.
     - [ ] 4.2.4.2 Jump/Branch Translation: Update the next block state variable based on `ir.Jump` and `ir.Branch`.
