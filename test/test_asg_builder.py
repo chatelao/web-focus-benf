@@ -1,5 +1,11 @@
 import unittest
+import sys
+import os
 from antlr4 import *
+
+# Add src to sys.path
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
+
 from WebFocusReportLexer import WebFocusReportLexer
 from WebFocusReportParser import WebFocusReportParser
 from asg_builder import ReportASGBuilder
@@ -262,19 +268,19 @@ class TestASGBuilder(unittest.TestCase):
         self.assertEqual(len(asg_nodes), 1)
         node = asg_nodes[0]
         self.assertTrue(isinstance(node, asg.Join))
-        self.assertEqual(node.left_field, "EMP_ID")
-        self.assertEqual(node.left_file, "EMPDATA")
-        self.assertEqual(node.right_field, "EMP_ID")
-        self.assertEqual(node.right_file, "TRAINING")
+        self.assertEqual(node.source.fields, ["EMP_ID"])
+        self.assertEqual(node.source.filename, "EMPDATA")
+        self.assertEqual(node.target.fields, ["EMP_ID"])
+        self.assertEqual(node.target.filename, "TRAINING")
         self.assertEqual(node.join_as, "J1")
-        self.assertFalse(node.outer)
+        self.assertIsNone(node.join_type)
 
     def test_join_left_outer(self):
         code = "JOIN LEFT OUTER EMP_ID IN EMPDATA TO EMP_ID IN TRAINING"
         asg_nodes = self.build_asg(code)
         node = asg_nodes[0]
         self.assertTrue(isinstance(node, asg.Join))
-        self.assertTrue(node.outer)
+        self.assertEqual(node.join_type, "LEFT_OUTER")
 
     def test_join_clear(self):
         code = "JOIN CLEAR *"

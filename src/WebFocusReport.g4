@@ -8,13 +8,31 @@ define_file: DEFINE FILE qualified_name (define_assignment)* end_command;
 
 define_assignment: qualified_name (SLASH format_name)? EQ dm_expression SEMI?;
 
-compute_command: COMPUTE qualified_name (SLASH format_name)? EQ dm_expression SEMI?;
+compute_command: COMPUTE field EQ dm_expression (as_phrase SEMI? | SEMI)?;
 
 format_name: NAME (DOT NUMBER)? (NAME | NUMBER)*;
 
-join_command: JOIN (CLEAR asterisk | (LEFT? OUTER)? qualified_name IN qualified_name TO qualified_name IN qualified_name (AS NAME)?) SEMI?;
+join_command: JOIN CLEAR (asterisk | NAME) SEMI?
+            | JOIN (join_type | AS_ROOT)?
+              join_source
+              TO join_target_type?
+              join_target
+              (AS NAME)?
+              (where_command)*
+              end_command? SEMI?
+            ;
 
-set_command: SET NAME EQ (NAME | NUMBER | OFF | ON) SEMI?;
+join_type: INNER | LEFT_OUTER | RIGHT_OUTER | FULL_OUTER | LEFT OUTER_KW | RIGHT OUTER_KW | FULL OUTER_KW;
+
+join_target_type: UNIQUE | MULTIPLE | ALL_KW;
+
+join_source: (FILE? qualified_name AT)? qualified_name_list (TAG NAME)? (WITH qualified_name)? (IN_KW qualified_name (TAG NAME)?)?;
+
+join_target: (FILE? qualified_name AT)? qualified_name_list (TAG NAME)? (IN_KW qualified_name (TAG NAME)?)?;
+
+qualified_name_list: qualified_name (AND qualified_name)*;
+
+set_command: SET (NAME | ALL_KW) EQ (NAME | NUMBER | OFF | ON | ALL_KW) SEMI?;
 
 dm_command: dm_set
           | dm_goto
@@ -62,7 +80,7 @@ dm_logical_expression: '(' dm_logical_expression ')'
 
 dm_relational_expression: dm_concat_expression (IS | EQ | NE | is_not_op)? MISSING
                         | dm_concat_expression (FROM | is_from_op | not_from_op) dm_concat_expression TO dm_concat_expression
-                        | dm_concat_expression IN (FILE qualified_name | '(' dm_concat_expression (COMMA dm_concat_expression)* ')')
+                        | dm_concat_expression IN_KW (FILE? qualified_name | '(' dm_concat_expression (COMMA dm_concat_expression)* ')')
                         | dm_concat_expression (INCLUDES | EXCLUDES) dm_concat_expression (AND dm_concat_expression)*
                         | dm_concat_expression dm_relational_op (dm_concat_expression (OR dm_concat_expression)*)
                         | dm_concat_expression
@@ -115,9 +133,9 @@ field_list: THE? field_or_prefixed (field_separator? field_or_prefixed)*;
 
 field_separator: COMMA | AND THE | AND | THE;
 
-field_or_prefixed: (prefix_operator DOT)* field;
+field_or_prefixed: (prefix_operator DOT)* field (SLASH format_name)?;
 
-field: qualified_name as_phrase?;
+field: (asterisk | qualified_name) as_phrase?;
 
 as_phrase: AS STRING;
 
@@ -130,7 +148,7 @@ across_command: ACROSS sort_options? field NOPRINT?;
 sort_options: (HIGHEST | LOWEST | TOP | BOTTOM) NUMBER?
             | NUMBER;
 
-where_command: WHERE TOTAL? dm_logical_expression SEMI?;
+where_command: WHERE TOTAL? dm_logical_expression SEMI? as_phrase? SEMI?;
 
 heading_command: HEADING CENTER? STRING+;
 
@@ -144,7 +162,8 @@ on_table_options: (SUBHEAD | SUBFOOT) CENTER? STRING+
                 | ROW_TOTAL_KW
                 | output_command
                 | summarize_command
-                | set_command;
+                | set_command
+                | SET NAME (NAME | NUMBER | OFF | ON | ALL_KW);
 
 on_field_options: (SUBHEAD | SUBFOOT) CENTER? STRING+
                 | summarize_command;
@@ -163,6 +182,7 @@ identifier: NAME
           | prefix_operator
           | IS | CONTAINS | OMITS | LIKE | TOTAL | MISSING | INCLUDES | EXCLUDES | EXCEEDS
           | LESS | THAN | MORE_KW | GREATER
+          | UNIQUE | MULTIPLE | ALL_KW
           ;
 
 prefix_operator: AVE | MIN | MAX | CNT | FST | LST | ASQ | MDN | MDE | PCT | RPCT | RNK | DST | TOT | SUM | CT;
@@ -181,6 +201,10 @@ SUB_TOTAL: [sS][uU][bB] '-' [tT][oO][tT][aA][lL];
 COLUMN_TOTAL_KW: [cC][oO][lL][uU][mM][nN] '-' [tT][oO][tT][aA][lL];
 ROW_TOTAL_KW: [rR][oO][wW] '-' [tT][oO][tT][aA][lL];
 
+LEFT_OUTER: [lL][eE][fF][tT] '_' [oO][uU][tT][eE][rR];
+RIGHT_OUTER: [rR][iI][gG][hH][tT] '_' [oO][uU][tT][eE][rR];
+FULL_OUTER: [fF][uU][lL][lL] '_' [oO][uU][tT][eE][rR];
+
 IS_NOT: [iI][sS] '-' [nN][oO][tT];
 IS_FROM: [iI][sS] '-' [fF][rR][oO][mM];
 NOT_FROM: [nN][oO][tT] '-' [fF][rR][oO][mM];
@@ -193,6 +217,13 @@ COMMENT_DM: '-*' ~[\r\n]* -> skip;
 
 TABLE: [tT][aA][bB][lL][eE];
 FILE: [fF][iI][lL][eE];
+AS_ROOT: [aA][sS] '_' [rR][oO][oO][tT];
+UNIQUE: [uU][nN][iI][qQ][uU][eE];
+MULTIPLE: [mM][uU][lL][tT][iI][pP][lL][eE];
+AT: [aA][tT];
+TAG: [tT][aA][gG];
+WITH: [wW][iI][tT][hH];
+INNER: [iI][nN][nN][eE][rR];
 DEFINE: [dD][eE][fF][iI][nN][eE];
 COMPUTE: [cC][oO][mM][pP][uU][tT][eE];
 END: [eE][nN][dD];
@@ -218,7 +249,9 @@ RANKED: [rR][aA][nN][kK][eE][dD];
 JOIN: [jJ][oO][iI][nN];
 CLEAR: [cC][lL][eE][aA][rR];
 LEFT: [lL][eE][fF][tT];
-OUTER: [oO][uU][tT][eE][rR];
+OUTER_KW: [oO][uU][tT][eE][rR];
+RIGHT: [rR][iI][gG][hH][tT];
+FULL: [fF][uU][lL][lL];
 SET: [sS][eE][tT];
 OFF: [oO][fF][fF];
 WHILE: [wW][hH][iI][lL][eE];
@@ -235,7 +268,8 @@ BOTTOM: [bB][oO][tT][tT][oO][mM];
 NOPRINT: [nN][oO][pP][rR][iI][nN][tT];
 
 AS: [aA][sS];
-IN: [iI][nN];
+IN_KW: [iI][nN];
+ALL_KW: [aA][lL][lL];
 CONTAINS: [cC][oO][nN][tT][aA][iI][nN][sS];
 OMITS: [oO][mM][iI][tT][sS];
 LIKE: [lL][iI][kK][eE];

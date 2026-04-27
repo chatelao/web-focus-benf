@@ -1,0 +1,10 @@
+TABLE FILE GGSALES
+SUM DOLLARS
+BY REGION BY ST BY STCD
+ON STCD SUBFOOT
+"View Store <STCD Sales By Product"
+" "
+"View Store <STCD Sales By Date"
+ON REGION SUBFOOT
+"End of Region <REGION"
+END

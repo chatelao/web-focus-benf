@@ -71,6 +71,51 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by WebFocusReportParser#join_type.
+    def enterJoin_type(self, ctx:WebFocusReportParser.Join_typeContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#join_type.
+    def exitJoin_type(self, ctx:WebFocusReportParser.Join_typeContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#join_target_type.
+    def enterJoin_target_type(self, ctx:WebFocusReportParser.Join_target_typeContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#join_target_type.
+    def exitJoin_target_type(self, ctx:WebFocusReportParser.Join_target_typeContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#join_source.
+    def enterJoin_source(self, ctx:WebFocusReportParser.Join_sourceContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#join_source.
+    def exitJoin_source(self, ctx:WebFocusReportParser.Join_sourceContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#join_target.
+    def enterJoin_target(self, ctx:WebFocusReportParser.Join_targetContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#join_target.
+    def exitJoin_target(self, ctx:WebFocusReportParser.Join_targetContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#qualified_name_list.
+    def enterQualified_name_list(self, ctx:WebFocusReportParser.Qualified_name_listContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#qualified_name_list.
+    def exitQualified_name_list(self, ctx:WebFocusReportParser.Qualified_name_listContext):
+        pass
+
+
     # Enter a parse tree produced by WebFocusReportParser#set_command.
     def enterSet_command(self, ctx:WebFocusReportParser.Set_commandContext):
         pass

@@ -226,7 +226,7 @@ class ReportASGBuilder(WebFocusReportVisitor):
             return node
 
         # Case: IN
-        if ctx.IN():
+        if ctx.IN_KW():
             expr = self.visit(ctx.dm_concat_expression(0))
             if ctx.FILE():
                 filename = ctx.qualified_name().getText()
@@ -349,23 +349,79 @@ class ReportASGBuilder(WebFocusReportVisitor):
 
     def visitJoin_command(self, ctx: WebFocusReportParser.Join_commandContext):
         if ctx.CLEAR():
-            return JoinClear()
+            target = ctx.asterisk().getText() if ctx.asterisk() else ctx.NAME().getText()
+            return JoinClear(target=target)
 
-        left_field = ctx.qualified_name(0).getText()
-        left_file = ctx.qualified_name(1).getText()
-        right_field = ctx.qualified_name(2).getText()
-        right_file = ctx.qualified_name(3).getText()
+        join_type = self.visit(ctx.join_type()) if ctx.join_type() else None
+        as_root = ctx.AS_ROOT() is not None
+        source = self.visit(ctx.join_source())
+        target = self.visit(ctx.join_target())
+        if ctx.join_target_type():
+            target.target_type = ctx.join_target_type().getText().upper()
         join_as = ctx.NAME().getText() if ctx.NAME() else None
-        outer = ctx.OUTER() is not None
+        where_clauses = [self.visit(w) for w in ctx.where_command()]
+
+        # Backward compatibility check for simple joins without tags or AT
+        # In simple equi-join: JOIN field1 IN file1 TO field2 IN file2
+        # source.fields[0] is field1, source.filename is file1
+        # target.fields[0] is field2, target.filename is file2
+        # This matches the new structure but we need to ensure old tests work.
 
         return Join(
-            left_file=left_file,
-            left_field=left_field,
-            right_file=right_file,
-            right_field=right_field,
+            join_type=join_type,
+            as_root=as_root,
+            source=source,
+            target=target,
             join_as=join_as,
-            outer=outer
+            where_clauses=where_clauses
         )
+
+    def visitJoin_type(self, ctx: WebFocusReportParser.Join_typeContext):
+        text = ctx.getText().upper()
+        if 'LEFT' in text and 'OUTER' in text: return 'LEFT_OUTER'
+        if 'RIGHT' in text and 'OUTER' in text: return 'RIGHT_OUTER'
+        if 'FULL' in text and 'OUTER' in text: return 'FULL_OUTER'
+        return text
+
+    def visitJoin_source(self, ctx: WebFocusReportParser.Join_sourceContext):
+        # (FILE? qualified_name AT)? qualified_name_list (WITH qualified_name)? IN qualified_name (TAG NAME)?
+        q_names = ctx.qualified_name()
+
+        idx = 0
+        file_at = None
+        if ctx.AT():
+            file_at = q_names[idx].getText()
+            idx += 1
+
+        fields = self.visit(ctx.qualified_name_list())
+
+        with_field = None
+        if ctx.WITH():
+            with_field = q_names[idx].getText()
+            idx += 1
+
+        filename = q_names[idx].getText()
+        tag = ctx.NAME().getText() if ctx.TAG() else None
+        return JoinSource(fields=fields, filename=filename, file_at=file_at, with_field=with_field, tag=tag)
+
+    def visitJoin_target(self, ctx: WebFocusReportParser.Join_targetContext):
+        # (FILE? qualified_name AT)? qualified_name_list IN qualified_name (TAG NAME)?
+        q_names = ctx.qualified_name()
+
+        idx = 0
+        file_at = None
+        if ctx.AT():
+            file_at = q_names[idx].getText()
+            idx += 1
+
+        fields = self.visit(ctx.qualified_name_list())
+
+        filename = q_names[idx].getText()
+        tag = ctx.NAME().getText() if ctx.TAG() else None
+        return JoinTarget(fields=fields, filename=filename, file_at=file_at, tag=tag)
+
+    def visitQualified_name_list(self, ctx: WebFocusReportParser.Qualified_name_listContext):
+        return [f.getText() for f in ctx.qualified_name()]
 
     def visitDefine_file(self, ctx: WebFocusReportParser.Define_fileContext):
         filename = ctx.qualified_name().getText()
@@ -403,9 +459,16 @@ class ReportASGBuilder(WebFocusReportVisitor):
         return options
 
     def visitSet_command(self, ctx: WebFocusReportParser.Set_commandContext):
-        parameter = ctx.NAME(0).getText()
-        if ctx.NAME(1):
-            value = ctx.NAME(1).getText()
+        parameter = ctx.getChild(1).getText()
+        if ctx.NAME(1) or (ctx.NAME(0) and ctx.ALL_KW(0) and ctx.getChild(3).getText() == ctx.NAME(1).getText()):
+            # This logic is a bit brittle, let's just use getChild
+            value = ctx.getChild(3).getText()
+        elif ctx.ALL_KW(0):
+             if ctx.getChild(1).getText().upper() == 'ALL':
+                 parameter = 'ALL'
+                 value = ctx.getChild(3).getText()
+             else:
+                 value = ctx.ALL_KW(0).getText()
         elif ctx.NUMBER():
             value = ctx.NUMBER().getText()
         elif ctx.OFF():

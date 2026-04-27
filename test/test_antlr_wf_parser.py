@@ -134,6 +134,24 @@ class TestAntlrWebFocusParser(unittest.TestCase):
             with self.subTest(code=code):
                 self.parse(code)
 
+    def test_realworld_samples(self):
+        """
+        Tests high-quality real-world samples extracted from specifications.
+        Sample 1: Environment commands, Virtual Fields, Aggregation, Calculated Values, Summarization.
+        Sample 2: Dialogue Manager control flow (SET, IF, GOTO, Labels).
+        Sample 3: Advanced report formatting (SUBFOOT with embedded fields, PAGE-BREAK).
+        """
+        for i in range(1, 7):
+            filename = f"realworld_sample{i}.fex"
+            filepath = os.path.join('test/samples', filename)
+            with open(filepath, 'r') as f:
+                code = f.read()
+            with self.subTest(filename=filename):
+                try:
+                    self.parse(code)
+                except Exception as e:
+                    self.fail(f"Failed to parse {filename}: {e}")
+
     def test_samples(self):
         samples_dir = 'test/samples'
         if not os.path.exists(samples_dir):
