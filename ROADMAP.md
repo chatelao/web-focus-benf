@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] 0.55 move the /documentation_examples to the /test folder (#146)
+- [x] 0.55 move the /documentation_examples to the /test folder (#146)
 - [ ] 0.54 Finde eine gute Lösung um die WebFocus Syntax in "Railroad Diagrammen" ähnlich Oracle darzustellen, schreiben dazu ein "RAILROAD_CONCEPT.md" mit drei Varianten pro Schritte, wähle die jeweils Beste aus (#145)
 - [ ] 0.53 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#144)
 - [x] 0.52 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#142) (completed at 2026-04-27 09:51:49)
