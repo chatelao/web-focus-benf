@@ -123,7 +123,13 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
   - [ ] 3.4.3 Projection Pruning: Identify unused fields.
   - [ ] 3.4.4 Aggregation Lifting: Identify and lift aggregations (SUM, AVG) to SQL.
   - [ ] 3.4.5 Virtual Field Lifting: Move DEFINE calculations to SQL.
+    - [ ] 3.4.5.1 Expression Tracking: Track virtual fields defined via `ir.Define`.
+    - [ ] 3.4.5.2 Selection Substitution: Inline virtual field expressions into `SELECT` statements.
+    - [ ] 3.4.5.3 Predicate Substitution: Inline virtual field expressions into `WHERE` clauses.
   - [ ] 3.4.6 Join Lifting: Translate JOIN commands to SQL JOINs.
+    - [ ] 3.4.6.1 Join Context Management: Maintain a mapping of joined tables and their join conditions.
+    - [ ] 3.4.6.2 SQL JOIN Generation: Emit `JOIN` clauses in the generated SQL queries.
+    - [ ] 3.4.6.3 Field Qualification: Ensure fields are correctly qualified with table names in multi-table queries.
 
 ## Phase 4: Backend Emission (Jinja2)
 Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
@@ -153,6 +159,7 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
     - [x] 4.3.1.5 Aggregations: Mapping prefix operators (SUM., AVG., etc.) to SQL aggregate functions. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.6 Post-Aggregation Filtering: Mapping WHERE TOTAL to SQL `HAVING`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.7 Sorting: Mapping sort options to SQL `ORDER BY`. (Implemented in `src/emitter.py`)
+    - [ ] 4.3.1.8 Calculated Values: Mapping COMPUTE command to SQL expressions.
   - [ ] 4.3.2 Data Source Mapping: Resolve TABLE FILE references to database tables/views.
 
 ## Phase 5: Verification and Parity
