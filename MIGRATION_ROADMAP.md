@@ -147,10 +147,10 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
     - [x] 4.3.1.1 Projection: Mapping PRINT/SUM and field selections. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.2 Data Sources: Mapping filenames to SQL tables (using `MetadataRegistry`). (Implemented in `src/emitter.py`)
     - [x] 4.3.1.3 Filtering: Mapping WHERE clauses to SQL `WHERE`. (Implemented in `src/emitter.py`)
-    - [ ] 4.3.1.4 Grouping: Mapping BY/ACROSS phrases to SQL `GROUP BY`.
-    - [ ] 4.3.1.5 Aggregations: Mapping prefix operators (SUM., AVG., etc.) to SQL aggregate functions.
+    - [x] 4.3.1.4 Grouping: Mapping BY/ACROSS phrases to SQL `GROUP BY`. (Implemented in `src/emitter.py`)
+    - [x] 4.3.1.5 Aggregations: Mapping prefix operators (SUM., AVG., etc.) to SQL aggregate functions. (Implemented in `src/emitter.py`)
     - [ ] 4.3.1.6 Post-Aggregation Filtering: Mapping WHERE TOTAL to SQL `HAVING`.
-    - [ ] 4.3.1.7 Sorting: Mapping sort options to SQL `ORDER BY`.
+    - [x] 4.3.1.7 Sorting: Mapping sort options to SQL `ORDER BY`. (Implemented in `src/emitter.py`)
   - [ ] 4.3.2 Data Source Mapping: Resolve TABLE FILE references to database tables/views.
 
 ## Phase 5: Verification and Parity
