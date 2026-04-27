@@ -1,6 +1,12 @@
 CREATE OR REPLACE PROCEDURE {{ procedure_name }}()
 LANGUAGE plpgsql
 AS $$
+{% if variables %}
+DECLARE
+{% for name, type in variables.items() %}
+    {{ name }} {{ type }};
+{% endfor %}
+{% endif %}
 BEGIN
 {{ procedure_body | indent(4, first=True) }}
 END;
