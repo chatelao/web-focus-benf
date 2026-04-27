@@ -192,5 +192,21 @@ class TestEmitter(unittest.TestCase):
         self.assertIn("BEGIN", proc)
         self.assertIn("v_VAR := 100;", proc)
 
+    def test_emit_instruction_report(self):
+        emitter = PostgresEmitter()
+
+        # Mocking a VerbCommand with FieldSelections
+        f1 = asg.FieldSelection(name="FIELD1")
+        f2 = asg.FieldSelection(name="FIELD2")
+        verb = asg.VerbCommand(verb="PRINT", fields=[f1, f2])
+
+        instr = ir.Report(filename="MYTABLE", components=[verb])
+
+        sql = emitter.emit_instruction(instr)
+
+        self.assertIn("SELECT FIELD1, FIELD2", sql)
+        self.assertIn("FROM MYTABLE", sql)
+        self.assertIn("/* MYTABLE */", sql)
+
 if __name__ == '__main__':
     unittest.main()

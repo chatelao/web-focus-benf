@@ -144,8 +144,8 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
     - [x] 4.2.4.2 Jump/Branch Translation: Update the next block state variable based on `ir.Jump` and `ir.Branch`. (Implemented in `src/emitter.py`)
 - [ ] **4.3 Relational Request Emission:**
   - [ ] 4.3.1 SQL Query Generation: Transform `ir.Report` nodes to optimized PostgreSQL queries.
-    - [ ] 4.3.1.1 Projection: Mapping PRINT/SUM and field selections.
-    - [ ] 4.3.1.2 Data Sources: Mapping filenames to SQL tables (using `MetadataRegistry`).
+    - [x] 4.3.1.1 Projection: Mapping PRINT/SUM and field selections. (Implemented in `src/emitter.py`)
+    - [x] 4.3.1.2 Data Sources: Mapping filenames to SQL tables (using `MetadataRegistry`). (Implemented in `src/emitter.py`)
     - [ ] 4.3.1.3 Filtering: Mapping WHERE clauses to SQL `WHERE`.
     - [ ] 4.3.1.4 Grouping: Mapping BY/ACROSS phrases to SQL `GROUP BY`.
     - [ ] 4.3.1.5 Aggregations: Mapping prefix operators (SUM., AVG., etc.) to SQL aggregate functions.

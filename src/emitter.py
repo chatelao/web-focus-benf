@@ -7,7 +7,7 @@ class PostgresEmitter:
     """
     Generates PostgreSQL code from IR using Jinja2 templates.
     """
-    def __init__(self, template_dir=None):
+    def __init__(self, template_dir=None, metadata_registry=None):
         if template_dir is None:
             # Default to src/templates relative to this file
             template_dir = os.path.join(os.path.dirname(__file__), 'templates')
@@ -18,6 +18,7 @@ class PostgresEmitter:
             trim_blocks=True,
             lstrip_blocks=True
         )
+        self.metadata_registry = metadata_registry
 
     def render(self, template_name, **kwargs):
         """
@@ -279,7 +280,38 @@ class PostgresEmitter:
             else:
                 return f"v_next_block := CASE WHEN {cond} THEN '{instr.true_target}' ELSE '{instr.false_target}' END;"
 
+        elif class_name == 'Report':
+            return self._emit_report(instr)
+
         return f"/* Unsupported instruction: {class_name} */"
+
+    def _emit_report(self, instr):
+        """
+        Translates ir.Report instruction into a SQL SELECT statement.
+        """
+        table_name = self._resolve_table_name(instr.filename)
+        fields = []
+
+        for comp in instr.components:
+            if comp.__class__.__name__ == 'VerbCommand':
+                for field_sel in comp.fields:
+                    fields.append(field_sel.name)
+
+        if not fields:
+            fields = ['*']
+
+        field_str = ", ".join(fields)
+        return f"/* {instr.filename} */\nSELECT {field_str} FROM {table_name};"
+
+    def _resolve_table_name(self, filename):
+        """
+        Resolves a WebFOCUS filename to a SQL table name.
+        """
+        if self.metadata_registry:
+            master = self.metadata_registry.get_master_file(filename)
+            if master:
+                return master.name
+        return filename
 
     def emit_block(self, block, cfg):
         """
