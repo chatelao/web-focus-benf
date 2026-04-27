@@ -112,5 +112,85 @@ class TestEmitter(unittest.TestCase):
         instr = ir.Type(messages=[asg.Literal("Value is: "), asg.AmperVar("&X")])
         self.assertEqual(emitter.emit_instruction(instr), "RAISE NOTICE '%', 'Value is: ' || v_X;")
 
+    def test_emit_cfg_complex(self):
+        emitter = PostgresEmitter()
+        cfg = ir.ControlFlowGraph()
+
+        b1 = ir.BasicBlock('B1')
+        b1.add_instruction(ir.Assign(target='&X', source=asg.Literal(1)))
+
+        b2 = ir.BasicBlock('B2')
+        # Phi(X_1, X_2)
+        phi = ir.Phi(target='&X_SSA', sources=['&X_B1', '&X_B3'])
+        b2.add_instruction(phi)
+        b2.add_instruction(ir.Type(messages=[asg.Literal("X is "), asg.AmperVar("&X_SSA")]))
+
+        b3 = ir.BasicBlock('B3')
+        b3.add_instruction(ir.Assign(target='&X', source=asg.Literal(2)))
+
+        cfg.add_block(b1)
+        cfg.add_block(b2)
+        cfg.add_block(b3)
+        cfg.entry_block = b1
+
+        # B1 -> B2
+        cfg.add_edge('B1', 'B2')
+        # B2 -> B3
+        cfg.add_edge('B2', 'B3')
+        # B3 -> B2
+        cfg.add_edge('B3', 'B2')
+
+        # B1 needs a jump or fallthrough. Emitter handles fallthrough.
+        # But let's be explicit.
+        b1.add_instruction(ir.Jump(target='B2'))
+
+        # B2: if X_SSA < 10 branch to B3 else EXIT
+        b2.add_instruction(ir.Branch(
+            condition=asg.BinaryOperation(asg.AmperVar("&X_SSA"), "LT", asg.Literal(10)),
+            true_target='B3',
+            false_target='EXIT'
+        ))
+
+        # B3 jumps back to B2
+        b3.add_instruction(ir.Jump(target='B2'))
+
+        output = emitter.emit_cfg(cfg)
+
+        # Check for block dispatcher structure
+        self.assertIn("WHILE v_next_block NOT IN ('EXIT', 'DONE') LOOP", output)
+        self.assertIn("CASE v_next_block", output)
+        self.assertIn("WHEN 'B1' THEN", output)
+        self.assertIn("WHEN 'B2' THEN", output)
+        self.assertIn("WHEN 'B3' THEN", output)
+
+        # Check Phi resolution in B1 -> B2
+        # In B1, it should set X_SSA from X_B1 (if X_B1 was the name, but here we just used &X)
+        # Wait, the test uses &X_B1 as source for Phi in B2.
+        self.assertIn("v_X_SSA := v_X_B1;", output) # Resolution for B1 -> B2
+        self.assertIn("v_X_SSA := v_X_B3;", output) # Resolution for B3 -> B2
+
+        # Check Branch
+        self.assertIn("v_next_block := CASE WHEN (v_X_SSA < 10) THEN 'B3' ELSE 'EXIT' END;", output)
+
+    def test_emit_full_procedure(self):
+        emitter = PostgresEmitter()
+        cfg = ir.ControlFlowGraph()
+        b1 = ir.BasicBlock('START')
+        assign = ir.Assign(target='&VAR', source=asg.Literal(100))
+        assign.data_type = 'I'
+        b1.add_instruction(assign)
+        cfg.add_block(b1)
+        cfg.entry_block = b1
+
+        variables = emitter.get_variables_from_cfg(cfg)
+        body = emitter.emit_cfg(cfg)
+        proc = emitter.emit_procedure('test_full', body, variables=variables)
+
+        self.assertIn("DECLARE", proc)
+        self.assertIn("v_VAR INTEGER;", proc)
+        self.assertIn("v_next_block TEXT;", proc)
+        self.assertIn("BEGIN", proc)
+        self.assertIn("v_VAR := 100;", proc)
+
 if __name__ == '__main__':
     unittest.main()

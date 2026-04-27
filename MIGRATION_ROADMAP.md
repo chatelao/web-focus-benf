@@ -137,11 +137,11 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
   - [x] 4.2.2 Expression Translation: Transform WebFOCUS expressions to PostgreSQL-compatible SQL. (Implemented in `src/emitter.py`)
   - [ ] 4.2.3 Statement Emission:
     - [x] 4.2.3.1 Assignments: Generate `v_target := expression;` for `ir.Assign`. (Implemented in `src/emitter.py`)
-    - [ ] 4.2.3.2 Phi Resolution: Generate move instructions to resolve Phi nodes at block entries.
+    - [x] 4.2.3.2 Phi Resolution: Generate move instructions to resolve Phi nodes at block entries. (Implemented in `src/emitter.py`)
     - [x] 4.2.3.3 Messaging: Generate `RAISE NOTICE` for `ir.Type`. (Implemented in `src/emitter.py`)
-  - [ ] 4.2.4 Control Flow (State Machine):
-    - [ ] 4.2.4.1 Block Dispatcher: Implement a `WHILE` loop and `CASE` statement to navigate basic blocks.
-    - [ ] 4.2.4.2 Jump/Branch Translation: Update the next block state variable based on `ir.Jump` and `ir.Branch`.
+  - [x] 4.2.4 Control Flow (State Machine):
+    - [x] 4.2.4.1 Block Dispatcher: Implement a `WHILE` loop and `CASE` statement to navigate basic blocks. (Implemented in `src/emitter.py`)
+    - [x] 4.2.4.2 Jump/Branch Translation: Update the next block state variable based on `ir.Jump` and `ir.Branch`. (Implemented in `src/emitter.py`)
 - [ ] **4.3 Relational Request Emission:**
   - [ ] 4.3.1 SQL Query Generation: Transform `ir.Report` nodes to optimized PostgreSQL queries.
     - [ ] 4.3.1.1 Projection: Mapping PRINT/SUM and field selections.
