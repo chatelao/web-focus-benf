@@ -126,13 +126,18 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
 Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
 
 - [ ] **4.1 PL/pgSQL Emission Infrastructure:**
-  - [ ] 4.1.1 Template Environment: Setup Jinja2 and base layout templates.
+  - [x] 4.1.1 Template Environment: Setup Jinja2 and base layout templates.
   - [ ] 4.1.2 Variable Mapping: Implement mapping between SSA versions and PL/pgSQL variables.
 - [ ] **4.2 Procedural Logic Emission:**
   - [ ] 4.2.1 Assignments and Expressions: Generate code for -SET and calculated fields.
   - [ ] 4.2.2 Control Flow: Generate code for labels, jumps, branches, and loops.
 - [ ] **4.3 Relational Request Emission:**
   - [ ] 4.3.1 SQL Query Generation: Transform `ir.Report` nodes to optimized PostgreSQL queries.
+    - [ ] 4.3.1.1 Projection: Mapping PRINT/SUM and field selections.
+    - [ ] 4.3.1.2 Data Sources: Mapping filenames to SQL tables.
+    - [ ] 4.3.1.3 Filtering: Mapping WHERE clauses.
+    - [ ] 4.3.1.4 Grouping: Mapping BY/ACROSS phrases.
+    - [ ] 4.3.1.5 Aggregations: Mapping prefix operators (SUM., AVG., etc.).
   - [ ] 4.3.2 Data Source Mapping: Resolve TABLE FILE references to database tables/views.
 
 ## Phase 5: Verification and Parity

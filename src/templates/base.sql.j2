@@ -1,0 +1,7 @@
+CREATE OR REPLACE PROCEDURE {{ procedure_name }}()
+LANGUAGE plpgsql
+AS $$
+BEGIN
+{{ procedure_body | indent(4, first=True) }}
+END;
+$$;
