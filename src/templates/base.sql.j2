@@ -1,0 +1,17 @@
+-- Generated PL/pgSQL for WebFOCUS Procedure: {{ procedure_name }}
+CREATE OR REPLACE PROCEDURE {{ procedure_name }}(
+    {% for param in parameters -%}
+    IN {{ param.name }} {{ param.type }}{{ ", " if not loop.last }}
+    {%- endfor %}
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    -- Variables for Dialogue Manager and virtual fields
+    {% for var in variables -%}
+    {{ var.name }} {{ var.type }};
+    {% endfor %}
+BEGIN
+    {{ body | indent(4, first=True) }}
+END;
+$$;
