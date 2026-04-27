@@ -20,6 +20,7 @@ class PostgresEmitter:
         )
         self.metadata_registry = metadata_registry
         self.table_map = table_map or {}
+        self.virtual_fields = {} # filename -> {field_name: asg.Expression}
 
     def render(self, template_name, **kwargs):
         """
@@ -163,7 +164,7 @@ class PostgresEmitter:
         elif class_name == 'IsMissingExpression':
             self._discover_vars_in_expr(node.expression, variables)
 
-    def emit_expression(self, expr):
+    def emit_expression(self, expr, in_query=False, virtual_fields=None):
         """
         Translates ASG expression nodes to PostgreSQL SQL strings.
         """
@@ -184,11 +185,16 @@ class PostgresEmitter:
         elif class_name == 'Identifier':
             # Fields in SQL are usually handled in the context of a query,
             # but for expressions in procedural logic they might be variables.
+            if in_query:
+                if virtual_fields and expr.name in virtual_fields:
+                    # Recursively emit the virtual field expression
+                    return self.emit_expression(virtual_fields[expr.name], in_query=True, virtual_fields=virtual_fields)
+                return expr.name
             return self._sanitize_name(expr.name)
 
         elif class_name == 'BinaryOperation':
-            left = self.emit_expression(expr.left)
-            right = self.emit_expression(expr.right)
+            left = self.emit_expression(expr.left, in_query=in_query, virtual_fields=virtual_fields)
+            right = self.emit_expression(expr.right, in_query=in_query, virtual_fields=virtual_fields)
             op = expr.operator.upper()
 
             # Map WebFOCUS operators to SQL
@@ -207,7 +213,7 @@ class PostgresEmitter:
             return f"({left} {sql_op} {right})"
 
         elif class_name == 'UnaryOperation':
-            operand = self.emit_expression(expr.operand)
+            operand = self.emit_expression(expr.operand, in_query=in_query, virtual_fields=virtual_fields)
             op = expr.operator.upper()
             op_mapping = {
                 'NOT': 'NOT ',
@@ -216,32 +222,32 @@ class PostgresEmitter:
             return f"{sql_op}({operand})"
 
         elif class_name == 'FunctionCall':
-            args = [self.emit_expression(arg) for arg in expr.arguments]
+            args = [self.emit_expression(arg, in_query=in_query, virtual_fields=virtual_fields) for arg in expr.arguments]
             return f"{expr.function_name}({', '.join(args)})"
 
         elif class_name == 'IfExpression':
-            cond = self.emit_expression(expr.condition)
-            then_e = self.emit_expression(expr.then_expr)
-            else_e = self.emit_expression(expr.else_expr)
+            cond = self.emit_expression(expr.condition, in_query=in_query, virtual_fields=virtual_fields)
+            then_e = self.emit_expression(expr.then_expr, in_query=in_query, virtual_fields=virtual_fields)
+            else_e = self.emit_expression(expr.else_expr, in_query=in_query, virtual_fields=virtual_fields)
             return f"(CASE WHEN {cond} THEN {then_e} ELSE {else_e} END)"
 
         elif class_name == 'BetweenExpression':
-            expr_val = self.emit_expression(expr.expression)
-            lower = self.emit_expression(expr.lower)
-            upper = self.emit_expression(expr.upper)
+            expr_val = self.emit_expression(expr.expression, in_query=in_query, virtual_fields=virtual_fields)
+            lower = self.emit_expression(expr.lower, in_query=in_query, virtual_fields=virtual_fields)
+            upper = self.emit_expression(expr.upper, in_query=in_query, virtual_fields=virtual_fields)
             return f"({expr_val} BETWEEN {lower} AND {upper})"
 
         elif class_name == 'InExpression':
-            expr_val = self.emit_expression(expr.expression)
+            expr_val = self.emit_expression(expr.expression, in_query=in_query, virtual_fields=virtual_fields)
             if hasattr(expr, 'filename') and expr.filename:
                 table_name = self._resolve_table_name(expr.filename)
                 return f"({expr_val} IN (SELECT * FROM {table_name}))"
             else:
-                values = [self.emit_expression(val) for val in expr.values]
+                values = [self.emit_expression(val, in_query=in_query, virtual_fields=virtual_fields) for val in expr.values]
                 return f"({expr_val} IN ({', '.join(values)}))"
 
         elif class_name == 'IsMissingExpression':
-            expr_val = self.emit_expression(expr.expression)
+            expr_val = self.emit_expression(expr.expression, in_query=in_query, virtual_fields=virtual_fields)
             op = "IS NOT NULL" if expr.inverted else "IS NULL"
             return f"({expr_val} {op})"
 
@@ -314,13 +320,32 @@ class PostgresEmitter:
         elif class_name == 'Report':
             return self._emit_report(instr)
 
+        elif class_name == 'Call':
+            args = [self.emit_expression(arg) for arg in instr.arguments]
+            return f"/* CALL {instr.target}({', '.join(args)}) */"
+
+        elif class_name == 'SetEnv':
+            return f"/* SET {instr.parameter} = {instr.value} */"
+
+        elif class_name == 'Define':
+            # Store virtual fields for relational lifting
+            if instr.filename not in self.virtual_fields:
+                self.virtual_fields[instr.filename] = {}
+            for assignment in instr.assignments:
+                self.virtual_fields[instr.filename][assignment.name] = assignment.expression
+            return f"/* DEFINE FILE {instr.filename} ... */"
+
         return f"/* Unsupported instruction: {class_name} */"
 
     def _emit_report(self, instr):
         """
         Translates ir.Report instruction into a SQL SELECT statement.
         """
-        table_name = self._resolve_table_name(instr.filename)
+        filename = instr.filename
+        table_name = self._resolve_table_name(filename)
+
+        # Get virtual fields for this file
+        file_virtual_fields = self.virtual_fields.get(filename, {})
         select_fields = []
         where_clauses = []
         group_by_fields = []
@@ -333,18 +358,25 @@ class PostgresEmitter:
         sort_commands = [c for c in instr.components if c.__class__.__name__ == 'SortCommand']
         for sc in sort_commands:
             field_name = sc.field.name
+            sql_field_expr = field_name
+            if field_name in file_virtual_fields:
+                 sql_field_expr = self.emit_expression(file_virtual_fields[field_name], in_query=True, virtual_fields=file_virtual_fields)
+
             direction = "DESC" if sc.options.get("order") == "HIGHEST" else "ASC"
 
             # Use alias if present in FieldSelection
-            display_name = field_name
+            display_name = sql_field_expr
             if sc.field.alias:
-                display_name = f"{field_name} AS \"{sc.field.alias}\""
+                display_name = f"{sql_field_expr} AS \"{sc.field.alias}\""
+            elif field_name in file_virtual_fields:
+                # If it's a virtual field, use its name as alias for the expression
+                display_name = f"{sql_field_expr} AS \"{field_name}\""
 
             if not sc.noprint:
                 select_fields.append(display_name)
 
-            group_by_fields.append(field_name)
-            order_by_phrases.append(f"{field_name} {direction}")
+            group_by_fields.append(sql_field_expr)
+            order_by_phrases.append(f"{sql_field_expr} {direction}")
 
         # Verbs and Fields
         verb_commands = [c for c in instr.components if c.__class__.__name__ == 'VerbCommand']
@@ -357,7 +389,13 @@ class PostgresEmitter:
                     select_fields.append('*')
                     continue
 
-                sql_expr = field_sel.name
+                field_name = field_sel.name
+                sql_expr = field_name
+
+                # Relational Lifting: Virtual Field Substitution
+                is_virtual = field_name in file_virtual_fields
+                if is_virtual:
+                    sql_expr = self.emit_expression(file_virtual_fields[field_name], in_query=True, virtual_fields=file_virtual_fields)
 
                 # Prefix operators
                 prefix = field_sel.prefix_operators[0] if field_sel.prefix_operators else None
@@ -380,13 +418,24 @@ class PostgresEmitter:
 
                 if field_sel.alias:
                     sql_expr = f"{sql_expr} AS \"{field_sel.alias}\""
+                elif is_virtual:
+                    # If it's a virtual field, use its name as alias for the expression
+                    sql_expr = f"{sql_expr} AS \"{field_name}\""
 
                 select_fields.append(sql_expr)
 
+        # COMPUTE commands
+        compute_commands = [c for c in instr.components if c.__class__.__name__ == 'ComputeCommand']
+        for cc in compute_commands:
+            sql_expr = self.emit_expression(cc.expression, in_query=True, virtual_fields=file_virtual_fields)
+            if cc.name:
+                sql_expr = f"{sql_expr} AS \"{cc.name}\""
+            select_fields.append(sql_expr)
+
         # WHERE and HAVING
-        where_clauses = [self.emit_expression(c.condition) for c in instr.components
+        where_clauses = [self.emit_expression(c.condition, in_query=True, virtual_fields=file_virtual_fields) for c in instr.components
                          if c.__class__.__name__ == 'WhereClause' and not c.is_total]
-        having_clauses = [self.emit_expression(c.condition) for c in instr.components
+        having_clauses = [self.emit_expression(c.condition, in_query=True, virtual_fields=file_virtual_fields) for c in instr.components
                           if c.__class__.__name__ == 'WhereClause' and c.is_total]
 
         if not select_fields:

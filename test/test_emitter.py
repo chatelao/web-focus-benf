@@ -228,10 +228,10 @@ class TestEmitter(unittest.TestCase):
 
         sql = emitter.emit_instruction(instr)
 
-        self.assertIn("WHERE (v_FIELD1 > 10)", sql)
-        self.assertIn("AND (v_FIELD2 BETWEEN 1 AND 100)", sql)
-        self.assertIn("AND (v_FIELD3 IN ('A', 'B'))", sql)
-        self.assertIn("AND (v_FIELD4 IS NULL)", sql)
+        self.assertIn("WHERE (FIELD1 > 10)", sql)
+        self.assertIn("AND (FIELD2 BETWEEN 1 AND 100)", sql)
+        self.assertIn("AND (FIELD3 IN ('A', 'B'))", sql)
+        self.assertIn("AND (FIELD4 IS NULL)", sql)
 
     def test_emit_instruction_report_advanced(self):
         emitter = PostgresEmitter()
@@ -279,7 +279,68 @@ class TestEmitter(unittest.TestCase):
 
         self.assertIn("SELECT REGION, SUM(SALES)", sql)
         self.assertIn("GROUP BY REGION", sql)
-        self.assertIn("HAVING (v_SALES > 1000)", sql)
+        self.assertIn("HAVING (SALES > 1000)", sql)
+
+    def test_emit_instruction_report_with_compute(self):
+        emitter = PostgresEmitter()
+        verb = asg.VerbCommand(verb="SUM", fields=[asg.FieldSelection(name="SALES")])
+        compute = asg.ComputeCommand(
+            name="RATIO",
+            expression=asg.BinaryOperation(asg.Identifier("SALES"), "/", asg.Literal(1000))
+        )
+
+        instr = ir.Report(filename="SALES_DATA", components=[verb, compute])
+
+        sql = emitter.emit_instruction(instr)
+
+        self.assertIn("SELECT SUM(SALES), (SALES / 1000) AS \"RATIO\"", sql)
+
+    def test_emit_instruction_define_and_lift(self):
+        emitter = PostgresEmitter()
+
+        # DEFINE FILE SALES_DATA
+        #   BONUS = SALES * 0.1;
+        # END
+        define = ir.Define(filename="SALES_DATA", assignments=[
+            asg.DefineAssignment(name="BONUS", expression=asg.BinaryOperation(asg.Identifier("SALES"), "*", asg.Literal(0.1)))
+        ])
+        emitter.emit_instruction(define)
+
+        # TABLE FILE SALES_DATA
+        #   SUM SALES BONUS
+        # END
+        verb = asg.VerbCommand(verb="SUM", fields=[
+            asg.FieldSelection(name="SALES"),
+            asg.FieldSelection(name="BONUS")
+        ])
+        report = ir.Report(filename="SALES_DATA", components=[verb])
+
+        sql = emitter.emit_instruction(report)
+
+        self.assertIn("SELECT SUM(SALES), SUM((SALES * 0.1)) AS \"BONUS\"", sql)
+
+    def test_emit_instruction_define_recursive_lifting(self):
+        emitter = PostgresEmitter()
+
+        # DEFINE FILE SALES_DATA
+        #   BONUS = SALES * 0.1;
+        #   TOTAL_COMP = SALARY + BONUS;
+        # END
+        define = ir.Define(filename="SALES_DATA", assignments=[
+            asg.DefineAssignment(name="BONUS", expression=asg.BinaryOperation(asg.Identifier("SALES"), "*", asg.Literal(0.1))),
+            asg.DefineAssignment(name="TOTAL_COMP", expression=asg.BinaryOperation(asg.Identifier("SALARY"), "+", asg.Identifier("BONUS")))
+        ])
+        emitter.emit_instruction(define)
+
+        # TABLE FILE SALES_DATA
+        #   PRINT TOTAL_COMP
+        # END
+        verb = asg.VerbCommand(verb="PRINT", fields=[asg.FieldSelection(name="TOTAL_COMP")])
+        report = ir.Report(filename="SALES_DATA", components=[verb])
+
+        sql = emitter.emit_instruction(report)
+
+        self.assertIn("SELECT (SALARY + (SALES * 0.1)) AS \"TOTAL_COMP\"", sql)
 
     def test_resolve_table_name_with_map(self):
         table_map = {"EMPLOYEE": "hr.employees", "SALES": "public.sales_data"}
