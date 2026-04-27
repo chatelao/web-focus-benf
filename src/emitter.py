@@ -96,6 +96,10 @@ class PostgresEmitter:
         """
         Recursively discovers variables in instructions and ASG nodes.
         """
+        if isinstance(node, (asg.ComputeCommand, asg.DefineAssignment)):
+             self._discover_vars_in_expr(node.expression, variables)
+             return
+
         if node is None:
             return
 
@@ -162,7 +166,7 @@ class PostgresEmitter:
         elif class_name == 'IsMissingExpression':
             self._discover_vars_in_expr(node.expression, variables)
 
-    def emit_expression(self, expr):
+    def emit_expression(self, expr, in_query=False):
         """
         Translates ASG expression nodes to PostgreSQL SQL strings.
         """
@@ -183,11 +187,13 @@ class PostgresEmitter:
         elif class_name == 'Identifier':
             # Fields in SQL are usually handled in the context of a query,
             # but for expressions in procedural logic they might be variables.
+            if in_query:
+                return expr.name
             return self._sanitize_name(expr.name)
 
         elif class_name == 'BinaryOperation':
-            left = self.emit_expression(expr.left)
-            right = self.emit_expression(expr.right)
+            left = self.emit_expression(expr.left, in_query=in_query)
+            right = self.emit_expression(expr.right, in_query=in_query)
             op = expr.operator.upper()
 
             # Map WebFOCUS operators to SQL
@@ -206,7 +212,7 @@ class PostgresEmitter:
             return f"({left} {sql_op} {right})"
 
         elif class_name == 'UnaryOperation':
-            operand = self.emit_expression(expr.operand)
+            operand = self.emit_expression(expr.operand, in_query=in_query)
             op = expr.operator.upper()
             op_mapping = {
                 'NOT': 'NOT ',
@@ -215,32 +221,32 @@ class PostgresEmitter:
             return f"{sql_op}({operand})"
 
         elif class_name == 'FunctionCall':
-            args = [self.emit_expression(arg) for arg in expr.arguments]
+            args = [self.emit_expression(arg, in_query=in_query) for arg in expr.arguments]
             return f"{expr.function_name}({', '.join(args)})"
 
         elif class_name == 'IfExpression':
-            cond = self.emit_expression(expr.condition)
-            then_e = self.emit_expression(expr.then_expr)
-            else_e = self.emit_expression(expr.else_expr)
+            cond = self.emit_expression(expr.condition, in_query=in_query)
+            then_e = self.emit_expression(expr.then_expr, in_query=in_query)
+            else_e = self.emit_expression(expr.else_expr, in_query=in_query)
             return f"(CASE WHEN {cond} THEN {then_e} ELSE {else_e} END)"
 
         elif class_name == 'BetweenExpression':
-            expr_val = self.emit_expression(expr.expression)
-            lower = self.emit_expression(expr.lower)
-            upper = self.emit_expression(expr.upper)
+            expr_val = self.emit_expression(expr.expression, in_query=in_query)
+            lower = self.emit_expression(expr.lower, in_query=in_query)
+            upper = self.emit_expression(expr.upper, in_query=in_query)
             return f"({expr_val} BETWEEN {lower} AND {upper})"
 
         elif class_name == 'InExpression':
-            expr_val = self.emit_expression(expr.expression)
+            expr_val = self.emit_expression(expr.expression, in_query=in_query)
             if hasattr(expr, 'filename') and expr.filename:
                 table_name = self._resolve_table_name(expr.filename)
                 return f"({expr_val} IN (SELECT * FROM {table_name}))"
             else:
-                values = [self.emit_expression(val) for val in expr.values]
+                values = [self.emit_expression(val, in_query=in_query) for val in expr.values]
                 return f"({expr_val} IN ({', '.join(values)}))"
 
         elif class_name == 'IsMissingExpression':
-            expr_val = self.emit_expression(expr.expression)
+            expr_val = self.emit_expression(expr.expression, in_query=in_query)
             op = "IS NOT NULL" if expr.inverted else "IS NULL"
             return f"({expr_val} {op})"
 
@@ -382,10 +388,21 @@ class PostgresEmitter:
 
                 select_fields.append(sql_expr)
 
+        # COMPUTE commands
+        compute_commands = [c for c in instr.components if c.__class__.__name__ == 'ComputeCommand']
+        for cc in compute_commands:
+            sql_expr = self.emit_expression(cc.expression, in_query=True)
+            if cc.format:
+                 # WebFOCUS formats don't map directly to SQL CASTs easily, but we can emit a comment
+                 sql_expr = f"({sql_expr}) /* {cc.format} */"
+
+            display_name = f"{sql_expr} AS \"{cc.name}\""
+            select_fields.append(display_name)
+
         # WHERE and HAVING
-        where_clauses = [self.emit_expression(c.condition) for c in instr.components
+        where_clauses = [self.emit_expression(c.condition, in_query=True) for c in instr.components
                          if c.__class__.__name__ == 'WhereClause' and not c.is_total]
-        having_clauses = [self.emit_expression(c.condition) for c in instr.components
+        having_clauses = [self.emit_expression(c.condition, in_query=True) for c in instr.components
                           if c.__class__.__name__ == 'WhereClause' and c.is_total]
 
         if not select_fields:

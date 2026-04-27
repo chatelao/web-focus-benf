@@ -123,7 +123,11 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
   - [ ] 3.4.3 Projection Pruning: Identify unused fields.
   - [ ] 3.4.4 Aggregation Lifting: Identify and lift aggregations (SUM, AVG) to SQL.
   - [ ] 3.4.5 Virtual Field Lifting: Move DEFINE calculations to SQL.
+    - [ ] 3.4.5.1 Define Tracking: Track active `ir.Define` assignments in the emitter.
+    - [ ] 3.4.5.2 Expression Substitution: Substitute defined fields in SQL queries.
   - [ ] 3.4.6 Join Lifting: Translate JOIN commands to SQL JOINs.
+    - [ ] 3.4.6.1 Join Tracking: Track active `JOIN` commands.
+    - [ ] 3.4.6.2 Multi-table SQL: Generate SQL with multiple tables and JOIN clauses.
 
 ## Phase 4: Backend Emission (Jinja2)
 Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
@@ -153,7 +157,8 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
     - [x] 4.3.1.5 Aggregations: Mapping prefix operators (SUM., AVG., etc.) to SQL aggregate functions. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.6 Post-Aggregation Filtering: Mapping WHERE TOTAL to SQL `HAVING`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.7 Sorting: Mapping sort options to SQL `ORDER BY`. (Implemented in `src/emitter.py`)
-  - [ ] 4.3.2 Data Source Mapping: Resolve TABLE FILE references to database tables/views.
+    - [ ] 4.3.1.8 Calculated Values/COMPUTE: Mapping COMPUTE commands to SQL SELECT expressions.
+  - [x] 4.3.2 Data Source Mapping: Resolve TABLE FILE references to database tables/views. (Implemented in `src/emitter.py`)
 
 ## Phase 5: Verification and Parity
 Ensure the new system produces correct results and maintains parity with the legacy parser.
@@ -162,6 +167,13 @@ Ensure the new system produces correct results and maintains parity with the leg
   - [ ] 5.1.1 Frontend Parity: Run the existing test suite against the new ANTLR4-based frontend.
   - [ ] 5.1.2 End-to-End Tests: Verify PL/pgSQL output for a subset of core features.
   - [ ] 5.1.3 Grammar Coverage: Ensure all core EBNF features are implemented and tested.
+    - [ ] 5.1.3.1 TABLE FILE: PRINT, SUM, COUNT, LIST, WRITE, ADD.
+    - [ ] 5.1.3.2 TABLE FILE: BY, ACROSS with options.
+    - [ ] 5.1.3.3 TABLE FILE: WHERE, WHERE TOTAL.
+    - [ ] 5.1.3.4 TABLE FILE: COMPUTE.
+    - [ ] 5.1.3.5 Environment: JOIN, JOIN CLEAR.
+    - [ ] 5.1.3.6 Environment: DEFINE FILE.
+    - [ ] 5.1.3.7 DM: -SET, -IF, -GOTO, -REPEAT.
   - [ ] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.
 - [ ] **5.2 Sample Validation:**
   - [ ] 5.2.1 Standard Samples: Validate transpiler output against samples in `test/samples/`.

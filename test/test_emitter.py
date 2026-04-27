@@ -228,10 +228,10 @@ class TestEmitter(unittest.TestCase):
 
         sql = emitter.emit_instruction(instr)
 
-        self.assertIn("WHERE (v_FIELD1 > 10)", sql)
-        self.assertIn("AND (v_FIELD2 BETWEEN 1 AND 100)", sql)
-        self.assertIn("AND (v_FIELD3 IN ('A', 'B'))", sql)
-        self.assertIn("AND (v_FIELD4 IS NULL)", sql)
+        self.assertIn("WHERE (FIELD1 > 10)", sql)
+        self.assertIn("AND (FIELD2 BETWEEN 1 AND 100)", sql)
+        self.assertIn("AND (FIELD3 IN ('A', 'B'))", sql)
+        self.assertIn("AND (FIELD4 IS NULL)", sql)
 
     def test_emit_instruction_report_advanced(self):
         emitter = PostgresEmitter()
@@ -279,7 +279,28 @@ class TestEmitter(unittest.TestCase):
 
         self.assertIn("SELECT REGION, SUM(SALES)", sql)
         self.assertIn("GROUP BY REGION", sql)
-        self.assertIn("HAVING (v_SALES > 1000)", sql)
+        self.assertIn("HAVING (SALES > 1000)", sql)
+
+    def test_emit_instruction_report_compute(self):
+        emitter = PostgresEmitter()
+        verb = asg.VerbCommand(verb="SUM", fields=[asg.FieldSelection(name="SALES")])
+
+        # COMPUTE RATIO = SALES / TARGET
+        compute = asg.ComputeCommand(
+            name="RATIO",
+            expression=asg.BinaryOperation(asg.Identifier("SALES"), "/", asg.Identifier("TARGET")),
+            format="D12.2"
+        )
+
+        # WHERE RATIO GT 0.5
+        where = asg.WhereClause(condition=asg.BinaryOperation(asg.Identifier("RATIO"), "GT", asg.Literal(0.5)))
+
+        instr = ir.Report(filename="DATA", components=[verb, compute, where])
+        sql = emitter.emit_instruction(instr)
+
+        # Check that identifiers in expressions are not prefixed with v_
+        self.assertIn("((SALES / TARGET)) /* D12.2 */ AS \"RATIO\"", sql)
+        self.assertIn("WHERE (RATIO > 0.5)", sql)
 
 if __name__ == '__main__':
     unittest.main()
