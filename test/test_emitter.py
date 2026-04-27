@@ -233,5 +233,34 @@ class TestEmitter(unittest.TestCase):
         self.assertIn("AND (v_FIELD3 IN ('A', 'B'))", sql)
         self.assertIn("AND (v_FIELD4 IS NULL)", sql)
 
+    def test_emit_instruction_report_advanced(self):
+        emitter = PostgresEmitter()
+
+        # BY REGION
+        s1 = asg.SortCommand(sort_type="BY", field=asg.FieldSelection(name="REGION"))
+        # BY HIGHEST DATE
+        s2 = asg.SortCommand(sort_type="BY", field=asg.FieldSelection(name="DATE"), options={"order": "HIGHEST"})
+        # BY DEPT NOPRINT
+        s3 = asg.SortCommand(sort_type="BY", field=asg.FieldSelection(name="DEPT"), noprint=True)
+
+        # SUM SALES AS 'Total Sales'
+        f1 = asg.FieldSelection(name="SALES", alias="Total Sales")
+        # AVE.COST
+        f2 = asg.FieldSelection(name="COST", prefix_operators=["AVE"])
+        verb = asg.VerbCommand(verb="SUM", fields=[f1, f2])
+
+        instr = ir.Report(filename="SALES_DATA", components=[s1, s2, s3, verb])
+
+        sql = emitter.emit_instruction(instr)
+
+        # SELECT should include non-noprint sort fields and verb fields
+        # Note: sort fields come first in my implementation
+        self.assertIn("SELECT REGION, DATE, SUM(SALES) AS \"Total Sales\", AVG(COST)", sql)
+        self.assertIn("FROM SALES_DATA", sql)
+        # GROUP BY should include all sort fields
+        self.assertIn("GROUP BY REGION, DATE, DEPT", sql)
+        # ORDER BY
+        self.assertIn("ORDER BY REGION ASC, DATE DESC, DEPT ASC", sql)
+
 if __name__ == '__main__':
     unittest.main()

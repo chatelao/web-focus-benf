@@ -320,24 +320,86 @@ class PostgresEmitter:
         Translates ir.Report instruction into a SQL SELECT statement.
         """
         table_name = self._resolve_table_name(instr.filename)
-        fields = []
+        select_fields = []
         where_clauses = []
+        group_by_fields = []
+        order_by_phrases = []
 
-        for comp in instr.components:
-            class_name = comp.__class__.__name__
-            if class_name == 'VerbCommand':
-                for field_sel in comp.fields:
-                    fields.append(field_sel.name)
-            elif class_name == 'WhereClause' and not comp.is_total:
-                where_clauses.append(self.emit_expression(comp.condition))
+        aggregating_verbs = ['SUM', 'COUNT']
+        is_aggregating = False
 
-        if not fields:
-            fields = ['*']
+        # Sort commands (BY, ACROSS)
+        sort_commands = [c for c in instr.components if c.__class__.__name__ == 'SortCommand']
+        for sc in sort_commands:
+            field_name = sc.field.name
+            direction = "DESC" if sc.options.get("order") == "HIGHEST" else "ASC"
 
-        field_str = ", ".join(fields)
-        sql = f"/* {instr.filename} */\nSELECT {field_str} FROM {table_name}"
+            # Use alias if present in FieldSelection
+            display_name = field_name
+            if sc.field.alias:
+                display_name = f"{field_name} AS \"{sc.field.alias}\""
+
+            if not sc.noprint:
+                select_fields.append(display_name)
+
+            group_by_fields.append(field_name)
+            order_by_phrases.append(f"{field_name} {direction}")
+
+        # Verbs and Fields
+        verb_commands = [c for c in instr.components if c.__class__.__name__ == 'VerbCommand']
+        for vc in verb_commands:
+            if vc.verb in aggregating_verbs:
+                is_aggregating = True
+
+            for field_sel in vc.fields:
+                if field_sel.name == '*':
+                    select_fields.append('*')
+                    continue
+
+                sql_expr = field_sel.name
+
+                # Prefix operators
+                prefix = field_sel.prefix_operators[0] if field_sel.prefix_operators else None
+                if prefix:
+                    prefix_map = {
+                        'AVE': 'AVG',
+                        'MIN': 'MIN',
+                        'MAX': 'MAX',
+                        'SUM': 'SUM',
+                        'CNT': 'COUNT',
+                        'TOT': 'SUM'
+                    }
+                    agg_func = prefix_map.get(prefix)
+                    if agg_func:
+                        sql_expr = f"{agg_func}({sql_expr})"
+                elif vc.verb == 'SUM':
+                    sql_expr = f"SUM({sql_expr})"
+                elif vc.verb == 'COUNT':
+                    sql_expr = f"COUNT({sql_expr})"
+
+                if field_sel.alias:
+                    sql_expr = f"{sql_expr} AS \"{field_sel.alias}\""
+
+                select_fields.append(sql_expr)
+
+        # WHERE
+        where_clauses = [self.emit_expression(c.condition) for c in instr.components
+                         if c.__class__.__name__ == 'WhereClause' and not c.is_total]
+
+        if not select_fields:
+            select_fields = ['*']
+
+        sql = f"/* {instr.filename} */\nSELECT {', '.join(select_fields)} FROM {table_name}"
+
         if where_clauses:
             sql += "\nWHERE " + " AND ".join(where_clauses)
+
+        if is_aggregating and group_by_fields:
+            sql += "\nGROUP BY " + ", ".join(group_by_fields)
+
+        if order_by_phrases:
+            sql += "\nORDER BY " + ", ".join(order_by_phrases)
+
         sql += ";"
         return sql
 
