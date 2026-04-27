@@ -153,13 +153,13 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
     - [x] 4.3.1.5 Aggregations: Mapping prefix operators (SUM., AVG., etc.) to SQL aggregate functions. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.6 Post-Aggregation Filtering: Mapping WHERE TOTAL to SQL `HAVING`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.7 Sorting: Mapping sort options to SQL `ORDER BY`. (Implemented in `src/emitter.py`)
-  - [ ] 4.3.2 Data Source Mapping: Resolve TABLE FILE references to database tables/views.
+  - [x] 4.3.2 Data Source Mapping: Resolve TABLE FILE references to database tables/views. (Implemented in `src/emitter.py` with `table_map` support)
 
 ## Phase 5: Verification and Parity
 Ensure the new system produces correct results and maintains parity with the legacy parser.
 
 - [ ] **5.1 Regression Testing:**
-  - [ ] 5.1.1 Frontend Parity: Run the existing test suite against the new ANTLR4-based frontend.
+  - [x] 5.1.1 Frontend Parity: Run the existing test suite against the new ANTLR4-based frontend. (Verified by execution of existing tests)
   - [ ] 5.1.2 End-to-End Tests: Verify PL/pgSQL output for a subset of core features.
   - [ ] 5.1.3 Grammar Coverage: Ensure all core EBNF features are implemented and tested.
   - [ ] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.

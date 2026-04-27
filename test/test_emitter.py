@@ -281,5 +281,24 @@ class TestEmitter(unittest.TestCase):
         self.assertIn("GROUP BY REGION", sql)
         self.assertIn("HAVING (v_SALES > 1000)", sql)
 
+    def test_resolve_table_name_with_map(self):
+        table_map = {"EMPLOYEE": "hr.employees", "SALES": "public.sales_data"}
+        emitter = PostgresEmitter(table_map=table_map)
+
+        # Test exact match and case-insensitivity (since we check .upper() in emitter)
+        self.assertEqual(emitter._resolve_table_name("EMPLOYEE"), "hr.employees")
+        self.assertEqual(emitter._resolve_table_name("employee"), "hr.employees")
+        self.assertEqual(emitter._resolve_table_name("SALES"), "public.sales_data")
+        self.assertEqual(emitter._resolve_table_name("UNKNOWN"), "UNKNOWN")
+
+    def test_emit_instruction_report_with_table_map(self):
+        table_map = {"MYTABLE": "schema.actual_table"}
+        emitter = PostgresEmitter(table_map=table_map)
+        verb = asg.VerbCommand(verb="PRINT", fields=[asg.FieldSelection(name="FIELD1")])
+        instr = ir.Report(filename="MYTABLE", components=[verb])
+
+        sql = emitter.emit_instruction(instr)
+        self.assertIn("FROM schema.actual_table", sql)
+
 if __name__ == '__main__':
     unittest.main()

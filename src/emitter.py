@@ -7,7 +7,7 @@ class PostgresEmitter:
     """
     Generates PostgreSQL code from IR using Jinja2 templates.
     """
-    def __init__(self, template_dir=None, metadata_registry=None):
+    def __init__(self, template_dir=None, metadata_registry=None, table_map=None):
         if template_dir is None:
             # Default to src/templates relative to this file
             template_dir = os.path.join(os.path.dirname(__file__), 'templates')
@@ -19,6 +19,7 @@ class PostgresEmitter:
             lstrip_blocks=True
         )
         self.metadata_registry = metadata_registry
+        self.table_map = table_map or {}
 
     def render(self, template_name, **kwargs):
         """
@@ -412,10 +413,18 @@ class PostgresEmitter:
         """
         Resolves a WebFOCUS filename to a SQL table name.
         """
+        # 1. Check explicit table map
+        if filename.upper() in self.table_map:
+            return self.table_map[filename.upper()]
+        if filename in self.table_map:
+            return self.table_map[filename]
+
+        # 2. Check metadata registry
         if self.metadata_registry:
             master = self.metadata_registry.get_master_file(filename)
             if master:
                 return master.name
+
         return filename
 
     def emit_block(self, block, cfg):
