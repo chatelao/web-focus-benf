@@ -1,6 +1,6 @@
 # ROADMAP
 - [ ] 0.46 Google for and download more realworld samples - Find 20 and keep the 5 best ones, if possible include multi-files-projects (#126)
-- [ ] 0.45 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#125)
+- [x] 0.45 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#125) (completed at 2026-04-27 07:20:13)
 - [ ] 0.44 Try to find, test & collect more realworld samples - Better 3 of high quality than 10 - for testing (#123)
 - [x] 0.43 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#122) (completed at 2026-04-27 07:01:02)
 - [x] 0.42 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#118) (completed at 2026-04-27 06:28:30)
