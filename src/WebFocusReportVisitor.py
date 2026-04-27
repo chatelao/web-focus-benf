@@ -169,6 +169,11 @@ class WebFocusReportVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by WebFocusReportParser#dm_unary_expression.
+    def visitDm_unary_expression(self, ctx:WebFocusReportParser.Dm_unary_expressionContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by WebFocusReportParser#dm_primary.
     def visitDm_primary(self, ctx:WebFocusReportParser.Dm_primaryContext):
         return self.visitChildren(ctx)

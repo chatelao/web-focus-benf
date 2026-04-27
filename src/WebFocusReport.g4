@@ -88,7 +88,10 @@ dm_concat_expression: dm_additive_expression (CONCAT dm_additive_expression)*;
 
 dm_additive_expression: dm_multiplicative_expression ((ADD_OP | SUB_OP) dm_multiplicative_expression)*;
 
-dm_multiplicative_expression: dm_primary ((MUL | SLASH) dm_primary)*;
+dm_multiplicative_expression: dm_unary_expression ((MUL | SLASH) dm_unary_expression)*;
+
+dm_unary_expression: (ADD_OP | SUB_OP) dm_unary_expression
+                   | dm_primary;
 
 dm_primary: NUMBER
           | dm_float

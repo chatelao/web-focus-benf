@@ -288,6 +288,13 @@ class ReportASGBuilder(WebFocusReportVisitor):
             left = BinaryOperation(left=left, operator=operator, right=right)
         return left
 
+    def visitDm_unary_expression(self, ctx: WebFocusReportParser.Dm_unary_expressionContext):
+        if ctx.getChildCount() == 1:
+            return self.visit(ctx.getChild(0))
+        operator = ctx.getChild(0).getText()
+        operand = self.visit(ctx.getChild(1))
+        return UnaryOperation(operator=operator, operand=operand)
+
     def visitDm_primary(self, ctx: WebFocusReportParser.Dm_primaryContext):
         if ctx.STRING():
             val = ctx.STRING().getText()
