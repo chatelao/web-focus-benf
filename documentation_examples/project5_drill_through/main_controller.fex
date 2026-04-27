@@ -1,0 +1,11 @@
+-HTMLFORM BEGIN
+<HTML>
+<BODY>
+<H1>PDF Drill-Through Main Controller</H1>
+<P>Executing the Summary and Detail reports in a single session to generate a combined PDF.</P>
+</BODY>
+</HTML>
+-HTMLFORM END
+
+-INCLUDE summary_report.fex
+-INCLUDE detail_report.fex
