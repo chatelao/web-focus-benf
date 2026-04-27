@@ -93,8 +93,12 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
 - [ ] **3.1 CFG Generation:**
   - [x] 3.1.1 IR Infrastructure: Define `BasicBlock` and `ControlFlowGraph` classes. (Implemented in `src/ir.py`)
   - [x] 3.1.2 IR Instructions: Define base `Instruction` nodes and common types (e.g., `Assign`, `Jump`, `Branch`). (Implemented in `src/ir.py`)
-  - [ ] 3.1.3 Basic Blocks: Partition procedural logic into basic blocks.
-  - [ ] 3.1.4 Control Flow Edges: Implement branching and looping edges in the graph.
+  - [ ] 3.1.3 Basic Blocks Construction:
+    - [x] 3.1.3.1 Linear Partitioning: Group sequential non-branching commands into basic blocks. (Implemented in `src/ir_builder.py`)
+    - [x] 3.1.3.2 Label and Jump Mapping: Implement block splitting for `Label` nodes and block termination for `Goto` nodes. (Implemented in `src/ir_builder.py`)
+  - [ ] 3.1.4 Control Flow Edges:
+    - [ ] 3.1.4.1 Conditional Branching: Implement edges and block splitting for `IfDM` nodes.
+    - [ ] 3.1.4.2 Loop Deconstruction: Implement edges and block structures for `Repeat` nodes.
 - [ ] **3.2 SSA Transformation:**
   - [ ] 3.2.1 Dominator Analysis: Compute dominator tree and frontiers.
   - [ ] 3.2.2 Variable Renaming: Implement versioning for all variables.

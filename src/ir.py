@@ -33,6 +33,31 @@ class Phi(Instruction):
     def __init__(self, target, sources, **kwargs):
         super().__init__(target=target, sources=sources or [], **kwargs)
 
+class Type(Instruction):
+    """Represents a -TYPE message."""
+    def __init__(self, messages, **kwargs):
+        super().__init__(messages=messages, **kwargs)
+
+class Call(Instruction):
+    """Represents a call to another procedure or an external action (JOIN, INCLUDE)."""
+    def __init__(self, target, arguments=None, **kwargs):
+        super().__init__(target=target, arguments=arguments or [], **kwargs)
+
+class SetEnv(Instruction):
+    """Represents an environment setting (SET parameter = value)."""
+    def __init__(self, parameter, value, **kwargs):
+        super().__init__(parameter=parameter, value=value, **kwargs)
+
+class Define(Instruction):
+    """Represents a set of virtual field definitions (DEFINE FILE)."""
+    def __init__(self, filename, assignments, **kwargs):
+        super().__init__(filename=filename, assignments=assignments, **kwargs)
+
+class Report(Instruction):
+    """Represents a report request (TABLE FILE)."""
+    def __init__(self, filename, components, **kwargs):
+        super().__init__(filename=filename, components=components, **kwargs)
+
 class BasicBlock(IRNode):
     """Represents a basic block: a linear sequence of instructions."""
     def __init__(self, name, **kwargs):
