@@ -48,21 +48,21 @@ Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands th
   - [x] 2.1.4 Report Request nodes: Implement nodes for TABLE FILE, Verbs, Sort phrases, Filters, and Formatting. (Implemented in `src/asg.py`)
   - [x] 2.1.5 Environment and Virtual Field nodes: Implement nodes for JOIN, SET, and DEFINE. (Implemented in `src/asg.py`)
   - [x] 2.1.6 Expression nodes: Implement nodes for arithmetic and logical operations. (Implemented in `src/asg.py`)
-- [ ] **2.2 Symbol Table:**
+- [x] **2.2 Symbol Table:**
   - [x] 2.2.1 Scoping: Implement block-level and global scopes. (Implemented in `src/symbol_table.py`)
-  - [ ] 2.2.2 Variable Resolution:
+  - [x] 2.2.2 Variable Resolution:
     - [x] 2.2.2.1 Dialogue Manager variables. (Implemented in `src/symbol_resolver.py`)
     - [x] 2.2.2.2 Field references. (Implemented in `src/symbol_resolver.py`)
-  - [ ] 2.2.3 Metadata Integration:
+  - [x] 2.2.3 Metadata Integration:
     - [x] 2.2.3.1 Master File Registry: Management of loaded Master Files. (Implemented in `src/metadata_registry.py`)
     - [x] 2.2.3.2 Schema Binding: Resolving field names to Master File segments. (Implemented in `src/symbol_resolver.py`)
-- [ ] **2.3 Type Inference:**
-  - [ ] 2.3.1 Literal Typing: Infer types for numeric and string constants.
-  - [ ] 2.3.2 Expression Typing:
-    - [ ] 2.3.2.1 Arithmetic Expressions.
-    - [ ] 2.3.2.2 Logical and Relational Expressions.
-    - [ ] 2.3.2.3 Built-in Functions.
-  - [ ] 2.3.3 Metadata Typing: Resolve field types from Master File metadata.
+- [x] **2.3 Type Inference:**
+  - [x] 2.3.1 Literal Typing: Infer types for numeric and string constants. (Implemented in `src/type_inferrer.py`)
+  - [x] 2.3.2 Expression Typing:
+    - [x] 2.3.2.1 Arithmetic Expressions. (Implemented in `src/type_inferrer.py`)
+    - [x] 2.3.2.2 Logical and Relational Expressions. (Implemented in `src/type_inferrer.py`)
+    - [x] 2.3.2.3 Built-in Functions. (Implemented in `src/type_inferrer.py`)
+  - [x] 2.3.3 Metadata Typing: Resolve field types from Master File metadata. (Implemented in `src/type_inferrer.py`)
 - [ ] **2.4 ASG Builder:** Implement the visitor to transform ANTLR4 parse tree to ASG.
   - [x] 2.4.1 Visitor Infrastructure: Base visitor class and dispatcher. (Implemented in `src/asg_builder.py`)
   - [x] 2.4.2 Expression Builder: Support all arithmetic and logical expressions. (Implemented in `src/asg_builder.py`)

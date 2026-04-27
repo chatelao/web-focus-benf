@@ -296,6 +296,15 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by WebFocusReportParser#dm_unary_expression.
+    def enterDm_unary_expression(self, ctx:WebFocusReportParser.Dm_unary_expressionContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#dm_unary_expression.
+    def exitDm_unary_expression(self, ctx:WebFocusReportParser.Dm_unary_expressionContext):
+        pass
+
+
     # Enter a parse tree produced by WebFocusReportParser#dm_primary.
     def enterDm_primary(self, ctx:WebFocusReportParser.Dm_primaryContext):
         pass
