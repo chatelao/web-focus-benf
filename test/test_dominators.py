@@ -145,5 +145,35 @@ class TestDominatorAnalysis(unittest.TestCase):
         self.assertEqual(analysis.frontiers["C"], {"C", "E"})
         self.assertEqual(analysis.frontiers["D"], {"C", "E"})
 
+    def test_dom_tree(self):
+        # A -> B -> C
+        #   \
+        #    D
+        cfg = ControlFlowGraph()
+        a = BasicBlock("A")
+        b = BasicBlock("B")
+        c = BasicBlock("C")
+        d = BasicBlock("D")
+        cfg.add_block(a)
+        cfg.add_block(b)
+        cfg.add_block(c)
+        cfg.add_block(d)
+        cfg.add_edge("A", "B")
+        cfg.add_edge("B", "C")
+        cfg.add_edge("A", "D")
+        cfg.entry_block = a
+
+        analysis = DominatorAnalysis(cfg)
+        analysis.run()
+
+        # Dom tree should be: A -> [B, D], B -> [C]
+        self.assertIn("B", analysis.dom_tree["A"])
+        self.assertIn("D", analysis.dom_tree["A"])
+        self.assertIn("C", analysis.dom_tree["B"])
+        self.assertEqual(len(analysis.dom_tree["A"]), 2)
+        self.assertEqual(len(analysis.dom_tree["B"]), 1)
+        self.assertEqual(len(analysis.dom_tree["C"]), 0)
+        self.assertEqual(len(analysis.dom_tree["D"]), 0)
+
 if __name__ == '__main__':
     unittest.main()
