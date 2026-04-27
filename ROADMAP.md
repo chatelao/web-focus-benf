@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] 0.58 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#152)
 - [ ] 0.57 Create the new RAILROAD_ROADMAP.md to implement RAILROAD_CONCEPT.md (#150)
 - [ ] 0.56 Remove the variants of /WEBFOCUS_TO_POSTGRE.md and integrate it into the man /CONCEPT.md (#147)
 - [ ] 0.55 move the /documentation_examples to the /test folder (#146)
