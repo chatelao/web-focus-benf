@@ -122,6 +122,8 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
     - [ ] 3.4.2.2 Total Lifting: Move WHERE TOTAL conditions to SQL HAVING.
   - [ ] 3.4.3 Projection Pruning: Identify unused fields.
   - [ ] 3.4.4 Aggregation Lifting: Identify and lift aggregations (SUM, AVG) to SQL.
+  - [ ] 3.4.5 Virtual Field Lifting: Move DEFINE calculations to SQL.
+  - [ ] 3.4.6 Join Lifting: Translate JOIN commands to SQL JOINs.
 
 ## Phase 4: Backend Emission (Jinja2)
 Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
@@ -132,10 +134,10 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
     - [x] 4.1.2.1 Variable Discovery: Identify all unique SSA variables in the CFG. (Implemented in `src/emitter.py`)
     - [x] 4.1.2.2 Name Sanitization: Map WebFOCUS/SSA names to SQL-safe identifiers. (Implemented in `src/emitter.py`)
     - [x] 4.1.2.3 Type Mapping: Map WebFOCUS types (I, F, A) to PostgreSQL types. (Implemented in `src/emitter.py`)
-- [ ] **4.2 Procedural Logic Emission:**
+- [x] **4.2 Procedural Logic Emission:**
   - [x] 4.2.1 Variable Declaration: Generate `DECLARE` section for all discovered variables. (Implemented in `src/templates/base.sql.j2`)
   - [x] 4.2.2 Expression Translation: Transform WebFOCUS expressions to PostgreSQL-compatible SQL. (Implemented in `src/emitter.py`)
-  - [ ] 4.2.3 Statement Emission:
+  - [x] 4.2.3 Statement Emission:
     - [x] 4.2.3.1 Assignments: Generate `v_target := expression;` for `ir.Assign`. (Implemented in `src/emitter.py`)
     - [x] 4.2.3.2 Phi Resolution: Generate move instructions to resolve Phi nodes at block entries. (Implemented in `src/emitter.py`)
     - [x] 4.2.3.3 Messaging: Generate `RAISE NOTICE` for `ir.Type`. (Implemented in `src/emitter.py`)
@@ -149,7 +151,7 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
     - [x] 4.3.1.3 Filtering: Mapping WHERE clauses to SQL `WHERE`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.4 Grouping: Mapping BY/ACROSS phrases to SQL `GROUP BY`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.5 Aggregations: Mapping prefix operators (SUM., AVG., etc.) to SQL aggregate functions. (Implemented in `src/emitter.py`)
-    - [ ] 4.3.1.6 Post-Aggregation Filtering: Mapping WHERE TOTAL to SQL `HAVING`.
+    - [x] 4.3.1.6 Post-Aggregation Filtering: Mapping WHERE TOTAL to SQL `HAVING`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.7 Sorting: Mapping sort options to SQL `ORDER BY`. (Implemented in `src/emitter.py`)
   - [ ] 4.3.2 Data Source Mapping: Resolve TABLE FILE references to database tables/views.
 
@@ -159,6 +161,8 @@ Ensure the new system produces correct results and maintains parity with the leg
 - [ ] **5.1 Regression Testing:**
   - [ ] 5.1.1 Frontend Parity: Run the existing test suite against the new ANTLR4-based frontend.
   - [ ] 5.1.2 End-to-End Tests: Verify PL/pgSQL output for a subset of core features.
+  - [ ] 5.1.3 Grammar Coverage: Ensure all core EBNF features are implemented and tested.
+  - [ ] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.
 - [ ] **5.2 Sample Validation:**
   - [ ] 5.2.1 Standard Samples: Validate transpiler output against samples in `test/samples/`.
   - [ ] 5.2.2 Real-world Samples: Validate against complex samples in `test/realworld_samples/`.

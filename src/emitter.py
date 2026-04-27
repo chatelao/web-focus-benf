@@ -382,9 +382,11 @@ class PostgresEmitter:
 
                 select_fields.append(sql_expr)
 
-        # WHERE
+        # WHERE and HAVING
         where_clauses = [self.emit_expression(c.condition) for c in instr.components
                          if c.__class__.__name__ == 'WhereClause' and not c.is_total]
+        having_clauses = [self.emit_expression(c.condition) for c in instr.components
+                          if c.__class__.__name__ == 'WhereClause' and c.is_total]
 
         if not select_fields:
             select_fields = ['*']
@@ -396,6 +398,9 @@ class PostgresEmitter:
 
         if is_aggregating and group_by_fields:
             sql += "\nGROUP BY " + ", ".join(group_by_fields)
+
+        if having_clauses:
+            sql += "\nHAVING " + " AND ".join(having_clauses)
 
         if order_by_phrases:
             sql += "\nORDER BY " + ", ".join(order_by_phrases)

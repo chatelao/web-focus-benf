@@ -262,5 +262,24 @@ class TestEmitter(unittest.TestCase):
         # ORDER BY
         self.assertIn("ORDER BY REGION ASC, DATE DESC, DEPT ASC", sql)
 
+    def test_emit_instruction_report_with_where_total(self):
+        emitter = PostgresEmitter()
+        verb = asg.VerbCommand(verb="SUM", fields=[asg.FieldSelection(name="SALES")])
+        sort = asg.SortCommand(sort_type="BY", field=asg.FieldSelection(name="REGION"))
+
+        # WHERE TOTAL SALES GT 1000
+        where_total = asg.WhereClause(
+            condition=asg.BinaryOperation(asg.Identifier("SALES"), "GT", asg.Literal(1000)),
+            is_total=True
+        )
+
+        instr = ir.Report(filename="SALES_DATA", components=[verb, sort, where_total])
+
+        sql = emitter.emit_instruction(instr)
+
+        self.assertIn("SELECT REGION, SUM(SALES)", sql)
+        self.assertIn("GROUP BY REGION", sql)
+        self.assertIn("HAVING (v_SALES > 1000)", sql)
+
 if __name__ == '__main__':
     unittest.main()
