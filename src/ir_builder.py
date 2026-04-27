@@ -61,6 +61,33 @@ class IRBuilder:
                 # Subsequent instructions go to a new anonymous block
                 self.current_block = self._new_block()
 
+            elif class_name == 'IfDM':
+                true_label = node.then_target
+                false_label = node.else_target
+
+                if false_label:
+                    self.current_block.add_instruction(ir.Branch(
+                        condition=node.condition,
+                        true_target=true_label,
+                        false_target=false_label
+                    ))
+                    if true_label in self.labels:
+                        self.cfg.add_edge(self.current_block.name, self.labels[true_label])
+                    if false_label in self.labels:
+                        self.cfg.add_edge(self.current_block.name, self.labels[false_label])
+                    self.current_block = self._new_block()
+                else:
+                    fallthrough_block = self._new_block()
+                    self.current_block.add_instruction(ir.Branch(
+                        condition=node.condition,
+                        true_target=true_label,
+                        false_target=fallthrough_block.name
+                    ))
+                    if true_label in self.labels:
+                        self.cfg.add_edge(self.current_block.name, self.labels[true_label])
+                    self.cfg.add_edge(self.current_block.name, fallthrough_block.name)
+                    self.current_block = fallthrough_block
+
             elif class_name == 'SetDM':
                 self.current_block.add_instruction(ir.Assign(target=node.variable, source=node.expression))
             elif class_name == 'TypeDM':
