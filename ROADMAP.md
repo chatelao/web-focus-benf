@@ -1,7 +1,7 @@
 # ROADMAP
 - [ ] 0.49 Google for and download more online documentation with examples - Find 20 and keep the 5 best ones, if possible include multi-files-projects (#132)
 - [ ] 0.48 Google for and download more educational samples - Find 20 and keep the 5 best ones, if possible include multi-files-projects (#131)
-- [ ] 0.47 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#129)
+- [x] 0.47 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#129) (completed at 2026-04-27 07:34:06)
 - [x] 0.46 Google for and download more realworld samples - Find 20 and keep the 5 best ones, if possible include multi-files-projects (#126) (completed at 2026-04-27 07:23:50)
 - [x] 0.45 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#125) (completed at 2026-04-27 07:20:13)
 - [ ] 0.44 Try to find, test & collect more realworld samples - Better 3 of high quality than 10 - for testing (#123)
