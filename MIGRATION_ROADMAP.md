@@ -63,7 +63,7 @@ Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands th
     - [x] 2.3.2.2 Logical and Relational Expressions. (Implemented in `src/type_inferrer.py`)
     - [x] 2.3.2.3 Built-in Functions. (Implemented in `src/type_inferrer.py`)
   - [x] 2.3.3 Metadata Typing: Resolve field types from Master File metadata. (Implemented in `src/type_inferrer.py`)
-- [ ] **2.4 ASG Builder:** Implement the visitor to transform ANTLR4 parse tree to ASG.
+- [x] **2.4 ASG Builder:** Implement the visitor to transform ANTLR4 parse tree to ASG.
   - [x] 2.4.1 Visitor Infrastructure: Base visitor class and dispatcher. (Implemented in `src/asg_builder.py`)
   - [x] 2.4.2 Expression Builder: Support all arithmetic and logical expressions. (Implemented in `src/asg_builder.py`)
   - [x] 2.4.3 Dialogue Manager Builder: Support -SET, -IF, -GOTO, -REPEAT, etc. (Implemented in `src/asg_builder.py`)
@@ -102,12 +102,12 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
       - [x] 3.1.4.2.1 Basic REPEAT structure (loop header, back edges).
       - [x] 3.1.4.2.2 Conditional Loops: WHILE/UNTIL support.
       - [x] 3.1.4.2.3 Iterative Loops: TIMES/FOR support.
-- [ ] **3.2 SSA Transformation:**
+- [x] **3.2 SSA Transformation:**
   - [x] 3.2.1 Dominator Analysis: Compute dominator tree and frontiers. (Implemented in `src/dominators.py`)
   - [x] 3.2.2 Phi-node Insertion: Handle merge points in control flow. (Implemented in `src/ssa_transformer.py`)
     - [x] 3.2.2.1 Variable Discovery: Identify all variables and their defining blocks.
     - [x] 3.2.2.2 Iterative Placement: Implement the algorithm to place `Phi` instructions in dominance frontiers.
-  - [x] 3.2.3 Variable Renaming: Implement versioning for all variables.
+  - [x] 3.2.3 Variable Renaming: Implement versioning for all variables. (Implemented in `src/ssa_transformer.py`)
     - [x] 3.2.3.1 Usage Analysis: Identify variable usages in expressions and instructions.
     - [x] 3.2.3.2 Renaming Algorithm: Implement recursive DFS over dominator tree for variable versioning.
 - [ ] **3.3 Relational Lifting:**

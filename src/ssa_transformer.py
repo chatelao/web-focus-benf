@@ -150,7 +150,38 @@ class SSATransformer:
             instr.condition = self._rename_in_expr(instr.condition, stacks)
         elif isinstance(instr, ir.Type):
             instr.messages = [self._rename_in_expr(m, stacks) for m in instr.messages]
+        elif isinstance(instr, ir.Report):
+            for comp in instr.components:
+                self._rename_asg_node_recursive(comp, stacks)
+        elif isinstance(instr, ir.Define):
+            for assign in instr.assignments:
+                self._rename_asg_node_recursive(assign, stacks)
+        elif isinstance(instr, ir.Call):
+            instr.arguments = [self._rename_in_expr(arg, stacks) for arg in instr.arguments]
         # Phi uses are handled separately during predecessor processing
+
+    def _rename_asg_node_recursive(self, node, stacks):
+        """Recursively renames variable references in ASG nodes."""
+        if node is None:
+            return
+
+        # Handle nodes that have conditions (WhereClause, IfDM, etc.)
+        if hasattr(node, 'condition'):
+            node.condition = self._rename_in_expr(node.condition, stacks)
+
+        # Handle nodes that have expressions (ComputeCommand, DefineAssignment, etc.)
+        if hasattr(node, 'expression'):
+            node.expression = self._rename_in_expr(node.expression, stacks)
+
+        # Handle nodes that have sub-actions (OnCommand)
+        if hasattr(node, 'actions'):
+            for action in node.actions:
+                self._rename_asg_node_recursive(action, stacks)
+
+        # Handle nodes that have sub-components (ReportRequest - though usually it is in ir.Report)
+        if hasattr(node, 'components'):
+            for comp in node.components:
+                self._rename_asg_node_recursive(comp, stacks)
 
     def _rename_in_expr(self, expr, stacks):
         """Recursively renames variable references in an expression."""
