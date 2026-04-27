@@ -126,8 +126,49 @@ def test_rename_loop():
     assert assign.target == "X_2"
     assert assign.source.left.name == "X_1"
 
+def test_rename_complex_instrs():
+    # ENTRY: &VAR = 10; DEFINE FILE X: F = &VAR; TABLE FILE X: WHERE G EQ &VAR; COMPUTE H = &VAR; END
+    cfg = ir.ControlFlowGraph()
+    entry = ir.BasicBlock("ENTRY")
+    cfg.add_block(entry)
+    cfg.entry_block = entry
+
+    # &VAR = 10
+    entry.add_instruction(ir.Assign(target="&VAR", source=asg.Literal(10)))
+
+    # DEFINE FILE X: F = &VAR;
+    define_instr = ir.Define(filename="X", assignments=[
+        asg.DefineAssignment(name="F", expression=asg.AmperVar("&VAR"))
+    ])
+    entry.add_instruction(define_instr)
+
+    # TABLE FILE X: WHERE G EQ &VAR; COMPUTE H = &VAR; END
+    report_instr = ir.Report(filename="X", components=[
+        asg.WhereClause(condition=asg.BinaryOperation(asg.Identifier("G"), "EQ", asg.AmperVar("&VAR"))),
+        asg.ComputeCommand(name="H", expression=asg.AmperVar("&VAR"))
+    ])
+    entry.add_instruction(report_instr)
+
+    transformer = SSATransformer()
+    transformer.place_phi_nodes(cfg)
+    transformer.rename_variables(cfg)
+
+    # Check definitions
+    assert entry.instructions[0].target == "&VAR_0"
+
+    # Check DEFINE use
+    assert define_instr.assignments[0].expression.name == "&VAR_0"
+
+    # Check Report uses
+    where_clause = report_instr.components[0]
+    compute_cmd = report_instr.components[1]
+
+    assert where_clause.condition.right.name == "&VAR_0"
+    assert compute_cmd.expression.name == "&VAR_0"
+
 if __name__ == "__main__":
     test_rename_linear()
     test_rename_diamond()
     test_rename_loop()
+    test_rename_complex_instrs()
     print("All tests passed!")
