@@ -121,6 +121,7 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
     - [ ] 3.4.2.1 Filter Lifting: Move WHERE conditions to SQL.
     - [ ] 3.4.2.2 Total Lifting: Move WHERE TOTAL conditions to SQL HAVING.
   - [ ] 3.4.3 Projection Pruning: Identify unused fields.
+  - [ ] 3.4.4 Aggregation Lifting: Identify and lift aggregations (SUM, AVG) to SQL.
 
 ## Phase 4: Backend Emission (Jinja2)
 Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
@@ -128,16 +129,28 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
 - [ ] **4.1 PL/pgSQL Emission Infrastructure:**
   - [x] 4.1.1 Template Environment: Setup Jinja2 and base layout templates.
   - [ ] 4.1.2 Variable Mapping: Implement mapping between SSA versions and PL/pgSQL variables.
+    - [ ] 4.1.2.1 Variable Discovery: Identify all unique SSA variables in the CFG.
+    - [ ] 4.1.2.2 Name Sanitization: Map WebFOCUS/SSA names to SQL-safe identifiers.
+    - [ ] 4.1.2.3 Type Mapping: Map WebFOCUS types (I, F, A) to PostgreSQL types.
 - [ ] **4.2 Procedural Logic Emission:**
-  - [ ] 4.2.1 Assignments and Expressions: Generate code for -SET and calculated fields.
-  - [ ] 4.2.2 Control Flow: Generate code for labels, jumps, branches, and loops.
+  - [ ] 4.2.1 Variable Declaration: Generate `DECLARE` section for all discovered variables.
+  - [ ] 4.2.2 Expression Translation: Transform WebFOCUS expressions to PostgreSQL-compatible SQL.
+  - [ ] 4.2.3 Statement Emission:
+    - [ ] 4.2.3.1 Assignments: Generate `v_target := expression;` for `ir.Assign`.
+    - [ ] 4.2.3.2 Phi Resolution: Generate move instructions to resolve Phi nodes at block entries.
+    - [ ] 4.2.3.3 Messaging: Generate `RAISE NOTICE` for `ir.Type`.
+  - [ ] 4.2.4 Control Flow (State Machine):
+    - [ ] 4.2.4.1 Block Dispatcher: Implement a `WHILE` loop and `CASE` statement to navigate basic blocks.
+    - [ ] 4.2.4.2 Jump/Branch Translation: Update the next block state variable based on `ir.Jump` and `ir.Branch`.
 - [ ] **4.3 Relational Request Emission:**
   - [ ] 4.3.1 SQL Query Generation: Transform `ir.Report` nodes to optimized PostgreSQL queries.
     - [ ] 4.3.1.1 Projection: Mapping PRINT/SUM and field selections.
-    - [ ] 4.3.1.2 Data Sources: Mapping filenames to SQL tables.
-    - [ ] 4.3.1.3 Filtering: Mapping WHERE clauses.
-    - [ ] 4.3.1.4 Grouping: Mapping BY/ACROSS phrases.
-    - [ ] 4.3.1.5 Aggregations: Mapping prefix operators (SUM., AVG., etc.).
+    - [ ] 4.3.1.2 Data Sources: Mapping filenames to SQL tables (using `MetadataRegistry`).
+    - [ ] 4.3.1.3 Filtering: Mapping WHERE clauses to SQL `WHERE`.
+    - [ ] 4.3.1.4 Grouping: Mapping BY/ACROSS phrases to SQL `GROUP BY`.
+    - [ ] 4.3.1.5 Aggregations: Mapping prefix operators (SUM., AVG., etc.) to SQL aggregate functions.
+    - [ ] 4.3.1.6 Post-Aggregation Filtering: Mapping WHERE TOTAL to SQL `HAVING`.
+    - [ ] 4.3.1.7 Sorting: Mapping sort options to SQL `ORDER BY`.
   - [ ] 4.3.2 Data Source Mapping: Resolve TABLE FILE references to database tables/views.
 
 ## Phase 5: Verification and Parity
