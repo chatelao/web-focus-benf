@@ -141,7 +141,7 @@ class TestAntlrWebFocusParser(unittest.TestCase):
         Sample 2: Dialogue Manager control flow (SET, IF, GOTO, Labels).
         Sample 3: Advanced report formatting (SUBFOOT with embedded fields, PAGE-BREAK).
         """
-        for i in range(1, 4):
+        for i in range(1, 7):
             filename = f"realworld_sample{i}.fex"
             filepath = os.path.join('test/samples', filename)
             with open(filepath, 'r') as f:

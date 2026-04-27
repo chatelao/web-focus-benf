@@ -186,12 +186,23 @@ class ComputeCommand(Command):
 
 class Join(Command):
     """Represents a JOIN command."""
-    def __init__(self, left_file, left_field, right_file, right_field, join_as=None, outer=False, **kwargs):
-        super().__init__(left_file=left_file, left_field=left_field, right_file=right_file, right_field=right_field, join_as=join_as, outer=outer, **kwargs)
+    def __init__(self, join_type=None, as_root=False, source=None, target=None, join_as=None, where_clauses=None, **kwargs):
+        super().__init__(join_type=join_type, as_root=as_root, source=source, target=target, join_as=join_as, where_clauses=where_clauses or [], **kwargs)
+
+class JoinSource(ASGNode):
+    """Represents the source side of a JOIN."""
+    def __init__(self, fields, filename, file_at=None, with_field=None, tag=None, **kwargs):
+        super().__init__(fields=fields, filename=filename, file_at=file_at, with_field=with_field, tag=tag, **kwargs)
+
+class JoinTarget(ASGNode):
+    """Represents the target side of a JOIN."""
+    def __init__(self, fields, filename, file_at=None, tag=None, target_type=None, **kwargs):
+        super().__init__(fields=fields, filename=filename, file_at=file_at, tag=tag, target_type=target_type, **kwargs)
 
 class JoinClear(Command):
-    """Represents a JOIN CLEAR * command."""
-    pass
+    """Represents a JOIN CLEAR command."""
+    def __init__(self, target=None, **kwargs):
+        super().__init__(target=target, **kwargs)
 
 class SetCommand(Command):
     """Represents a SET (non-Dialogue Manager) command."""
