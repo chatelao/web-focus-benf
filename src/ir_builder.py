@@ -10,6 +10,7 @@ class IRBuilder:
         self.block_count = 0
         self.current_block = None
         self.labels = {} # label_name -> block_name
+        self.active_loops = [] # stack of {label, header_block, after_block, repeat_node}
 
     def _new_block(self, name=None):
         if not name:
@@ -20,10 +21,10 @@ class IRBuilder:
         return block
 
     def build(self, asg_nodes):
-        # Pass 1: Identify all labels and create blocks for them
+        # Pass 1: Identify all labels
         for node in asg_nodes:
-            # Debug: print(f"Node: {type(node)}")
-            if node.__class__.__name__ == 'Label':
+            class_name = node.__class__.__name__
+            if class_name == 'Label':
                 if node.name not in self.labels:
                     block = self._new_block(node.name)
                     self.labels[node.name] = block.name
@@ -50,6 +51,34 @@ class IRBuilder:
 
                 self.current_block = target_block
 
+                # Check if this label closes an active loop
+                if self.active_loops and self.active_loops[-1]['label'] == node.name:
+                    matching_loop = self.active_loops.pop()
+                    loop_node = matching_loop['repeat_node']
+                    header_block = matching_loop['header_block']
+                    after_block = matching_loop['after_block']
+
+                    # Increment logic for TIMES/FOR
+                    if loop_node.times:
+                        counter_var = f"&REPEAT_COUNTER_{node.name}"
+                        self.current_block.add_instruction(ir.Assign(
+                            target=counter_var,
+                            source=asg.BinaryOperation(asg.AmperVar(counter_var), "+", asg.Literal(1))
+                        ))
+                    elif loop_node.loop_var:
+                        step = loop_node.step_val if loop_node.step_val else asg.Literal(1)
+                        self.current_block.add_instruction(ir.Assign(
+                            target=loop_node.loop_var,
+                            source=asg.BinaryOperation(asg.AmperVar(loop_node.loop_var), "+", step)
+                        ))
+
+                    # Back-edge to header
+                    self.current_block.add_instruction(ir.Jump(target=header_block.name))
+                    self.cfg.add_edge(self.current_block.name, header_block.name)
+
+                    # Next instructions go to the after block
+                    self.current_block = after_block
+
             elif class_name == 'Goto':
                 target_label = node.target
                 self.current_block.add_instruction(ir.Jump(target=target_label))
@@ -60,6 +89,56 @@ class IRBuilder:
 
                 # Subsequent instructions go to a new anonymous block
                 self.current_block = self._new_block()
+
+            elif class_name == 'Repeat':
+                header_block = self._new_block(f"LOOP_HEADER_{node.label}")
+                body_block = self._new_block(f"LOOP_BODY_{node.label}")
+                after_block = self._new_block(f"LOOP_AFTER_{node.label}")
+
+                # Initialization
+                if node.times:
+                    counter_var = f"&REPEAT_COUNTER_{node.label}"
+                    self.current_block.add_instruction(ir.Assign(target=counter_var, source=asg.Literal(1)))
+                elif node.loop_var:
+                    self.current_block.add_instruction(ir.Assign(target=node.loop_var, source=node.start_val))
+
+                # Jump to header
+                self.current_block.add_instruction(ir.Jump(target=header_block.name))
+                self.cfg.add_edge(self.current_block.name, header_block.name)
+
+                # Header condition
+                condition = None
+                if node.condition_type == "WHILE":
+                    condition = node.condition
+                elif node.condition_type == "UNTIL":
+                    # UNTIL condition == WHILE NOT condition
+                    condition = asg.UnaryOperation(operator="NOT", operand=node.condition)
+                elif node.times:
+                    counter_var = f"&REPEAT_COUNTER_{node.label}"
+                    condition = asg.BinaryOperation(asg.AmperVar(counter_var), "LE", node.times)
+                elif node.loop_var:
+                    condition = asg.BinaryOperation(asg.AmperVar(node.loop_var), "LE", node.end_val)
+
+                if condition:
+                    header_block.add_instruction(ir.Branch(
+                        condition=condition,
+                        true_target=body_block.name,
+                        false_target=after_block.name
+                    ))
+                    self.cfg.add_edge(header_block.name, body_block.name)
+                    self.cfg.add_edge(header_block.name, after_block.name)
+                else:
+                    # Infinite loop or handled differently
+                    header_block.add_instruction(ir.Jump(target=body_block.name))
+                    self.cfg.add_edge(header_block.name, body_block.name)
+
+                self.active_loops.append({
+                    'label': node.label,
+                    'header_block': header_block,
+                    'after_block': after_block,
+                    'repeat_node': node
+                })
+                self.current_block = body_block
 
             elif class_name == 'IfDM':
                 true_label = node.then_target

@@ -148,5 +148,131 @@ class TestIRBuilder(unittest.TestCase):
         self.assertIn(cfg.blocks["TRUE_LAB"], entry.successors)
         self.assertIn(cfg.blocks["FALSE_LAB"], entry.successors)
 
+    def test_repeat_while(self):
+        # -REPEAT MYLOOP WHILE &X LE 10
+        # -TYPE Loop
+        # -MYLOOP
+        asg_nodes = [
+            Repeat(label="MYLOOP", condition=BinaryOperation(AmperVar("&X"), "LE", Literal(10)), condition_type="WHILE"),
+            TypeDM(messages=[Literal("Loop")]),
+            Label(name="MYLOOP")
+        ]
+
+        builder = IRBuilder()
+        cfg = builder.build(asg_nodes)
+
+        self.assertIn("ENTRY", cfg.blocks)
+        self.assertIn("LOOP_HEADER_MYLOOP", cfg.blocks)
+        self.assertIn("LOOP_BODY_MYLOOP", cfg.blocks)
+        self.assertIn("LOOP_AFTER_MYLOOP", cfg.blocks)
+
+        entry = cfg.blocks["ENTRY"]
+        header = cfg.blocks["LOOP_HEADER_MYLOOP"]
+        body = cfg.blocks["LOOP_BODY_MYLOOP"]
+        after = cfg.blocks["LOOP_AFTER_MYLOOP"]
+
+        # ENTRY -> HEADER
+        self.assertIn(header, entry.successors)
+
+        # HEADER -> BODY (if True) and AFTER (if False)
+        self.assertIsInstance(header.instructions[0], Branch)
+        self.assertIn(body, header.successors)
+        self.assertIn(after, header.successors)
+
+        # BODY contains -TYPE
+        self.assertIsInstance(body.instructions[0], Type)
+
+        # BODY -> LABEL -> HEADER
+        label_block = cfg.blocks["MYLOOP"]
+        self.assertIn(label_block, body.successors)
+        self.assertIn(header, label_block.successors)
+        self.assertIsInstance(label_block.instructions[0], Jump)
+        self.assertEqual(label_block.instructions[0].target, header.name)
+
+    def test_repeat_times(self):
+        # -REPEAT MYLOOP 5 TIMES
+        # -TYPE Hello
+        # -MYLOOP
+        asg_nodes = [
+            Repeat(label="MYLOOP", times=Literal(5)),
+            TypeDM(messages=[Literal("Hello")]),
+            Label(name="MYLOOP")
+        ]
+
+        builder = IRBuilder()
+        cfg = builder.build(asg_nodes)
+
+        entry = cfg.blocks["ENTRY"]
+        header = cfg.blocks["LOOP_HEADER_MYLOOP"]
+        body = cfg.blocks["LOOP_BODY_MYLOOP"]
+
+        # Initialization in ENTRY
+        self.assertIsInstance(entry.instructions[0], Assign)
+        self.assertEqual(entry.instructions[0].target, "&REPEAT_COUNTER_MYLOOP")
+
+        # Increment in LABEL block
+        label_block = cfg.blocks["MYLOOP"]
+        self.assertIsInstance(label_block.instructions[0], Assign)
+        self.assertEqual(label_block.instructions[0].target, "&REPEAT_COUNTER_MYLOOP")
+        self.assertIsInstance(label_block.instructions[1], Jump)
+
+    def test_repeat_for(self):
+        # -REPEAT MYLOOP FOR &I FROM 1 TO 10 STEP 2
+        # -TYPE &I
+        # -MYLOOP
+        asg_nodes = [
+            Repeat(label="MYLOOP", loop_var="&I", start_val=Literal(1), end_val=Literal(10), step_val=Literal(2)),
+            TypeDM(messages=[AmperVar("&I")]),
+            Label(name="MYLOOP")
+        ]
+
+        builder = IRBuilder()
+        cfg = builder.build(asg_nodes)
+
+        entry = cfg.blocks["ENTRY"]
+        body = cfg.blocks["LOOP_BODY_MYLOOP"]
+
+        # Initialization
+        self.assertIsInstance(entry.instructions[0], Assign)
+        self.assertEqual(entry.instructions[0].target, "&I")
+
+        # Increment in LABEL block
+        label_block = cfg.blocks["MYLOOP"]
+        self.assertIsInstance(label_block.instructions[0], Assign)
+        self.assertEqual(label_block.instructions[0].target, "&I")
+        # source should be &I + 2
+        source = label_block.instructions[0].source
+        self.assertIsInstance(source, BinaryOperation)
+        self.assertEqual(source.operator, "+")
+        self.assertEqual(source.right.value, 2)
+
+    def test_goto_loop_label(self):
+        # -REPEAT MYLOOP WHILE &X LE 10
+        # -IF &X EQ 5 GOTO MYLOOP
+        # -TYPE Loop
+        # -MYLOOP
+        asg_nodes = [
+            Repeat(label="MYLOOP", condition=BinaryOperation(AmperVar("&X"), "LE", Literal(10)), condition_type="WHILE"),
+            IfDM(condition=BinaryOperation(AmperVar("&X"), "EQ", Literal(5)), then_target="MYLOOP"),
+            TypeDM(messages=[Literal("Loop")]),
+            Label(name="MYLOOP")
+        ]
+
+        builder = IRBuilder()
+        cfg = builder.build(asg_nodes)
+
+        self.assertIn("LOOP_HEADER_MYLOOP", cfg.blocks)
+        self.assertIn("MYLOOP", cfg.blocks)
+
+        body = cfg.blocks["LOOP_BODY_MYLOOP"]
+        # body instructions: Branch (IfDM)
+        self.assertIsInstance(body.instructions[0], Branch)
+        self.assertEqual(body.instructions[0].true_target, "MYLOOP")
+
+        myloop_label_block = cfg.blocks["MYLOOP"]
+        # In the fixed implementation, MYLOOP block should contain the Jump back to header
+        self.assertIsInstance(myloop_label_block.instructions[0], Jump)
+        self.assertEqual(myloop_label_block.instructions[0].target, "LOOP_HEADER_MYLOOP")
+
 if __name__ == '__main__':
     unittest.main()

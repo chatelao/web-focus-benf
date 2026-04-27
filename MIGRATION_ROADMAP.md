@@ -98,10 +98,10 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
     - [x] 3.1.3.2 Label and Jump Mapping: Implement block splitting for `Label` nodes and block termination for `Goto` nodes. (Implemented in `src/ir_builder.py`)
   - [ ] 3.1.4 Control Flow Edges:
     - [x] 3.1.4.1 Conditional Branching: Implement edges and block splitting for `IfDM` nodes. (Implemented in `src/ir_builder.py`)
-    - [ ] 3.1.4.2 Loop Deconstruction:
-      - [ ] 3.1.4.2.1 Basic REPEAT structure (loop header, back edges).
-      - [ ] 3.1.4.2.2 Conditional Loops: WHILE/UNTIL support.
-      - [ ] 3.1.4.2.3 Iterative Loops: TIMES/FOR support.
+    - [x] 3.1.4.2 Loop Deconstruction:
+      - [x] 3.1.4.2.1 Basic REPEAT structure (loop header, back edges).
+      - [x] 3.1.4.2.2 Conditional Loops: WHILE/UNTIL support.
+      - [x] 3.1.4.2.3 Iterative Loops: TIMES/FOR support.
 - [ ] **3.2 SSA Transformation:**
   - [ ] 3.2.1 Dominator Analysis: Compute dominator tree and frontiers.
   - [ ] 3.2.2 Variable Renaming: Implement versioning for all variables.
