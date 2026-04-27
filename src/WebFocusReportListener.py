@@ -26,15 +26,6 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by WebFocusReportParser#request_element.
-    def enterRequest_element(self, ctx:WebFocusReportParser.Request_elementContext):
-        pass
-
-    # Exit a parse tree produced by WebFocusReportParser#request_element.
-    def exitRequest_element(self, ctx:WebFocusReportParser.Request_elementContext):
-        pass
-
-
     # Enter a parse tree produced by WebFocusReportParser#define_file.
     def enterDefine_file(self, ctx:WebFocusReportParser.Define_fileContext):
         pass
@@ -503,12 +494,12 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by WebFocusReportParser#on_table_options.
-    def enterOn_table_options(self, ctx:WebFocusReportParser.On_table_optionsContext):
+    # Enter a parse tree produced by WebFocusReportParser#on_options.
+    def enterOn_options(self, ctx:WebFocusReportParser.On_optionsContext):
         pass
 
-    # Exit a parse tree produced by WebFocusReportParser#on_table_options.
-    def exitOn_table_options(self, ctx:WebFocusReportParser.On_table_optionsContext):
+    # Exit a parse tree produced by WebFocusReportParser#on_options.
+    def exitOn_options(self, ctx:WebFocusReportParser.On_optionsContext):
         pass
 
 
@@ -545,6 +536,15 @@ class WebFocusReportListener(ParseTreeListener):
 
     # Exit a parse tree produced by WebFocusReportParser#style_value.
     def exitStyle_value(self, ctx:WebFocusReportParser.Style_valueContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#on_field_options.
+    def enterOn_field_options(self, ctx:WebFocusReportParser.On_field_optionsContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#on_field_options.
+    def exitOn_field_options(self, ctx:WebFocusReportParser.On_field_optionsContext):
         pass
 
 
@@ -599,6 +599,15 @@ class WebFocusReportListener(ParseTreeListener):
 
     # Exit a parse tree produced by WebFocusReportParser#identifier.
     def exitIdentifier(self, ctx:WebFocusReportParser.IdentifierContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#keyword_as_name.
+    def enterKeyword_as_name(self, ctx:WebFocusReportParser.Keyword_as_nameContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#keyword_as_name.
+    def exitKeyword_as_name(self, ctx:WebFocusReportParser.Keyword_as_nameContext):
         pass
 
 

@@ -19,6 +19,11 @@ class WebFocusReportVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by WebFocusReportParser#request_element.
+    def visitRequest_element(self, ctx:WebFocusReportParser.Request_elementContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by WebFocusReportParser#define_file.
     def visitDefine_file(self, ctx:WebFocusReportParser.Define_fileContext):
         return self.visitChildren(ctx)
@@ -34,6 +39,11 @@ class WebFocusReportVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by WebFocusReportParser#compute_assignment.
+    def visitCompute_assignment(self, ctx:WebFocusReportParser.Compute_assignmentContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by WebFocusReportParser#format_name.
     def visitFormat_name(self, ctx:WebFocusReportParser.Format_nameContext):
         return self.visitChildren(ctx)
@@ -46,11 +56,6 @@ class WebFocusReportVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by WebFocusReportParser#set_command.
     def visitSet_command(self, ctx:WebFocusReportParser.Set_commandContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by WebFocusReportParser#hyphenated_name.
-    def visitHyphenated_name(self, ctx:WebFocusReportParser.Hyphenated_nameContext):
         return self.visitChildren(ctx)
 
 
@@ -119,8 +124,18 @@ class WebFocusReportVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by WebFocusReportParser#dm_logical_expression.
-    def visitDm_logical_expression(self, ctx:WebFocusReportParser.Dm_logical_expressionContext):
+    # Visit a parse tree produced by WebFocusReportParser#dm_logical_or_expression.
+    def visitDm_logical_or_expression(self, ctx:WebFocusReportParser.Dm_logical_or_expressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#dm_logical_and_expression.
+    def visitDm_logical_and_expression(self, ctx:WebFocusReportParser.Dm_logical_and_expressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#dm_logical_not_expression.
+    def visitDm_logical_not_expression(self, ctx:WebFocusReportParser.Dm_logical_not_expressionContext):
         return self.visitChildren(ctx)
 
 
@@ -279,18 +294,28 @@ class WebFocusReportVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by WebFocusReportParser#on_table_options.
-    def visitOn_table_options(self, ctx:WebFocusReportParser.On_table_optionsContext):
+    # Visit a parse tree produced by WebFocusReportParser#on_options.
+    def visitOn_options(self, ctx:WebFocusReportParser.On_optionsContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by WebFocusReportParser#on_table_set_option.
-    def visitOn_table_set_option(self, ctx:WebFocusReportParser.On_table_set_optionContext):
+    # Visit a parse tree produced by WebFocusReportParser#on_table_set_value.
+    def visitOn_table_set_value(self, ctx:WebFocusReportParser.On_table_set_valueContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by WebFocusReportParser#on_field_options.
-    def visitOn_field_options(self, ctx:WebFocusReportParser.On_field_optionsContext):
+    # Visit a parse tree produced by WebFocusReportParser#style_block.
+    def visitStyle_block(self, ctx:WebFocusReportParser.Style_blockContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#style_declaration.
+    def visitStyle_declaration(self, ctx:WebFocusReportParser.Style_declarationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#style_value.
+    def visitStyle_value(self, ctx:WebFocusReportParser.Style_valueContext):
         return self.visitChildren(ctx)
 
 
@@ -321,6 +346,11 @@ class WebFocusReportVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by WebFocusReportParser#identifier.
     def visitIdentifier(self, ctx:WebFocusReportParser.IdentifierContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#keyword_as_name.
+    def visitKeyword_as_name(self, ctx:WebFocusReportParser.Keyword_as_nameContext):
         return self.visitChildren(ctx)
 
 
