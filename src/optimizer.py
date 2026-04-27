@@ -46,7 +46,10 @@ class ConstantPropagator:
     def _get_target_variable(self, instr):
         """Extracts the target variable name from an instruction."""
         if isinstance(instr, (ir.Assign, ir.Phi)):
-            return instr.target
+            if isinstance(instr.target, str):
+                return instr.target
+            if hasattr(instr.target, 'name'):
+                return instr.target.name
         return None
 
     def _get_constant_value(self, instr):
@@ -58,12 +61,12 @@ class ConstantPropagator:
             if not instr.sources:
                 return None
 
-            first_val = self._evaluate_constant(asg.AmperVar(instr.sources[0]))
+            first_val = self._evaluate_constant(asg.AmperVar(name=instr.sources[0]))
             if first_val is None:
                 return None
 
             for source in instr.sources[1:]:
-                val = self._evaluate_constant(asg.AmperVar(source))
+                val = self._evaluate_constant(asg.AmperVar(name=source))
                 if val is None or val.value != first_val.value:
                     return None
             return first_val
@@ -237,3 +240,144 @@ class ConstantPropagator:
                     changed = True
 
         return changed
+
+class DeadCodeEliminator:
+    """
+    Removes unreachable blocks and unused assignments from a CFG.
+    """
+    def run(self, cfg):
+        changed = True
+        while changed:
+            changed = False
+            if self._remove_unreachable_blocks(cfg):
+                changed = True
+            if self._remove_unused_assignments(cfg):
+                changed = True
+        return cfg
+
+    def _remove_unreachable_blocks(self, cfg):
+        if not cfg.entry_block:
+            return False
+
+        reachable = set()
+        worklist = [cfg.entry_block.name]
+        while worklist:
+            name = worklist.pop()
+            if name not in reachable:
+                reachable.add(name)
+                block = cfg.blocks[name]
+                for succ in block.successors:
+                    worklist.append(succ.name)
+
+        unreachable = set(cfg.blocks.keys()) - reachable
+        if not unreachable:
+            return False
+
+        for name in unreachable:
+            block = cfg.blocks[name]
+            # Remove this block from its successors' predecessors
+            for succ in block.successors:
+                if block in succ.predecessors:
+                    succ.predecessors.remove(block)
+            del cfg.blocks[name]
+
+        return True
+
+    def _remove_unused_assignments(self, cfg):
+        live_vars = set()
+
+        # 1. Fixed-point iteration to find all live variables
+        changed = True
+        while changed:
+            changed = False
+            for block in cfg.blocks.values():
+                for instr in block.instructions:
+                    # Side-effecting instructions or those defining already live vars make their operands live
+                    target = self._get_target_variable(instr)
+                    if self._is_essential(instr) or (target is not None and target in live_vars):
+                        old_size = len(live_vars)
+                        self._add_usages(instr, live_vars)
+                        if len(live_vars) > old_size:
+                            changed = True
+
+        # 2. Remove instructions that are not essential and don't define a live variable
+        removed_any = False
+        for block in cfg.blocks.values():
+            new_instrs = []
+            for instr in block.instructions:
+                target = self._get_target_variable(instr)
+                if target is not None:
+                    if target in live_vars:
+                        new_instrs.append(instr)
+                    else:
+                        removed_any = True
+                else:
+                    # Essential instructions (Type, Call, Report, etc.) or control flow (Jump, Branch)
+                    new_instrs.append(instr)
+            block.instructions = new_instrs
+
+        return removed_any
+
+    def _is_essential(self, instr):
+        """Instructions with side effects are essential."""
+        return isinstance(instr, (ir.Type, ir.Call, ir.SetEnv, ir.Define, ir.Report, ir.Branch, ir.Jump))
+
+    def _get_target_variable(self, instr):
+        """Extracts the target variable name from an instruction."""
+        if isinstance(instr, (ir.Assign, ir.Phi)):
+            if isinstance(instr.target, str):
+                return instr.target
+            if hasattr(instr.target, 'name'):
+                return instr.target.name
+        return None
+
+    def _add_usages(self, instr, live_vars):
+        if isinstance(instr, ir.Assign):
+            self._collect_vars(instr.source, live_vars)
+        elif isinstance(instr, ir.Phi):
+            for src in instr.sources:
+                live_vars.add(src)
+        elif isinstance(instr, ir.Branch):
+            self._collect_vars(instr.condition, live_vars)
+        elif isinstance(instr, ir.Type):
+            for msg in instr.messages:
+                self._collect_vars(msg, live_vars)
+        elif isinstance(instr, ir.Call):
+            for arg in instr.arguments:
+                self._collect_vars(arg, live_vars)
+        elif isinstance(instr, ir.Report):
+            for comp in instr.components:
+                self._collect_vars_recursive(comp, live_vars)
+        elif isinstance(instr, ir.Define):
+            for assign in instr.assignments:
+                self._collect_vars_recursive(assign, live_vars)
+
+    def _collect_vars(self, expr, live_vars):
+        if isinstance(expr, (asg.AmperVar, asg.Identifier)):
+            live_vars.add(expr.name)
+        elif isinstance(expr, asg.BinaryOperation):
+            self._collect_vars(expr.left, live_vars)
+            self._collect_vars(expr.right, live_vars)
+        elif isinstance(expr, asg.UnaryOperation):
+            self._collect_vars(expr.operand, live_vars)
+        elif isinstance(expr, asg.FunctionCall):
+            for arg in expr.arguments:
+                self._collect_vars(arg, live_vars)
+        elif isinstance(expr, asg.IfExpression):
+            self._collect_vars(expr.condition, live_vars)
+            self._collect_vars(expr.then_expr, live_vars)
+            self._collect_vars(expr.else_expr, live_vars)
+
+    def _collect_vars_recursive(self, node, live_vars):
+        if node is None:
+            return
+        if hasattr(node, 'condition'):
+            self._collect_vars(node.condition, live_vars)
+        if hasattr(node, 'expression'):
+            self._collect_vars(node.expression, live_vars)
+        if hasattr(node, 'actions'):
+            for action in node.actions:
+                self._collect_vars_recursive(action, live_vars)
+        if hasattr(node, 'components'):
+            for comp in node.components:
+                self._collect_vars_recursive(comp, live_vars)
