@@ -107,7 +107,9 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
   - [x] 3.2.2 Phi-node Insertion: Handle merge points in control flow. (Implemented in `src/ssa_transformer.py`)
     - [x] 3.2.2.1 Variable Discovery: Identify all variables and their defining blocks.
     - [x] 3.2.2.2 Iterative Placement: Implement the algorithm to place `Phi` instructions in dominance frontiers.
-  - [ ] 3.2.3 Variable Renaming: Implement versioning for all variables.
+  - [x] 3.2.3 Variable Renaming: Implement versioning for all variables.
+    - [x] 3.2.3.1 Usage Analysis: Identify variable usages in expressions and instructions.
+    - [x] 3.2.3.2 Renaming Algorithm: Implement recursive DFS over dominator tree for variable versioning.
 - [ ] **3.3 Relational Lifting:**
   - [ ] 3.3.1 Loop Analysis: Identify loops that iterate over data sources.
   - [ ] 3.3.2 Predicate Pushdown: Identify filters that can be moved to SQL WHERE.

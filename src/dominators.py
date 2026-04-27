@@ -6,6 +6,7 @@ class DominatorAnalysis:
         self.cfg = cfg
         self.idoms = {}
         self.frontiers = {}
+        self.dom_tree = {}
         self.post_order = []
         self.post_order_indices = {}
 
@@ -15,7 +16,14 @@ class DominatorAnalysis:
 
         self._compute_post_order()
         self._compute_idoms()
+        self._compute_dom_tree()
         self._compute_frontiers()
+
+    def _compute_dom_tree(self):
+        self.dom_tree = {name: [] for name in self.cfg.blocks}
+        for node_name, idom_name in self.idoms.items():
+            if node_name != idom_name:
+                self.dom_tree[idom_name].append(node_name)
 
     def _compute_post_order(self):
         visited = set()

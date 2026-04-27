@@ -1,4 +1,6 @@
 import ir
+import asg
+import copy
 from dominators import DominatorAnalysis
 
 class SSATransformer:
@@ -13,7 +15,7 @@ class SSATransformer:
         Inserts Phi instructions into the basic blocks of the CFG using the
         iterative dominance frontier algorithm.
         """
-        # 1. Compute dominators and frontiers if not already present or just always run for safety
+        # 1. Compute dominators and frontiers
         analysis = DominatorAnalysis(cfg)
         analysis.run()
         frontiers = analysis.frontiers
@@ -30,21 +32,85 @@ class SSATransformer:
 
             while worklist:
                 n_name = worklist.pop(0)
-                # For each block m in the dominance frontier of n
                 for m_name in frontiers.get(n_name, []):
                     if m_name not in phi_inserted_in:
                         m_block = cfg.blocks[m_name]
-
                         # Phi nodes must be at the beginning of the block.
-                        # We use the variable name itself as the source for now;
-                        # Renaming will replace these with versioned names.
                         phi = ir.Phi(target=var, sources=[var] * len(m_block.predecessors))
+                        # Store the original variable name for renaming pass
+                        phi.original_var = var
                         m_block.instructions.insert(0, phi)
 
                         phi_inserted_in.add(m_name)
                         if m_name not in added_to_worklist:
                             added_to_worklist.add(m_name)
                             worklist.append(m_name)
+
+    def rename_variables(self, cfg):
+        """
+        Renames variables to ensure each is assigned exactly once.
+        """
+        analysis = DominatorAnalysis(cfg)
+        analysis.run()
+        dom_tree = analysis.dom_tree
+
+        variables = self._get_all_variables(cfg)
+        stacks = {var: [] for var in variables}
+        counters = {var: 0 for var in variables}
+
+        def get_current_name(var):
+            if var in stacks and stacks[var]:
+                return stacks[var][-1]
+            return f"{var}_0"
+
+        def generate_new_name(var):
+            name = f"{var}_{counters[var]}"
+            counters[var] += 1
+            stacks[var].append(name)
+            return name
+
+        def rename(block_name):
+            block = cfg.blocks[block_name]
+            pushed_vars = []
+
+            # 1. Rename uses and definitions in ordinary instructions
+            for instr in block.instructions:
+                if not isinstance(instr, ir.Phi):
+                    self._rename_uses(instr, stacks)
+
+                target = self._get_target_variable(instr)
+                if target:
+                    original_target = target
+                    if isinstance(instr, ir.Phi):
+                        original_target = getattr(instr, 'original_var', target)
+
+                    new_name = generate_new_name(original_target)
+                    instr.target = new_name
+                    pushed_vars.append(original_target)
+
+            # 2. Fill in Phi node parameters in successors
+            for succ in block.successors:
+                try:
+                    pred_index = succ.predecessors.index(block)
+                except ValueError:
+                    continue # Should not happen in a valid CFG
+
+                for instr in succ.instructions:
+                    if isinstance(instr, ir.Phi):
+                        orig_var = getattr(instr, 'original_var', None)
+                        if orig_var:
+                            instr.sources[pred_index] = get_current_name(orig_var)
+
+            # 3. Recurse on children in dominator tree
+            for child_name in dom_tree.get(block_name, []):
+                rename(child_name)
+
+            # 4. Pop stacks
+            for var in pushed_vars:
+                stacks[var].pop()
+
+        if cfg.entry_block:
+            rename(cfg.entry_block.name)
 
     def _get_all_variables(self, cfg):
         """Identifies all variables assigned in any block of the CFG."""
@@ -74,6 +140,54 @@ class SSATransformer:
                 return instr.target
             if hasattr(instr.target, 'name'):
                 return instr.target.name
-        # Note: In the future, other instructions like Define or Compute might be handled here
-        # if they are lowered or if we want to include them in SSA.
         return None
+
+    def _rename_uses(self, instr, stacks):
+        """Renames variable uses in an instruction based on current stacks."""
+        if isinstance(instr, ir.Assign):
+            instr.source = self._rename_in_expr(instr.source, stacks)
+        elif isinstance(instr, ir.Branch):
+            instr.condition = self._rename_in_expr(instr.condition, stacks)
+        elif isinstance(instr, ir.Type):
+            instr.messages = [self._rename_in_expr(m, stacks) for m in instr.messages]
+        # Phi uses are handled separately during predecessor processing
+
+    def _rename_in_expr(self, expr, stacks):
+        """Recursively renames variable references in an expression."""
+        if expr is None:
+            return None
+
+        if isinstance(expr, (asg.AmperVar, asg.Identifier)):
+            if expr.name in stacks:
+                new_expr = copy.copy(expr)
+                if stacks[expr.name]:
+                    new_expr.name = stacks[expr.name][-1]
+                else:
+                    new_expr.name = f"{expr.name}_0"
+                return new_expr
+            return expr
+
+        if isinstance(expr, asg.BinaryOperation):
+            new_expr = copy.copy(expr)
+            new_expr.left = self._rename_in_expr(expr.left, stacks)
+            new_expr.right = self._rename_in_expr(expr.right, stacks)
+            return new_expr
+
+        if isinstance(expr, asg.UnaryOperation):
+            new_expr = copy.copy(expr)
+            new_expr.operand = self._rename_in_expr(expr.operand, stacks)
+            return new_expr
+
+        if isinstance(expr, asg.FunctionCall):
+            new_expr = copy.copy(expr)
+            new_expr.arguments = [self._rename_in_expr(arg, stacks) for arg in expr.arguments]
+            return new_expr
+
+        if isinstance(expr, asg.IfExpression):
+            new_expr = copy.copy(expr)
+            new_expr.condition = self._rename_in_expr(expr.condition, stacks)
+            new_expr.then_expr = self._rename_in_expr(expr.then_expr, stacks)
+            new_expr.else_expr = self._rename_in_expr(expr.else_expr, stacks)
+            return new_expr
+
+        return expr
