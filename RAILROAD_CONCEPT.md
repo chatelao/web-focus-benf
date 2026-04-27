@@ -73,6 +73,25 @@ Use the popular Mermaid.js library's flowchart or experimental railroad support.
 
 ---
 
+## Step 4: Automation and Distribution
+
+### 4.1 Scripted Generation
+All graphics and intermediate syntax (EBNF) must be generated using automated scripts.
+*   **Goal:** Zero manual intervention between grammar changes and documentation updates.
+*   **Implementation:** A Python-based orchestration script that coordinates the ANTLR4 extraction, pruning, and RR rendering.
+
+### 4.2 Script Testing
+The generation scripts are first-class citizens of the codebase.
+*   **Goal:** Ensure the documentation pipeline never breaks.
+*   **Implementation:** Unit tests and integration tests for the conversion logic (e.g., verifying that pruned EBNF is still valid).
+
+### 4.3 Distribution
+The documentation must be easily accessible to both developers and users.
+*   **Release Packaging:** Every release must include a `.zip` file containing the full syntax documentation (HTML + SVGs).
+*   **Live Documentation:** The syntax documentation must be automatically published to GitHub Pages on every push to the `main` branch.
+
+---
+
 ## Implementation Example: `TABLE FILE`
 
 Using the selected variants (W3C EBNF -> Automated Pruning -> RR), the `TABLE FILE` command from `src/WebFocusReport.g4` would be visualized as follows:
