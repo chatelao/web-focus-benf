@@ -50,11 +50,18 @@ Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands th
   - [x] 2.1.6 Expression nodes: Implement nodes for arithmetic and logical operations. (Implemented in `src/asg.py`)
 - [ ] **2.2 Symbol Table:**
   - [x] 2.2.1 Scoping: Implement block-level and global scopes. (Implemented in `src/symbol_table.py`)
-  - [ ] 2.2.2 Variable Resolution: Handle Dialogue Manager variables and field references.
-  - [ ] 2.2.3 Metadata Integration: Load and resolve symbols from Master Files.
+  - [ ] 2.2.2 Variable Resolution:
+    - [x] 2.2.2.1 Dialogue Manager variables. (Implemented in `src/symbol_resolver.py`)
+    - [ ] 2.2.2.2 Field references.
+  - [ ] 2.2.3 Metadata Integration:
+    - [ ] 2.2.3.1 Master File Registry: Management of loaded Master Files.
+    - [ ] 2.2.3.2 Schema Binding: Resolving field names to Master File segments.
 - [ ] **2.3 Type Inference:**
-  - [ ] 2.3.1 Basic Types: Infer types for literal constants.
-  - [ ] 2.3.2 Expression Typing: Propagate types through arithmetic and logical operators.
+  - [ ] 2.3.1 Literal Typing: Infer types for numeric and string constants.
+  - [ ] 2.3.2 Expression Typing:
+    - [ ] 2.3.2.1 Arithmetic Expressions.
+    - [ ] 2.3.2.2 Logical and Relational Expressions.
+    - [ ] 2.3.2.3 Built-in Functions.
   - [ ] 2.3.3 Metadata Typing: Resolve field types from Master File metadata.
 - [ ] **2.4 ASG Builder:** Implement the visitor to transform ANTLR4 parse tree to ASG.
   - [x] 2.4.1 Visitor Infrastructure: Base visitor class and dispatcher. (Implemented in `src/asg_builder.py`)

@@ -174,7 +174,7 @@ class ReportASGBuilder(WebFocusReportVisitor):
         return SetDM(variable=variable, expression=expression)
 
     def visitDm_type(self, ctx: WebFocusReportParser.Dm_typeContext):
-        messages = [child.getText() for child in ctx.dm_primary()]
+        messages = [self.visit(child) for child in ctx.dm_primary()]
         return TypeDM(messages=messages)
 
     def visitDm_expression(self, ctx: WebFocusReportParser.Dm_expressionContext):

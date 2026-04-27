@@ -34,7 +34,7 @@ package "Semantic Analysis" {
         * Define Data Model ASG nodes (2.1.2) - [DONE]
         * Define Procedural ASG nodes (2.1.3) - [DONE]
         * Implement Symbol Table for scope/type tracking (4.1.2, 2.2) - [DONE]
-        * Implement ASG builder from ANTLR4 AST (4.1.3) - [PARTIAL]
+        * Implement ASG builder from ANTLR4 AST (4.1.3) - [DONE]
         * Implement Type Inference (2.3)
     end note
 }

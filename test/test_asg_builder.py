@@ -47,9 +47,9 @@ class TestASGBuilder(unittest.TestCase):
         node = asg_nodes[0]
         self.assertTrue(isinstance(node, asg.TypeDM))
         self.assertEqual(len(node.messages), 3)
-        self.assertEqual(node.messages[0], "Hello")
-        self.assertEqual(node.messages[1], "World")
-        self.assertEqual(node.messages[2], "&VAR")
+        self.assertEqual(node.messages[0].name, "Hello")
+        self.assertEqual(node.messages[1].name, "World")
+        self.assertEqual(node.messages[2].name, "&VAR")
 
     def test_dm_set_string(self):
         code = "-SET &VAR = 'TEXT';"
