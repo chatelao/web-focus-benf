@@ -208,5 +208,30 @@ class TestEmitter(unittest.TestCase):
         self.assertIn("FROM MYTABLE", sql)
         self.assertIn("/* MYTABLE */", sql)
 
+    def test_emit_instruction_report_with_where(self):
+        emitter = PostgresEmitter()
+        verb = asg.VerbCommand(verb="PRINT", fields=[asg.FieldSelection(name="FIELD1")])
+
+        # Simple WHERE
+        where1 = asg.WhereClause(condition=asg.BinaryOperation(asg.Identifier("FIELD1"), "GT", asg.Literal(10)))
+
+        # BETWEEN
+        where2 = asg.WhereClause(condition=asg.BetweenExpression(asg.Identifier("FIELD2"), asg.Literal(1), asg.Literal(100)))
+
+        # IN
+        where3 = asg.WhereClause(condition=asg.InExpression(asg.Identifier("FIELD3"), [asg.Literal("A"), asg.Literal("B")]))
+
+        # IS MISSING
+        where4 = asg.WhereClause(condition=asg.IsMissingExpression(asg.Identifier("FIELD4")))
+
+        instr = ir.Report(filename="MYTABLE", components=[verb, where1, where2, where3, where4])
+
+        sql = emitter.emit_instruction(instr)
+
+        self.assertIn("WHERE (v_FIELD1 > 10)", sql)
+        self.assertIn("AND (v_FIELD2 BETWEEN 1 AND 100)", sql)
+        self.assertIn("AND (v_FIELD3 IN ('A', 'B'))", sql)
+        self.assertIn("AND (v_FIELD4 IS NULL)", sql)
+
 if __name__ == '__main__':
     unittest.main()

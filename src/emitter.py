@@ -151,6 +151,16 @@ class PostgresEmitter:
             self._discover_vars_in_expr(node.condition, variables)
             self._discover_vars_in_expr(node.then_expr, variables)
             self._discover_vars_in_expr(node.else_expr, variables)
+        elif class_name == 'BetweenExpression':
+            self._discover_vars_in_expr(node.expression, variables)
+            self._discover_vars_in_expr(node.lower, variables)
+            self._discover_vars_in_expr(node.upper, variables)
+        elif class_name == 'InExpression':
+            self._discover_vars_in_expr(node.expression, variables)
+            for val in node.values:
+                self._discover_vars_in_expr(val, variables)
+        elif class_name == 'IsMissingExpression':
+            self._discover_vars_in_expr(node.expression, variables)
 
     def emit_expression(self, expr):
         """
@@ -213,6 +223,26 @@ class PostgresEmitter:
             then_e = self.emit_expression(expr.then_expr)
             else_e = self.emit_expression(expr.else_expr)
             return f"(CASE WHEN {cond} THEN {then_e} ELSE {else_e} END)"
+
+        elif class_name == 'BetweenExpression':
+            expr_val = self.emit_expression(expr.expression)
+            lower = self.emit_expression(expr.lower)
+            upper = self.emit_expression(expr.upper)
+            return f"({expr_val} BETWEEN {lower} AND {upper})"
+
+        elif class_name == 'InExpression':
+            expr_val = self.emit_expression(expr.expression)
+            if hasattr(expr, 'filename') and expr.filename:
+                table_name = self._resolve_table_name(expr.filename)
+                return f"({expr_val} IN (SELECT * FROM {table_name}))"
+            else:
+                values = [self.emit_expression(val) for val in expr.values]
+                return f"({expr_val} IN ({', '.join(values)}))"
+
+        elif class_name == 'IsMissingExpression':
+            expr_val = self.emit_expression(expr.expression)
+            op = "IS NOT NULL" if expr.inverted else "IS NULL"
+            return f"({expr_val} {op})"
 
         return f"/* Unknown expression: {class_name} */"
 
@@ -291,17 +321,25 @@ class PostgresEmitter:
         """
         table_name = self._resolve_table_name(instr.filename)
         fields = []
+        where_clauses = []
 
         for comp in instr.components:
-            if comp.__class__.__name__ == 'VerbCommand':
+            class_name = comp.__class__.__name__
+            if class_name == 'VerbCommand':
                 for field_sel in comp.fields:
                     fields.append(field_sel.name)
+            elif class_name == 'WhereClause' and not comp.is_total:
+                where_clauses.append(self.emit_expression(comp.condition))
 
         if not fields:
             fields = ['*']
 
         field_str = ", ".join(fields)
-        return f"/* {instr.filename} */\nSELECT {field_str} FROM {table_name};"
+        sql = f"/* {instr.filename} */\nSELECT {field_str} FROM {table_name}"
+        if where_clauses:
+            sql += "\nWHERE " + " AND ".join(where_clauses)
+        sql += ";"
+        return sql
 
     def _resolve_table_name(self, filename):
         """
