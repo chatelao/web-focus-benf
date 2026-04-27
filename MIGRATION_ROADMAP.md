@@ -91,8 +91,10 @@ Move beyond syntax trees to an Abstract Semantic Graph (ASG) that understands th
 Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment (SSA) form to enable relational optimizations.
 
 - [ ] **3.1 CFG Generation:**
-  - [ ] 3.1.1 Basic Blocks: Partition procedural logic into basic blocks.
-  - [ ] 3.1.2 Control Flow Edges: Implement branching and looping edges in the graph.
+  - [x] 3.1.1 IR Infrastructure: Define `BasicBlock` and `ControlFlowGraph` classes. (Implemented in `src/ir.py`)
+  - [x] 3.1.2 IR Instructions: Define base `Instruction` nodes and common types (e.g., `Assign`, `Jump`, `Branch`). (Implemented in `src/ir.py`)
+  - [ ] 3.1.3 Basic Blocks: Partition procedural logic into basic blocks.
+  - [ ] 3.1.4 Control Flow Edges: Implement branching and looping edges in the graph.
 - [ ] **3.2 SSA Transformation:**
   - [ ] 3.2.1 Dominator Analysis: Compute dominator tree and frontiers.
   - [ ] 3.2.2 Variable Renaming: Implement versioning for all variables.
