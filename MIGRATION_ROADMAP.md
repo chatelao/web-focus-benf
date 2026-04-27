@@ -110,24 +110,39 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
   - [x] 3.2.3 Variable Renaming: Implement versioning for all variables. (Implemented in `src/ssa_transformer.py`)
     - [x] 3.2.3.1 Usage Analysis: Identify variable usages in expressions and instructions.
     - [x] 3.2.3.2 Renaming Algorithm: Implement recursive DFS over dominator tree for variable versioning.
-- [ ] **3.3 Relational Lifting:**
-  - [ ] 3.3.1 Loop Analysis: Identify loops that iterate over data sources.
-  - [ ] 3.3.2 Predicate Pushdown: Identify filters that can be moved to SQL WHERE.
-  - [ ] 3.3.3 Projection Pruning: Identify unused fields.
+- [ ] **3.3 Optimization Passes:**
+  - [x] 3.3.1 Constant Propagation: Substitute variables with literal values. (Implemented in `src/optimizer.py`)
+  - [ ] 3.3.2 Dead Code Elimination: Remove unreachable blocks and unused assignments.
+- [ ] **3.4 Relational Lifting:**
+  - [ ] 3.4.1 Loop Analysis: Identify loops that iterate over data sources.
+  - [ ] 3.4.2 Predicate Pushdown: Identify filters that can be moved to SQL WHERE.
+  - [ ] 3.4.3 Projection Pruning: Identify unused fields.
 
 ## Phase 4: Backend Emission (Jinja2)
 Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
 
-- [ ] **4.1 PL/pgSQL Templates:** Create Jinja2 templates for Stored Procedures and Functions.
-- [ ] **4.2 Query Emitter:** Implement logic to generate optimized PostgreSQL queries from the IR.
-- [ ] **4.3 Presentation Logic:** Generate decoupled middle-tier logic for formatting and reporting.
+- [ ] **4.1 PL/pgSQL Emission Infrastructure:**
+  - [ ] 4.1.1 Template Environment: Setup Jinja2 and base layout templates.
+  - [ ] 4.1.2 Variable Mapping: Implement mapping between SSA versions and PL/pgSQL variables.
+- [ ] **4.2 Procedural Logic Emission:**
+  - [ ] 4.2.1 Assignments and Expressions: Generate code for -SET and calculated fields.
+  - [ ] 4.2.2 Control Flow: Generate code for labels, jumps, branches, and loops.
+- [ ] **4.3 Relational Request Emission:**
+  - [ ] 4.3.1 SQL Query Generation: Transform `ir.Report` nodes to optimized PostgreSQL queries.
+  - [ ] 4.3.2 Data Source Mapping: Resolve TABLE FILE references to database tables/views.
 
 ## Phase 5: Verification and Parity
 Ensure the new system produces correct results and maintains parity with the legacy parser.
 
-- [ ] **5.1 Regression Suite:** Run the existing test suite against the new ANTLR4-based frontend.
-- [ ] **5.2 Sample Validation:** Validate the transpiler output against real-world WebFOCUS samples in `test/samples/`.
-- [ ] **5.3 Performance Benchmarking:** Compare the execution of the generated PL/pgSQL against original WebFOCUS report execution.
+- [ ] **5.1 Regression Testing:**
+  - [ ] 5.1.1 Frontend Parity: Run the existing test suite against the new ANTLR4-based frontend.
+  - [ ] 5.1.2 End-to-End Tests: Verify PL/pgSQL output for a subset of core features.
+- [ ] **5.2 Sample Validation:**
+  - [ ] 5.2.1 Standard Samples: Validate transpiler output against samples in `test/samples/`.
+  - [ ] 5.2.2 Real-world Samples: Validate against complex samples in `test/realworld_samples/`.
+- [ ] **5.3 Performance Benchmarking:**
+  - [ ] 5.3.1 Query Execution: Compare generated SQL performance vs original WebFOCUS execution.
+  - [ ] 5.3.2 Compilation Overhead: Measure transpilation time for large projects.
 
 ## Phase 6: Decommissioning
 - [ ] **6.1 Remove Lark Dependency:** Delete Lark-related code and remove `lark` from `requirements.txt`.

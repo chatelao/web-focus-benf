@@ -44,11 +44,12 @@ package "Optimization" {
     [Optimizer] as Optimizer
     note right of IRGen
         **Open Points:**
-        * Develop SSA-based Intermediate Representation (IR) (4.2)
-        * Define IR instruction set and CFG structure (4.2.1)
-        * Implement CFG generator from ASG (4.2.2, 3.1)
-        * Implement SSA transformation (phi-nodes, renaming) (4.2.3, 3.2)
-        * Implement basic optimization passes (DCE, CP) (4.2.4)
+        * Develop SSA-based Intermediate Representation (IR) (4.2) - [DONE]
+        * Define IR instruction set and CFG structure (4.2.1) - [DONE]
+        * Implement CFG generator from ASG (4.2.2, 3.1) - [DONE]
+        * Implement SSA transformation (phi-nodes, renaming) (4.2.3, 3.2) - [DONE]
+        * Implement Constant Propagation (4.2.4.1) - [DONE]
+        * Implement Dead Code Elimination (4.2.4.2)
         * Implement set-based optimization for TABLE FILE (4.3, 3.3)
     end note
 }
@@ -58,11 +59,9 @@ package "Backend" {
     [PL/pgSQL Templates] as Templates
     note right of Emitter
         **Open Points:**
-        * Implement PL/pgSQL Emitter using Jinja2 (5.1)
-        * Setup Jinja2 environment and base templates (5.1.1, 4.1)
-        * Implement emitter for TABLE FILE relational logic (5.1.2, 4.2)
-        * Implement emitter for Dialogue Manager procedural logic (5.1.3)
-        * Map formatting commands to decoupled presentation logic (5.2, 4.3)
+        * PL/pgSQL Emission Infrastructure (5.1)
+        * Procedural Logic Emission (5.2)
+        * Relational Request Emission (5.3)
     end note
 }
 
