@@ -1,5 +1,11 @@
 import unittest
+import sys
+import os
 from antlr4 import *
+
+# Add src to sys.path
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
+
 from WebFocusReportLexer import WebFocusReportLexer
 from WebFocusReportParser import WebFocusReportParser
 from asg_builder import ReportASGBuilder
