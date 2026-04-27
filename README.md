@@ -14,7 +14,6 @@ The transpiler moves beyond simple syntax parsing to understand the semantic con
 - `DESIGN.md`: Detailed design, transpiler pipeline, and tech stack (ANTLR4, SSA-IR, Jinja2).
 - `ROADMAP.md`: Planned and accomplished steps for the migration engine.
 - `TECHNICAL_DEBTS.md`: Log of technical debts and architectural shifts.
-- `WEBFOCUS_TO_POSTGRE.md`: Migration strategy and technical reasoning.
 - `/src/`: Transpiler source code.
 - `/test/`: Test suite and real-world samples.
 - `/specifications/`: Formal WebFOCUS language manuals (Markdown).

@@ -8,7 +8,6 @@ Transpile WebFOCUS programming language codebases to PostgreSQL (PL/pgSQL) using
 - `DESIGN.md` : Detailed design of the application (transpiler pipeline) and the chosen tech stack (ANTLR4, SSA IR, Jinja2).
 - `ROADMAP.md`: Task tracking for the transpiler development, organized by chapters, 
 - `TECHNICAL_DEBTS.md`: Log of architectural or implementation debts.
-- `WEBFOCUS_TO_POSTGRE.md`: The core strategy and technical reasoning for the migration target.
 - `/specifications/`: External documentation and manuals converted to Markdown.
 - `/src/`: Transpiler source code (ANTLR4 grammars, ASG/IR logic, Jinja2 templates).
 - `/test/`: Test suite, including real-world WebFOCUS samples and regression tests.
