@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] 0.56 Remove the variants of /WEBFOCUS_TO_POSTGRE.md and integrate it into the man /CONCEPT.md (#147)
+- [x] 0.56 Remove the variants of /WEBFOCUS_TO_POSTGRE.md and integrate it into the man /CONCEPT.md (#147) (completed at 2026-04-27 11:14:12)
 - [ ] 0.55 move the /documentation_examples to the /test folder (#146)
 - [ ] 0.54 Finde eine gute Lösung um die WebFocus Syntax in "Railroad Diagrammen" ähnlich Oracle darzustellen, schreiben dazu ein "RAILROAD_CONCEPT.md" mit drei Varianten pro Schritte, wähle die jeweils Beste aus (#145)
 - [ ] 0.53 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#144)
