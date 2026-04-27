@@ -20,6 +20,7 @@ class PostgresEmitter:
         )
         self.metadata_registry = metadata_registry
         self.virtual_fields = {} # filename -> {field_name: asg.Expression}
+        self.active_joins = []
 
     def render(self, template_name, **kwargs):
         """
@@ -322,6 +323,14 @@ class PostgresEmitter:
         elif class_name == 'Call':
             args = [self.emit_expression(arg) for arg in instr.arguments]
             return f"/* CALL {instr.target}({', '.join(args)}) */"
+
+        elif class_name == 'Join':
+            self.active_joins.append(instr)
+            return f"/* JOIN {instr.left_file}.{instr.left_field} TO {instr.right_file}.{instr.right_field} */"
+
+        elif class_name == 'JoinClear':
+            self.active_joins = []
+            return "/* JOIN CLEAR * */"
 
         elif class_name == 'SetEnv':
             return f"/* SET {instr.parameter} = {instr.value} */"

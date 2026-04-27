@@ -176,14 +176,20 @@ class IRBuilder:
             elif class_name == 'SetCommand':
                 self.current_block.add_instruction(ir.SetEnv(parameter=node.parameter, value=node.value))
             elif class_name == 'Join':
-                args = [node.left_file, node.left_field, node.right_file, node.right_field]
-                self.current_block.add_instruction(ir.Call(target='JOIN', arguments=args))
+                self.current_block.add_instruction(ir.Join(
+                    left_file=node.left_file,
+                    left_field=node.left_field,
+                    right_file=node.right_file,
+                    right_field=node.right_field,
+                    join_as=node.join_as,
+                    outer=node.outer
+                ))
             elif class_name == 'DefineFile':
                 self.current_block.add_instruction(ir.Define(filename=node.filename, assignments=node.assignments))
             elif class_name == 'ReportRequest':
                 self.current_block.add_instruction(ir.Report(filename=node.filename, components=node.components))
             elif class_name == 'JoinClear':
-                self.current_block.add_instruction(ir.Call(target='JOIN CLEAR'))
+                self.current_block.add_instruction(ir.JoinClear())
             elif class_name == 'RunDM':
                 self.current_block.add_instruction(ir.Call(target='-RUN'))
             elif class_name == 'ExitDM':
