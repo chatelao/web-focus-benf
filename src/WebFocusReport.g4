@@ -2,19 +2,31 @@ grammar WebFocusReport;
 
 start: (request | dm_command | join_command | set_command | define_file)* EOF;
 
-request: table_file (verb_command | by_command | across_command | where_command | heading_command | footing_command | on_command | compute_command | dm_command)* end_command;
+request: table_file (request_element | dm_command)* end_command;
+
+request_element: verb_command
+                | by_command
+                | across_command
+                | where_command
+                | heading_command
+                | footing_command
+                | on_command
+                | (AND? compute_command)
+                ;
 
 define_file: DEFINE FILE qualified_name (define_assignment)* end_command;
 
-define_assignment: qualified_name (SLASH format_name)? EQ dm_expression SEMI?;
+define_assignment: field EQ dm_expression SEMI?;
 
-compute_command: COMPUTE qualified_name (SLASH format_name)? EQ dm_expression SEMI?;
+compute_command: COMPUTE qualified_name (SLASH format_name)? as_phrase? EQ dm_expression SEMI? as_phrase? SEMI?;
 
-format_name: NAME (DOT NUMBER)? (NAME | NUMBER)*;
+format_name: (identifier | NUMBER) (DOT (identifier | NUMBER))? (identifier | NUMBER | SUB_OP)*;
 
-join_command: JOIN (CLEAR asterisk | (LEFT? OUTER)? qualified_name IN qualified_name TO qualified_name IN qualified_name (AS NAME)?) SEMI?;
+join_command: JOIN (CLEAR asterisk | (LEFT? OUTER)? qualified_name IN qualified_name TO (ALL_KW qualified_name IN | qualified_name IN) qualified_name (AS NAME)?) SEMI?;
 
-set_command: SET NAME EQ (NAME | NUMBER | OFF | ON) SEMI?;
+set_command: SET hyphenated_name (EQ? on_table_set_value)? SEMI?;
+
+hyphenated_name: identifier (SUB_OP identifier | identifier | NUMBER)*;
 
 dm_command: dm_set
           | dm_goto
@@ -29,18 +41,20 @@ dm_command: dm_set
 
 dm_set: SET_DM amper_var EQ dm_expression SEMI?;
 
-dm_goto: GOTO_DM NAME SEMI?;
+dm_goto: GOTO_DM identifier SEMI?;
 
-dm_repeat: REPEAT_DM NAME (WHILE dm_logical_expression
+dm_repeat: REPEAT_DM identifier (WHILE dm_logical_expression
                           | UNTIL dm_logical_expression
                           | dm_primary TIMES
                           | FOR amper_var FROM dm_primary TO dm_primary (STEP dm_primary)?) SEMI?;
 
 dm_label: LABEL_DM;
 
-dm_if: IF_DM dm_logical_expression (THEN GOTO? | GOTO) NAME (ELSE GOTO NAME)? SEMI?;
+dm_if: IF_DM dm_logical_expression (THEN GOTO? | GOTO) identifier (ELSE GOTO identifier)? SEMI?;
 
-dm_type: TYPE_DM (dm_primary)* SEMI?;
+dm_type: TYPE_DM (dm_type_element)* SEMI?;
+
+dm_type_element: dm_primary | identifier | SUB_OP | DOT | COMMA | EQ | asterisk | COLON;
 
 dm_include: INCLUDE_DM qualified_name SEMI?;
 
@@ -117,9 +131,9 @@ field_separator: COMMA | AND THE | AND | THE;
 
 field_or_prefixed: (prefix_operator DOT)* field;
 
-field: qualified_name as_phrase?;
+field: qualified_name (SLASH format_name)? as_phrase?;
 
-as_phrase: AS STRING;
+as_phrase: AS (STRING | identifier | NUMBER);
 
 asterisk: '*';
 
@@ -132,24 +146,29 @@ sort_options: (HIGHEST | LOWEST | TOP | BOTTOM) NUMBER?
 
 where_command: WHERE TOTAL? dm_logical_expression SEMI?;
 
-heading_command: HEADING CENTER? STRING+;
+heading_command: (HEADING | FOOTING) CENTER? (STRING | identifier | dm_primary | EQ | SUB_OP | DOT | COMMA | asterisk)+;
 
-footing_command: FOOTING CENTER? STRING+;
+footing_command: (HEADING | FOOTING) CENTER? (STRING | identifier | dm_primary | EQ | SUB_OP | DOT | COMMA | asterisk)+;
 
-on_command: ON TABLE on_table_options
-          | ON qualified_name on_field_options;
+on_command: ON (TABLE | qualified_name) on_table_options;
 
-on_table_options: (SUBHEAD | SUBFOOT) CENTER? STRING+
+on_table_options: (SUBHEAD | SUBFOOT) CENTER? (STRING | identifier | dm_primary | EQ | SUB_OP | DOT | COMMA | asterisk)+
                 | COLUMN_TOTAL_KW
                 | ROW_TOTAL_KW
+                | style_block
                 | output_command
                 | summarize_command
-                | set_command;
+                | (SET hyphenated_name (EQ? on_table_set_value)?);
 
-on_field_options: (SUBHEAD | SUBFOOT) CENTER? STRING+
-                | summarize_command;
+on_table_set_value: (NAME | NUMBER | OFF | ON | hyphenated_name | asterisk | identifier | STRING | dm_float);
 
-summarize_command: (SUBTOTAL | SUB_TOTAL | SUMMARIZE | RECOMPUTE) (summarize_options? (field as_phrase? | as_phrase) | summarize_options)?;
+style_block: SET? STYLE asterisk (style_declaration)* ENDSTYLE;
+
+style_declaration: identifier EQ style_value (COMMA identifier EQ style_value)* (COMMA? DOLLAR)?;
+
+style_value: (identifier | NUMBER | STRING | asterisk | hyphenated_name | dm_float);
+
+summarize_command: (SUBTOTAL | SUB_TOTAL | SUMMARIZE | RECOMPUTE) (summarize_options? (field | as_phrase) | summarize_options)?;
 
 summarize_options: ROLL_DOT (prefix_operator DOT)* | (prefix_operator DOT)+;
 
@@ -163,6 +182,14 @@ identifier: NAME
           | prefix_operator
           | IS | CONTAINS | OMITS | LIKE | TOTAL | MISSING | INCLUDES | EXCLUDES | EXCEEDS
           | LESS | THAN | MORE_KW | GREATER
+          | ALL_KW | STYLE | BREAK | CENTER | PAGE | TYPE
+          | TABLE | FILE | DEFINE | COMPUTE | END
+          | PRINT | SUM | LIST | COUNT | WRITE | ADD | BY | ACROSS | WHERE
+          | WHILE | UNTIL | TIMES | FOR | FROM | TO | STEP
+          | HIGHEST | LOWEST | TOP | BOTTOM | NOPRINT
+          | AS | IN | RANKED | JOIN | CLEAR | LEFT | OUTER | SET | OFF | ON
+          | SUBTOTAL | SUMMARIZE | RECOMPUTE | HOLD | PCHOLD | SAVE | SAVB | FORMAT
+          | SUBHEAD | SUBFOOT
           ;
 
 prefix_operator: AVE | MIN | MAX | CNT | FST | LST | ASQ | MDN | MDE | PCT | RPCT | RNK | DST | TOT | SUM | CT;
@@ -196,6 +223,7 @@ FILE: [fF][iI][lL][eE];
 DEFINE: [dD][eE][fF][iI][nN][eE];
 COMPUTE: [cC][oO][mM][pP][uU][tT][eE];
 END: [eE][nN][dD];
+ENDSTYLE: [eE][nN][dD][sS][tT][yY][lL][eE];
 
 PRINT: [pP][rR][iI][nN][tT];
 SUM: [sS][uU][mM];
@@ -220,7 +248,13 @@ CLEAR: [cC][lL][eE][aA][rR];
 LEFT: [lL][eE][fF][tT];
 OUTER: [oO][uU][tT][eE][rR];
 SET: [sS][eE][tT];
+STYLE: [sS][tT][yY][lL][eE];
+ALL_KW: [aA][lL][lL];
+BREAK: [bB][rR][eE][aA][kK];
+PAGE: [pP][aA][gG][eE];
+TYPE: [tT][yY][pP][eE];
 OFF: [oO][fF][fF];
+ON: [oO][nN];
 WHILE: [wW][hH][iI][lL][eE];
 UNTIL: [uU][nN][tT][iI][lL];
 TIMES: [tT][iI][mM][eE][sS];
@@ -261,7 +295,6 @@ IF: [iI][fF];
 
 HEADING: [hH][eE][aA][dD][iI][nN][gG];
 FOOTING: [fF][oO][oO][tT][iI][nN][gG];
-ON: [oO][nN];
 SUBHEAD: [sS][uU][bB][hH][eE][aA][dD];
 SUBFOOT: [sS][uU][bB][fF][oO][oO][tT];
 CENTER: [cC][eE][nN][tT][eE][rR];
@@ -294,19 +327,21 @@ CT: [cC][tT];
 
 DOT: '.';
 COMMA: ',';
+COLON: ':';
 SEMI: ';';
 SLASH: '/';
 MUL: '*';
 ADD_OP: '+';
 SUB_OP: '-';
 CONCAT: '||' | '|';
+DOLLAR: '$';
 
 NUMBER: [0-9]+;
 
 STRING: '\'' ~[']* '\''
       | '"' ~["]* '"';
 
-AMPER_VAR: ('&&' | '&') [a-zA-Z_] [a-zA-Z0-9_]*;
+AMPER_VAR: ('&&' | '&') [a-zA-Z_] [a-zA-Z_0-9]*;
 
 NAME: [a-zA-Z_] [a-zA-Z0-9_]*;
 

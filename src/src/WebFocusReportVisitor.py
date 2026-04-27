@@ -19,11 +19,6 @@ class WebFocusReportVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by WebFocusReportParser#request_element.
-    def visitRequest_element(self, ctx:WebFocusReportParser.Request_elementContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by WebFocusReportParser#define_file.
     def visitDefine_file(self, ctx:WebFocusReportParser.Define_fileContext):
         return self.visitChildren(ctx)
@@ -289,23 +284,13 @@ class WebFocusReportVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by WebFocusReportParser#on_table_set_value.
-    def visitOn_table_set_value(self, ctx:WebFocusReportParser.On_table_set_valueContext):
+    # Visit a parse tree produced by WebFocusReportParser#on_table_set_option.
+    def visitOn_table_set_option(self, ctx:WebFocusReportParser.On_table_set_optionContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by WebFocusReportParser#style_block.
-    def visitStyle_block(self, ctx:WebFocusReportParser.Style_blockContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by WebFocusReportParser#style_declaration.
-    def visitStyle_declaration(self, ctx:WebFocusReportParser.Style_declarationContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by WebFocusReportParser#style_value.
-    def visitStyle_value(self, ctx:WebFocusReportParser.Style_valueContext):
+    # Visit a parse tree produced by WebFocusReportParser#on_field_options.
+    def visitOn_field_options(self, ctx:WebFocusReportParser.On_field_optionsContext):
         return self.visitChildren(ctx)
 
 
