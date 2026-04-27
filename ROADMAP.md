@@ -106,18 +106,24 @@
   - [x] 4.1.2 Implement Symbol Table for variable scope and type tracking (completed at 2026-04-26 15:45:00)
   - [ ] 4.1.3 Implement ASG builder from ANTLR4 AST (Infrastructure and DM basics completed at 2026-04-26 16:00:00)
 - [ ] 4.2 Develop SSA-based Intermediate Representation (IR) for optimization
-  - [ ] 4.2.1 Define IR instruction set and CFG structure
-  - [ ] 4.2.2 Implement CFG generator from ASG
-  - [ ] 4.2.3 Implement SSA transformation (phi-nodes, renaming)
-  - [ ] 4.2.4 Implement basic optimization passes (DCE, Constant Propagation)
+  - [x] 4.2.1 Define IR instruction set and CFG structure (completed at 2026-04-26 16:30:00)
+  - [x] 4.2.2 Implement CFG generator from ASG (completed at 2026-04-26 17:00:00)
+  - [x] 4.2.3 Implement SSA transformation (phi-nodes, renaming) (completed at 2026-04-27 08:30:00)
+  - [ ] 4.2.4 Implement basic optimization passes
+    - [x] 4.2.4.1 Constant Propagation (completed at 2026-04-27 09:30:00)
+    - [ ] 4.2.4.2 Dead Code Elimination
 - [ ] 4.3 Implement set-based optimization passes for common TABLE FILE patterns
 
 ## Chapter 5: Backend - PL/pgSQL Emission
-- [ ] 5.1 Implement PL/pgSQL Emitter using Jinja2
+- [ ] 5.1 Implement PL/pgSQL Emission Infrastructure
   - [ ] 5.1.1 Setup Jinja2 environment and base templates
-  - [ ] 5.1.2 Implement emitter for TABLE FILE relational logic
-  - [ ] 5.1.3 Implement emitter for Dialogue Manager procedural logic
-- [ ] 5.2 Map WebFOCUS formatting commands to decoupled presentation logic
+  - [ ] 5.1.2 Implement mapping between SSA variables and PL/pgSQL
+- [ ] 5.2 Implement Procedural Logic Emission
+  - [ ] 5.2.1 Generate code for assignments and expressions
+  - [ ] 5.2.2 Generate code for control flow (branches, loops)
+- [ ] 5.3 Implement Relational Request Emission
+  - [ ] 5.3.1 Transform IR.Report to PostgreSQL queries
+  - [ ] 5.3.2 Resolve data sources to database objects
 
 ## Chapter 6: Tooling & Integration
 - [ ] 6.1 Integrate parser results into the documentation generator
