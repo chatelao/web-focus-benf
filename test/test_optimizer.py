@@ -7,7 +7,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 's
 
 import ir
 import asg
-from optimizer import ConstantPropagator
+from optimizer import ConstantPropagator, DeadCodeEliminator
 
 class TestOptimizer(unittest.TestCase):
     def test_constant_propagation_linear(self):
@@ -110,6 +110,98 @@ class TestOptimizer(unittest.TestCase):
         where_clause = report_instr.components[0]
         self.assertIsInstance(where_clause.condition.right, asg.Literal)
         self.assertEqual(where_clause.condition.right.value, 100)
+
+    def test_dead_code_elimination_unreachable(self):
+        # ENTRY: GOTO EXIT
+        # UNREACHABLE: X = 1
+        # EXIT: -TYPE END
+        cfg = ir.ControlFlowGraph()
+        entry = ir.BasicBlock("ENTRY")
+        unreachable = ir.BasicBlock("UNREACHABLE")
+        exit_block = ir.BasicBlock("EXIT")
+
+        cfg.add_block(entry)
+        cfg.add_block(unreachable)
+        cfg.add_block(exit_block)
+        cfg.entry_block = entry
+
+        entry.add_instruction(ir.Jump(target="EXIT"))
+        cfg.add_edge("ENTRY", "EXIT")
+
+        unreachable.add_instruction(ir.Assign(target="X_0", source=asg.Literal(1)))
+        cfg.add_edge("UNREACHABLE", "EXIT") # This edge is from an unreachable block
+
+        exit_block.add_instruction(ir.Type(messages=[asg.Literal("END")]))
+
+        dce = DeadCodeEliminator()
+        dce.run(cfg)
+
+        self.assertIn("ENTRY", cfg.blocks)
+        self.assertIn("EXIT", cfg.blocks)
+        self.assertNotIn("UNREACHABLE", cfg.blocks)
+        self.assertEqual(len(cfg.blocks["EXIT"].predecessors), 1)
+        self.assertEqual(cfg.blocks["EXIT"].predecessors[0].name, "ENTRY")
+
+    def test_dead_code_elimination_unused_assign(self):
+        # ENTRY: X_0 = 1
+        # ENTRY: Y_0 = 2
+        # ENTRY: -TYPE Y_0
+        cfg = ir.ControlFlowGraph()
+        entry = ir.BasicBlock("ENTRY")
+        cfg.add_block(entry)
+        cfg.entry_block = entry
+
+        entry.add_instruction(ir.Assign(target="X_0", source=asg.Literal(1))) # Unused
+        entry.add_instruction(ir.Assign(target="Y_0", source=asg.Literal(2))) # Used
+        entry.add_instruction(ir.Type(messages=[asg.AmperVar("Y_0")]))
+
+        dce = DeadCodeEliminator()
+        dce.run(cfg)
+
+        instrs = entry.instructions
+        self.assertEqual(len(instrs), 2)
+        self.assertEqual(instrs[0].target, "Y_0")
+        self.assertIsInstance(instrs[1], ir.Type)
+
+    def test_dead_code_elimination_side_effects(self):
+        # ENTRY: X_0 = 1
+        # ENTRY: -TYPE "Hello"
+        # ENTRY: TABLE FILE CAR ... END
+        cfg = ir.ControlFlowGraph()
+        entry = ir.BasicBlock("ENTRY")
+        cfg.add_block(entry)
+        cfg.entry_block = entry
+
+        entry.add_instruction(ir.Assign(target="X_0", source=asg.Literal(1))) # Unused
+        entry.add_instruction(ir.Type(messages=[asg.Literal("Hello")])) # Side effect
+        entry.add_instruction(ir.Report(filename="CAR", components=[])) # Side effect
+
+        dce = DeadCodeEliminator()
+        dce.run(cfg)
+
+        instrs = entry.instructions
+        self.assertEqual(len(instrs), 2)
+        self.assertIsInstance(instrs[0], ir.Type)
+        self.assertIsInstance(instrs[1], ir.Report)
+
+    def test_dead_code_elimination_cascading(self):
+        # X_0 = 1
+        # Y_0 = X_0 + 1
+        # Z_0 = Y_0 + 1
+        # All unused
+        cfg = ir.ControlFlowGraph()
+        entry = ir.BasicBlock("ENTRY")
+        cfg.add_block(entry)
+        cfg.entry_block = entry
+
+        entry.add_instruction(ir.Assign(target="X_0", source=asg.Literal(1)))
+        entry.add_instruction(ir.Assign(target="Y_0", source=asg.BinaryOperation(asg.AmperVar("X_0"), "+", asg.Literal(1))))
+        entry.add_instruction(ir.Assign(target="Z_0", source=asg.BinaryOperation(asg.AmperVar("Y_0"), "+", asg.Literal(1))))
+
+        dce = DeadCodeEliminator()
+        dce.run(cfg)
+
+        self.assertEqual(len(entry.instructions), 0)
 
 if __name__ == '__main__':
     unittest.main()

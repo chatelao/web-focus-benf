@@ -112,10 +112,14 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
     - [x] 3.2.3.2 Renaming Algorithm: Implement recursive DFS over dominator tree for variable versioning.
 - [ ] **3.3 Optimization Passes:**
   - [x] 3.3.1 Constant Propagation: Substitute variables with literal values. (Implemented in `src/optimizer.py`)
-  - [ ] 3.3.2 Dead Code Elimination: Remove unreachable blocks and unused assignments.
+  - [x] 3.3.2 Dead Code Elimination:
+    - [x] 3.3.2.1 Reachability Analysis: Remove unreachable blocks from CFG.
+    - [x] 3.3.2.2 Unused Assignment Elimination: Remove SSA assignments with no consumers.
 - [ ] **3.4 Relational Lifting:**
   - [ ] 3.4.1 Loop Analysis: Identify loops that iterate over data sources.
-  - [ ] 3.4.2 Predicate Pushdown: Identify filters that can be moved to SQL WHERE.
+  - [ ] 3.4.2 Predicate Pushdown:
+    - [ ] 3.4.2.1 Filter Lifting: Move WHERE conditions to SQL.
+    - [ ] 3.4.2.2 Total Lifting: Move WHERE TOTAL conditions to SQL HAVING.
   - [ ] 3.4.3 Projection Pruning: Identify unused fields.
 
 ## Phase 4: Backend Emission (Jinja2)
