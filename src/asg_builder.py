@@ -358,6 +358,7 @@ class ReportASGBuilder(WebFocusReportVisitor):
         right_file = ctx.qualified_name(3).getText()
         join_as = ctx.NAME().getText() if ctx.NAME() else None
         outer = ctx.OUTER() is not None
+        is_all = ctx.ALL() is not None
 
         return Join(
             left_file=left_file,
@@ -365,7 +366,8 @@ class ReportASGBuilder(WebFocusReportVisitor):
             right_file=right_file,
             right_field=right_field,
             join_as=join_as,
-            outer=outer
+            outer=outer,
+            is_all=is_all
         )
 
     def visitDefine_file(self, ctx: WebFocusReportParser.Define_fileContext):

@@ -186,8 +186,8 @@ class ComputeCommand(Command):
 
 class Join(Command):
     """Represents a JOIN command."""
-    def __init__(self, left_file, left_field, right_file, right_field, join_as=None, outer=False, **kwargs):
-        super().__init__(left_file=left_file, left_field=left_field, right_file=right_file, right_field=right_field, join_as=join_as, outer=outer, **kwargs)
+    def __init__(self, left_file, left_field, right_file, right_field, join_as=None, outer=False, is_all=False, **kwargs):
+        super().__init__(left_file=left_file, left_field=left_field, right_file=right_file, right_field=right_field, join_as=join_as, outer=outer, is_all=is_all, **kwargs)
 
 class JoinClear(Command):
     """Represents a JOIN CLEAR * command."""

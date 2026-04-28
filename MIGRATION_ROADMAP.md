@@ -169,7 +169,7 @@ Ensure the new system produces correct results and maintains parity with the leg
   - [x] 5.1.1 Frontend Parity: Run the existing test suite against the new ANTLR4-based frontend. (Verified via `test/test_antlr_wf_parser.py`)
   - [ ] 5.1.2 End-to-End Tests: Verify PL/pgSQL output for a subset of core features.
   - [ ] 5.1.3 Grammar Coverage: Ensure all core EBNF features are implemented and tested.
-    - [ ] 5.1.3.1 Support `ALL` keyword in `JOIN` commands.
+    - [x] 5.1.3.1 Support `ALL` keyword in `JOIN` commands.
     - [ ] 5.1.3.2 Support hyphenated `SET` keywords (e.g., `ONLINE-FMT`).
     - [ ] 5.1.3.3 Support `COMPOUND LAYOUT` structure.
     - [x] 5.1.3.4 Support inline format specifications (e.g., `SUM FIELD/I08M`).

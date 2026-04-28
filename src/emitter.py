@@ -328,7 +328,8 @@ class PostgresEmitter:
 
         elif class_name == 'Join':
             self.active_joins.append(instr)
-            return f"/* JOIN {instr.left_file}.{instr.left_field} TO {instr.right_file}.{instr.right_field} */"
+            all_kw = " ALL" if getattr(instr, 'is_all', False) else ""
+            return f"/* JOIN {instr.left_file}.{instr.left_field} TO{all_kw} {instr.right_file}.{instr.right_field} */"
 
         elif class_name == 'JoinClear':
             self.active_joins = []
