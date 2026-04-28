@@ -56,7 +56,25 @@ TABLE_REQUEST ::= 'TABLE' 'FILE' qualified_name ( VERB_PHRASE | SORT_PHRASE | ..
 ---
 
 ## Appendix: Examples
-<tbd>
+
+### `JOIN` Command
+
+#### 1. Source (ANTLR4)
+```antlr
+join_command: JOIN (CLEAR asterisk | (LEFT? OUTER)? qualified_name IN qualified_name TO ALL? qualified_name IN qualified_name (AS NAME)?) SEMI?;
+```
+
+#### 2. Intermediate (Pruned EBNF)
+Technical details like `asterisk` are inlined or simplified:
+```ebnf
+JOIN_COMMAND ::= 'JOIN' ( 'CLEAR' '*' | [ [ 'LEFT' ] 'OUTER' ] qualified_name 'IN' qualified_name 'TO' [ 'ALL' ] qualified_name 'IN' qualified_name [ 'AS' NAME ] ) ';'?
+```
+
+#### 3. Conceptual "Oracle Style" Output
+*   **Optional Clauses:** `LEFT`, `OUTER`, and `ALL` are shown as optional branches.
+*   **Choice:** The diagram branches between the `CLEAR` variant and the full `JOIN` syntax.
+*   **Terminals:** Keywords like `JOIN`, `CLEAR`, `IN`, `TO`, `AS` are in rounded boxes.
+*   **Non-Terminals:** `qualified_name` and `NAME` are in rectangular boxes.
 
 ## Appendix: Discarded Alternatives
 
