@@ -172,12 +172,18 @@ class PostgresEmitter:
         elif class_name == 'IsMissingExpression':
             self._discover_vars_in_expr(node.expression, variables)
 
-    def emit_expression(self, expr, in_query=False, virtual_fields=None, qualifier=None):
+    def emit_expression(self, expr, **kwargs):
         """
         Translates ASG expression nodes to PostgreSQL SQL strings.
         """
         if expr is None:
             return "NULL"
+
+        in_query = kwargs.get('in_query', False)
+        virtual_fields = kwargs.get('virtual_fields')
+        qualifier = kwargs.get('qualifier')
+        aggregate = kwargs.get('aggregate', False)
+        group_by_fields = kwargs.get('group_by_fields', [])
 
         class_name = expr.__class__.__name__
 
@@ -195,16 +201,24 @@ class PostgresEmitter:
             # but for expressions in procedural logic they might be variables.
             if in_query:
                 if virtual_fields and expr.name in virtual_fields:
-                    # Recursively emit the virtual field expression
-                    return self.emit_expression(virtual_fields[expr.name], in_query=True, virtual_fields=virtual_fields, qualifier=qualifier)
-                if qualifier:
-                    return qualifier(expr.name)
-                return expr.name
+                    # Recursively emit the virtual field expression.
+                    # We expand it WITHOUT internal aggregation, then wrap the result if needed.
+                    new_kwargs = kwargs.copy()
+                    new_kwargs['aggregate'] = False
+                    expanded = self.emit_expression(virtual_fields[expr.name], **new_kwargs)
+                    if aggregate:
+                        return f"SUM({expanded})"
+                    return expanded
+
+                sql_f = qualifier(expr.name) if qualifier else expr.name
+                if aggregate and group_by_fields is not None and sql_f not in group_by_fields:
+                    return f"SUM({sql_f})"
+                return sql_f
             return self._sanitize_name(expr.name)
 
         elif class_name == 'BinaryOperation':
-            left = self.emit_expression(expr.left, in_query=in_query, virtual_fields=virtual_fields, qualifier=qualifier)
-            right = self.emit_expression(expr.right, in_query=in_query, virtual_fields=virtual_fields, qualifier=qualifier)
+            left = self.emit_expression(expr.left, **kwargs)
+            right = self.emit_expression(expr.right, **kwargs)
             op = expr.operator.upper()
 
             # Map WebFOCUS operators to SQL
@@ -223,7 +237,7 @@ class PostgresEmitter:
             return f"({left} {sql_op} {right})"
 
         elif class_name == 'UnaryOperation':
-            operand = self.emit_expression(expr.operand, in_query=in_query, virtual_fields=virtual_fields, qualifier=qualifier)
+            operand = self.emit_expression(expr.operand, **kwargs)
             op = expr.operator.upper()
             op_mapping = {
                 'NOT': 'NOT ',
@@ -232,32 +246,32 @@ class PostgresEmitter:
             return f"{sql_op}({operand})"
 
         elif class_name == 'FunctionCall':
-            args = [self.emit_expression(arg, in_query=in_query, virtual_fields=virtual_fields, qualifier=qualifier) for arg in expr.arguments]
+            args = [self.emit_expression(arg, **kwargs) for arg in expr.arguments]
             return f"{expr.function_name}({', '.join(args)})"
 
         elif class_name == 'IfExpression':
-            cond = self.emit_expression(expr.condition, in_query=in_query, virtual_fields=virtual_fields, qualifier=qualifier)
-            then_e = self.emit_expression(expr.then_expr, in_query=in_query, virtual_fields=virtual_fields, qualifier=qualifier)
-            else_e = self.emit_expression(expr.else_expr, in_query=in_query, virtual_fields=virtual_fields, qualifier=qualifier)
+            cond = self.emit_expression(expr.condition, **kwargs)
+            then_e = self.emit_expression(expr.then_expr, **kwargs)
+            else_e = self.emit_expression(expr.else_expr, **kwargs)
             return f"(CASE WHEN {cond} THEN {then_e} ELSE {else_e} END)"
 
         elif class_name == 'BetweenExpression':
-            expr_val = self.emit_expression(expr.expression, in_query=in_query, virtual_fields=virtual_fields, qualifier=qualifier)
-            lower = self.emit_expression(expr.lower, in_query=in_query, virtual_fields=virtual_fields, qualifier=qualifier)
-            upper = self.emit_expression(expr.upper, in_query=in_query, virtual_fields=virtual_fields, qualifier=qualifier)
+            expr_val = self.emit_expression(expr.expression, **kwargs)
+            lower = self.emit_expression(expr.lower, **kwargs)
+            upper = self.emit_expression(expr.upper, **kwargs)
             return f"({expr_val} BETWEEN {lower} AND {upper})"
 
         elif class_name == 'InExpression':
-            expr_val = self.emit_expression(expr.expression, in_query=in_query, virtual_fields=virtual_fields, qualifier=qualifier)
+            expr_val = self.emit_expression(expr.expression, **kwargs)
             if hasattr(expr, 'filename') and expr.filename:
                 table_name = self._resolve_table_name(expr.filename)
                 return f"({expr_val} IN (SELECT * FROM {table_name}))"
             else:
-                values = [self.emit_expression(val, in_query=in_query, virtual_fields=virtual_fields, qualifier=qualifier) for val in expr.values]
+                values = [self.emit_expression(val, **kwargs) for val in expr.values]
                 return f"({expr_val} IN ({', '.join(values)}))"
 
         elif class_name == 'IsMissingExpression':
-            expr_val = self.emit_expression(expr.expression, in_query=in_query, virtual_fields=virtual_fields, qualifier=qualifier)
+            expr_val = self.emit_expression(expr.expression, **kwargs)
             op = "IS NOT NULL" if expr.inverted else "IS NULL"
             return f"({expr_val} {op})"
 
@@ -496,7 +510,7 @@ class PostgresEmitter:
         # COMPUTE commands
         compute_commands = [c for c in instr.components if c.__class__.__name__ == 'ComputeCommand']
         for cc in compute_commands:
-            sql_expr = self.emit_expression(cc.expression, in_query=True, virtual_fields=file_virtual_fields, qualifier=qualify_field)
+            sql_expr = self.emit_expression(cc.expression, in_query=True, virtual_fields=file_virtual_fields, qualifier=qualify_field, aggregate=is_aggregating, group_by_fields=group_by_fields)
             if cc.name:
                 sql_expr = f"{sql_expr} AS \"{cc.name}\""
             select_fields.append(sql_expr)
@@ -504,7 +518,7 @@ class PostgresEmitter:
         # WHERE and HAVING
         where_clauses = [self.emit_expression(c.condition, in_query=True, virtual_fields=file_virtual_fields, qualifier=qualify_field) for c in instr.components
                          if c.__class__.__name__ == 'WhereClause' and not c.is_total]
-        having_clauses = [self.emit_expression(c.condition, in_query=True, virtual_fields=file_virtual_fields, qualifier=qualify_field) for c in instr.components
+        having_clauses = [self.emit_expression(c.condition, in_query=True, virtual_fields=file_virtual_fields, qualifier=qualify_field, aggregate=is_aggregating, group_by_fields=group_by_fields) for c in instr.components
                           if c.__class__.__name__ == 'WhereClause' and c.is_total]
 
         if not select_fields:

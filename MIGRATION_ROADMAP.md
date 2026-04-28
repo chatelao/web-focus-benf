@@ -170,7 +170,7 @@ Ensure the new system produces correct results and maintains parity with the leg
   - [ ] 5.1.2 End-to-End Tests: Verify PL/pgSQL output for a subset of core features.
     - [x] 5.1.2.1 Basic Reporting: PRINT/SUM requests with WHERE clauses. (Verified via `test/test_e2e_basic_reporting.py`)
     - [x] 5.1.2.2 Advanced Filtering: Complex WHERE clauses, BETWEEN, IN, MISSING. (Verified via `test/test_e2e_advanced_filtering.py`)
-    - [ ] 5.1.2.3 Calculated Fields: DEFINE and COMPUTE expression lifting.
+    - [x] 5.1.2.3 Calculated Fields: DEFINE and COMPUTE expression lifting. (Verified via `test/test_e2e_calculated_fields.py`)
     - [ ] 5.1.2.4 Data Integration: Multi-table JOINs and virtual field lifting from joined files.
     - [ ] 5.1.2.5 Control Flow: DM variable resolution and PL/pgSQL state machine execution.
   - [ ] 5.1.3 Grammar Coverage: Ensure all core EBNF features are implemented and tested.
