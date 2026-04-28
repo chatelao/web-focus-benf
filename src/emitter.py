@@ -22,6 +22,14 @@ class PostgresEmitter:
         self.virtual_fields = {} # filename -> {field_name: asg.Expression}
         self.active_joins = []
 
+    def emit(self, cfg, procedure_name="webfocus_procedure"):
+        """
+        Performs full emission of a CFG to a PL/pgSQL function.
+        """
+        variables = self.get_variables_from_cfg(cfg)
+        body = self.emit_cfg(cfg)
+        return self.emit_procedure(procedure_name, body, variables)
+
     def render(self, template_name, **kwargs):
         """
         Renders a template with the given context.
