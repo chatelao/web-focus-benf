@@ -129,6 +129,8 @@ class ReportASGBuilder(WebFocusReportVisitor):
             return self.visit(ctx.output_command())
         if ctx.summarize_command():
             return self.visit(ctx.summarize_command())
+        if ctx.recap_command():
+            return self.visit(ctx.recap_command())
         if ctx.set_command():
             return self.visit(ctx.set_command())
         return None
@@ -140,6 +142,8 @@ class ReportASGBuilder(WebFocusReportVisitor):
             return Subhead(text=text, centered=centered) if ctx.SUBHEAD() else Subfoot(text=text, centered=centered)
         if ctx.summarize_command():
             return self.visit(ctx.summarize_command())
+        if ctx.recap_command():
+            return self.visit(ctx.recap_command())
         return None
 
     def visitOutput_command(self, ctx: WebFocusReportParser.Output_commandContext):
@@ -158,6 +162,55 @@ class ReportASGBuilder(WebFocusReportVisitor):
         format = ctx.format_name().getText() if ctx.format_name() else None
         expression = self.visit(ctx.dm_expression())
         return ComputeCommand(name=name, format=format, expression=expression)
+
+    def visitRecap_command(self, ctx: WebFocusReportParser.Recap_commandContext):
+        assignments = [self.visit(a) for a in ctx.recap_assignment()]
+        return RecapCommand(assignments=assignments)
+
+    def visitRecap_assignment(self, ctx: WebFocusReportParser.Recap_assignmentContext):
+        name = ctx.qualified_name().getText()
+
+        # Check if '(' immediately follows qualified_name
+        has_col_ref = ctx.getChild(1).getText() == '('
+        column_ref = self.visit(ctx.dm_expression(0)) if has_col_ref else None
+
+        # The main expression is the first dm_expression if no col_ref, or the second if col_ref exists.
+        expr_idx = 1 if has_col_ref else 0
+        expression = self.visit(ctx.dm_expression(expr_idx))
+
+        format = ctx.format_name().getText() if ctx.format_name() else None
+
+        alias = None
+        indent = None
+        noprint = False
+
+        for opt in ctx.recap_option():
+            res = self.visit(opt)
+            if isinstance(res, str):
+                alias = res
+            elif isinstance(res, int):
+                indent = res
+            elif res is True:
+                noprint = True
+
+        return RecapAssignment(
+            name=name,
+            expression=expression,
+            column_ref=column_ref,
+            format=format,
+            alias=alias,
+            indent=indent,
+            noprint=noprint
+        )
+
+    def visitRecap_option(self, ctx: WebFocusReportParser.Recap_optionContext):
+        if ctx.as_phrase():
+            return self.visit(ctx.as_phrase())
+        if ctx.INDENT():
+            return int(ctx.NUMBER().getText())
+        if ctx.NOPRINT():
+            return True
+        return None
 
     def visitSort_options(self, ctx: WebFocusReportParser.Sort_optionsContext):
         options = {}

@@ -2,13 +2,22 @@ grammar WebFocusReport;
 
 start: (request | dm_command | join_command | set_command | define_file)* EOF;
 
-request: table_file (verb_command | by_command | across_command | where_command | heading_command | footing_command | on_command | compute_command | dm_command)* end_command;
+request: table_file (verb_command | by_command | across_command | where_command | heading_command | footing_command | on_command | compute_command | recap_command | dm_command)* end_command;
 
 define_file: DEFINE FILE qualified_name (define_assignment)* end_command;
 
 define_assignment: qualified_name (SLASH format_name)? EQ dm_expression SEMI?;
 
 compute_command: COMPUTE qualified_name (SLASH format_name)? EQ dm_expression SEMI?;
+
+recap_command: RECAP recap_assignment+;
+
+recap_assignment: qualified_name ('(' dm_expression ')')? (SLASH format_name)? EQ dm_expression (SEMI? recap_option)* SEMI?;
+
+recap_option: as_phrase
+            | INDENT NUMBER
+            | NOPRINT
+            ;
 
 format_name: NAME (DOT NUMBER)? (NAME | NUMBER)*;
 
@@ -150,10 +159,12 @@ on_table_options: (SUBHEAD | SUBFOOT) CENTER? STRING+
                 | ROW_TOTAL_KW
                 | output_command
                 | summarize_command
+                | recap_command
                 | set_command;
 
 on_field_options: (SUBHEAD | SUBFOOT) CENTER? STRING+
-                | summarize_command;
+                | summarize_command
+                | recap_command;
 
 summarize_command: (SUBTOTAL | SUB_TOTAL | SUMMARIZE | RECOMPUTE) (summarize_options? (field as_phrase? | as_phrase) | summarize_options)?;
 
@@ -170,6 +181,7 @@ identifier: NAME
           | IS | CONTAINS | OMITS | LIKE | TOTAL | MISSING | INCLUDES | EXCLUDES | EXCEEDS | ALL
           | LESS | THAN | MORE_KW | GREATER
           | OFF | ON
+          | RECAP | INDENT
           ;
 
 prefix_operator: AVE | MIN | MAX | CNT | FST | LST | ASQ | MDN | MDE | PCT | RPCT | RNK | DST | TOT | SUM | CT;
@@ -273,6 +285,9 @@ ON: [oO][nN];
 SUBHEAD: [sS][uU][bB][hH][eE][aA][dD];
 SUBFOOT: [sS][uU][bB][fF][oO][oO][tT];
 CENTER: [cC][eE][nN][tT][eE][rR];
+
+RECAP: [rR][eE][cC][aA][pP];
+INDENT: [iI][nN][dD][eE][nN][tT];
 
 SUBTOTAL: [sS][uU][bB][tT][oO][tT][aA][lL];
 SUMMARIZE: [sS][uU][mM][mM][aA][rR][iI][zZ][eE];

@@ -53,6 +53,33 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by WebFocusReportParser#recap_command.
+    def enterRecap_command(self, ctx:WebFocusReportParser.Recap_commandContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#recap_command.
+    def exitRecap_command(self, ctx:WebFocusReportParser.Recap_commandContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#recap_assignment.
+    def enterRecap_assignment(self, ctx:WebFocusReportParser.Recap_assignmentContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#recap_assignment.
+    def exitRecap_assignment(self, ctx:WebFocusReportParser.Recap_assignmentContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#recap_option.
+    def enterRecap_option(self, ctx:WebFocusReportParser.Recap_optionContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#recap_option.
+    def exitRecap_option(self, ctx:WebFocusReportParser.Recap_optionContext):
+        pass
+
+
     # Enter a parse tree produced by WebFocusReportParser#format_name.
     def enterFormat_name(self, ctx:WebFocusReportParser.Format_nameContext):
         pass

@@ -34,6 +34,21 @@ class WebFocusReportVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by WebFocusReportParser#recap_command.
+    def visitRecap_command(self, ctx:WebFocusReportParser.Recap_commandContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#recap_assignment.
+    def visitRecap_assignment(self, ctx:WebFocusReportParser.Recap_assignmentContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#recap_option.
+    def visitRecap_option(self, ctx:WebFocusReportParser.Recap_optionContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by WebFocusReportParser#format_name.
     def visitFormat_name(self, ctx:WebFocusReportParser.Format_nameContext):
         return self.visitChildren(ctx)

@@ -179,6 +179,16 @@ class OnCommand(Command):
     def __init__(self, target, actions=None, **kwargs):
         super().__init__(target=target, actions=actions or [], **kwargs)
 
+class RecapAssignment(ASGNode):
+    """Represents a single assignment within a RECAP command."""
+    def __init__(self, name, expression, column_ref=None, format=None, alias=None, indent=None, noprint=False, **kwargs):
+        super().__init__(name=name, expression=expression, column_ref=column_ref, format=format, alias=alias, indent=indent, noprint=noprint, **kwargs)
+
+class RecapCommand(Command):
+    """Represents a RECAP command."""
+    def __init__(self, assignments=None, **kwargs):
+        super().__init__(assignments=assignments or [], **kwargs)
+
 class ComputeCommand(Command):
     """Represents a COMPUTE command."""
     def __init__(self, name, expression, format=None, **kwargs):
