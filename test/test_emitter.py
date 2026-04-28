@@ -342,5 +342,20 @@ class TestEmitter(unittest.TestCase):
 
         self.assertIn("SELECT (SALARY + (SALES * 0.1)) AS \"TOTAL_COMP\"", sql)
 
+    def test_emit_instruction_join_context(self):
+        emitter = PostgresEmitter()
+
+        join1 = ir.Join(left_file="F1", left_field="FL1", right_file="F2", right_field="FL2", join_as="J1", outer=False)
+        emitter.emit_instruction(join1)
+        self.assertEqual(len(emitter.active_joins), 1)
+        self.assertEqual(emitter.active_joins[0].join_as, "J1")
+
+        join2 = ir.Join(left_file="F1", left_field="FL1", right_file="F3", right_field="FL3", join_as="J2", outer=True)
+        emitter.emit_instruction(join2)
+        self.assertEqual(len(emitter.active_joins), 2)
+
+        emitter.emit_instruction(ir.JoinClear())
+        self.assertEqual(len(emitter.active_joins), 0)
+
 if __name__ == '__main__':
     unittest.main()

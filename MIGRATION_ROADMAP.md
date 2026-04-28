@@ -110,7 +110,7 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
   - [x] 3.2.3 Variable Renaming: Implement versioning for all variables. (Implemented in `src/ssa_transformer.py`)
     - [x] 3.2.3.1 Usage Analysis: Identify variable usages in expressions and instructions.
     - [x] 3.2.3.2 Renaming Algorithm: Implement recursive DFS over dominator tree for variable versioning.
-- [ ] **3.3 Optimization Passes:**
+- [x] **3.3 Optimization Passes:**
   - [x] 3.3.1 Constant Propagation: Substitute variables with literal values. (Implemented in `src/optimizer.py`)
   - [x] 3.3.2 Dead Code Elimination:
     - [x] 3.3.2.1 Reachability Analysis: Remove unreachable blocks from CFG.
@@ -122,12 +122,12 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
     - [ ] 3.4.2.2 Total Lifting: Move WHERE TOTAL conditions to SQL HAVING.
   - [ ] 3.4.3 Projection Pruning: Identify unused fields.
   - [ ] 3.4.4 Aggregation Lifting: Identify and lift aggregations (SUM, AVG) to SQL.
-  - [ ] 3.4.5 Virtual Field Lifting: Move DEFINE calculations to SQL.
-    - [ ] 3.4.5.1 Expression Tracking: Track virtual fields defined via `ir.Define`.
-    - [ ] 3.4.5.2 Selection Substitution: Inline virtual field expressions into `SELECT` statements.
-    - [ ] 3.4.5.3 Predicate Substitution: Inline virtual field expressions into `WHERE` clauses.
+  - [x] 3.4.5 Virtual Field Lifting: Move DEFINE calculations to SQL.
+    - [x] 3.4.5.1 Expression Tracking: Track virtual fields defined via `ir.Define`. (Implemented in `src/emitter.py`)
+    - [x] 3.4.5.2 Selection Substitution: Inline virtual field expressions into `SELECT` statements. (Implemented in `src/emitter.py`)
+    - [x] 3.4.5.3 Predicate Substitution: Inline virtual field expressions into `WHERE` clauses. (Implemented in `src/emitter.py`)
   - [ ] 3.4.6 Join Lifting: Translate JOIN commands to SQL JOINs.
-    - [ ] 3.4.6.1 Join Context Management: Maintain a mapping of joined tables and their join conditions.
+    - [x] 3.4.6.1 Join Context Management: Maintain a mapping of joined tables and their join conditions. (Implemented in `src/emitter.py`)
     - [ ] 3.4.6.2 SQL JOIN Generation: Emit `JOIN` clauses in the generated SQL queries.
     - [ ] 3.4.6.3 Field Qualification: Ensure fields are correctly qualified with table names in multi-table queries.
 
@@ -159,14 +159,14 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
     - [x] 4.3.1.5 Aggregations: Mapping prefix operators (SUM., AVG., etc.) to SQL aggregate functions. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.6 Post-Aggregation Filtering: Mapping WHERE TOTAL to SQL `HAVING`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.7 Sorting: Mapping sort options to SQL `ORDER BY`. (Implemented in `src/emitter.py`)
-    - [ ] 4.3.1.8 Calculated Values: Mapping COMPUTE command to SQL expressions.
-  - [ ] 4.3.2 Data Source Mapping: Resolve TABLE FILE references to database tables/views.
+    - [x] 4.3.1.8 Calculated Values: Mapping COMPUTE command to SQL expressions. (Implemented in `src/emitter.py`)
+  - [x] 4.3.2 Data Source Mapping: Resolve TABLE FILE references to database tables/views. (Implemented in `src/emitter.py` via `MetadataRegistry`)
 
 ## Phase 5: Verification and Parity
 Ensure the new system produces correct results and maintains parity with the legacy parser.
 
 - [ ] **5.1 Regression Testing:**
-  - [ ] 5.1.1 Frontend Parity: Run the existing test suite against the new ANTLR4-based frontend.
+  - [x] 5.1.1 Frontend Parity: Run the existing test suite against the new ANTLR4-based frontend. (Verified via `test/test_antlr_wf_parser.py`)
   - [ ] 5.1.2 End-to-End Tests: Verify PL/pgSQL output for a subset of core features.
   - [ ] 5.1.3 Grammar Coverage: Ensure all core EBNF features are implemented and tested.
   - [ ] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.

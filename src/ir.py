@@ -48,6 +48,23 @@ class SetEnv(Instruction):
     def __init__(self, parameter, value, **kwargs):
         super().__init__(parameter=parameter, value=value, **kwargs)
 
+class Join(Instruction):
+    """Represents a JOIN command."""
+    def __init__(self, left_file, left_field, right_file, right_field, join_as=None, outer=False, **kwargs):
+        super().__init__(
+            left_file=left_file,
+            left_field=left_field,
+            right_file=right_file,
+            right_field=right_field,
+            join_as=join_as,
+            outer=outer,
+            **kwargs
+        )
+
+class JoinClear(Instruction):
+    """Represents a JOIN CLEAR * command."""
+    pass
+
 class Define(Instruction):
     """Represents a set of virtual field definitions (DEFINE FILE)."""
     def __init__(self, filename, assignments, **kwargs):

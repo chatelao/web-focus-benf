@@ -274,5 +274,24 @@ class TestIRBuilder(unittest.TestCase):
         self.assertIsInstance(myloop_label_block.instructions[0], Jump)
         self.assertEqual(myloop_label_block.instructions[0].target, "LOOP_HEADER_MYLOOP")
 
+    def test_join_instructions(self):
+        # JOIN F1.FL1 TO F2.FL2 AS J1
+        # JOIN CLEAR *
+        asg_nodes = [
+            Join(left_file="F1", left_field="FL1", right_file="F2", right_field="FL2", join_as="J1", outer=True),
+            JoinClear()
+        ]
+
+        builder = IRBuilder()
+        cfg = builder.build(asg_nodes)
+
+        entry = cfg.blocks["ENTRY"]
+        self.assertEqual(len(entry.instructions), 2)
+        self.assertIsInstance(entry.instructions[0], Join)
+        self.assertEqual(entry.instructions[0].left_file, "F1")
+        self.assertEqual(entry.instructions[0].join_as, "J1")
+        self.assertTrue(entry.instructions[0].outer)
+        self.assertIsInstance(entry.instructions[1], JoinClear)
+
 if __name__ == '__main__':
     unittest.main()
