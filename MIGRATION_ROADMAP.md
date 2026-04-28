@@ -169,7 +169,7 @@ Ensure the new system produces correct results and maintains parity with the leg
   - [x] 5.1.1 Frontend Parity: Run the existing test suite against the new ANTLR4-based frontend. (Verified via `test/test_antlr_wf_parser.py`)
   - [ ] 5.1.2 End-to-End Tests: Verify PL/pgSQL output for a subset of core features.
     - [x] 5.1.2.1 Basic Reporting: PRINT/SUM requests with WHERE clauses. (Verified via `test/test_e2e_basic_reporting.py`)
-    - [ ] 5.1.2.2 Advanced Filtering: Complex WHERE clauses, BETWEEN, IN, MISSING.
+    - [x] 5.1.2.2 Advanced Filtering: Complex WHERE clauses, BETWEEN, IN, MISSING. (Verified via `test/test_e2e_advanced_filtering.py`)
     - [ ] 5.1.2.3 Calculated Fields: DEFINE and COMPUTE expression lifting.
     - [ ] 5.1.2.4 Data Integration: Multi-table JOINs and virtual field lifting from joined files.
     - [ ] 5.1.2.5 Control Flow: DM variable resolution and PL/pgSQL state machine execution.
@@ -177,6 +177,10 @@ Ensure the new system produces correct results and maintains parity with the leg
     - [x] 5.1.3.1 Support `ALL` keyword in `JOIN` commands.
     - [x] 5.1.3.2 Support hyphenated `SET` keywords (e.g., `ONLINE-FMT`).
     - [ ] 5.1.3.3 Support `COMPOUND LAYOUT` structure.
+      - [ ] 5.1.3.3.1 Grammar support for `COMPOUND LAYOUT` and `COMPOUND END`.
+      - [ ] 5.1.3.3.2 Grammar support for layout components (SECTION, PAGELAYOUT, COMPONENT).
+      - [ ] 5.1.3.3.3 ASG support for multi-component documents.
+      - [ ] 5.1.3.3.4 Emitter support for sequential component execution.
     - [x] 5.1.3.4 Support inline format specifications (e.g., `SUM FIELD/I08M`).
     - [x] 5.1.3.5 Support `RECAP` command in report requests.
     - [x] 5.1.3.6 Support `ACROSS-TOTAL` for cross-tabulation summaries.
