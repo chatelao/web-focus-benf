@@ -171,8 +171,8 @@ Ensure the new system produces correct results and maintains parity with the leg
     - [x] 5.1.2.1 Basic Reporting: PRINT/SUM requests with WHERE clauses. (Verified via `test/test_e2e_basic_reporting.py`)
     - [x] 5.1.2.2 Advanced Filtering: Complex WHERE clauses, BETWEEN, IN, MISSING. (Verified via `test/test_e2e_advanced_filtering.py`)
     - [x] 5.1.2.3 Calculated Fields: DEFINE and COMPUTE expression lifting. (Verified via `test/test_e2e_calculated_fields.py`)
-    - [ ] 5.1.2.4 Data Integration: Multi-table JOINs and virtual field lifting from joined files.
-    - [ ] 5.1.2.5 Control Flow: DM variable resolution and PL/pgSQL state machine execution.
+    - [x] 5.1.2.4 Data Integration: Multi-table JOINs and virtual field lifting from joined files. (Verified via `test/test_e2e_data_integration.py`)
+    - [x] 5.1.2.5 Control Flow: DM variable resolution and PL/pgSQL state machine execution. (Verified via `test/test_e2e_control_flow.py`)
   - [ ] 5.1.3 Grammar Coverage: Ensure all core EBNF features are implemented and tested.
     - [x] 5.1.3.1 Support `ALL` keyword in `JOIN` commands.
     - [x] 5.1.3.2 Support hyphenated `SET` keywords (e.g., `ONLINE-FMT`).
