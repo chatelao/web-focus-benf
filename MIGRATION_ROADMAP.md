@@ -180,7 +180,7 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [x] 5.1.3.3.1 Grammar support for `COMPOUND LAYOUT` and `COMPOUND END`.
       - [x] 5.1.3.3.2 Grammar support for layout components (SECTION, PAGELAYOUT, COMPONENT).
       - [x] 5.1.3.3.3 ASG support for multi-component documents.
-      - [ ] 5.1.3.3.4 Emitter support for sequential component execution.
+      - [x] 5.1.3.3.4 Emitter support for sequential component execution.
     - [x] 5.1.3.4 Support inline format specifications (e.g., `SUM FIELD/I08M`).
     - [x] 5.1.3.5 Support `RECAP` command in report requests.
     - [x] 5.1.3.6 Support `ACROSS-TOTAL` for cross-tabulation summaries.

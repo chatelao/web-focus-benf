@@ -126,6 +126,14 @@ class PostgresEmitter:
         if hasattr(node, 'assignments'):
             for a in node.assignments:
                 self._discover_vars_in_expr(a, variables)
+        if hasattr(node, 'statements'):
+            for s in node.statements:
+                self._discover_vars_in_expr(s, variables)
+        if hasattr(node, 'properties'):
+            for p in node.properties:
+                self._discover_vars_in_expr(p, variables)
+        if hasattr(node, 'value'):
+            self._discover_vars_in_expr(node.value, variables)
         if hasattr(node, 'expression'):
             self._discover_vars_in_expr(node.expression, variables)
         if hasattr(node, 'sources') and not isinstance(node, (asg.BinaryOperation, asg.UnaryOperation)):
@@ -368,7 +376,34 @@ class PostgresEmitter:
                 self.virtual_fields[instr.filename][assignment.name] = assignment.expression
             return f"/* DEFINE FILE {instr.filename} ... */"
 
+        elif class_name == 'CompoundLayout':
+            return self._emit_compound_layout(instr)
+
+        elif class_name == 'CompoundEnd':
+            return "/* COMPOUND END */"
+
         return f"/* Unsupported instruction: {class_name} */"
+
+    def _emit_compound_layout(self, instr):
+        """
+        Translates ir.CompoundLayout instruction into SQL comments.
+        """
+        output = instr.output_command
+        output_str = f"{output.output_type}"
+        if output.filename:
+            output_str += f" {output.filename}"
+        if output.format:
+            output_str += f" FORMAT {output.format}"
+
+        lines = [f"/* COMPOUND LAYOUT {output_str} */"]
+        for stmt in instr.statements:
+            line = f"/*   {stmt.name}={stmt.value}"
+            if stmt.properties:
+                props = [f"{p.name}={p.value}" for p in stmt.properties]
+                line += f", {', '.join(props)}"
+            line += " */"
+            lines.append(line)
+        return "\n".join(lines)
 
     def _emit_report(self, instr):
         """
