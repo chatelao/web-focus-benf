@@ -26,6 +26,42 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by WebFocusReportParser#compound_layout_block.
+    def enterCompound_layout_block(self, ctx:WebFocusReportParser.Compound_layout_blockContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#compound_layout_block.
+    def exitCompound_layout_block(self, ctx:WebFocusReportParser.Compound_layout_blockContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#layout_statement.
+    def enterLayout_statement(self, ctx:WebFocusReportParser.Layout_statementContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#layout_statement.
+    def exitLayout_statement(self, ctx:WebFocusReportParser.Layout_statementContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#layout_property.
+    def enterLayout_property(self, ctx:WebFocusReportParser.Layout_propertyContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#layout_property.
+    def exitLayout_property(self, ctx:WebFocusReportParser.Layout_propertyContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#layout_value.
+    def enterLayout_value(self, ctx:WebFocusReportParser.Layout_valueContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#layout_value.
+    def exitLayout_value(self, ctx:WebFocusReportParser.Layout_valueContext):
+        pass
+
+
     # Enter a parse tree produced by WebFocusReportParser#define_file.
     def enterDefine_file(self, ctx:WebFocusReportParser.Define_fileContext):
         pass

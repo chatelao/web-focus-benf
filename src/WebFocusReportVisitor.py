@@ -19,6 +19,26 @@ class WebFocusReportVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by WebFocusReportParser#compound_layout_block.
+    def visitCompound_layout_block(self, ctx:WebFocusReportParser.Compound_layout_blockContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#layout_statement.
+    def visitLayout_statement(self, ctx:WebFocusReportParser.Layout_statementContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#layout_property.
+    def visitLayout_property(self, ctx:WebFocusReportParser.Layout_propertyContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#layout_value.
+    def visitLayout_value(self, ctx:WebFocusReportParser.Layout_valueContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by WebFocusReportParser#define_file.
     def visitDefine_file(self, ctx:WebFocusReportParser.Define_fileContext):
         return self.visitChildren(ctx)
