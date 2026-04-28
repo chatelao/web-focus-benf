@@ -25,7 +25,6 @@ class ReportASGBuilder(WebFocusReportVisitor):
     def visitRequest(self, ctx: WebFocusReportParser.RequestContext):
         filename = self.visit(ctx.table_file())
         components = []
-        # Iterate through all children except table_file (first) and end_command (last)
         for i in range(1, ctx.getChildCount() - 1):
             child = ctx.getChild(i)
             if isinstance(child, TerminalNode):
@@ -37,6 +36,9 @@ class ReportASGBuilder(WebFocusReportVisitor):
                 else:
                     components.append(node)
         return ReportRequest(filename=filename, components=components)
+
+    def visitRequest_element(self, ctx: WebFocusReportParser.Request_elementContext):
+        return self.visit(ctx.getChild(0))
 
     def visitTable_file(self, ctx: WebFocusReportParser.Table_fileContext):
         return ctx.qualified_name().getText()
@@ -63,12 +65,21 @@ class ReportASGBuilder(WebFocusReportVisitor):
 
     def visitField(self, ctx: WebFocusReportParser.FieldContext):
         name = ctx.qualified_name().getText()
+        format = ctx.format_name().getText() if ctx.format_name() else None
         alias = self.visit(ctx.as_phrase()) if ctx.as_phrase() else None
-        return FieldSelection(name=name, alias=alias)
+        fs = FieldSelection(name=name, alias=alias)
+        if format: fs.format = format
+        return fs
 
     def visitAs_phrase(self, ctx: WebFocusReportParser.As_phraseContext):
-        val = ctx.STRING().getText()
-        return val[1:-1]
+        if ctx.STRING():
+            val = ctx.STRING().getText()
+            return val[1:-1]
+        if ctx.identifier():
+            return ctx.identifier().getText()
+        if ctx.NUMBER():
+            return ctx.NUMBER().getText()
+        return None
 
     def visitAsterisk(self, ctx: WebFocusReportParser.AsteriskContext):
         return FieldSelection(name='*')
@@ -95,51 +106,73 @@ class ReportASGBuilder(WebFocusReportVisitor):
 
     def visitHeading_command(self, ctx: WebFocusReportParser.Heading_commandContext):
         centered = ctx.CENTER() is not None
-        text = " ".join([s.getText()[1:-1] for s in ctx.STRING()])
-        return Heading(text=text, centered=centered)
+        parts = []
+        for i in range(ctx.getChildCount()):
+            child = ctx.getChild(i)
+            if isinstance(child, TerminalNode):
+                txt = child.getText().upper()
+                if txt in ['HEADING', 'FOOTING', 'CENTER']:
+                    continue
+            parts.append(child.getText())
+        text = " ".join(parts).replace("'", "").replace('"', "")
+        return Heading(text=text, centered=centered) if ctx.getChild(0).getText().upper() == 'HEADING' else Footing(text=text, centered=centered)
 
     def visitFooting_command(self, ctx: WebFocusReportParser.Footing_commandContext):
         centered = ctx.CENTER() is not None
-        text = " ".join([s.getText()[1:-1] for s in ctx.STRING()])
+        parts = []
+        for i in range(ctx.getChildCount()):
+            child = ctx.getChild(i)
+            if isinstance(child, TerminalNode):
+                txt = child.getText().upper()
+                if txt in ['HEADING', 'FOOTING', 'CENTER']:
+                    continue
+            parts.append(child.getText())
+        text = " ".join(parts).replace("'", "").replace('"', "")
         return Footing(text=text, centered=centered)
 
     def visitOn_command(self, ctx: WebFocusReportParser.On_commandContext):
         if ctx.TABLE():
-            target = "TABLE"
-            actions = self.visit(ctx.on_table_options())
+             target = "TABLE"
         else:
-            target = ctx.qualified_name().getText()
-            actions = self.visit(ctx.on_field_options())
+             target = ctx.qualified_name().getText()
+
+        actions = self.visit(ctx.on_options())
 
         if not isinstance(actions, list):
             actions = [actions]
         return OnCommand(target=target, actions=actions)
 
-    def visitOn_table_options(self, ctx: WebFocusReportParser.On_table_optionsContext):
+    def visitOn_options(self, ctx: WebFocusReportParser.On_optionsContext):
         if ctx.SUBHEAD() or ctx.SUBFOOT():
             centered = ctx.CENTER() is not None
-            text = " ".join([s.getText()[1:-1] for s in ctx.STRING()])
+            parts = []
+            for i in range(ctx.getChildCount()):
+                child = ctx.getChild(i)
+                if isinstance(child, TerminalNode):
+                    txt = child.getText().upper()
+                    if txt in ['SUBHEAD', 'SUBFOOT', 'CENTER']: continue
+                parts.append(child.getText())
+            text = " ".join(parts).replace("'", "").replace('"', "")
             return Subhead(text=text, centered=centered) if ctx.SUBHEAD() else Subfoot(text=text, centered=centered)
         if ctx.COLUMN_TOTAL_KW():
             return SetCommand(parameter="COLUMN-TOTAL", value="ON")
         if ctx.ROW_TOTAL_KW():
             return SetCommand(parameter="ROW-TOTAL", value="ON")
+        if ctx.style_block():
+            return self.visit(ctx.style_block())
         if ctx.output_command():
             return self.visit(ctx.output_command())
         if ctx.summarize_command():
             return self.visit(ctx.summarize_command())
         if ctx.set_command():
-            return self.visit(ctx.set_command())
+             return self.visit(ctx.set_command())
         return None
 
-    def visitOn_field_options(self, ctx: WebFocusReportParser.On_field_optionsContext):
-        if ctx.SUBHEAD() or ctx.SUBFOOT():
-            centered = ctx.CENTER() is not None
-            text = " ".join([s.getText()[1:-1] for s in ctx.STRING()])
-            return Subhead(text=text, centered=centered) if ctx.SUBHEAD() else Subfoot(text=text, centered=centered)
-        if ctx.summarize_command():
-            return self.visit(ctx.summarize_command())
-        return None
+    def visitOn_table_set_value(self, ctx: WebFocusReportParser.On_table_set_valueContext):
+        return ctx.getText()
+
+    def visitStyle_block(self, ctx: WebFocusReportParser.Style_blockContext):
+        return SetCommand(parameter="STYLE", value="BLOCK")
 
     def visitOutput_command(self, ctx: WebFocusReportParser.Output_commandContext):
         output_type = ctx.getChild(0).getText().upper()
@@ -153,10 +186,18 @@ class ReportASGBuilder(WebFocusReportVisitor):
         return OutputCommand(output_type=output_type, filename=filename, format=format)
 
     def visitCompute_command(self, ctx: WebFocusReportParser.Compute_commandContext):
-        name = ctx.qualified_name().getText()
+        assignments = [self.visit(a) for a in ctx.compute_assignment()]
+        return assignments # ReportRequest will extend this list
+
+    def visitCompute_assignment(self, ctx: WebFocusReportParser.Compute_assignmentContext):
+        name = ctx.qualified_name().getText() if ctx.qualified_name() else None
+        if not name and ctx.prefix_operator():
+            name = f"{ctx.prefix_operator().getText()}.{ctx.identifier().getText()}"
+
         format = ctx.format_name().getText() if ctx.format_name() else None
         expression = self.visit(ctx.dm_expression())
-        return ComputeCommand(name=name, format=format, expression=expression)
+        alias = self.visit(ctx.as_phrase()) if ctx.as_phrase() else None
+        return ComputeCommand(name=name, format=format, expression=expression, alias=alias)
 
     def visitSort_options(self, ctx: WebFocusReportParser.Sort_optionsContext):
         options = {}
@@ -174,8 +215,13 @@ class ReportASGBuilder(WebFocusReportVisitor):
         return SetDM(variable=variable, expression=expression)
 
     def visitDm_type(self, ctx: WebFocusReportParser.Dm_typeContext):
-        messages = [self.visit(child) for child in ctx.dm_primary()]
+        messages = [self.visit(child) for child in ctx.dm_type_element()]
         return TypeDM(messages=messages)
+
+    def visitDm_type_element(self, ctx: WebFocusReportParser.Dm_type_elementContext):
+        if ctx.dm_primary():
+            return self.visit(ctx.dm_primary())
+        return Literal(value=ctx.getText())
 
     def visitDm_expression(self, ctx: WebFocusReportParser.Dm_expressionContext):
         return self.visit(ctx.getChild(0))
@@ -259,8 +305,6 @@ class ReportASGBuilder(WebFocusReportVisitor):
     def visitDm_concat_expression(self, ctx: WebFocusReportParser.Dm_concat_expressionContext):
         if ctx.getChildCount() == 1:
             return self.visit(ctx.getChild(0))
-        # ANTLR4 creates a flat structure for (CONCAT dm_additive_expression)*
-        # We'll transform it into a left-associative tree
         left = self.visit(ctx.getChild(0))
         for i in range(1, ctx.getChildCount(), 2):
             operator = ctx.getChild(i).getText()
@@ -298,7 +342,6 @@ class ReportASGBuilder(WebFocusReportVisitor):
     def visitDm_primary(self, ctx: WebFocusReportParser.Dm_primaryContext):
         if ctx.STRING():
             val = ctx.STRING().getText()
-            # Remove quotes
             return Literal(value=val[1:-1])
         if ctx.NUMBER():
             return Literal(value=int(ctx.NUMBER().getText()))
@@ -308,7 +351,6 @@ class ReportASGBuilder(WebFocusReportVisitor):
             return self.visit(ctx.amper_var())
         if ctx.qualified_name():
             if ctx.getChildCount() > 1 and ctx.getChild(1).getText() == '(':
-                # Function call
                 name = ctx.qualified_name().getText()
                 args = []
                 if ctx.dm_expression():
@@ -316,6 +358,14 @@ class ReportASGBuilder(WebFocusReportVisitor):
                 return FunctionCall(function_name=name, arguments=args)
             else:
                 return Identifier(name=ctx.qualified_name().getText())
+        if ctx.identifier() and ctx.prefix_operator():
+             # Handle prefix_operator DOT identifier case
+             name = f"{ctx.prefix_operator().getText()}.{ctx.identifier().getText()}"
+             if ctx.getChildCount() > 3 and ctx.getChild(3).getText() == '(':
+                 args = [self.visit(expr) for expr in ctx.dm_expression()]
+                 return FunctionCall(function_name=name, arguments=args)
+             return Identifier(name=name)
+
         if ctx.getChildCount() == 3 and ctx.getChild(0).getText() == '(':
             return self.visit(ctx.getChild(1))
         return None
@@ -324,17 +374,17 @@ class ReportASGBuilder(WebFocusReportVisitor):
         return self.visit(ctx.getChild(0))
 
     def visitDm_goto(self, ctx: WebFocusReportParser.Dm_gotoContext):
-        target = ctx.NAME().getText()
+        target = ctx.identifier().getText()
         return Goto(target=target)
 
     def visitDm_label(self, ctx: WebFocusReportParser.Dm_labelContext):
-        name = ctx.LABEL_DM().getText()[1:] # Strip leading '-'
+        name = ctx.LABEL_DM().getText()[1:]
         return Label(name=name)
 
     def visitDm_if(self, ctx: WebFocusReportParser.Dm_ifContext):
         condition = self.visit(ctx.dm_logical_expression())
-        then_target = ctx.NAME(0).getText()
-        else_target = ctx.NAME(1).getText() if ctx.NAME(1) else None
+        then_target = ctx.identifier(0).getText()
+        else_target = ctx.identifier(1).getText() if ctx.identifier(1) else None
         return IfDM(condition=condition, then_target=then_target, else_target=else_target)
 
     def visitDm_include(self, ctx: WebFocusReportParser.Dm_includeContext):
@@ -355,7 +405,7 @@ class ReportASGBuilder(WebFocusReportVisitor):
         left_file = ctx.qualified_name(1).getText()
         right_field = ctx.qualified_name(2).getText()
         right_file = ctx.qualified_name(3).getText()
-        join_as = ctx.NAME().getText() if ctx.NAME() else None
+        join_as = self.visit(ctx.as_phrase()) if ctx.as_phrase() else None
         outer = ctx.OUTER() is not None
 
         return Join(
@@ -373,10 +423,9 @@ class ReportASGBuilder(WebFocusReportVisitor):
         return DefineFile(filename=filename, assignments=assignments)
 
     def visitDefine_assignment(self, ctx: WebFocusReportParser.Define_assignmentContext):
-        name = ctx.qualified_name().getText()
-        format = ctx.format_name().getText() if ctx.format_name() else None
+        fs = self.visit(ctx.field())
         expression = self.visit(ctx.dm_expression())
-        return DefineAssignment(name=name, expression=expression, format=format)
+        return DefineAssignment(name=fs.name, expression=expression, format=fs.format if hasattr(fs, 'format') else None)
 
     def visitSummarize_command(self, ctx: WebFocusReportParser.Summarize_commandContext):
         verb = ctx.getChild(0).getText().upper()
@@ -386,7 +435,6 @@ class ReportASGBuilder(WebFocusReportVisitor):
         field_name = field_node.name if field_node else None
         alias = field_node.alias if field_node else None
 
-        # If there's an explicit as_phrase in the summarize_command, it overrides
         if ctx.as_phrase():
             alias = self.visit(ctx.as_phrase())
 
@@ -403,21 +451,15 @@ class ReportASGBuilder(WebFocusReportVisitor):
         return options
 
     def visitSet_command(self, ctx: WebFocusReportParser.Set_commandContext):
-        parameter = ctx.NAME(0).getText()
-        if ctx.NAME(1):
-            value = ctx.NAME(1).getText()
-        elif ctx.NUMBER():
-            value = ctx.NUMBER().getText()
-        elif ctx.OFF():
-            value = "OFF"
-        elif ctx.ON():
-            value = "ON"
+        if ctx.identifier():
+             parameter = ctx.identifier().getText()
         else:
-            value = None
+             parameter = ctx.hyphenated_name().getText()
+        value = self.visit(ctx.on_table_set_value()) if ctx.on_table_set_value() else None
         return SetCommand(parameter=parameter, value=value)
 
     def visitDm_repeat(self, ctx: WebFocusReportParser.Dm_repeatContext):
-        label = ctx.NAME().getText()
+        label = ctx.identifier().getText()
         kwargs = {"label": label}
         if ctx.WHILE():
             kwargs["condition"] = self.visit(ctx.dm_logical_expression())

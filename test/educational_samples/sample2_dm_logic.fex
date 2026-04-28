@@ -1,0 +1,10 @@
+-SET &COUNTER = 1;
+-REPEAT LOOP_START WHILE &COUNTER LE 5;
+    -IF &COUNTER EQ 3 GOTO SKIP_PRINT;
+    -TYPE Processing iteration: &COUNTER
+    -SET &VAL = &COUNTER * 10;
+    -TYPE Value is: &VAL
+-SKIP_PRINT
+    -SET &COUNTER = &COUNTER + 1;
+-LOOP_START
+-TYPE Loop Finished.
