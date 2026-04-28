@@ -31,7 +31,8 @@ class TestAntlrWebFocusParser(unittest.TestCase):
             "TABLE FILE EMPDATA SUM SALARY ON DEPARTMENT SUBTOTAL ROLL.AVE. SALARY END",
             "TABLE FILE EMPDATA SUM SALARY ON TABLE SUBTOTAL END",
             "TABLE FILE EMPDATA SUM SALARY ON TABLE COLUMN-TOTAL END",
-            "TABLE FILE EMPDATA SUM SALARY ON TABLE ROW-TOTAL END"
+            "TABLE FILE EMPDATA SUM SALARY ON TABLE ROW-TOTAL END",
+            "TABLE FILE EMPDATA SUM SALARY ON TABLE ACROSS-TOTAL END"
         ]
         for code in variations:
             with self.subTest(code=code):
@@ -120,7 +121,9 @@ class TestAntlrWebFocusParser(unittest.TestCase):
             "TABLE FILE EMPDATA SUM SALARY BY DEPT END",
             "TABLE FILE EMPDATA SUM SALARY ACROSS DIV END",
             "TABLE FILE EMPDATA SUM SALARY BY HIGHEST 5 SALARY END",
-            "TABLE FILE EMPDATA SUM SALARY BY LOWEST CURR_SAL END"
+            "TABLE FILE EMPDATA SUM SALARY BY LOWEST CURR_SAL END",
+            "TABLE FILE EMPDATA SUM SALARY ACROSS REGION ACROSS-TOTAL END",
+            "TABLE FILE EMPDATA SUM SALARY ACROSS REGION ACROSS-TOTAL AS 'Total' END"
         ]
         for code in variations:
             with self.subTest(code=code):

@@ -140,7 +140,7 @@ asterisk: '*';
 
 by_command: RANKED? BY sort_options? field summarize_command? NOPRINT?;
 
-across_command: ACROSS sort_options? field NOPRINT?;
+across_command: ACROSS sort_options? field (ACROSS_TOTAL as_phrase?)? NOPRINT?;
 
 sort_options: (HIGHEST | LOWEST | TOP | BOTTOM) NUMBER?
             | NUMBER;
@@ -157,6 +157,7 @@ on_command: ON TABLE on_table_options
 on_table_options: (SUBHEAD | SUBFOOT) CENTER? STRING+
                 | COLUMN_TOTAL_KW
                 | ROW_TOTAL_KW
+                | ACROSS_TOTAL (SLASH format_name)? as_phrase? qualified_name?
                 | output_command
                 | summarize_command
                 | recap_command
@@ -181,7 +182,7 @@ identifier: NAME
           | IS | CONTAINS | OMITS | LIKE | TOTAL | MISSING | INCLUDES | EXCLUDES | EXCEEDS | ALL
           | LESS | THAN | MORE_KW | GREATER
           | OFF | ON
-          | RECAP | INDENT
+          | RECAP | INDENT | ACROSS_TOTAL
           ;
 
 prefix_operator: AVE | MIN | MAX | CNT | FST | LST | ASQ | MDN | MDE | PCT | RPCT | RNK | DST | TOT | SUM | CT;
@@ -199,6 +200,7 @@ EXIT_DM: '-' [eE][xX][iI][tT];
 SUB_TOTAL: [sS][uU][bB] '-' [tT][oO][tT][aA][lL];
 COLUMN_TOTAL_KW: [cC][oO][lL][uU][mM][nN] '-' [tT][oO][tT][aA][lL];
 ROW_TOTAL_KW: [rR][oO][wW] '-' [tT][oO][tT][aA][lL];
+ACROSS_TOTAL: [aA][cC][rR][oO][sS][sS] '-' [tT][oO][tT][aA][lL];
 
 IS_NOT: [iI][sS] '-' [nN][oO][tT];
 IS_FROM: [iI][sS] '-' [fF][rR][oO][mM];

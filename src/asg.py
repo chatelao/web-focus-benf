@@ -136,8 +136,8 @@ class FieldSelection(ASGNode):
 
 class SortCommand(Command):
     """Represents a sort phrase (BY or ACROSS)."""
-    def __init__(self, sort_type, field, options=None, summarize=None, noprint=False, **kwargs):
-        super().__init__(sort_type=sort_type, field=field, options=options or {}, summarize=summarize, noprint=noprint, **kwargs)
+    def __init__(self, sort_type, field, options=None, summarize=None, noprint=False, across_total=False, total_as=None, **kwargs):
+        super().__init__(sort_type=sort_type, field=field, options=options or {}, summarize=summarize, noprint=noprint, across_total=across_total, total_as=total_as, **kwargs)
 
 class WhereClause(Command):
     """Represents a WHERE clause in a report request."""
