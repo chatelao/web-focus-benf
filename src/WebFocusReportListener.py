@@ -26,6 +26,15 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by WebFocusReportParser#request_element.
+    def enterRequest_element(self, ctx:WebFocusReportParser.Request_elementContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#request_element.
+    def exitRequest_element(self, ctx:WebFocusReportParser.Request_elementContext):
+        pass
+
+
     # Enter a parse tree produced by WebFocusReportParser#define_file.
     def enterDefine_file(self, ctx:WebFocusReportParser.Define_fileContext):
         pass
@@ -53,6 +62,15 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by WebFocusReportParser#compute_assignment.
+    def enterCompute_assignment(self, ctx:WebFocusReportParser.Compute_assignmentContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#compute_assignment.
+    def exitCompute_assignment(self, ctx:WebFocusReportParser.Compute_assignmentContext):
+        pass
+
+
     # Enter a parse tree produced by WebFocusReportParser#format_name.
     def enterFormat_name(self, ctx:WebFocusReportParser.Format_nameContext):
         pass
@@ -77,15 +95,6 @@ class WebFocusReportListener(ParseTreeListener):
 
     # Exit a parse tree produced by WebFocusReportParser#set_command.
     def exitSet_command(self, ctx:WebFocusReportParser.Set_commandContext):
-        pass
-
-
-    # Enter a parse tree produced by WebFocusReportParser#hyphenated_name.
-    def enterHyphenated_name(self, ctx:WebFocusReportParser.Hyphenated_nameContext):
-        pass
-
-    # Exit a parse tree produced by WebFocusReportParser#hyphenated_name.
-    def exitHyphenated_name(self, ctx:WebFocusReportParser.Hyphenated_nameContext):
         pass
 
 
@@ -212,6 +221,33 @@ class WebFocusReportListener(ParseTreeListener):
 
     # Exit a parse tree produced by WebFocusReportParser#dm_logical_expression.
     def exitDm_logical_expression(self, ctx:WebFocusReportParser.Dm_logical_expressionContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#dm_logical_or_expression.
+    def enterDm_logical_or_expression(self, ctx:WebFocusReportParser.Dm_logical_or_expressionContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#dm_logical_or_expression.
+    def exitDm_logical_or_expression(self, ctx:WebFocusReportParser.Dm_logical_or_expressionContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#dm_logical_and_expression.
+    def enterDm_logical_and_expression(self, ctx:WebFocusReportParser.Dm_logical_and_expressionContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#dm_logical_and_expression.
+    def exitDm_logical_and_expression(self, ctx:WebFocusReportParser.Dm_logical_and_expressionContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#dm_logical_not_expression.
+    def enterDm_logical_not_expression(self, ctx:WebFocusReportParser.Dm_logical_not_expressionContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#dm_logical_not_expression.
+    def exitDm_logical_not_expression(self, ctx:WebFocusReportParser.Dm_logical_not_expressionContext):
         pass
 
 
@@ -386,15 +422,6 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by WebFocusReportParser#field_separator.
-    def enterField_separator(self, ctx:WebFocusReportParser.Field_separatorContext):
-        pass
-
-    # Exit a parse tree produced by WebFocusReportParser#field_separator.
-    def exitField_separator(self, ctx:WebFocusReportParser.Field_separatorContext):
-        pass
-
-
     # Enter a parse tree produced by WebFocusReportParser#field_or_prefixed.
     def enterField_or_prefixed(self, ctx:WebFocusReportParser.Field_or_prefixedContext):
         pass
@@ -503,6 +530,24 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by WebFocusReportParser#on_table_set_command.
+    def enterOn_table_set_command(self, ctx:WebFocusReportParser.On_table_set_commandContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#on_table_set_command.
+    def exitOn_table_set_command(self, ctx:WebFocusReportParser.On_table_set_commandContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#subhead_foot_command.
+    def enterSubhead_foot_command(self, ctx:WebFocusReportParser.Subhead_foot_commandContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#subhead_foot_command.
+    def exitSubhead_foot_command(self, ctx:WebFocusReportParser.Subhead_foot_commandContext):
+        pass
+
+
     # Enter a parse tree produced by WebFocusReportParser#on_table_set_value.
     def enterOn_table_set_value(self, ctx:WebFocusReportParser.On_table_set_valueContext):
         pass
@@ -536,15 +581,6 @@ class WebFocusReportListener(ParseTreeListener):
 
     # Exit a parse tree produced by WebFocusReportParser#style_value.
     def exitStyle_value(self, ctx:WebFocusReportParser.Style_valueContext):
-        pass
-
-
-    # Enter a parse tree produced by WebFocusReportParser#on_field_options.
-    def enterOn_field_options(self, ctx:WebFocusReportParser.On_field_optionsContext):
-        pass
-
-    # Exit a parse tree produced by WebFocusReportParser#on_field_options.
-    def exitOn_field_options(self, ctx:WebFocusReportParser.On_field_optionsContext):
         pass
 
 

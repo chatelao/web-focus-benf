@@ -21,11 +21,11 @@ define_assignment: field EQ dm_expression SEMI?;
 
 compute_command: COMPUTE compute_assignment ( (AND | COMMA | SEMI)? compute_assignment)* SEMI?;
 
-compute_assignment: (qualified_name | prefix_operator DOT identifier) (SLASH format_name)? EQ dm_expression (SEMI? AS (STRING | identifier | NUMBER))?;
+compute_assignment: (qualified_name | prefix_operator DOT identifier) (SLASH format_name)? EQ dm_expression (SEMI? as_phrase)?;
 
 format_name: (identifier | NUMBER) (DOT (identifier | NUMBER))? (identifier | NUMBER | SUB_OP)*;
 
-join_command: JOIN (CLEAR ASTERISK | (LEFT? OUTER)? qualified_name IN qualified_name TO (ALL_KW? qualified_name IN | qualified_name IN) qualified_name (AS (NAME | STRING))?) SEMI?;
+join_command: JOIN (CLEAR ASTERISK | (LEFT? OUTER)? qualified_name IN qualified_name TO (ALL_KW? qualified_name IN | qualified_name IN) qualified_name (as_phrase)?) SEMI?;
 
 set_command: SET qualified_name (EQ? on_table_set_value)? SEMI?;
 
@@ -66,22 +66,23 @@ dm_exit: EXIT_DM SEMI?;
 dm_expression: dm_if_expression;
 
 dm_if_expression: IF dm_expression THEN dm_expression ELSE dm_expression
-                | dm_logical_or_expression;
+                | dm_logical_expression;
+
+dm_logical_expression: dm_logical_or_expression;
 
 dm_logical_or_expression: dm_logical_and_expression ( OR dm_logical_and_expression )*;
 
 dm_logical_and_expression: dm_logical_not_expression ( AND dm_logical_not_expression )*;
 
 dm_logical_not_expression: NOT dm_logical_not_expression
-                        | dm_relational_expression;
+                         | dm_relational_expression;
 
 dm_relational_expression: dm_concat_expression (
                             (IS | EQ | NE | is_not_op)? MISSING
                           | (FROM | is_from_op | not_from_op) dm_concat_expression TO dm_concat_expression
                           | IN (FILE qualified_name | LPAREN dm_expression (COMMA dm_expression)* RPAREN)
-                          | (INCLUDES | EXCLUDES) dm_expression (AND dm_expression)*
-                          | dm_relational_op (dm_expression (OR dm_expression)*)
-                          | dm_relational_op dm_concat_expression
+                          | (INCLUDES | EXCLUDES) dm_concat_expression (AND dm_concat_expression)*
+                          | dm_relational_op dm_concat_expression (OR dm_concat_expression)*
                         )? ;
 
 dm_relational_op: EQ | NE | LE | GE | LT | GT | CONTAINS | OMITS | LIKE | EXCEEDS
@@ -123,13 +124,11 @@ amper_var: AMPER_VAR;
 
 table_file: TABLE FILE qualified_name;
 
-verb_command: verb (field_list | asterisk);
+verb_command: verb field_list;
 
 verb: PRINT | SUM | LIST | COUNT | WRITE | ADD;
 
-field_list: THE? field_or_prefixed (field_separator? field_or_prefixed)*;
-
-field_separator: COMMA | AND THE | AND | THE;
+field_list: asterisk | field_or_prefixed ( (COMMA | AND THE? | THE)? field_or_prefixed )*;
 
 field_or_prefixed: (prefix_operator DOT)* field;
 
@@ -148,19 +147,24 @@ sort_options: (HIGHEST | LOWEST | TOP | BOTTOM) NUMBER?
 
 where_command: WHERE TOTAL? dm_expression SEMI?;
 
-heading_command: (HEADING | FOOTING) CENTER? (STRING | identifier | DOT | COMMA | EQ | ASTERISK | COLON | SLASH | SUB_OP | ADD_OP | DOLLAR | amper_var)+;
+heading_command: HEADING CENTER? (STRING | identifier | DOT | COMMA | EQ | ASTERISK | COLON | SLASH | SUB_OP | ADD_OP | DOLLAR | amper_var)+;
 
-footing_command: (HEADING | FOOTING) CENTER? (STRING | identifier | DOT | COMMA | EQ | ASTERISK | COLON | SLASH | SUB_OP | ADD_OP | DOLLAR | amper_var)+;
+footing_command: FOOTING CENTER? (STRING | identifier | DOT | COMMA | EQ | ASTERISK | COLON | SLASH | SUB_OP | ADD_OP | DOLLAR | amper_var)+;
 
 on_command: ON_KW (TABLE | qualified_name) on_options;
 
-on_options: (SUBHEAD | SUBFOOT) CENTER? (STRING | identifier | DOT | COMMA | EQ | ASTERISK | COLON | SLASH | SUB_OP | ADD_OP | DOLLAR | amper_var)+
+on_options: style_block
+          | on_table_set_command
           | COLUMN_TOTAL_KW
           | ROW_TOTAL_KW
-          | style_block
           | output_command
           | summarize_command
-          | set_command;
+          | subhead_foot_command
+          ;
+
+on_table_set_command: SET qualified_name (EQ? on_table_set_value)? SEMI?;
+
+subhead_foot_command: (SUBHEAD | SUBFOOT) CENTER? (STRING | identifier | DOT | COMMA | EQ | ASTERISK | COLON | SLASH | SUB_OP | ADD_OP | DOLLAR | amper_var)+;
 
 on_table_set_value: (identifier | NUMBER | OFF | ON_KW | STRING | dm_float | ASTERISK);
 
@@ -182,15 +186,7 @@ qualified_name: identifier ( (DOT | SUB_OP) identifier )*;
 
 identifier: NAME | keyword_as_name | NUMBER;
 
-keyword_as_name: (TABLE | FILE | DEFINE | COMPUTE | END | PRINT | SUM | LIST | COUNT | WRITE | ADD
-               | BY | ACROSS | WHERE | GOTO | EQ | NE | LT | GT | LE | GE | RANKED | JOIN | CLEAR
-               | LEFT | OUTER | SET | OFF | WHILE | UNTIL | TIMES | FOR | FROM | TO | STEP
-               | HIGHEST | LOWEST | TOP | BOTTOM | NOPRINT | AS | IN | CONTAINS | OMITS | LIKE
-               | IS | TOTAL | MISSING | INCLUDES | EXCLUDES | EXCEEDS | LESS | THAN | MORE_KW
-               | GREATER | THE | AND | OR | NOT | THEN | ELSE | IF | HEADING | FOOTING | ON_KW
-               | SUBHEAD | SUBFOOT | CENTER | SUBTOTAL | SUMMARIZE | RECOMPUTE | HOLD | PCHOLD
-               | SAVE | SAVB | FORMAT | ROLL_DOT | AVE | MIN | MAX | CNT | FST | LST | ASQ
-               | MDN | MDE | PCT | RPCT | RNK | DST | TOT | CT | STYLE_KW | ALL_KW | PAGE | TYPE_KW | COLUMN_TOTAL_KW | ROW_TOTAL_KW | BREAK | DATEDIF);
+keyword_as_name: ( RANKED | JOIN | CLEAR | LEFT | OUTER | SET | OFF | WHILE | UNTIL | TIMES | FOR | FROM | TO | STEP | HIGHEST | LOWEST | TOP | BOTTOM | IN | CONTAINS | OMITS | LIKE | IS | TOTAL | MISSING | INCLUDES | EXCLUDES | EXCEEDS | LESS | THAN | MORE_KW | GREATER | THE | THEN | ELSE | SUBHEAD | SUBFOOT | CENTER | SUBTOTAL | SUMMARIZE | RECOMPUTE | HOLD | PCHOLD | SAVE | SAVB | FORMAT | ROLL_DOT | AVE | MIN | MAX | CNT | FST | LST | ASQ | MDN | MDE | PCT | RPCT | RNK | DST | TOT | CT | DATEDIF | EQ | NE | LT | GT | LE | GE );
 
 prefix_operator: AVE | MIN | MAX | CNT | FST | LST | ASQ | MDN | MDE | PCT | RPCT | RNK | DST | TOT | SUM | CT;
 
