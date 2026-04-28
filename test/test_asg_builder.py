@@ -178,6 +178,25 @@ class TestASGBuilder(unittest.TestCase):
         self.assertEqual(across_node.options["order"], "HIGHEST")
         self.assertEqual(across_node.options["limit"], 3)
 
+    def test_table_request_with_across_total(self):
+        code = "TABLE FILE CAR\nSUM SALES\nACROSS REGION ACROSS-TOTAL AS 'Total'\nEND"
+        asg_nodes = self.build_asg(code)
+        node = asg_nodes[0]
+        across_node = node.components[1]
+        self.assertTrue(isinstance(across_node, asg.SortCommand))
+        self.assertTrue(across_node.across_total)
+        self.assertEqual(across_node.total_as, "Total")
+
+    def test_on_table_across_total(self):
+        code = "TABLE FILE CAR\nSUM SALES\nON TABLE ACROSS-TOTAL\nEND"
+        asg_nodes = self.build_asg(code)
+        node = asg_nodes[0]
+        on_node = node.components[1]
+        self.assertTrue(isinstance(on_node, asg.OnCommand))
+        self.assertEqual(on_node.target, "TABLE")
+        self.assertEqual(on_node.actions[0].parameter, "ACROSS-TOTAL")
+        self.assertEqual(on_node.actions[0].value, "ON")
+
     def test_table_request_with_asterisk(self):
         code = "TABLE FILE CAR\nPRINT *\nEND"
         asg_nodes = self.build_asg(code)

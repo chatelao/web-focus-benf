@@ -87,7 +87,9 @@ class ReportASGBuilder(WebFocusReportVisitor):
         options = self.visit(ctx.sort_options()) if ctx.sort_options() else {}
         field = self.visit(ctx.field())
         noprint = ctx.NOPRINT() is not None
-        return SortCommand(sort_type=sort_type, field=field, options=options, noprint=noprint)
+        across_total = ctx.ACROSS_TOTAL() is not None
+        total_as = self.visit(ctx.as_phrase()) if ctx.as_phrase() else None
+        return SortCommand(sort_type=sort_type, field=field, options=options, noprint=noprint, across_total=across_total, total_as=total_as)
 
     def visitWhere_command(self, ctx: WebFocusReportParser.Where_commandContext):
         is_total = ctx.TOTAL() is not None
@@ -125,6 +127,8 @@ class ReportASGBuilder(WebFocusReportVisitor):
             return SetCommand(parameter="COLUMN-TOTAL", value="ON")
         if ctx.ROW_TOTAL_KW():
             return SetCommand(parameter="ROW-TOTAL", value="ON")
+        if ctx.ACROSS_TOTAL():
+            return SetCommand(parameter="ACROSS-TOTAL", value="ON")
         if ctx.output_command():
             return self.visit(ctx.output_command())
         if ctx.summarize_command():

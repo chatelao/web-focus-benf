@@ -168,21 +168,30 @@ Ensure the new system produces correct results and maintains parity with the leg
 - [ ] **5.1 Regression Testing:**
   - [x] 5.1.1 Frontend Parity: Run the existing test suite against the new ANTLR4-based frontend. (Verified via `test/test_antlr_wf_parser.py`)
   - [ ] 5.1.2 End-to-End Tests: Verify PL/pgSQL output for a subset of core features.
+    - [ ] 5.1.2.1 Basic Reporting: PRINT/SUM requests with WHERE clauses.
+    - [ ] 5.1.2.2 Advanced Filtering: Complex WHERE clauses, BETWEEN, IN, MISSING.
+    - [ ] 5.1.2.3 Calculated Fields: DEFINE and COMPUTE expression lifting.
+    - [ ] 5.1.2.4 Data Integration: Multi-table JOINs and virtual field lifting from joined files.
+    - [ ] 5.1.2.5 Control Flow: DM variable resolution and PL/pgSQL state machine execution.
   - [ ] 5.1.3 Grammar Coverage: Ensure all core EBNF features are implemented and tested.
     - [x] 5.1.3.1 Support `ALL` keyword in `JOIN` commands.
     - [x] 5.1.3.2 Support hyphenated `SET` keywords (e.g., `ONLINE-FMT`).
     - [ ] 5.1.3.3 Support `COMPOUND LAYOUT` structure.
     - [x] 5.1.3.4 Support inline format specifications (e.g., `SUM FIELD/I08M`).
     - [x] 5.1.3.5 Support `RECAP` command in report requests.
-    - [ ] 5.1.3.6 Support `ACROSS-TOTAL` for cross-tabulation summaries.
+    - [x] 5.1.3.6 Support `ACROSS-TOTAL` for cross-tabulation summaries.
   - [ ] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.
 - [ ] **5.2 Sample Validation:**
-  - [ ] 5.2.1 Standard Samples: Validate transpiler output against samples in `test/samples/`.
-  - [ ] 5.2.2 Real-world Samples: Validate against complex samples in `test/realworld_samples/`.
+  - [ ] 5.2.1 Core Samples: Validate transpiler output against samples in `test/samples/`.
+  - [ ] 5.2.2 Documentation Examples: Validate against samples in `test/documentation_examples/`.
+  - [ ] 5.2.3 Real-world Samples: Validate against complex samples in `test/realworld_samples/`.
 - [ ] **5.3 Performance Benchmarking:**
   - [ ] 5.3.1 Query Execution: Compare generated SQL performance vs original WebFOCUS execution.
   - [ ] 5.3.2 Compilation Overhead: Measure transpilation time for large projects.
 
 ## Phase 6: Decommissioning
-- [ ] **6.1 Remove Lark Dependency:** Delete Lark-related code and remove `lark` from `requirements.txt`.
-- [ ] **6.2 Clean Up Technical Debt:** Close out remaining items in `TECHNICAL_DEBTS.md`.
+- [ ] 6.1 Transition Tests: Ensure all legacy tests pass against the new transpiler architecture.
+- [ ] 6.2 Code Cleanup:
+  - [ ] 6.2.1 Remove Lark-related code (`wf_parser.py`, `master_file_parser.py`).
+  - [ ] 6.2.2 Remove `lark` from `requirements.txt`.
+- [ ] 6.3 Technical Debt: Close out remaining items in `TECHNICAL_DEBTS.md`.
