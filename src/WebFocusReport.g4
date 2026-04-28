@@ -14,7 +14,13 @@ format_name: NAME (DOT NUMBER)? (NAME | NUMBER)*;
 
 join_command: JOIN (CLEAR asterisk | (LEFT? OUTER)? qualified_name IN qualified_name TO ALL? qualified_name IN qualified_name (AS NAME)?) SEMI?;
 
-set_command: SET NAME EQ (NAME | NUMBER | OFF | ON | ALL) SEMI?;
+set_command: SET hyphenated_name (EQ? set_value)? SEMI?;
+
+set_value: hyphenated_name | STRING;
+
+hyphenated_name: (identifier | NUMBER | AMPER_VAR) (dm_token | SUB_OP (identifier | NUMBER | AMPER_VAR))*;
+
+dm_token: LABEL_DM | SET_DM | GOTO_DM | REPEAT_DM | IF_DM | TYPE_DM | INCLUDE_DM | RUN_DM | EXIT_DM;
 
 dm_command: dm_set
           | dm_goto
@@ -163,6 +169,7 @@ identifier: NAME
           | prefix_operator
           | IS | CONTAINS | OMITS | LIKE | TOTAL | MISSING | INCLUDES | EXCLUDES | EXCEEDS | ALL
           | LESS | THAN | MORE_KW | GREATER
+          | OFF | ON
           ;
 
 prefix_operator: AVE | MIN | MAX | CNT | FST | LST | ASQ | MDN | MDE | PCT | RPCT | RNK | DST | TOT | SUM | CT;

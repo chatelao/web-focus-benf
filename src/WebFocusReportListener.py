@@ -80,6 +80,33 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by WebFocusReportParser#set_value.
+    def enterSet_value(self, ctx:WebFocusReportParser.Set_valueContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#set_value.
+    def exitSet_value(self, ctx:WebFocusReportParser.Set_valueContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#hyphenated_name.
+    def enterHyphenated_name(self, ctx:WebFocusReportParser.Hyphenated_nameContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#hyphenated_name.
+    def exitHyphenated_name(self, ctx:WebFocusReportParser.Hyphenated_nameContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#dm_token.
+    def enterDm_token(self, ctx:WebFocusReportParser.Dm_tokenContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#dm_token.
+    def exitDm_token(self, ctx:WebFocusReportParser.Dm_tokenContext):
+        pass
+
+
     # Enter a parse tree produced by WebFocusReportParser#dm_command.
     def enterDm_command(self, ctx:WebFocusReportParser.Dm_commandContext):
         pass
