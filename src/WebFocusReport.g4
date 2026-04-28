@@ -1,8 +1,22 @@
 grammar WebFocusReport;
 
-start: (request | dm_command | join_command | set_command | define_file)* EOF;
+start: (request | dm_command | join_command | set_command | define_file | compound_layout_block)* EOF;
 
-request: table_file (verb_command | by_command | across_command | where_command | heading_command | footing_command | on_command | compute_command | recap_command | dm_command)* end_command;
+request: table_file (verb_command | by_command | across_command | where_command | heading_command | footing_command | on_command | compute_command | recap_command | dm_command | STRING)* end_command;
+
+compound_layout_block: COMPOUND LAYOUT output_command (layout_statement)* end_command (request | dm_command | join_command | set_command | define_file)* COMPOUND END;
+
+layout_statement: (identifier | TYPE) EQ layout_value (COMMA layout_property)* (COMMA? DOLLAR)?;
+
+layout_property: (identifier | TYPE) EQ layout_value;
+
+layout_value: qualified_name
+            | NUMBER
+            | dm_float
+            | '(' layout_value (layout_value | COMMA)* ')'
+            | STRING
+            | ON | OFF | LANDSCAPE | PORTRAIT | REPORT
+            ;
 
 define_file: DEFINE FILE qualified_name (define_assignment)* end_command;
 
@@ -161,7 +175,8 @@ on_table_options: (SUBHEAD | SUBFOOT) CENTER? STRING+
                 | output_command
                 | summarize_command
                 | recap_command
-                | set_command;
+                | set_command
+                | SET STYLE asterisk (layout_statement)* ENDSTYLE?;
 
 on_field_options: (SUBHEAD | SUBFOOT) CENTER? STRING+
                 | summarize_command
@@ -183,6 +198,8 @@ identifier: NAME
           | LESS | THAN | MORE_KW | GREATER
           | OFF | ON
           | RECAP | INDENT | ACROSS_TOTAL
+          | COMPOUND | LAYOUT | SECTION | PAGELAYOUT | COMPONENT | MERGE | ORIENTATION
+          | LANDSCAPE | PORTRAIT | TYPE | POSITION | DIMENSION | STYLE | ENDSTYLE
           ;
 
 prefix_operator: AVE | MIN | MAX | CNT | FST | LST | ASQ | MDN | MDE | PCT | RPCT | RNK | DST | TOT | SUM | CT;
@@ -291,6 +308,22 @@ CENTER: [cC][eE][nN][tT][eE][rR];
 RECAP: [rR][eE][cC][aA][pP];
 INDENT: [iI][nN][dD][eE][nN][tT];
 
+COMPOUND: [cC][oO][mM][pP][oO][uU][nN][dD];
+LAYOUT: [lL][aA][yY][oO][uU][tT];
+SECTION: [sS][eE][cC][tT][iI][oO][nN];
+PAGELAYOUT: [pP][aA][gG][eE][lL][aA][yY][oO][uU][tT];
+COMPONENT: [cC][oO][mM][pP][oO][nN][eE][nN][tT];
+MERGE: [mM][eE][rR][gG][eE];
+ORIENTATION: [oO][rR][iI][eE][nN][tT][aA][tT][iI][oO][nN];
+LANDSCAPE: [lL][aA][nN][dD][sS][cC][aA][pP][eE];
+PORTRAIT: [pP][oO][rR][tT][rR][aA][iI][tT];
+TYPE: [tT][yY][pP][eE];
+POSITION: [pP][oO][sS][iI][tT][iI][oO][nN];
+DIMENSION: [dD][iI][mM][eE][nN][sS][iI][oO][nN];
+STYLE: [sS][tT][yY][lL][eE];
+ENDSTYLE: [eE][nN][dD][sS][tT][yY][lL][eE];
+REPORT: [rR][eE][pP][oO][rR][tT];
+
 SUBTOTAL: [sS][uU][bB][tT][oO][tT][aA][lL];
 SUMMARIZE: [sS][uU][mM][mM][aA][rR][iI][zZ][eE];
 RECOMPUTE: [rR][eE][cC][oO][mM][pP][uU][tT][eE];
@@ -325,6 +358,7 @@ MUL: '*';
 ADD_OP: '+';
 SUB_OP: '-';
 CONCAT: '||' | '|';
+DOLLAR: '$';
 
 NUMBER: [0-9]+;
 
