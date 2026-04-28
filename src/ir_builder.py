@@ -21,19 +21,27 @@ class IRBuilder:
         self.cfg.add_block(block)
         return block
 
-    def build(self, asg_nodes):
-        # Pass 1: Identify all labels
-        for node in asg_nodes:
+    def _discover_labels(self, nodes):
+        for node in nodes:
             class_name = node.__class__.__name__
             if class_name == 'Label':
                 if node.name not in self.labels:
                     block = self._new_block(node.name)
                     self.labels[node.name] = block.name
+            elif class_name == 'CompoundLayout':
+                self._discover_labels(node.components)
+
+    def build(self, asg_nodes):
+        # Pass 1: Identify all labels
+        self._discover_labels(asg_nodes)
 
         # Pass 2: Build instructions and edges
         self.current_block = self._new_block("ENTRY")
+        self._process_nodes(asg_nodes)
+        return self.cfg
 
-        for node in asg_nodes:
+    def _process_nodes(self, nodes):
+        for node in nodes:
             class_name = node.__class__.__name__
             if class_name == 'Label':
                 target_block_name = self.labels[node.name]
@@ -199,11 +207,16 @@ class IRBuilder:
             elif class_name == 'JoinClear':
                 self.current_block.add_instruction(ir.JoinClear())
                 self.active_joins = []
+            elif class_name == 'CompoundLayout':
+                self.current_block.add_instruction(ir.CompoundLayout(
+                    output_command=node.output_command,
+                    statements=node.statements
+                ))
+                self._process_nodes(node.components)
+                self.current_block.add_instruction(ir.CompoundEnd())
             elif class_name == 'RunDM':
                 self.current_block.add_instruction(ir.Call(target='-RUN'))
             elif class_name == 'ExitDM':
                 self.current_block.add_instruction(ir.Jump(target='EXIT'))
                 # No edge to 'EXIT' yet unless we define an EXIT block.
                 self.current_block = self._new_block()
-
-        return self.cfg

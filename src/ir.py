@@ -76,6 +76,15 @@ class Report(Instruction):
     def __init__(self, filename, components, joins=None, **kwargs):
         super().__init__(filename=filename, components=components, joins=joins or [], **kwargs)
 
+class CompoundLayout(Instruction):
+    """Represents the start of a COMPOUND LAYOUT block."""
+    def __init__(self, output_command, statements=None, **kwargs):
+        super().__init__(output_command=output_command, statements=statements or [], **kwargs)
+
+class CompoundEnd(Instruction):
+    """Represents the end of a COMPOUND LAYOUT block."""
+    pass
+
 class BasicBlock(IRNode):
     """Represents a basic block: a linear sequence of instructions."""
     def __init__(self, name, **kwargs):
