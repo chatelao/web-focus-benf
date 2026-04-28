@@ -357,5 +357,82 @@ class TestEmitter(unittest.TestCase):
         emitter.emit_instruction(ir.JoinClear())
         self.assertEqual(len(emitter.active_joins), 0)
 
+    def test_emit_instruction_report_with_join(self):
+        emitter = PostgresEmitter()
+
+        # JOIN LEFT_FILE.FLD1 TO RIGHT_FILE.FLD2 AS J1
+        join = ir.Join(left_file="LEFT_FILE", left_field="FLD1", right_file="RIGHT_FILE", right_field="FLD2", join_as="J1")
+
+        # TABLE FILE LEFT_FILE
+        #   PRINT FLD1 RIGHT_FILE.FLD2
+        # END
+        verb = asg.VerbCommand(verb="PRINT", fields=[
+            asg.FieldSelection(name="FLD1"),
+            asg.FieldSelection(name="RIGHT_FILE.FLD2")
+        ])
+
+        report = ir.Report(filename="LEFT_FILE", components=[verb], joins=[join])
+
+        sql = emitter.emit_instruction(report)
+
+        self.assertIn("SELECT LEFT_FILE.FLD1, J1.FLD2", sql)
+        self.assertIn("FROM LEFT_FILE", sql)
+        self.assertIn("JOIN RIGHT_FILE J1 ON LEFT_FILE.FLD1 = J1.FLD2", sql)
+
+    def test_emit_instruction_report_with_outer_join(self):
+        emitter = PostgresEmitter()
+
+        # JOIN LEFT OUTER LEFT_FILE.FLD1 TO RIGHT_FILE.FLD2
+        join = ir.Join(left_file="LEFT_FILE", left_field="FLD1", right_file="RIGHT_FILE", right_field="FLD2", outer=True)
+
+        verb = asg.VerbCommand(verb="PRINT", fields=[asg.FieldSelection(name="FLD1")])
+        report = ir.Report(filename="LEFT_FILE", components=[verb], joins=[join])
+
+        sql = emitter.emit_instruction(report)
+
+        self.assertIn("LEFT OUTER JOIN RIGHT_FILE ON LEFT_FILE.FLD1 = RIGHT_FILE.FLD2", sql)
+
+    def test_emit_instruction_report_with_chained_joins(self):
+        emitter = PostgresEmitter()
+
+        # JOIN F1.A TO F2.B
+        # JOIN F2.C TO F3.D
+        j1 = ir.Join(left_file="F1", left_field="A", right_file="F2", right_field="B")
+        j2 = ir.Join(left_file="F2", left_field="C", right_file="F3", right_field="D")
+
+        verb = asg.VerbCommand(verb="PRINT", fields=[asg.FieldSelection(name="A")])
+        report = ir.Report(filename="F1", components=[verb], joins=[j1, j2])
+
+        sql = emitter.emit_instruction(report)
+
+        self.assertIn("JOIN F2 ON F1.A = F2.B", sql)
+        self.assertIn("JOIN F3 ON F2.C = F3.D", sql)
+
+    def test_emit_instruction_report_with_join_and_virtual_lifting(self):
+        emitter = PostgresEmitter()
+
+        # DEFINE FILE RIGHT_FILE
+        #   CALC = FLD2 * 2;
+        # END
+        define = ir.Define(filename="RIGHT_FILE", assignments=[
+            asg.DefineAssignment(name="CALC", expression=asg.BinaryOperation(asg.Identifier("FLD2"), "*", asg.Literal(2)))
+        ])
+        emitter.emit_instruction(define)
+
+        # JOIN LEFT_FILE.FLD1 TO RIGHT_FILE.FLD2
+        join = ir.Join(left_file="LEFT_FILE", left_field="FLD1", right_file="RIGHT_FILE", right_field="FLD2")
+
+        # TABLE FILE LEFT_FILE
+        #   PRINT CALC
+        # END
+        verb = asg.VerbCommand(verb="PRINT", fields=[asg.FieldSelection(name="CALC")])
+        report = ir.Report(filename="LEFT_FILE", components=[verb], joins=[join])
+
+        sql = emitter.emit_instruction(report)
+
+        # Should lift CALC from RIGHT_FILE and qualify FLD2
+        self.assertIn("(RIGHT_FILE.FLD2 * 2) AS \"CALC\"", sql)
+        self.assertIn("JOIN RIGHT_FILE ON LEFT_FILE.FLD1 = RIGHT_FILE.FLD2", sql)
+
 if __name__ == '__main__':
     unittest.main()
