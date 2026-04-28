@@ -11,6 +11,7 @@ class IRBuilder:
         self.current_block = None
         self.labels = {} # label_name -> block_name
         self.active_loops = [] # stack of {label, header_block, after_block, repeat_node}
+        self.active_joins = []
 
     def _new_block(self, name=None):
         if not name:
@@ -176,20 +177,27 @@ class IRBuilder:
             elif class_name == 'SetCommand':
                 self.current_block.add_instruction(ir.SetEnv(parameter=node.parameter, value=node.value))
             elif class_name == 'Join':
-                self.current_block.add_instruction(ir.Join(
+                instr = ir.Join(
                     left_file=node.left_file,
                     left_field=node.left_field,
                     right_file=node.right_file,
                     right_field=node.right_field,
                     join_as=node.join_as,
                     outer=node.outer
-                ))
+                )
+                self.current_block.add_instruction(instr)
+                self.active_joins.append(instr)
             elif class_name == 'DefineFile':
                 self.current_block.add_instruction(ir.Define(filename=node.filename, assignments=node.assignments))
             elif class_name == 'ReportRequest':
-                self.current_block.add_instruction(ir.Report(filename=node.filename, components=node.components))
+                self.current_block.add_instruction(ir.Report(
+                    filename=node.filename,
+                    components=node.components,
+                    joins=list(self.active_joins)
+                ))
             elif class_name == 'JoinClear':
                 self.current_block.add_instruction(ir.JoinClear())
+                self.active_joins = []
             elif class_name == 'RunDM':
                 self.current_block.add_instruction(ir.Call(target='-RUN'))
             elif class_name == 'ExitDM':
