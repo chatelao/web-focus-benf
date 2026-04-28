@@ -107,7 +107,9 @@ class TestAntlrWebFocusParser(unittest.TestCase):
         variations = [
             "TABLE FILE EMPDATA SUM SALARY END",
             "TABLE FILE EMPDATA PRINT LAST_NAME FIRST_NAME END",
-            "TABLE FILE EMPDATA LIST * END"
+            "TABLE FILE EMPDATA LIST * END",
+            "TABLE FILE EMPDATA SUM SALARY/D12.2 END",
+            "TABLE FILE EMPDATA PRINT LAST_NAME/A20V AS 'Name' END"
         ]
         for code in variations:
             with self.subTest(code=code):
