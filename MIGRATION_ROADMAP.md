@@ -168,7 +168,7 @@ Ensure the new system produces correct results and maintains parity with the leg
 - [ ] **5.1 Regression Testing:**
   - [x] 5.1.1 Frontend Parity: Run the existing test suite against the new ANTLR4-based frontend. (Verified via `test/test_antlr_wf_parser.py`)
   - [ ] 5.1.2 End-to-End Tests: Verify PL/pgSQL output for a subset of core features.
-    - [ ] 5.1.2.1 Basic Reporting: PRINT/SUM requests with WHERE clauses.
+    - [x] 5.1.2.1 Basic Reporting: PRINT/SUM requests with WHERE clauses. (Verified via `test/test_e2e_basic_reporting.py`)
     - [ ] 5.1.2.2 Advanced Filtering: Complex WHERE clauses, BETWEEN, IN, MISSING.
     - [ ] 5.1.2.3 Calculated Fields: DEFINE and COMPUTE expression lifting.
     - [ ] 5.1.2.4 Data Integration: Multi-table JOINs and virtual field lifting from joined files.

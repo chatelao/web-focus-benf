@@ -10,6 +10,13 @@ class SSATransformer:
     def __init__(self):
         pass
 
+    def transform(self, cfg):
+        """
+        Performs full SSA transformation: Phi placement and variable renaming.
+        """
+        self.place_phi_nodes(cfg)
+        self.rename_variables(cfg)
+
     def place_phi_nodes(self, cfg):
         """
         Inserts Phi instructions into the basic blocks of the CFG using the
