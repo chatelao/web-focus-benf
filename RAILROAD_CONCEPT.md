@@ -55,6 +55,9 @@ TABLE_REQUEST ::= 'TABLE' 'FILE' qualified_name ( VERB_PHRASE | SORT_PHRASE | ..
 
 ---
 
+## Appendix: Examples
+<tbd>
+
 ## Appendix: Discarded Alternatives
 
 ### Extraction
