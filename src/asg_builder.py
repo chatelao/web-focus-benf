@@ -137,6 +137,9 @@ class ReportASGBuilder(WebFocusReportVisitor):
             return self.visit(ctx.recap_command())
         if ctx.set_command():
             return self.visit(ctx.set_command())
+        if ctx.STYLE():
+            statements = [self.visit(s) for s in ctx.layout_statement()]
+            return StyleBlock(statements=statements)
         return None
 
     def visitOn_field_options(self, ctx: WebFocusReportParser.On_field_optionsContext):
@@ -490,3 +493,49 @@ class ReportASGBuilder(WebFocusReportVisitor):
 
     def visitAmper_var(self, ctx: WebFocusReportParser.Amper_varContext):
         return AmperVar(name=ctx.getText())
+
+    def visitCompound_layout_block(self, ctx: WebFocusReportParser.Compound_layout_blockContext):
+        output_command = self.visit(ctx.output_command())
+        statements = [self.visit(s) for s in ctx.layout_statement()]
+
+        components = []
+        # The components are interleaved between the first end_command and COMPOUND END
+        # Children after output_command and layout_statements and the first end_command
+        # compound_layout_block: COMPOUND LAYOUT output_command (layout_statement)* end_command (request | dm_command | join_command | set_command | define_file)* COMPOUND END;
+        # COMPOUND is child 0, LAYOUT is child 1, output_command is child 2
+        start_idx = 3 + len(ctx.layout_statement()) + 1 # +1 for end_command
+        for i in range(start_idx, ctx.getChildCount() - 2):
+            child = ctx.getChild(i)
+            if isinstance(child, TerminalNode):
+                continue
+            node = self.visit(child)
+            if node:
+                if isinstance(node, list):
+                    components.extend(node)
+                else:
+                    components.append(node)
+
+        return CompoundLayout(output_command=output_command, statements=statements, components=components)
+
+    def visitLayout_statement(self, ctx: WebFocusReportParser.Layout_statementContext):
+        name = ctx.getChild(0).getText()
+        value = self.visit(ctx.layout_value())
+        properties = [self.visit(p) for p in ctx.layout_property()]
+        return LayoutStatement(name=name, value=value, properties=properties)
+
+    def visitLayout_property(self, ctx: WebFocusReportParser.Layout_propertyContext):
+        name = ctx.getChild(0).getText()
+        value = self.visit(ctx.layout_value())
+        return LayoutProperty(name=name, value=value)
+
+    def visitLayout_value(self, ctx: WebFocusReportParser.Layout_valueContext):
+        if ctx.getChildCount() > 1 and ctx.getChild(0).getText() == '(':
+            values = []
+            for i in range(1, ctx.getChildCount() - 1):
+                child = ctx.getChild(i)
+                if isinstance(child, WebFocusReportParser.Layout_valueContext):
+                    values.append(self.visit(child))
+            return values
+        if ctx.STRING():
+            return ctx.STRING().getText()[1:-1]
+        return ctx.getText()

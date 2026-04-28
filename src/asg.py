@@ -236,3 +236,23 @@ class Field(DataModelNode):
     """Represents a field within a segment."""
     def __init__(self, name, alias=None, format=None, **kwargs):
         super().__init__(name=name, alias=alias, format=format, **kwargs)
+
+class CompoundLayout(Statement):
+    """Represents a COMPOUND LAYOUT block."""
+    def __init__(self, output_command, statements=None, components=None, **kwargs):
+        super().__init__(output_command=output_command, statements=statements or [], components=components or [], **kwargs)
+
+class LayoutStatement(ASGNode):
+    """Represents a layout statement (e.g., SECTION=..., PAGELAYOUT=..., COMPONENT=...)."""
+    def __init__(self, name, value, properties=None, **kwargs):
+        super().__init__(name=name, value=value, properties=properties or [], **kwargs)
+
+class LayoutProperty(ASGNode):
+    """Represents a layout property within a layout statement."""
+    def __init__(self, name, value, **kwargs):
+        super().__init__(name=name, value=value, **kwargs)
+
+class StyleBlock(Command):
+    """Represents a SET STYLE * ... ENDSTYLE block."""
+    def __init__(self, statements=None, **kwargs):
+        super().__init__(statements=statements or [], **kwargs)
