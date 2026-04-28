@@ -63,8 +63,9 @@ class ReportASGBuilder(WebFocusReportVisitor):
 
     def visitField(self, ctx: WebFocusReportParser.FieldContext):
         name = ctx.qualified_name().getText()
+        format = ctx.format_name().getText() if ctx.format_name() else None
         alias = self.visit(ctx.as_phrase()) if ctx.as_phrase() else None
-        return FieldSelection(name=name, alias=alias)
+        return FieldSelection(name=name, alias=alias, format=format)
 
     def visitAs_phrase(self, ctx: WebFocusReportParser.As_phraseContext):
         val = ctx.STRING().getText()

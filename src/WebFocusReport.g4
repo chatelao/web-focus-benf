@@ -117,7 +117,7 @@ field_separator: COMMA | AND THE | AND | THE;
 
 field_or_prefixed: (prefix_operator DOT)* field;
 
-field: qualified_name as_phrase?;
+field: qualified_name (SLASH format_name)? as_phrase?;
 
 as_phrase: AS STRING;
 

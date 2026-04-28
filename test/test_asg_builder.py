@@ -184,6 +184,15 @@ class TestASGBuilder(unittest.TestCase):
         verb = asg_nodes[0].components[0]
         self.assertEqual(verb.fields[0].name, "*")
 
+    def test_table_request_with_inline_format(self):
+        code = "TABLE FILE CAR\nSUM SALES/D12.2 AS 'Total Sales'\nEND"
+        asg_nodes = self.build_asg(code)
+        verb = asg_nodes[0].components[0]
+        field = verb.fields[0]
+        self.assertEqual(field.name, "SALES")
+        self.assertEqual(field.format, "D12.2")
+        self.assertEqual(field.alias, "Total Sales")
+
     def test_table_request_with_where(self):
         code = "TABLE FILE CAR\nPRINT MODEL\nWHERE COUNTRY EQ 'ENGLAND';\nWHERE TOTAL SALES GT 1000\nEND"
         asg_nodes = self.build_asg(code)

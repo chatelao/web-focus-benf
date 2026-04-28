@@ -131,8 +131,8 @@ class VerbCommand(Command):
 
 class FieldSelection(ASGNode):
     """Represents a field selection in a verb or sort command."""
-    def __init__(self, name, prefix_operators=None, alias=None, **kwargs):
-        super().__init__(name=name, prefix_operators=prefix_operators or [], alias=alias, **kwargs)
+    def __init__(self, name, prefix_operators=None, alias=None, format=None, **kwargs):
+        super().__init__(name=name, prefix_operators=prefix_operators or [], alias=alias, format=format, **kwargs)
 
 class SortCommand(Command):
     """Represents a sort phrase (BY or ACROSS)."""

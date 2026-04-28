@@ -126,10 +126,10 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
     - [x] 3.4.5.1 Expression Tracking: Track virtual fields defined via `ir.Define`. (Implemented in `src/emitter.py`)
     - [x] 3.4.5.2 Selection Substitution: Inline virtual field expressions into `SELECT` statements. (Implemented in `src/emitter.py`)
     - [x] 3.4.5.3 Predicate Substitution: Inline virtual field expressions into `WHERE` clauses. (Implemented in `src/emitter.py`)
-  - [ ] 3.4.6 Join Lifting: Translate JOIN commands to SQL JOINs.
+  - [x] 3.4.6 Join Lifting: Translate JOIN commands to SQL JOINs.
     - [x] 3.4.6.1 Join Context Management: Maintain a mapping of joined tables and their join conditions. (Implemented in `src/emitter.py`)
-    - [ ] 3.4.6.2 SQL JOIN Generation: Emit `JOIN` clauses in the generated SQL queries.
-    - [ ] 3.4.6.3 Field Qualification: Ensure fields are correctly qualified with table names in multi-table queries.
+    - [x] 3.4.6.2 SQL JOIN Generation: Emit `JOIN` clauses in the generated SQL queries. (Implemented in `src/emitter.py`)
+    - [x] 3.4.6.3 Field Qualification: Ensure fields are correctly qualified with table names in multi-table queries. (Implemented in `src/emitter.py`)
 
 ## Phase 4: Backend Emission (Jinja2)
 Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
@@ -172,7 +172,7 @@ Ensure the new system produces correct results and maintains parity with the leg
     - [ ] 5.1.3.1 Support `ALL` keyword in `JOIN` commands.
     - [ ] 5.1.3.2 Support hyphenated `SET` keywords (e.g., `ONLINE-FMT`).
     - [ ] 5.1.3.3 Support `COMPOUND LAYOUT` structure.
-    - [ ] 5.1.3.4 Support inline format specifications (e.g., `SUM FIELD/I08M`).
+    - [x] 5.1.3.4 Support inline format specifications (e.g., `SUM FIELD/I08M`).
     - [ ] 5.1.3.5 Support `RECAP` command in report requests.
     - [ ] 5.1.3.6 Support `ACROSS-TOTAL` for cross-tabulation summaries.
   - [ ] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.
