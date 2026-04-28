@@ -279,7 +279,7 @@ class TestEmitter(unittest.TestCase):
 
         self.assertIn("SELECT REGION, SUM(SALES)", sql)
         self.assertIn("GROUP BY REGION", sql)
-        self.assertIn("HAVING (SALES > 1000)", sql)
+        self.assertIn("HAVING (SUM(SALES) > 1000)", sql)
 
     def test_emit_instruction_report_with_compute(self):
         emitter = PostgresEmitter()
@@ -293,7 +293,7 @@ class TestEmitter(unittest.TestCase):
 
         sql = emitter.emit_instruction(instr)
 
-        self.assertIn("SELECT SUM(SALES), (SALES / 1000) AS \"RATIO\"", sql)
+        self.assertIn("SELECT SUM(SALES), (SUM(SALES) / 1000) AS \"RATIO\"", sql)
 
     def test_emit_instruction_define_and_lift(self):
         emitter = PostgresEmitter()
