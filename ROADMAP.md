@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] 0.78 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#199)
 - [x] 0.77 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#197) (completed at 2026-04-28 17:54:51)
 - [x] 0.76 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#193) (completed at 2026-04-28 17:16:22)
 - [x] 0.75 Add an example to the RAILROAD_CONCEPT.md (#190) (completed at 2026-04-28 14:42:48)
