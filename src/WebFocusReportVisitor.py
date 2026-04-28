@@ -49,6 +49,21 @@ class WebFocusReportVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by WebFocusReportParser#set_value.
+    def visitSet_value(self, ctx:WebFocusReportParser.Set_valueContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#hyphenated_name.
+    def visitHyphenated_name(self, ctx:WebFocusReportParser.Hyphenated_nameContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#dm_token.
+    def visitDm_token(self, ctx:WebFocusReportParser.Dm_tokenContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by WebFocusReportParser#dm_command.
     def visitDm_command(self, ctx:WebFocusReportParser.Dm_commandContext):
         return self.visitChildren(ctx)

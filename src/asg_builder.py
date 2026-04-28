@@ -406,17 +406,10 @@ class ReportASGBuilder(WebFocusReportVisitor):
         return options
 
     def visitSet_command(self, ctx: WebFocusReportParser.Set_commandContext):
-        parameter = ctx.NAME(0).getText()
-        if ctx.NAME(1):
-            value = ctx.NAME(1).getText()
-        elif ctx.NUMBER():
-            value = ctx.NUMBER().getText()
-        elif ctx.OFF():
-            value = "OFF"
-        elif ctx.ON():
-            value = "ON"
-        else:
-            value = None
+        parameter = ctx.hyphenated_name().getText()
+        value = None
+        if ctx.set_value():
+            value = ctx.set_value().getText()
         return SetCommand(parameter=parameter, value=value)
 
     def visitDm_repeat(self, ctx: WebFocusReportParser.Dm_repeatContext):
