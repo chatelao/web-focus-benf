@@ -546,8 +546,9 @@ class PostgresEmitter:
         compute_commands = [c for c in instr.components if c.__class__.__name__ == 'ComputeCommand']
         for cc in compute_commands:
             sql_expr = self.emit_expression(cc.expression, in_query=True, virtual_fields=file_virtual_fields, qualifier=qualify_field, aggregate=is_aggregating, group_by_fields=group_by_fields)
-            if cc.name:
-                sql_expr = f"{sql_expr} AS \"{cc.name}\""
+            alias = getattr(cc, 'alias', None) or cc.name
+            if alias:
+                sql_expr = f"{sql_expr} AS \"{alias}\""
             select_fields.append(sql_expr)
 
         # WHERE and HAVING
