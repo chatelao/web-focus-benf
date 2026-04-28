@@ -183,7 +183,8 @@ class IRBuilder:
                     right_file=node.right_file,
                     right_field=node.right_field,
                     join_as=node.join_as,
-                    outer=node.outer
+                    outer=node.outer,
+                    is_all=node.is_all
                 )
                 self.current_block.add_instruction(instr)
                 self.active_joins.append(instr)

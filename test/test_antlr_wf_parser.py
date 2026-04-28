@@ -136,6 +136,18 @@ class TestAntlrWebFocusParser(unittest.TestCase):
             with self.subTest(code=code):
                 self.parse(code)
 
+    def test_join_commands(self):
+        variations = [
+            "JOIN PIN IN EMPDATA TO PIN IN TRAINING AS J1;",
+            "JOIN PIN IN EMPDATA TO ALL PIN IN TRAINING AS J1;",
+            "JOIN LEFT OUTER PIN IN EMPDATA TO PIN IN TRAINING AS J1;",
+            "JOIN LEFT OUTER PIN IN EMPDATA TO ALL PIN IN TRAINING AS J1;",
+            "JOIN CLEAR *;"
+        ]
+        for code in variations:
+            with self.subTest(code=code):
+                self.parse(code)
+
     def test_samples(self):
         samples_dir = 'test/samples'
         if not os.path.exists(samples_dir):

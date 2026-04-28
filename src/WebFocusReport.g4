@@ -12,9 +12,9 @@ compute_command: COMPUTE qualified_name (SLASH format_name)? EQ dm_expression SE
 
 format_name: NAME (DOT NUMBER)? (NAME | NUMBER)*;
 
-join_command: JOIN (CLEAR asterisk | (LEFT? OUTER)? qualified_name IN qualified_name TO qualified_name IN qualified_name (AS NAME)?) SEMI?;
+join_command: JOIN (CLEAR asterisk | (LEFT? OUTER)? qualified_name IN qualified_name TO ALL? qualified_name IN qualified_name (AS NAME)?) SEMI?;
 
-set_command: SET NAME EQ (NAME | NUMBER | OFF | ON) SEMI?;
+set_command: SET NAME EQ (NAME | NUMBER | OFF | ON | ALL) SEMI?;
 
 dm_command: dm_set
           | dm_goto
@@ -161,7 +161,7 @@ qualified_name: identifier (DOT identifier)*;
 
 identifier: NAME
           | prefix_operator
-          | IS | CONTAINS | OMITS | LIKE | TOTAL | MISSING | INCLUDES | EXCLUDES | EXCEEDS
+          | IS | CONTAINS | OMITS | LIKE | TOTAL | MISSING | INCLUDES | EXCLUDES | EXCEEDS | ALL
           | LESS | THAN | MORE_KW | GREATER
           ;
 
@@ -236,6 +236,7 @@ NOPRINT: [nN][oO][pP][rR][iI][nN][tT];
 
 AS: [aA][sS];
 IN: [iI][nN];
+ALL: [aA][lL][lL];
 CONTAINS: [cC][oO][nN][tT][aA][iI][nN][sS];
 OMITS: [oO][mM][iI][tT][sS];
 LIKE: [lL][iI][kK][eE];
