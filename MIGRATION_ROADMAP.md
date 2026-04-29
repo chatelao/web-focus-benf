@@ -11,6 +11,7 @@ The frontend is split into two distinct ANTLR4 grammars to reflect the dual natu
 2. `WebFocusReport.g4`: Handles procedural report logic and `TABLE FILE` requests.
 
 - [x] **1.1 Master File Grammar:** Complete the transition of Master File parsing from Lark to ANTLR4. (Completed: `src/MasterFile.g4` is implemented and used by `src/master_file_parser.py`)
+  - [ ] 1.1.2 Support for `DIMENSION` and `HIERARCHY` declarations (Project 3).
 - [x] 1.2 WebFOCUS Report Grammar: Port the EBNF grammar from `src/wf_parser.py` to ANTLR4 (.g4) format.
   - [x] **1.2.1 Core request structure:** TABLE FILE verb, END command, and qualified names. (Implemented in `src/WebFocusReport.g4`)
   - [x] **1.2.2 Verb commands:** PRINT, SUM, LIST, COUNT, WRITE, ADD and field lists with AS phrases. (Implemented in `src/WebFocusReport.g4`)
@@ -185,6 +186,9 @@ Ensure the new system produces correct results and maintains parity with the leg
     - [x] 5.1.3.5 Support `RECAP` command in report requests.
     - [x] 5.1.3.6 Support `ACROSS-TOTAL` for cross-tabulation summaries.
     - [x] 5.1.3.7 Support `AND COMPUTE` and `AS` phrase in report requests.
+    - [ ] 5.1.3.8 Support `HIERARCHY` sort phrase and `SHOW UP/DOWN` commands (Project 3).
+    - [ ] 5.1.3.9 Support `ON TABLE MERGE` command (Project 4).
+    - [ ] 5.1.3.10 Support `-HTMLFORM` Dialogue Manager command (Project 5).
   - [ ] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.
     - [ ] 5.1.4.1 Symbol Resolution Validation: Ensure all field and variable references resolve correctly.
     - [ ] 5.1.4.2 Type Consistency: Verify inferred types match legacy expectations.
@@ -195,8 +199,17 @@ Ensure the new system produces correct results and maintains parity with the leg
     - [x] 5.2.2.1 Project 1: Joined Report.
     - [x] 5.2.2.2 Project 2: Compound Layout.
     - [ ] 5.2.2.3 Project 3: Hierarchical Cube.
+      - [ ] 5.2.2.3.1 Grammar support for `DIMENSION` and `HIERARCHY` in Master Files.
+      - [ ] 5.2.2.3.2 Grammar support for `BY ... HIERARCHY` and `SHOW UP/DOWN`.
+      - [ ] 5.2.2.3.3 E2E validation of hierarchical data processing.
     - [ ] 5.2.2.4 Project 4: Data Merge.
+      - [ ] 5.2.2.4.1 Grammar support for `ON TABLE MERGE`.
+      - [ ] 5.2.2.4.2 ASG and IR support for MERGE operations.
+      - [ ] 5.2.2.4.3 E2E validation of SQL `INSERT`/`UPDATE` generation.
     - [ ] 5.2.2.5 Project 5: Drill Through.
+      - [ ] 5.2.2.5.1 Grammar support for `-HTMLFORM`.
+      - [ ] 5.2.2.5.2 Support for external controller logic and parameter passing.
+      - [ ] 5.2.2.5.3 E2E validation of drill-through navigation.
   - [ ] 5.2.3 Real-world Samples: Validate against complex samples in `test/realworld_samples/`.
 - [ ] **5.3 Performance Benchmarking:**
   - [ ] 5.3.1 Query Execution: Compare generated SQL performance vs original WebFOCUS execution.
