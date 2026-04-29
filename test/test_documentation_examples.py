@@ -23,8 +23,6 @@ class TestDocumentationExamples(unittest.TestCase):
 
         # List of files known to fail due to missing grammar features
         known_failures = {
-            'project1_joined_report/joined_report.fex': 'AND COMPUTE in verb list not supported',
-            'project2_compound_layout/compound_layout.fex': 'COMPOUND LAYOUT and hyphenated SET keywords not supported',
             'project3_hierarchical_cube/hierarchical_report.fex': 'BY ... HIERARCHY and SHOW UP/DOWN not supported',
             'project3_hierarchical_cube/newgl.mas': 'DIMENSION and HIERARCHY in Master Files not supported',
             'project4_data_merge/data_merge.fex': 'ON TABLE MERGE not supported',

@@ -186,9 +186,17 @@ Ensure the new system produces correct results and maintains parity with the leg
     - [x] 5.1.3.6 Support `ACROSS-TOTAL` for cross-tabulation summaries.
     - [x] 5.1.3.7 Support `AND COMPUTE` and `AS` phrase in report requests.
   - [ ] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.
+    - [ ] 5.1.4.1 Symbol Resolution Validation: Ensure all field and variable references resolve correctly.
+    - [ ] 5.1.4.2 Type Consistency: Verify inferred types match legacy expectations.
+    - [ ] 5.1.4.3 Constant Folding Parity: Ensure constant expressions are evaluated identically.
 - [ ] **5.2 Sample Validation:**
-  - [ ] 5.2.1 Core Samples: Validate transpiler output against samples in `test/samples/`.
-  - [ ] 5.2.2 Documentation Examples: Validate against samples in `test/documentation_examples/`.
+  - [x] 5.2.1 Core Samples: Validate transpiler output against samples in `test/samples/`. (Verified via `test/test_core_samples.py`)
+  - [ ] 5.2.2 Documentation Examples: Validate against samples in `test/documentation_examples/`. (Verified via `test/test_documentation_examples.py`)
+    - [x] 5.2.2.1 Project 1: Joined Report.
+    - [x] 5.2.2.2 Project 2: Compound Layout.
+    - [ ] 5.2.2.3 Project 3: Hierarchical Cube.
+    - [ ] 5.2.2.4 Project 4: Data Merge.
+    - [ ] 5.2.2.5 Project 5: Drill Through.
   - [ ] 5.2.3 Real-world Samples: Validate against complex samples in `test/realworld_samples/`.
 - [ ] **5.3 Performance Benchmarking:**
   - [ ] 5.3.1 Query Execution: Compare generated SQL performance vs original WebFOCUS execution.
