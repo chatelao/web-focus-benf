@@ -184,6 +184,7 @@ Ensure the new system produces correct results and maintains parity with the leg
     - [x] 5.1.3.4 Support inline format specifications (e.g., `SUM FIELD/I08M`).
     - [x] 5.1.3.5 Support `RECAP` command in report requests.
     - [x] 5.1.3.6 Support `ACROSS-TOTAL` for cross-tabulation summaries.
+    - [x] 5.1.3.7 Support `AND COMPUTE` and `AS` phrase in report requests.
   - [ ] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.
 - [ ] **5.2 Sample Validation:**
   - [ ] 5.2.1 Core Samples: Validate transpiler output against samples in `test/samples/`.

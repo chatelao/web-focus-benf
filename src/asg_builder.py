@@ -168,7 +168,10 @@ class ReportASGBuilder(WebFocusReportVisitor):
         name = ctx.qualified_name().getText()
         format = ctx.format_name().getText() if ctx.format_name() else None
         expression = self.visit(ctx.dm_expression())
-        return ComputeCommand(name=name, format=format, expression=expression)
+        alias = None
+        if ctx.as_phrase():
+            alias = ctx.as_phrase().STRING().getText().strip("'").strip('"')
+        return ComputeCommand(name=name, format=format, expression=expression, alias=alias)
 
     def visitRecap_command(self, ctx: WebFocusReportParser.Recap_commandContext):
         assignments = [self.visit(a) for a in ctx.recap_assignment()]

@@ -22,7 +22,7 @@ define_file: DEFINE FILE qualified_name (define_assignment)* end_command;
 
 define_assignment: qualified_name (SLASH format_name)? EQ dm_expression SEMI?;
 
-compute_command: COMPUTE qualified_name (SLASH format_name)? EQ dm_expression SEMI?;
+compute_command: AND? COMPUTE qualified_name (SLASH format_name)? EQ dm_expression as_phrase? SEMI?;
 
 recap_command: RECAP recap_assignment+;
 

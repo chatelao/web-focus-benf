@@ -191,8 +191,8 @@ class RecapCommand(Command):
 
 class ComputeCommand(Command):
     """Represents a COMPUTE command."""
-    def __init__(self, name, expression, format=None, **kwargs):
-        super().__init__(name=name, expression=expression, format=format, **kwargs)
+    def __init__(self, name, expression, format=None, alias=None, **kwargs):
+        super().__init__(name=name, expression=expression, format=format, alias=alias, **kwargs)
 
 class Join(Command):
     """Represents a JOIN command."""
