@@ -5,46 +5,44 @@ def convert_antlr_to_ebnf(antlr_content):
     """
     Converts ANTLR4 grammar content to W3C EBNF.
     """
-    # Remove comments but skip strings
-    antlr_content = remove_comments(antlr_content)
-
-    # Extract parser rules (start with lowercase)
-    parser_rules = re.findall(r'^\s*([a-z]\w*)\s*:\s*(.*?)\s*;', antlr_content, re.DOTALL | re.MULTILINE)
-
-    # Extract lexer rules (start with uppercase)
-    lexer_rules = re.findall(r'^\s*(fragment\s+)?([A-Z]\w*)\s*:\s*(.*?)\s*;', antlr_content, re.DOTALL | re.MULTILINE)
+    # Rule regex that handles strings correctly.
+    # It matches (optional fragment) name : body ;
+    # body can contain strings '...' or "..." or any character except ;
+    # We use a non-greedy match for the body but ensure it consumes full strings.
+    rule_regex = r'(?m)^\s*(fragment\s+)?([a-zA-Z]\w*)\s*:\s*((?:\'(?:\'\'|[^\'])*\'|"(?:\"\"|[^\"])*"|[^;])+)\s*;'
 
     ebnf_rules = []
 
-    for rule_name, body in parser_rules:
-        body = format_body(body)
-        ebnf_rules.append(f"{rule_name} ::= {body}")
+    for match in re.finditer(rule_regex, antlr_content):
+        fragment, name, body = match.groups()
+        start_pos = match.start()
 
-    for fragment, rule_name, body in lexer_rules:
-        body = format_body(body, is_lexer=True)
-        ebnf_rules.append(f"{rule_name} ::= {body}")
+        # Search for tags in the comments before this rule
+        prev_content = antlr_content[:start_pos]
+        last_semi = prev_content.rfind(';')
+        if last_semi == -1:
+            search_window = prev_content
+        else:
+            search_window = prev_content[last_semi:]
+
+        tags = re.findall(r'@\w+', search_window)
+
+        body = format_body(body, is_lexer=name[0].isupper())
+
+        tag_prefix = ""
+        if tags:
+            tag_prefix = "[" + ",".join(t[1:] for t in tags) + "] "
+
+        ebnf_rules.append(f"{tag_prefix}{name} ::= {body}")
 
     return "\n".join(ebnf_rules)
-
-def remove_comments(content):
-    """
-    Removes ANTLR4 comments while preserving strings.
-    """
-    pattern = r"'(?:''|[^'])*'|\"(?:\"\"|[^\"])*\"|/\*.*?\*/|//[^\n]*"
-
-    def replace(match):
-        m = match.group(0)
-        if m.startswith('/') :
-            return ' '
-        return m
-
-    return re.sub(pattern, replace, content, flags=re.DOTALL)
 
 def format_body(body, is_lexer=False):
     """
     Formats the body of a rule for W3C EBNF.
     """
     # Remove ANTLR actions if any
+    # Using a simple non-nested approach for now as it's common in these grammars
     body = re.sub(r'\{.*?\}', '', body, flags=re.DOTALL)
 
     # Remove lexer commands

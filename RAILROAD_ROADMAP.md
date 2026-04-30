@@ -9,10 +9,13 @@ This document outlines the tasks required to implement the automated railroad di
     - [x] 1.1.3 Implement grouping and alternatives mapping.
     - [x] 1.1.4 Implement lexer rule to terminal string conversion.
     - [x] 1.1.5 **Early Testing:** Implement unit tests for each mapping component.
-- [ ] 1.2 Implement rule tagging system in `WebFocusReport.g4` (e.g., `// @internal`).
+- [x] 1.2 Implement rule tagging system in `WebFocusReport.g4` and `MasterFile.g4` (e.g., `// @internal`, `// @inline`).
 - [ ] 1.3 Develop automated rule pruning and inlining logic for technical/internal rules.
-    - [ ] 1.3.1 **Early Testing:** Implement unit tests for inlining logic (handling recursion and name collisions).
-- [ ] 1.4 Support `MasterFile.g4` extraction.
+    - [ ] 1.3.1 Implement `[internal]` rule removal logic.
+    - [ ] 1.3.2 Implement `[inline]` rule substitution logic.
+    - [ ] 1.3.3 Handle recursive rule inlining and prevent infinite loops.
+    - [ ] 1.3.4 **Early Testing:** Implement unit tests for inlining and pruning logic.
+- [x] 1.4 Support `MasterFile.g4` extraction.
 - [ ] 1.5 **Drift Prevention:** Implement a "Grammar Coverage" check to ensure all non-internal rules are present in the EBNF output.
 
 ## Phase 2: Rendering (EBNF to Railroad SVGs)
