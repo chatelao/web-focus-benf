@@ -80,7 +80,24 @@ class ReportASGBuilder(WebFocusReportVisitor):
         field = self.visit(ctx.field())
         summarize = self.visit(ctx.summarize_command()) if ctx.summarize_command() else None
         noprint = ctx.NOPRINT() is not None
-        return SortCommand(sort_type=sort_type, field=field, options=options, summarize=summarize, noprint=noprint)
+        is_hierarchy = ctx.HIERARCHY() is not None
+        return SortCommand(sort_type=sort_type, field=field, options=options, summarize=summarize, noprint=noprint, is_hierarchy=is_hierarchy)
+
+    def visitWhen_command(self, ctx: WebFocusReportParser.When_commandContext):
+        condition = self.visit(ctx.dm_logical_expression())
+        return WhenCommand(condition=condition)
+
+    def visitShow_command(self, ctx: WebFocusReportParser.Show_commandContext):
+        from_direction = ctx.getChild(1).getText().upper()
+        from_value = self.visit(ctx.dm_primary(0))
+        to_direction = ctx.getChild(4).getText().upper()
+        to_value = self.visit(ctx.dm_primary(1))
+        return ShowCommand(
+            from_direction=from_direction,
+            from_value=from_value,
+            to_direction=to_direction,
+            to_value=to_value
+        )
 
     def visitAcross_command(self, ctx: WebFocusReportParser.Across_commandContext):
         sort_type = "ACROSS"

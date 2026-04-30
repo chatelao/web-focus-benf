@@ -136,8 +136,18 @@ class FieldSelection(ASGNode):
 
 class SortCommand(Command):
     """Represents a sort phrase (BY or ACROSS)."""
-    def __init__(self, sort_type, field, options=None, summarize=None, noprint=False, across_total=False, total_as=None, **kwargs):
-        super().__init__(sort_type=sort_type, field=field, options=options or {}, summarize=summarize, noprint=noprint, across_total=across_total, total_as=total_as, **kwargs)
+    def __init__(self, sort_type, field, options=None, summarize=None, noprint=False, across_total=False, total_as=None, is_hierarchy=False, **kwargs):
+        super().__init__(sort_type=sort_type, field=field, options=options or {}, summarize=summarize, noprint=noprint, across_total=across_total, total_as=total_as, is_hierarchy=is_hierarchy, **kwargs)
+
+class WhenCommand(Command):
+    """Represents a WHEN command in a report request."""
+    def __init__(self, condition, **kwargs):
+        super().__init__(condition=condition, **kwargs)
+
+class ShowCommand(Command):
+    """Represents a SHOW command in a report request."""
+    def __init__(self, from_direction, from_value, to_direction, to_value, **kwargs):
+        super().__init__(from_direction=from_direction, from_value=from_value, to_direction=to_direction, to_value=to_value, **kwargs)
 
 class WhereClause(Command):
     """Represents a WHERE clause in a report request."""
