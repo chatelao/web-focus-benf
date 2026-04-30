@@ -54,6 +54,22 @@ def convert_antlr_to_ebnf(antlr_content):
             if not (body.startswith('(') and body.endswith(')')):
                 rule.body = f"( {body} )"
 
+    # Add dummy rules for any character placeholders
+    # W3C EBNF uses single quotes for terminals.
+    # Note: These are technical lexer rules, better to just name them or use a safer terminal.
+    rules['ANY_CHAR_EXCEPT_NL'] = Rule('ANY_CHAR_EXCEPT_NL', "'ANY_CHAR_EXCEPT_NL'", [], is_lexer=True)
+    rules['ANY_CHAR_EXCEPT_QUOTE'] = Rule('ANY_CHAR_EXCEPT_QUOTE', "'ANY_CHAR_EXCEPT_QUOTE'", [], is_lexer=True)
+    rules['ANY_CHAR_EXCEPT_DOUBLE_QUOTE'] = Rule('ANY_CHAR_EXCEPT_DOUBLE_QUOTE', "'ANY_CHAR_EXCEPT_DOUBLE_QUOTE'", [], is_lexer=True)
+
+    # Multi-pass character exclusion replacement
+    for name, rule in rules.items():
+        body = rule.body
+        # Handle MasterFile.g4 style STRING: '\'' ~'\''* '\'' | '"' ~'"'* '"'
+        body = body.replace(r"~'\''", " ANY_CHAR_EXCEPT_QUOTE ")
+        body = body.replace(r"~'", " ANY_CHAR_EXCEPT_QUOTE ")
+        body = body.replace(r'~"', " ANY_CHAR_EXCEPT_DOUBLE_QUOTE ")
+        rule.body = body
+
     # Multiple passes to handle nested inlining
     max_passes = 10
     for _ in range(max_passes):
@@ -143,6 +159,26 @@ def format_body(body, is_lexer=False):
 
     # Remove non-greedy markers
     body = body.replace('*?', '*').replace('+?', '+').replace('??', '?')
+
+    # W3C EBNF doesn't support ~ (not) in all versions/tools, RR tool specifically struggles with it if not well-formed
+    # For railroad diagrams, we can simplify this.
+
+    # RR tool seems to have issues with backslash escapes for single quotes
+    body = body.replace("\\'", "''")
+
+    # Simple replacement for common patterns to make it more compatible
+    body = re.sub(r'~\s*\[\\r\\n\]\*', ' ANY_CHAR_EXCEPT_NL* ', body)
+    body = re.sub(r"~\s*\[\'\]\*", ' ANY_CHAR_EXCEPT_QUOTE* ', body)
+    body = re.sub(r'~\s*\["\]\*', ' ANY_CHAR_EXCEPT_DOUBLE_QUOTE* ', body)
+
+    # MasterFile special cases in lexer
+    body = body.replace("~'\\''*", " ANY_CHAR_EXCEPT_QUOTE* ")
+    body = body.replace('~"\'\'*', " ANY_CHAR_EXCEPT_DOUBLE_QUOTE* ")
+    body = body.replace('~"\'*', " ANY_CHAR_EXCEPT_DOUBLE_QUOTE* ")
+    body = body.replace("~'\\''", " ANY_CHAR_EXCEPT_QUOTE ")
+    body = body.replace('~"', " ANY_CHAR_EXCEPT_DOUBLE_QUOTE ")
+
+    body = body.replace('~', 'NOT ')
 
     # Clean up whitespace
     body = body.replace('\n', ' ').strip()
