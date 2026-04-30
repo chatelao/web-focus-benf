@@ -1,5 +1,5 @@
 import pytest
-from scripts.antlr4_to_ebnf import convert_antlr_to_ebnf
+from scripts.antlr4_to_ebnf import convert_antlr_to_ebnf, check_coverage
 
 def test_basic_conversion():
     antlr = """
@@ -140,3 +140,46 @@ def test_semicolon_in_string():
     result = convert_antlr_to_ebnf(antlr)
     assert "SEMI ::= ';'" in result
     assert "OTHER ::= 'abc;def'" in result
+
+def test_coverage_check_all_present():
+    antlr = """
+    rule1: 'A';
+    rule2: 'B';
+    """
+    ebnf = convert_antlr_to_ebnf(antlr)
+    missing = check_coverage(antlr, ebnf)
+    assert missing == []
+
+def test_coverage_check_missing_rule():
+    antlr = """
+    rule1: 'A';
+    rule2: 'B';
+    """
+    # Simulate ebnf missing rule2
+    ebnf = "rule1 ::= 'A'"
+    missing = check_coverage(antlr, ebnf)
+    assert missing == ["rule2"]
+
+def test_coverage_check_ignores_internal_and_inline():
+    antlr = """
+    // @internal
+    rule1: 'A';
+    // @inline
+    rule2: 'B';
+    rule3: 'C';
+    """
+    # ebnf will only contain rule3
+    ebnf = "rule3 ::= 'C'"
+    missing = check_coverage(antlr, ebnf)
+    assert missing == []
+
+def test_coverage_check_recursive_inline_preserved():
+    antlr = """
+    // @inline
+    a: a 'x' | 'y';
+    """
+    ebnf = convert_antlr_to_ebnf(antlr)
+    # Since 'a' is recursive, it is NOT inlined and should remain in EBNF.
+    assert "a ::= a 'x' | 'y'" in ebnf
+    missing = check_coverage(antlr, ebnf)
+    assert missing == []

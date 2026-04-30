@@ -95,6 +95,38 @@ def convert_antlr_to_ebnf(antlr_content):
 
     return "\n".join(ebnf_rules)
 
+def check_coverage(antlr_content, ebnf_content):
+    """
+    Checks if all non-internal/non-inlined rules are present in the EBNF output.
+    Returns a list of missing rules.
+    """
+    rule_regex = r'(?m)^\s*(fragment\s+)?([a-zA-Z]\w*)\s*:'
+
+    # Extract rule names and their tags from ANTLR
+    rules_metadata = {}
+    for match in re.finditer(rule_regex, antlr_content):
+        name = match.group(2)
+        start_pos = match.start()
+
+        prev_content = antlr_content[:start_pos]
+        last_semi = prev_content.rfind(';')
+        search_window = prev_content[last_semi:] if last_semi != -1 else prev_content
+        tags = [t[1:] for t in re.findall(r'@\w+', search_window)]
+
+        rules_metadata[name] = tags
+
+    # Extract rule names from EBNF
+    ebnf_rule_names = set(re.findall(r'^(\w+)\s*::=', ebnf_content, re.MULTILINE))
+
+    missing = []
+    for name, tags in rules_metadata.items():
+        if 'internal' in tags or 'inline' in tags:
+            continue
+        if name not in ebnf_rule_names:
+            missing.append(name)
+
+    return missing
+
 def format_body(body, is_lexer=False):
     """
     Formats the body of a rule for W3C EBNF.
@@ -130,10 +162,27 @@ def convert_char_classes(body):
     return re.sub(r'(\[([a-zA-Z])([a-zA-Z])\])+', replace_sequence, body)
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        content = sys.stdin.read()
-    else:
-        with open(sys.argv[1], 'r') as f:
-            content = f.read()
+    import argparse
+    parser = argparse.ArgumentParser(description='Convert ANTLR4 to W3C EBNF')
+    parser.add_argument('input', nargs='?', help='Input ANTLR4 file')
+    parser.add_argument('--check', action='store_true', help='Check grammar coverage')
 
-    print(convert_antlr_to_ebnf(content))
+    args = parser.parse_args()
+
+    if args.input:
+        with open(args.input, 'r') as f:
+            content = f.read()
+    else:
+        content = sys.stdin.read()
+
+    ebnf = convert_antlr_to_ebnf(content)
+
+    if args.check:
+        missing = check_coverage(content, ebnf)
+        if missing:
+            print(f"Error: Missing rules in EBNF output: {', '.join(missing)}", file=sys.stderr)
+            sys.exit(1)
+        else:
+            print("Coverage check passed.", file=sys.stderr)
+
+    print(ebnf)
