@@ -90,3 +90,28 @@ def test_fragment_rules():
     result = convert_antlr_to_ebnf(antlr)
     assert "DIGIT ::= [0-9]" in result
     assert "NUMBER ::= DIGIT+" in result
+
+def test_tagging():
+    antlr = """
+    // @internal
+    rule1: 'body';
+
+    /* @inline */
+    rule2: 'other';
+
+    // @internal @inline
+    rule3: 'both';
+    """
+    result = convert_antlr_to_ebnf(antlr)
+    assert "[internal] rule1 ::= 'body'" in result
+    assert "[inline] rule2 ::= 'other'" in result
+    assert "[internal,inline] rule3 ::= 'both'" in result
+
+def test_semicolon_in_string():
+    antlr = """
+    SEMI: ';';
+    OTHER: 'abc;def';
+    """
+    result = convert_antlr_to_ebnf(antlr)
+    assert "SEMI ::= ';'" in result
+    assert "OTHER ::= 'abc;def'" in result

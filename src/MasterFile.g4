@@ -30,14 +30,20 @@ compute_decl: COMPUTE_KW name_format EQUALS expression SEMICOLON (COMMA attr_val
 
 other_decl: ATTR EQUALS value (COMMA attr_val)* COMMA? TERMINATOR?;
 
+// @inline
 attr_val: assignment | value;
+// @inline
 assignment: ATTR EQUALS value;
 
+// @inline
 name_format: value (SLASH value)?;
 
+// @inline
 value: STRING | ATTR | UNQUOTED_VALUE;
 
+// @internal
 expression: expression_part+;
+// @internal
 expression_part: ATTR | UNQUOTED_VALUE | STRING | COMMA | EQUALS | SLASH | FILENAME_KW | SEGNAME_KW | FIELDNAME_KW | VARIABLE_KW | DEFINE_KW | COMPUTE_KW ;
 
 FILENAME_KW: [fF][iI][lL][eE][nN][aA][mM][eE] | [fF][iI][lL][eE];
@@ -49,6 +55,7 @@ VARIABLE_KW: [vV][aA][rR][iI][aA][bB][lL][eE];
 DEFINE_KW: [dD][eE][fF][iI][nN][eE];
 COMPUTE_KW: [cC][oO][mM][pP][uU][tT][eE];
 
+// @internal
 TERMINATOR: '$' ~[\r\n]* (WS* '$' ~[\r\n]*)*;
 
 COMMA: ',';

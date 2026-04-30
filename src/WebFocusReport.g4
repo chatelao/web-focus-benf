@@ -2,14 +2,18 @@ grammar WebFocusReport;
 
 start: (request | dm_command | join_command | set_command | define_file | compound_layout_block)* EOF;
 
+// @inline
 request: table_file (verb_command | by_command | across_command | where_command | when_command | show_command | heading_command | footing_command | on_command | compute_command | recap_command | dm_command | STRING)* end_command;
 
 compound_layout_block: COMPOUND LAYOUT output_command (layout_statement)* end_command (request | dm_command | join_command | set_command | define_file)* COMPOUND END;
 
+// @inline
 layout_statement: (identifier | TYPE) EQ layout_value (COMMA layout_property)* (COMMA? DOLLAR)?;
 
+// @inline
 layout_property: (identifier | TYPE) EQ layout_value;
 
+// @inline
 layout_value: qualified_name
             | NUMBER
             | dm_float
@@ -106,22 +110,33 @@ dm_relational_op: EQ | NE | LE | GE | LT | GT | CONTAINS | OMITS | LIKE | EXCEED
                 | NOT LIKE | NOT SUB_OP LIKE
                 ;
 
+// @internal
 is_not_op: IS_NOT | IS NOT | IS SUB_OP NOT;
+// @internal
 is_from_op: IS_FROM | IS FROM | IS SUB_OP FROM;
+// @internal
 not_from_op: NOT_FROM | NOT FROM | NOT SUB_OP FROM;
+// @internal
 is_less_op: IS_LESS_THAN | IS LESS THAN | IS SUB_OP LESS THAN;
+// @internal
 is_more_op: IS_MORE_THAN | IS MORE_KW THAN | IS SUB_OP MORE_KW THAN;
+// @internal
 is_greater_op: IS_GREATER_THAN | IS GREATER THAN | IS SUB_OP GREATER THAN;
 
+// @inline
 dm_concat_expression: dm_additive_expression (CONCAT dm_additive_expression)*;
 
+// @inline
 dm_additive_expression: dm_multiplicative_expression ((ADD_OP | SUB_OP) dm_multiplicative_expression)*;
 
+// @inline
 dm_multiplicative_expression: dm_unary_expression ((MUL | SLASH) dm_unary_expression)*;
 
+// @inline
 dm_unary_expression: (ADD_OP | SUB_OP) dm_unary_expression
                    | dm_primary;
 
+// @inline
 dm_primary: NUMBER
           | dm_float
           | qualified_name '(' (dm_expression (COMMA dm_expression)*)? ')'
@@ -130,10 +145,13 @@ dm_primary: NUMBER
           | STRING
           | '(' dm_expression ')';
 
+// @inline
 dm_float: NUMBER DOT NUMBER;
 
+// @inline
 amper_var: AMPER_VAR;
 
+// @inline
 table_file: TABLE FILE qualified_name;
 
 verb_command: verb (field_list | asterisk);
@@ -194,8 +212,10 @@ output_command: (HOLD | PCHOLD | SAVE | SAVB) (AS qualified_name)? (FORMAT (NAME
 
 end_command: END;
 
+// @inline
 qualified_name: identifier (DOT identifier)*;
 
+// @internal
 identifier: NAME
           | prefix_operator
           | IS | CONTAINS | OMITS | LIKE | TOTAL | MISSING | INCLUDES | EXCLUDES | EXCEEDS | ALL
@@ -209,6 +229,7 @@ identifier: NAME
           | HIERARCHY | WHEN | SHOW | UP | DOWN
           ;
 
+// @internal
 prefix_operator: AVE | MIN | MAX | CNT | FST | LST | ASQ | MDN | MDE | PCT | RPCT | RNK | DST | TOT | SUM | CT;
 
 // Keywords
