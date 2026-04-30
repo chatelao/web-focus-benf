@@ -13,7 +13,7 @@ layout_property: (identifier | TYPE) EQ layout_value;
 layout_value: qualified_name
             | NUMBER
             | dm_float
-            | '(' layout_value (layout_value | COMMA)* ')'
+            | LPAREN layout_value (layout_value | COMMA)* RPAREN
             | STRING
             | ON | OFF | LANDSCAPE | PORTRAIT | REPORT
             ;
@@ -26,7 +26,7 @@ compute_command: AND? COMPUTE qualified_name (SLASH format_name)? EQ dm_expressi
 
 recap_command: RECAP recap_assignment+;
 
-recap_assignment: qualified_name ('(' dm_expression ')')? (SLASH format_name)? EQ dm_expression (SEMI? recap_option)* SEMI?;
+recap_assignment: qualified_name (LPAREN dm_expression RPAREN)? (SLASH format_name)? EQ dm_expression (SEMI? recap_option)* SEMI?;
 
 recap_option: as_phrase
             | INDENT NUMBER
@@ -82,7 +82,7 @@ dm_expression: dm_if_expression;
 dm_if_expression: IF dm_logical_expression THEN dm_expression ELSE dm_expression
                 | dm_logical_expression;
 
-dm_logical_expression: '(' dm_logical_expression ')'
+dm_logical_expression: LPAREN dm_logical_expression RPAREN
                      | dm_relational_expression
                      | NOT dm_logical_expression
                      | dm_logical_expression AND dm_logical_expression
@@ -91,7 +91,7 @@ dm_logical_expression: '(' dm_logical_expression ')'
 
 dm_relational_expression: dm_concat_expression (IS | EQ | NE | is_not_op)? MISSING
                         | dm_concat_expression (FROM | is_from_op | not_from_op) dm_concat_expression TO dm_concat_expression
-                        | dm_concat_expression IN (FILE qualified_name | '(' dm_concat_expression (COMMA dm_concat_expression)* ')')
+                        | dm_concat_expression IN (FILE qualified_name | LPAREN dm_concat_expression (COMMA dm_concat_expression)* RPAREN)
                         | dm_concat_expression (INCLUDES | EXCLUDES) dm_concat_expression (AND dm_concat_expression)*
                         | dm_concat_expression dm_relational_op (dm_concat_expression (OR dm_concat_expression)*)
                         | dm_concat_expression
@@ -124,11 +124,11 @@ dm_unary_expression: (ADD_OP | SUB_OP) dm_unary_expression
 
 dm_primary: NUMBER
           | dm_float
-          | qualified_name '(' (dm_expression (COMMA dm_expression)*)? ')'
+          | qualified_name LPAREN (dm_expression (COMMA dm_expression)*)? RPAREN
           | qualified_name
           | amper_var
           | STRING
-          | '(' dm_expression ')';
+          | LPAREN dm_expression RPAREN;
 
 dm_float: NUMBER DOT NUMBER;
 
@@ -150,7 +150,7 @@ field: qualified_name (SLASH format_name)? as_phrase?;
 
 as_phrase: AS STRING;
 
-asterisk: '*';
+asterisk: MUL;
 
 by_command: RANKED? BY sort_options? field summarize_command? NOPRINT?;
 
@@ -173,6 +173,7 @@ on_table_options: (SUBHEAD | SUBFOOT) CENTER? STRING+
                 | ROW_TOTAL_KW
                 | ACROSS_TOTAL (SLASH format_name)? as_phrase? qualified_name?
                 | output_command
+                | merge_command
                 | summarize_command
                 | recap_command
                 | set_command
@@ -188,6 +189,16 @@ summarize_options: ROLL_DOT (prefix_operator DOT)* | (prefix_operator DOT)+;
 
 output_command: (HOLD | PCHOLD | SAVE | SAVB) (AS qualified_name)? (FORMAT (NAME | verb))?;
 
+merge_command: MERGE INTO FILE qualified_name (matching_clause)? (when_matched_clause)? (when_not_matched_clause)? SEMI?;
+
+matching_clause: MATCHING dm_logical_expression SEMI;
+
+when_matched_clause: WHEN MATCHED UPDATE (merge_assignment)+;
+
+when_not_matched_clause: WHEN NOT MATCHED INSERT (merge_assignment)+;
+
+merge_assignment: qualified_name EQ dm_expression SEMI;
+
 end_command: END;
 
 qualified_name: identifier (DOT identifier)*;
@@ -198,7 +209,7 @@ identifier: NAME
           | LESS | THAN | MORE_KW | GREATER
           | OFF | ON
           | RECAP | INDENT | ACROSS_TOTAL
-          | COMPOUND | LAYOUT | SECTION | PAGELAYOUT | COMPONENT | MERGE | ORIENTATION
+          | COMPOUND | LAYOUT | SECTION | PAGELAYOUT | COMPONENT | MERGE | ORIENTATION | MATCHING | MATCHED
           | LANDSCAPE | PORTRAIT | TYPE | POSITION | DIMENSION | STYLE | ENDSTYLE
           | HEADING | FOOTING | SUBHEAD | SUBFOOT | FORMAT
           | TIMES | WHILE | UNTIL | FOR | STEP | TOP | BOTTOM | RANKED | NOPRINT | AS | IN
@@ -256,6 +267,13 @@ LE: [lL][eE] | '<=';
 GE: [gG][eE] | '>=';
 RANKED: [rR][aA][nN][kK][eE][dD];
 JOIN: [jJ][oO][iI][nN];
+MERGE: [mM][eE][rR][gG][eE];
+INTO: [iI][nN][tT][oO];
+MATCHING: [mM][aA][tT][cC][hH][iI][nN][gG];
+WHEN: [wW][hH][eE][nN];
+MATCHED: [mM][aA][tT][cC][hH][eE][dD];
+INSERT: [iI][nN][sS][eE][rR][tT];
+UPDATE: [uU][pP][dD][aA][tT][eE];
 CLEAR: [cC][lL][eE][aA][rR];
 LEFT: [lL][eE][fF][tT];
 OUTER: [oO][uU][tT][eE][rR];
@@ -357,6 +375,8 @@ COMMA: ',';
 SEMI: ';';
 SLASH: '/';
 MUL: '*';
+LPAREN: '(';
+RPAREN: ')';
 ADD_OP: '+';
 SUB_OP: '-';
 CONCAT: '||' | '|';
