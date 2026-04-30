@@ -62,6 +62,24 @@ class MasterFileListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MasterFileParser#dimension_decl.
+    def enterDimension_decl(self, ctx:MasterFileParser.Dimension_declContext):
+        pass
+
+    # Exit a parse tree produced by MasterFileParser#dimension_decl.
+    def exitDimension_decl(self, ctx:MasterFileParser.Dimension_declContext):
+        pass
+
+
+    # Enter a parse tree produced by MasterFileParser#hierarchy_decl.
+    def enterHierarchy_decl(self, ctx:MasterFileParser.Hierarchy_declContext):
+        pass
+
+    # Exit a parse tree produced by MasterFileParser#hierarchy_decl.
+    def exitHierarchy_decl(self, ctx:MasterFileParser.Hierarchy_declContext):
+        pass
+
+
     # Enter a parse tree produced by MasterFileParser#variable_decl.
     def enterVariable_decl(self, ctx:MasterFileParser.Variable_declContext):
         pass

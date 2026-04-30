@@ -187,7 +187,7 @@ Ensure the new system produces correct results and maintains parity with the leg
     - [x] 5.1.3.7 Support `AND COMPUTE` and `AS` phrase in report requests.
     - [ ] 5.1.3.8 Support Hierarchical Reporting (Project 3).
       - [x] 5.1.3.8.1 Procedural commands: `HIERARCHY` in `BY`, `WHEN` clause, and `SHOW UP/DOWN`.
-      - [ ] 5.1.3.8.2 Master File extensions: `DIMENSION`, `HIERARCHY`, and `HRY_` attributes.
+      - [x] 5.1.3.8.2 Master File extensions: `DIMENSION`, `HIERARCHY`, and `HRY_` attributes.
     - [ ] 5.1.3.9 Support Data Merge (Project 4).
       - [ ] 5.1.3.9.1 Grammar for `ON TABLE MERGE INTO`.
       - [ ] 5.1.3.9.2 Grammar for `MATCHING`, `WHEN MATCHED`, `WHEN NOT MATCHED`.
@@ -201,7 +201,7 @@ Ensure the new system produces correct results and maintains parity with the leg
     - [x] 5.2.2.1 Project 1: Joined Report.
     - [x] 5.2.2.2 Project 2: Compound Layout.
     - [ ] 5.2.2.3 Project 3: Hierarchical Cube.
-      - [ ] 5.2.2.3.1 Parse `newgl.mas` with hierarchical metadata.
+      - [x] 5.2.2.3.1 Parse `newgl.mas` with hierarchical metadata.
       - [ ] 5.2.2.3.2 Parse `hierarchical_report.fex`.
       - [ ] 5.2.2.3.3 End-to-end PL/pgSQL emission for hierarchical report.
     - [ ] 5.2.2.4 Project 4: Data Merge.

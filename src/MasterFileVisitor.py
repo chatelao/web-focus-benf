@@ -39,6 +39,16 @@ class MasterFileVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MasterFileParser#dimension_decl.
+    def visitDimension_decl(self, ctx:MasterFileParser.Dimension_declContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MasterFileParser#hierarchy_decl.
+    def visitHierarchy_decl(self, ctx:MasterFileParser.Hierarchy_declContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MasterFileParser#variable_decl.
     def visitVariable_decl(self, ctx:MasterFileParser.Variable_declContext):
         return self.visitChildren(ctx)

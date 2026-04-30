@@ -235,7 +235,17 @@ class DataModelNode(ASGNode):
 class MasterFile(DataModelNode):
     """Represents a WebFOCUS Master File (metadata)."""
     def __init__(self, name, suffix=None, **kwargs):
-        super().__init__(name=name, suffix=suffix, segments=[], virtual_fields=[], **kwargs)
+        super().__init__(name=name, suffix=suffix, segments=[], virtual_fields=[], dimensions=[], hierarchies=[], **kwargs)
+
+class Dimension(DataModelNode):
+    """Represents a DIMENSION in a Master File."""
+    def __init__(self, name, **kwargs):
+        super().__init__(name=name, **kwargs)
+
+class Hierarchy(DataModelNode):
+    """Represents a HIERARCHY in a Master File."""
+    def __init__(self, name, **kwargs):
+        super().__init__(name=name, **kwargs)
 
 class Segment(DataModelNode):
     """Represents a segment within a Master File."""
