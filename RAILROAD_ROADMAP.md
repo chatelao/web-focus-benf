@@ -10,17 +10,20 @@ This document outlines the tasks required to implement the automated railroad di
     - [x] 1.1.4 Implement lexer rule to terminal string conversion.
     - [x] 1.1.5 **Early Testing:** Implement unit tests for each mapping component.
 - [x] 1.2 Implement rule tagging system in `WebFocusReport.g4` and `MasterFile.g4` (e.g., `// @internal`, `// @inline`).
-- [ ] 1.3 Develop automated rule pruning and inlining logic for technical/internal rules.
-    - [ ] 1.3.1 Implement multi-pass rule collection and `[internal]` rule removal.
-    - [ ] 1.3.2 Implement `[inline]` rule substitution logic (parenthesized replacement).
-    - [ ] 1.3.3 Add recursion protection to prevent infinite inlining loops.
-    - [ ] 1.3.4 Update existing unit tests to verify pruning/inlining behavior.
-    - [ ] 1.3.5 **Verification:** Run the updated script on `WebFocusReport.g4` and verify reduced rule count in EBNF.
+- [x] 1.3 Develop automated rule pruning and inlining logic for technical/internal rules.
+    - [x] 1.3.1 Implement multi-pass rule collection and `[internal]` rule removal.
+    - [x] 1.3.2 Implement `[inline]` rule substitution logic (parenthesized replacement).
+    - [x] 1.3.3 Add recursion protection to prevent infinite inlining loops.
+    - [x] 1.3.4 Update existing unit tests to verify pruning/inlining behavior.
+    - [x] 1.3.5 **Verification:** Run the updated script on `WebFocusReport.g4` and verify reduced rule count in EBNF.
 - [x] 1.4 Support `MasterFile.g4` extraction.
-- [ ] 1.5 **Drift Prevention:** Implement a "Grammar Coverage" check to ensure all non-internal rules are present in the EBNF output.
+- [x] 1.5 **Drift Prevention:** Implement a "Grammar Coverage" check to ensure all non-internal rules are present in the EBNF output.
 
 ## Phase 2: Rendering (EBNF to Railroad SVGs)
 - [ ] 2.1 Integrate Gunther Rademacher's RR tool into the toolchain.
+    - [ ] 2.1.1 Verify Java environment availability (required for RR tool).
+    - [ ] 2.1.2 Download/Provision Gunther Rademacher's RR tool (`rr.war` or executable jar).
+    - [ ] 2.1.3 Implement a basic Python wrapper to execute the RR tool on generated EBNF.
 - [ ] 2.2 Configure visual styles (colors, fonts, shapes) to match Oracle documentation style.
 - [ ] 2.3 Create a template for the documentation HTML container.
 - [ ] 2.4 **Verification:** Automated check that generated SVGs are valid and non-empty.
