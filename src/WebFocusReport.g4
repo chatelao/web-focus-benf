@@ -2,7 +2,7 @@ grammar WebFocusReport;
 
 start: (request | dm_command | join_command | set_command | define_file | compound_layout_block)* EOF;
 
-request: table_file (verb_command | by_command | across_command | where_command | heading_command | footing_command | on_command | compute_command | recap_command | dm_command | STRING)* end_command;
+request: table_file (verb_command | by_command | across_command | where_command | when_command | show_command | heading_command | footing_command | on_command | compute_command | recap_command | dm_command | STRING)* end_command;
 
 compound_layout_block: COMPOUND LAYOUT output_command (layout_statement)* end_command (request | dm_command | join_command | set_command | define_file)* COMPOUND END;
 
@@ -152,9 +152,13 @@ as_phrase: AS STRING;
 
 asterisk: '*';
 
-by_command: RANKED? BY sort_options? field summarize_command? NOPRINT?;
+by_command: RANKED? BY sort_options? field HIERARCHY? summarize_command? NOPRINT?;
 
 across_command: ACROSS sort_options? field (ACROSS_TOTAL as_phrase?)? NOPRINT?;
+
+when_command: WHEN dm_logical_expression SEMI?;
+
+show_command: SHOW (UP | DOWN) dm_primary TO (UP | DOWN) dm_primary;
 
 sort_options: (HIGHEST | LOWEST | TOP | BOTTOM) NUMBER?
             | NUMBER;
@@ -202,6 +206,7 @@ identifier: NAME
           | LANDSCAPE | PORTRAIT | TYPE | POSITION | DIMENSION | STYLE | ENDSTYLE
           | HEADING | FOOTING | SUBHEAD | SUBFOOT | FORMAT
           | TIMES | WHILE | UNTIL | FOR | STEP | TOP | BOTTOM | RANKED | NOPRINT | AS | IN
+          | HIERARCHY | WHEN | SHOW | UP | DOWN
           ;
 
 prefix_operator: AVE | MIN | MAX | CNT | FST | LST | ASQ | MDN | MDE | PCT | RPCT | RNK | DST | TOT | SUM | CT;
@@ -306,6 +311,12 @@ ON: [oO][nN];
 SUBHEAD: [sS][uU][bB][hH][eE][aA][dD];
 SUBFOOT: [sS][uU][bB][fF][oO][oO][tT];
 CENTER: [cC][eE][nN][tT][eE][rR];
+
+HIERARCHY: [hH][iI][eE][rR][aA][rR][cC][hH][yY];
+WHEN: [wW][hH][eE][nN];
+SHOW: [sS][hH][oO][wW];
+UP: [uU][pP];
+DOWN: [dD][oO][wW][nN];
 
 RECAP: [rR][eE][cC][aA][pP];
 INDENT: [iI][nN][dD][eE][nN][tT];

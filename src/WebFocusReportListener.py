@@ -521,6 +521,24 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by WebFocusReportParser#when_command.
+    def enterWhen_command(self, ctx:WebFocusReportParser.When_commandContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#when_command.
+    def exitWhen_command(self, ctx:WebFocusReportParser.When_commandContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#show_command.
+    def enterShow_command(self, ctx:WebFocusReportParser.Show_commandContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#show_command.
+    def exitShow_command(self, ctx:WebFocusReportParser.Show_commandContext):
+        pass
+
+
     # Enter a parse tree produced by WebFocusReportParser#sort_options.
     def enterSort_options(self, ctx:WebFocusReportParser.Sort_optionsContext):
         pass

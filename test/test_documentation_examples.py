@@ -23,7 +23,6 @@ class TestDocumentationExamples(unittest.TestCase):
 
         # List of files known to fail due to missing grammar features
         known_failures = {
-            'project3_hierarchical_cube/hierarchical_report.fex': 'BY ... HIERARCHY and SHOW UP/DOWN not supported',
             'project3_hierarchical_cube/newgl.mas': 'DIMENSION and HIERARCHY in Master Files not supported',
             'project4_data_merge/data_merge.fex': 'ON TABLE MERGE not supported',
             'project5_drill_through/main_controller.fex': '-HTMLFORM not supported',
