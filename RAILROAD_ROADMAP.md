@@ -21,9 +21,9 @@ This document outlines the tasks required to implement the automated railroad di
 
 ## Phase 2: Rendering (EBNF to Railroad SVGs)
 - [ ] 2.1 Integrate Gunther Rademacher's RR tool into the toolchain.
-    - [ ] 2.1.1 Verify Java environment availability (required for RR tool).
-    - [ ] 2.1.2 Download/Provision Gunther Rademacher's RR tool (`rr.war` or executable jar).
-    - [ ] 2.1.3 Implement a basic Python wrapper to execute the RR tool on generated EBNF.
+    - [x] 2.1.1 Verify Java environment availability (required for RR tool).
+    - [x] 2.1.2 Download/Provision Gunther Rademacher's RR tool (`rr.war` or executable jar).
+    - [x] 2.1.3 Implement a basic Python wrapper to execute the RR tool on generated EBNF.
 - [ ] 2.2 Configure visual styles (colors, fonts, shapes) to match Oracle documentation style.
 - [ ] 2.3 Create a template for the documentation HTML container.
 - [ ] 2.4 **Verification:** Automated check that generated SVGs are valid and non-empty.
