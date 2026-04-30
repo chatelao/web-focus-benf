@@ -3,12 +3,12 @@
 This document outlines the tasks required to implement the automated railroad diagram generation as defined in `RAILROAD_CONCEPT.md`.
 
 ## Phase 1: Extraction & Transformation (ANTLR4 to EBNF)
-- [ ] 1.1 Develop ANTLR4 to W3C EBNF conversion script.
+- [x] 1.1 Develop ANTLR4 to W3C EBNF conversion script.
     - [x] 1.1.1 Implement parser rule extraction and basic EBNF mapping (terminals/non-terminals).
-    - [ ] 1.1.2 Implement cardinality mapping (optional, repeat, one-or-more).
-    - [ ] 1.1.3 Implement grouping and alternatives mapping.
-    - [ ] 1.1.4 Implement lexer rule to terminal string conversion.
-    - [ ] 1.1.5 **Early Testing:** Implement unit tests for each mapping component.
+    - [x] 1.1.2 Implement cardinality mapping (optional, repeat, one-or-more).
+    - [x] 1.1.3 Implement grouping and alternatives mapping.
+    - [x] 1.1.4 Implement lexer rule to terminal string conversion.
+    - [x] 1.1.5 **Early Testing:** Implement unit tests for each mapping component.
 - [ ] 1.2 Implement rule tagging system in `WebFocusReport.g4` (e.g., `// @internal`).
 - [ ] 1.3 Develop automated rule pruning and inlining logic for technical/internal rules.
     - [ ] 1.3.1 **Early Testing:** Implement unit tests for inlining logic (handling recursion and name collisions).
