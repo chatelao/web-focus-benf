@@ -91,21 +91,46 @@ def test_fragment_rules():
     assert "DIGIT ::= [0-9]" in result
     assert "NUMBER ::= DIGIT+" in result
 
-def test_tagging():
+def test_pruning_and_inlining():
     antlr = """
     // @internal
-    rule1: 'body';
+    rule1: 'internal_body';
+
+    // @inline
+    rule2: 'inline_body';
+
+    // @inline
+    rule3: 'with' 'spaces';
 
     /* @inline */
-    rule2: 'other';
+    rule4: rule2 | 'other';
 
-    // @internal @inline
-    rule3: 'both';
+    start: rule1 rule2 rule3 rule4;
     """
     result = convert_antlr_to_ebnf(antlr)
-    assert "[internal] rule1 ::= 'body'" in result
-    assert "[inline] rule2 ::= 'other'" in result
-    assert "[internal,inline] rule3 ::= 'both'" in result
+
+    # rule1, rule2, rule3, rule4 should not be in the output as top-level rules
+    assert "rule1 ::=" not in result
+    assert "rule2 ::=" not in result
+    assert "rule3 ::=" not in result
+    assert "rule4 ::=" not in result
+
+    # Check inlining in start
+    # rule1 was internal, so it is inlined (currently we inline both)
+    assert "start ::= 'internal_body' 'inline_body' ( 'with' 'spaces' ) ( 'inline_body' | 'other' )" in result
+
+def test_recursion_protection():
+    antlr = """
+    // @inline
+    a: a 'x' | 'y';
+
+    start: a;
+    """
+    result = convert_antlr_to_ebnf(antlr)
+    # a should NOT be inlined into itself or start if it causes recursion
+    # our current logic says: if name_to_inline in inline_body, don't inline.
+    assert "a ::= a 'x' | 'y'" in result
+    assert "start ::= a" in result
 
 def test_semicolon_in_string():
     antlr = """
