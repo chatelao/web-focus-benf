@@ -1,6 +1,6 @@
 from MasterFileVisitor import MasterFileVisitor
 from MasterFileParser import MasterFileParser
-from asg import MasterFile, Segment, Field, DefineAssignment
+from asg import MasterFile, Segment, Field, DefineAssignment, Dimension, Hierarchy
 
 class MasterFileASGBuilder(MasterFileVisitor):
     """
@@ -18,13 +18,13 @@ class MasterFileASGBuilder(MasterFileVisitor):
         return self.master_file
 
     def visitFile_decl(self, ctx: MasterFileParser.File_declContext):
-        name = ctx.value().getText()
+        name = self._get_value_text(ctx.value())
         attrs = self._get_attrs(ctx.attr_val())
         suffix = attrs.get("SUFFIX")
 
         # Handle positional suffix if not explicitly named
         if not suffix:
-            positional_vals = [av.value().getText() for av in ctx.attr_val() if av.value()]
+            positional_vals = [self._get_value_text(av.value()) for av in ctx.attr_val() if av.value()]
             if positional_vals:
                 suffix = positional_vals[0]
 
@@ -32,13 +32,13 @@ class MasterFileASGBuilder(MasterFileVisitor):
         return self.master_file
 
     def visitSegment_decl(self, ctx: MasterFileParser.Segment_declContext):
-        name = ctx.value().getText()
+        name = self._get_value_text(ctx.value())
         attrs = self._get_attrs(ctx.attr_val())
         segtype = attrs.get("SEGTYPE")
         parent = attrs.get("PARENT")
 
         # Handle positional attributes
-        positional_vals = [av.value().getText() for av in ctx.attr_val() if av.value()]
+        positional_vals = [self._get_value_text(av.value()) for av in ctx.attr_val() if av.value()]
         if not segtype and len(positional_vals) > 0:
             segtype = positional_vals[0]
         if not parent and len(positional_vals) > 1:
@@ -51,12 +51,12 @@ class MasterFileASGBuilder(MasterFileVisitor):
         return segment
 
     def visitField_decl(self, ctx: MasterFileParser.Field_declContext):
-        name = ctx.value().getText()
+        name = self._get_value_text(ctx.value())
         attrs = self._get_attrs(ctx.attr_val())
 
         # Handle positional attributes if they are not explicitly named
         # Typical order: FIELDNAME, ALIAS, USAGE, [ACTUAL], $
-        positional_vals = [av.value().getText() for av in ctx.attr_val() if av.value()]
+        positional_vals = [self._get_value_text(av.value()) for av in ctx.attr_val() if av.value()]
 
         alias = attrs.get("ALIAS")
         usage = attrs.get("USAGE")
@@ -73,12 +73,12 @@ class MasterFileASGBuilder(MasterFileVisitor):
 
     def visitDefine_decl(self, ctx: MasterFileParser.Define_declContext):
         nf = ctx.name_format()
-        name_part = nf.value(0).getText()
+        name_part = self._get_value_text(nf.value(0))
         if '/' in name_part:
             name, format = name_part.split('/', 1)
         else:
             name = name_part
-            format = nf.value(1).getText() if len(nf.value()) > 1 else None
+            format = self._get_value_text(nf.value(1)) if len(nf.value()) > 1 else None
 
         expression_text = ctx.expression().getText()
         attrs = self._get_attrs(ctx.attr_val())
@@ -93,11 +93,42 @@ class MasterFileASGBuilder(MasterFileVisitor):
 
         return assignment
 
+    def visitDimension_decl(self, ctx: MasterFileParser.Dimension_declContext):
+        value = self._get_value_text(ctx.value())
+        attrs = self._get_attrs(ctx.attr_val())
+        dimension = Dimension(name=value, **attrs)
+        if self.master_file:
+            self.master_file.dimensions.append(dimension)
+        return dimension
+
+    def visitHierarchy_decl(self, ctx: MasterFileParser.Hierarchy_declContext):
+        value = self._get_value_text(ctx.value())
+        attrs = self._get_attrs(ctx.attr_val())
+        hierarchy = Hierarchy(name=value, **attrs)
+        if self.master_file:
+            self.master_file.hierarchies.append(hierarchy)
+        return hierarchy
+
+    def visitOther_decl(self, ctx: MasterFileParser.Other_declContext):
+        return None
+
+    def _get_value_text(self, value_ctx):
+        if not value_ctx:
+            return None
+        text = value_ctx.getText()
+        if value_ctx.STRING():
+            return text[1:-1]
+        return text
+
     def _get_attrs(self, attr_vals):
         attrs = {}
         for av in attr_vals:
             if av.assignment():
                 key = av.assignment().ATTR().getText().upper()
-                val = av.assignment().value().getText()
+                val = self._get_value_text(av.assignment().value())
                 attrs[key] = val
+            elif av.value():
+                # For non-assignments, we don't have a key here,
+                # but they might be handled positionally by the caller.
+                pass
         return attrs

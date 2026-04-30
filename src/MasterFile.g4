@@ -9,21 +9,26 @@ item: declaration
 declaration: file_decl
            | segment_decl
            | field_decl
+           | dimension_decl
+           | hierarchy_decl
            | define_decl
            | compute_decl
            | variable_decl
            | other_decl
+           | TERMINATOR
            ;
 
-file_decl: FILENAME_KW (EQUALS | COMMA)? value (COMMA attr_val)* COMMA? TERMINATOR;
-segment_decl: SEGNAME_KW (EQUALS | COMMA)? value (COMMA attr_val)* COMMA? TERMINATOR;
-field_decl: FIELDNAME_KW (EQUALS | COMMA)? value (COMMA attr_val)* COMMA? TERMINATOR;
-variable_decl: VARIABLE_KW (attr_val | COMMA)* TERMINATOR;
+file_decl: FILENAME_KW (EQUALS | COMMA)? value (COMMA attr_val)* COMMA? TERMINATOR?;
+segment_decl: SEGNAME_KW (EQUALS | COMMA)? value (COMMA attr_val)* COMMA? TERMINATOR?;
+field_decl: FIELDNAME_KW (EQUALS | COMMA)? value (COMMA attr_val)* COMMA? TERMINATOR?;
+dimension_decl: DIMENSION_KW (EQUALS | COMMA)? value (COMMA attr_val)* COMMA? TERMINATOR?;
+hierarchy_decl: HIERARCHY_KW (EQUALS | COMMA)? value (COMMA attr_val)* COMMA? TERMINATOR?;
+variable_decl: VARIABLE_KW (attr_val | COMMA)* TERMINATOR?;
 
-define_decl: DEFINE_KW name_format EQUALS expression SEMICOLON (COMMA attr_val)* COMMA? TERMINATOR;
-compute_decl: COMPUTE_KW name_format EQUALS expression SEMICOLON (COMMA attr_val)* COMMA? TERMINATOR;
+define_decl: DEFINE_KW name_format EQUALS expression SEMICOLON (COMMA attr_val)* COMMA? TERMINATOR?;
+compute_decl: COMPUTE_KW name_format EQUALS expression SEMICOLON (COMMA attr_val)* COMMA? TERMINATOR?;
 
-other_decl: ATTR EQUALS value (COMMA attr_val)* COMMA? TERMINATOR;
+other_decl: ATTR EQUALS value (COMMA attr_val)* COMMA? TERMINATOR?;
 
 attr_val: assignment | value;
 assignment: ATTR EQUALS value;
@@ -38,11 +43,13 @@ expression_part: ATTR | UNQUOTED_VALUE | STRING | COMMA | EQUALS | SLASH | FILEN
 FILENAME_KW: [fF][iI][lL][eE][nN][aA][mM][eE] | [fF][iI][lL][eE];
 SEGNAME_KW: [sS][eE][gG][nN][aA][mM][eE] | [sS][eE][gG][mM][eE][nN][tT];
 FIELDNAME_KW: [fF][iI][eE][lL][dD][nN][aA][mM][eE] | [fF][iI][eE][lL][dD];
+DIMENSION_KW: [dD][iI][mM][eE][nN][sS][iI][oO][nN];
+HIERARCHY_KW: [hH][iI][eE][rR][aA][rR][cC][hH][yY];
 VARIABLE_KW: [vV][aA][rR][iI][aA][bB][lL][eE];
 DEFINE_KW: [dD][eE][fF][iI][nN][eE];
 COMPUTE_KW: [cC][oO][mM][pP][uU][tT][eE];
 
-TERMINATOR: '$' ~[\r\n]*;
+TERMINATOR: '$' ~[\r\n]* (WS* '$' ~[\r\n]*)*;
 
 COMMA: ',';
 EQUALS: '=';
