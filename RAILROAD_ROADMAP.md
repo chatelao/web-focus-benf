@@ -25,17 +25,17 @@ This document outlines the tasks required to implement the automated railroad di
     - [x] 2.1.2 Download/Provision Gunther Rademacher's RR tool (`rr.war` or executable jar).
     - [x] 2.1.3 Implement a basic Python wrapper to execute the RR tool on generated EBNF.
 - [ ] 2.2 Configure visual styles (colors, fonts, shapes) to match Oracle documentation style.
-- [ ] 2.3 Create a template for the documentation HTML container.
+- [x] 2.3 Create a template for the documentation HTML container.
 - [x] 2.4 **Verification:** Automated check that generated SVGs are valid and non-empty.
 
 ## Phase 3: Automation & Orchestration (Scripts)
 - [x] 3.1 Create `scripts/generate_railroad.py` to orchestrate the entire pipeline.
 - [ ] 3.2 Implement support for incremental updates.
-- [ ] 3.3 Add command-line interface for manual triggers.
+- [x] 3.3 Add command-line interface for manual triggers.
 - [ ] 3.4 **Pipeline Test:** Integrate the generation script into a local pre-commit hook to catch breakages early.
 
 ## Phase 4: Quality Assurance & Regression Testing
-- [ ] 4.1 Implement integration tests to verify the end-to-end generation process.
+- [x] 4.1 Implement integration tests to verify the end-to-end generation process.
 - [ ] 4.2 **Golden Master Testing:** Maintain a "Golden" set of EBNF/SVGs and fail if changes occur without explicit approval.
 - [ ] 4.3 Add validation step to ensure generated EBNF is syntactically valid for the RR tool.
 
