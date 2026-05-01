@@ -6047,5 +6047,3 @@ Creating Reports With TIBCO® WebFOCUS Language
 Index
 
 2046
-
-

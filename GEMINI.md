@@ -6,7 +6,7 @@ Transpile WebFOCUS programming language codebases to PostgreSQL (PL/pgSQL) using
 
 - `CONCEPT.md`: Business Cases with 1:N Use Cases each as well as a High-level business architecture
 - `DESIGN.md` : Detailed design of the application (transpiler pipeline) and the chosen tech stack (ANTLR4, SSA IR, Jinja2).
-- `ROADMAP.md`: Task tracking for the transpiler development, organized by chapters, 
+- `ROADMAP.md`: Task tracking for the transpiler development, organized by chapters,
 - `TECHNICAL_DEBTS.md`: Log of architectural or implementation debts.
 - `/specifications/`: External documentation and manuals converted to Markdown.
 - `/src/`: Transpiler source code (ANTLR4 grammars, ASG/IR logic, Jinja2 templates).

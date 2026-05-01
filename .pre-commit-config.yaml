@@ -1,0 +1,20 @@
+exclude: '^docs/|^src/.*(Listener|Visitor|Lexer|Parser)\.py$|^src/.*\.interp$'
+
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+
+-   repo: local
+    hooks:
+    -   id: generate-railroad
+        name: Generate Railroad Diagrams
+        entry: python3 scripts/generate_railroad.py
+        language: system
+        files: ^(src/.*\.g4|scripts/.*)$
+        pass_filenames: false
+        description: "Regenerates railroad diagrams from ANTLR4 grammars and validates the output."
