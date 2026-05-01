@@ -43,7 +43,13 @@ This document outlines the tasks required to implement the automated railroad di
 - [x] 4.3 Add validation step to ensure generated EBNF is syntactically valid for the RR tool.
 
 ## Phase 5: Distribution & CI/CD
-- [ ] 5.1 Update GitHub Actions to package the generated documentation into a `.zip` artifact for every release.
+- [ ] 5.1 Update GitHub Actions to package the generated documentation as a downloadable artifact.
+    - [x] 5.1.1 Archive `docs/` as a workflow artifact in CI/CD.
+    - [ ] 5.1.2 (Optional) Automate attachment of documentation zip to GitHub Releases.
 - [x] 5.2 Configure GitHub Actions to publish the syntax documentation to GitHub Pages.
 - [x] 5.3 Ensure documentation is published on every push/merge to the `main` branch.
 - [x] 5.4 **CI Verification:** Ensure the documentation build fails the CI pipeline if any generation or validation step fails.
+
+## Phase 6: User Experience & Navigation
+- [x] 6.1 Add generation metadata (date, version) to the documentation index.
+- [ ] 6.2 Integrate links to railroad diagrams into the project README.

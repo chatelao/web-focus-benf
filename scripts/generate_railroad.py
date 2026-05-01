@@ -1,6 +1,7 @@
 import os
 import sys
 import subprocess
+import datetime
 import argparse
 import re
 
@@ -45,6 +46,8 @@ def post_process_xhtml(filepath):
 
     with open(filepath, "w") as f:
         f.write(content)
+        if not content.endswith('\n'):
+            f.write('\n')
 
 def generate_docs(grammars=None, output_dir="docs", ebnf_dir="build/ebnf", color="#4D88FF", width=None,
                   suppress_ebnf=False, offset=None, force=False):
@@ -98,6 +101,7 @@ def generate_index(output_dir, files):
     print(f"Generating Index at {index_path}...")
 
     links = "".join([f'<li><a href="{path}">{name}</a></li>' for name, path in files])
+    now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     html_content = f"""<!DOCTYPE html>
 <html>
@@ -106,6 +110,7 @@ def generate_index(output_dir, files):
     <style>
         body {{ font-family: sans-serif; margin: 40px; background-color: #f0f5ff; }}
         h1 {{ color: #002b80; }}
+        .metadata {{ color: #666; font-size: 0.9em; margin-bottom: 20px; }}
         ul {{ list-style-type: none; padding: 0; }}
         li {{ margin: 10px 0; }}
         a {{ text-decoration: none; color: #4D88FF; font-weight: bold; font-size: 1.2em; }}
@@ -115,6 +120,7 @@ def generate_index(output_dir, files):
 <body>
     <h1>WebFocus Syntax Railroad Diagrams</h1>
     <p>Visual representation of the WebFocus grammars.</p>
+    <div class="metadata">Generated on: {now}</div>
     <ul>
         {links}
     </ul>
@@ -123,6 +129,8 @@ def generate_index(output_dir, files):
 """
     with open(index_path, "w") as f:
         f.write(html_content)
+        if not html_content.endswith('\n'):
+            f.write('\n')
     print(f"Verified: {index_path} is valid.")
 
 def validate_output(filepath):
