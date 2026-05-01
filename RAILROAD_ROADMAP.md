@@ -52,4 +52,6 @@ This document outlines the tasks required to implement the automated railroad di
 
 ## Phase 6: User Experience & Navigation
 - [x] 6.1 Add generation metadata (date, version) to the documentation index.
-- [ ] 6.2 Integrate links to railroad diagrams into the project README.
+- [x] 6.2 Integrate links to railroad diagrams into the project README.
+- [x] 6.3 Add 'Back to Index' navigation to generated diagrams.
+- [ ] 6.4 Implement rule-filtering capability in grammar documentation.
