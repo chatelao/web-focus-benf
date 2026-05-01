@@ -35,7 +35,7 @@ This document outlines the tasks required to implement the automated railroad di
 - [x] 3.1 Create `scripts/generate_railroad.py` to orchestrate the entire pipeline.
 - [x] 3.2 Implement support for incremental updates.
 - [x] 3.3 Add command-line interface for manual triggers.
-- [ ] 3.4 **Pipeline Test:** Integrate the generation script into a local pre-commit hook to catch breakages early.
+- [x] 3.4 **Pipeline Test:** Integrate the generation script into a local pre-commit hook to catch breakages early.
 
 ## Phase 4: Quality Assurance & Regression Testing
 - [x] 4.1 Implement integration tests to verify the end-to-end generation process.
