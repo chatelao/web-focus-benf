@@ -16,7 +16,7 @@ class RRTool:
         if not os.path.exists(war_path):
             raise FileNotFoundError(f"RR tool not found at {war_path}. Run scripts/provision_rr.py first.")
 
-    def generate(self, ebnf_path, out_path=None, color=None, width=None, options=None):
+    def generate(self, ebnf_path, out_path=None, color=None, width=None, suppress_ebnf=False, offset=None, options=None):
         """
         Executes the RR tool on the given EBNF file.
         """
@@ -28,6 +28,10 @@ class RRTool:
             cmd.append(f"-color:{color}")
         if width:
             cmd.append(f"-width:{width}")
+        if suppress_ebnf:
+            cmd.append("-suppressebnf")
+        if offset is not None:
+            cmd.append(f"-offset:{offset}")
 
         if options:
             for opt in options:

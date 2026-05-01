@@ -2,6 +2,7 @@ import os
 import sys
 import subprocess
 import argparse
+import re
 
 # Add src to sys.path to find rr_wrapper
 sys.path.append(os.path.join(os.getcwd(), "src"))
@@ -18,7 +19,35 @@ def is_up_to_date(source_path, target_path):
         return False
     return os.path.getmtime(target_path) > os.path.getmtime(source_path)
 
-def generate_docs(grammars=None, output_dir="docs", ebnf_dir="build/ebnf", color="#4D88FF", width=None, force=False):
+def post_process_xhtml(filepath):
+    """Injects custom CSS into the generated XHTML to match Oracle style."""
+    print(f"Post-processing {filepath} for Oracle styling...")
+    with open(filepath, "r") as f:
+        content = f.read()
+
+    # Define Oracle-inspired style overrides
+    oracle_styles = """
+    /* Oracle Style Overrides */
+    .line                 { stroke: #333333 !important; }
+    .bold-line            { stroke: #111111 !important; }
+    .filled               { fill: #333333 !important; }
+    rect.terminal         { fill: #f2f2f2 !important; stroke: #333333 !important; }
+    rect.nonterminal      { fill: #ffffff !important; stroke: #333333 !important; }
+    text.terminal         { fill: #000000 !important; }
+    text.nonterminal      { fill: #000000 !important; }
+    """
+
+    # The RR tool embeds CSS in every SVG. We'll append our overrides to the main head style block
+    # and also use !important to ensure they take precedence.
+    if "</style>" in content:
+        # Insert into the first style block in the head
+        content = content.replace("</style>", oracle_styles + "  </style>", 1)
+
+    with open(filepath, "w") as f:
+        f.write(content)
+
+def generate_docs(grammars=None, output_dir="docs", ebnf_dir="build/ebnf", color="#4D88FF", width=None,
+                  suppress_ebnf=False, offset=None, force=False):
     src_dir = "src"
 
     if not grammars:
@@ -54,8 +83,10 @@ def generate_docs(grammars=None, output_dir="docs", ebnf_dir="build/ebnf", color
             subprocess.run(["python3", "scripts/antlr4_to_ebnf.py", grammar_path, "--check"], stdout=f, check=True)
 
         print(f"Generating Railroad Diagram for {grammar_name}...")
-        rr.generate(ebnf_path, out_path=xhtml_path, color=color, width=width)
+        rr.generate(ebnf_path, out_path=xhtml_path, color=color, width=width,
+                    suppress_ebnf=suppress_ebnf, offset=offset)
 
+        post_process_xhtml(xhtml_path)
         validate_output(xhtml_path)
         generated_files.append((grammar_name, xhtml_name))
 
@@ -116,6 +147,8 @@ if __name__ == "__main__":
     parser.add_argument('--ebnf-dir', default='build/ebnf', help='Directory for intermediate EBNF files (default: build/ebnf)')
     parser.add_argument('--color', default='#4D88FF', help='Base color for diagrams (default: #4D88FF)')
     parser.add_argument('--width', type=int, help='Try to break graphics into multiple lines if width exceeds this value')
+    parser.add_argument('--suppress-ebnf', action='store_true', help='Do not show EBNF next to generated diagrams')
+    parser.add_argument('--offset', type=int, help='Hue offset to secondary color in degrees')
     parser.add_argument('--force', '-f', action='store_true', help='Force regeneration of all diagrams')
 
     args = parser.parse_args()
@@ -126,5 +159,7 @@ if __name__ == "__main__":
         ebnf_dir=args.ebnf_dir,
         color=args.color,
         width=args.width,
+        suppress_ebnf=args.suppress_ebnf,
+        offset=args.offset,
         force=args.force
     )
