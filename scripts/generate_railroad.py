@@ -30,5 +30,22 @@ def generate_docs():
         print(f"Generating Railroad Diagram for {grammar}...")
         rr.generate(ebnf_path, out_path=xhtml_path, color="#4D88FF")
 
+        validate_output(xhtml_path)
+
+def validate_output(filepath):
+    """Verifies that the generated file exists, is non-empty, and contains SVG content."""
+    if not os.path.exists(filepath):
+        raise FileNotFoundError(f"Verification failed: {filepath} was not generated.")
+
+    if os.path.getsize(filepath) == 0:
+        raise ValueError(f"Verification failed: {filepath} is empty.")
+
+    with open(filepath, "r") as f:
+        content = f.read()
+        if "<svg" not in content:
+            raise ValueError(f"Verification failed: {filepath} does not contain SVG content.")
+
+    print(f"Verified: {filepath} is valid.")
+
 if __name__ == "__main__":
     generate_docs()
