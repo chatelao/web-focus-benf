@@ -28,13 +28,13 @@ def post_process_xhtml(filepath):
     # Define Oracle-inspired style overrides
     oracle_styles = """
     /* Oracle Style Overrides */
-    .line                 { stroke: #333333 !important; }
-    .bold-line            { stroke: #111111 !important; }
-    .filled               { fill: #333333 !important; }
-    rect.terminal         { fill: #f2f2f2 !important; stroke: #333333 !important; }
-    rect.nonterminal      { fill: #ffffff !important; stroke: #333333 !important; }
-    text.terminal         { fill: #000000 !important; }
-    text.nonterminal      { fill: #000000 !important; }
+    .line                 { stroke: #444444 !important; stroke-width: 1.5 !important; }
+    .bold-line            { stroke: #222222 !important; stroke-width: 2 !important; }
+    .filled               { fill: #444444 !important; }
+    rect.terminal         { fill: #eef4ff !important; stroke: #002b80 !important; stroke-width: 1.5 !important; }
+    rect.nonterminal      { fill: #ffffff !important; stroke: #444444 !important; stroke-width: 1.5 !important; }
+    text.terminal         { fill: #002b80 !important; font-weight: bold !important; font-family: 'Verdana', sans-serif !important; }
+    text.nonterminal      { fill: #222222 !important; font-family: 'Verdana', sans-serif !important; }
     """
 
     # The RR tool embeds CSS in every SVG. We'll append our overrides to the main head style block
