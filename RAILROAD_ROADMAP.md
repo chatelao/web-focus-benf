@@ -24,10 +24,10 @@ This document outlines the tasks required to implement the automated railroad di
     - [x] 2.1.1 Verify Java environment availability (required for RR tool).
     - [x] 2.1.2 Download/Provision Gunther Rademacher's RR tool (`rr.war` or executable jar).
     - [x] 2.1.3 Implement a basic Python wrapper to execute the RR tool on generated EBNF.
-- [ ] 2.2 Configure visual styles (colors, fonts, shapes) to match Oracle documentation style.
-    - [ ] 2.2.1 Research and define Oracle-style color palette and fonts (CSS properties).
-    - [ ] 2.2.2 Update `RRTool` wrapper to support additional styling flags (`-suppressebnf`, `-offset`).
-    - [ ] 2.2.3 Update `generate_railroad.py` to expose styling flags and implement CSS post-processing for XHTML to match Oracle style.
+- [x] 2.2 Configure visual styles (colors, fonts, shapes) to match Oracle documentation style.
+    - [x] 2.2.1 Research and define Oracle-style color palette and fonts (CSS properties).
+    - [x] 2.2.2 Update `RRTool` wrapper to support additional styling flags (`-suppressebnf`, `-offset`).
+    - [x] 2.2.3 Update `generate_railroad.py` to expose styling flags and implement CSS post-processing for XHTML to match Oracle style.
 - [x] 2.3 Create a template for the documentation HTML container.
 - [x] 2.4 **Verification:** Automated check that generated SVGs are valid and non-empty.
 
@@ -39,8 +39,8 @@ This document outlines the tasks required to implement the automated railroad di
 
 ## Phase 4: Quality Assurance & Regression Testing
 - [x] 4.1 Implement integration tests to verify the end-to-end generation process.
-- [ ] 4.2 **Golden Master Testing:** Maintain a "Golden" set of EBNF/SVGs and fail if changes occur without explicit approval.
-- [ ] 4.3 Add validation step to ensure generated EBNF is syntactically valid for the RR tool.
+- [x] 4.2 **Golden Master Testing:** Maintain a "Golden" set of EBNF/SVGs and fail if changes occur without explicit approval.
+- [x] 4.3 Add validation step to ensure generated EBNF is syntactically valid for the RR tool.
 
 ## Phase 5: Distribution & CI/CD
 - [ ] 5.1 Update GitHub Actions to package the generated documentation into a `.zip` artifact for every release.
