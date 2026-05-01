@@ -30,7 +30,7 @@ This document outlines the tasks required to implement the automated railroad di
 
 ## Phase 3: Automation & Orchestration (Scripts)
 - [x] 3.1 Create `scripts/generate_railroad.py` to orchestrate the entire pipeline.
-- [ ] 3.2 Implement support for incremental updates.
+- [x] 3.2 Implement support for incremental updates.
 - [x] 3.3 Add command-line interface for manual triggers.
 - [ ] 3.4 **Pipeline Test:** Integrate the generation script into a local pre-commit hook to catch breakages early.
 
@@ -41,6 +41,6 @@ This document outlines the tasks required to implement the automated railroad di
 
 ## Phase 5: Distribution & CI/CD
 - [ ] 5.1 Update GitHub Actions to package the generated documentation into a `.zip` artifact for every release.
-- [ ] 5.2 Configure GitHub Actions to publish the syntax documentation to GitHub Pages.
-- [ ] 5.3 Ensure documentation is published on every push/merge to the `main` branch.
-- [ ] 5.4 **CI Verification:** Ensure the documentation build fails the CI pipeline if any generation or validation step fails.
+- [x] 5.2 Configure GitHub Actions to publish the syntax documentation to GitHub Pages.
+- [x] 5.3 Ensure documentation is published on every push/merge to the `main` branch.
+- [x] 5.4 **CI Verification:** Ensure the documentation build fails the CI pipeline if any generation or validation step fails.

@@ -12,7 +12,13 @@ except ImportError:
     sys.path.append(os.getcwd())
     from src.rr_wrapper import RRTool
 
-def generate_docs(grammars=None, output_dir="docs", ebnf_dir="build/ebnf", color="#4D88FF", width=None):
+def is_up_to_date(source_path, target_path):
+    """Returns True if the target file exists and is newer than the source file."""
+    if not os.path.exists(target_path):
+        return False
+    return os.path.getmtime(target_path) > os.path.getmtime(source_path)
+
+def generate_docs(grammars=None, output_dir="docs", ebnf_dir="build/ebnf", color="#4D88FF", width=None, force=False):
     src_dir = "src"
 
     if not grammars:
@@ -36,6 +42,11 @@ def generate_docs(grammars=None, output_dir="docs", ebnf_dir="build/ebnf", color
         ebnf_path = os.path.join(ebnf_dir, grammar_name.replace(".g4", ".ebnf"))
         xhtml_name = grammar_name.replace(".g4", ".xhtml")
         xhtml_path = os.path.join(output_dir, xhtml_name)
+
+        if not force and is_up_to_date(grammar_path, xhtml_path):
+            print(f"Skipping {grammar_name} (already up-to-date).")
+            generated_files.append((grammar_name, xhtml_name))
+            continue
 
         print(f"Generating EBNF for {grammar_name}...")
         with open(ebnf_path, "w") as f:
@@ -105,6 +116,7 @@ if __name__ == "__main__":
     parser.add_argument('--ebnf-dir', default='build/ebnf', help='Directory for intermediate EBNF files (default: build/ebnf)')
     parser.add_argument('--color', default='#4D88FF', help='Base color for diagrams (default: #4D88FF)')
     parser.add_argument('--width', type=int, help='Try to break graphics into multiple lines if width exceeds this value')
+    parser.add_argument('--force', '-f', action='store_true', help='Force regeneration of all diagrams')
 
     args = parser.parse_args()
 
@@ -113,5 +125,6 @@ if __name__ == "__main__":
         output_dir=args.output_dir,
         ebnf_dir=args.ebnf_dir,
         color=args.color,
-        width=args.width
+        width=args.width,
+        force=args.force
     )
