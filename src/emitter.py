@@ -416,6 +416,17 @@ class PostgresEmitter:
         Translates ir.Report instruction into a SQL SELECT statement.
         """
         filename = instr.filename
+
+        # Check for MERGE command
+        merge_cmd = None
+        for comp in instr.components:
+            if comp.__class__.__name__ == 'OnCommand' and comp.target == 'TABLE':
+                for action in comp.actions:
+                    if action.__class__.__name__ == 'MergeCommand':
+                        merge_cmd = action
+                        break
+            if merge_cmd: break
+
         table_name = self._resolve_table_name(filename)
         alias_map = {filename: table_name}
 
@@ -554,6 +565,10 @@ class PostgresEmitter:
                 elif is_virtual:
                     # If it's a virtual field, use its name as alias for the expression
                     sql_expr = f"{sql_expr} AS \"{field_name}\""
+                elif merge_cmd:
+                    # Ensure the column has a predictable name for MERGE
+                    alias_name = field_name.split('.')[-1]
+                    sql_expr = f"{sql_expr} AS \"{alias_name}\""
 
                 select_fields.append(sql_expr)
 
@@ -590,6 +605,41 @@ class PostgresEmitter:
 
         if order_by_phrases:
             sql += "\nORDER BY " + ", ".join(order_by_phrases)
+
+        if merge_cmd:
+            target_table = self._resolve_table_name(merge_cmd.filename)
+
+            # Build ON condition
+            on_conds = []
+            for left, right in merge_cmd.matching_clause.conditions:
+                # Map TRG and SRC to their respective aliases if used
+                # In PostgreSQL MERGE, we can alias target and source.
+                on_conds.append(f"({left} = {right})")
+            on_clause = " AND ".join(on_conds)
+
+            merge_sql = f"MERGE INTO {target_table} AS TRG\nUSING (\n"
+            merge_sql += self._indent(sql, 4) + "\n) AS SRC\n"
+            merge_sql += f"ON {on_clause}\n"
+
+            if merge_cmd.when_matched:
+                updates = []
+                for field, expr in merge_cmd.when_matched.assignments:
+                    sql_expr = self.emit_expression(expr, in_query=True, virtual_fields=file_virtual_fields, qualifier=qualify_field)
+                    updates.append(f"\"{field}\" = {sql_expr}")
+                merge_sql += "WHEN MATCHED THEN\n  UPDATE SET " + ", ".join(updates) + "\n"
+
+            if merge_cmd.when_not_matched:
+                fields = []
+                values = []
+                for field, expr in merge_cmd.when_not_matched.assignments:
+                    sql_expr = self.emit_expression(expr, in_query=True, virtual_fields=file_virtual_fields, qualifier=qualify_field)
+                    fields.append(f"\"{field}\"")
+                    values.append(sql_expr)
+                merge_sql += "WHEN NOT MATCHED THEN\n  INSERT (" + ", ".join(fields) + ") VALUES (" + ", ".join(values) + ");"
+            else:
+                merge_sql += ";"
+
+            return merge_sql
 
         sql += ";"
         return sql

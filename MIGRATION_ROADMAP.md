@@ -197,9 +197,18 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [x] 5.1.3.10.3 Support `PAGE-BREAK` option for `ON field`.
       - [x] 5.1.3.10.4 Support `DRILLTHROUGH` in `SET STYLE` blocks.
   - [ ] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.
-    - [ ] 5.1.4.1 Symbol Resolution Validation: Ensure all field and variable references resolve correctly.
-    - [ ] 5.1.4.2 Type Consistency: Verify inferred types match legacy expectations.
-    - [ ] 5.1.4.3 Constant Folding Parity: Ensure constant expressions are evaluated identically.
+    - [ ] 5.1.4.1 Symbol Resolution Validation:
+      - [ ] 5.1.4.1.1 Global vs. Local scope resolution for AmperVars.
+      - [ ] 5.1.4.1.2 Multi-segment field resolution in joined Master Files.
+      - [ ] 5.1.4.1.3 Virtual field shadowing rules (DEFINE vs. Master File).
+    - [ ] 5.1.4.2 Type Consistency:
+      - [ ] 5.1.4.2.1 Numeric precision mapping (I, F, D, P to PostgreSQL).
+      - [ ] 5.1.4.2.2 Alpha-numeric string truncation and padding semantics.
+      - [ ] 5.1.4.2.3 Date/Time format conversion parity.
+    - [ ] 5.1.4.3 Constant Folding Parity:
+      - [ ] 5.1.4.3.1 Arithmetic expression folding.
+      - [ ] 5.1.4.3.2 Character concatenation folding.
+      - [ ] 5.1.4.3.3 Boolean logic short-circuiting parity.
 - [ ] **5.2 Sample Validation:**
   - [x] 5.2.1 Core Samples: Validate transpiler output against samples in `test/samples/`. (Verified via `test/test_core_samples.py`)
   - [ ] 5.2.2 Documentation Examples: Validate against samples in `test/documentation_examples/`. (Verified via `test/test_documentation_examples.py`)
@@ -211,7 +220,7 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [ ] 5.2.2.3.3 End-to-end PL/pgSQL emission for hierarchical report.
     - [ ] 5.2.2.4 Project 4: Data Merge.
       - [x] 5.2.2.4.1 Parse `data_merge.fex`.
-      - [ ] 5.2.2.4.2 End-to-end PL/pgSQL emission for MERGE.
+      - [x] 5.2.2.4.2 End-to-end PL/pgSQL emission for MERGE.
     - [ ] 5.2.2.5 Project 5: Drill Through.
       - [ ] 5.2.2.5.1 Parse `main_controller.fex`.
       - [ ] 5.2.2.5.2 Parse `summary_report.fex`.
