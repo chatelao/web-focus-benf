@@ -376,6 +376,12 @@ class PostgresEmitter:
                 self.virtual_fields[instr.filename][assignment.name] = assignment.expression
             return f"/* DEFINE FILE {instr.filename} ... */"
 
+        elif class_name == 'HtmlForm':
+            if instr.filename:
+                return f"/* -HTMLFORM {instr.filename} */"
+            else:
+                return f"/* -HTMLFORM BEGIN ... -HTMLFORM END */"
+
         elif class_name == 'CompoundLayout':
             return self._emit_compound_layout(instr)
 

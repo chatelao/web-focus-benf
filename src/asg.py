@@ -111,6 +111,11 @@ class IncludeDM(Command):
     def __init__(self, filename, **kwargs):
         super().__init__(filename=filename, **kwargs)
 
+class HtmlFormDM(Command):
+    """Represents a Dialogue Manager -HTMLFORM command or block."""
+    def __init__(self, filename=None, content=None, **kwargs):
+        super().__init__(filename=filename, content=content, **kwargs)
+
 class RunDM(Command):
     """Represents a Dialogue Manager -RUN command."""
     pass

@@ -191,6 +191,11 @@ Ensure the new system produces correct results and maintains parity with the leg
     - [x] 5.1.3.9 Support Data Merge (Project 4).
       - [x] 5.1.3.9.1 Grammar for `ON TABLE MERGE INTO`.
       - [x] 5.1.3.9.2 Grammar for `MATCHING`, `WHEN MATCHED`, `WHEN NOT MATCHED`.
+    - [ ] 5.1.3.10 Support Drill Through (Project 5).
+      - [ ] 5.1.3.10.1 Support `-HTMLFORM` Dialogue Manager command.
+      - [ ] 5.1.3.10.2 Support `OPEN` and `CLOSE` options for `PCHOLD`.
+      - [ ] 5.1.3.10.3 Support `PAGE-BREAK` option for `ON field`.
+      - [ ] 5.1.3.10.4 Support `DRILLTHROUGH` in `SET STYLE` blocks.
   - [ ] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.
     - [ ] 5.1.4.1 Symbol Resolution Validation: Ensure all field and variable references resolve correctly.
     - [ ] 5.1.4.2 Type Consistency: Verify inferred types match legacy expectations.
@@ -208,6 +213,10 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [x] 5.2.2.4.1 Parse `data_merge.fex`.
       - [ ] 5.2.2.4.2 End-to-end PL/pgSQL emission for MERGE.
     - [ ] 5.2.2.5 Project 5: Drill Through.
+      - [ ] 5.2.2.5.1 Parse `main_controller.fex`.
+      - [ ] 5.2.2.5.2 Parse `summary_report.fex`.
+      - [ ] 5.2.2.5.3 Parse `detail_report.fex`.
+      - [ ] 5.2.2.5.4 End-to-end PL/pgSQL emission for Drill Through.
   - [ ] 5.2.3 Real-world Samples: Validate against complex samples in `test/realworld_samples/`.
 - [ ] **5.3 Performance Benchmarking:**
   - [ ] 5.3.1 Query Execution: Compare generated SQL performance vs original WebFOCUS execution.

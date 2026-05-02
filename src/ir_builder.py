@@ -182,6 +182,8 @@ class IRBuilder:
                 self.current_block.add_instruction(ir.Type(messages=node.messages))
             elif class_name == 'IncludeDM':
                 self.current_block.add_instruction(ir.Call(target=node.filename))
+            elif class_name == 'HtmlFormDM':
+                self.current_block.add_instruction(ir.HtmlForm(filename=node.filename, content=node.content))
             elif class_name == 'SetCommand':
                 self.current_block.add_instruction(ir.SetEnv(parameter=node.parameter, value=node.value))
             elif class_name == 'Join':

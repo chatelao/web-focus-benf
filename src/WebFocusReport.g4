@@ -62,6 +62,7 @@ dm_command: dm_set
           | dm_run
           | dm_exit
           | dm_repeat
+          | dm_htmlform
           ;
 
 dm_set: SET_DM amper_var EQ dm_expression SEMI?;
@@ -84,6 +85,10 @@ dm_include: INCLUDE_DM qualified_name SEMI?;
 dm_run: RUN_DM SEMI?;
 
 dm_exit: EXIT_DM SEMI?;
+
+dm_htmlform: HTMLFORM_BLOCK
+           | HTMLFORM_DM qualified_name SEMI?
+           ;
 
 // @category Expressions
 dm_expression: dm_if_expression;
@@ -264,6 +269,8 @@ REPEAT_DM: '-' [rR][eE][pP][eE][aA][tT];
 IF_DM: '-' [iI][fF];
 TYPE_DM: '-' [tT][yY][pP][eE];
 INCLUDE_DM: '-' [iI][nN][cC][lL][uU][dD][eE];
+HTMLFORM_DM: '-' [hH][tT][mM][lL][fF][oO][rR][mM];
+HTMLFORM_BLOCK: '-' [hH][tT][mM][lL][fF][oO][rR][mM] [ \t]+ [bB][eE][gG][iI][nN] .*? '-' [hH][tT][mM][lL][fF][oO][rR][mM] [ \t]+ [eE][nN][dD];
 RUN_DM: '-' [rR][uU][nN];
 EXIT_DM: '-' [eE][xX][iI][tT];
 

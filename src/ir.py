@@ -48,6 +48,11 @@ class SetEnv(Instruction):
     def __init__(self, parameter, value, **kwargs):
         super().__init__(parameter=parameter, value=value, **kwargs)
 
+class HtmlForm(Instruction):
+    """Represents a -HTMLFORM command or block."""
+    def __init__(self, filename=None, content=None, **kwargs):
+        super().__init__(filename=filename, content=content, **kwargs)
+
 class Join(Instruction):
     """Represents a JOIN command."""
     def __init__(self, left_file, left_field, right_file, right_field, join_as=None, outer=False, is_all=False, **kwargs):

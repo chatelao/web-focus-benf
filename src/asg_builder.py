@@ -465,6 +465,12 @@ class ReportASGBuilder(WebFocusReportVisitor):
         filename = ctx.qualified_name().getText()
         return IncludeDM(filename=filename)
 
+    def visitDm_htmlform(self, ctx: WebFocusReportParser.Dm_htmlformContext):
+        if ctx.HTMLFORM_BLOCK():
+            return HtmlFormDM(content=ctx.HTMLFORM_BLOCK().getText())
+        filename = ctx.qualified_name().getText()
+        return HtmlFormDM(filename=filename)
+
     def visitDm_run(self, ctx: WebFocusReportParser.Dm_runContext):
         return RunDM()
 
