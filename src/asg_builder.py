@@ -170,6 +170,8 @@ class ReportASGBuilder(WebFocusReportVisitor):
             return self.visit(ctx.summarize_command())
         if ctx.recap_command():
             return self.visit(ctx.recap_command())
+        if ctx.PAGE_BREAK():
+            return PageBreak()
         return None
 
     def visitMerge_command(self, ctx: WebFocusReportParser.Merge_commandContext):
@@ -222,7 +224,12 @@ class ReportASGBuilder(WebFocusReportVisitor):
                 format = ctx.NAME().getText()
             elif ctx.verb():
                 format = ctx.verb().getText()
-        return OutputCommand(output_type=output_type, filename=filename, format=format)
+        open_close = None
+        if ctx.OPEN():
+            open_close = "OPEN"
+        elif ctx.CLOSE():
+            open_close = "CLOSE"
+        return OutputCommand(output_type=output_type, filename=filename, format=format, open_close=open_close)
 
     def visitCompute_command(self, ctx: WebFocusReportParser.Compute_commandContext):
         name = ctx.qualified_name().getText()
