@@ -191,6 +191,11 @@
     }
 
     /* Oracle Style Overrides */
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #f0f5ff;
+    }
     .line                 { stroke: #444444 !important; stroke-width: 1.5 !important; }
     .bold-line            { stroke: #222222 !important; stroke-width: 2 !important; }
     .filled               { fill: #444444 !important; }
@@ -201,11 +206,16 @@
 
     /* Navigation Bar */
     .nav-bar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
         background-color: #002b80;
         padding: 10px 20px;
-        margin-bottom: 20px;
-        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         font-family: 'Verdana', sans-serif;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
     .nav-bar a {
         color: #ffffff;
@@ -214,6 +224,33 @@
     }
     .nav-bar a:hover {
         text-decoration: underline;
+    }
+    .search-container {
+        display: flex;
+        align-items: center;
+    }
+    #rule-search {
+        padding: 5px 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        width: 250px;
+    }
+
+    /* Content Layout */
+    .content-area {
+        padding: 20px;
+    }
+    .rule-container {
+        background-color: #ffffff;
+        border: 1px solid #d0d7de;
+        border-radius: 6px;
+        padding: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .rule-container:hover {
+        border-color: #002b80;
     }
       </style><svg xmlns="http://www.w3.org/2000/svg">
          <defs>
@@ -246,7 +283,14 @@
   </style>
          </defs></svg></head>
    <body>
-      <div class="nav-bar"><a href="index.html">&larr; Back to Index</a></div>
+      <div class="nav-bar">
+        <a href="index.html">&larr; Back to Index</a>
+        <div class="search-container">
+            <input type="text" id="rule-search" placeholder="Search rules..." />
+        </div>
+    </div>
+      <div class="content-area">
+   <div class="rule-container" data-rule="start">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="start">start:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="211" height="71">
          <defs>
             <style type="text/css">
@@ -290,7 +334,10 @@
          <xhtml:div class="ebnf"><xhtml:code>
                <div><a href="#start" title="start">start</a>    ::= <a href="#item" title="item">item</a>* <a href="#EOF" title="EOF">EOF</a></div></xhtml:code></xhtml:div>
       </xhtml:p>
-      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">no references</xhtml:p><xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="item">item:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="409" height="181">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">no references</xhtml:p>
+   </div>
+   <div class="rule-container" data-rule="item">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="item">item:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="409" height="181">
          <defs>
             <style type="text/css">
     @namespace "http://www.w3.org/2000/svg";
@@ -344,7 +391,10 @@
          <xhtml:ul>
             <xhtml:li><xhtml:a href="#start" title="start">start</xhtml:a></xhtml:li>
          </xhtml:ul>
-      </xhtml:p><xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="declaration">declaration:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="409" height="533">
+      </xhtml:p>
+   </div>
+   <div class="rule-container" data-rule="declaration">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="declaration">declaration:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="409" height="533">
          <defs>
             <style type="text/css">
     @namespace "http://www.w3.org/2000/svg";
@@ -431,7 +481,10 @@
          <xhtml:ul>
             <xhtml:li><xhtml:a href="#item" title="item">item</xhtml:a></xhtml:li>
          </xhtml:ul>
-      </xhtml:p><xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="file_decl">file_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="975" height="475">
+      </xhtml:p>
+   </div>
+   <div class="rule-container" data-rule="file_decl">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="file_decl">file_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="975" height="475">
          <defs>
             <style type="text/css">
     @namespace "http://www.w3.org/2000/svg";
@@ -523,7 +576,10 @@
          <xhtml:ul>
             <xhtml:li><xhtml:a href="#declaration" title="declaration">declaration</xhtml:a></xhtml:li>
          </xhtml:ul>
-      </xhtml:p><xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="segment_decl">segment_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="973" height="475">
+      </xhtml:p>
+   </div>
+   <div class="rule-container" data-rule="segment_decl">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="segment_decl">segment_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="973" height="475">
          <defs>
             <style type="text/css">
     @namespace "http://www.w3.org/2000/svg";
@@ -615,7 +671,10 @@
          <xhtml:ul>
             <xhtml:li><xhtml:a href="#declaration" title="declaration">declaration</xhtml:a></xhtml:li>
          </xhtml:ul>
-      </xhtml:p><xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="field_decl">field_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="983" height="475">
+      </xhtml:p>
+   </div>
+   <div class="rule-container" data-rule="field_decl">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="field_decl">field_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="983" height="475">
          <defs>
             <style type="text/css">
     @namespace "http://www.w3.org/2000/svg";
@@ -707,7 +766,10 @@
          <xhtml:ul>
             <xhtml:li><xhtml:a href="#declaration" title="declaration">declaration</xhtml:a></xhtml:li>
          </xhtml:ul>
-      </xhtml:p><xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dimension_decl">dimension_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="965" height="475">
+      </xhtml:p>
+   </div>
+   <div class="rule-container" data-rule="dimension_decl">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dimension_decl">dimension_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="965" height="475">
          <defs>
             <style type="text/css">
     @namespace "http://www.w3.org/2000/svg";
@@ -800,7 +862,10 @@
          <xhtml:ul>
             <xhtml:li><xhtml:a href="#declaration" title="declaration">declaration</xhtml:a></xhtml:li>
          </xhtml:ul>
-      </xhtml:p><xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="hierarchy_decl">hierarchy_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="963" height="475">
+      </xhtml:p>
+   </div>
+   <div class="rule-container" data-rule="hierarchy_decl">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="hierarchy_decl">hierarchy_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="963" height="475">
          <defs>
             <style type="text/css">
     @namespace "http://www.w3.org/2000/svg";
@@ -893,7 +958,10 @@
          <xhtml:ul>
             <xhtml:li><xhtml:a href="#declaration" title="declaration">declaration</xhtml:a></xhtml:li>
          </xhtml:ul>
-      </xhtml:p><xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="variable_decl">variable_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="619" height="503">
+      </xhtml:p>
+   </div>
+   <div class="rule-container" data-rule="variable_decl">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="variable_decl">variable_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="619" height="503">
          <defs>
             <style type="text/css">
     @namespace "http://www.w3.org/2000/svg";
@@ -969,7 +1037,10 @@
          <xhtml:ul>
             <xhtml:li><xhtml:a href="#declaration" title="declaration">declaration</xhtml:a></xhtml:li>
          </xhtml:ul>
-      </xhtml:p><xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="define_decl">define_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="939" height="1025">
+      </xhtml:p>
+   </div>
+   <div class="rule-container" data-rule="define_decl">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="define_decl">define_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="939" height="1025">
          <defs>
             <style type="text/css">
     @namespace "http://www.w3.org/2000/svg";
@@ -1107,7 +1178,10 @@
          <xhtml:ul>
             <xhtml:li><xhtml:a href="#declaration" title="declaration">declaration</xhtml:a></xhtml:li>
          </xhtml:ul>
-      </xhtml:p><xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="compute_decl">compute_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="955" height="1025">
+      </xhtml:p>
+   </div>
+   <div class="rule-container" data-rule="compute_decl">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="compute_decl">compute_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="955" height="1025">
          <defs>
             <style type="text/css">
     @namespace "http://www.w3.org/2000/svg";
@@ -1245,7 +1319,10 @@
          <xhtml:ul>
             <xhtml:li><xhtml:a href="#declaration" title="declaration">declaration</xhtml:a></xhtml:li>
          </xhtml:ul>
-      </xhtml:p><xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="other_decl">other_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="957" height="459">
+      </xhtml:p>
+   </div>
+   <div class="rule-container" data-rule="other_decl">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="other_decl">other_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="957" height="459">
          <defs>
             <style type="text/css">
     @namespace "http://www.w3.org/2000/svg";
@@ -1334,7 +1411,10 @@
          <xhtml:ul>
             <xhtml:li><xhtml:a href="#declaration" title="declaration">declaration</xhtml:a></xhtml:li>
          </xhtml:ul>
-      </xhtml:p><xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="FILENAME_KW">FILENAME_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="189" height="81">
+      </xhtml:p>
+   </div>
+   <div class="rule-container" data-rule="FILENAME_KW">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="FILENAME_KW">FILENAME_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="189" height="81">
          <defs>
             <style type="text/css">
     @namespace "http://www.w3.org/2000/svg";
@@ -1386,7 +1466,10 @@
             <xhtml:li><xhtml:a href="#define_decl" title="define_decl">define_decl</xhtml:a></xhtml:li>
             <xhtml:li><xhtml:a href="#file_decl" title="file_decl">file_decl</xhtml:a></xhtml:li>
          </xhtml:ul>
-      </xhtml:p><xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="SEGNAME_KW">SEGNAME_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="185" height="81">
+      </xhtml:p>
+   </div>
+   <div class="rule-container" data-rule="SEGNAME_KW">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="SEGNAME_KW">SEGNAME_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="185" height="81">
          <defs>
             <style type="text/css">
     @namespace "http://www.w3.org/2000/svg";
@@ -1438,7 +1521,10 @@
             <xhtml:li><xhtml:a href="#define_decl" title="define_decl">define_decl</xhtml:a></xhtml:li>
             <xhtml:li><xhtml:a href="#segment_decl" title="segment_decl">segment_decl</xhtml:a></xhtml:li>
          </xhtml:ul>
-      </xhtml:p><xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="FIELDNAME_KW">FIELDNAME_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="199" height="81">
+      </xhtml:p>
+   </div>
+   <div class="rule-container" data-rule="FIELDNAME_KW">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="FIELDNAME_KW">FIELDNAME_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="199" height="81">
          <defs>
             <style type="text/css">
     @namespace "http://www.w3.org/2000/svg";
@@ -1490,7 +1576,10 @@
             <xhtml:li><xhtml:a href="#define_decl" title="define_decl">define_decl</xhtml:a></xhtml:li>
             <xhtml:li><xhtml:a href="#field_decl" title="field_decl">field_decl</xhtml:a></xhtml:li>
          </xhtml:ul>
-      </xhtml:p><xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="ATTR">ATTR:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="283" height="335">
+      </xhtml:p>
+   </div>
+   <div class="rule-container" data-rule="ATTR">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="ATTR">ATTR:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="283" height="335">
          <defs>
             <style type="text/css">
     @namespace "http://www.w3.org/2000/svg";
@@ -1564,7 +1653,10 @@
             <xhtml:li><xhtml:a href="#segment_decl" title="segment_decl">segment_decl</xhtml:a></xhtml:li>
             <xhtml:li><xhtml:a href="#variable_decl" title="variable_decl">variable_decl</xhtml:a></xhtml:li>
          </xhtml:ul>
-      </xhtml:p><xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="UNQUOTED_VALUE">UNQUOTED_VALUE:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="201" height="757">
+      </xhtml:p>
+   </div>
+   <div class="rule-container" data-rule="UNQUOTED_VALUE">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="UNQUOTED_VALUE">UNQUOTED_VALUE:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="201" height="757">
          <defs>
             <style type="text/css">
     @namespace "http://www.w3.org/2000/svg";
@@ -1666,7 +1758,10 @@
             <xhtml:li><xhtml:a href="#segment_decl" title="segment_decl">segment_decl</xhtml:a></xhtml:li>
             <xhtml:li><xhtml:a href="#variable_decl" title="variable_decl">variable_decl</xhtml:a></xhtml:li>
          </xhtml:ul>
-      </xhtml:p><xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="STRING">STRING:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="383" height="119">
+      </xhtml:p>
+   </div>
+   <div class="rule-container" data-rule="STRING">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="STRING">STRING:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="383" height="119">
          <defs>
             <style type="text/css">
     @namespace "http://www.w3.org/2000/svg";
@@ -1742,7 +1837,10 @@
             <xhtml:li><xhtml:a href="#segment_decl" title="segment_decl">segment_decl</xhtml:a></xhtml:li>
             <xhtml:li><xhtml:a href="#variable_decl" title="variable_decl">variable_decl</xhtml:a></xhtml:li>
          </xhtml:ul>
-      </xhtml:p><xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="WS">WS:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="167" height="229">
+      </xhtml:p>
+   </div>
+   <div class="rule-container" data-rule="WS">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="WS">WS:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="167" height="229">
          <defs>
             <style type="text/css">
     @namespace "http://www.w3.org/2000/svg";
@@ -1809,8 +1907,10 @@
             <xhtml:li><xhtml:a href="#segment_decl" title="segment_decl">segment_decl</xhtml:a></xhtml:li>
             <xhtml:li><xhtml:a href="#variable_decl" title="variable_decl">variable_decl</xhtml:a></xhtml:li>
          </xhtml:ul>
-      </xhtml:p><xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" /><xhtml:hr xmlns:xhtml="http://www.w3.org/1999/xhtml" />
-      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+      </xhtml:p>
+   </div>
+</div>
+<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">
          <xhtml:table border="0" class="signature">
             <xhtml:tr>
                <xhtml:td style="width: 100%"> </xhtml:td>
@@ -1829,5 +1929,34 @@
             </xhtml:tr>
          </xhtml:table>
       </xhtml:p>
+
+    <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('rule-search');
+        const containers = document.querySelectorAll('.rule-container');
+
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            containers.forEach(container => {
+                const ruleName = container.getAttribute('data-rule').toLowerCase();
+                if (ruleName.includes(query)) {
+                    container.style.display = 'block';
+                } else {
+                    container.style.display = 'none';
+                }
+            });
+        });
+
+        // Ensure deep-linked rules are visible
+        if (window.location.hash) {
+            const hash = window.location.hash.substring(1);
+            const target = document.querySelector(`.rule-container[data-rule="${hash}"]`);
+            if (target) {
+                target.style.display = 'block';
+            }
+        }
+    });
+    </script>
+
    </body>
 </html>

@@ -21,14 +21,19 @@ def is_up_to_date(source_path, target_path):
     return os.path.getmtime(target_path) > os.path.getmtime(source_path)
 
 def post_process_xhtml(filepath):
-    """Injects custom CSS into the generated XHTML to match Oracle style."""
-    print(f"Post-processing {filepath} for Oracle styling...")
+    """Injects custom CSS and JS into the generated XHTML to match Oracle style and add filtering."""
+    print(f"Post-processing {filepath} for Oracle styling and filtering...")
     with open(filepath, "r") as f:
         content = f.read()
 
     # Define Oracle-inspired style overrides
     oracle_styles = """
     /* Oracle Style Overrides */
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #f0f5ff;
+    }
     .line                 { stroke: #444444 !important; stroke-width: 1.5 !important; }
     .bold-line            { stroke: #222222 !important; stroke-width: 2 !important; }
     .filled               { fill: #444444 !important; }
@@ -39,11 +44,16 @@ def post_process_xhtml(filepath):
 
     /* Navigation Bar */
     .nav-bar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
         background-color: #002b80;
         padding: 10px 20px;
-        margin-bottom: 20px;
-        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         font-family: 'Verdana', sans-serif;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
     .nav-bar a {
         color: #ffffff;
@@ -53,7 +63,37 @@ def post_process_xhtml(filepath):
     .nav-bar a:hover {
         text-decoration: underline;
     }
+    .search-container {
+        display: flex;
+        align-items: center;
+    }
+    #rule-search {
+        padding: 5px 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        width: 250px;
+    }
+
+    /* Content Layout */
+    .content-area {
+        padding: 20px;
+    }
+    .rule-container {
+        background-color: #ffffff;
+        border: 1px solid #d0d7de;
+        border-radius: 6px;
+        padding: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .rule-container:hover {
+        border-color: #002b80;
+    }
     """
+
+    # Wrap rules in containers for filtering
+    content = wrap_rules_in_containers(content)
 
     # The RR tool embeds CSS in every SVG. We'll append our overrides to the main head style block
     # and also use !important to ensure they take precedence.
@@ -62,13 +102,97 @@ def post_process_xhtml(filepath):
         content = content.replace("</style>", oracle_styles + "  </style>", 1)
 
     # Inject navigation bar at the beginning of body
-    nav_bar_html = '<div class="nav-bar"><a href="index.html">&larr; Back to Index</a></div>'
+    nav_bar_html = '''<div class="nav-bar">
+        <a href="index.html">&larr; Back to Index</a>
+        <div class="search-container">
+            <input type="text" id="rule-search" placeholder="Search rules..." />
+        </div>
+    </div>'''
     content = content.replace("<body>", f"<body>\n      {nav_bar_html}", 1)
+
+    # Inject JS for filtering before </body>
+    filter_js = """
+    <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('rule-search');
+        const containers = document.querySelectorAll('.rule-container');
+
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            containers.forEach(container => {
+                const ruleName = container.getAttribute('data-rule').toLowerCase();
+                if (ruleName.includes(query)) {
+                    container.style.display = 'block';
+                } else {
+                    container.style.display = 'none';
+                }
+            });
+        });
+
+        // Ensure deep-linked rules are visible
+        if (window.location.hash) {
+            const hash = window.location.hash.substring(1);
+            const target = document.querySelector(`.rule-container[data-rule="${hash}"]`);
+            if (target) {
+                target.style.display = 'block';
+            }
+        }
+    });
+    </script>
+    """
+    content = content.replace("</body>", f"{filter_js}\n   </body>")
 
     with open(filepath, "w") as f:
         f.write(content)
         if not content.endswith('\n'):
             f.write('\n')
+
+def wrap_rules_in_containers(content):
+    """Wraps each rule into a div for better layout and filtering."""
+    # Find all rule starts. RR tool uses a specific pattern for rule headers.
+    rule_pattern = re.compile(r'<xhtml:p [^>]*style="font-size: 14px; font-weight:bold"><xhtml:a name="([^"]+)">.*?</xhtml:p>')
+
+    matches = list(rule_pattern.finditer(content))
+    if not matches:
+        return content
+
+    new_content = content[:matches[0].start()]
+    new_content += '<div class="content-area">\n'
+
+    # Try to find the start of the signature to know where to stop
+    sig_marker = '<xhtml:table border="0" class="signature">'
+    sig_table_pos = content.find(sig_marker)
+    if sig_table_pos != -1:
+        # The signature table is usually inside an xhtml:p. Let's find the opening of that p.
+        p_start = content.rfind('<xhtml:p', 0, sig_table_pos)
+        if p_start != -1 and sig_table_pos - p_start < 500: # Sanity check for proximity
+            sig_start = p_start
+        else:
+            sig_start = sig_table_pos
+    else:
+        sig_start = content.find('</body>')
+
+    for i in range(len(matches)):
+        start = matches[i].start()
+        if i + 1 < len(matches):
+            end = matches[i+1].start()
+        else:
+            end = sig_start
+
+        rule_name = matches[i].group(1)
+        rule_body = content[start:end]
+
+        # Clean up some separators to avoid double spacing in containers
+        rule_body = rule_body.replace('<xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" />', '')
+        rule_body = rule_body.replace('<xhtml:hr xmlns:xhtml="http://www.w3.org/1999/xhtml" />', '')
+
+        new_content += f'   <div class="rule-container" data-rule="{rule_name}">\n'
+        new_content += f'      {rule_body.strip()}\n'
+        new_content += '   </div>\n'
+
+    new_content += '</div>\n'
+    new_content += content[sig_start:]
+    return new_content
 
 def generate_docs(grammars=None, output_dir="docs", ebnf_dir="build/ebnf", color="#4D88FF", width=None,
                   suppress_ebnf=False, offset=None, force=False):
