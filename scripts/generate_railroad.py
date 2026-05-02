@@ -90,6 +90,29 @@ def post_process_xhtml(filepath):
     .rule-container:hover {
         border-color: #002b80;
     }
+    .rule-container:target {
+        border: 2px solid #002b80;
+        background-color: #f8faff;
+        scroll-margin-top: 70px;
+    }
+    #result-count {
+        color: #ffffff;
+        font-size: 14px;
+        margin-right: 15px;
+    }
+    #clear-search {
+        background-color: #4D88FF;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 10px;
+        font-size: 14px;
+    }
+    #clear-search:hover {
+        background-color: #3b6edb;
+    }
     """
 
     # Wrap rules in containers for filtering
@@ -105,7 +128,9 @@ def post_process_xhtml(filepath):
     nav_bar_html = '''<div class="nav-bar">
         <a href="index.html">&larr; Back to Index</a>
         <div class="search-container">
+            <span id="result-count"></span>
             <input type="text" id="rule-search" placeholder="Search rules..." />
+            <button id="clear-search">Clear</button>
         </div>
     </div>'''
     content = content.replace("<body>", f"<body>\n      {nav_bar_html}", 1)
@@ -115,28 +140,54 @@ def post_process_xhtml(filepath):
     <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('rule-search');
+        const clearButton = document.getElementById('clear-search');
+        const resultCount = document.getElementById('result-count');
         const containers = document.querySelectorAll('.rule-container');
 
-        searchInput.addEventListener('input', function() {
-            const query = this.value.toLowerCase();
+        function updateFilter() {
+            const query = searchInput.value.toLowerCase();
+            let visibleCount = 0;
             containers.forEach(container => {
                 const ruleName = container.getAttribute('data-rule').toLowerCase();
                 if (ruleName.includes(query)) {
                     container.style.display = 'block';
+                    visibleCount++;
                 } else {
                     container.style.display = 'none';
                 }
             });
+            resultCount.textContent = `${visibleCount} rules found`;
+        }
+
+        searchInput.addEventListener('input', updateFilter);
+
+        clearButton.addEventListener('click', function() {
+            searchInput.value = '';
+            updateFilter();
+            searchInput.focus();
         });
 
-        // Ensure deep-linked rules are visible
-        if (window.location.hash) {
-            const hash = window.location.hash.substring(1);
-            const target = document.querySelector(`.rule-container[data-rule="${hash}"]`);
-            if (target) {
-                target.style.display = 'block';
+        function handleHashChange() {
+            if (window.location.hash) {
+                const hash = window.location.hash.substring(1);
+                const target = document.getElementById(hash);
+                if (target) {
+                    // When a rule is targeted, we should clear the search to make sure it's visible
+                    if (searchInput.value !== '') {
+                        searchInput.value = '';
+                        updateFilter();
+                    }
+                    target.style.display = 'block';
+                    target.scrollIntoView();
+                }
             }
         }
+
+        window.addEventListener('hashchange', handleHashChange);
+
+        // Initial setup
+        updateFilter();
+        handleHashChange();
     });
     </script>
     """
@@ -186,7 +237,7 @@ def wrap_rules_in_containers(content):
         rule_body = rule_body.replace('<xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" />', '')
         rule_body = rule_body.replace('<xhtml:hr xmlns:xhtml="http://www.w3.org/1999/xhtml" />', '')
 
-        new_content += f'   <div class="rule-container" data-rule="{rule_name}">\n'
+        new_content += f'   <div class="rule-container" id="{rule_name}" data-rule="{rule_name}">\n'
         new_content += f'      {rule_body.strip()}\n'
         new_content += '   </div>\n'
 

@@ -252,6 +252,29 @@
     .rule-container:hover {
         border-color: #002b80;
     }
+    .rule-container:target {
+        border: 2px solid #002b80;
+        background-color: #f8faff;
+        scroll-margin-top: 70px;
+    }
+    #result-count {
+        color: #ffffff;
+        font-size: 14px;
+        margin-right: 15px;
+    }
+    #clear-search {
+        background-color: #4D88FF;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 10px;
+        font-size: 14px;
+    }
+    #clear-search:hover {
+        background-color: #3b6edb;
+    }
       </style><svg xmlns="http://www.w3.org/2000/svg">
          <defs>
             <style type="text/css">
@@ -286,11 +309,13 @@
       <div class="nav-bar">
         <a href="index.html">&larr; Back to Index</a>
         <div class="search-container">
+            <span id="result-count"></span>
             <input type="text" id="rule-search" placeholder="Search rules..." />
+            <button id="clear-search">Clear</button>
         </div>
     </div>
       <div class="content-area">
-   <div class="rule-container" data-rule="start">
+   <div class="rule-container" id="start" data-rule="start">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="start">start:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="865" height="3931">
          <defs>
             <style type="text/css">
@@ -623,7 +648,7 @@
       </xhtml:p>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">no references</xhtml:p>
    </div>
-   <div class="rule-container" data-rule="compound_layout_block">
+   <div class="rule-container" id="compound_layout_block" data-rule="compound_layout_block">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="compound_layout_block">compound_layout_block:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="983" height="7219">
          <defs>
             <style type="text/css">
@@ -1215,7 +1240,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="layout_value">
+   <div class="rule-container" id="layout_value" data-rule="layout_value">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="layout_value">layout_value:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="455" height="3623">
          <defs>
             <style type="text/css">
@@ -1538,7 +1563,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="define_file">
+   <div class="rule-container" id="define_file" data-rule="define_file">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="define_file">define_file:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="685" height="3161">
          <defs>
             <style type="text/css">
@@ -1824,7 +1849,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="define_assignment">
+   <div class="rule-container" id="define_assignment" data-rule="define_assignment">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="define_assignment">define_assignment:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="747" height="3161">
          <defs>
             <style type="text/css">
@@ -2112,7 +2137,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="compute_command">
+   <div class="rule-container" id="compute_command" data-rule="compute_command">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="compute_command">compute_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="871" height="3247">
          <defs>
             <style type="text/css">
@@ -2410,7 +2435,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="recap_command">
+   <div class="rule-container" id="recap_command" data-rule="recap_command">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="recap_command">recap_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="319" height="53">
          <defs>
             <style type="text/css">
@@ -2464,7 +2489,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="recap_assignment">
+   <div class="rule-container" id="recap_assignment" data-rule="recap_assignment">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="recap_assignment">recap_assignment:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="925" height="3293">
          <defs>
             <style type="text/css">
@@ -2762,7 +2787,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="recap_option">
+   <div class="rule-container" id="recap_option" data-rule="recap_option">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="recap_option">recap_option:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="263" height="125">
          <defs>
             <style type="text/css">
@@ -2820,7 +2845,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="format_name">
+   <div class="rule-container" id="format_name" data-rule="format_name">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="format_name">format_name:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="421" height="147">
          <defs>
             <style type="text/css">
@@ -2883,7 +2908,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="join_command">
+   <div class="rule-container" id="join_command" data-rule="join_command">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="join_command">join_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="1623" height="3357">
          <defs>
             <style type="text/css">
@@ -3877,7 +3902,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="set_command">
+   <div class="rule-container" id="set_command" data-rule="set_command">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="set_command">set_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="585" height="101">
          <defs>
             <style type="text/css">
@@ -3939,7 +3964,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="set_value">
+   <div class="rule-container" id="set_value" data-rule="set_value">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="set_value">set_value:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="239" height="81">
          <defs>
             <style type="text/css">
@@ -3991,7 +4016,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="hyphenated_name">
+   <div class="rule-container" id="hyphenated_name" data-rule="hyphenated_name">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="hyphenated_name">hyphenated_name:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="561" height="3281">
          <defs>
             <style type="text/css">
@@ -4490,7 +4515,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="dm_token">
+   <div class="rule-container" id="dm_token" data-rule="dm_token">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_token">dm_token:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="203" height="389">
          <defs>
             <style type="text/css">
@@ -4569,7 +4594,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="dm_command">
+   <div class="rule-container" id="dm_command" data-rule="dm_command">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_command">dm_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="191" height="389">
          <defs>
             <style type="text/css">
@@ -4650,7 +4675,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="dm_set">
+   <div class="rule-container" id="dm_set" data-rule="dm_set">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_set">dm_set:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="519" height="69">
          <defs>
             <style type="text/css">
@@ -4709,7 +4734,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="dm_goto">
+   <div class="rule-container" id="dm_goto" data-rule="dm_goto">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_goto">dm_goto:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="299" height="69">
          <defs>
             <style type="text/css">
@@ -4762,7 +4787,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="dm_repeat">
+   <div class="rule-container" id="dm_repeat" data-rule="dm_repeat">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_repeat">dm_repeat:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="2319" height="7001">
          <defs>
             <style type="text/css">
@@ -5882,7 +5907,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="dm_label">
+   <div class="rule-container" id="dm_label" data-rule="dm_label">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_label">dm_label:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="145" height="37">
          <defs>
             <style type="text/css">
@@ -5929,7 +5954,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="dm_if">
+   <div class="rule-container" id="dm_if" data-rule="dm_if">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_if">dm_if:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="961" height="113">
          <defs>
             <style type="text/css">
@@ -6001,7 +6026,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="dm_type">
+   <div class="rule-container" id="dm_type" data-rule="dm_type">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_type">dm_type:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="907" height="3401">
          <defs>
             <style type="text/css">
@@ -6312,7 +6337,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="dm_include">
+   <div class="rule-container" id="dm_include" data-rule="dm_include">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_include">dm_include:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="465" height="3161">
          <defs>
             <style type="text/css">
@@ -6592,7 +6617,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="dm_run">
+   <div class="rule-container" id="dm_run" data-rule="dm_run">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_run">dm_run:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="217" height="69">
          <defs>
             <style type="text/css">
@@ -6642,7 +6667,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="dm_exit">
+   <div class="rule-container" id="dm_exit" data-rule="dm_exit">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_exit">dm_exit:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="219" height="69">
          <defs>
             <style type="text/css">
@@ -6692,7 +6717,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="dm_expression">
+   <div class="rule-container" id="dm_expression" data-rule="dm_expression">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_expression">dm_expression:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="191" height="37">
          <defs>
             <style type="text/css">
@@ -6748,7 +6773,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="dm_if_expression">
+   <div class="rule-container" id="dm_if_expression" data-rule="dm_if_expression">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_if_expression">dm_if_expression:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="737" height="81">
          <defs>
             <style type="text/css">
@@ -6813,7 +6838,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="dm_logical_expression">
+   <div class="rule-container" id="dm_logical_expression" data-rule="dm_logical_expression">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_logical_expression">dm_logical_expression:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="595" height="213">
          <defs>
             <style type="text/css">
@@ -6889,7 +6914,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="dm_relational_expression">
+   <div class="rule-container" id="dm_relational_expression" data-rule="dm_relational_expression">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_relational_expression">dm_relational_expression:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="965" height="5113">
          <defs>
             <style type="text/css">
@@ -7330,7 +7355,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="dm_relational_op">
+   <div class="rule-container" id="dm_relational_op" data-rule="dm_relational_op">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_relational_op">dm_relational_op:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="521" height="881">
          <defs>
             <style type="text/css">
@@ -7457,7 +7482,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="dm_unary_expression">
+   <div class="rule-container" id="dm_unary_expression" data-rule="dm_unary_expression">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_unary_expression">dm_unary_expression:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="735" height="3447">
          <defs>
             <style type="text/css">
@@ -7769,7 +7794,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="verb_command">
+   <div class="rule-container" id="verb_command" data-rule="verb_command">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="verb_command">verb_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="239" height="81">
          <defs>
             <style type="text/css">
@@ -7824,7 +7849,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="verb">
+   <div class="rule-container" id="verb" data-rule="verb">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="verb">verb:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="167" height="257">
          <defs>
             <style type="text/css">
@@ -7893,7 +7918,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="field_list">
+   <div class="rule-container" id="field_list" data-rule="field_list">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="field_list">field_list:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="333" height="135">
          <defs>
             <style type="text/css">
@@ -7947,7 +7972,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="field_separator">
+   <div class="rule-container" id="field_separator" data-rule="field_separator">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="field_separator">field_separator:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="253" height="157">
          <defs>
             <style type="text/css">
@@ -8007,7 +8032,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="field_or_prefixed">
+   <div class="rule-container" id="field_or_prefixed" data-rule="field_or_prefixed">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="field_or_prefixed">field_or_prefixed:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="345" height="729">
          <defs>
             <style type="text/css">
@@ -8107,7 +8132,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="field">
+   <div class="rule-container" id="field" data-rule="field">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="field">field:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="617" height="3161">
          <defs>
             <style type="text/css">
@@ -8391,7 +8416,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="as_phrase">
+   <div class="rule-container" id="as_phrase" data-rule="as_phrase">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="as_phrase">as_phrase:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="183" height="37">
          <defs>
             <style type="text/css">
@@ -8447,7 +8472,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="by_command">
+   <div class="rule-container" id="by_command" data-rule="by_command">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="by_command">by_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="981" height="69">
          <defs>
             <style type="text/css">
@@ -8513,7 +8538,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="across_command">
+   <div class="rule-container" id="across_command" data-rule="across_command">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="across_command">across_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="829" height="101">
          <defs>
             <style type="text/css">
@@ -8577,7 +8602,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="when_command">
+   <div class="rule-container" id="when_command" data-rule="when_command">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="when_command">when_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="389" height="69">
          <defs>
             <style type="text/css">
@@ -8632,7 +8657,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="show_command">
+   <div class="rule-container" id="show_command" data-rule="show_command">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="show_command">show_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="905" height="6767">
          <defs>
             <style type="text/css">
@@ -9217,7 +9242,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="sort_options">
+   <div class="rule-container" id="sort_options" data-rule="sort_options">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="sort_options">sort_options:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="353" height="213">
          <defs>
             <style type="text/css">
@@ -9282,7 +9307,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="where_command">
+   <div class="rule-container" id="where_command" data-rule="where_command">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="where_command">where_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="521" height="69">
          <defs>
             <style type="text/css">
@@ -9340,7 +9365,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="heading_command">
+   <div class="rule-container" id="heading_command" data-rule="heading_command">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="heading_command">heading_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="401" height="85">
          <defs>
             <style type="text/css">
@@ -9395,7 +9420,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="footing_command">
+   <div class="rule-container" id="footing_command" data-rule="footing_command">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="footing_command">footing_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="401" height="85">
          <defs>
             <style type="text/css">
@@ -9450,7 +9475,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="on_command">
+   <div class="rule-container" id="on_command" data-rule="on_command">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="on_command">on_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="503" height="3205">
          <defs>
             <style type="text/css">
@@ -9736,7 +9761,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="on_table_options">
+   <div class="rule-container" id="on_table_options" data-rule="on_table_options">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="on_table_options">on_table_options:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="1071" height="6801">
          <defs>
             <style type="text/css">
@@ -10312,7 +10337,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="on_field_options">
+   <div class="rule-container" id="on_field_options" data-rule="on_field_options">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="on_field_options">on_field_options:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="483" height="185">
          <defs>
             <style type="text/css">
@@ -10377,7 +10402,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="summarize_command">
+   <div class="rule-container" id="summarize_command" data-rule="summarize_command">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="summarize_command">summarize_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="659" height="169">
          <defs>
             <style type="text/css">
@@ -10444,7 +10469,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="summarize_options">
+   <div class="rule-container" id="summarize_options" data-rule="summarize_options">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="summarize_options">summarize_options:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="479" height="757">
          <defs>
             <style type="text/css">
@@ -10597,7 +10622,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="output_command">
+   <div class="rule-container" id="output_command" data-rule="output_command">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="output_command">output_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="741" height="3177">
          <defs>
             <style type="text/css">
@@ -10895,7 +10920,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="SET_DM">
+   <div class="rule-container" id="SET_DM" data-rule="SET_DM">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="SET_DM">SET_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="149" height="37">
          <defs>
             <style type="text/css">
@@ -10947,7 +10972,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="GOTO_DM">
+   <div class="rule-container" id="GOTO_DM" data-rule="GOTO_DM">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="GOTO_DM">GOTO_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="165" height="37">
          <defs>
             <style type="text/css">
@@ -10999,7 +11024,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="REPEAT_DM">
+   <div class="rule-container" id="REPEAT_DM" data-rule="REPEAT_DM">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="REPEAT_DM">REPEAT_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="177" height="37">
          <defs>
             <style type="text/css">
@@ -11052,7 +11077,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="IF_DM">
+   <div class="rule-container" id="IF_DM" data-rule="IF_DM">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="IF_DM">IF_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="139" height="37">
          <defs>
             <style type="text/css">
@@ -11104,7 +11129,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="TYPE_DM">
+   <div class="rule-container" id="TYPE_DM" data-rule="TYPE_DM">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="TYPE_DM">TYPE_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="159" height="37">
          <defs>
             <style type="text/css">
@@ -11156,7 +11181,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="INCLUDE_DM">
+   <div class="rule-container" id="INCLUDE_DM" data-rule="INCLUDE_DM">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="INCLUDE_DM">INCLUDE_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="185" height="37">
          <defs>
             <style type="text/css">
@@ -11209,7 +11234,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="RUN_DM">
+   <div class="rule-container" id="RUN_DM" data-rule="RUN_DM">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="RUN_DM">RUN_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="153" height="37">
          <defs>
             <style type="text/css">
@@ -11261,7 +11286,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="EXIT_DM">
+   <div class="rule-container" id="EXIT_DM" data-rule="EXIT_DM">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="EXIT_DM">EXIT_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="157" height="37">
          <defs>
             <style type="text/css">
@@ -11313,7 +11338,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="SUB_TOTAL">
+   <div class="rule-container" id="SUB_TOTAL" data-rule="SUB_TOTAL">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="SUB_TOTAL">SUB_TOTAL:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="237" height="37">
          <defs>
             <style type="text/css">
@@ -11368,7 +11393,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="COLUMN_TOTAL_KW">
+   <div class="rule-container" id="COLUMN_TOTAL_KW" data-rule="COLUMN_TOTAL_KW">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="COLUMN_TOTAL_KW">COLUMN_TOTAL_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="267" height="37">
          <defs>
             <style type="text/css">
@@ -11423,7 +11448,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="ROW_TOTAL_KW">
+   <div class="rule-container" id="ROW_TOTAL_KW" data-rule="ROW_TOTAL_KW">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="ROW_TOTAL_KW">ROW_TOTAL_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="243" height="37">
          <defs>
             <style type="text/css">
@@ -11478,7 +11503,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="ACROSS_TOTAL">
+   <div class="rule-container" id="ACROSS_TOTAL" data-rule="ACROSS_TOTAL">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="ACROSS_TOTAL">ACROSS_TOTAL:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="265" height="37">
          <defs>
             <style type="text/css">
@@ -11552,7 +11577,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="IS_NOT">
+   <div class="rule-container" id="IS_NOT" data-rule="IS_NOT">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="IS_NOT">IS_NOT:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="209" height="37">
          <defs>
             <style type="text/css">
@@ -11607,7 +11632,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="IS_FROM">
+   <div class="rule-container" id="IS_FROM" data-rule="IS_FROM">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="IS_FROM">IS_FROM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="221" height="37">
          <defs>
             <style type="text/css">
@@ -11661,7 +11686,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="NOT_FROM">
+   <div class="rule-container" id="NOT_FROM" data-rule="NOT_FROM">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="NOT_FROM">NOT_FROM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="233" height="37">
          <defs>
             <style type="text/css">
@@ -11715,7 +11740,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="IS_LESS_THAN">
+   <div class="rule-container" id="IS_LESS_THAN" data-rule="IS_LESS_THAN">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="IS_LESS_THAN">IS_LESS_THAN:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="339" height="37">
          <defs>
             <style type="text/css">
@@ -11776,7 +11801,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="IS_MORE_THAN">
+   <div class="rule-container" id="IS_MORE_THAN" data-rule="IS_MORE_THAN">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="IS_MORE_THAN">IS_MORE_THAN:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="345" height="37">
          <defs>
             <style type="text/css">
@@ -11837,7 +11862,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="IS_GREATER_THAN">
+   <div class="rule-container" id="IS_GREATER_THAN" data-rule="IS_GREATER_THAN">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="IS_GREATER_THAN">IS_GREATER_THAN:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="367" height="37">
          <defs>
             <style type="text/css">
@@ -11898,7 +11923,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="LABEL_DM">
+   <div class="rule-container" id="LABEL_DM" data-rule="LABEL_DM">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="LABEL_DM">LABEL_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="329" height="291">
          <defs>
             <style type="text/css">
@@ -11968,7 +11993,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="COMMENT_DM">
+   <div class="rule-container" id="COMMENT_DM" data-rule="COMMENT_DM">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="COMMENT_DM">COMMENT_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="335" height="71">
          <defs>
             <style type="text/css">
@@ -12016,7 +12041,7 @@
       </xhtml:p>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">no references</xhtml:p>
    </div>
-   <div class="rule-container" data-rule="EQ">
+   <div class="rule-container" id="EQ" data-rule="EQ">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="EQ">EQ:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="137" height="81">
          <defs>
             <style type="text/css">
@@ -12076,7 +12101,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="NE">
+   <div class="rule-container" id="NE" data-rule="NE">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="NE">NE:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="137" height="81">
          <defs>
             <style type="text/css">
@@ -12129,7 +12154,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="LT">
+   <div class="rule-container" id="LT" data-rule="LT">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="LT">LT:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="135" height="81">
          <defs>
             <style type="text/css">
@@ -12181,7 +12206,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="GT">
+   <div class="rule-container" id="GT" data-rule="GT">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="GT">GT:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="137" height="81">
          <defs>
             <style type="text/css">
@@ -12233,7 +12258,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="LE">
+   <div class="rule-container" id="LE" data-rule="LE">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="LE">LE:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="139" height="81">
          <defs>
             <style type="text/css">
@@ -12285,7 +12310,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="GE">
+   <div class="rule-container" id="GE" data-rule="GE">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="GE">GE:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="139" height="81">
          <defs>
             <style type="text/css">
@@ -12337,7 +12362,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="ROLL_DOT">
+   <div class="rule-container" id="ROLL_DOT" data-rule="ROLL_DOT">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="ROLL_DOT">ROLL_DOT:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="159" height="37">
          <defs>
             <style type="text/css">
@@ -12388,7 +12413,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="CONCAT">
+   <div class="rule-container" id="CONCAT" data-rule="CONCAT">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="CONCAT">CONCAT:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="131" height="81">
          <defs>
             <style type="text/css">
@@ -12440,7 +12465,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="NUMBER">
+   <div class="rule-container" id="NUMBER" data-rule="NUMBER">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="NUMBER">NUMBER:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="161" height="53">
          <defs>
             <style type="text/css">
@@ -12496,7 +12521,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="STRING">
+   <div class="rule-container" id="STRING" data-rule="STRING">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="STRING">STRING:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="511" height="149">
          <defs>
             <style type="text/css">
@@ -12578,7 +12603,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="AMPER_VAR">
+   <div class="rule-container" id="AMPER_VAR" data-rule="AMPER_VAR">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="AMPER_VAR">AMPER_VAR:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="383" height="291">
          <defs>
             <style type="text/css">
@@ -12656,7 +12681,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="NAME">
+   <div class="rule-container" id="NAME" data-rule="NAME">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="NAME">NAME:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="283" height="291">
          <defs>
             <style type="text/css">
@@ -12743,7 +12768,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" data-rule="WS">
+   <div class="rule-container" id="WS" data-rule="WS">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="WS">WS:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="167" height="229">
          <defs>
             <style type="text/css">
@@ -12823,28 +12848,54 @@
     <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('rule-search');
+        const clearButton = document.getElementById('clear-search');
+        const resultCount = document.getElementById('result-count');
         const containers = document.querySelectorAll('.rule-container');
 
-        searchInput.addEventListener('input', function() {
-            const query = this.value.toLowerCase();
+        function updateFilter() {
+            const query = searchInput.value.toLowerCase();
+            let visibleCount = 0;
             containers.forEach(container => {
                 const ruleName = container.getAttribute('data-rule').toLowerCase();
                 if (ruleName.includes(query)) {
                     container.style.display = 'block';
+                    visibleCount++;
                 } else {
                     container.style.display = 'none';
                 }
             });
+            resultCount.textContent = `${visibleCount} rules found`;
+        }
+
+        searchInput.addEventListener('input', updateFilter);
+
+        clearButton.addEventListener('click', function() {
+            searchInput.value = '';
+            updateFilter();
+            searchInput.focus();
         });
 
-        // Ensure deep-linked rules are visible
-        if (window.location.hash) {
-            const hash = window.location.hash.substring(1);
-            const target = document.querySelector(`.rule-container[data-rule="${hash}"]`);
-            if (target) {
-                target.style.display = 'block';
+        function handleHashChange() {
+            if (window.location.hash) {
+                const hash = window.location.hash.substring(1);
+                const target = document.getElementById(hash);
+                if (target) {
+                    // When a rule is targeted, we should clear the search to make sure it's visible
+                    if (searchInput.value !== '') {
+                        searchInput.value = '';
+                        updateFilter();
+                    }
+                    target.style.display = 'block';
+                    target.scrollIntoView();
+                }
             }
         }
+
+        window.addEventListener('hashchange', handleHashChange);
+
+        // Initial setup
+        updateFilter();
+        handleHashChange();
     });
     </script>
 
