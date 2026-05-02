@@ -36,6 +36,23 @@ def post_process_xhtml(filepath):
     rect.nonterminal      { fill: #ffffff !important; stroke: #444444 !important; stroke-width: 1.5 !important; }
     text.terminal         { fill: #002b80 !important; font-weight: bold !important; font-family: 'Verdana', sans-serif !important; }
     text.nonterminal      { fill: #222222 !important; font-family: 'Verdana', sans-serif !important; }
+
+    /* Navigation Bar */
+    .nav-bar {
+        background-color: #002b80;
+        padding: 10px 20px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        font-family: 'Verdana', sans-serif;
+    }
+    .nav-bar a {
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .nav-bar a:hover {
+        text-decoration: underline;
+    }
     """
 
     # The RR tool embeds CSS in every SVG. We'll append our overrides to the main head style block
@@ -43,6 +60,10 @@ def post_process_xhtml(filepath):
     if "</style>" in content:
         # Insert into the first style block in the head
         content = content.replace("</style>", oracle_styles + "  </style>", 1)
+
+    # Inject navigation bar at the beginning of body
+    nav_bar_html = '<div class="nav-bar"><a href="index.html">&larr; Back to Index</a></div>'
+    content = content.replace("<body>", f"<body>\n      {nav_bar_html}", 1)
 
     with open(filepath, "w") as f:
         f.write(content)
