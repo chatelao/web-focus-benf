@@ -231,7 +231,9 @@ identifier: NAME
 prefix_operator: AVE | MIN | MAX | CNT | FST | LST | ASQ | MDN | MDE | PCT | RPCT | RNK | DST | TOT | SUM | CT;
 
 // Keywords
+// -SET command
 SET_DM: '-' [sS][eE][tT];
+// -GOTO command
 GOTO_DM: '-' [gG][oO][tT][oO];
 REPEAT_DM: '-' [rR][eE][pP][eE][aA][tT];
 IF_DM: '-' [iI][fF];

@@ -20,11 +20,13 @@ def is_up_to_date(source_path, target_path):
         return False
     return os.path.getmtime(target_path) > os.path.getmtime(source_path)
 
-def post_process_xhtml(filepath):
+def post_process_xhtml(filepath, metadata=None):
     """Injects custom CSS and JS into the generated XHTML to match Oracle style and add filtering."""
     print(f"Post-processing {filepath} for Oracle styling and filtering...")
     with open(filepath, "r") as f:
         content = f.read()
+
+    metadata = metadata or {}
 
     # Define Oracle-inspired style overrides
     oracle_styles = """
@@ -133,11 +135,26 @@ def post_process_xhtml(filepath):
     """
 
     # Wrap rules in containers for filtering
-    content = wrap_rules_in_containers(content)
+    content = wrap_rules_in_containers(content, metadata)
 
     # Ensure links work correctly in XHTML by potentially adding the xlink namespace if missing
     if 'xmlns:xlink="http://www.w3.org/1999/xlink"' not in content:
         content = content.replace('<svg ', '<svg xmlns:xlink="http://www.w3.org/1999/xlink" ', 1)
+
+    # Add styling for rule descriptions
+    oracle_styles += """
+    .rule-description {
+        font-style: italic;
+        color: #555;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        font-family: 'Verdana', sans-serif;
+        font-size: 13px;
+        line-height: 1.4;
+        border-left: 3px solid #002b80;
+        padding-left: 10px;
+    }
+    """
 
     # The RR tool embeds CSS in every SVG. We'll append our overrides to the main head style block
     # and also use !important to ensure they take precedence.
@@ -219,7 +236,7 @@ def post_process_xhtml(filepath):
         if not content.endswith('\n'):
             f.write('\n')
 
-def wrap_rules_in_containers(content):
+def wrap_rules_in_containers(content, metadata):
     """Wraps each rule into a div for better layout and filtering."""
     # Find all rule starts. RR tool uses a specific pattern for rule headers.
     rule_pattern = re.compile(r'<xhtml:p [^>]*style="font-size: 14px; font-weight:bold"><xhtml:a name="([^"]+)">.*?</xhtml:p>')
@@ -259,6 +276,14 @@ def wrap_rules_in_containers(content):
         rule_body = rule_body.replace('<xhtml:hr xmlns:xhtml="http://www.w3.org/1999/xhtml" />', '')
 
         new_content += f'   <div class="rule-container" id="{rule_name}" data-rule="{rule_name}">\n'
+
+        description = metadata.get(rule_name)
+        if description:
+            # Escape HTML in description and convert newlines to <br/>
+            import html
+            safe_desc = html.escape(description).replace('\n', '<br/>')
+            new_content += f'      <div class="rule-description">{safe_desc}</div>\n'
+
         new_content += f'      {rule_body.strip()}\n'
         new_content += '   </div>\n'
 
@@ -266,8 +291,8 @@ def wrap_rules_in_containers(content):
     new_content += content[sig_start:]
     return new_content
 
-def generate_docs(grammars=None, output_dir="docs", ebnf_dir="build/ebnf", color="#4D88FF", width=None,
-                  suppress_ebnf=False, offset=None, force=False):
+def generate_docs(grammars=None, output_dir="docs", ebnf_dir="build/ebnf", metadata_dir="build/metadata",
+                  color="#4D88FF", width=None, suppress_ebnf=False, offset=None, force=False):
     src_dir = "src"
 
     if not grammars:
@@ -275,6 +300,7 @@ def generate_docs(grammars=None, output_dir="docs", ebnf_dir="build/ebnf", color
 
     os.makedirs(output_dir, exist_ok=True)
     os.makedirs(ebnf_dir, exist_ok=True)
+    os.makedirs(metadata_dir, exist_ok=True)
 
     rr = RRTool()
 
@@ -289,6 +315,7 @@ def generate_docs(grammars=None, output_dir="docs", ebnf_dir="build/ebnf", color
 
         grammar_name = os.path.basename(grammar_path)
         ebnf_path = os.path.join(ebnf_dir, grammar_name.replace(".g4", ".ebnf"))
+        metadata_path = os.path.join(metadata_dir, grammar_name.replace(".g4", ".json"))
         xhtml_name = grammar_name.replace(".g4", ".xhtml")
         xhtml_path = os.path.join(output_dir, xhtml_name)
 
@@ -297,16 +324,22 @@ def generate_docs(grammars=None, output_dir="docs", ebnf_dir="build/ebnf", color
             generated_files.append((grammar_name, xhtml_name))
             continue
 
-        print(f"Generating EBNF for {grammar_name}...")
+        print(f"Generating EBNF and Metadata for {grammar_name}...")
         with open(ebnf_path, "w") as f:
             # We assume scripts/antlr4_to_ebnf.py exists and is in the current working directory or relative to it.
-            subprocess.run(["python3", "scripts/antlr4_to_ebnf.py", grammar_path, "--check"], stdout=f, check=True)
+            subprocess.run(["python3", "scripts/antlr4_to_ebnf.py", grammar_path, "--check", "--metadata", metadata_path], stdout=f, check=True)
 
         print(f"Generating Railroad Diagram for {grammar_name}...")
         rr.generate(ebnf_path, out_path=xhtml_path, color=color, width=width,
                     suppress_ebnf=suppress_ebnf, offset=offset)
 
-        post_process_xhtml(xhtml_path)
+        metadata = {}
+        if os.path.exists(metadata_path):
+            import json
+            with open(metadata_path, "r") as f:
+                metadata = json.load(f)
+
+        post_process_xhtml(xhtml_path, metadata=metadata)
         validate_output(xhtml_path)
         generated_files.append((grammar_name, xhtml_name))
 
@@ -370,6 +403,7 @@ if __name__ == "__main__":
     parser.add_argument('--grammars', nargs='+', help='List of grammar files to process (e.g. WebFocusReport.g4)')
     parser.add_argument('--output-dir', default='docs', help='Directory for generated diagrams (default: docs)')
     parser.add_argument('--ebnf-dir', default='build/ebnf', help='Directory for intermediate EBNF files (default: build/ebnf)')
+    parser.add_argument('--metadata-dir', default='build/metadata', help='Directory for intermediate metadata files (default: build/metadata)')
     parser.add_argument('--color', default='#4D88FF', help='Base color for diagrams (default: #4D88FF)')
     parser.add_argument('--width', type=int, help='Try to break graphics into multiple lines if width exceeds this value')
     parser.add_argument('--suppress-ebnf', action='store_true', help='Do not show EBNF next to generated diagrams')
@@ -382,6 +416,7 @@ if __name__ == "__main__":
         grammars=args.grammars,
         output_dir=args.output_dir,
         ebnf_dir=args.ebnf_dir,
+        metadata_dir=args.metadata_dir,
         color=args.color,
         width=args.width,
         suppress_ebnf=args.suppress_ebnf,

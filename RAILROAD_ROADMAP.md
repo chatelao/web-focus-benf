@@ -61,3 +61,6 @@ This document outlines the tasks required to implement the automated railroad di
 
 ## Phase 7: Advanced Documentation Features
 - [x] 7.1 Implement cross-references (links) between rules in railroad diagrams.
+
+## Phase 8: Content Enrichment
+- [x] 8.1 Extract and display rule descriptions from ANTLR4 comments.

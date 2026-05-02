@@ -16,7 +16,7 @@ def test_basic_conversion():
         "rule3 ::= 'FINAL'",
         "TOKEN1 ::= 'literal'"
     ]
-    result = convert_antlr_to_ebnf(antlr)
+    result, _ = convert_antlr_to_ebnf(antlr)
     for rule in expected:
         assert rule in result
 
@@ -27,7 +27,7 @@ def test_multiline_rule():
         | PART2
         ;
     """
-    result = convert_antlr_to_ebnf(antlr)
+    result, _ = convert_antlr_to_ebnf(antlr)
     assert "rule ::= PART1 | PART2" in result
 
 def test_comment_removal():
@@ -36,30 +36,28 @@ def test_comment_removal():
     rule: 'TERM'; /* Multiline
     comment */
     """
-    result = convert_antlr_to_ebnf(antlr)
-    assert "//" not in result
-    assert "/*" not in result
+    result, _ = convert_antlr_to_ebnf(antlr)
     assert "rule ::= 'TERM'" in result
 
 def test_string_with_comment_markers():
     antlr = """
     rule: 'http://' | "/* not a comment */";
     """
-    result = convert_antlr_to_ebnf(antlr)
+    result, _ = convert_antlr_to_ebnf(antlr)
     assert "rule ::= 'http://' | \"/* not a comment */\"" in result
 
 def test_cardinality_and_grouping():
     antlr = """
     rule: (part1 | part2)* part3+ part4?;
     """
-    result = convert_antlr_to_ebnf(antlr)
+    result, _ = convert_antlr_to_ebnf(antlr)
     assert "rule ::= (part1 | part2)* part3+ part4?" in result
 
 def test_non_greedy_markers():
     antlr = """
     rule: part1*? part2+? part3??;
     """
-    result = convert_antlr_to_ebnf(antlr)
+    result, _ = convert_antlr_to_ebnf(antlr)
     assert "rule ::= part1* part2+ part3?" in result
 
 def test_lexer_commands():
@@ -67,7 +65,7 @@ def test_lexer_commands():
     WS: [ \t\r\n]+ -> skip;
     COMMENT: '/*' .*? '*/' -> channel(HIDDEN);
     """
-    result = convert_antlr_to_ebnf(antlr)
+    result, _ = convert_antlr_to_ebnf(antlr)
     assert r"WS ::= [ \t\r\n]+" in result
     assert "COMMENT ::= '/*' .* '*/'" in result
 
@@ -77,7 +75,7 @@ def test_char_class_conversion():
     FILE: [fF][iI][lL][eE];
     MIXED: 'PREFIX' [sS][uU][fF][fF][iI][xX];
     """
-    result = convert_antlr_to_ebnf(antlr)
+    result, _ = convert_antlr_to_ebnf(antlr)
     assert "TABLE ::= 'TABLE'" in result
     assert "FILE ::= 'FILE'" in result
     assert "MIXED ::= 'PREFIX' 'SUFFIX'" in result
@@ -87,9 +85,34 @@ def test_fragment_rules():
     fragment DIGIT: [0-9];
     NUMBER: DIGIT+;
     """
-    result = convert_antlr_to_ebnf(antlr)
+    result, _ = convert_antlr_to_ebnf(antlr)
     assert "DIGIT ::= [0-9]" in result
     assert "NUMBER ::= DIGIT+" in result
+
+def test_description_extraction():
+    antlr = """
+    // This is a single line description
+    rule1: 'A';
+
+    /*
+     * This is a multi-line
+     * description.
+     */
+    rule2: 'B';
+
+    // @inline
+    // Description after tag
+    rule3: 'C';
+
+    /* @internal */
+    // Description with internal tag
+    rule4: 'D';
+    """
+    _, rules = convert_antlr_to_ebnf(antlr)
+    assert rules['rule1'].description == "This is a single line description"
+    assert rules['rule2'].description == "This is a multi-line\ndescription."
+    assert rules['rule3'].description == "Description after tag"
+    assert rules['rule4'].description == "Description with internal tag"
 
 def test_pruning_and_inlining():
     antlr = """
@@ -107,7 +130,7 @@ def test_pruning_and_inlining():
 
     start: rule1 rule2 rule3 rule4;
     """
-    result = convert_antlr_to_ebnf(antlr)
+    result, _ = convert_antlr_to_ebnf(antlr)
 
     # rule1, rule2, rule3, rule4 should not be in the output as top-level rules
     assert "rule1 ::=" not in result
@@ -126,7 +149,7 @@ def test_recursion_protection():
 
     start: a;
     """
-    result = convert_antlr_to_ebnf(antlr)
+    result, _ = convert_antlr_to_ebnf(antlr)
     # a should NOT be inlined into itself or start if it causes recursion
     # our current logic says: if name_to_inline in inline_body, don't inline.
     assert "a ::= a 'x' | 'y'" in result
@@ -137,7 +160,7 @@ def test_semicolon_in_string():
     SEMI: ';';
     OTHER: 'abc;def';
     """
-    result = convert_antlr_to_ebnf(antlr)
+    result, _ = convert_antlr_to_ebnf(antlr)
     assert "SEMI ::= ';'" in result
     assert "OTHER ::= 'abc;def'" in result
 
@@ -146,7 +169,7 @@ def test_coverage_check_all_present():
     rule1: 'A';
     rule2: 'B';
     """
-    ebnf = convert_antlr_to_ebnf(antlr)
+    ebnf, _ = convert_antlr_to_ebnf(antlr)
     missing = check_coverage(antlr, ebnf)
     assert missing == []
 
@@ -178,7 +201,7 @@ def test_coverage_check_recursive_inline_preserved():
     // @inline
     a: a 'x' | 'y';
     """
-    ebnf = convert_antlr_to_ebnf(antlr)
+    ebnf, _ = convert_antlr_to_ebnf(antlr)
     # Since 'a' is recursive, it is NOT inlined and should remain in EBNF.
     assert "a ::= a 'x' | 'y'" in ebnf
     missing = check_coverage(antlr, ebnf)

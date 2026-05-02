@@ -2,10 +2,11 @@ import re
 import sys
 
 class Rule:
-    def __init__(self, name, body, tags, is_fragment=False, is_lexer=False):
+    def __init__(self, name, body, tags, description="", is_fragment=False, is_lexer=False):
         self.name = name
         self.body = body
         self.tags = tags
+        self.description = description
         self.is_fragment = is_fragment
         self.is_lexer = is_lexer
 
@@ -23,7 +24,7 @@ def convert_antlr_to_ebnf(antlr_content):
         fragment, name, body = match.groups()
         start_pos = match.start()
 
-        # Search for tags in the comments before this rule
+        # Search for tags and descriptions in the comments before this rule
         prev_content = antlr_content[:start_pos]
         last_semi = prev_content.rfind(';')
         if last_semi == -1:
@@ -33,10 +34,33 @@ def convert_antlr_to_ebnf(antlr_content):
 
         tags = [t[1:] for t in re.findall(r'@\w+', search_window)]
 
+        # Extract description (all comments that are not tags)
+        description = ""
+        # Find all comments: /* ... */ or // ...
+        # Using (?ms) for multiline and dotall, but // should only match until end of line.
+        comment_matches = re.findall(r'/\*.*?\*/|//[^\r\n]*', search_window, re.DOTALL)
+        if comment_matches:
+            description_lines = []
+            for comment in comment_matches:
+                # Strip // or /* */
+                if comment.startswith('//'):
+                    line = comment[2:].strip()
+                else:
+                    line = comment[2:-2].strip()
+
+                # Clean up individual lines in multiline comments
+                lines = [l.strip().lstrip('*').strip() for l in line.split('\n')]
+                # Filter out lines that only contain tags
+                filtered_lines = [l for l in lines if l and not re.match(r'^\s*@\w+\s*$', l)]
+                if filtered_lines:
+                    description_lines.extend(filtered_lines)
+
+            description = "\n".join(description_lines).strip()
+
         is_lexer = name[0].isupper()
         body = format_body(body, is_lexer=is_lexer)
 
-        rules[name] = Rule(name, body, tags, is_fragment=bool(fragment), is_lexer=is_lexer)
+        rules[name] = Rule(name, body, tags, description=description, is_fragment=bool(fragment), is_lexer=is_lexer)
 
     # 2. Inlining
     to_inline = [name for name, rule in rules.items() if 'inline' in rule.tags or 'internal' in rule.tags]
@@ -109,7 +133,7 @@ def convert_antlr_to_ebnf(antlr_content):
 
         ebnf_rules.append(f"{name} ::= {rule.body}")
 
-    return "\n".join(ebnf_rules)
+    return "\n".join(ebnf_rules), rules
 
 def check_coverage(antlr_content, ebnf_content):
     """
@@ -199,9 +223,11 @@ def convert_char_classes(body):
 
 if __name__ == "__main__":
     import argparse
+    import json
     parser = argparse.ArgumentParser(description='Convert ANTLR4 to W3C EBNF')
     parser.add_argument('input', nargs='?', help='Input ANTLR4 file')
     parser.add_argument('--check', action='store_true', help='Check grammar coverage')
+    parser.add_argument('--metadata', help='Output metadata (rule descriptions) to this JSON file')
 
     args = parser.parse_args()
 
@@ -211,7 +237,12 @@ if __name__ == "__main__":
     else:
         content = sys.stdin.read()
 
-    ebnf = convert_antlr_to_ebnf(content)
+    ebnf, rules = convert_antlr_to_ebnf(content)
+
+    if args.metadata:
+        metadata = {name: rule.description for name, rule in rules.items() if rule.description}
+        with open(args.metadata, 'w') as f:
+            json.dump(metadata, f, indent=2)
 
     if args.check:
         missing = check_coverage(content, ebnf)
