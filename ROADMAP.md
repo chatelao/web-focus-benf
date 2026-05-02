@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] 0.99 Implement a next modest, feasible and reasonable RAILROAD_ROADMAP.md step (#249)
+- [x] 0.99 Implement a next modest, feasible and reasonable RAILROAD_ROADMAP.md step (#249) (completed at 2026-05-02 11:23:09)
 - [x] 0.98 Implement a next modest, feasible and reasonable RAILROAD_ROADMAP.md step (#247) (completed at 2026-05-01 20:30:15)
 - [x] 0.97 Implement a next modest, feasible and reasonable RAILROAD_ROADMAP.md step (#245) (completed at 2026-05-01 19:59:24)
 - [ ] 0.96 Implement a next modest, feasible and reasonable RAILROAD_ROADMAP.md step
