@@ -276,3 +276,23 @@ class StyleBlock(Command):
     """Represents a SET STYLE * ... ENDSTYLE block."""
     def __init__(self, statements=None, **kwargs):
         super().__init__(statements=statements or [], **kwargs)
+
+class MergeCommand(Command):
+    """Represents an ON TABLE MERGE command."""
+    def __init__(self, filename, matching_clause, when_matched=None, when_not_matched=None, **kwargs):
+        super().__init__(filename=filename, matching_clause=matching_clause, when_matched=when_matched, when_not_matched=when_not_matched, **kwargs)
+
+class MatchingClause(ASGNode):
+    """Represents a MATCHING clause in a MERGE command."""
+    def __init__(self, conditions, **kwargs):
+        super().__init__(conditions=conditions or [], **kwargs)
+
+class UpdateClause(ASGNode):
+    """Represents a WHEN MATCHED UPDATE clause in a MERGE command."""
+    def __init__(self, assignments, **kwargs):
+        super().__init__(assignments=assignments or [], **kwargs)
+
+class InsertClause(ASGNode):
+    """Represents a WHEN NOT MATCHED INSERT clause in a MERGE command."""
+    def __init__(self, assignments, **kwargs):
+        super().__init__(assignments=assignments or [], **kwargs)

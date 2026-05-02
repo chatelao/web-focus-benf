@@ -152,6 +152,8 @@ class ReportASGBuilder(WebFocusReportVisitor):
             return self.visit(ctx.summarize_command())
         if ctx.recap_command():
             return self.visit(ctx.recap_command())
+        if ctx.merge_command():
+            return self.visit(ctx.merge_command())
         if ctx.set_command():
             return self.visit(ctx.set_command())
         if ctx.STYLE():
@@ -169,6 +171,47 @@ class ReportASGBuilder(WebFocusReportVisitor):
         if ctx.recap_command():
             return self.visit(ctx.recap_command())
         return None
+
+    def visitMerge_command(self, ctx: WebFocusReportParser.Merge_commandContext):
+        filename = ctx.qualified_name().getText()
+        matching = self.visit(ctx.matching_clause())
+        when_matched = self.visit(ctx.when_matched_clause()) if ctx.when_matched_clause() else None
+        when_not_matched = self.visit(ctx.when_not_matched_clause()) if ctx.when_not_matched_clause() else None
+        return MergeCommand(
+            filename=filename,
+            matching_clause=matching,
+            when_matched=when_matched,
+            when_not_matched=when_not_matched
+        )
+
+    def visitMatching_clause(self, ctx: WebFocusReportParser.Matching_clauseContext):
+        conditions = []
+        names = ctx.qualified_name()
+        for i in range(0, len(names), 2):
+            left = names[i].getText()
+            right = names[i+1].getText()
+            conditions.append((left, right))
+        return MatchingClause(conditions=conditions)
+
+    def visitWhen_matched_clause(self, ctx: WebFocusReportParser.When_matched_clauseContext):
+        assignments = []
+        names = ctx.qualified_name()
+        exprs = ctx.dm_expression()
+        for i in range(len(names)):
+            name = names[i].getText()
+            expr = self.visit(exprs[i])
+            assignments.append((name, expr))
+        return UpdateClause(assignments=assignments)
+
+    def visitWhen_not_matched_clause(self, ctx: WebFocusReportParser.When_not_matched_clauseContext):
+        assignments = []
+        names = ctx.qualified_name()
+        exprs = ctx.dm_expression()
+        for i in range(len(names)):
+            name = names[i].getText()
+            expr = self.visit(exprs[i])
+            assignments.append((name, expr))
+        return InsertClause(assignments=assignments)
 
     def visitOutput_command(self, ctx: WebFocusReportParser.Output_commandContext):
         output_type = ctx.getChild(0).getText().upper()

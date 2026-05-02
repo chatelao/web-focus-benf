@@ -1,4 +1,4 @@
-# Generated from src/WebFocusReport.g4 by ANTLR 4.13.2
+# Generated from WebFocusReport.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
     from .WebFocusReportParser import WebFocusReportParser
@@ -626,6 +626,42 @@ class WebFocusReportListener(ParseTreeListener):
 
     # Exit a parse tree produced by WebFocusReportParser#output_command.
     def exitOutput_command(self, ctx:WebFocusReportParser.Output_commandContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#merge_command.
+    def enterMerge_command(self, ctx:WebFocusReportParser.Merge_commandContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#merge_command.
+    def exitMerge_command(self, ctx:WebFocusReportParser.Merge_commandContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#matching_clause.
+    def enterMatching_clause(self, ctx:WebFocusReportParser.Matching_clauseContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#matching_clause.
+    def exitMatching_clause(self, ctx:WebFocusReportParser.Matching_clauseContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#when_matched_clause.
+    def enterWhen_matched_clause(self, ctx:WebFocusReportParser.When_matched_clauseContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#when_matched_clause.
+    def exitWhen_matched_clause(self, ctx:WebFocusReportParser.When_matched_clauseContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#when_not_matched_clause.
+    def enterWhen_not_matched_clause(self, ctx:WebFocusReportParser.When_not_matched_clauseContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#when_not_matched_clause.
+    def exitWhen_not_matched_clause(self, ctx:WebFocusReportParser.When_not_matched_clauseContext):
         pass
 
 

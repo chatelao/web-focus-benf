@@ -1,4 +1,4 @@
-# Generated from src/WebFocusReport.g4 by ANTLR 4.13.2
+# Generated from WebFocusReport.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
     from .WebFocusReportParser import WebFocusReportParser
@@ -351,6 +351,26 @@ class WebFocusReportVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by WebFocusReportParser#output_command.
     def visitOutput_command(self, ctx:WebFocusReportParser.Output_commandContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#merge_command.
+    def visitMerge_command(self, ctx:WebFocusReportParser.Merge_commandContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#matching_clause.
+    def visitMatching_clause(self, ctx:WebFocusReportParser.Matching_clauseContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#when_matched_clause.
+    def visitWhen_matched_clause(self, ctx:WebFocusReportParser.When_matched_clauseContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#when_not_matched_clause.
+    def visitWhen_not_matched_clause(self, ctx:WebFocusReportParser.When_not_matched_clauseContext):
         return self.visitChildren(ctx)
 
 
