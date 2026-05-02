@@ -211,6 +211,7 @@ on_table_options: (SUBHEAD | SUBFOOT) CENTER? STRING+
                 | output_command
                 | summarize_command
                 | recap_command
+                | merge_command
                 | set_command
                 | SET STYLE asterisk (layout_statement)* ENDSTYLE?;
 
@@ -223,6 +224,14 @@ summarize_command: (SUBTOTAL | SUB_TOTAL | SUMMARIZE | RECOMPUTE) (summarize_opt
 summarize_options: ROLL_DOT (prefix_operator DOT)* | (prefix_operator DOT)+;
 
 output_command: (HOLD | PCHOLD | SAVE | SAVB) (AS qualified_name)? (FORMAT (NAME | verb))?;
+
+merge_command: MERGE INTO FILE qualified_name matching_clause when_matched_clause? when_not_matched_clause?;
+
+matching_clause: MATCHING qualified_name EQ qualified_name (AND qualified_name EQ qualified_name)* SEMI?;
+
+when_matched_clause: WHEN MATCHED UPDATE (qualified_name EQ dm_expression SEMI?)+;
+
+when_not_matched_clause: WHEN NOT MATCHED INSERT (qualified_name EQ dm_expression SEMI?)+;
 
 end_command: END;
 
@@ -237,6 +246,7 @@ identifier: NAME
           | RECAP | INDENT | ACROSS_TOTAL
           | COMPOUND | LAYOUT | SECTION | PAGELAYOUT | COMPONENT | MERGE | ORIENTATION
           | LANDSCAPE | PORTRAIT | TYPE | POSITION | DIMENSION | STYLE | ENDSTYLE
+          | MATCHING | MATCHED | UPDATE | INSERT | INTO
           | HEADING | FOOTING | SUBHEAD | SUBFOOT | FORMAT
           | TIMES | WHILE | UNTIL | FOR | STEP | TOP | BOTTOM | RANKED | NOPRINT | AS | IN
           | HIERARCHY | WHEN | SHOW | UP | DOWN
@@ -363,6 +373,11 @@ SECTION: [sS][eE][cC][tT][iI][oO][nN];
 PAGELAYOUT: [pP][aA][gG][eE][lL][aA][yY][oO][uU][tT];
 COMPONENT: [cC][oO][mM][pP][oO][nN][eE][nN][tT];
 MERGE: [mM][eE][rR][gG][eE];
+MATCHING: [mM][aA][tT][cC][hH][iI][nN][gG];
+MATCHED: [mM][aA][tT][cC][hH][eE][dD];
+UPDATE: [uU][pP][dD][aA][tT][eE];
+INSERT: [iI][nN][sS][eE][rR][tT];
+INTO: [iI][nN][tT][oO];
 ORIENTATION: [oO][rR][iI][eE][nN][tT][aA][tT][iI][oO][nN];
 LANDSCAPE: [lL][aA][nN][dD][sS][cC][aA][pP][eE];
 PORTRAIT: [pP][oO][rR][tT][rR][aA][iI][tT];
