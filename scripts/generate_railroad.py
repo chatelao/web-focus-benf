@@ -95,6 +95,23 @@ def post_process_xhtml(filepath):
         background-color: #f8faff;
         scroll-margin-top: 70px;
     }
+
+    /* Clickable non-terminals */
+    a[xlink|href], a[href] {
+        cursor: pointer;
+    }
+    a:hover rect.nonterminal {
+        fill: #f0f5ff !important;
+        stroke: #002b80 !important;
+    }
+    a:active rect.nonterminal {
+        fill: #eef4ff !important;
+    }
+    a:hover text.nonterminal {
+        fill: #002b80 !important;
+        text-decoration: underline;
+    }
+
     #result-count {
         color: #ffffff;
         font-size: 14px;
@@ -117,6 +134,10 @@ def post_process_xhtml(filepath):
 
     # Wrap rules in containers for filtering
     content = wrap_rules_in_containers(content)
+
+    # Ensure links work correctly in XHTML by potentially adding the xlink namespace if missing
+    if 'xmlns:xlink="http://www.w3.org/1999/xlink"' not in content:
+        content = content.replace('<svg ', '<svg xmlns:xlink="http://www.w3.org/1999/xlink" ', 1)
 
     # The RR tool embeds CSS in every SVG. We'll append our overrides to the main head style block
     # and also use !important to ensure they take precedence.

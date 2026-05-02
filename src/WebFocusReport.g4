@@ -2,7 +2,6 @@ grammar WebFocusReport;
 
 start: (request | dm_command | join_command | set_command | define_file | compound_layout_block)* EOF;
 
-// @inline
 request: table_file (verb_command | by_command | across_command | where_command | when_command | show_command | heading_command | footing_command | on_command | compute_command | recap_command | dm_command | STRING)* end_command;
 
 compound_layout_block: COMPOUND LAYOUT output_command (layout_statement)* end_command (request | dm_command | join_command | set_command | define_file)* COMPOUND END;
@@ -212,7 +211,6 @@ output_command: (HOLD | PCHOLD | SAVE | SAVB) (AS qualified_name)? (FORMAT (NAME
 
 end_command: END;
 
-// @inline
 qualified_name: identifier (DOT identifier)*;
 
 // @internal

@@ -257,6 +257,23 @@
         background-color: #f8faff;
         scroll-margin-top: 70px;
     }
+
+    /* Clickable non-terminals */
+    a[xlink|href], a[href] {
+        cursor: pointer;
+    }
+    a:hover rect.nonterminal {
+        fill: #f0f5ff !important;
+        stroke: #002b80 !important;
+    }
+    a:active rect.nonterminal {
+        fill: #eef4ff !important;
+    }
+    a:hover text.nonterminal {
+        fill: #002b80 !important;
+        text-decoration: underline;
+    }
+
     #result-count {
         color: #ffffff;
         font-size: 14px;

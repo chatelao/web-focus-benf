@@ -58,3 +58,6 @@ This document outlines the tasks required to implement the automated railroad di
 - [x] 6.5 Add 'Clear' button to the search input.
 - [x] 6.6 Display result count during filtering.
 - [x] 6.7 Implement highlighting for the active (target) rule.
+
+## Phase 7: Advanced Documentation Features
+- [x] 7.1 Implement cross-references (links) between rules in railroad diagrams.
