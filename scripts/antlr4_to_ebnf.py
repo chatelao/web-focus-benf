@@ -2,13 +2,14 @@ import re
 import sys
 
 class Rule:
-    def __init__(self, name, body, tags, description="", is_fragment=False, is_lexer=False):
+    def __init__(self, name, body, tags, description="", is_fragment=False, is_lexer=False, category=None):
         self.name = name
         self.body = body
         self.tags = tags
         self.description = description
         self.is_fragment = is_fragment
         self.is_lexer = is_lexer
+        self.category = category
 
 def convert_antlr_to_ebnf(antlr_content):
     """
@@ -34,6 +35,10 @@ def convert_antlr_to_ebnf(antlr_content):
 
         tags = [t[1:] for t in re.findall(r'@\w+', search_window)]
 
+        # Extract category if present
+        category_match = re.search(r'@category\s+([^\r\n*]+)', search_window)
+        category = category_match.group(1).strip() if category_match else None
+
         # Extract description (all comments that are not tags)
         description = ""
         # Find all comments: /* ... */ or // ...
@@ -51,7 +56,7 @@ def convert_antlr_to_ebnf(antlr_content):
                 # Clean up individual lines in multiline comments
                 lines = [l.strip().lstrip('*').strip() for l in line.split('\n')]
                 # Filter out lines that only contain tags
-                filtered_lines = [l for l in lines if l and not re.match(r'^\s*@\w+\s*$', l)]
+                filtered_lines = [l for l in lines if l and not re.match(r'^\s*@\w+(\s+[^\r\n*]+)?\s*$', l)]
                 if filtered_lines:
                     description_lines.extend(filtered_lines)
 
@@ -60,7 +65,7 @@ def convert_antlr_to_ebnf(antlr_content):
         is_lexer = name[0].isupper()
         body = format_body(body, is_lexer=is_lexer)
 
-        rules[name] = Rule(name, body, tags, description=description, is_fragment=bool(fragment), is_lexer=is_lexer)
+        rules[name] = Rule(name, body, tags, description=description, is_fragment=bool(fragment), is_lexer=is_lexer, category=category)
 
     # 2. Inlining
     to_inline = [name for name, rule in rules.items() if 'inline' in rule.tags or 'internal' in rule.tags]
@@ -240,7 +245,12 @@ if __name__ == "__main__":
     ebnf, rules = convert_antlr_to_ebnf(content)
 
     if args.metadata:
-        metadata = {name: rule.description for name, rule in rules.items() if rule.description}
+        metadata = {
+            name: {
+                "description": rule.description,
+                "category": rule.category
+            } for name, rule in rules.items() if rule.description or rule.category
+        }
         with open(args.metadata, 'w') as f:
             json.dump(metadata, f, indent=2)
 

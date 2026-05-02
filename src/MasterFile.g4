@@ -18,10 +18,15 @@ declaration: file_decl
            | TERMINATOR
            ;
 
+// @category Metadata
 file_decl: FILENAME_KW (EQUALS | COMMA)? value (COMMA attr_val)* COMMA? TERMINATOR?;
+// @category Metadata
 segment_decl: SEGNAME_KW (EQUALS | COMMA)? value (COMMA attr_val)* COMMA? TERMINATOR?;
+// @category Metadata
 field_decl: FIELDNAME_KW (EQUALS | COMMA)? value (COMMA attr_val)* COMMA? TERMINATOR?;
+// @category Metadata
 dimension_decl: DIMENSION_KW (EQUALS | COMMA)? value (COMMA attr_val)* COMMA? TERMINATOR?;
+// @category Metadata
 hierarchy_decl: HIERARCHY_KW (EQUALS | COMMA)? value (COMMA attr_val)* COMMA? TERMINATOR?;
 variable_decl: VARIABLE_KW (attr_val | COMMA)* TERMINATOR?;
 
