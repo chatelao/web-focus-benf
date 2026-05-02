@@ -98,6 +98,19 @@ def post_process_xhtml(filepath, metadata=None):
         scroll-margin-top: 70px;
     }
 
+    .category-header {
+        background-color: #002b80;
+        color: #ffffff;
+        padding: 8px 15px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        font-family: 'Verdana', sans-serif;
+        font-size: 18px;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
     /* Clickable non-terminals */
     a[xlink|href], a[href] {
         cursor: pointer;
@@ -176,24 +189,44 @@ def post_process_xhtml(filepath, metadata=None):
     # Inject JS for filtering before </body>
     filter_js = """
     <script type="text/javascript">
+    /* <![CDATA[ */
     document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('rule-search');
         const clearButton = document.getElementById('clear-search');
         const resultCount = document.getElementById('result-count');
         const containers = document.querySelectorAll('.rule-container');
+        const categoryHeaders = document.querySelectorAll('.category-header');
 
         function updateFilter() {
             const query = searchInput.value.toLowerCase();
             let visibleCount = 0;
+
+            // Filter rules
             containers.forEach(container => {
                 const ruleName = container.getAttribute('data-rule').toLowerCase();
-                if (ruleName.includes(query)) {
+                const description = (container.getAttribute('data-description') || "").toLowerCase();
+                if (ruleName.includes(query) || description.includes(query)) {
                     container.style.display = 'block';
                     visibleCount++;
                 } else {
                     container.style.display = 'none';
                 }
             });
+
+            // Hide/show category headers
+            categoryHeaders.forEach(header => {
+                let next = header.nextElementSibling;
+                let hasVisibleRule = false;
+                while (next && next.classList.contains('rule-container')) {
+                    if (next.style.display !== 'none') {
+                        hasVisibleRule = true;
+                        break;
+                    }
+                    next = next.nextElementSibling;
+                }
+                header.style.display = hasVisibleRule ? 'block' : 'none';
+            });
+
             resultCount.textContent = `${visibleCount} rules found`;
         }
 
@@ -227,6 +260,7 @@ def post_process_xhtml(filepath, metadata=None):
         updateFilter();
         handleHashChange();
     });
+    /* ]]> */
     </script>
     """
     content = content.replace("</body>", f"{filter_js}\n   </body>")
@@ -237,16 +271,14 @@ def post_process_xhtml(filepath, metadata=None):
             f.write('\n')
 
 def wrap_rules_in_containers(content, metadata):
-    """Wraps each rule into a div for better layout and filtering."""
+    """Wraps each rule into a div for better layout and filtering, grouped by category."""
+    import html
     # Find all rule starts. RR tool uses a specific pattern for rule headers.
     rule_pattern = re.compile(r'<xhtml:p [^>]*style="font-size: 14px; font-weight:bold"><xhtml:a name="([^"]+)">.*?</xhtml:p>')
 
     matches = list(rule_pattern.finditer(content))
     if not matches:
         return content
-
-    new_content = content[:matches[0].start()]
-    new_content += '<div class="content-area">\n'
 
     # Try to find the start of the signature to know where to stop
     sig_marker = '<xhtml:table border="0" class="signature">'
@@ -261,6 +293,8 @@ def wrap_rules_in_containers(content, metadata):
     else:
         sig_start = content.find('</body>')
 
+    # Collect rule blocks and their metadata
+    rule_blocks = []
     for i in range(len(matches)):
         start = matches[i].start()
         if i + 1 < len(matches):
@@ -275,17 +309,49 @@ def wrap_rules_in_containers(content, metadata):
         rule_body = rule_body.replace('<xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml" />', '')
         rule_body = rule_body.replace('<xhtml:hr xmlns:xhtml="http://www.w3.org/1999/xhtml" />', '')
 
-        new_content += f'   <div class="rule-container" id="{rule_name}" data-rule="{rule_name}">\n'
+        meta = metadata.get(rule_name, {})
+        if isinstance(meta, str): # Backward compatibility
+            meta = {"description": meta, "category": "Other Rules"}
 
-        description = metadata.get(rule_name)
-        if description:
-            # Escape HTML in description and convert newlines to <br/>
-            import html
-            safe_desc = html.escape(description).replace('\n', '<br/>')
-            new_content += f'      <div class="rule-description">{safe_desc}</div>\n'
+        description = meta.get("description", "")
+        category = meta.get("category") or "Other Rules"
 
-        new_content += f'      {rule_body.strip()}\n'
-        new_content += '   </div>\n'
+        rule_blocks.append({
+            "name": rule_name,
+            "body": rule_body.strip(),
+            "description": description,
+            "category": category
+        })
+
+    # Group by category
+    categories = []
+    category_map = {} # category_name -> [blocks]
+    for block in rule_blocks:
+        cat = block["category"]
+        if cat not in category_map:
+            categories.append(cat)
+            category_map[cat] = []
+        category_map[cat].append(block)
+
+    # Generate new content
+    new_content = content[:matches[0].start()]
+    new_content += '<div class="content-area">\n'
+
+    for cat_name in categories:
+        new_content += f'   <div class="category-header">{html.escape(cat_name)}</div>\n'
+        for block in category_map[cat_name]:
+            rule_name = block["name"]
+            description = block["description"]
+            safe_desc_attr = html.escape(description)
+
+            new_content += f'   <div class="rule-container" id="{rule_name}" data-rule="{rule_name}" data-description="{safe_desc_attr}">\n'
+
+            if description:
+                safe_desc_html = html.escape(description).replace('\n', '<br/>')
+                new_content += f'      <div class="rule-description">{safe_desc_html}</div>\n'
+
+            new_content += f'      {block["body"]}\n'
+            new_content += '   </div>\n'
 
     new_content += '</div>\n'
     new_content += content[sig_start:]

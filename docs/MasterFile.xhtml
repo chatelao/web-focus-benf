@@ -258,6 +258,19 @@
         scroll-margin-top: 70px;
     }
 
+    .category-header {
+        background-color: #002b80;
+        color: #ffffff;
+        padding: 8px 15px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        font-family: 'Verdana', sans-serif;
+        font-size: 18px;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
     /* Clickable non-terminals */
     a[xlink|href], a[href] {
         cursor: pointer;
@@ -344,7 +357,8 @@
         </div>
     </div>
       <div class="content-area">
-   <div class="rule-container" id="start" data-rule="start">
+   <div class="category-header">Other Rules</div>
+   <div class="rule-container" id="start" data-rule="start" data-description="">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="start">start:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="211" height="71">
          <defs>
             <style type="text/css">
@@ -390,7 +404,7 @@
       </xhtml:p>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">no references</xhtml:p>
    </div>
-   <div class="rule-container" id="item" data-rule="item">
+   <div class="rule-container" id="item" data-rule="item" data-description="">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="item">item:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="409" height="181">
          <defs>
             <style type="text/css">
@@ -447,7 +461,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" id="declaration" data-rule="declaration">
+   <div class="rule-container" id="declaration" data-rule="declaration" data-description="">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="declaration">declaration:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="409" height="533">
          <defs>
             <style type="text/css">
@@ -537,484 +551,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" id="file_decl" data-rule="file_decl">
-      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="file_decl">file_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="975" height="475">
-         <defs>
-            <style type="text/css">
-    @namespace "http://www.w3.org/2000/svg";
-    .line                 {fill: none; stroke: #001133; stroke-width: 1;}
-    .bold-line            {stroke: #000714; shape-rendering: crispEdges; stroke-width: 2;}
-    .thin-line            {stroke: #000A1F; shape-rendering: crispEdges}
-    .filled               {fill: #001133; stroke: none;}
-    text.terminal         {font-family: Verdana, Sans-serif;
-                            font-size: 12px;
-                            fill: #000714;
-                            font-weight: bold;
-                          }
-    text.nonterminal      {font-family: Verdana, Sans-serif;
-                            font-size: 12px;
-                            fill: #00091A;
-                            font-weight: normal;
-                          }
-    text.regexp           {font-family: Verdana, Sans-serif;
-                            font-size: 12px;
-                            fill: #000A1F;
-                            font-weight: normal;
-                          }
-    rect, circle, polygon {fill: #001133; stroke: #001133;}
-    rect.terminal         {fill: #4D88FF; stroke: #001133; stroke-width: 1;}
-    rect.nonterminal      {fill: #9EBFFF; stroke: #001133; stroke-width: 1;}
-    rect.text             {fill: none; stroke: none;}
-    polygon.regexp        {fill: #C7DAFF; stroke: #001133; stroke-width: 1;}
-  </style>
-         </defs>
-         <polygon points="9 33 1 29 1 37"></polygon>
-         <polygon points="17 33 9 29 9 37"></polygon><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#FILENAME_KW" xlink:title="FILENAME_KW">
-            <rect x="31" y="19" width="112" height="32"></rect>
-            <rect x="29" y="17" width="112" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="39" y="37">FILENAME_KW</text></a><rect x="183" y="51" width="30" height="32" rx="10"></rect>
-         <rect x="181" y="49" width="30" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="191" y="69">=</text>
-         <rect x="183" y="95" width="24" height="32" rx="10"></rect>
-         <rect x="181" y="93" width="24" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="191" y="113">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
-            <rect x="273" y="19" width="66" height="32"></rect>
-            <rect x="271" y="17" width="66" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="281" y="37">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
-            <rect x="273" y="63" width="50" height="32"></rect>
-            <rect x="271" y="61" width="50" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="281" y="81">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
-            <rect x="273" y="107" width="138" height="32"></rect>
-            <rect x="271" y="105" width="138" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="281" y="125">UNQUOTED_VALUE</text></a><rect x="491" y="19" width="24" height="32" rx="10"></rect>
-         <rect x="489" y="17" width="24" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="499" y="37">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
-            <rect x="555" y="19" width="50" height="32"></rect>
-            <rect x="553" y="17" width="50" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="563" y="37">ATTR</text></a><rect x="645" y="51" width="30" height="32" rx="10"></rect>
-         <rect x="643" y="49" width="30" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="653" y="69">=</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
-            <rect x="715" y="51" width="66" height="32"></rect>
-            <rect x="713" y="49" width="66" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="723" y="69">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
-            <rect x="715" y="95" width="50" height="32"></rect>
-            <rect x="713" y="93" width="50" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="723" y="113">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
-            <rect x="715" y="139" width="138" height="32"></rect>
-            <rect x="713" y="137" width="138" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="723" y="157">UNQUOTED_VALUE</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
-            <rect x="555" y="183" width="66" height="32"></rect>
-            <rect x="553" y="181" width="66" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="563" y="201">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
-            <rect x="555" y="227" width="138" height="32"></rect>
-            <rect x="553" y="225" width="138" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="563" y="245">UNQUOTED_VALUE</text></a><rect x="533" y="441" width="24" height="32" rx="10"></rect>
-         <rect x="531" y="439" width="24" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="541" y="459">,</text>
-         <rect x="637" y="409" width="28" height="32" rx="10"></rect>
-         <rect x="635" y="407" width="28" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="645" y="427">$</text>
-         <rect x="705" y="375" width="182" height="32" rx="10"></rect>
-         <rect x="703" y="373" width="182" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="713" y="393">ANY_CHAR_EXCEPT_NL</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#WS" xlink:title="WS">
-            <rect x="657" y="309" width="40" height="32"></rect>
-            <rect x="655" y="307" width="40" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="665" y="327">WS</text></a><svg:path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 33 h2 m0 0 h10 m112 0 h10 m20 0 h10 m0 0 h40 m-70 0 h20 m50 0 h20 m-90 0 q10 0 10 10 m70 0 q0 -10 10 -10 m-80 10 v12 m70 0 v-12 m-70 12 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m30 0 h10 m-60 -10 v20 m70 0 v-20 m-70 20 v24 m70 0 v-24 m-70 24 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m24 0 h10 m0 0 h6 m40 -76 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m60 -88 h10 m24 0 h10 m20 0 h10 m50 0 h10 m20 0 h10 m0 0 h238 m-268 0 h20 m248 0 h20 m-288 0 q10 0 10 10 m268 0 q0 -10 10 -10 m-278 10 v12 m268 0 v-12 m-268 12 q0 10 10 10 m248 0 q10 0 10 -10 m-258 10 h10 m30 0 h10 m20 0 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m-338 -120 h20 m358 0 h20 m-398 0 q10 0 10 10 m378 0 q0 -10 10 -10 m-388 10 v144 m378 0 v-144 m-378 144 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m66 0 h10 m0 0 h272 m-368 -10 v20 m378 0 v-20 m-378 20 v24 m378 0 v-24 m-378 24 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m138 0 h10 m0 0 h200 m-442 -208 l20 0 m-1 0 q-9 0 -9 -10 l0 -12 q0 -10 10 -10 m442 32 l20 0 m-20 0 q10 0 10 -10 l0 -12 q0 -10 -10 -10 m-442 0 h10 m0 0 h432 m-482 32 h20 m482 0 h20 m-522 0 q10 0 10 10 m502 0 q0 -10 10 -10 m-512 10 v222 m502 0 v-222 m-502 222 q0 10 10 10 m482 0 q10 0 10 -10 m-492 10 h10 m0 0 h472 m22 -242 l2 0 m2 0 l2 0 m2 0 l2 0 m-484 390 l2 0 m2 0 l2 0 m2 0 l2 0 m22 0 h10 m0 0 h34 m-64 0 h20 m44 0 h20 m-84 0 q10 0 10 10 m64 0 q0 -10 10 -10 m-74 10 v12 m64 0 v-12 m-64 12 q0 10 10 10 m44 0 q10 0 10 -10 m-54 10 h10 m24 0 h10 m60 -32 h10 m28 0 h10 m20 0 h10 m0 0 h192 m-222 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m202 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-202 0 h10 m182 0 h10 m-290 34 l20 0 m-1 0 q-9 0 -9 -10 l0 -46 q0 -10 10 -10 m290 66 l20 0 m-20 0 q10 0 10 -10 l0 -46 q0 -10 -10 -10 m-270 0 h10 m0 0 h50 m-80 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m60 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-60 0 h10 m40 0 h10 m20 34 h190 m-330 66 h20 m330 0 h20 m-370 0 q10 0 10 10 m350 0 q0 -10 10 -10 m-360 10 v14 m350 0 v-14 m-350 14 q0 10 10 10 m330 0 q10 0 10 -10 m-340 10 h10 m0 0 h320 m23 -34 h-3"></svg:path>
-         <polygon points="965 423 973 419 973 427"></polygon>
-         <polygon points="965 423 957 419 957 427"></polygon></svg><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">
-         <xhtml:div class="ebnf"><xhtml:code>
-               <div><a href="#file_decl" title="file_decl">file_decl</a></div>
-               <div>         ::= <a href="#FILENAME_KW" title="FILENAME_KW">FILENAME_KW</a> ( '=' | ',' )? ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) ( ',' ( <a href="#ATTR" title="ATTR">ATTR</a> ( '=' ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )? | <a href="#STRING" title="STRING">STRING</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )* ','? ( '$' 'ANY_CHAR_EXCEPT_NL'* ( <a href="#WS" title="WS">WS</a>* '$' 'ANY_CHAR_EXCEPT_NL'* )* )?</div></xhtml:code></xhtml:div>
-      </xhtml:p>
-      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
-         <xhtml:ul>
-            <xhtml:li><xhtml:a href="#declaration" title="declaration">declaration</xhtml:a></xhtml:li>
-         </xhtml:ul>
-      </xhtml:p>
-   </div>
-   <div class="rule-container" id="segment_decl" data-rule="segment_decl">
-      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="segment_decl">segment_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="973" height="475">
-         <defs>
-            <style type="text/css">
-    @namespace "http://www.w3.org/2000/svg";
-    .line                 {fill: none; stroke: #001133; stroke-width: 1;}
-    .bold-line            {stroke: #000714; shape-rendering: crispEdges; stroke-width: 2;}
-    .thin-line            {stroke: #000A1F; shape-rendering: crispEdges}
-    .filled               {fill: #001133; stroke: none;}
-    text.terminal         {font-family: Verdana, Sans-serif;
-                            font-size: 12px;
-                            fill: #000714;
-                            font-weight: bold;
-                          }
-    text.nonterminal      {font-family: Verdana, Sans-serif;
-                            font-size: 12px;
-                            fill: #00091A;
-                            font-weight: normal;
-                          }
-    text.regexp           {font-family: Verdana, Sans-serif;
-                            font-size: 12px;
-                            fill: #000A1F;
-                            font-weight: normal;
-                          }
-    rect, circle, polygon {fill: #001133; stroke: #001133;}
-    rect.terminal         {fill: #4D88FF; stroke: #001133; stroke-width: 1;}
-    rect.nonterminal      {fill: #9EBFFF; stroke: #001133; stroke-width: 1;}
-    rect.text             {fill: none; stroke: none;}
-    polygon.regexp        {fill: #C7DAFF; stroke: #001133; stroke-width: 1;}
-  </style>
-         </defs>
-         <polygon points="9 33 1 29 1 37"></polygon>
-         <polygon points="17 33 9 29 9 37"></polygon><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#SEGNAME_KW" xlink:title="SEGNAME_KW">
-            <rect x="31" y="19" width="110" height="32"></rect>
-            <rect x="29" y="17" width="110" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="39" y="37">SEGNAME_KW</text></a><rect x="181" y="51" width="30" height="32" rx="10"></rect>
-         <rect x="179" y="49" width="30" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="189" y="69">=</text>
-         <rect x="181" y="95" width="24" height="32" rx="10"></rect>
-         <rect x="179" y="93" width="24" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="189" y="113">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
-            <rect x="271" y="19" width="66" height="32"></rect>
-            <rect x="269" y="17" width="66" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="279" y="37">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
-            <rect x="271" y="63" width="50" height="32"></rect>
-            <rect x="269" y="61" width="50" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="279" y="81">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
-            <rect x="271" y="107" width="138" height="32"></rect>
-            <rect x="269" y="105" width="138" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="279" y="125">UNQUOTED_VALUE</text></a><rect x="489" y="19" width="24" height="32" rx="10"></rect>
-         <rect x="487" y="17" width="24" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="497" y="37">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
-            <rect x="553" y="19" width="50" height="32"></rect>
-            <rect x="551" y="17" width="50" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="561" y="37">ATTR</text></a><rect x="643" y="51" width="30" height="32" rx="10"></rect>
-         <rect x="641" y="49" width="30" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="651" y="69">=</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
-            <rect x="713" y="51" width="66" height="32"></rect>
-            <rect x="711" y="49" width="66" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="721" y="69">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
-            <rect x="713" y="95" width="50" height="32"></rect>
-            <rect x="711" y="93" width="50" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="721" y="113">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
-            <rect x="713" y="139" width="138" height="32"></rect>
-            <rect x="711" y="137" width="138" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="721" y="157">UNQUOTED_VALUE</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
-            <rect x="553" y="183" width="66" height="32"></rect>
-            <rect x="551" y="181" width="66" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="561" y="201">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
-            <rect x="553" y="227" width="138" height="32"></rect>
-            <rect x="551" y="225" width="138" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="561" y="245">UNQUOTED_VALUE</text></a><rect x="531" y="441" width="24" height="32" rx="10"></rect>
-         <rect x="529" y="439" width="24" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="539" y="459">,</text>
-         <rect x="635" y="409" width="28" height="32" rx="10"></rect>
-         <rect x="633" y="407" width="28" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="643" y="427">$</text>
-         <rect x="703" y="375" width="182" height="32" rx="10"></rect>
-         <rect x="701" y="373" width="182" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="711" y="393">ANY_CHAR_EXCEPT_NL</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#WS" xlink:title="WS">
-            <rect x="655" y="309" width="40" height="32"></rect>
-            <rect x="653" y="307" width="40" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="663" y="327">WS</text></a><svg:path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 33 h2 m0 0 h10 m110 0 h10 m20 0 h10 m0 0 h40 m-70 0 h20 m50 0 h20 m-90 0 q10 0 10 10 m70 0 q0 -10 10 -10 m-80 10 v12 m70 0 v-12 m-70 12 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m30 0 h10 m-60 -10 v20 m70 0 v-20 m-70 20 v24 m70 0 v-24 m-70 24 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m24 0 h10 m0 0 h6 m40 -76 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m60 -88 h10 m24 0 h10 m20 0 h10 m50 0 h10 m20 0 h10 m0 0 h238 m-268 0 h20 m248 0 h20 m-288 0 q10 0 10 10 m268 0 q0 -10 10 -10 m-278 10 v12 m268 0 v-12 m-268 12 q0 10 10 10 m248 0 q10 0 10 -10 m-258 10 h10 m30 0 h10 m20 0 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m-338 -120 h20 m358 0 h20 m-398 0 q10 0 10 10 m378 0 q0 -10 10 -10 m-388 10 v144 m378 0 v-144 m-378 144 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m66 0 h10 m0 0 h272 m-368 -10 v20 m378 0 v-20 m-378 20 v24 m378 0 v-24 m-378 24 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m138 0 h10 m0 0 h200 m-442 -208 l20 0 m-1 0 q-9 0 -9 -10 l0 -12 q0 -10 10 -10 m442 32 l20 0 m-20 0 q10 0 10 -10 l0 -12 q0 -10 -10 -10 m-442 0 h10 m0 0 h432 m-482 32 h20 m482 0 h20 m-522 0 q10 0 10 10 m502 0 q0 -10 10 -10 m-512 10 v222 m502 0 v-222 m-502 222 q0 10 10 10 m482 0 q10 0 10 -10 m-492 10 h10 m0 0 h472 m22 -242 l2 0 m2 0 l2 0 m2 0 l2 0 m-484 390 l2 0 m2 0 l2 0 m2 0 l2 0 m22 0 h10 m0 0 h34 m-64 0 h20 m44 0 h20 m-84 0 q10 0 10 10 m64 0 q0 -10 10 -10 m-74 10 v12 m64 0 v-12 m-64 12 q0 10 10 10 m44 0 q10 0 10 -10 m-54 10 h10 m24 0 h10 m60 -32 h10 m28 0 h10 m20 0 h10 m0 0 h192 m-222 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m202 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-202 0 h10 m182 0 h10 m-290 34 l20 0 m-1 0 q-9 0 -9 -10 l0 -46 q0 -10 10 -10 m290 66 l20 0 m-20 0 q10 0 10 -10 l0 -46 q0 -10 -10 -10 m-270 0 h10 m0 0 h50 m-80 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m60 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-60 0 h10 m40 0 h10 m20 34 h190 m-330 66 h20 m330 0 h20 m-370 0 q10 0 10 10 m350 0 q0 -10 10 -10 m-360 10 v14 m350 0 v-14 m-350 14 q0 10 10 10 m330 0 q10 0 10 -10 m-340 10 h10 m0 0 h320 m23 -34 h-3"></svg:path>
-         <polygon points="963 423 971 419 971 427"></polygon>
-         <polygon points="963 423 955 419 955 427"></polygon></svg><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">
-         <xhtml:div class="ebnf"><xhtml:code>
-               <div><a href="#segment_decl" title="segment_decl">segment_decl</a></div>
-               <div>         ::= <a href="#SEGNAME_KW" title="SEGNAME_KW">SEGNAME_KW</a> ( '=' | ',' )? ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) ( ',' ( <a href="#ATTR" title="ATTR">ATTR</a> ( '=' ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )? | <a href="#STRING" title="STRING">STRING</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )* ','? ( '$' 'ANY_CHAR_EXCEPT_NL'* ( <a href="#WS" title="WS">WS</a>* '$' 'ANY_CHAR_EXCEPT_NL'* )* )?</div></xhtml:code></xhtml:div>
-      </xhtml:p>
-      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
-         <xhtml:ul>
-            <xhtml:li><xhtml:a href="#declaration" title="declaration">declaration</xhtml:a></xhtml:li>
-         </xhtml:ul>
-      </xhtml:p>
-   </div>
-   <div class="rule-container" id="field_decl" data-rule="field_decl">
-      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="field_decl">field_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="983" height="475">
-         <defs>
-            <style type="text/css">
-    @namespace "http://www.w3.org/2000/svg";
-    .line                 {fill: none; stroke: #001133; stroke-width: 1;}
-    .bold-line            {stroke: #000714; shape-rendering: crispEdges; stroke-width: 2;}
-    .thin-line            {stroke: #000A1F; shape-rendering: crispEdges}
-    .filled               {fill: #001133; stroke: none;}
-    text.terminal         {font-family: Verdana, Sans-serif;
-                            font-size: 12px;
-                            fill: #000714;
-                            font-weight: bold;
-                          }
-    text.nonterminal      {font-family: Verdana, Sans-serif;
-                            font-size: 12px;
-                            fill: #00091A;
-                            font-weight: normal;
-                          }
-    text.regexp           {font-family: Verdana, Sans-serif;
-                            font-size: 12px;
-                            fill: #000A1F;
-                            font-weight: normal;
-                          }
-    rect, circle, polygon {fill: #001133; stroke: #001133;}
-    rect.terminal         {fill: #4D88FF; stroke: #001133; stroke-width: 1;}
-    rect.nonterminal      {fill: #9EBFFF; stroke: #001133; stroke-width: 1;}
-    rect.text             {fill: none; stroke: none;}
-    polygon.regexp        {fill: #C7DAFF; stroke: #001133; stroke-width: 1;}
-  </style>
-         </defs>
-         <polygon points="9 33 1 29 1 37"></polygon>
-         <polygon points="17 33 9 29 9 37"></polygon><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#FIELDNAME_KW" xlink:title="FIELDNAME_KW">
-            <rect x="31" y="19" width="120" height="32"></rect>
-            <rect x="29" y="17" width="120" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="39" y="37">FIELDNAME_KW</text></a><rect x="191" y="51" width="30" height="32" rx="10"></rect>
-         <rect x="189" y="49" width="30" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="199" y="69">=</text>
-         <rect x="191" y="95" width="24" height="32" rx="10"></rect>
-         <rect x="189" y="93" width="24" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="199" y="113">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
-            <rect x="281" y="19" width="66" height="32"></rect>
-            <rect x="279" y="17" width="66" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="289" y="37">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
-            <rect x="281" y="63" width="50" height="32"></rect>
-            <rect x="279" y="61" width="50" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="289" y="81">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
-            <rect x="281" y="107" width="138" height="32"></rect>
-            <rect x="279" y="105" width="138" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="289" y="125">UNQUOTED_VALUE</text></a><rect x="499" y="19" width="24" height="32" rx="10"></rect>
-         <rect x="497" y="17" width="24" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="507" y="37">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
-            <rect x="563" y="19" width="50" height="32"></rect>
-            <rect x="561" y="17" width="50" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="571" y="37">ATTR</text></a><rect x="653" y="51" width="30" height="32" rx="10"></rect>
-         <rect x="651" y="49" width="30" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="661" y="69">=</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
-            <rect x="723" y="51" width="66" height="32"></rect>
-            <rect x="721" y="49" width="66" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="731" y="69">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
-            <rect x="723" y="95" width="50" height="32"></rect>
-            <rect x="721" y="93" width="50" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="731" y="113">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
-            <rect x="723" y="139" width="138" height="32"></rect>
-            <rect x="721" y="137" width="138" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="731" y="157">UNQUOTED_VALUE</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
-            <rect x="563" y="183" width="66" height="32"></rect>
-            <rect x="561" y="181" width="66" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="571" y="201">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
-            <rect x="563" y="227" width="138" height="32"></rect>
-            <rect x="561" y="225" width="138" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="571" y="245">UNQUOTED_VALUE</text></a><rect x="541" y="441" width="24" height="32" rx="10"></rect>
-         <rect x="539" y="439" width="24" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="549" y="459">,</text>
-         <rect x="645" y="409" width="28" height="32" rx="10"></rect>
-         <rect x="643" y="407" width="28" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="653" y="427">$</text>
-         <rect x="713" y="375" width="182" height="32" rx="10"></rect>
-         <rect x="711" y="373" width="182" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="721" y="393">ANY_CHAR_EXCEPT_NL</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#WS" xlink:title="WS">
-            <rect x="665" y="309" width="40" height="32"></rect>
-            <rect x="663" y="307" width="40" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="673" y="327">WS</text></a><svg:path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 33 h2 m0 0 h10 m120 0 h10 m20 0 h10 m0 0 h40 m-70 0 h20 m50 0 h20 m-90 0 q10 0 10 10 m70 0 q0 -10 10 -10 m-80 10 v12 m70 0 v-12 m-70 12 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m30 0 h10 m-60 -10 v20 m70 0 v-20 m-70 20 v24 m70 0 v-24 m-70 24 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m24 0 h10 m0 0 h6 m40 -76 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m60 -88 h10 m24 0 h10 m20 0 h10 m50 0 h10 m20 0 h10 m0 0 h238 m-268 0 h20 m248 0 h20 m-288 0 q10 0 10 10 m268 0 q0 -10 10 -10 m-278 10 v12 m268 0 v-12 m-268 12 q0 10 10 10 m248 0 q10 0 10 -10 m-258 10 h10 m30 0 h10 m20 0 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m-338 -120 h20 m358 0 h20 m-398 0 q10 0 10 10 m378 0 q0 -10 10 -10 m-388 10 v144 m378 0 v-144 m-378 144 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m66 0 h10 m0 0 h272 m-368 -10 v20 m378 0 v-20 m-378 20 v24 m378 0 v-24 m-378 24 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m138 0 h10 m0 0 h200 m-442 -208 l20 0 m-1 0 q-9 0 -9 -10 l0 -12 q0 -10 10 -10 m442 32 l20 0 m-20 0 q10 0 10 -10 l0 -12 q0 -10 -10 -10 m-442 0 h10 m0 0 h432 m-482 32 h20 m482 0 h20 m-522 0 q10 0 10 10 m502 0 q0 -10 10 -10 m-512 10 v222 m502 0 v-222 m-502 222 q0 10 10 10 m482 0 q10 0 10 -10 m-492 10 h10 m0 0 h472 m22 -242 l2 0 m2 0 l2 0 m2 0 l2 0 m-484 390 l2 0 m2 0 l2 0 m2 0 l2 0 m22 0 h10 m0 0 h34 m-64 0 h20 m44 0 h20 m-84 0 q10 0 10 10 m64 0 q0 -10 10 -10 m-74 10 v12 m64 0 v-12 m-64 12 q0 10 10 10 m44 0 q10 0 10 -10 m-54 10 h10 m24 0 h10 m60 -32 h10 m28 0 h10 m20 0 h10 m0 0 h192 m-222 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m202 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-202 0 h10 m182 0 h10 m-290 34 l20 0 m-1 0 q-9 0 -9 -10 l0 -46 q0 -10 10 -10 m290 66 l20 0 m-20 0 q10 0 10 -10 l0 -46 q0 -10 -10 -10 m-270 0 h10 m0 0 h50 m-80 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m60 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-60 0 h10 m40 0 h10 m20 34 h190 m-330 66 h20 m330 0 h20 m-370 0 q10 0 10 10 m350 0 q0 -10 10 -10 m-360 10 v14 m350 0 v-14 m-350 14 q0 10 10 10 m330 0 q10 0 10 -10 m-340 10 h10 m0 0 h320 m23 -34 h-3"></svg:path>
-         <polygon points="973 423 981 419 981 427"></polygon>
-         <polygon points="973 423 965 419 965 427"></polygon></svg><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">
-         <xhtml:div class="ebnf"><xhtml:code>
-               <div><a href="#field_decl" title="field_decl">field_decl</a></div>
-               <div>         ::= <a href="#FIELDNAME_KW" title="FIELDNAME_KW">FIELDNAME_KW</a> ( '=' | ',' )? ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) ( ',' ( <a href="#ATTR" title="ATTR">ATTR</a> ( '=' ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )? | <a href="#STRING" title="STRING">STRING</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )* ','? ( '$' 'ANY_CHAR_EXCEPT_NL'* ( <a href="#WS" title="WS">WS</a>* '$' 'ANY_CHAR_EXCEPT_NL'* )* )?</div></xhtml:code></xhtml:div>
-      </xhtml:p>
-      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
-         <xhtml:ul>
-            <xhtml:li><xhtml:a href="#declaration" title="declaration">declaration</xhtml:a></xhtml:li>
-         </xhtml:ul>
-      </xhtml:p>
-   </div>
-   <div class="rule-container" id="dimension_decl" data-rule="dimension_decl">
-      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dimension_decl">dimension_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="965" height="475">
-         <defs>
-            <style type="text/css">
-    @namespace "http://www.w3.org/2000/svg";
-    .line                 {fill: none; stroke: #001133; stroke-width: 1;}
-    .bold-line            {stroke: #000714; shape-rendering: crispEdges; stroke-width: 2;}
-    .thin-line            {stroke: #000A1F; shape-rendering: crispEdges}
-    .filled               {fill: #001133; stroke: none;}
-    text.terminal         {font-family: Verdana, Sans-serif;
-                            font-size: 12px;
-                            fill: #000714;
-                            font-weight: bold;
-                          }
-    text.nonterminal      {font-family: Verdana, Sans-serif;
-                            font-size: 12px;
-                            fill: #00091A;
-                            font-weight: normal;
-                          }
-    text.regexp           {font-family: Verdana, Sans-serif;
-                            font-size: 12px;
-                            fill: #000A1F;
-                            font-weight: normal;
-                          }
-    rect, circle, polygon {fill: #001133; stroke: #001133;}
-    rect.terminal         {fill: #4D88FF; stroke: #001133; stroke-width: 1;}
-    rect.nonterminal      {fill: #9EBFFF; stroke: #001133; stroke-width: 1;}
-    rect.text             {fill: none; stroke: none;}
-    polygon.regexp        {fill: #C7DAFF; stroke: #001133; stroke-width: 1;}
-  </style>
-         </defs>
-         <polygon points="9 33 1 29 1 37"></polygon>
-         <polygon points="17 33 9 29 9 37"></polygon>
-         <rect x="31" y="19" width="102" height="32" rx="10"></rect>
-         <rect x="29" y="17" width="102" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="39" y="37">DIMENSION</text>
-         <rect x="173" y="51" width="30" height="32" rx="10"></rect>
-         <rect x="171" y="49" width="30" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="181" y="69">=</text>
-         <rect x="173" y="95" width="24" height="32" rx="10"></rect>
-         <rect x="171" y="93" width="24" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="181" y="113">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
-            <rect x="263" y="19" width="66" height="32"></rect>
-            <rect x="261" y="17" width="66" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="271" y="37">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
-            <rect x="263" y="63" width="50" height="32"></rect>
-            <rect x="261" y="61" width="50" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="271" y="81">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
-            <rect x="263" y="107" width="138" height="32"></rect>
-            <rect x="261" y="105" width="138" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="271" y="125">UNQUOTED_VALUE</text></a><rect x="481" y="19" width="24" height="32" rx="10"></rect>
-         <rect x="479" y="17" width="24" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="489" y="37">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
-            <rect x="545" y="19" width="50" height="32"></rect>
-            <rect x="543" y="17" width="50" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="553" y="37">ATTR</text></a><rect x="635" y="51" width="30" height="32" rx="10"></rect>
-         <rect x="633" y="49" width="30" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="643" y="69">=</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
-            <rect x="705" y="51" width="66" height="32"></rect>
-            <rect x="703" y="49" width="66" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="713" y="69">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
-            <rect x="705" y="95" width="50" height="32"></rect>
-            <rect x="703" y="93" width="50" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="713" y="113">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
-            <rect x="705" y="139" width="138" height="32"></rect>
-            <rect x="703" y="137" width="138" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="713" y="157">UNQUOTED_VALUE</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
-            <rect x="545" y="183" width="66" height="32"></rect>
-            <rect x="543" y="181" width="66" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="553" y="201">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
-            <rect x="545" y="227" width="138" height="32"></rect>
-            <rect x="543" y="225" width="138" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="553" y="245">UNQUOTED_VALUE</text></a><rect x="523" y="441" width="24" height="32" rx="10"></rect>
-         <rect x="521" y="439" width="24" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="531" y="459">,</text>
-         <rect x="627" y="409" width="28" height="32" rx="10"></rect>
-         <rect x="625" y="407" width="28" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="635" y="427">$</text>
-         <rect x="695" y="375" width="182" height="32" rx="10"></rect>
-         <rect x="693" y="373" width="182" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="703" y="393">ANY_CHAR_EXCEPT_NL</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#WS" xlink:title="WS">
-            <rect x="647" y="309" width="40" height="32"></rect>
-            <rect x="645" y="307" width="40" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="655" y="327">WS</text></a><svg:path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 33 h2 m0 0 h10 m102 0 h10 m20 0 h10 m0 0 h40 m-70 0 h20 m50 0 h20 m-90 0 q10 0 10 10 m70 0 q0 -10 10 -10 m-80 10 v12 m70 0 v-12 m-70 12 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m30 0 h10 m-60 -10 v20 m70 0 v-20 m-70 20 v24 m70 0 v-24 m-70 24 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m24 0 h10 m0 0 h6 m40 -76 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m60 -88 h10 m24 0 h10 m20 0 h10 m50 0 h10 m20 0 h10 m0 0 h238 m-268 0 h20 m248 0 h20 m-288 0 q10 0 10 10 m268 0 q0 -10 10 -10 m-278 10 v12 m268 0 v-12 m-268 12 q0 10 10 10 m248 0 q10 0 10 -10 m-258 10 h10 m30 0 h10 m20 0 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m-338 -120 h20 m358 0 h20 m-398 0 q10 0 10 10 m378 0 q0 -10 10 -10 m-388 10 v144 m378 0 v-144 m-378 144 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m66 0 h10 m0 0 h272 m-368 -10 v20 m378 0 v-20 m-378 20 v24 m378 0 v-24 m-378 24 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m138 0 h10 m0 0 h200 m-442 -208 l20 0 m-1 0 q-9 0 -9 -10 l0 -12 q0 -10 10 -10 m442 32 l20 0 m-20 0 q10 0 10 -10 l0 -12 q0 -10 -10 -10 m-442 0 h10 m0 0 h432 m-482 32 h20 m482 0 h20 m-522 0 q10 0 10 10 m502 0 q0 -10 10 -10 m-512 10 v222 m502 0 v-222 m-502 222 q0 10 10 10 m482 0 q10 0 10 -10 m-492 10 h10 m0 0 h472 m22 -242 l2 0 m2 0 l2 0 m2 0 l2 0 m-484 390 l2 0 m2 0 l2 0 m2 0 l2 0 m22 0 h10 m0 0 h34 m-64 0 h20 m44 0 h20 m-84 0 q10 0 10 10 m64 0 q0 -10 10 -10 m-74 10 v12 m64 0 v-12 m-64 12 q0 10 10 10 m44 0 q10 0 10 -10 m-54 10 h10 m24 0 h10 m60 -32 h10 m28 0 h10 m20 0 h10 m0 0 h192 m-222 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m202 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-202 0 h10 m182 0 h10 m-290 34 l20 0 m-1 0 q-9 0 -9 -10 l0 -46 q0 -10 10 -10 m290 66 l20 0 m-20 0 q10 0 10 -10 l0 -46 q0 -10 -10 -10 m-270 0 h10 m0 0 h50 m-80 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m60 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-60 0 h10 m40 0 h10 m20 34 h190 m-330 66 h20 m330 0 h20 m-370 0 q10 0 10 10 m350 0 q0 -10 10 -10 m-360 10 v14 m350 0 v-14 m-350 14 q0 10 10 10 m330 0 q10 0 10 -10 m-340 10 h10 m0 0 h320 m23 -34 h-3"></svg:path>
-         <polygon points="955 423 963 419 963 427"></polygon>
-         <polygon points="955 423 947 419 947 427"></polygon></svg><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">
-         <xhtml:div class="ebnf"><xhtml:code>
-               <div><a href="#dimension_decl" title="dimension_decl">dimension_decl</a></div>
-               <div>         ::= 'DIMENSION' ( '=' | ',' )? ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) ( ',' ( <a href="#ATTR" title="ATTR">ATTR</a> ( '=' ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )? | <a href="#STRING" title="STRING">STRING</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )* ','? ( '$' 'ANY_CHAR_EXCEPT_NL'* ( <a href="#WS" title="WS">WS</a>* '$' 'ANY_CHAR_EXCEPT_NL'* )* )?</div></xhtml:code></xhtml:div>
-      </xhtml:p>
-      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
-         <xhtml:ul>
-            <xhtml:li><xhtml:a href="#declaration" title="declaration">declaration</xhtml:a></xhtml:li>
-         </xhtml:ul>
-      </xhtml:p>
-   </div>
-   <div class="rule-container" id="hierarchy_decl" data-rule="hierarchy_decl">
-      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="hierarchy_decl">hierarchy_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="963" height="475">
-         <defs>
-            <style type="text/css">
-    @namespace "http://www.w3.org/2000/svg";
-    .line                 {fill: none; stroke: #001133; stroke-width: 1;}
-    .bold-line            {stroke: #000714; shape-rendering: crispEdges; stroke-width: 2;}
-    .thin-line            {stroke: #000A1F; shape-rendering: crispEdges}
-    .filled               {fill: #001133; stroke: none;}
-    text.terminal         {font-family: Verdana, Sans-serif;
-                            font-size: 12px;
-                            fill: #000714;
-                            font-weight: bold;
-                          }
-    text.nonterminal      {font-family: Verdana, Sans-serif;
-                            font-size: 12px;
-                            fill: #00091A;
-                            font-weight: normal;
-                          }
-    text.regexp           {font-family: Verdana, Sans-serif;
-                            font-size: 12px;
-                            fill: #000A1F;
-                            font-weight: normal;
-                          }
-    rect, circle, polygon {fill: #001133; stroke: #001133;}
-    rect.terminal         {fill: #4D88FF; stroke: #001133; stroke-width: 1;}
-    rect.nonterminal      {fill: #9EBFFF; stroke: #001133; stroke-width: 1;}
-    rect.text             {fill: none; stroke: none;}
-    polygon.regexp        {fill: #C7DAFF; stroke: #001133; stroke-width: 1;}
-  </style>
-         </defs>
-         <polygon points="9 33 1 29 1 37"></polygon>
-         <polygon points="17 33 9 29 9 37"></polygon>
-         <rect x="31" y="19" width="100" height="32" rx="10"></rect>
-         <rect x="29" y="17" width="100" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="39" y="37">HIERARCHY</text>
-         <rect x="171" y="51" width="30" height="32" rx="10"></rect>
-         <rect x="169" y="49" width="30" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="179" y="69">=</text>
-         <rect x="171" y="95" width="24" height="32" rx="10"></rect>
-         <rect x="169" y="93" width="24" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="179" y="113">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
-            <rect x="261" y="19" width="66" height="32"></rect>
-            <rect x="259" y="17" width="66" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="269" y="37">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
-            <rect x="261" y="63" width="50" height="32"></rect>
-            <rect x="259" y="61" width="50" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="269" y="81">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
-            <rect x="261" y="107" width="138" height="32"></rect>
-            <rect x="259" y="105" width="138" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="269" y="125">UNQUOTED_VALUE</text></a><rect x="479" y="19" width="24" height="32" rx="10"></rect>
-         <rect x="477" y="17" width="24" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="487" y="37">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
-            <rect x="543" y="19" width="50" height="32"></rect>
-            <rect x="541" y="17" width="50" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="551" y="37">ATTR</text></a><rect x="633" y="51" width="30" height="32" rx="10"></rect>
-         <rect x="631" y="49" width="30" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="641" y="69">=</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
-            <rect x="703" y="51" width="66" height="32"></rect>
-            <rect x="701" y="49" width="66" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="711" y="69">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
-            <rect x="703" y="95" width="50" height="32"></rect>
-            <rect x="701" y="93" width="50" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="711" y="113">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
-            <rect x="703" y="139" width="138" height="32"></rect>
-            <rect x="701" y="137" width="138" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="711" y="157">UNQUOTED_VALUE</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
-            <rect x="543" y="183" width="66" height="32"></rect>
-            <rect x="541" y="181" width="66" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="551" y="201">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
-            <rect x="543" y="227" width="138" height="32"></rect>
-            <rect x="541" y="225" width="138" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="551" y="245">UNQUOTED_VALUE</text></a><rect x="521" y="441" width="24" height="32" rx="10"></rect>
-         <rect x="519" y="439" width="24" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="529" y="459">,</text>
-         <rect x="625" y="409" width="28" height="32" rx="10"></rect>
-         <rect x="623" y="407" width="28" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="633" y="427">$</text>
-         <rect x="693" y="375" width="182" height="32" rx="10"></rect>
-         <rect x="691" y="373" width="182" height="32" class="terminal" rx="10"></rect>
-         <text class="terminal" x="701" y="393">ANY_CHAR_EXCEPT_NL</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#WS" xlink:title="WS">
-            <rect x="645" y="309" width="40" height="32"></rect>
-            <rect x="643" y="307" width="40" height="32" class="nonterminal"></rect>
-            <text class="nonterminal" x="653" y="327">WS</text></a><svg:path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 33 h2 m0 0 h10 m100 0 h10 m20 0 h10 m0 0 h40 m-70 0 h20 m50 0 h20 m-90 0 q10 0 10 10 m70 0 q0 -10 10 -10 m-80 10 v12 m70 0 v-12 m-70 12 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m30 0 h10 m-60 -10 v20 m70 0 v-20 m-70 20 v24 m70 0 v-24 m-70 24 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m24 0 h10 m0 0 h6 m40 -76 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m60 -88 h10 m24 0 h10 m20 0 h10 m50 0 h10 m20 0 h10 m0 0 h238 m-268 0 h20 m248 0 h20 m-288 0 q10 0 10 10 m268 0 q0 -10 10 -10 m-278 10 v12 m268 0 v-12 m-268 12 q0 10 10 10 m248 0 q10 0 10 -10 m-258 10 h10 m30 0 h10 m20 0 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m-338 -120 h20 m358 0 h20 m-398 0 q10 0 10 10 m378 0 q0 -10 10 -10 m-388 10 v144 m378 0 v-144 m-378 144 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m66 0 h10 m0 0 h272 m-368 -10 v20 m378 0 v-20 m-378 20 v24 m378 0 v-24 m-378 24 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m138 0 h10 m0 0 h200 m-442 -208 l20 0 m-1 0 q-9 0 -9 -10 l0 -12 q0 -10 10 -10 m442 32 l20 0 m-20 0 q10 0 10 -10 l0 -12 q0 -10 -10 -10 m-442 0 h10 m0 0 h432 m-482 32 h20 m482 0 h20 m-522 0 q10 0 10 10 m502 0 q0 -10 10 -10 m-512 10 v222 m502 0 v-222 m-502 222 q0 10 10 10 m482 0 q10 0 10 -10 m-492 10 h10 m0 0 h472 m22 -242 l2 0 m2 0 l2 0 m2 0 l2 0 m-484 390 l2 0 m2 0 l2 0 m2 0 l2 0 m22 0 h10 m0 0 h34 m-64 0 h20 m44 0 h20 m-84 0 q10 0 10 10 m64 0 q0 -10 10 -10 m-74 10 v12 m64 0 v-12 m-64 12 q0 10 10 10 m44 0 q10 0 10 -10 m-54 10 h10 m24 0 h10 m60 -32 h10 m28 0 h10 m20 0 h10 m0 0 h192 m-222 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m202 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-202 0 h10 m182 0 h10 m-290 34 l20 0 m-1 0 q-9 0 -9 -10 l0 -46 q0 -10 10 -10 m290 66 l20 0 m-20 0 q10 0 10 -10 l0 -46 q0 -10 -10 -10 m-270 0 h10 m0 0 h50 m-80 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m60 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-60 0 h10 m40 0 h10 m20 34 h190 m-330 66 h20 m330 0 h20 m-370 0 q10 0 10 10 m350 0 q0 -10 10 -10 m-360 10 v14 m350 0 v-14 m-350 14 q0 10 10 10 m330 0 q10 0 10 -10 m-340 10 h10 m0 0 h320 m23 -34 h-3"></svg:path>
-         <polygon points="953 423 961 419 961 427"></polygon>
-         <polygon points="953 423 945 419 945 427"></polygon></svg><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">
-         <xhtml:div class="ebnf"><xhtml:code>
-               <div><a href="#hierarchy_decl" title="hierarchy_decl">hierarchy_decl</a></div>
-               <div>         ::= 'HIERARCHY' ( '=' | ',' )? ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) ( ',' ( <a href="#ATTR" title="ATTR">ATTR</a> ( '=' ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )? | <a href="#STRING" title="STRING">STRING</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )* ','? ( '$' 'ANY_CHAR_EXCEPT_NL'* ( <a href="#WS" title="WS">WS</a>* '$' 'ANY_CHAR_EXCEPT_NL'* )* )?</div></xhtml:code></xhtml:div>
-      </xhtml:p>
-      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
-         <xhtml:ul>
-            <xhtml:li><xhtml:a href="#declaration" title="declaration">declaration</xhtml:a></xhtml:li>
-         </xhtml:ul>
-      </xhtml:p>
-   </div>
-   <div class="rule-container" id="variable_decl" data-rule="variable_decl">
+   <div class="rule-container" id="variable_decl" data-rule="variable_decl" data-description="">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="variable_decl">variable_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="619" height="503">
          <defs>
             <style type="text/css">
@@ -1093,7 +630,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" id="define_decl" data-rule="define_decl">
+   <div class="rule-container" id="define_decl" data-rule="define_decl" data-description="">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="define_decl">define_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="939" height="1025">
          <defs>
             <style type="text/css">
@@ -1234,7 +771,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" id="compute_decl" data-rule="compute_decl">
+   <div class="rule-container" id="compute_decl" data-rule="compute_decl" data-description="">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="compute_decl">compute_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="955" height="1025">
          <defs>
             <style type="text/css">
@@ -1375,7 +912,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" id="other_decl" data-rule="other_decl">
+   <div class="rule-container" id="other_decl" data-rule="other_decl" data-description="">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="other_decl">other_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="957" height="459">
          <defs>
             <style type="text/css">
@@ -1467,7 +1004,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" id="FILENAME_KW" data-rule="FILENAME_KW">
+   <div class="rule-container" id="FILENAME_KW" data-rule="FILENAME_KW" data-description="">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="FILENAME_KW">FILENAME_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="189" height="81">
          <defs>
             <style type="text/css">
@@ -1522,7 +1059,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" id="SEGNAME_KW" data-rule="SEGNAME_KW">
+   <div class="rule-container" id="SEGNAME_KW" data-rule="SEGNAME_KW" data-description="">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="SEGNAME_KW">SEGNAME_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="185" height="81">
          <defs>
             <style type="text/css">
@@ -1577,7 +1114,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" id="FIELDNAME_KW" data-rule="FIELDNAME_KW">
+   <div class="rule-container" id="FIELDNAME_KW" data-rule="FIELDNAME_KW" data-description="">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="FIELDNAME_KW">FIELDNAME_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="199" height="81">
          <defs>
             <style type="text/css">
@@ -1632,7 +1169,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" id="ATTR" data-rule="ATTR">
+   <div class="rule-container" id="ATTR" data-rule="ATTR" data-description="">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="ATTR">ATTR:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="283" height="335">
          <defs>
             <style type="text/css">
@@ -1709,7 +1246,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" id="UNQUOTED_VALUE" data-rule="UNQUOTED_VALUE">
+   <div class="rule-container" id="UNQUOTED_VALUE" data-rule="UNQUOTED_VALUE" data-description="">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="UNQUOTED_VALUE">UNQUOTED_VALUE:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="201" height="757">
          <defs>
             <style type="text/css">
@@ -1814,7 +1351,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" id="STRING" data-rule="STRING">
+   <div class="rule-container" id="STRING" data-rule="STRING" data-description="">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="STRING">STRING:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="383" height="119">
          <defs>
             <style type="text/css">
@@ -1893,7 +1430,7 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
-   <div class="rule-container" id="WS" data-rule="WS">
+   <div class="rule-container" id="WS" data-rule="WS" data-description="">
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="WS">WS:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="167" height="229">
          <defs>
             <style type="text/css">
@@ -1963,6 +1500,484 @@
          </xhtml:ul>
       </xhtml:p>
    </div>
+   <div class="category-header">Metadata</div>
+   <div class="rule-container" id="file_decl" data-rule="file_decl" data-description="">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="file_decl">file_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="975" height="475">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #001133; stroke-width: 1;}
+    .bold-line            {stroke: #000714; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #000A1F; shape-rendering: crispEdges}
+    .filled               {fill: #001133; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #000714;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #00091A;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #000A1F;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #001133; stroke: #001133;}
+    rect.terminal         {fill: #4D88FF; stroke: #001133; stroke-width: 1;}
+    rect.nonterminal      {fill: #9EBFFF; stroke: #001133; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #C7DAFF; stroke: #001133; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 33 1 29 1 37"></polygon>
+         <polygon points="17 33 9 29 9 37"></polygon><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#FILENAME_KW" xlink:title="FILENAME_KW">
+            <rect x="31" y="19" width="112" height="32"></rect>
+            <rect x="29" y="17" width="112" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="39" y="37">FILENAME_KW</text></a><rect x="183" y="51" width="30" height="32" rx="10"></rect>
+         <rect x="181" y="49" width="30" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="191" y="69">=</text>
+         <rect x="183" y="95" width="24" height="32" rx="10"></rect>
+         <rect x="181" y="93" width="24" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="191" y="113">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
+            <rect x="273" y="19" width="66" height="32"></rect>
+            <rect x="271" y="17" width="66" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="281" y="37">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
+            <rect x="273" y="63" width="50" height="32"></rect>
+            <rect x="271" y="61" width="50" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="281" y="81">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
+            <rect x="273" y="107" width="138" height="32"></rect>
+            <rect x="271" y="105" width="138" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="281" y="125">UNQUOTED_VALUE</text></a><rect x="491" y="19" width="24" height="32" rx="10"></rect>
+         <rect x="489" y="17" width="24" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="499" y="37">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
+            <rect x="555" y="19" width="50" height="32"></rect>
+            <rect x="553" y="17" width="50" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="563" y="37">ATTR</text></a><rect x="645" y="51" width="30" height="32" rx="10"></rect>
+         <rect x="643" y="49" width="30" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="653" y="69">=</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
+            <rect x="715" y="51" width="66" height="32"></rect>
+            <rect x="713" y="49" width="66" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="723" y="69">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
+            <rect x="715" y="95" width="50" height="32"></rect>
+            <rect x="713" y="93" width="50" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="723" y="113">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
+            <rect x="715" y="139" width="138" height="32"></rect>
+            <rect x="713" y="137" width="138" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="723" y="157">UNQUOTED_VALUE</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
+            <rect x="555" y="183" width="66" height="32"></rect>
+            <rect x="553" y="181" width="66" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="563" y="201">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
+            <rect x="555" y="227" width="138" height="32"></rect>
+            <rect x="553" y="225" width="138" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="563" y="245">UNQUOTED_VALUE</text></a><rect x="533" y="441" width="24" height="32" rx="10"></rect>
+         <rect x="531" y="439" width="24" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="541" y="459">,</text>
+         <rect x="637" y="409" width="28" height="32" rx="10"></rect>
+         <rect x="635" y="407" width="28" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="645" y="427">$</text>
+         <rect x="705" y="375" width="182" height="32" rx="10"></rect>
+         <rect x="703" y="373" width="182" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="713" y="393">ANY_CHAR_EXCEPT_NL</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#WS" xlink:title="WS">
+            <rect x="657" y="309" width="40" height="32"></rect>
+            <rect x="655" y="307" width="40" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="665" y="327">WS</text></a><svg:path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 33 h2 m0 0 h10 m112 0 h10 m20 0 h10 m0 0 h40 m-70 0 h20 m50 0 h20 m-90 0 q10 0 10 10 m70 0 q0 -10 10 -10 m-80 10 v12 m70 0 v-12 m-70 12 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m30 0 h10 m-60 -10 v20 m70 0 v-20 m-70 20 v24 m70 0 v-24 m-70 24 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m24 0 h10 m0 0 h6 m40 -76 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m60 -88 h10 m24 0 h10 m20 0 h10 m50 0 h10 m20 0 h10 m0 0 h238 m-268 0 h20 m248 0 h20 m-288 0 q10 0 10 10 m268 0 q0 -10 10 -10 m-278 10 v12 m268 0 v-12 m-268 12 q0 10 10 10 m248 0 q10 0 10 -10 m-258 10 h10 m30 0 h10 m20 0 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m-338 -120 h20 m358 0 h20 m-398 0 q10 0 10 10 m378 0 q0 -10 10 -10 m-388 10 v144 m378 0 v-144 m-378 144 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m66 0 h10 m0 0 h272 m-368 -10 v20 m378 0 v-20 m-378 20 v24 m378 0 v-24 m-378 24 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m138 0 h10 m0 0 h200 m-442 -208 l20 0 m-1 0 q-9 0 -9 -10 l0 -12 q0 -10 10 -10 m442 32 l20 0 m-20 0 q10 0 10 -10 l0 -12 q0 -10 -10 -10 m-442 0 h10 m0 0 h432 m-482 32 h20 m482 0 h20 m-522 0 q10 0 10 10 m502 0 q0 -10 10 -10 m-512 10 v222 m502 0 v-222 m-502 222 q0 10 10 10 m482 0 q10 0 10 -10 m-492 10 h10 m0 0 h472 m22 -242 l2 0 m2 0 l2 0 m2 0 l2 0 m-484 390 l2 0 m2 0 l2 0 m2 0 l2 0 m22 0 h10 m0 0 h34 m-64 0 h20 m44 0 h20 m-84 0 q10 0 10 10 m64 0 q0 -10 10 -10 m-74 10 v12 m64 0 v-12 m-64 12 q0 10 10 10 m44 0 q10 0 10 -10 m-54 10 h10 m24 0 h10 m60 -32 h10 m28 0 h10 m20 0 h10 m0 0 h192 m-222 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m202 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-202 0 h10 m182 0 h10 m-290 34 l20 0 m-1 0 q-9 0 -9 -10 l0 -46 q0 -10 10 -10 m290 66 l20 0 m-20 0 q10 0 10 -10 l0 -46 q0 -10 -10 -10 m-270 0 h10 m0 0 h50 m-80 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m60 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-60 0 h10 m40 0 h10 m20 34 h190 m-330 66 h20 m330 0 h20 m-370 0 q10 0 10 10 m350 0 q0 -10 10 -10 m-360 10 v14 m350 0 v-14 m-350 14 q0 10 10 10 m330 0 q10 0 10 -10 m-340 10 h10 m0 0 h320 m23 -34 h-3"></svg:path>
+         <polygon points="965 423 973 419 973 427"></polygon>
+         <polygon points="965 423 957 419 957 427"></polygon></svg><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <xhtml:div class="ebnf"><xhtml:code>
+               <div><a href="#file_decl" title="file_decl">file_decl</a></div>
+               <div>         ::= <a href="#FILENAME_KW" title="FILENAME_KW">FILENAME_KW</a> ( '=' | ',' )? ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) ( ',' ( <a href="#ATTR" title="ATTR">ATTR</a> ( '=' ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )? | <a href="#STRING" title="STRING">STRING</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )* ','? ( '$' 'ANY_CHAR_EXCEPT_NL'* ( <a href="#WS" title="WS">WS</a>* '$' 'ANY_CHAR_EXCEPT_NL'* )* )?</div></xhtml:code></xhtml:div>
+      </xhtml:p>
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <xhtml:ul>
+            <xhtml:li><xhtml:a href="#declaration" title="declaration">declaration</xhtml:a></xhtml:li>
+         </xhtml:ul>
+      </xhtml:p>
+   </div>
+   <div class="rule-container" id="segment_decl" data-rule="segment_decl" data-description="">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="segment_decl">segment_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="973" height="475">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #001133; stroke-width: 1;}
+    .bold-line            {stroke: #000714; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #000A1F; shape-rendering: crispEdges}
+    .filled               {fill: #001133; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #000714;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #00091A;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #000A1F;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #001133; stroke: #001133;}
+    rect.terminal         {fill: #4D88FF; stroke: #001133; stroke-width: 1;}
+    rect.nonterminal      {fill: #9EBFFF; stroke: #001133; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #C7DAFF; stroke: #001133; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 33 1 29 1 37"></polygon>
+         <polygon points="17 33 9 29 9 37"></polygon><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#SEGNAME_KW" xlink:title="SEGNAME_KW">
+            <rect x="31" y="19" width="110" height="32"></rect>
+            <rect x="29" y="17" width="110" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="39" y="37">SEGNAME_KW</text></a><rect x="181" y="51" width="30" height="32" rx="10"></rect>
+         <rect x="179" y="49" width="30" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="189" y="69">=</text>
+         <rect x="181" y="95" width="24" height="32" rx="10"></rect>
+         <rect x="179" y="93" width="24" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="189" y="113">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
+            <rect x="271" y="19" width="66" height="32"></rect>
+            <rect x="269" y="17" width="66" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="279" y="37">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
+            <rect x="271" y="63" width="50" height="32"></rect>
+            <rect x="269" y="61" width="50" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="279" y="81">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
+            <rect x="271" y="107" width="138" height="32"></rect>
+            <rect x="269" y="105" width="138" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="279" y="125">UNQUOTED_VALUE</text></a><rect x="489" y="19" width="24" height="32" rx="10"></rect>
+         <rect x="487" y="17" width="24" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="497" y="37">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
+            <rect x="553" y="19" width="50" height="32"></rect>
+            <rect x="551" y="17" width="50" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="561" y="37">ATTR</text></a><rect x="643" y="51" width="30" height="32" rx="10"></rect>
+         <rect x="641" y="49" width="30" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="651" y="69">=</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
+            <rect x="713" y="51" width="66" height="32"></rect>
+            <rect x="711" y="49" width="66" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="721" y="69">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
+            <rect x="713" y="95" width="50" height="32"></rect>
+            <rect x="711" y="93" width="50" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="721" y="113">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
+            <rect x="713" y="139" width="138" height="32"></rect>
+            <rect x="711" y="137" width="138" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="721" y="157">UNQUOTED_VALUE</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
+            <rect x="553" y="183" width="66" height="32"></rect>
+            <rect x="551" y="181" width="66" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="561" y="201">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
+            <rect x="553" y="227" width="138" height="32"></rect>
+            <rect x="551" y="225" width="138" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="561" y="245">UNQUOTED_VALUE</text></a><rect x="531" y="441" width="24" height="32" rx="10"></rect>
+         <rect x="529" y="439" width="24" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="539" y="459">,</text>
+         <rect x="635" y="409" width="28" height="32" rx="10"></rect>
+         <rect x="633" y="407" width="28" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="643" y="427">$</text>
+         <rect x="703" y="375" width="182" height="32" rx="10"></rect>
+         <rect x="701" y="373" width="182" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="711" y="393">ANY_CHAR_EXCEPT_NL</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#WS" xlink:title="WS">
+            <rect x="655" y="309" width="40" height="32"></rect>
+            <rect x="653" y="307" width="40" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="663" y="327">WS</text></a><svg:path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 33 h2 m0 0 h10 m110 0 h10 m20 0 h10 m0 0 h40 m-70 0 h20 m50 0 h20 m-90 0 q10 0 10 10 m70 0 q0 -10 10 -10 m-80 10 v12 m70 0 v-12 m-70 12 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m30 0 h10 m-60 -10 v20 m70 0 v-20 m-70 20 v24 m70 0 v-24 m-70 24 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m24 0 h10 m0 0 h6 m40 -76 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m60 -88 h10 m24 0 h10 m20 0 h10 m50 0 h10 m20 0 h10 m0 0 h238 m-268 0 h20 m248 0 h20 m-288 0 q10 0 10 10 m268 0 q0 -10 10 -10 m-278 10 v12 m268 0 v-12 m-268 12 q0 10 10 10 m248 0 q10 0 10 -10 m-258 10 h10 m30 0 h10 m20 0 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m-338 -120 h20 m358 0 h20 m-398 0 q10 0 10 10 m378 0 q0 -10 10 -10 m-388 10 v144 m378 0 v-144 m-378 144 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m66 0 h10 m0 0 h272 m-368 -10 v20 m378 0 v-20 m-378 20 v24 m378 0 v-24 m-378 24 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m138 0 h10 m0 0 h200 m-442 -208 l20 0 m-1 0 q-9 0 -9 -10 l0 -12 q0 -10 10 -10 m442 32 l20 0 m-20 0 q10 0 10 -10 l0 -12 q0 -10 -10 -10 m-442 0 h10 m0 0 h432 m-482 32 h20 m482 0 h20 m-522 0 q10 0 10 10 m502 0 q0 -10 10 -10 m-512 10 v222 m502 0 v-222 m-502 222 q0 10 10 10 m482 0 q10 0 10 -10 m-492 10 h10 m0 0 h472 m22 -242 l2 0 m2 0 l2 0 m2 0 l2 0 m-484 390 l2 0 m2 0 l2 0 m2 0 l2 0 m22 0 h10 m0 0 h34 m-64 0 h20 m44 0 h20 m-84 0 q10 0 10 10 m64 0 q0 -10 10 -10 m-74 10 v12 m64 0 v-12 m-64 12 q0 10 10 10 m44 0 q10 0 10 -10 m-54 10 h10 m24 0 h10 m60 -32 h10 m28 0 h10 m20 0 h10 m0 0 h192 m-222 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m202 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-202 0 h10 m182 0 h10 m-290 34 l20 0 m-1 0 q-9 0 -9 -10 l0 -46 q0 -10 10 -10 m290 66 l20 0 m-20 0 q10 0 10 -10 l0 -46 q0 -10 -10 -10 m-270 0 h10 m0 0 h50 m-80 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m60 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-60 0 h10 m40 0 h10 m20 34 h190 m-330 66 h20 m330 0 h20 m-370 0 q10 0 10 10 m350 0 q0 -10 10 -10 m-360 10 v14 m350 0 v-14 m-350 14 q0 10 10 10 m330 0 q10 0 10 -10 m-340 10 h10 m0 0 h320 m23 -34 h-3"></svg:path>
+         <polygon points="963 423 971 419 971 427"></polygon>
+         <polygon points="963 423 955 419 955 427"></polygon></svg><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <xhtml:div class="ebnf"><xhtml:code>
+               <div><a href="#segment_decl" title="segment_decl">segment_decl</a></div>
+               <div>         ::= <a href="#SEGNAME_KW" title="SEGNAME_KW">SEGNAME_KW</a> ( '=' | ',' )? ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) ( ',' ( <a href="#ATTR" title="ATTR">ATTR</a> ( '=' ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )? | <a href="#STRING" title="STRING">STRING</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )* ','? ( '$' 'ANY_CHAR_EXCEPT_NL'* ( <a href="#WS" title="WS">WS</a>* '$' 'ANY_CHAR_EXCEPT_NL'* )* )?</div></xhtml:code></xhtml:div>
+      </xhtml:p>
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <xhtml:ul>
+            <xhtml:li><xhtml:a href="#declaration" title="declaration">declaration</xhtml:a></xhtml:li>
+         </xhtml:ul>
+      </xhtml:p>
+   </div>
+   <div class="rule-container" id="field_decl" data-rule="field_decl" data-description="">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="field_decl">field_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="983" height="475">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #001133; stroke-width: 1;}
+    .bold-line            {stroke: #000714; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #000A1F; shape-rendering: crispEdges}
+    .filled               {fill: #001133; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #000714;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #00091A;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #000A1F;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #001133; stroke: #001133;}
+    rect.terminal         {fill: #4D88FF; stroke: #001133; stroke-width: 1;}
+    rect.nonterminal      {fill: #9EBFFF; stroke: #001133; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #C7DAFF; stroke: #001133; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 33 1 29 1 37"></polygon>
+         <polygon points="17 33 9 29 9 37"></polygon><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#FIELDNAME_KW" xlink:title="FIELDNAME_KW">
+            <rect x="31" y="19" width="120" height="32"></rect>
+            <rect x="29" y="17" width="120" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="39" y="37">FIELDNAME_KW</text></a><rect x="191" y="51" width="30" height="32" rx="10"></rect>
+         <rect x="189" y="49" width="30" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="199" y="69">=</text>
+         <rect x="191" y="95" width="24" height="32" rx="10"></rect>
+         <rect x="189" y="93" width="24" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="199" y="113">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
+            <rect x="281" y="19" width="66" height="32"></rect>
+            <rect x="279" y="17" width="66" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="289" y="37">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
+            <rect x="281" y="63" width="50" height="32"></rect>
+            <rect x="279" y="61" width="50" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="289" y="81">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
+            <rect x="281" y="107" width="138" height="32"></rect>
+            <rect x="279" y="105" width="138" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="289" y="125">UNQUOTED_VALUE</text></a><rect x="499" y="19" width="24" height="32" rx="10"></rect>
+         <rect x="497" y="17" width="24" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="507" y="37">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
+            <rect x="563" y="19" width="50" height="32"></rect>
+            <rect x="561" y="17" width="50" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="571" y="37">ATTR</text></a><rect x="653" y="51" width="30" height="32" rx="10"></rect>
+         <rect x="651" y="49" width="30" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="661" y="69">=</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
+            <rect x="723" y="51" width="66" height="32"></rect>
+            <rect x="721" y="49" width="66" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="731" y="69">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
+            <rect x="723" y="95" width="50" height="32"></rect>
+            <rect x="721" y="93" width="50" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="731" y="113">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
+            <rect x="723" y="139" width="138" height="32"></rect>
+            <rect x="721" y="137" width="138" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="731" y="157">UNQUOTED_VALUE</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
+            <rect x="563" y="183" width="66" height="32"></rect>
+            <rect x="561" y="181" width="66" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="571" y="201">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
+            <rect x="563" y="227" width="138" height="32"></rect>
+            <rect x="561" y="225" width="138" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="571" y="245">UNQUOTED_VALUE</text></a><rect x="541" y="441" width="24" height="32" rx="10"></rect>
+         <rect x="539" y="439" width="24" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="549" y="459">,</text>
+         <rect x="645" y="409" width="28" height="32" rx="10"></rect>
+         <rect x="643" y="407" width="28" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="653" y="427">$</text>
+         <rect x="713" y="375" width="182" height="32" rx="10"></rect>
+         <rect x="711" y="373" width="182" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="721" y="393">ANY_CHAR_EXCEPT_NL</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#WS" xlink:title="WS">
+            <rect x="665" y="309" width="40" height="32"></rect>
+            <rect x="663" y="307" width="40" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="673" y="327">WS</text></a><svg:path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 33 h2 m0 0 h10 m120 0 h10 m20 0 h10 m0 0 h40 m-70 0 h20 m50 0 h20 m-90 0 q10 0 10 10 m70 0 q0 -10 10 -10 m-80 10 v12 m70 0 v-12 m-70 12 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m30 0 h10 m-60 -10 v20 m70 0 v-20 m-70 20 v24 m70 0 v-24 m-70 24 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m24 0 h10 m0 0 h6 m40 -76 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m60 -88 h10 m24 0 h10 m20 0 h10 m50 0 h10 m20 0 h10 m0 0 h238 m-268 0 h20 m248 0 h20 m-288 0 q10 0 10 10 m268 0 q0 -10 10 -10 m-278 10 v12 m268 0 v-12 m-268 12 q0 10 10 10 m248 0 q10 0 10 -10 m-258 10 h10 m30 0 h10 m20 0 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m-338 -120 h20 m358 0 h20 m-398 0 q10 0 10 10 m378 0 q0 -10 10 -10 m-388 10 v144 m378 0 v-144 m-378 144 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m66 0 h10 m0 0 h272 m-368 -10 v20 m378 0 v-20 m-378 20 v24 m378 0 v-24 m-378 24 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m138 0 h10 m0 0 h200 m-442 -208 l20 0 m-1 0 q-9 0 -9 -10 l0 -12 q0 -10 10 -10 m442 32 l20 0 m-20 0 q10 0 10 -10 l0 -12 q0 -10 -10 -10 m-442 0 h10 m0 0 h432 m-482 32 h20 m482 0 h20 m-522 0 q10 0 10 10 m502 0 q0 -10 10 -10 m-512 10 v222 m502 0 v-222 m-502 222 q0 10 10 10 m482 0 q10 0 10 -10 m-492 10 h10 m0 0 h472 m22 -242 l2 0 m2 0 l2 0 m2 0 l2 0 m-484 390 l2 0 m2 0 l2 0 m2 0 l2 0 m22 0 h10 m0 0 h34 m-64 0 h20 m44 0 h20 m-84 0 q10 0 10 10 m64 0 q0 -10 10 -10 m-74 10 v12 m64 0 v-12 m-64 12 q0 10 10 10 m44 0 q10 0 10 -10 m-54 10 h10 m24 0 h10 m60 -32 h10 m28 0 h10 m20 0 h10 m0 0 h192 m-222 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m202 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-202 0 h10 m182 0 h10 m-290 34 l20 0 m-1 0 q-9 0 -9 -10 l0 -46 q0 -10 10 -10 m290 66 l20 0 m-20 0 q10 0 10 -10 l0 -46 q0 -10 -10 -10 m-270 0 h10 m0 0 h50 m-80 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m60 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-60 0 h10 m40 0 h10 m20 34 h190 m-330 66 h20 m330 0 h20 m-370 0 q10 0 10 10 m350 0 q0 -10 10 -10 m-360 10 v14 m350 0 v-14 m-350 14 q0 10 10 10 m330 0 q10 0 10 -10 m-340 10 h10 m0 0 h320 m23 -34 h-3"></svg:path>
+         <polygon points="973 423 981 419 981 427"></polygon>
+         <polygon points="973 423 965 419 965 427"></polygon></svg><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <xhtml:div class="ebnf"><xhtml:code>
+               <div><a href="#field_decl" title="field_decl">field_decl</a></div>
+               <div>         ::= <a href="#FIELDNAME_KW" title="FIELDNAME_KW">FIELDNAME_KW</a> ( '=' | ',' )? ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) ( ',' ( <a href="#ATTR" title="ATTR">ATTR</a> ( '=' ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )? | <a href="#STRING" title="STRING">STRING</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )* ','? ( '$' 'ANY_CHAR_EXCEPT_NL'* ( <a href="#WS" title="WS">WS</a>* '$' 'ANY_CHAR_EXCEPT_NL'* )* )?</div></xhtml:code></xhtml:div>
+      </xhtml:p>
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <xhtml:ul>
+            <xhtml:li><xhtml:a href="#declaration" title="declaration">declaration</xhtml:a></xhtml:li>
+         </xhtml:ul>
+      </xhtml:p>
+   </div>
+   <div class="rule-container" id="dimension_decl" data-rule="dimension_decl" data-description="">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dimension_decl">dimension_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="965" height="475">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #001133; stroke-width: 1;}
+    .bold-line            {stroke: #000714; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #000A1F; shape-rendering: crispEdges}
+    .filled               {fill: #001133; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #000714;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #00091A;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #000A1F;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #001133; stroke: #001133;}
+    rect.terminal         {fill: #4D88FF; stroke: #001133; stroke-width: 1;}
+    rect.nonterminal      {fill: #9EBFFF; stroke: #001133; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #C7DAFF; stroke: #001133; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 33 1 29 1 37"></polygon>
+         <polygon points="17 33 9 29 9 37"></polygon>
+         <rect x="31" y="19" width="102" height="32" rx="10"></rect>
+         <rect x="29" y="17" width="102" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="39" y="37">DIMENSION</text>
+         <rect x="173" y="51" width="30" height="32" rx="10"></rect>
+         <rect x="171" y="49" width="30" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="181" y="69">=</text>
+         <rect x="173" y="95" width="24" height="32" rx="10"></rect>
+         <rect x="171" y="93" width="24" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="181" y="113">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
+            <rect x="263" y="19" width="66" height="32"></rect>
+            <rect x="261" y="17" width="66" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="271" y="37">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
+            <rect x="263" y="63" width="50" height="32"></rect>
+            <rect x="261" y="61" width="50" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="271" y="81">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
+            <rect x="263" y="107" width="138" height="32"></rect>
+            <rect x="261" y="105" width="138" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="271" y="125">UNQUOTED_VALUE</text></a><rect x="481" y="19" width="24" height="32" rx="10"></rect>
+         <rect x="479" y="17" width="24" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="489" y="37">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
+            <rect x="545" y="19" width="50" height="32"></rect>
+            <rect x="543" y="17" width="50" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="553" y="37">ATTR</text></a><rect x="635" y="51" width="30" height="32" rx="10"></rect>
+         <rect x="633" y="49" width="30" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="643" y="69">=</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
+            <rect x="705" y="51" width="66" height="32"></rect>
+            <rect x="703" y="49" width="66" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="713" y="69">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
+            <rect x="705" y="95" width="50" height="32"></rect>
+            <rect x="703" y="93" width="50" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="713" y="113">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
+            <rect x="705" y="139" width="138" height="32"></rect>
+            <rect x="703" y="137" width="138" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="713" y="157">UNQUOTED_VALUE</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
+            <rect x="545" y="183" width="66" height="32"></rect>
+            <rect x="543" y="181" width="66" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="553" y="201">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
+            <rect x="545" y="227" width="138" height="32"></rect>
+            <rect x="543" y="225" width="138" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="553" y="245">UNQUOTED_VALUE</text></a><rect x="523" y="441" width="24" height="32" rx="10"></rect>
+         <rect x="521" y="439" width="24" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="531" y="459">,</text>
+         <rect x="627" y="409" width="28" height="32" rx="10"></rect>
+         <rect x="625" y="407" width="28" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="635" y="427">$</text>
+         <rect x="695" y="375" width="182" height="32" rx="10"></rect>
+         <rect x="693" y="373" width="182" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="703" y="393">ANY_CHAR_EXCEPT_NL</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#WS" xlink:title="WS">
+            <rect x="647" y="309" width="40" height="32"></rect>
+            <rect x="645" y="307" width="40" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="655" y="327">WS</text></a><svg:path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 33 h2 m0 0 h10 m102 0 h10 m20 0 h10 m0 0 h40 m-70 0 h20 m50 0 h20 m-90 0 q10 0 10 10 m70 0 q0 -10 10 -10 m-80 10 v12 m70 0 v-12 m-70 12 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m30 0 h10 m-60 -10 v20 m70 0 v-20 m-70 20 v24 m70 0 v-24 m-70 24 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m24 0 h10 m0 0 h6 m40 -76 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m60 -88 h10 m24 0 h10 m20 0 h10 m50 0 h10 m20 0 h10 m0 0 h238 m-268 0 h20 m248 0 h20 m-288 0 q10 0 10 10 m268 0 q0 -10 10 -10 m-278 10 v12 m268 0 v-12 m-268 12 q0 10 10 10 m248 0 q10 0 10 -10 m-258 10 h10 m30 0 h10 m20 0 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m-338 -120 h20 m358 0 h20 m-398 0 q10 0 10 10 m378 0 q0 -10 10 -10 m-388 10 v144 m378 0 v-144 m-378 144 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m66 0 h10 m0 0 h272 m-368 -10 v20 m378 0 v-20 m-378 20 v24 m378 0 v-24 m-378 24 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m138 0 h10 m0 0 h200 m-442 -208 l20 0 m-1 0 q-9 0 -9 -10 l0 -12 q0 -10 10 -10 m442 32 l20 0 m-20 0 q10 0 10 -10 l0 -12 q0 -10 -10 -10 m-442 0 h10 m0 0 h432 m-482 32 h20 m482 0 h20 m-522 0 q10 0 10 10 m502 0 q0 -10 10 -10 m-512 10 v222 m502 0 v-222 m-502 222 q0 10 10 10 m482 0 q10 0 10 -10 m-492 10 h10 m0 0 h472 m22 -242 l2 0 m2 0 l2 0 m2 0 l2 0 m-484 390 l2 0 m2 0 l2 0 m2 0 l2 0 m22 0 h10 m0 0 h34 m-64 0 h20 m44 0 h20 m-84 0 q10 0 10 10 m64 0 q0 -10 10 -10 m-74 10 v12 m64 0 v-12 m-64 12 q0 10 10 10 m44 0 q10 0 10 -10 m-54 10 h10 m24 0 h10 m60 -32 h10 m28 0 h10 m20 0 h10 m0 0 h192 m-222 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m202 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-202 0 h10 m182 0 h10 m-290 34 l20 0 m-1 0 q-9 0 -9 -10 l0 -46 q0 -10 10 -10 m290 66 l20 0 m-20 0 q10 0 10 -10 l0 -46 q0 -10 -10 -10 m-270 0 h10 m0 0 h50 m-80 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m60 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-60 0 h10 m40 0 h10 m20 34 h190 m-330 66 h20 m330 0 h20 m-370 0 q10 0 10 10 m350 0 q0 -10 10 -10 m-360 10 v14 m350 0 v-14 m-350 14 q0 10 10 10 m330 0 q10 0 10 -10 m-340 10 h10 m0 0 h320 m23 -34 h-3"></svg:path>
+         <polygon points="955 423 963 419 963 427"></polygon>
+         <polygon points="955 423 947 419 947 427"></polygon></svg><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <xhtml:div class="ebnf"><xhtml:code>
+               <div><a href="#dimension_decl" title="dimension_decl">dimension_decl</a></div>
+               <div>         ::= 'DIMENSION' ( '=' | ',' )? ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) ( ',' ( <a href="#ATTR" title="ATTR">ATTR</a> ( '=' ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )? | <a href="#STRING" title="STRING">STRING</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )* ','? ( '$' 'ANY_CHAR_EXCEPT_NL'* ( <a href="#WS" title="WS">WS</a>* '$' 'ANY_CHAR_EXCEPT_NL'* )* )?</div></xhtml:code></xhtml:div>
+      </xhtml:p>
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <xhtml:ul>
+            <xhtml:li><xhtml:a href="#declaration" title="declaration">declaration</xhtml:a></xhtml:li>
+         </xhtml:ul>
+      </xhtml:p>
+   </div>
+   <div class="rule-container" id="hierarchy_decl" data-rule="hierarchy_decl" data-description="">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="hierarchy_decl">hierarchy_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="963" height="475">
+         <defs>
+            <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #001133; stroke-width: 1;}
+    .bold-line            {stroke: #000714; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #000A1F; shape-rendering: crispEdges}
+    .filled               {fill: #001133; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #000714;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #00091A;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #000A1F;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #001133; stroke: #001133;}
+    rect.terminal         {fill: #4D88FF; stroke: #001133; stroke-width: 1;}
+    rect.nonterminal      {fill: #9EBFFF; stroke: #001133; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #C7DAFF; stroke: #001133; stroke-width: 1;}
+  </style>
+         </defs>
+         <polygon points="9 33 1 29 1 37"></polygon>
+         <polygon points="17 33 9 29 9 37"></polygon>
+         <rect x="31" y="19" width="100" height="32" rx="10"></rect>
+         <rect x="29" y="17" width="100" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="39" y="37">HIERARCHY</text>
+         <rect x="171" y="51" width="30" height="32" rx="10"></rect>
+         <rect x="169" y="49" width="30" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="179" y="69">=</text>
+         <rect x="171" y="95" width="24" height="32" rx="10"></rect>
+         <rect x="169" y="93" width="24" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="179" y="113">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
+            <rect x="261" y="19" width="66" height="32"></rect>
+            <rect x="259" y="17" width="66" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="269" y="37">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
+            <rect x="261" y="63" width="50" height="32"></rect>
+            <rect x="259" y="61" width="50" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="269" y="81">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
+            <rect x="261" y="107" width="138" height="32"></rect>
+            <rect x="259" y="105" width="138" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="269" y="125">UNQUOTED_VALUE</text></a><rect x="479" y="19" width="24" height="32" rx="10"></rect>
+         <rect x="477" y="17" width="24" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="487" y="37">,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
+            <rect x="543" y="19" width="50" height="32"></rect>
+            <rect x="541" y="17" width="50" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="551" y="37">ATTR</text></a><rect x="633" y="51" width="30" height="32" rx="10"></rect>
+         <rect x="631" y="49" width="30" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="641" y="69">=</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
+            <rect x="703" y="51" width="66" height="32"></rect>
+            <rect x="701" y="49" width="66" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="711" y="69">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ATTR" xlink:title="ATTR">
+            <rect x="703" y="95" width="50" height="32"></rect>
+            <rect x="701" y="93" width="50" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="711" y="113">ATTR</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
+            <rect x="703" y="139" width="138" height="32"></rect>
+            <rect x="701" y="137" width="138" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="711" y="157">UNQUOTED_VALUE</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#STRING" xlink:title="STRING">
+            <rect x="543" y="183" width="66" height="32"></rect>
+            <rect x="541" y="181" width="66" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="551" y="201">STRING</text></a><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#UNQUOTED_VALUE" xlink:title="UNQUOTED_VALUE">
+            <rect x="543" y="227" width="138" height="32"></rect>
+            <rect x="541" y="225" width="138" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="551" y="245">UNQUOTED_VALUE</text></a><rect x="521" y="441" width="24" height="32" rx="10"></rect>
+         <rect x="519" y="439" width="24" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="529" y="459">,</text>
+         <rect x="625" y="409" width="28" height="32" rx="10"></rect>
+         <rect x="623" y="407" width="28" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="633" y="427">$</text>
+         <rect x="693" y="375" width="182" height="32" rx="10"></rect>
+         <rect x="691" y="373" width="182" height="32" class="terminal" rx="10"></rect>
+         <text class="terminal" x="701" y="393">ANY_CHAR_EXCEPT_NL</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#WS" xlink:title="WS">
+            <rect x="645" y="309" width="40" height="32"></rect>
+            <rect x="643" y="307" width="40" height="32" class="nonterminal"></rect>
+            <text class="nonterminal" x="653" y="327">WS</text></a><svg:path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 33 h2 m0 0 h10 m100 0 h10 m20 0 h10 m0 0 h40 m-70 0 h20 m50 0 h20 m-90 0 q10 0 10 10 m70 0 q0 -10 10 -10 m-80 10 v12 m70 0 v-12 m-70 12 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m30 0 h10 m-60 -10 v20 m70 0 v-20 m-70 20 v24 m70 0 v-24 m-70 24 q0 10 10 10 m50 0 q10 0 10 -10 m-60 10 h10 m24 0 h10 m0 0 h6 m40 -76 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m60 -88 h10 m24 0 h10 m20 0 h10 m50 0 h10 m20 0 h10 m0 0 h238 m-268 0 h20 m248 0 h20 m-288 0 q10 0 10 10 m268 0 q0 -10 10 -10 m-278 10 v12 m268 0 v-12 m-268 12 q0 10 10 10 m248 0 q10 0 10 -10 m-258 10 h10 m30 0 h10 m20 0 h10 m66 0 h10 m0 0 h72 m-178 0 h20 m158 0 h20 m-198 0 q10 0 10 10 m178 0 q0 -10 10 -10 m-188 10 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m50 0 h10 m0 0 h88 m-168 -10 v20 m178 0 v-20 m-178 20 v24 m178 0 v-24 m-178 24 q0 10 10 10 m158 0 q10 0 10 -10 m-168 10 h10 m138 0 h10 m-338 -120 h20 m358 0 h20 m-398 0 q10 0 10 10 m378 0 q0 -10 10 -10 m-388 10 v144 m378 0 v-144 m-378 144 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m66 0 h10 m0 0 h272 m-368 -10 v20 m378 0 v-20 m-378 20 v24 m378 0 v-24 m-378 24 q0 10 10 10 m358 0 q10 0 10 -10 m-368 10 h10 m138 0 h10 m0 0 h200 m-442 -208 l20 0 m-1 0 q-9 0 -9 -10 l0 -12 q0 -10 10 -10 m442 32 l20 0 m-20 0 q10 0 10 -10 l0 -12 q0 -10 -10 -10 m-442 0 h10 m0 0 h432 m-482 32 h20 m482 0 h20 m-522 0 q10 0 10 10 m502 0 q0 -10 10 -10 m-512 10 v222 m502 0 v-222 m-502 222 q0 10 10 10 m482 0 q10 0 10 -10 m-492 10 h10 m0 0 h472 m22 -242 l2 0 m2 0 l2 0 m2 0 l2 0 m-484 390 l2 0 m2 0 l2 0 m2 0 l2 0 m22 0 h10 m0 0 h34 m-64 0 h20 m44 0 h20 m-84 0 q10 0 10 10 m64 0 q0 -10 10 -10 m-74 10 v12 m64 0 v-12 m-64 12 q0 10 10 10 m44 0 q10 0 10 -10 m-54 10 h10 m24 0 h10 m60 -32 h10 m28 0 h10 m20 0 h10 m0 0 h192 m-222 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m202 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-202 0 h10 m182 0 h10 m-290 34 l20 0 m-1 0 q-9 0 -9 -10 l0 -46 q0 -10 10 -10 m290 66 l20 0 m-20 0 q10 0 10 -10 l0 -46 q0 -10 -10 -10 m-270 0 h10 m0 0 h50 m-80 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m60 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-60 0 h10 m40 0 h10 m20 34 h190 m-330 66 h20 m330 0 h20 m-370 0 q10 0 10 10 m350 0 q0 -10 10 -10 m-360 10 v14 m350 0 v-14 m-350 14 q0 10 10 10 m330 0 q10 0 10 -10 m-340 10 h10 m0 0 h320 m23 -34 h-3"></svg:path>
+         <polygon points="953 423 961 419 961 427"></polygon>
+         <polygon points="953 423 945 419 945 427"></polygon></svg><xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">
+         <xhtml:div class="ebnf"><xhtml:code>
+               <div><a href="#hierarchy_decl" title="hierarchy_decl">hierarchy_decl</a></div>
+               <div>         ::= 'HIERARCHY' ( '=' | ',' )? ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) ( ',' ( <a href="#ATTR" title="ATTR">ATTR</a> ( '=' ( <a href="#STRING" title="STRING">STRING</a> | <a href="#ATTR" title="ATTR">ATTR</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )? | <a href="#STRING" title="STRING">STRING</a> | <a href="#UNQUOTED_VALUE" title="UNQUOTED_VALUE">UNQUOTED_VALUE</a> ) )* ','? ( '$' 'ANY_CHAR_EXCEPT_NL'* ( <a href="#WS" title="WS">WS</a>* '$' 'ANY_CHAR_EXCEPT_NL'* )* )?</div></xhtml:code></xhtml:div>
+      </xhtml:p>
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">referenced by:
+         <xhtml:ul>
+            <xhtml:li><xhtml:a href="#declaration" title="declaration">declaration</xhtml:a></xhtml:li>
+         </xhtml:ul>
+      </xhtml:p>
+   </div>
 </div>
 <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">
          <xhtml:table border="0" class="signature">
@@ -1985,24 +2000,44 @@
       </xhtml:p>
 
     <script type="text/javascript">
+    /* <![CDATA[ */
     document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('rule-search');
         const clearButton = document.getElementById('clear-search');
         const resultCount = document.getElementById('result-count');
         const containers = document.querySelectorAll('.rule-container');
+        const categoryHeaders = document.querySelectorAll('.category-header');
 
         function updateFilter() {
             const query = searchInput.value.toLowerCase();
             let visibleCount = 0;
+
+            // Filter rules
             containers.forEach(container => {
                 const ruleName = container.getAttribute('data-rule').toLowerCase();
-                if (ruleName.includes(query)) {
+                const description = (container.getAttribute('data-description') || "").toLowerCase();
+                if (ruleName.includes(query) || description.includes(query)) {
                     container.style.display = 'block';
                     visibleCount++;
                 } else {
                     container.style.display = 'none';
                 }
             });
+
+            // Hide/show category headers
+            categoryHeaders.forEach(header => {
+                let next = header.nextElementSibling;
+                let hasVisibleRule = false;
+                while (next && next.classList.contains('rule-container')) {
+                    if (next.style.display !== 'none') {
+                        hasVisibleRule = true;
+                        break;
+                    }
+                    next = next.nextElementSibling;
+                }
+                header.style.display = hasVisibleRule ? 'block' : 'none';
+            });
+
             resultCount.textContent = `${visibleCount} rules found`;
         }
 
@@ -2036,6 +2071,7 @@
         updateFilter();
         handleHashChange();
     });
+    /* ]]> */
     </script>
 
    </body>

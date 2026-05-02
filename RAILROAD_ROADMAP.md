@@ -64,3 +64,8 @@ This document outlines the tasks required to implement the automated railroad di
 
 ## Phase 8: Content Enrichment
 - [x] 8.1 Extract and display rule descriptions from ANTLR4 comments.
+
+## Phase 9: Advanced Rule Organization & Search
+- [x] 9.1 Implement rule categorization using `@category` tags.
+- [x] 9.2 Group rules by category in the generated documentation.
+- [x] 9.3 Enhance search functionality to include rule descriptions and handle category groupings.

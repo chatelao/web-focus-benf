@@ -2,8 +2,10 @@ grammar WebFocusReport;
 
 start: (request | dm_command | join_command | set_command | define_file | compound_layout_block)* EOF;
 
+// @category Report Requests
 request: table_file (verb_command | by_command | across_command | where_command | when_command | show_command | heading_command | footing_command | on_command | compute_command | recap_command | dm_command | STRING)* end_command;
 
+// @category Report Requests
 compound_layout_block: COMPOUND LAYOUT output_command (layout_statement)* end_command (request | dm_command | join_command | set_command | define_file)* COMPOUND END;
 
 // @inline
@@ -38,8 +40,10 @@ recap_option: as_phrase
 
 format_name: NAME (DOT NUMBER)? (NAME | NUMBER)*;
 
+// @category Environment
 join_command: JOIN (CLEAR asterisk | (LEFT? OUTER)? qualified_name IN qualified_name TO ALL? qualified_name IN qualified_name (AS NAME)?) SEMI?;
 
+// @category Environment
 set_command: SET hyphenated_name (EQ? set_value)? SEMI?;
 
 set_value: hyphenated_name | STRING;
@@ -48,6 +52,7 @@ hyphenated_name: (identifier | NUMBER | AMPER_VAR) (dm_token | SUB_OP (identifie
 
 dm_token: LABEL_DM | SET_DM | GOTO_DM | REPEAT_DM | IF_DM | TYPE_DM | INCLUDE_DM | RUN_DM | EXIT_DM;
 
+// @category Dialogue Manager
 dm_command: dm_set
           | dm_goto
           | dm_label
@@ -80,8 +85,10 @@ dm_run: RUN_DM SEMI?;
 
 dm_exit: EXIT_DM SEMI?;
 
+// @category Expressions
 dm_expression: dm_if_expression;
 
+// @category Expressions
 dm_if_expression: IF dm_logical_expression THEN dm_expression ELSE dm_expression
                 | dm_logical_expression;
 
@@ -153,8 +160,13 @@ amper_var: AMPER_VAR;
 // @inline
 table_file: TABLE FILE qualified_name;
 
+// @category Report Requests
 verb_command: verb (field_list | asterisk);
 
+/**
+ * Supported report verbs.
+ * @category Report Requests
+ */
 verb: PRINT | SUM | LIST | COUNT | WRITE | ADD;
 
 field_list: THE? field_or_prefixed (field_separator? field_or_prefixed)*;
@@ -169,6 +181,7 @@ as_phrase: AS STRING;
 
 asterisk: '*';
 
+// @category Report Requests
 by_command: RANKED? BY sort_options? field HIERARCHY? summarize_command? NOPRINT?;
 
 across_command: ACROSS sort_options? field (ACROSS_TOTAL as_phrase?)? NOPRINT?;
@@ -180,8 +193,10 @@ show_command: SHOW (UP | DOWN) dm_primary TO (UP | DOWN) dm_primary;
 sort_options: (HIGHEST | LOWEST | TOP | BOTTOM) NUMBER?
             | NUMBER;
 
+// @category Report Requests
 where_command: WHERE TOTAL? dm_logical_expression SEMI?;
 
+// @category Report Requests
 heading_command: HEADING CENTER? STRING+;
 
 footing_command: FOOTING CENTER? STRING+;
