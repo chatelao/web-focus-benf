@@ -55,3 +55,6 @@ This document outlines the tasks required to implement the automated railroad di
 - [x] 6.2 Integrate links to railroad diagrams into the project README.
 - [x] 6.3 Add 'Back to Index' navigation to generated diagrams.
 - [x] 6.4 Implement rule-filtering capability in grammar documentation.
+- [x] 6.5 Add 'Clear' button to the search input.
+- [x] 6.6 Display result count during filtering.
+- [x] 6.7 Implement highlighting for the active (target) rule.
