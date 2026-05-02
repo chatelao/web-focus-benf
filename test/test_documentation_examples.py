@@ -23,9 +23,8 @@ class TestDocumentationExamples(unittest.TestCase):
 
         # List of files known to fail due to missing grammar features
         known_failures = {
-            'project5_drill_through/main_controller.fex': '-HTMLFORM not supported',
-            'project5_drill_through/detail_report.fex': 'External reference from main_controller',
-            'project5_drill_through/summary_report.fex': 'External reference from main_controller'
+            'project5_drill_through/detail_report.fex': 'PAGE-BREAK not supported',
+            'project5_drill_through/summary_report.fex': 'OPEN/CLOSE not supported'
         }
 
         for root, dirs, files in os.walk(examples_dir):

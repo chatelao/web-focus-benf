@@ -149,6 +149,11 @@ class WebFocusReportVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by WebFocusReportParser#dm_htmlform.
+    def visitDm_htmlform(self, ctx:WebFocusReportParser.Dm_htmlformContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by WebFocusReportParser#dm_expression.
     def visitDm_expression(self, ctx:WebFocusReportParser.Dm_expressionContext):
         return self.visitChildren(ctx)
