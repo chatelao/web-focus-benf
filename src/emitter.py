@@ -501,6 +501,15 @@ class PostgresEmitter:
             group_by_fields.append(sql_field_expr)
             order_by_phrases.append(f"{sql_field_expr} {direction}")
 
+        # Handle PAGE-BREAK and other markers as comments
+        for comp in instr.components:
+            if comp.__class__.__name__ == 'PageBreak':
+                select_fields.append("/* PAGE-BREAK */")
+            elif comp.__class__.__name__ == 'OnCommand':
+                for action in comp.actions:
+                    if action.__class__.__name__ == 'PageBreak':
+                        select_fields.append(f"/* PAGE-BREAK ON {comp.target} */")
+
         # Verbs and Fields
         verb_commands = [c for c in instr.components if c.__class__.__name__ == 'VerbCommand']
         for vc in verb_commands:

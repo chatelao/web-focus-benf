@@ -186,8 +186,12 @@ class SummarizeCommand(Command):
 
 class OutputCommand(Command):
     """Represents an output command (HOLD, PCHOLD, SAVE, SAVB)."""
-    def __init__(self, output_type, filename=None, format=None, **kwargs):
-        super().__init__(output_type=output_type, filename=filename, format=format, **kwargs)
+    def __init__(self, output_type, filename=None, format=None, open_close=None, **kwargs):
+        super().__init__(output_type=output_type, filename=filename, format=format, open_close=open_close, **kwargs)
+
+class PageBreak(Command):
+    """Represents a PAGE-BREAK command."""
+    pass
 
 class OnCommand(Command):
     """Represents an ON command (ON TABLE or ON field)."""

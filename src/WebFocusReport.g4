@@ -15,7 +15,7 @@ layout_statement: (identifier | TYPE) EQ layout_value (COMMA layout_property)* (
 layout_property: (identifier | TYPE) EQ layout_value;
 
 // @inline
-layout_value: qualified_name
+layout_value: qualified_name ('(' layout_value (layout_value | COMMA)* ')')?
             | NUMBER
             | dm_float
             | '(' layout_value (layout_value | COMMA)* ')'
@@ -222,13 +222,14 @@ on_table_options: (SUBHEAD | SUBFOOT) CENTER? STRING+
 
 on_field_options: (SUBHEAD | SUBFOOT) CENTER? STRING+
                 | summarize_command
-                | recap_command;
+                | recap_command
+                | PAGE_BREAK;
 
 summarize_command: (SUBTOTAL | SUB_TOTAL | SUMMARIZE | RECOMPUTE) (summarize_options? (field as_phrase? | as_phrase) | summarize_options)?;
 
 summarize_options: ROLL_DOT (prefix_operator DOT)* | (prefix_operator DOT)+;
 
-output_command: (HOLD | PCHOLD | SAVE | SAVB) (AS qualified_name)? (FORMAT (NAME | verb))?;
+output_command: (HOLD | PCHOLD | SAVE | SAVB) (AS qualified_name)? (FORMAT (NAME | verb))? (OPEN | CLOSE)?;
 
 merge_command: MERGE INTO FILE qualified_name matching_clause when_matched_clause? when_not_matched_clause?;
 
@@ -254,7 +255,8 @@ identifier: NAME
           | MATCHING | MATCHED | UPDATE | INSERT | INTO
           | HEADING | FOOTING | SUBHEAD | SUBFOOT | FORMAT
           | TIMES | WHILE | UNTIL | FOR | STEP | TOP | BOTTOM | RANKED | NOPRINT | AS | IN
-          | HIERARCHY | WHEN | SHOW | UP | DOWN
+          | HIERARCHY | WHEN | SHOW | UP | DOWN | OPEN | CLOSE | PAGE_BREAK | DRILLTHROUGH
+          | COLUMN | LINE | ITEM | COLOR
           ;
 
 // @internal
@@ -403,6 +405,14 @@ PCHOLD: [pP][cC][hH][oO][lL][dD];
 SAVE: [sS][aA][vV][eE];
 SAVB: [sS][aA][vV][bB];
 FORMAT: [fF][oO][rR][mM][aA][tT];
+OPEN: [oO][pP][eE][nN];
+CLOSE: [cC][lL][oO][sS][eE];
+PAGE_BREAK: [pP][aA][gG][eE] '-' [bB][rR][eE][aA][kK];
+DRILLTHROUGH: [dD][rR][iI][lL][lL][tT][hH][rR][oO][uU][gG][hH];
+COLUMN: [cC][oO][lL][uU][mM][nN];
+LINE: [lL][iI][nN][eE];
+ITEM: [iI][tT][eE][mM];
+COLOR: [cC][oO][lL][oO][rR];
 ROLL_DOT: [rR][oO][lL][lL] '.';
 
 AVE: [aA][vV][eE];
