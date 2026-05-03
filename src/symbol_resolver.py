@@ -40,13 +40,13 @@ class SymbolResolver:
 
     def visit_SetDM(self, node):
         """Registers a Dialogue Manager variable definition from -SET."""
-        self.symbol_table.define(node.variable, symbol_type='DM_VAR')
+        self.symbol_table.define_global(node.variable, symbol_type='DM_VAR')
         self.visit(node.expression)
 
     def visit_Repeat(self, node):
         """Registers a Dialogue Manager loop variable definition from -REPEAT."""
         if hasattr(node, 'loop_var') and node.loop_var:
-            self.symbol_table.define(node.loop_var, symbol_type='DM_VAR')
+            self.symbol_table.define_global(node.loop_var, symbol_type='DM_VAR')
 
         # Visit all relevant components
         for attr in ['condition', 'times', 'start_val', 'end_val', 'step_val']:

@@ -51,6 +51,12 @@ class SymbolTable:
         self.current_scope.define(symbol)
         return symbol
 
+    def define_global(self, name, symbol_type=None, **metadata):
+        """Defines a new symbol in the global scope."""
+        symbol = Symbol(name, symbol_type, **metadata)
+        self.global_scope.define(symbol)
+        return symbol
+
     def lookup(self, name, local_only=False):
         """Resolves a symbol name to its definition."""
         return self.current_scope.lookup(name, local_only)

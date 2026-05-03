@@ -198,7 +198,7 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [x] 5.1.3.10.4 Support `DRILLTHROUGH` in `SET STYLE` blocks.
   - [ ] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.
     - [ ] 5.1.4.1 Symbol Resolution Validation:
-      - [ ] 5.1.4.1.1 Global vs. Local scope resolution for AmperVars.
+      - [x] 5.1.4.1.1 Global vs. Local scope resolution for AmperVars.
       - [ ] 5.1.4.1.2 Multi-segment field resolution in joined Master Files.
       - [ ] 5.1.4.1.3 Virtual field shadowing rules (DEFINE vs. Master File).
     - [ ] 5.1.4.2 Type Consistency:
