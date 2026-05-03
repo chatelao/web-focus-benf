@@ -390,25 +390,45 @@ class PostgresEmitter:
 
         return f"/* Unsupported instruction: {class_name} */"
 
-    def _emit_compound_layout(self, instr):
-        """
-        Translates ir.CompoundLayout instruction into SQL comments.
-        """
-        output = instr.output_command
+    def _format_layout_value(self, val):
+        """Helper to format layout values for comments."""
+        if isinstance(val, list):
+            return "(" + " ".join(self._format_layout_value(v) for v in val) + ")"
+        return str(val)
+
+    def _emit_layout_statements(self, statements, indent=0):
+        """Helper to emit layout/style statements as comments."""
+        res = []
+        indent_str = " " * indent
+        for stmt in statements:
+            line = f"{indent_str}{stmt.name}={self._format_layout_value(stmt.value)}"
+            if hasattr(stmt, 'properties') and stmt.properties:
+                props = [f"{p.name}={self._format_layout_value(p.value)}" for p in stmt.properties]
+                line += f", {', '.join(props)}"
+            res.append(f"/* {line} */")
+        return res
+
+    def _emit_output_command(self, output):
+        """Helper to emit output commands (HOLD, PCHOLD, etc.) as comments."""
         output_str = f"{output.output_type}"
         if output.filename:
             output_str += f" {output.filename}"
         if output.format:
             output_str += f" FORMAT {output.format}"
+        if getattr(output, 'open_close', None):
+            output_str += f" {output.open_close}"
+        return f"/* {output_str} */"
+
+    def _emit_compound_layout(self, instr):
+        """
+        Translates ir.CompoundLayout instruction into SQL comments.
+        """
+        output_cmd_str = self._emit_output_command(instr.output_command)
+        # Strip outer /* and */
+        output_str = output_cmd_str.strip().lstrip('/*').rstrip('*/').strip()
 
         lines = [f"/* COMPOUND LAYOUT {output_str} */"]
-        for stmt in instr.statements:
-            line = f"/*   {stmt.name}={stmt.value}"
-            if stmt.properties:
-                props = [f"{p.name}={p.value}" for p in stmt.properties]
-                line += f", {', '.join(props)}"
-            line += " */"
-            lines.append(line)
+        lines.extend(self._emit_layout_statements(instr.statements, indent=2))
         return "\n".join(lines)
 
     def _emit_report(self, instr):
@@ -465,6 +485,7 @@ class PostgresEmitter:
 
         # Helper to qualify field names if joins are present
         def qualify_field(fname, source_fn=None):
+            if not fname: return ""
             if '.' in fname:
                 parts = fname.split('.')
                 # Qualify with alias if file name is known
@@ -487,6 +508,8 @@ class PostgresEmitter:
             # For now, let's assume it belongs to the primary table if not found in virtual fields.
             return f"{table_name}.{fname}"
 
+        report_comments = []
+
         # Sort commands (BY, ACROSS)
         sort_commands = [c for c in instr.components if c.__class__.__name__ == 'SortCommand']
         for sc in sort_commands:
@@ -497,6 +520,9 @@ class PostgresEmitter:
                  sql_field_expr = self.emit_expression(expr, in_query=True, virtual_fields=file_virtual_fields, qualifier=lambda f: qualify_field(f, source_fn))
 
             direction = "DESC" if sc.options.get("order") == "HIGHEST" else "ASC"
+
+            if sc.is_hierarchy:
+                report_comments.append(f"/* BY {field_name} HIERARCHY */")
 
             # Use alias if present in FieldSelection
             display_name = sql_field_expr
@@ -514,12 +540,34 @@ class PostgresEmitter:
 
         # Handle PAGE-BREAK and other markers as comments
         for comp in instr.components:
-            if comp.__class__.__name__ == 'PageBreak':
-                select_fields.append("/* PAGE-BREAK */")
-            elif comp.__class__.__name__ == 'OnCommand':
+            class_name = comp.__class__.__name__
+            if class_name == 'PageBreak':
+                report_comments.append("/* PAGE-BREAK */")
+            elif class_name == 'WhenCommand':
+                cond = self.emit_expression(comp.condition, in_query=True, virtual_fields=file_virtual_fields, qualifier=qualify_field)
+                report_comments.append(f"/* WHEN {cond} */")
+            elif class_name == 'ShowCommand':
+                report_comments.append(f"/* SHOW {comp.from_direction} {comp.from_value.value} TO {comp.to_direction} {comp.to_value.value} */")
+            elif class_name in ('Heading', 'Footing', 'Subhead', 'Subfoot'):
+                centered = " CENTER" if getattr(comp, 'centered', False) else ""
+                report_comments.append(f"/* {class_name.upper()}{centered} \"{comp.text}\" */")
+            elif class_name == 'OutputCommand':
+                report_comments.append(self._emit_output_command(comp))
+            elif class_name == 'StyleBlock':
+                report_comments.append("/* SET STYLE * */")
+                report_comments.extend(self._emit_layout_statements(comp.statements, indent=2))
+                report_comments.append("/* ENDSTYLE */")
+            elif class_name == 'OnCommand':
                 for action in comp.actions:
-                    if action.__class__.__name__ == 'PageBreak':
-                        select_fields.append(f"/* PAGE-BREAK ON {comp.target} */")
+                    action_class = action.__class__.__name__
+                    if action_class == 'PageBreak':
+                        report_comments.append(f"/* PAGE-BREAK ON {comp.target} */")
+                    elif action_class == 'OutputCommand':
+                        report_comments.append(f"/* ON {comp.target} {self._emit_output_command(action).lstrip('/*').rstrip('*/').strip()} */")
+                    elif action_class == 'StyleBlock':
+                        report_comments.append(f"/* ON {comp.target} SET STYLE * */")
+                        report_comments.extend(self._emit_layout_statements(action.statements, indent=2))
+                        report_comments.append("/* ENDSTYLE */")
 
         # Verbs and Fields
         verb_commands = [c for c in instr.components if c.__class__.__name__ == 'VerbCommand']
@@ -590,7 +638,10 @@ class PostgresEmitter:
         if not select_fields:
             select_fields = ['*']
 
-        sql = f"/* {instr.filename} */\nSELECT {', '.join(select_fields)} FROM {table_name}"
+        sql = f"/* {instr.filename} */"
+        if report_comments:
+            sql += "\n" + "\n".join(report_comments)
+        sql += f"\nSELECT {', '.join(select_fields)} FROM {table_name}"
         if join_clauses:
             sql += "\n" + "\n".join(join_clauses)
 
