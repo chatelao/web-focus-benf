@@ -38,13 +38,7 @@ class TypeInferrer:
         """Extracts the base type or normalized format string from a WebFOCUS format string."""
         if not format_str:
             return None
-        format_str = format_str.upper()
-        if format_str.startswith('A'):
-            return 'A'
-        if format_str.startswith(('I', 'F', 'D', 'P')):
-            # Return the full format for numeric types to allow precision mapping
-            return format_str
-        return format_str
+        return format_str.upper()
 
     def visit_Literal(self, node):
         if isinstance(node.value, int):
