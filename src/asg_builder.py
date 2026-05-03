@@ -369,9 +369,14 @@ class ReportASGBuilder(WebFocusReportVisitor):
         # Case: INCLUDES / EXCLUDES
         if ctx.INCLUDES() or ctx.EXCLUDES():
             left = self.visit(ctx.dm_concat_expression(0))
-            op = "INCLUDES" if ctx.INCLUDES() else "EXCLUDES"
+            op = "CONTAINS" if ctx.INCLUDES() else "OMITS"
             values = [self.visit(e) for i, e in enumerate(ctx.dm_concat_expression()) if i > 0]
-            return BinaryOperation(left=left, operator=op, right=values)
+
+            node = BinaryOperation(left=left, operator=op, right=values[0])
+            for i in range(1, len(values)):
+                right_expr = BinaryOperation(left=left, operator=op, right=values[i])
+                node = BinaryOperation(left=node, operator="AND", right=right_expr)
+            return node
 
         # Case: Relational op with optional OR
         if ctx.dm_relational_op():

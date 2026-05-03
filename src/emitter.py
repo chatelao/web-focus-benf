@@ -294,8 +294,23 @@ class PostgresEmitter:
                 'LE': '<=',
                 'AND': 'AND',
                 'OR': 'OR',
-                'CONCAT': '||'
+                'CONCAT': '||',
+                'EXCEEDS': '>',
+                'IS LESS THAN': '<',
+                'IS MORE THAN': '>',
+                'IS GREATER THAN': '>',
+                'ISLESSTHAN': '<',
+                'ISMORETHAN': '>',
+                'ISGREATERTHAN': '>',
+                'ISNOT': '<>',
+                'IS NOT': '<>'
             }
+
+            if op == 'CONTAINS':
+                return f"({left} LIKE '%' || {right} || '%')"
+            if op == 'OMITS':
+                return f"({left} NOT LIKE '%' || {right} || '%')"
+
             sql_op = op_mapping.get(op, op)
             return f"({left} {sql_op} {right})"
 
