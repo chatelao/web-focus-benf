@@ -35,16 +35,15 @@ class TypeInferrer:
         return None
 
     def _get_base_type(self, format_str):
-        """Extracts the base type (A, I, F, LOGICAL) from a WebFOCUS format string."""
+        """Extracts the base type or normalized format string from a WebFOCUS format string."""
         if not format_str:
             return None
         format_str = format_str.upper()
         if format_str.startswith('A'):
             return 'A'
-        if format_str.startswith('I'):
-            return 'I'
-        if format_str.startswith('F') or format_str.startswith('D') or format_str.startswith('P'):
-            return 'F'
+        if format_str.startswith(('I', 'F', 'D', 'P')):
+            # Return the full format for numeric types to allow precision mapping
+            return format_str
         return format_str
 
     def visit_Literal(self, node):
@@ -102,16 +101,29 @@ class TypeInferrer:
         node.data_type = 'A'
         return node.data_type
 
+    def _pick_precise_type(self, type1, type2, category_prefix):
+        """Helper to pick the more specific/precise type between two format strings."""
+        t1 = type1 if type1 and type1.startswith(category_prefix) else None
+        t2 = type2 if type2 and type2.startswith(category_prefix) else None
+
+        if not t1: return t2
+        if not t2: return t1
+
+        # Pick the one with more information (longer string usually means precision/scale)
+        return t1 if len(t1) >= len(t2) else t2
+
     def visit_BinaryOperation(self, node):
         left_type = self.visit(node.left)
         right_type = self.visit(node.right)
 
         op = node.operator.upper()
         if op in ('+', '-', '*', '/'):
-            if left_type == 'F' or right_type == 'F':
-                node.data_type = 'F'
-            elif left_type == 'I' or right_type == 'I':
-                node.data_type = 'I'
+            if any(t and t.startswith(('F', 'D', 'P')) for t in (left_type, right_type)):
+                # If either is float-like, result is float-like.
+                node.data_type = self._pick_precise_type(left_type, right_type, ('F', 'D', 'P')) or 'F'
+            elif any(t and t.startswith('I') for t in (left_type, right_type)):
+                # If both are integer-like, pick the largest
+                node.data_type = self._pick_precise_type(left_type, right_type, 'I') or 'I'
             else:
                 node.data_type = left_type or right_type
         elif op in ('|', '||', 'CONCAT'):
@@ -137,10 +149,10 @@ class TypeInferrer:
         then_type = self.visit(node.then_expr)
         else_type = self.visit(node.else_expr)
 
-        if then_type == 'F' or else_type == 'F':
-            node.data_type = 'F'
-        elif then_type == 'I' or else_type == 'I':
-            node.data_type = 'I'
+        if any(t and t.startswith(('F', 'D', 'P')) for t in (then_type, else_type)):
+            node.data_type = self._pick_precise_type(then_type, else_type, ('F', 'D', 'P')) or 'F'
+        elif any(t and t.startswith('I') for t in (then_type, else_type)):
+            node.data_type = self._pick_precise_type(then_type, else_type, 'I') or 'I'
         else:
             node.data_type = then_type or else_type
 

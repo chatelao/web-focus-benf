@@ -59,7 +59,7 @@ class TestEmitter(unittest.TestCase):
         variables = emitter.get_variables_from_cfg(cfg)
 
         self.assertEqual(variables['v_VAR1'], 'INTEGER')
-        self.assertEqual(variables['v_VAR2'], 'NUMERIC')
+        self.assertEqual(variables['v_VAR2'], 'DOUBLE PRECISION')
         self.assertEqual(variables['v_VAR3'], 'BOOLEAN')
 
     def test_emit_expression_literals(self):
@@ -191,6 +191,18 @@ class TestEmitter(unittest.TestCase):
         self.assertIn("v_next_block TEXT;", proc)
         self.assertIn("BEGIN", proc)
         self.assertIn("v_VAR := 100;", proc)
+
+    def test_map_type_precision(self):
+        emitter = PostgresEmitter()
+        self.assertEqual(emitter._map_type('I'), 'INTEGER')
+        self.assertEqual(emitter._map_type('I4'), 'INTEGER')
+        self.assertEqual(emitter._map_type('I8'), 'BIGINT')
+        self.assertEqual(emitter._map_type('F8'), 'DOUBLE PRECISION')
+        self.assertEqual(emitter._map_type('D12'), 'DOUBLE PRECISION')
+        self.assertEqual(emitter._map_type('F8.2'), 'NUMERIC(8, 2)')
+        self.assertEqual(emitter._map_type('P9.2'), 'NUMERIC(9, 2)')
+        self.assertEqual(emitter._map_type('P9'), 'NUMERIC(9, 0)')
+        self.assertEqual(emitter._map_type('A10'), 'TEXT')
 
     def test_emit_instruction_report(self):
         emitter = PostgresEmitter()
