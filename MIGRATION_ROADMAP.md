@@ -176,7 +176,7 @@ Ensure the new system produces correct results and maintains parity with the leg
   - [ ] 5.1.3 Grammar Coverage: Ensure all core EBNF features are implemented and tested.
     - [x] 5.1.3.1 Support `ALL` keyword in `JOIN` commands.
     - [x] 5.1.3.2 Support hyphenated `SET` keywords (e.g., `ONLINE-FMT`).
-    - [ ] 5.1.3.3 Support `COMPOUND LAYOUT` structure.
+    - [x] 5.1.3.3 Support `COMPOUND LAYOUT` structure.
       - [x] 5.1.3.3.1 Grammar support for `COMPOUND LAYOUT` and `COMPOUND END`.
       - [x] 5.1.3.3.2 Grammar support for layout components (SECTION, PAGELAYOUT, COMPONENT).
       - [x] 5.1.3.3.3 ASG support for multi-component documents.
@@ -191,7 +191,7 @@ Ensure the new system produces correct results and maintains parity with the leg
     - [x] 5.1.3.9 Support Data Merge (Project 4).
       - [x] 5.1.3.9.1 Grammar for `ON TABLE MERGE INTO`.
       - [x] 5.1.3.9.2 Grammar for `MATCHING`, `WHEN MATCHED`, `WHEN NOT MATCHED`.
-    - [ ] 5.1.3.10 Support Drill Through (Project 5).
+    - [x] 5.1.3.10 Support Drill Through (Project 5).
       - [x] 5.1.3.10.1 Support `-HTMLFORM` Dialogue Manager command.
       - [x] 5.1.3.10.2 Support `OPEN` and `CLOSE` options for `PCHOLD`.
       - [x] 5.1.3.10.3 Support `PAGE-BREAK` option for `ON field`.
@@ -214,18 +214,18 @@ Ensure the new system produces correct results and maintains parity with the leg
   - [ ] 5.2.2 Documentation Examples: Validate against samples in `test/documentation_examples/`. (Verified via `test/test_documentation_examples.py`)
     - [x] 5.2.2.1 Project 1: Joined Report.
     - [x] 5.2.2.2 Project 2: Compound Layout.
-    - [ ] 5.2.2.3 Project 3: Hierarchical Cube.
+    - [x] 5.2.2.3 Project 3: Hierarchical Cube.
       - [x] 5.2.2.3.1 Parse `newgl.mas` with hierarchical metadata.
       - [x] 5.2.2.3.2 Parse `hierarchical_report.fex`.
-      - [ ] 5.2.2.3.3 End-to-end PL/pgSQL emission for hierarchical report.
-    - [ ] 5.2.2.4 Project 4: Data Merge.
+      - [x] 5.2.2.3.3 End-to-end PL/pgSQL emission for hierarchical report.
+    - [x] 5.2.2.4 Project 4: Data Merge.
       - [x] 5.2.2.4.1 Parse `data_merge.fex`.
       - [x] 5.2.2.4.2 End-to-end PL/pgSQL emission for MERGE.
-    - [ ] 5.2.2.5 Project 5: Drill Through.
-      - [ ] 5.2.2.5.1 Parse `main_controller.fex`.
-      - [ ] 5.2.2.5.2 Parse `summary_report.fex`.
-      - [ ] 5.2.2.5.3 Parse `detail_report.fex`.
-      - [ ] 5.2.2.5.4 End-to-end PL/pgSQL emission for Drill Through.
+    - [x] 5.2.2.5 Project 5: Drill Through.
+      - [x] 5.2.2.5.1 Parse `main_controller.fex`.
+      - [x] 5.2.2.5.2 Parse `summary_report.fex`.
+      - [x] 5.2.2.5.3 Parse `detail_report.fex`.
+      - [x] 5.2.2.5.4 End-to-end PL/pgSQL emission for Drill Through.
   - [ ] 5.2.3 Real-world Samples: Validate against complex samples in `test/realworld_samples/`.
 - [ ] **5.3 Performance Benchmarking:**
   - [ ] 5.3.1 Query Execution: Compare generated SQL performance vs original WebFOCUS execution.
