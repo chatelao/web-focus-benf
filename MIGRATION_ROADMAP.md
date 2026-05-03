@@ -197,6 +197,14 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [x] 5.1.3.10.2 Support `OPEN` and `CLOSE` options for `PCHOLD`.
       - [x] 5.1.3.10.3 Support `PAGE-BREAK` option for `ON field`.
       - [x] 5.1.3.10.4 Support `DRILLTHROUGH` in `SET STYLE` blocks.
+    - [x] 5.1.3.11 Support `DECODE` expression.
+      - [x] 5.1.3.11.1 Grammar support for `DECODE` syntax.
+      - [x] 5.1.3.11.2 ASG support for `DecodeExpression`.
+      - [x] 5.1.3.11.3 Emitter support for translating `DECODE` to SQL `CASE`.
+    - [ ] 5.1.3.12 Support `MATCH FILE` command.
+      - [ ] 5.1.3.12.1 Grammar support for `MATCH FILE` and its phrases (OLD-OR-NEW, etc.).
+      - [ ] 5.1.3.12.2 ASG support for multi-file merge operations.
+      - [ ] 5.1.3.12.3 IR and Emitter support for `MATCH` logic.
   - [x] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.
     - [x] 5.1.4.1 Symbol Resolution Validation:
       - [x] 5.1.4.1.1 Global vs. Local scope resolution for AmperVars.
@@ -205,7 +213,7 @@ Ensure the new system produces correct results and maintains parity with the leg
     - [x] 5.1.4.2 Type Consistency:
       - [x] 5.1.4.2.1 Numeric precision mapping (I, F, D, P to PostgreSQL).
       - [x] 5.1.4.2.2 Alpha-numeric string truncation and padding semantics. (Verified via `test/test_alpha_parity.py`)
-      - [x] 5.1.4.2.3 Date/Time format conversion parity.
+      - [x] 5.1.4.2.3 Date/Time format conversion parity. (Verified via `test/test_date_parity.py`)
     - [x] 5.1.4.3 Constant Folding Parity:
       - [x] 5.1.4.3.1 Arithmetic expression folding.
       - [x] 5.1.4.3.2 Character concatenation folding.

@@ -150,11 +150,14 @@ dm_unary_expression: (ADD_OP | SUB_OP) dm_unary_expression
 // @inline
 dm_primary: NUMBER
           | dm_float
+          | decode_expression
           | qualified_name '(' (dm_expression (COMMA dm_expression)*)? ')'
           | qualified_name
           | amper_var
           | STRING
           | '(' dm_expression ')';
+
+decode_expression: DECODE dm_primary '(' (dm_primary dm_primary)* (ELSE dm_primary)? ')';
 
 // @inline
 dm_float: NUMBER DOT NUMBER;
@@ -359,6 +362,7 @@ NOT: [nN][oO][tT];
 THEN: [tT][hH][eE][nN];
 ELSE: [eE][lL][sS][eE];
 IF: [iI][fF];
+DECODE: [dD][eE][cC][oO][dD][eE];
 
 HEADING: [hH][eE][aA][dD][iI][nN][gG];
 FOOTING: [fF][oO][oO][tT][iI][nN][gG];

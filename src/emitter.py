@@ -179,6 +179,12 @@ class PostgresEmitter:
             self._discover_vars_in_expr(node.value, variables)
         if hasattr(node, 'expression'):
             self._discover_vars_in_expr(node.expression, variables)
+        if hasattr(node, 'pairs'):
+            for val, res in node.pairs:
+                self._discover_vars_in_expr(val, variables)
+                self._discover_vars_in_expr(res, variables)
+        if hasattr(node, 'default_value'):
+            self._discover_vars_in_expr(node.default_value, variables)
         if hasattr(node, 'sources') and not isinstance(node, (asg.BinaryOperation, asg.UnaryOperation)):
             # Handle Phi sources or other lists of sources
             for s in node.sources:
@@ -352,6 +358,21 @@ class PostgresEmitter:
             expr_val = self.emit_expression(expr.expression, **kwargs)
             op = "IS NOT NULL" if expr.inverted else "IS NULL"
             return f"({expr_val} {op})"
+
+        elif class_name == 'DecodeExpression':
+            expr_val = self.emit_expression(expr.expression, **kwargs)
+            when_clauses = []
+            for val, res in expr.pairs:
+                val_sql = self.emit_expression(val, **kwargs)
+                res_sql = self.emit_expression(res, **kwargs)
+                when_clauses.append(f"WHEN {val_sql} THEN {res_sql}")
+
+            else_clause = ""
+            if expr.default_value:
+                default_sql = self.emit_expression(expr.default_value, **kwargs)
+                else_clause = f" ELSE {default_sql}"
+
+            return f"(CASE {expr_val} {' '.join(when_clauses)}{else_clause} END)"
 
         return f"/* Unknown expression: {class_name} */"
 

@@ -413,6 +413,15 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by WebFocusReportParser#decode_expression.
+    def enterDecode_expression(self, ctx:WebFocusReportParser.Decode_expressionContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#decode_expression.
+    def exitDecode_expression(self, ctx:WebFocusReportParser.Decode_expressionContext):
+        pass
+
+
     # Enter a parse tree produced by WebFocusReportParser#dm_float.
     def enterDm_float(self, ctx:WebFocusReportParser.Dm_floatContext):
         pass
