@@ -506,34 +506,80 @@ class PostgresEmitter:
         table_name = self._resolve_table_name(filename)
         alias_map = {filename: table_name}
 
-        # Handle joins
-        join_clauses = []
-        # Local copy of virtual fields for this report, merged from joined files
+        # Local copy of virtual fields for this report, merged from all possible joined files
         # Map: field_name -> (expression, format, original_filename)
         report_virtual_fields = {}
         if filename in self.virtual_fields:
             for f, (e, fmt) in self.virtual_fields[filename].items():
                 report_virtual_fields[f] = (e, fmt, filename)
 
+        # Populate alias map and merged virtual fields
         for join in instr.joins:
-            join_type = "LEFT OUTER JOIN" if join.outer else "JOIN"
             right_table = self._resolve_table_name(join.right_file)
             right_alias = join.join_as if join.join_as else right_table
             alias_map[join.right_file] = right_alias
 
-            # Merge virtual fields from joined file
             if join.right_file in self.virtual_fields:
                 for f, (e, fmt) in self.virtual_fields[join.right_file].items():
                     report_virtual_fields[f] = (e, fmt, join.right_file)
 
-            # Resolve left field - might need qualification if multiple tables
-            left_table_alias = alias_map.get(join.left_file, join.left_file)
-            alias_part = f" {right_alias}" if right_alias != right_table else ""
+        # Analysis phase: identify used files and fields
+        used_files = {filename}
 
-            join_clauses.append(f"{join_type} {right_table}{alias_part} ON {left_table_alias}.{join.left_field} = {right_alias}.{join.right_field}")
+        # Map from alias or filename to the original filename
+        alias_to_filename = {filename: filename}
+        for join in instr.joins:
+            alias = join.join_as if join.join_as else join.right_file
+            alias_to_filename[alias] = join.right_file
+            alias_to_filename[join.right_file] = join.right_file
+
+        def mark_field_used(fname, source_fn=None):
+            if not fname: return
+            if '.' in fname:
+                parts = fname.split('.')
+                qual = parts[0]
+                if qual in alias_to_filename:
+                    used_files.add(alias_to_filename[qual])
+            elif source_fn:
+                used_files.add(source_fn)
+            elif fname in report_virtual_fields:
+                expr, fmt, s_fn = report_virtual_fields[fname]
+                used_files.add(s_fn)
+                self._collect_used_files_in_expr(expr, mark_field_used, s_fn)
+            else:
+                # Unqualified name.
+                # Without metadata, we assume it's the primary file,
+                # unless it matches a virtual field which we already handled above.
+                used_files.add(filename)
 
         # Get virtual fields for this file
         file_virtual_fields = {f: (e_fmt[0], e_fmt[1]) for f, e_fmt in report_virtual_fields.items()}
+
+        for comp in instr.components:
+            self._collect_used_files_recursive(comp, mark_field_used)
+
+        # Ensure all files in a join chain are kept if their dependents are kept
+        changed = True
+        while changed:
+            changed = False
+            for join in instr.joins:
+                if join.right_file in used_files:
+                    if join.left_file not in used_files:
+                        used_files.add(join.left_file)
+                        changed = True
+
+        # Build join clauses for used files only
+        join_clauses = []
+        for join in instr.joins:
+            if join.right_file not in used_files:
+                continue
+
+            join_type = "LEFT OUTER JOIN" if join.outer else "JOIN"
+            right_table = self._resolve_table_name(join.right_file)
+            right_alias = alias_map[join.right_file]
+            left_table_alias = alias_map.get(join.left_file, join.left_file)
+            alias_part = f" {right_alias}" if right_alias != right_table else ""
+            join_clauses.append(f"{join_type} {right_table}{alias_part} ON {left_table_alias}.{join.left_field} = {right_alias}.{join.right_field}")
         select_fields = []
         where_clauses = []
         group_by_fields = []
@@ -852,6 +898,55 @@ class PostgresEmitter:
                 res.append(f"{target} := {source};")
 
         return "\n".join(res)
+
+    def _collect_used_files_recursive(self, node, mark_field_used):
+        if node is None: return
+        class_name = node.__class__.__name__
+
+        if class_name == 'VerbCommand':
+            for f in node.fields:
+                if f.name != '*':
+                    mark_field_used(f.name)
+        elif class_name == 'SortCommand':
+            mark_field_used(node.field.name)
+        elif class_name == 'ComputeCommand':
+            self._collect_used_files_in_expr(node.expression, mark_field_used)
+        elif class_name == 'WhereClause':
+            self._collect_used_files_in_expr(node.condition, mark_field_used)
+        elif class_name == 'WhenCommand':
+            self._collect_used_files_in_expr(node.condition, mark_field_used)
+        elif class_name == 'OnCommand':
+            for action in node.actions:
+                self._collect_used_files_recursive(action, mark_field_used)
+
+    def _collect_used_files_in_expr(self, expr, mark_field_used, source_fn=None):
+        if expr is None: return
+        class_name = expr.__class__.__name__
+
+        if class_name == 'Identifier':
+            mark_field_used(expr.name, source_fn)
+        elif class_name == 'BinaryOperation':
+            self._collect_used_files_in_expr(expr.left, mark_field_used, source_fn)
+            self._collect_used_files_in_expr(expr.right, mark_field_used, source_fn)
+        elif class_name == 'UnaryOperation':
+            self._collect_used_files_in_expr(expr.operand, mark_field_used, source_fn)
+        elif class_name == 'FunctionCall':
+            for arg in expr.arguments:
+                self._collect_used_files_in_expr(arg, mark_field_used, source_fn)
+        elif class_name == 'IfExpression':
+            self._collect_used_files_in_expr(expr.condition, mark_field_used, source_fn)
+            self._collect_used_files_in_expr(expr.then_expr, mark_field_used, source_fn)
+            self._collect_used_files_in_expr(expr.else_expr, mark_field_used, source_fn)
+        elif class_name == 'BetweenExpression':
+            self._collect_used_files_in_expr(expr.expression, mark_field_used, source_fn)
+            self._collect_used_files_in_expr(expr.lower, mark_field_used, source_fn)
+            self._collect_used_files_in_expr(expr.upper, mark_field_used, source_fn)
+        elif class_name == 'InExpression':
+            self._collect_used_files_in_expr(expr.expression, mark_field_used, source_fn)
+            for val in expr.values:
+                self._collect_used_files_in_expr(val, mark_field_used, source_fn)
+        elif class_name == 'IsMissingExpression':
+            self._collect_used_files_in_expr(expr.expression, mark_field_used, source_fn)
 
     def _indent(self, text, spaces):
         """
