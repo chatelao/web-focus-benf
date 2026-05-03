@@ -475,6 +475,49 @@ class PostgresEmitter:
             output_str += f" {output.open_close}"
         return f"/* {output_str} */"
 
+    def _format_summarize(self, cmd):
+        """Helper to format a SummarizeCommand (SUBTOTAL, RECOMPUTE, etc.) as a string."""
+        parts = [cmd.verb]
+        if cmd.options:
+            if cmd.options.get("roll"):
+                parts.append("ROLL.")
+            prefixes = cmd.options.get("prefixes", [])
+            for p in prefixes:
+                parts.append(f"{p}.")
+
+        if cmd.field:
+            parts.append(cmd.field)
+
+        if cmd.alias:
+            parts.append(f"AS '{cmd.alias}'")
+
+        return " ".join(parts)
+
+    def _format_recap(self, cmd):
+        """Helper to format a RecapCommand as a string."""
+        lines = ["RECAP"]
+        for assign in cmd.assignments:
+            line = f"  {assign.name}"
+            if assign.column_ref:
+                col_ref = self.emit_expression(assign.column_ref)
+                line += f"({col_ref})"
+
+            if assign.format:
+                line += f"/{assign.format}"
+
+            expr = self.emit_expression(assign.expression)
+            line += f" = {expr};"
+
+            if assign.alias:
+                line += f" AS '{assign.alias}'"
+            if assign.indent:
+                line += f" INDENT {assign.indent}"
+            if assign.noprint:
+                line += " NOPRINT"
+
+            lines.append(line)
+        return "\n".join(lines)
+
     def _emit_compound_layout(self, instr):
         """
         Translates ir.CompoundLayout instruction into SQL comments.
@@ -670,6 +713,10 @@ class PostgresEmitter:
             class_name = comp.__class__.__name__
             if class_name == 'PageBreak':
                 report_comments.append("/* PAGE-BREAK */")
+            elif class_name == 'SummarizeCommand':
+                report_comments.append(f"/* {self._format_summarize(comp)} */")
+            elif class_name == 'RecapCommand':
+                report_comments.append(f"/* {self._format_recap(comp)} */")
             elif class_name == 'WhenCommand':
                 cond = self.emit_expression(comp.condition, in_query=True, virtual_fields=file_virtual_fields, qualifier=qualify_field)
                 report_comments.append(f"/* WHEN {cond} */")
@@ -689,6 +736,10 @@ class PostgresEmitter:
                     action_class = action.__class__.__name__
                     if action_class == 'PageBreak':
                         report_comments.append(f"/* PAGE-BREAK ON {comp.target} */")
+                    elif action_class == 'SummarizeCommand':
+                        report_comments.append(f"/* ON {comp.target} {self._format_summarize(action)} */")
+                    elif action_class == 'RecapCommand':
+                        report_comments.append(f"/* ON {comp.target} {self._format_recap(action)} */")
                     elif action_class == 'OutputCommand':
                         report_comments.append(f"/* ON {comp.target} {self._emit_output_command(action).lstrip('/*').rstrip('*/').strip()} */")
                     elif action_class == 'StyleBlock':
