@@ -104,6 +104,9 @@ class PostgresEmitter:
         if data_type == 'LOGICAL':
             return 'BOOLEAN'
         if data_type.startswith('A'):
+            match = re.search(r'A(\d+)', data_type)
+            if match:
+                return f"CHAR({match.group(1)})"
             return 'TEXT'
 
         # Date and Date-Time mapping
@@ -251,9 +254,21 @@ class PostgresEmitter:
                 if virtual_fields and expr.name in virtual_fields:
                     # Recursively emit the virtual field expression.
                     # We expand it WITHOUT internal aggregation, then wrap the result if needed.
+                    entry = virtual_fields[expr.name]
+                    if isinstance(entry, tuple):
+                        expr_val, fmt = entry
+                    else:
+                        expr_val, fmt = entry, None
+
                     new_kwargs = kwargs.copy()
                     new_kwargs['aggregate'] = False
-                    expanded = self.emit_expression(virtual_fields[expr.name], **new_kwargs)
+                    expanded = self.emit_expression(expr_val, **new_kwargs)
+
+                    if fmt and fmt.upper().startswith('A'):
+                        pg_type = self._map_type(fmt)
+                        if pg_type.startswith('CHAR'):
+                            expanded = f"CAST({expanded} AS {pg_type})"
+
                     if aggregate:
                         return f"SUM({expanded})"
                     return expanded
@@ -413,7 +428,8 @@ class PostgresEmitter:
             if instr.filename not in self.virtual_fields:
                 self.virtual_fields[instr.filename] = {}
             for assignment in instr.assignments:
-                self.virtual_fields[instr.filename][assignment.name] = assignment.expression
+                # Store (expression, format)
+                self.virtual_fields[instr.filename][assignment.name] = (assignment.expression, assignment.format)
             return f"/* DEFINE FILE {instr.filename} ... */"
 
         elif class_name == 'HtmlForm':
@@ -493,8 +509,11 @@ class PostgresEmitter:
         # Handle joins
         join_clauses = []
         # Local copy of virtual fields for this report, merged from joined files
-        # Map: field_name -> (expression, original_filename)
-        report_virtual_fields = {f: (e, filename) for f, e in self.virtual_fields.get(filename, {}).items()}
+        # Map: field_name -> (expression, format, original_filename)
+        report_virtual_fields = {}
+        if filename in self.virtual_fields:
+            for f, (e, fmt) in self.virtual_fields[filename].items():
+                report_virtual_fields[f] = (e, fmt, filename)
 
         for join in instr.joins:
             join_type = "LEFT OUTER JOIN" if join.outer else "JOIN"
@@ -504,8 +523,8 @@ class PostgresEmitter:
 
             # Merge virtual fields from joined file
             if join.right_file in self.virtual_fields:
-                for f, e in self.virtual_fields[join.right_file].items():
-                    report_virtual_fields[f] = (e, join.right_file)
+                for f, (e, fmt) in self.virtual_fields[join.right_file].items():
+                    report_virtual_fields[f] = (e, fmt, join.right_file)
 
             # Resolve left field - might need qualification if multiple tables
             left_table_alias = alias_map.get(join.left_file, join.left_file)
@@ -514,7 +533,7 @@ class PostgresEmitter:
             join_clauses.append(f"{join_type} {right_table}{alias_part} ON {left_table_alias}.{join.left_field} = {right_alias}.{join.right_field}")
 
         # Get virtual fields for this file
-        file_virtual_fields = {f: e for f, (e, fn) in report_virtual_fields.items()}
+        file_virtual_fields = {f: (e_fmt[0], e_fmt[1]) for f, e_fmt in report_virtual_fields.items()}
         select_fields = []
         where_clauses = []
         group_by_fields = []
@@ -556,8 +575,14 @@ class PostgresEmitter:
             field_name = sc.field.name
             sql_field_expr = qualify_field(field_name)
             if field_name in report_virtual_fields:
-                 expr, source_fn = report_virtual_fields[field_name]
+                 expr, fmt, source_fn = report_virtual_fields[field_name]
                  sql_field_expr = self.emit_expression(expr, in_query=True, virtual_fields=file_virtual_fields, qualifier=lambda f: qualify_field(f, source_fn))
+
+                 # Apply casting if format is Alpha fixed-length
+                 if fmt and fmt.upper().startswith('A'):
+                     pg_type = self._map_type(fmt)
+                     if pg_type.startswith('CHAR'):
+                         sql_field_expr = f"CAST({sql_field_expr} AS {pg_type})"
 
             direction = "DESC" if sc.options.get("order") == "HIGHEST" else "ASC"
 
@@ -626,8 +651,14 @@ class PostgresEmitter:
                 # Relational Lifting: Virtual Field Substitution
                 is_virtual = field_name in report_virtual_fields
                 if is_virtual:
-                    expr, source_fn = report_virtual_fields[field_name]
+                    expr, fmt, source_fn = report_virtual_fields[field_name]
                     sql_expr = self.emit_expression(expr, in_query=True, virtual_fields=file_virtual_fields, qualifier=lambda f: qualify_field(f, source_fn))
+
+                    # Apply casting if format is Alpha fixed-length
+                    if fmt and fmt.upper().startswith('A'):
+                        pg_type = self._map_type(fmt)
+                        if pg_type.startswith('CHAR'):
+                            sql_expr = f"CAST({sql_expr} AS {pg_type})"
 
                 # Prefix operators
                 prefix = field_sel.prefix_operators[0] if field_sel.prefix_operators else None
@@ -664,6 +695,13 @@ class PostgresEmitter:
         compute_commands = [c for c in instr.components if c.__class__.__name__ == 'ComputeCommand']
         for cc in compute_commands:
             sql_expr = self.emit_expression(cc.expression, in_query=True, virtual_fields=file_virtual_fields, qualifier=qualify_field, aggregate=is_aggregating, group_by_fields=group_by_fields)
+
+            # Apply casting if format is Alpha fixed-length
+            if cc.format and cc.format.upper().startswith('A'):
+                pg_type = self._map_type(cc.format)
+                if pg_type.startswith('CHAR'):
+                    sql_expr = f"CAST({sql_expr} AS {pg_type})"
+
             alias = getattr(cc, 'alias', None) or cc.name
             if alias:
                 sql_expr = f"{sql_expr} AS \"{alias}\""

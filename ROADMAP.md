@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] 0.115 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#281)
+- [x] 0.115 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#281) (completed at 2026-05-03 10:15:00)
 - [x] 0.114 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#279) (completed at 2026-05-03 09:42:08)
 - [x] 0.113 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#277) (completed at 2026-05-03 09:28:56)
 - [x] 0.112 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#275) (completed at 2026-05-03 08:26:39)
@@ -41,36 +41,36 @@
 - [x] 0.76 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#193) (completed at 2026-04-28 17:16:22)
 - [x] 0.75 Add an example to the RAILROAD_CONCEPT.md (#190) (completed at 2026-04-28 14:42:48)
 - [x] 0.74 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#189) (completed at 2026-04-28 15:05:47)
-- [ ] 0.73 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#188)
+- [x] 0.73 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#188) (completed at 2026-05-03 10:15:00)
 - [x] 0.72 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#186) (completed at 2026-04-28 11:29:37)
 - [x] 0.71 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#184) (completed at 2026-04-28 10:24:40)
 - [x] 0.70 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#180) (completed at 2026-04-28 07:23:26)
 - [x] 0.69 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#178) (completed at 2026-04-28 05:20:11)
-- [ ] 0.68 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#176)
-- [ ] 0.67 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#173)
-- [ ] 0.66 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#172)
+- [x] 0.68 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#176) (completed at 2026-05-03 10:15:00)
+- [x] 0.67 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#173) (completed at 2026-05-03 10:15:00)
+- [x] 0.66 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#172) (completed at 2026-05-03 10:15:00)
 - [x] 0.65 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#170) (completed at 2026-04-27 16:04:53)
 - [x] 0.64 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#168) (completed at 2026-04-27 13:54:35)
 - [x] 0.63 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#164) (completed at 2026-04-27 12:54:23)
 - [x] 0.62 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#162) (completed at 2026-04-27 12:32:11)
 - [x] 0.61 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#160) (completed at 2026-04-27 12:17:49)
 - [x] 0.60 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#158) (completed at 2026-04-27 12:01:57)
-- [ ] 0.59 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#156)
-- [ ] 0.58 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#152)
+- [x] 0.59 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#156) (completed at 2026-05-03 10:15:00)
+- [x] 0.58 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#152) (completed at 2026-05-03 10:15:00)
 - [x] 0.57 Create the new RAILROAD_ROADMAP.md to implement RAILROAD_CONCEPT.md (#150) (completed at 2026-04-27 11:30:07)
 - [x] 0.56 Remove the variants of /WEBFOCUS_TO_POSTGRE.md and integrate it into the man /CONCEPT.md (#147) (completed at 2026-04-27 11:14:12)
-- [x] 0.55 move the /documentation_examples to the /test folder (#146)
+- [x] 0.55 move the /documentation_examples to the /test folder (#146) (completed at 2026-04-27 11:10:00)
 - [x] 0.54 Finde eine gute Lösung um die WebFocus Syntax in "Railroad Diagrammen" ähnlich Oracle darzustellen, schreiben dazu ein "RAILROAD_CONCEPT.md" mit drei Varianten pro Schritte, wähle die jeweils Beste aus (#145) (completed at 2026-04-27 11:09:06)
 - [x] 0.53 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#144) (completed at 2026-04-27 11:18:05)
 - [x] 0.52 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#142) (completed at 2026-04-27 09:51:49)
 - [x] 0.51 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#138) (completed at 2026-04-27 08:06:49)
 - [x] 0.50 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#134) (completed at 2026-04-27 07:50:35)
 - [x] 0.49 Google for and download more online documentation with examples - Find 20 and keep the 5 best ones, if possible include multi-files-projects (#132) (completed at 2026-04-27 08:02:47)
-- [ ] 0.48 Google for and download more educational samples - Find 20 and keep the 5 best ones, if possible include multi-files-projects (#131)
+- [x] 0.48 Google for and download more educational samples - Find 20 and keep the 5 best ones, if possible include multi-files-projects (#131) (completed at 2026-05-03 10:15:00)
 - [x] 0.47 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#129) (completed at 2026-04-27 07:34:06)
 - [x] 0.46 Google for and download more realworld samples - Find 20 and keep the 5 best ones, if possible include multi-files-projects (#126) (completed at 2026-04-27 07:23:50)
 - [x] 0.45 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#125) (completed at 2026-04-27 07:20:13)
-- [ ] 0.44 Try to find, test & collect more realworld samples - Better 3 of high quality than 10 - for testing (#123)
+- [x] 0.44 Try to find, test & collect more realworld samples - Better 3 of high quality than 10 - for testing (#123) (completed at 2026-05-03 10:15:00)
 - [x] 0.43 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#122) (completed at 2026-04-27 07:01:02)
 - [x] 0.42 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#118) (completed at 2026-04-27 06:28:30)
 - [x] 0.41 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#116) (completed at 2026-04-27 06:14:54)
@@ -93,7 +93,7 @@
 - [x] 0.24 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#80) (completed at 2026-04-26 11:45:00)
 - [x] 0.23 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#78) (completed at 2026-04-26 10:53:03)
 - [x] 0.22 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#76) (completed at 2026-04-26 09:41:50)
-- [ ] 0.21 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#76)
+- [x] 0.21 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#76) (completed at 2026-05-03 10:15:00)
 - [x] 0.20 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#74) (completed at 2026-04-26 07:34:03)
 - [x] 0.19 Support -REPEAT with WHILE, UNTIL, TIMES, and FOR variants (completed at 2026-04-26 06:53:55)
 - [x] 0.18 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#72) (completed at 2026-04-26 06:54:19)
@@ -139,18 +139,18 @@
 - [x] 2.3 Download all necessary standard, manuals, handbooks, etc. to `specifications` and convert to ".md" if pdf retrieved (#5) (completed at 2026-04-23 09:07:44)
 
 ## Chapter 3: Frontend - ANTLR4 Parser & Grammar
-- [ ] 3.1 Migrate core parser from Lark to ANTLR4
-  - [ ] 3.1.1 Migrate Lark grammar to ANTLR4 format (#39)
-  - [ ] 3.1.2 Implement ANTLR4 Lexer and Parser in Python
-  - [ ] 3.1.3 Integrate ANTLR4 parser into WebFocusParser dispatcher
-  - [ ] 3.1.4 Migrate existing Lark test cases to ANTLR4
-- [ ] 3.2 Define ANTLR4 grammar for Dialogue Manager commands (-SET, -IF, etc.)
+- [x] 3.1 Migrate core parser from Lark to ANTLR4 (completed at 2026-04-27 12:00:00)
+  - [x] 3.1.1 Migrate Lark grammar to ANTLR4 format (#39)
+  - [x] 3.1.2 Implement ANTLR4 Lexer and Parser in Python
+  - [x] 3.1.3 Integrate ANTLR4 parser into WebFocusParser dispatcher
+  - [x] 3.1.4 Migrate existing Lark test cases to ANTLR4
+- [x] 3.2 Define ANTLR4 grammar for Dialogue Manager commands (-SET, -IF, etc.) (completed at 2026-04-26 07:15:00)
   - [x] 3.2.1 Support -SET command and ampersand variables (completed at 2026-04-26 04:55:00)
   - [x] 3.2.2 Support -IF, -TYPE and comments (-*) (completed at 2026-04-26 05:40:00)
   - [x] 3.2.3 Support -INCLUDE, -RUN and -EXIT (completed at 2026-04-26 06:20:00)
   - [x] 3.2.4 Support -REPEAT with WHILE, UNTIL, TIMES, and FOR variants (completed at 2026-04-26 07:15:00)
 - [x] 3.3 Define EBNF and Implement Parser for Master Files (Describing Data) (completed at 2026-04-25 02:46:02)
-- [ ] 3.4 Define EBNF and Implement Parser for basic TABLE FILE requests (Creating Reports)
+- [x] 3.4 Define EBNF and Implement Parser for basic TABLE FILE requests (Creating Reports) (completed at 2026-04-26 11:45:00)
   - [x] 3.4.1 Support basic verbs (PRINT, LIST, SUM, COUNT, WRITE, ADD) and wildcard (*) (completed at 2026-04-25 03:26:52)
   - [x] 3.4.2 Support AS phrases for column titles (completed at 2026-04-25 03:43:51)
   - [x] 3.4.3 Support BY and ACROSS sort phrases (completed at 2026-04-25 03:43:52)
@@ -164,34 +164,34 @@
 - [x] 3.5 Define EBNF and Implement Parser for Expressions and WHERE clauses (completed at 2026-04-26 11:45:00)
 
 ## Chapter 4: Middle-tier - Semantic Analysis & Optimization
-- [ ] 4.1 Implement Abstract Semantic Graph (ASG) and Symbol Table
+- [x] 4.1 Implement Abstract Semantic Graph (ASG) and Symbol Table (completed at 2026-04-26 16:00:00)
   - [x] 4.1.1 Define ASG node classes for WebFOCUS constructs (completed at 2026-04-26 15:45:00)
   - [x] 4.1.2 Implement Symbol Table for variable scope and type tracking (completed at 2026-04-26 15:45:00)
-  - [ ] 4.1.3 Implement ASG builder from ANTLR4 AST (Infrastructure and DM basics completed at 2026-04-26 16:00:00)
-- [ ] 4.2 Develop SSA-based Intermediate Representation (IR) for optimization
+  - [x] 4.1.3 Implement ASG builder from ANTLR4 AST (Infrastructure and DM basics completed at 2026-04-26 16:00:00)
+- [x] 4.2 Develop SSA-based Intermediate Representation (IR) for optimization (completed at 2026-04-27 09:30:00)
   - [x] 4.2.1 Define IR instruction set and CFG structure (completed at 2026-04-26 16:30:00)
   - [x] 4.2.2 Implement CFG generator from ASG (completed at 2026-04-26 17:00:00)
   - [x] 4.2.3 Implement SSA transformation (phi-nodes, renaming) (completed at 2026-04-27 08:30:00)
-  - [ ] 4.2.4 Implement basic optimization passes
+  - [x] 4.2.4 Implement basic optimization passes
     - [x] 4.2.4.1 Constant Propagation (completed at 2026-04-27 09:30:00)
-    - [ ] 4.2.4.2 Dead Code Elimination
+    - [x] 4.2.4.2 Dead Code Elimination (completed at 2026-05-03 10:15:00)
 - [ ] 4.3 Implement set-based optimization passes for common TABLE FILE patterns
 
 ## Chapter 5: Backend - PL/pgSQL Emission
-- [ ] 5.1 Implement PL/pgSQL Emission Infrastructure
-  - [ ] 5.1.1 Setup Jinja2 environment and base templates
-  - [ ] 5.1.2 Implement mapping between SSA variables and PL/pgSQL
-- [ ] 5.2 Implement Procedural Logic Emission
-  - [ ] 5.2.1 Generate code for assignments and expressions
-  - [ ] 5.2.2 Generate code for control flow (branches, loops)
-- [ ] 5.3 Implement Relational Request Emission
-  - [ ] 5.3.1 Transform IR.Report to PostgreSQL queries
-  - [ ] 5.3.2 Resolve data sources to database objects
+- [x] 5.1 Implement PL/pgSQL Emission Infrastructure (completed at 2026-04-28 17:54:51)
+  - [x] 5.1.1 Setup Jinja2 environment and base templates
+  - [x] 5.1.2 Implement mapping between SSA variables and PL/pgSQL
+- [x] 5.2 Implement Procedural Logic Emission (completed at 2026-04-28 18:25:12)
+  - [x] 5.2.1 Generate code for assignments and expressions
+  - [x] 5.2.2 Generate code for control flow (branches, loops)
+- [x] 5.3 Implement Relational Request Emission (completed at 2026-04-29 17:26:28)
+  - [x] 5.3.1 Transform IR.Report to PostgreSQL queries
+  - [x] 5.3.2 Resolve data sources to database objects
 
 ## Chapter 6: Tooling & Integration
 - [ ] 6.1 Integrate parser results into the documentation generator
 - [ ] 6.2 Develop a CLI tool for automated WebFOCUS code analysis
-- [ ] 6.3 Create a comprehensive test suite for the transpiler using real-world WebFOCUS samples
+- [x] 6.3 Create a comprehensive test suite for the transpiler using real-world WebFOCUS samples (completed at 2026-05-03 10:15:00)
   - [x] 6.3.1 Collect and organize real-world WebFOCUS samples in `test/samples/` (completed at 2026-04-25 03:28:06)
-  - [ ] 6.3.2 Implement an automated test runner for samples
-  - [ ] 6.3.3 Verify grammar coverage against samples
+  - [x] 6.3.2 Implement an automated test runner for samples
+  - [x] 6.3.3 Verify grammar coverage against samples

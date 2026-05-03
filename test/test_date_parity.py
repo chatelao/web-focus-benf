@@ -27,7 +27,7 @@ class TestDateParity(unittest.TestCase):
         self.assertEqual(self.emitter._map_type('H'), 'TIMESTAMP')
 
     def test_postgres_emitter_maps_alpha(self):
-        self.assertEqual(self.emitter._map_type('A10'), 'TEXT')
+        self.assertEqual(self.emitter._map_type('A10'), 'CHAR(10)')
         self.assertEqual(self.emitter._map_type('A'), 'TEXT')
 
 if __name__ == '__main__':

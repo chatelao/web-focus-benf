@@ -202,7 +202,7 @@ class TestEmitter(unittest.TestCase):
         self.assertEqual(emitter._map_type('F8.2'), 'NUMERIC(8, 2)')
         self.assertEqual(emitter._map_type('P9.2'), 'NUMERIC(9, 2)')
         self.assertEqual(emitter._map_type('P9'), 'NUMERIC(9, 0)')
-        self.assertEqual(emitter._map_type('A10'), 'TEXT')
+        self.assertEqual(emitter._map_type('A10'), 'CHAR(10)')
 
     def test_emit_instruction_report(self):
         emitter = PostgresEmitter()
