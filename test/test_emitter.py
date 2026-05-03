@@ -397,7 +397,11 @@ class TestEmitter(unittest.TestCase):
         # JOIN LEFT OUTER LEFT_FILE.FLD1 TO RIGHT_FILE.FLD2
         join = ir.Join(left_file="LEFT_FILE", left_field="FLD1", right_file="RIGHT_FILE", right_field="FLD2", outer=True)
 
-        verb = asg.VerbCommand(verb="PRINT", fields=[asg.FieldSelection(name="FLD1")])
+        # Must use a field from RIGHT_FILE or the join will be pruned
+        verb = asg.VerbCommand(verb="PRINT", fields=[
+            asg.FieldSelection(name="FLD1"),
+            asg.FieldSelection(name="RIGHT_FILE.FLD2")
+        ])
         report = ir.Report(filename="LEFT_FILE", components=[verb], joins=[join])
 
         sql = emitter.emit_instruction(report)

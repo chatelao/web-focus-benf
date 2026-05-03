@@ -113,8 +113,8 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
 - [x] **3.3 Optimization Passes:**
   - [x] 3.3.1 Constant Propagation: Substitute variables with literal values. (Implemented in `src/optimizer.py`)
   - [x] 3.3.2 Dead Code Elimination:
-    - [x] 3.3.2.1 Reachability Analysis: Remove unreachable blocks from CFG.
-    - [x] 3.3.2.2 Unused Assignment Elimination: Remove SSA assignments with no consumers.
+    - [x] 3.3.2.1 Reachability Analysis: Remove unreachable blocks from CFG. (Implemented in `src/optimizer.py`)
+    - [x] 3.3.2.2 Unused Assignment Elimination: Remove SSA assignments with no consumers. (Implemented in `src/optimizer.py`)
 - [ ] **3.4 Relational Lifting:**
   - [ ] 3.4.1 Loop Analysis: Identify loops that iterate over data sources.
   - [ ] 3.4.2 Predicate Pushdown:
@@ -165,15 +165,15 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
 ## Phase 5: Verification and Parity
 Ensure the new system produces correct results and maintains parity with the legacy parser.
 
-- [ ] **5.1 Regression Testing:**
+- [x] **5.1 Regression Testing:**
   - [x] 5.1.1 Frontend Parity: Run the existing test suite against the new ANTLR4-based frontend. (Verified via `test/test_antlr_wf_parser.py`)
-  - [ ] 5.1.2 End-to-End Tests: Verify PL/pgSQL output for a subset of core features.
+  - [x] 5.1.2 End-to-End Tests: Verify PL/pgSQL output for a subset of core features.
     - [x] 5.1.2.1 Basic Reporting: PRINT/SUM requests with WHERE clauses. (Verified via `test/test_e2e_basic_reporting.py`)
     - [x] 5.1.2.2 Advanced Filtering: Complex WHERE clauses, BETWEEN, IN, MISSING. (Verified via `test/test_e2e_advanced_filtering.py`)
     - [x] 5.1.2.3 Calculated Fields: DEFINE and COMPUTE expression lifting. (Verified via `test/test_e2e_calculated_fields.py`)
     - [x] 5.1.2.4 Data Integration: Multi-table JOINs and virtual field lifting from joined files. (Verified via `test/test_e2e_data_integration.py`)
     - [x] 5.1.2.5 Control Flow: DM variable resolution and PL/pgSQL state machine execution. (Verified via `test/test_e2e_control_flow.py`)
-  - [ ] 5.1.3 Grammar Coverage: Ensure all core EBNF features are implemented and tested.
+  - [x] 5.1.3 Grammar Coverage: Ensure all core EBNF features are implemented and tested.
     - [x] 5.1.3.1 Support `ALL` keyword in `JOIN` commands.
     - [x] 5.1.3.2 Support hyphenated `SET` keywords (e.g., `ONLINE-FMT`).
     - [x] 5.1.3.3 Support `COMPOUND LAYOUT` structure.
@@ -196,22 +196,22 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [x] 5.1.3.10.2 Support `OPEN` and `CLOSE` options for `PCHOLD`.
       - [x] 5.1.3.10.3 Support `PAGE-BREAK` option for `ON field`.
       - [x] 5.1.3.10.4 Support `DRILLTHROUGH` in `SET STYLE` blocks.
-  - [ ] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.
-    - [ ] 5.1.4.1 Symbol Resolution Validation:
+  - [x] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.
+    - [x] 5.1.4.1 Symbol Resolution Validation:
       - [x] 5.1.4.1.1 Global vs. Local scope resolution for AmperVars.
       - [x] 5.1.4.1.2 Multi-segment field resolution in joined Master Files.
       - [x] 5.1.4.1.3 Virtual field shadowing rules (DEFINE vs. Master File).
-    - [ ] 5.1.4.2 Type Consistency:
+    - [x] 5.1.4.2 Type Consistency:
       - [x] 5.1.4.2.1 Numeric precision mapping (I, F, D, P to PostgreSQL).
-      - [ ] 5.1.4.2.2 Alpha-numeric string truncation and padding semantics.
+      - [x] 5.1.4.2.2 Alpha-numeric string truncation and padding semantics. (Verified via `test/test_alpha_parity.py`)
       - [x] 5.1.4.2.3 Date/Time format conversion parity.
     - [x] 5.1.4.3 Constant Folding Parity:
       - [x] 5.1.4.3.1 Arithmetic expression folding.
       - [x] 5.1.4.3.2 Character concatenation folding.
       - [x] 5.1.4.3.3 Boolean logic short-circuiting parity.
-- [ ] **5.2 Sample Validation:**
+- [x] **5.2 Sample Validation:**
   - [x] 5.2.1 Core Samples: Validate transpiler output against samples in `test/samples/`. (Verified via `test/test_core_samples.py`)
-  - [ ] 5.2.2 Documentation Examples: Validate against samples in `test/documentation_examples/`. (Verified via `test/test_documentation_examples.py`)
+  - [x] 5.2.2 Documentation Examples: Validate against samples in `test/documentation_examples/`. (Verified via `test/test_documentation_examples.py`)
     - [x] 5.2.2.1 Project 1: Joined Report.
     - [x] 5.2.2.2 Project 2: Compound Layout.
     - [x] 5.2.2.3 Project 3: Hierarchical Cube.
@@ -234,6 +234,6 @@ Ensure the new system produces correct results and maintains parity with the leg
 ## Phase 6: Decommissioning
 - [ ] 6.1 Transition Tests: Ensure all legacy tests pass against the new transpiler architecture.
 - [ ] 6.2 Code Cleanup:
-  - [ ] 6.2.1 Remove Lark-related code (`wf_parser.py`, `master_file_parser.py`).
+  - [x] 6.2.1 Remove Lark-related code (`wf_parser.py`, `master_file_parser.py`).
   - [ ] 6.2.2 Remove `lark` from `requirements.txt`.
 - [ ] 6.3 Technical Debt: Close out remaining items in `TECHNICAL_DEBTS.md`.
