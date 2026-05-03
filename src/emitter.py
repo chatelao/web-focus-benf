@@ -533,13 +533,20 @@ class PostgresEmitter:
             alias_to_filename[alias] = join.right_file
             alias_to_filename[join.right_file] = join.right_file
 
+            # SAFE: Preserve INNER JOINs (non-outer) as they act as filters
+            if not join.outer:
+                used_files.add(join.right_file)
+
         def mark_field_used(fname, source_fn=None):
             if not fname: return
             if '.' in fname:
                 parts = fname.split('.')
                 qual = parts[0]
                 if qual in alias_to_filename:
+                    # Mark original filename as used
                     used_files.add(alias_to_filename[qual])
+                    # Also mark the alias itself as used for dependency chain tracking
+                    used_files.add(qual)
             elif source_fn:
                 used_files.add(source_fn)
             elif fname in report_virtual_fields:
@@ -556,14 +563,23 @@ class PostgresEmitter:
         file_virtual_fields = {f: (e_fmt[0], e_fmt[1]) for f, e_fmt in report_virtual_fields.items()}
 
         for comp in instr.components:
-            self._collect_used_files_recursive(comp, mark_field_used)
+            self._collect_used_files_recursive(comp, mark_field_used, used_files)
+
+        # If * was found, we add all potential join targets
+        if '*' in used_files:
+            for join in instr.joins:
+                used_files.add(join.right_file)
+                if join.join_as:
+                    used_files.add(join.join_as)
 
         # Ensure all files in a join chain are kept if their dependents are kept
         changed = True
         while changed:
             changed = False
             for join in instr.joins:
-                if join.right_file in used_files:
+                alias = join.join_as if join.join_as else join.right_file
+                # If either the filename or the alias is marked as used
+                if join.right_file in used_files or alias in used_files:
                     if join.left_file not in used_files:
                         used_files.add(join.left_file)
                         changed = True
@@ -899,13 +915,17 @@ class PostgresEmitter:
 
         return "\n".join(res)
 
-    def _collect_used_files_recursive(self, node, mark_field_used):
+    def _collect_used_files_recursive(self, node, mark_field_used, used_files=None):
         if node is None: return
         class_name = node.__class__.__name__
 
         if class_name == 'VerbCommand':
             for f in node.fields:
-                if f.name != '*':
+                if f.name == '*':
+                    # If PRINT * is used, we must keep all files
+                    if used_files is not None:
+                        used_files.add('*')
+                else:
                     mark_field_used(f.name)
         elif class_name == 'SortCommand':
             mark_field_used(node.field.name)

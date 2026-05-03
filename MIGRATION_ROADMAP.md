@@ -196,12 +196,12 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [x] 5.1.3.10.2 Support `OPEN` and `CLOSE` options for `PCHOLD`.
       - [x] 5.1.3.10.3 Support `PAGE-BREAK` option for `ON field`.
       - [x] 5.1.3.10.4 Support `DRILLTHROUGH` in `SET STYLE` blocks.
-  - [ ] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.
+  - [x] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.
     - [x] 5.1.4.1 Symbol Resolution Validation:
       - [x] 5.1.4.1.1 Global vs. Local scope resolution for AmperVars.
       - [x] 5.1.4.1.2 Multi-segment field resolution in joined Master Files.
       - [x] 5.1.4.1.3 Virtual field shadowing rules (DEFINE vs. Master File).
-    - [ ] 5.1.4.2 Type Consistency:
+    - [x] 5.1.4.2 Type Consistency:
       - [x] 5.1.4.2.1 Numeric precision mapping (I, F, D, P to PostgreSQL).
       - [x] 5.1.4.2.2 Alpha-numeric string truncation and padding semantics. (Verified via `test/test_alpha_parity.py`)
       - [x] 5.1.4.2.3 Date/Time format conversion parity.
@@ -209,7 +209,7 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [x] 5.1.4.3.1 Arithmetic expression folding.
       - [x] 5.1.4.3.2 Character concatenation folding.
       - [x] 5.1.4.3.3 Boolean logic short-circuiting parity.
-- [ ] **5.2 Sample Validation:**
+- [x] **5.2 Sample Validation:**
   - [x] 5.2.1 Core Samples: Validate transpiler output against samples in `test/samples/`. (Verified via `test/test_core_samples.py`)
   - [x] 5.2.2 Documentation Examples: Validate against samples in `test/documentation_examples/`. (Verified via `test/test_documentation_examples.py`)
     - [x] 5.2.2.1 Project 1: Joined Report.
@@ -234,6 +234,6 @@ Ensure the new system produces correct results and maintains parity with the leg
 ## Phase 6: Decommissioning
 - [ ] 6.1 Transition Tests: Ensure all legacy tests pass against the new transpiler architecture.
 - [ ] 6.2 Code Cleanup:
-  - [ ] 6.2.1 Remove Lark-related code (`wf_parser.py`, `master_file_parser.py`).
-  - [x] 6.2.2 Remove `lark` from `requirements.txt`.
+  - [x] 6.2.1 Remove Lark-related code (`wf_parser.py`, `master_file_parser.py`).
+  - [ ] 6.2.2 Remove `lark` from `requirements.txt`.
 - [ ] 6.3 Technical Debt: Close out remaining items in `TECHNICAL_DEBTS.md`.
