@@ -431,6 +431,26 @@ class ReportASGBuilder(WebFocusReportVisitor):
         operand = self.visit(ctx.getChild(1))
         return UnaryOperation(operator=operator, operand=operand)
 
+    def visitDecode_expression(self, ctx: WebFocusReportParser.Decode_expressionContext):
+        expression = self.visit(ctx.dm_primary(0))
+        pairs = []
+        # dm_primary indices for pairs start from 1
+        # pairs: (dm_primary dm_primary)*
+        # If ELSE is present, the last dm_primary is the default value.
+
+        num_primaries = len(ctx.dm_primary())
+        has_else = ctx.ELSE() is not None
+
+        end_pairs_idx = num_primaries - 1 if has_else else num_primaries
+
+        for i in range(1, end_pairs_idx, 2):
+            val = self.visit(ctx.dm_primary(i))
+            res = self.visit(ctx.dm_primary(i+1))
+            pairs.append((val, res))
+
+        default_value = self.visit(ctx.dm_primary(num_primaries - 1)) if has_else else None
+        return DecodeExpression(expression=expression, pairs=pairs, default_value=default_value)
+
     def visitDm_primary(self, ctx: WebFocusReportParser.Dm_primaryContext):
         if ctx.STRING():
             val = ctx.STRING().getText()
@@ -440,6 +460,8 @@ class ReportASGBuilder(WebFocusReportVisitor):
             return Literal(value=int(ctx.NUMBER().getText()))
         if ctx.dm_float():
             return Literal(value=float(ctx.dm_float().getText()))
+        if ctx.decode_expression():
+            return self.visit(ctx.decode_expression())
         if ctx.amper_var():
             return self.visit(ctx.amper_var())
         if ctx.qualified_name():

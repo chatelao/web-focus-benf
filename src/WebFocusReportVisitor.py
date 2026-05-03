@@ -234,6 +234,11 @@ class WebFocusReportVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by WebFocusReportParser#decode_expression.
+    def visitDecode_expression(self, ctx:WebFocusReportParser.Decode_expressionContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by WebFocusReportParser#dm_float.
     def visitDm_float(self, ctx:WebFocusReportParser.Dm_floatContext):
         return self.visitChildren(ctx)
