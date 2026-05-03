@@ -1,4 +1,5 @@
 import os
+import re
 import ir
 import asg
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -93,14 +94,47 @@ class PostgresEmitter:
     def _map_type(self, data_type):
         """
         Maps WebFOCUS types to PostgreSQL types.
+        Supports detailed numeric formats (e.g., I8, F8.2, P9.2).
         """
-        mapping = {
-            'I': 'INTEGER',
-            'F': 'NUMERIC',
-            'A': 'TEXT',
-            'LOGICAL': 'BOOLEAN'
-        }
-        return mapping.get(data_type, 'TEXT')
+        if not data_type:
+            return 'TEXT'
+
+        data_type = data_type.upper()
+
+        if data_type == 'LOGICAL':
+            return 'BOOLEAN'
+        if data_type.startswith('A'):
+            return 'TEXT'
+
+        # Integer mapping
+        if data_type.startswith('I'):
+            if '8' in data_type:
+                return 'BIGINT'
+            return 'INTEGER'
+
+        # Float/Decimal mapping
+        if data_type.startswith(('F', 'D', 'P')):
+            # Check for precision and scale: e.g., F8.2 or P9.2
+            match = re.search(r'([FDP])(\d+)(?:\.(\d+))?', data_type)
+            if match:
+                type_char = match.group(1)
+                precision = match.group(2)
+                scale = match.group(3)
+
+                if scale:
+                    return f"NUMERIC({precision}, {scale})"
+
+                if type_char in ('F', 'D'):
+                    return 'DOUBLE PRECISION'
+
+                return f"NUMERIC({precision}, 0)"
+
+            if data_type.startswith(('F', 'D')):
+                return 'DOUBLE PRECISION'
+            if data_type.startswith('P'):
+                return 'NUMERIC'
+
+        return 'TEXT'
 
     def _discover_vars_in_expr(self, node, variables):
         """

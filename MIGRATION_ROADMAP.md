@@ -202,7 +202,7 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [x] 5.1.4.1.2 Multi-segment field resolution in joined Master Files.
       - [x] 5.1.4.1.3 Virtual field shadowing rules (DEFINE vs. Master File).
     - [ ] 5.1.4.2 Type Consistency:
-      - [ ] 5.1.4.2.1 Numeric precision mapping (I, F, D, P to PostgreSQL).
+      - [x] 5.1.4.2.1 Numeric precision mapping (I, F, D, P to PostgreSQL).
       - [ ] 5.1.4.2.2 Alpha-numeric string truncation and padding semantics.
       - [ ] 5.1.4.2.3 Date/Time format conversion parity.
     - [x] 5.1.4.3 Constant Folding Parity:

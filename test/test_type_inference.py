@@ -89,5 +89,29 @@ class TestTypeInference(unittest.TestCase):
         self.assertEqual(report.components[1].condition.data_type, 'LOGICAL') # In
         self.assertEqual(report.components[2].condition.data_type, 'LOGICAL') # IsMissing
 
+    def test_precision_inference_from_metadata(self):
+        from symbol_table import Symbol
+
+        # Manually create nodes with symbol and metadata
+        field_node = asg.Identifier(name="LARGE_INT")
+        field_node.symbol = Symbol(name="LARGE_INT", scope=None)
+        field_node.symbol.metadata = {'field': asg.Field(name="LARGE_INT", format="I8")}
+
+        field_node2 = asg.Identifier(name="PREC_NUM")
+        field_node2.symbol = Symbol(name="PREC_NUM", scope=None)
+        field_node2.symbol.metadata = {'field': asg.Field(name="PREC_NUM", format="P9.2")}
+
+        inferrer = TypeInferrer()
+        self.assertEqual(inferrer.visit(field_node), 'I8')
+        self.assertEqual(inferrer.visit(field_node2), 'P9.2')
+
+        # Arithmetic with I8
+        expr = asg.BinaryOperation(field_node, '+', asg.Literal(1))
+        self.assertEqual(inferrer.visit(expr), 'I8')
+
+        # Arithmetic with P9.2
+        expr2 = asg.BinaryOperation(field_node2, '*', asg.Literal(2.0))
+        self.assertEqual(inferrer.visit(expr2), 'P9.2')
+
 if __name__ == '__main__':
     unittest.main()
