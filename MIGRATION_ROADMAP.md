@@ -205,10 +205,10 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [ ] 5.1.4.2.1 Numeric precision mapping (I, F, D, P to PostgreSQL).
       - [ ] 5.1.4.2.2 Alpha-numeric string truncation and padding semantics.
       - [ ] 5.1.4.2.3 Date/Time format conversion parity.
-    - [ ] 5.1.4.3 Constant Folding Parity:
-      - [ ] 5.1.4.3.1 Arithmetic expression folding.
-      - [ ] 5.1.4.3.2 Character concatenation folding.
-      - [ ] 5.1.4.3.3 Boolean logic short-circuiting parity.
+    - [x] 5.1.4.3 Constant Folding Parity:
+      - [x] 5.1.4.3.1 Arithmetic expression folding.
+      - [x] 5.1.4.3.2 Character concatenation folding.
+      - [x] 5.1.4.3.3 Boolean logic short-circuiting parity.
 - [ ] **5.2 Sample Validation:**
   - [x] 5.2.1 Core Samples: Validate transpiler output against samples in `test/samples/`. (Verified via `test/test_core_samples.py`)
   - [ ] 5.2.2 Documentation Examples: Validate against samples in `test/documentation_examples/`. (Verified via `test/test_documentation_examples.py`)

@@ -82,21 +82,40 @@ class ConstantPropagator:
             return self.constants.get(expr.name)
 
         if isinstance(expr, asg.BinaryOperation):
+            op = expr.operator.upper()
             left = self._evaluate_constant(expr.left)
+
+            # Short-circuiting for AND/OR
+            if op == 'AND' and left is not None and not left.value:
+                return asg.Literal(value=False)
+            if op == 'OR' and left is not None and left.value:
+                return asg.Literal(value=True)
+
             right = self._evaluate_constant(expr.right)
+
+            # Short-circuiting for AND/OR (right side)
+            if op == 'AND' and right is not None and not right.value:
+                return asg.Literal(value=False)
+            if op == 'OR' and right is not None and right.value:
+                return asg.Literal(value=True)
+
             if left and right:
                 try:
                     res = None
-                    if expr.operator == '+': res = left.value + right.value
-                    elif expr.operator == '-': res = left.value - right.value
-                    elif expr.operator == '*': res = left.value * right.value
-                    elif expr.operator == '/': res = left.value / right.value
-                    elif expr.operator == 'EQ' or expr.operator == '=': res = left.value == right.value
-                    elif expr.operator == 'NE' or expr.operator == '!=': res = left.value != right.value
-                    elif expr.operator == 'LT' or expr.operator == '<': res = left.value < right.value
-                    elif expr.operator == 'GT' or expr.operator == '>': res = left.value > right.value
-                    elif expr.operator == 'LE' or expr.operator == '<=': res = left.value <= right.value
-                    elif expr.operator == 'GE' or expr.operator == '>=': res = left.value >= right.value
+                    if op == '+': res = left.value + right.value
+                    elif op == '-': res = left.value - right.value
+                    elif op == '*': res = left.value * right.value
+                    elif op == '/': res = left.value / right.value
+                    elif op in ('EQ', '='): res = left.value == right.value
+                    elif op in ('NE', '!='): res = left.value != right.value
+                    elif op in ('LT', '<'): res = left.value < right.value
+                    elif op in ('GT', '>'): res = left.value > right.value
+                    elif op in ('LE', '<='): res = left.value <= right.value
+                    elif op in ('GE', '>='): res = left.value >= right.value
+                    elif op in ('||', '|', 'CONCAT'):
+                        res = str(left.value) + str(right.value)
+                    elif op == 'AND': res = left.value and right.value
+                    elif op == 'OR': res = left.value or right.value
 
                     if res is not None:
                         return asg.Literal(value=res)

@@ -203,5 +203,66 @@ class TestOptimizer(unittest.TestCase):
 
         self.assertEqual(len(entry.instructions), 0)
 
+    def test_constant_folding_concatenation(self):
+        cfg = ir.ControlFlowGraph()
+        entry = ir.BasicBlock("ENTRY")
+        cfg.add_block(entry)
+        cfg.entry_block = entry
+
+        entry.add_instruction(ir.Assign(target="S1", source=asg.Literal("Hello")))
+        entry.add_instruction(ir.Assign(target="S2", source=asg.Literal("World")))
+        entry.add_instruction(ir.Assign(target="S3", source=asg.BinaryOperation(asg.AmperVar("S1"), "||", asg.AmperVar("S2"))))
+        entry.add_instruction(ir.Assign(target="S4", source=asg.BinaryOperation(asg.AmperVar("S1"), "|", asg.Literal(" "))))
+        entry.add_instruction(ir.Assign(target="S5", source=asg.BinaryOperation(asg.AmperVar("S4"), "CONCAT", asg.AmperVar("S2"))))
+
+        propagator = ConstantPropagator()
+        propagator.run(cfg)
+
+        self.assertEqual(propagator.constants["S3"].value, "HelloWorld")
+        self.assertEqual(propagator.constants["S4"].value, "Hello ")
+        self.assertEqual(propagator.constants["S5"].value, "Hello World")
+
+    def test_constant_folding_boolean_short_circuit(self):
+        cfg = ir.ControlFlowGraph()
+        entry = ir.BasicBlock("ENTRY")
+        cfg.add_block(entry)
+        cfg.entry_block = entry
+
+        # False AND X -> False
+        entry.add_instruction(ir.Assign(target="B1", source=asg.BinaryOperation(asg.Literal(False), "AND", asg.AmperVar("X"))))
+        # True OR X -> True
+        entry.add_instruction(ir.Assign(target="B2", source=asg.BinaryOperation(asg.Literal(True), "OR", asg.AmperVar("X"))))
+        # X AND False -> False
+        entry.add_instruction(ir.Assign(target="B3", source=asg.BinaryOperation(asg.AmperVar("X"), "AND", asg.Literal(False))))
+        # X OR True -> True
+        entry.add_instruction(ir.Assign(target="B4", source=asg.BinaryOperation(asg.AmperVar("X"), "OR", asg.Literal(True))))
+
+        propagator = ConstantPropagator()
+        propagator.run(cfg)
+
+        self.assertEqual(propagator.constants["B1"].value, False)
+        self.assertEqual(propagator.constants["B2"].value, True)
+        self.assertEqual(propagator.constants["B3"].value, False)
+        self.assertEqual(propagator.constants["B4"].value, True)
+
+    def test_constant_folding_boolean_full(self):
+        cfg = ir.ControlFlowGraph()
+        entry = ir.BasicBlock("ENTRY")
+        cfg.add_block(entry)
+        cfg.entry_block = entry
+
+        entry.add_instruction(ir.Assign(target="B1", source=asg.BinaryOperation(asg.Literal(True), "AND", asg.Literal(True))))
+        entry.add_instruction(ir.Assign(target="B2", source=asg.BinaryOperation(asg.Literal(True), "AND", asg.Literal(False))))
+        entry.add_instruction(ir.Assign(target="B3", source=asg.BinaryOperation(asg.Literal(False), "OR", asg.Literal(True))))
+        entry.add_instruction(ir.Assign(target="B4", source=asg.BinaryOperation(asg.Literal(False), "OR", asg.Literal(False))))
+
+        propagator = ConstantPropagator()
+        propagator.run(cfg)
+
+        self.assertEqual(propagator.constants["B1"].value, True)
+        self.assertEqual(propagator.constants["B2"].value, False)
+        self.assertEqual(propagator.constants["B3"].value, True)
+        self.assertEqual(propagator.constants["B4"].value, False)
+
 if __name__ == '__main__':
     unittest.main()
