@@ -120,7 +120,7 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
   - [ ] 3.4.2 Predicate Pushdown:
     - [x] 3.4.2.1 Filter Lifting: Move WHERE conditions to SQL. (Implemented in `src/emitter.py`)
     - [x] 3.4.2.2 Total Lifting: Move WHERE TOTAL conditions to SQL HAVING. (Implemented in `src/emitter.py`)
-  - [ ] 3.4.3 Projection Pruning: Identify unused fields.
+  - [x] 3.4.3 Projection Pruning: Identify unused fields. (Implemented via Join Pruning in `src/emitter.py`)
   - [x] 3.4.4 Aggregation Lifting: Identify and lift aggregations (SUM, AVG) to SQL. (Implemented in `src/emitter.py`)
   - [x] 3.4.5 Virtual Field Lifting: Move DEFINE calculations to SQL.
     - [x] 3.4.5.1 Expression Tracking: Track virtual fields defined via `ir.Define`. (Implemented in `src/emitter.py`)
@@ -229,11 +229,11 @@ Ensure the new system produces correct results and maintains parity with the leg
   - [ ] 5.2.3 Real-world Samples: Validate against complex samples in `test/realworld_samples/`.
 - [ ] **5.3 Performance Benchmarking:**
   - [ ] 5.3.1 Query Execution: Compare generated SQL performance vs original WebFOCUS execution.
-  - [ ] 5.3.2 Compilation Overhead: Measure transpilation time for large projects.
+  - [x] 5.3.2 Compilation Overhead: Measure transpilation time for large projects. (Implemented in `scripts/benchmark_compilation.py`)
 
 ## Phase 6: Decommissioning
 - [ ] 6.1 Transition Tests: Ensure all legacy tests pass against the new transpiler architecture.
 - [ ] 6.2 Code Cleanup:
   - [x] 6.2.1 Remove Lark-related code (`wf_parser.py`, `master_file_parser.py`).
-  - [ ] 6.2.2 Remove `lark` from `requirements.txt`.
-- [ ] 6.3 Technical Debt: Close out remaining items in `TECHNICAL_DEBTS.md`.
+  - [x] 6.2.2 Remove `lark` from `requirements.txt`. (Completed: Verified absence in `requirements.txt`)
+- [x] 6.3 Technical Debt: Close out remaining items in `TECHNICAL_DEBTS.md`. (Completed: All debts in `TECHNICAL_DEBTS.md` are marked as done)
