@@ -210,6 +210,7 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [x] 5.1.4.3.1 Arithmetic expression folding.
       - [x] 5.1.4.3.2 Character concatenation folding.
       - [x] 5.1.4.3.3 Boolean logic short-circuiting parity.
+    - [x] 5.1.4.4 Extended Relational Operators Parity: CONTAINS, OMITS, EXCEEDS, INCLUDES, EXCLUDES. (Verified via `test/test_e2e_extended_filtering.py`)
 - [x] **5.2 Sample Validation:**
   - [x] 5.2.1 Core Samples: Validate transpiler output against samples in `test/samples/`. (Verified via `test/test_core_samples.py`)
   - [x] 5.2.2 Documentation Examples: Validate against samples in `test/documentation_examples/`. (Verified via `test/test_documentation_examples.py`)
