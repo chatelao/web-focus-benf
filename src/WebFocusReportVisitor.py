@@ -19,6 +19,36 @@ class WebFocusReportVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by WebFocusReportParser#match_request.
+    def visitMatch_request(self, ctx:WebFocusReportParser.Match_requestContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#sub_match.
+    def visitSub_match(self, ctx:WebFocusReportParser.Sub_matchContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#after_match_phrase.
+    def visitAfter_match_phrase(self, ctx:WebFocusReportParser.After_match_phraseContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#merge_type.
+    def visitMerge_type(self, ctx:WebFocusReportParser.Merge_typeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#request_element.
+    def visitRequest_element(self, ctx:WebFocusReportParser.Request_elementContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by WebFocusReportParser#more_phrase.
+    def visitMore_phrase(self, ctx:WebFocusReportParser.More_phraseContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by WebFocusReportParser#compound_layout_block.
     def visitCompound_layout_block(self, ctx:WebFocusReportParser.Compound_layout_blockContext):
         return self.visitChildren(ctx)

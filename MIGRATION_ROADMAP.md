@@ -202,9 +202,13 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [x] 5.1.3.11.2 ASG support for `DecodeExpression`.
       - [x] 5.1.3.11.3 Emitter support for translating `DECODE` to SQL `CASE`.
     - [ ] 5.1.3.12 Support `MATCH FILE` command.
-      - [ ] 5.1.3.12.1 Grammar support for `MATCH FILE` and its phrases (OLD-OR-NEW, etc.).
-      - [ ] 5.1.3.12.2 ASG support for multi-file merge operations.
-      - [ ] 5.1.3.12.3 IR and Emitter support for `MATCH` logic.
+      - [x] 5.1.3.12.1 Grammar support for `MATCH FILE`, `RUN`, `AFTER MATCH`, and merge phrases (`OLD-OR-NEW`, `OLD-AND-NEW`, `OLD-NOT-NEW`, `NEW-NOT-OLD`, `OLD-NOR-NEW`, `OLD`, `NEW`).
+      - [ ] 5.1.3.12.2 ASG support for `MatchRequest`, `SubMatch`, and `MatchAction`.
+      - [ ] 5.1.3.12.3 Emitter support for `MATCH` logic.
+    - [ ] 5.1.3.13 Support `MORE` phrase (Universal Concatenation).
+      - [x] 5.1.3.13.1 Grammar support for `MORE` phrase in `TABLE` and `MATCH` requests.
+      - [ ] 5.1.3.13.2 ASG support for `MoreClause` and sub-requests.
+      - [ ] 5.1.3.13.3 Emitter support for `UNION ALL`.
   - [x] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.
     - [x] 5.1.4.1 Symbol Resolution Validation:
       - [x] 5.1.4.1.1 Global vs. Local scope resolution for AmperVars.
