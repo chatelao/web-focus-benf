@@ -9,6 +9,7 @@ class SymbolResolver:
     def __init__(self, symbol_table=None, metadata_registry=None):
         self.symbol_table = symbol_table or SymbolTable()
         self.metadata_registry = metadata_registry
+        self.active_joins = []
 
     def resolve(self, nodes):
         """Main entry point for resolving symbols in a list of ASG nodes or a single node."""
@@ -53,6 +54,14 @@ class SymbolResolver:
             if hasattr(node, attr):
                 self.visit(getattr(node, attr))
 
+    def visit_Join(self, node):
+        """Tracks an active JOIN."""
+        self.active_joins.append(node)
+
+    def visit_JoinClear(self, node):
+        """Clears all active JOINs."""
+        self.active_joins = []
+
     def visit_AmperVar(self, node):
         """Resolves a Dialogue Manager variable usage."""
         symbol = self.symbol_table.lookup(node.name)
@@ -66,19 +75,56 @@ class SymbolResolver:
 
             if master_file:
                 self.symbol_table.enter_scope()
-                # Register fields from the Master File
-                for segment in master_file.segments:
-                    for field in segment.fields:
-                        # Register both short name and qualified name
-                        self.symbol_table.define(field.name, symbol_type='FIELD', metadata={'field': field, 'segment': segment})
-                        self.symbol_table.define(f"{segment.name}.{field.name}", symbol_type='FIELD', metadata={'field': field, 'segment': segment})
 
-                    for vf in segment.virtual_fields:
-                        self.symbol_table.define(vf.name, symbol_type='VIRTUAL_FIELD', metadata={'define': vf, 'segment': segment})
-                        self.symbol_table.define(f"{segment.name}.{vf.name}", symbol_type='VIRTUAL_FIELD', metadata={'define': vf, 'segment': segment})
+                # We use a set to keep track of files whose fields are already registered
+                # to handle potential join loops or redundant registrations.
+                registered_files = set()
 
-                for vf in master_file.virtual_fields:
-                    self.symbol_table.define(vf.name, symbol_type='VIRTUAL_FIELD', metadata={'define': vf})
+                def register_master_fields(mf, alias=None):
+                    if mf.name.upper() in registered_files and alias is None:
+                        return
+                    if alias is None:
+                        registered_files.add(mf.name.upper())
+
+                    for segment in mf.segments:
+                        for field in segment.fields:
+                            # Register both short name and qualified name
+                            self.symbol_table.define(field.name, symbol_type='FIELD', metadata={'field': field, 'segment': segment})
+                            self.symbol_table.define(f"{segment.name}.{field.name}", symbol_type='FIELD', metadata={'field': field, 'segment': segment})
+                            if alias:
+                                self.symbol_table.define(f"{alias}.{field.name}", symbol_type='FIELD', metadata={'field': field, 'segment': segment})
+
+                        for vf in segment.virtual_fields:
+                            self.symbol_table.define(vf.name, symbol_type='VIRTUAL_FIELD', metadata={'define': vf, 'segment': segment})
+                            self.symbol_table.define(f"{segment.name}.{vf.name}", symbol_type='VIRTUAL_FIELD', metadata={'define': vf, 'segment': segment})
+                            if alias:
+                                self.symbol_table.define(f"{alias}.{vf.name}", symbol_type='VIRTUAL_FIELD', metadata={'define': vf, 'segment': segment})
+
+                    for vf in mf.virtual_fields:
+                        self.symbol_table.define(vf.name, symbol_type='VIRTUAL_FIELD', metadata={'define': vf})
+                        if alias:
+                            self.symbol_table.define(f"{alias}.{vf.name}", symbol_type='VIRTUAL_FIELD', metadata={'define': vf})
+
+                # Register fields from the primary Master File
+                register_master_fields(master_file)
+
+                # Register fields from joined Master Files
+                # In WebFOCUS, JOINs can be chained. We'll do a simple iterative resolution.
+                files_to_check = [node.filename.upper()]
+                processed_files = set()
+
+                while files_to_check:
+                    current_file = files_to_check.pop(0)
+                    if current_file in processed_files:
+                        continue
+                    processed_files.add(current_file)
+
+                    for join in self.active_joins:
+                        if join.left_file.upper() == current_file:
+                            joined_mf = self.metadata_registry.get_master_file(join.right_file)
+                            if joined_mf:
+                                register_master_fields(joined_mf, alias=join.join_as)
+                                files_to_check.append(join.right_file.upper())
 
                 # Visit components (verbs, WHERE, COMPUTE, etc.)
                 for component in node.components:

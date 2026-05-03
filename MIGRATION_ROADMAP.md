@@ -199,7 +199,7 @@ Ensure the new system produces correct results and maintains parity with the leg
   - [ ] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.
     - [ ] 5.1.4.1 Symbol Resolution Validation:
       - [x] 5.1.4.1.1 Global vs. Local scope resolution for AmperVars.
-      - [ ] 5.1.4.1.2 Multi-segment field resolution in joined Master Files.
+      - [x] 5.1.4.1.2 Multi-segment field resolution in joined Master Files.
       - [ ] 5.1.4.1.3 Virtual field shadowing rules (DEFINE vs. Master File).
     - [ ] 5.1.4.2 Type Consistency:
       - [ ] 5.1.4.2.1 Numeric precision mapping (I, F, D, P to PostgreSQL).
