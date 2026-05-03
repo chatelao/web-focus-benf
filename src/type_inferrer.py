@@ -81,6 +81,7 @@ class TypeInferrer:
         return node.data_type
 
     def visit_FieldSelection(self, node):
+        node.data_type = None
         if hasattr(node, 'symbol') and node.symbol:
             metadata = node.symbol.metadata
             if 'field' in metadata:
@@ -89,8 +90,11 @@ class TypeInferrer:
                 node.data_type = self._get_base_type(metadata['define'].format)
             elif 'compute' in metadata:
                 node.data_type = self._get_base_type(metadata['compute'].format)
-        else:
-            node.data_type = None
+            elif 'definition' in metadata:
+                # Procedural DEFINE
+                node.data_type = self._get_base_type(metadata['definition'].format)
+                if not node.data_type:
+                    node.data_type = self.visit(metadata['definition'].expression)
         return node.data_type
 
     def visit_AmperVar(self, node):

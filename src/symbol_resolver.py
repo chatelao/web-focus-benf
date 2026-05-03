@@ -10,6 +10,8 @@ class SymbolResolver:
         self.symbol_table = symbol_table or SymbolTable()
         self.metadata_registry = metadata_registry
         self.active_joins = []
+        self.procedural_defines = {} # filename -> {field_name: DefineAssignment}
+        self.current_define_file = None
 
     def resolve(self, nodes):
         """Main entry point for resolving symbols in a list of ASG nodes or a single node."""
@@ -89,21 +91,29 @@ class SymbolResolver:
                     for segment in mf.segments:
                         for field in segment.fields:
                             # Register both short name and qualified name
-                            self.symbol_table.define(field.name, symbol_type='FIELD', metadata={'field': field, 'segment': segment})
-                            self.symbol_table.define(f"{segment.name}.{field.name}", symbol_type='FIELD', metadata={'field': field, 'segment': segment})
+                            self.symbol_table.define(field.name, symbol_type='FIELD', field=field, segment=segment)
+                            self.symbol_table.define(f"{segment.name}.{field.name}", symbol_type='FIELD', field=field, segment=segment)
                             if alias:
-                                self.symbol_table.define(f"{alias}.{field.name}", symbol_type='FIELD', metadata={'field': field, 'segment': segment})
+                                self.symbol_table.define(f"{alias}.{field.name}", symbol_type='FIELD', field=field, segment=segment)
 
                         for vf in segment.virtual_fields:
-                            self.symbol_table.define(vf.name, symbol_type='VIRTUAL_FIELD', metadata={'define': vf, 'segment': segment})
-                            self.symbol_table.define(f"{segment.name}.{vf.name}", symbol_type='VIRTUAL_FIELD', metadata={'define': vf, 'segment': segment})
+                            self.symbol_table.define(vf.name, symbol_type='VIRTUAL_FIELD', define=vf, segment=segment)
+                            self.symbol_table.define(f"{segment.name}.{vf.name}", symbol_type='VIRTUAL_FIELD', define=vf, segment=segment)
                             if alias:
-                                self.symbol_table.define(f"{alias}.{vf.name}", symbol_type='VIRTUAL_FIELD', metadata={'define': vf, 'segment': segment})
+                                self.symbol_table.define(f"{alias}.{vf.name}", symbol_type='VIRTUAL_FIELD', define=vf, segment=segment)
 
                     for vf in mf.virtual_fields:
-                        self.symbol_table.define(vf.name, symbol_type='VIRTUAL_FIELD', metadata={'define': vf})
+                        self.symbol_table.define(vf.name, symbol_type='VIRTUAL_FIELD', define=vf)
                         if alias:
-                            self.symbol_table.define(f"{alias}.{vf.name}", symbol_type='VIRTUAL_FIELD', metadata={'define': vf})
+                            self.symbol_table.define(f"{alias}.{vf.name}", symbol_type='VIRTUAL_FIELD', define=vf)
+
+                    # Register procedural DEFINEs for this Master File
+                    mf_name = mf.name.upper()
+                    if mf_name in self.procedural_defines:
+                        for field_name, definition in self.procedural_defines[mf_name].items():
+                            self.symbol_table.define(field_name, symbol_type='VIRTUAL_FIELD', definition=definition)
+                            if alias:
+                                self.symbol_table.define(f"{alias}.{field_name}", symbol_type='VIRTUAL_FIELD', definition=definition)
 
                 # Register fields from the primary Master File
                 register_master_fields(master_file)
@@ -148,17 +158,25 @@ class SymbolResolver:
 
     def visit_DefineFile(self, node):
         """Registers virtual fields from a DEFINE FILE block."""
-        # For now, we define these in the current scope.
-        # In a more complex implementation, we'd associate them with the specific MasterFile.
+        old_file = self.current_define_file
+        self.current_define_file = node.filename.upper()
+        if self.current_define_file not in self.procedural_defines:
+            self.procedural_defines[self.current_define_file] = {}
+
         for assignment in node.assignments:
             self.visit(assignment)
 
+        self.current_define_file = old_file
+
     def visit_DefineAssignment(self, node):
         """Registers a single virtual field definition."""
-        self.symbol_table.define(node.name, symbol_type='VIRTUAL_FIELD', metadata={'definition': node})
+        if self.current_define_file:
+            self.procedural_defines[self.current_define_file][node.name.upper()] = node
+        else:
+            self.symbol_table.define(node.name, symbol_type='VIRTUAL_FIELD', definition=node)
         self.visit(node.expression)
 
     def visit_ComputeCommand(self, node):
         """Registers a COMPUTE field definition within a report request."""
-        self.symbol_table.define(node.name, symbol_type='VIRTUAL_FIELD', metadata={'compute': node})
+        self.symbol_table.define(node.name, symbol_type='VIRTUAL_FIELD', compute=node)
         self.visit(node.expression)
