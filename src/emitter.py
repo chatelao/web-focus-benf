@@ -106,6 +106,12 @@ class PostgresEmitter:
         if data_type.startswith('A'):
             return 'TEXT'
 
+        # Date and Date-Time mapping
+        if data_type.startswith('H'):
+            return 'TIMESTAMP'
+        if data_type in ('YYMD', 'MDYY', 'DMYY', 'YMD', 'MDY', 'DMY'):
+            return 'DATE'
+
         # Integer mapping
         if data_type.startswith('I'):
             if '8' in data_type:

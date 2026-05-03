@@ -204,7 +204,7 @@ Ensure the new system produces correct results and maintains parity with the leg
     - [ ] 5.1.4.2 Type Consistency:
       - [x] 5.1.4.2.1 Numeric precision mapping (I, F, D, P to PostgreSQL).
       - [ ] 5.1.4.2.2 Alpha-numeric string truncation and padding semantics.
-      - [ ] 5.1.4.2.3 Date/Time format conversion parity.
+      - [x] 5.1.4.2.3 Date/Time format conversion parity.
     - [x] 5.1.4.3 Constant Folding Parity:
       - [x] 5.1.4.3.1 Arithmetic expression folding.
       - [x] 5.1.4.3.2 Character concatenation folding.
