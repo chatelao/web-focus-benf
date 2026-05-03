@@ -160,6 +160,7 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
     - [x] 4.3.1.6 Post-Aggregation Filtering: Mapping WHERE TOTAL to SQL `HAVING`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.7 Sorting: Mapping sort options to SQL `ORDER BY`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.8 Calculated Values: Mapping COMPUTE command to SQL expressions. (Implemented in `src/emitter.py`)
+    - [x] 4.3.1.9 Presentation Metadata: Mapping RECAP and SUMMARIZE commands to SQL comments. (Implemented in `src/emitter.py`)
   - [x] 4.3.2 Data Source Mapping: Resolve TABLE FILE references to database tables/views. (Implemented in `src/emitter.py` via `MetadataRegistry`)
 
 ## Phase 5: Verification and Parity

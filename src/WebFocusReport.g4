@@ -3,7 +3,7 @@ grammar WebFocusReport;
 start: (request | dm_command | join_command | set_command | define_file | compound_layout_block)* EOF;
 
 // @category Report Requests
-request: table_file (verb_command | by_command | across_command | where_command | when_command | show_command | heading_command | footing_command | on_command | compute_command | recap_command | dm_command | STRING)* end_command;
+request: table_file (verb_command | by_command | across_command | where_command | when_command | show_command | heading_command | footing_command | on_command | compute_command | recap_command | summarize_command | dm_command | STRING)* end_command;
 
 // @category Report Requests
 compound_layout_block: COMPOUND LAYOUT output_command (layout_statement)* end_command (request | dm_command | join_command | set_command | define_file)* COMPOUND END;
