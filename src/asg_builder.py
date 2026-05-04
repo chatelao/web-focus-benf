@@ -25,10 +25,14 @@ class ReportASGBuilder(WebFocusReportVisitor):
     def visitRequest(self, ctx: WebFocusReportParser.RequestContext):
         filename = self.visit(ctx.table_file())
         components = []
+        more_clause = None
         # Iterate through all children except table_file (first) and end_command (last)
         for i in range(1, ctx.getChildCount() - 1):
             child = ctx.getChild(i)
             if isinstance(child, TerminalNode):
+                continue
+            if isinstance(child, WebFocusReportParser.More_phraseContext):
+                more_clause = self.visit(child)
                 continue
             node = self.visit(child)
             if node:
@@ -36,7 +40,77 @@ class ReportASGBuilder(WebFocusReportVisitor):
                     components.extend(node)
                 else:
                     components.append(node)
-        return ReportRequest(filename=filename, components=components)
+        return ReportRequest(filename=filename, components=components, more_clause=more_clause)
+
+    def visitMatch_request(self, ctx: WebFocusReportParser.Match_requestContext):
+        filename = ctx.qualified_name().getText()
+        components = []
+        more_clause = None
+        sub_matches = []
+
+        # MATCH FILE qualified_name are first three children
+        for i in range(3, ctx.getChildCount() - 1):
+            child = ctx.getChild(i)
+            if isinstance(child, TerminalNode):
+                continue
+            if isinstance(child, WebFocusReportParser.More_phraseContext):
+                more_clause = self.visit(child)
+            elif isinstance(child, WebFocusReportParser.Sub_matchContext):
+                sub_matches.append(self.visit(child))
+            else:
+                node = self.visit(child)
+                if node:
+                    if isinstance(node, list):
+                        components.extend(node)
+                    else:
+                        components.append(node)
+        return MatchRequest(filename=filename, components=components, more_clause=more_clause, sub_matches=sub_matches)
+
+    def visitSub_match(self, ctx: WebFocusReportParser.Sub_matchContext):
+        filename = ctx.qualified_name().getText()
+        components = []
+        more_clause = None
+        after_match = None
+
+        for i in range(2, ctx.getChildCount()):
+            child = ctx.getChild(i)
+            if isinstance(child, TerminalNode):
+                continue
+            if isinstance(child, WebFocusReportParser.More_phraseContext):
+                more_clause = self.visit(child)
+            elif isinstance(child, WebFocusReportParser.After_match_phraseContext):
+                after_match = self.visit(child)
+            else:
+                node = self.visit(child)
+                if node:
+                    if isinstance(node, list):
+                        components.extend(node)
+                    else:
+                        components.append(node)
+        return SubMatch(filename=filename, components=components, more_clause=more_clause, after_match=after_match)
+
+    def visitAfter_match_phrase(self, ctx: WebFocusReportParser.After_match_phraseContext):
+        merge_type = ctx.merge_type().getText().upper()
+        output_command = self.visit(ctx.output_command()) if ctx.output_command() else None
+        return AfterMatchPhrase(merge_type=merge_type, output_command=output_command)
+
+    def visitMore_phrase(self, ctx: WebFocusReportParser.More_phraseContext):
+        sub_requests = []
+        current_sub = None
+        for i in range(1, ctx.getChildCount()):
+            child = ctx.getChild(i)
+            if isinstance(child, TerminalNode):
+                continue
+            if isinstance(child, WebFocusReportParser.Qualified_nameContext):
+                if current_sub:
+                    sub_requests.append(current_sub)
+                current_sub = MoreSubRequest(filename=child.getText(), where_clauses=[])
+            elif isinstance(child, WebFocusReportParser.Where_commandContext):
+                if current_sub:
+                    current_sub.where_clauses.append(self.visit(child))
+        if current_sub:
+            sub_requests.append(current_sub)
+        return MoreClause(sub_requests=sub_requests)
 
     def visitTable_file(self, ctx: WebFocusReportParser.Table_fileContext):
         return ctx.qualified_name().getText()
