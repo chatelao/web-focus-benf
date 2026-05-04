@@ -131,8 +131,8 @@ class ExitDM(Command):
 
 class ReportRequest(Statement):
     """Represents a TABLE FILE report request."""
-    def __init__(self, filename, components=None, **kwargs):
-        super().__init__(filename=filename, components=components or [], **kwargs)
+    def __init__(self, filename, components=None, more_clause=None, **kwargs):
+        super().__init__(filename=filename, components=components or [], more_clause=more_clause, **kwargs)
 
 class VerbCommand(Command):
     """Represents a report verb command (PRINT, SUM, etc.)."""
@@ -310,3 +310,28 @@ class InsertClause(ASGNode):
     """Represents a WHEN NOT MATCHED INSERT clause in a MERGE command."""
     def __init__(self, assignments, **kwargs):
         super().__init__(assignments=assignments or [], **kwargs)
+
+class MatchRequest(Statement):
+    """Represents a MATCH FILE request."""
+    def __init__(self, filename, components=None, more_clause=None, sub_matches=None, **kwargs):
+        super().__init__(filename=filename, components=components or [], more_clause=more_clause, sub_matches=sub_matches or [], **kwargs)
+
+class SubMatch(ASGNode):
+    """Represents a FILE entry within a MATCH request."""
+    def __init__(self, filename, components=None, more_clause=None, after_match=None, **kwargs):
+        super().__init__(filename=filename, components=components or [], more_clause=more_clause, after_match=after_match, **kwargs)
+
+class AfterMatchPhrase(ASGNode):
+    """Represents an AFTER MATCH phrase."""
+    def __init__(self, merge_type, output_command=None, **kwargs):
+        super().__init__(merge_type=merge_type, output_command=output_command, **kwargs)
+
+class MoreClause(ASGNode):
+    """Represents a MORE phrase."""
+    def __init__(self, sub_requests=None, **kwargs):
+        super().__init__(sub_requests=sub_requests or [], **kwargs)
+
+class MoreSubRequest(ASGNode):
+    """Represents a FILE entry within a MORE phrase."""
+    def __init__(self, filename, where_clauses=None, **kwargs):
+        super().__init__(filename=filename, where_clauses=where_clauses or [], **kwargs)
