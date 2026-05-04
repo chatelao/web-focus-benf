@@ -81,6 +81,11 @@ class Report(Instruction):
     def __init__(self, filename, components, joins=None, more_clause=None, **kwargs):
         super().__init__(filename=filename, components=components, joins=joins or [], more_clause=more_clause, **kwargs)
 
+class Match(Instruction):
+    """Represents a match request (MATCH FILE)."""
+    def __init__(self, filename, components, sub_matches=None, more_clause=None, **kwargs):
+        super().__init__(filename=filename, components=components, sub_matches=sub_matches or [], more_clause=more_clause, **kwargs)
+
 class CompoundLayout(Instruction):
     """Represents the start of a COMPOUND LAYOUT block."""
     def __init__(self, output_command, statements=None, **kwargs):

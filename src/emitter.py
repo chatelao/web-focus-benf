@@ -443,6 +443,9 @@ class PostgresEmitter:
         elif class_name == 'Report':
             return self._emit_report(instr)
 
+        elif class_name == 'Match':
+            return f"/* MATCH FILE {instr.filename} ... (Emission not implemented) */"
+
         elif class_name == 'Call':
             args = [self.emit_expression(arg) for arg in instr.arguments]
             return f"/* CALL {instr.target}({', '.join(args)}) */"
