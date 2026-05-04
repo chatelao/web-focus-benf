@@ -444,7 +444,7 @@ class PostgresEmitter:
             return self._emit_report(instr)
 
         elif class_name == 'Match':
-            return f"/* MATCH FILE {instr.filename} ... (Emission not implemented) */"
+            return self._emit_match(instr)
 
         elif class_name == 'Call':
             args = [self.emit_expression(arg) for arg in instr.arguments]
@@ -1026,6 +1026,110 @@ class PostgresEmitter:
 
         sql += ";"
         return sql
+
+    def _emit_match(self, instr):
+        """
+        Translates ir.Match instruction into a SQL SELECT statement using CTEs.
+        """
+        if not instr.sub_matches:
+             return f"/* MATCH FILE {instr.filename} with no sub-matches */"
+
+        def process_match_request(filename, components):
+            table_name = self._resolve_table_name(filename)
+
+            select_fields = []
+            group_by_fields = []
+            value_fields = []
+
+            # BY fields
+            for comp in components:
+                if comp.__class__.__name__ == 'SortCommand' and comp.sort_type == 'BY':
+                    f_name = comp.field.name
+                    select_fields.append(f"\"{f_name}\"")
+                    group_by_fields.append(f"\"{f_name}\"")
+
+            # Verb fields
+            for comp in components:
+                if comp.__class__.__name__ == 'VerbCommand':
+                    for f_sel in comp.fields:
+                        if f_sel.name == '*': continue
+                        f_name = f_sel.name
+                        if f"\"{f_name}\"" in group_by_fields: continue
+
+                        alias = f_sel.alias or f_name
+                        if comp.verb == 'SUM':
+                            select_fields.append(f"SUM(\"{f_name}\") AS \"{alias}\"")
+                        elif comp.verb == 'COUNT':
+                            select_fields.append(f"COUNT(\"{f_name}\") AS \"{alias}\"")
+                        else:
+                            select_fields.append(f"\"{f_name}\" AS \"{alias}\"")
+                        value_fields.append(alias)
+
+            # Where clauses
+            where_clauses = []
+            for comp in components:
+                if comp.__class__.__name__ == 'WhereClause':
+                    where_clauses.append(self.emit_expression(comp.condition, in_query=True, qualifier=lambda f: f"\"{f}\"" if '.' not in f else f))
+
+            sql = f"SELECT {', '.join(select_fields)} FROM {table_name}"
+            if where_clauses:
+                sql += f" WHERE {' AND '.join(where_clauses)}"
+            if group_by_fields:
+                sql += f" GROUP BY {', '.join(group_by_fields)}"
+            return sql, [f.strip('"') for f in group_by_fields], value_fields
+
+        # First file
+        sql1, keys1, vals1 = process_match_request(instr.filename, instr.components)
+
+        # For now, handle exactly one sub_match (merging two files)
+        sub = instr.sub_matches[0]
+        sql2, keys2, vals2 = process_match_request(sub.filename, sub.components)
+
+        merge_type = "OLD-OR-NEW"
+        if sub.after_match:
+            merge_type = sub.after_match.merge_type.upper().replace('_', '-')
+
+        res = "WITH\n"
+        res += "  T1 AS (\n" + self._indent(sql1, 4) + "\n  ),\n"
+        res += "  T2 AS (\n" + self._indent(sql2, 4) + "\n  )\n"
+
+        # Final SELECT
+        final_sel = []
+        for i in range(min(len(keys1), len(keys2))):
+            k1 = keys1[i]
+            k2 = keys2[i]
+            final_sel.append(f"COALESCE(T1.\"{k1}\", T2.\"{k2}\") AS \"{k1}\"")
+
+        for v in vals1:
+            final_sel.append(f"T1.\"{v}\"")
+        for v in vals2:
+            final_sel.append(f"T2.\"{v}\"")
+
+        res += "SELECT " + ", ".join(final_sel) + "\nFROM T1\n"
+
+        if merge_type == 'OLD-OR-NEW':
+            res += "FULL OUTER JOIN T2 ON "
+        elif merge_type == 'OLD-AND-NEW':
+            res += "INNER JOIN T2 ON "
+        elif merge_type in ('OLD-NOT-NEW', 'OLD'):
+            res += "LEFT JOIN T2 ON "
+        elif merge_type in ('NEW-NOT-OLD', 'NEW'):
+            res += "RIGHT JOIN T2 ON "
+        else:
+            res += "FULL OUTER JOIN T2 ON "
+
+        on_conds = []
+        for i in range(min(len(keys1), len(keys2))):
+            on_conds.append(f"T1.\"{keys1[i]}\" = T2.\"{keys2[i]}\"")
+        res += " AND ".join(on_conds)
+
+        if merge_type == 'OLD-NOT-NEW':
+            res += f"\nWHERE T2.\"{keys2[0]}\" IS NULL"
+        elif merge_type == 'NEW-NOT-OLD':
+            res += f"\nWHERE T1.\"{keys1[0]}\" IS NULL"
+
+        res += ";"
+        return res
 
     def _resolve_table_name(self, filename):
         """

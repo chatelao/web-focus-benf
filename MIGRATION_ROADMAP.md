@@ -206,7 +206,7 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [x] 5.1.3.12.2 ASG support for `MatchRequest`, `SubMatch`, and `AfterMatchPhrase`.
       - [ ] 5.1.3.12.3 Emitter support for `MATCH` logic.
         - [x] 5.1.3.12.3.1 IR support for `MATCH FILE`.
-        - [ ] 5.1.3.12.3.2 Basic SQL generation for `MATCH` (merging two files).
+        - [x] 5.1.3.12.3.2 Basic SQL generation for `MATCH` (merging two files).
         - [ ] 5.1.3.12.3.3 Support for all merge phrases (OLD-OR-NEW, etc.).
     - [x] 5.1.3.13 Support `MORE` phrase (Universal Concatenation).
       - [x] 5.1.3.13.1 Grammar support for `MORE` phrase in `TABLE` and `MATCH` requests.
