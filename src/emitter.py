@@ -1065,11 +1065,29 @@ class PostgresEmitter:
                             select_fields.append(f"\"{f_name}\" AS \"{alias}\"")
                         value_fields.append(alias)
 
+            # COMPUTE fields
+            for comp in components:
+                if comp.__class__.__name__ == 'ComputeCommand':
+                    sql_expr = self.emit_expression(
+                        comp.expression,
+                        in_query=True,
+                        virtual_fields=self.virtual_fields.get(filename, {}),
+                        qualifier=lambda f: f"\"{f}\"" if '.' not in f else f
+                    )
+                    alias = getattr(comp, 'alias', None) or comp.name
+                    select_fields.append(f"{sql_expr} AS \"{alias}\"")
+                    value_fields.append(alias)
+
             # Where clauses
             where_clauses = []
             for comp in components:
                 if comp.__class__.__name__ == 'WhereClause':
-                    where_clauses.append(self.emit_expression(comp.condition, in_query=True, qualifier=lambda f: f"\"{f}\"" if '.' not in f else f))
+                    where_clauses.append(self.emit_expression(
+                        comp.condition,
+                        in_query=True,
+                        virtual_fields=self.virtual_fields.get(filename, {}),
+                        qualifier=lambda f: f"\"{f}\"" if '.' not in f else f
+                    ))
 
             sql = f"SELECT {', '.join(select_fields)} FROM {table_name}"
             if where_clauses:

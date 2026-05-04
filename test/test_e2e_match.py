@@ -7,7 +7,9 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../s
 
 from asg import (
     MatchRequest, SubMatch, VerbCommand, FieldSelection,
-    SortCommand, AfterMatchPhrase, MasterFile, Segment, Field
+    SortCommand, AfterMatchPhrase, MasterFile, Segment, Field,
+    ComputeCommand, BinaryOperation, Literal, Identifier,
+    DefineFile, DefineAssignment
 )
 from ir_builder import IRBuilder
 from emitter import PostgresEmitter
@@ -266,6 +268,66 @@ class TestE2EMatch(unittest.TestCase):
 
         self.assertIn("RIGHT JOIN", sql)
         self.assertNotIn("WHERE", sql)
+
+    def test_match_with_compute_and_virtual_fields(self):
+        registry = MetadataRegistry()
+        f1 = MasterFile(name="FILE1")
+        s1 = Segment(name="S1")
+        s1.fields = [Field(name="PRODUCT"), Field(name="SALES")]
+        f1.segments = [s1]
+        registry.register_master_file(f1)
+
+        f2 = MasterFile(name="FILE2")
+        s2 = Segment(name="S2")
+        s2.fields = [Field(name="PRODUCT"), Field(name="RETURNS")]
+        f2.segments = [s2]
+        registry.register_master_file(f2)
+
+        # Virtual field for FILE1
+        define = DefineFile(
+            filename="FILE1",
+            assignments=[
+                DefineAssignment(
+                    name="NET_SALES",
+                    expression=BinaryOperation(Identifier(name="SALES"), "-", Literal(10))
+                )
+            ]
+        )
+
+        match_request = MatchRequest(
+            filename="FILE1",
+            components=[
+                VerbCommand(verb="SUM", fields=[FieldSelection(name="SALES")]),
+                ComputeCommand(
+                    name="CALC_VAL",
+                    expression=BinaryOperation(Identifier(name="NET_SALES"), "*", Literal(2))
+                ),
+                SortCommand(sort_type="BY", field=FieldSelection(name="PRODUCT"))
+            ],
+            sub_matches=[
+                SubMatch(
+                    filename="FILE2",
+                    components=[
+                        VerbCommand(verb="SUM", fields=[FieldSelection(name="RETURNS")]),
+                        SortCommand(sort_type="BY", field=FieldSelection(name="PRODUCT"))
+                    ],
+                    after_match=AfterMatchPhrase(merge_type="OLD-OR-NEW")
+                )
+            ]
+        )
+
+        builder = IRBuilder()
+        cfg = builder.build([define, match_request])
+
+        emitter = PostgresEmitter(metadata_registry=registry)
+        sql = emitter.emit(cfg)
+
+        print(sql)
+
+        # Assertions
+        # CALC_VAL should be (("SALES" - 10) * 2)
+        self.assertIn("((\"SALES\" - 10) * 2) AS \"CALC_VAL\"", sql)
+        self.assertIn("FULL OUTER JOIN", sql)
 
 if __name__ == '__main__':
     unittest.main()
