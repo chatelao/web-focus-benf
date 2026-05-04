@@ -101,12 +101,9 @@ class TestE2EControlFlow(unittest.TestCase):
         -END_REPEAT
         """
         sql = self._run_e2e(fex_code, optimize=False)
-        # Check counter initialization
-        self.assertIn("v_REPEAT_COUNTER_END_REPEAT := 1;", sql)
-        # Check counter increment
-        self.assertIn("v_REPEAT_COUNTER_END_REPEAT_0 := (v_REPEAT_COUNTER_END_REPEAT_0 + 1);", sql)
-        # Check header condition
-        self.assertIn("(v_REPEAT_COUNTER_END_REPEAT_0 <= 5)", sql)
+        # With the new emitter, simple loops are optimized even without global optimize=True
+        # because the optimization happens during emission based on CFG structure.
+        self.assertIn("FOR v_REPEAT_COUNTER_END_REPEAT_0 IN 1..5 LOOP", sql)
 
 if __name__ == '__main__':
     unittest.main()
