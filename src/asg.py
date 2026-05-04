@@ -121,6 +121,21 @@ class HtmlFormDM(Command):
     def __init__(self, filename=None, content=None, **kwargs):
         super().__init__(filename=filename, content=content, **kwargs)
 
+class ReadDM(Command):
+    """Represents a Dialogue Manager -READ command."""
+    def __init__(self, filename, variables=None, **kwargs):
+        super().__init__(filename=filename, variables=variables or [], **kwargs)
+
+class WriteDM(Command):
+    """Represents a Dialogue Manager -WRITE command."""
+    def __init__(self, filename, messages=None, **kwargs):
+        super().__init__(filename=filename, messages=messages or [], **kwargs)
+
+class DefaultDM(Command):
+    """Represents a Dialogue Manager -DEFAULT, -DEFAULTS, or -DEFAULTH command."""
+    def __init__(self, variable, expression, **kwargs):
+        super().__init__(variable=variable, expression=expression, **kwargs)
+
 class RunDM(Command):
     """Represents a Dialogue Manager -RUN command."""
     pass

@@ -216,6 +216,10 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [x] 5.1.3.13.1 Grammar support for `MORE` phrase in `TABLE` and `MATCH` requests.
       - [x] 5.1.3.13.2 ASG support for `MoreClause` and sub-requests.
       - [x] 5.1.3.13.3 Emitter support for `UNION ALL`.
+    - [ ] 5.1.3.14 Support `-READ`, `-WRITE`, and `-DEFAULT` Dialogue Manager commands.
+      - [ ] 5.1.3.14.1 Grammar support for `-READ`, `-WRITE`, and `-DEFAULT`.
+      - [ ] 5.1.3.14.2 ASG support for `ReadDM`, `WriteDM`, and `DefaultDM` nodes.
+      - [ ] 5.1.3.14.3 IR and Emitter support for Dialogue Manager I/O and defaults.
   - [x] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.
     - [x] 5.1.4.1 Symbol Resolution Validation:
       - [x] 5.1.4.1.1 Global vs. Local scope resolution for AmperVars.

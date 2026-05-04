@@ -477,6 +477,18 @@ class PostgresEmitter:
             else:
                 return f"/* -HTMLFORM BEGIN ... -HTMLFORM END */"
 
+        elif class_name == 'Read':
+            vars_str = " ". join(instr.variables)
+            return f"/* -READ {instr.filename} {vars_str} */"
+
+        elif class_name == 'Write':
+            parts = [self.emit_expression(p) for p in instr.messages]
+            return f"/* -WRITE {instr.filename} {' || '.join(parts)} */"
+
+        elif class_name == 'Default':
+            expr = self.emit_expression(instr.expression)
+            return f"/* -DEFAULT {instr.variable} = {expr} */"
+
         elif class_name == 'CompoundLayout':
             return self._emit_compound_layout(instr)
 
