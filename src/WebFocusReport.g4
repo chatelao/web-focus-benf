@@ -33,10 +33,10 @@ layout_statement: (identifier | TYPE) EQ layout_value (COMMA layout_property)* (
 layout_property: (identifier | TYPE) EQ layout_value;
 
 // @inline
-layout_value: qualified_name ('(' layout_value (layout_value | COMMA)* ')')?
+layout_value: qualified_name (LPAREN layout_value (layout_value | COMMA)* RPAREN)?
             | NUMBER
             | dm_float
-            | '(' layout_value (layout_value | COMMA)* ')'
+            | LPAREN layout_value (layout_value | COMMA)* RPAREN
             | STRING
             | ON | OFF | LANDSCAPE | PORTRAIT | REPORT
             ;
@@ -49,7 +49,7 @@ compute_command: AND? COMPUTE qualified_name (SLASH format_name)? EQ dm_expressi
 
 recap_command: RECAP recap_assignment+;
 
-recap_assignment: qualified_name ('(' dm_expression ')')? (SLASH format_name)? EQ dm_expression (SEMI? recap_option)* SEMI?;
+recap_assignment: qualified_name (LPAREN dm_expression RPAREN)? (SLASH format_name)? EQ dm_expression (SEMI? recap_option)* SEMI?;
 
 recap_option: as_phrase
             | INDENT NUMBER
@@ -81,7 +81,16 @@ dm_command: dm_set
           | dm_exit
           | dm_repeat
           | dm_htmlform
+          | dm_read
+          | dm_write
+          | dm_default
           ;
+
+dm_read: READ_DM qualified_name (amper_var (DOT format_name)?)* SEMI?;
+
+dm_write: WRITE_DM qualified_name (dm_primary)* SEMI?;
+
+dm_default: (DEFAULT_DM | DEFAULTS_DM | DEFAULTH_DM) amper_var EQ dm_expression SEMI?;
 
 dm_set: SET_DM amper_var EQ dm_expression SEMI?;
 
@@ -115,7 +124,7 @@ dm_expression: dm_if_expression;
 dm_if_expression: IF dm_logical_expression THEN dm_expression ELSE dm_expression
                 | dm_logical_expression;
 
-dm_logical_expression: '(' dm_logical_expression ')'
+dm_logical_expression: LPAREN dm_logical_expression RPAREN
                      | dm_relational_expression
                      | NOT dm_logical_expression
                      | dm_logical_expression AND dm_logical_expression
@@ -124,7 +133,7 @@ dm_logical_expression: '(' dm_logical_expression ')'
 
 dm_relational_expression: dm_concat_expression (IS | EQ | NE | is_not_op)? MISSING
                         | dm_concat_expression (FROM | is_from_op | not_from_op) dm_concat_expression TO dm_concat_expression
-                        | dm_concat_expression IN (FILE qualified_name | '(' dm_concat_expression (COMMA dm_concat_expression)* ')')
+                        | dm_concat_expression IN (FILE qualified_name | LPAREN dm_concat_expression (COMMA dm_concat_expression)* RPAREN)
                         | dm_concat_expression (INCLUDES | EXCLUDES) dm_concat_expression (AND dm_concat_expression)*
                         | dm_concat_expression dm_relational_op (dm_concat_expression (OR dm_concat_expression)*)
                         | dm_concat_expression
@@ -169,13 +178,13 @@ dm_unary_expression: (ADD_OP | SUB_OP) dm_unary_expression
 dm_primary: NUMBER
           | dm_float
           | decode_expression
-          | qualified_name '(' (dm_expression (COMMA dm_expression)*)? ')'
+          | qualified_name LPAREN (dm_expression (COMMA dm_expression)*)? RPAREN
           | qualified_name
           | amper_var
           | STRING
-          | '(' dm_expression ')';
+          | LPAREN dm_expression RPAREN;
 
-decode_expression: DECODE dm_primary '(' (dm_primary dm_primary)* (ELSE dm_primary)? ')';
+decode_expression: DECODE dm_primary LPAREN (dm_primary dm_primary)* (ELSE dm_primary)? RPAREN;
 
 // @inline
 dm_float: NUMBER DOT NUMBER;
@@ -205,7 +214,7 @@ field: qualified_name (SLASH format_name)? as_phrase?;
 
 as_phrase: AS STRING;
 
-asterisk: '*';
+asterisk: MUL;
 
 // @category Report Requests
 by_command: RANKED? BY sort_options? field HIERARCHY? summarize_command? NOPRINT?;
@@ -278,7 +287,7 @@ identifier: NAME
           | HEADING | FOOTING | SUBHEAD | SUBFOOT | FORMAT
           | TIMES | WHILE | UNTIL | FOR | STEP | TOP | BOTTOM | RANKED | NOPRINT | AS | IN
           | HIERARCHY | WHEN | SHOW | UP | DOWN | OPEN | CLOSE | PAGE_BREAK | DRILLTHROUGH
-          | COLUMN | LINE | ITEM | COLOR
+          | COLUMN | LINE | ITEM | COLOR | DEFAULT | READ | WRITE
           ;
 
 // @internal
@@ -295,6 +304,11 @@ TYPE_DM: '-' [tT][yY][pP][eE];
 INCLUDE_DM: '-' [iI][nN][cC][lL][uU][dD][eE];
 HTMLFORM_DM: '-' [hH][tT][mM][lL][fF][oO][rR][mM];
 HTMLFORM_BLOCK: '-' [hH][tT][mM][lL][fF][oO][rR][mM] [ \t]+ [bB][eE][gG][iI][nN] .*? '-' [hH][tT][mM][lL][fF][oO][rR][mM] [ \t]+ [eE][nN][dD];
+READ_DM: '-' [rR][eE][aA][dD];
+WRITE_DM: '-' [wW][rR][iI][tT][eE];
+DEFAULT_DM: '-' [dD][eE][fF][aA][uU][lL][tT];
+DEFAULTS_DM: '-' [dD][eE][fF][aA][uU][lL][tT][sS];
+DEFAULTH_DM: '-' [dD][eE][fF][aA][uU][lL][tT][hH];
 RUN_DM: '-' [rR][uU][nN];
 EXIT_DM: '-' [eE][xX][iI][tT];
 
@@ -394,6 +408,8 @@ THEN: [tT][hH][eE][nN];
 ELSE: [eE][lL][sS][eE];
 IF: [iI][fF];
 DECODE: [dD][eE][cC][oO][dD][eE];
+DEFAULT: [dD][eE][fF][aA][uU][lL][tT];
+READ: [rR][eE][aA][dD];
 
 HEADING: [hH][eE][aA][dD][iI][nN][gG];
 FOOTING: [fF][oO][oO][tT][iI][nN][gG];
@@ -469,8 +485,10 @@ CT: [cC][tT];
 DOT: '.';
 COMMA: ',';
 SEMI: ';';
-SLASH: '/';
+LPAREN: '(';
+RPAREN: ')';
 MUL: '*';
+SLASH: '/';
 ADD_OP: '+';
 SUB_OP: '-';
 CONCAT: '||' | '|';

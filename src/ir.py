@@ -53,6 +53,21 @@ class HtmlForm(Instruction):
     def __init__(self, filename=None, content=None, **kwargs):
         super().__init__(filename=filename, content=content, **kwargs)
 
+class Read(Instruction):
+    """Represents a -READ command."""
+    def __init__(self, filename, variables, **kwargs):
+        super().__init__(filename=filename, variables=variables, **kwargs)
+
+class Write(Instruction):
+    """Represents a -WRITE command."""
+    def __init__(self, filename, messages, **kwargs):
+        super().__init__(filename=filename, messages=messages, **kwargs)
+
+class Default(Instruction):
+    """Represents a -DEFAULT, -DEFAULTS, or -DEFAULTH command."""
+    def __init__(self, variable, expression, **kwargs):
+        super().__init__(variable=variable, expression=expression, **kwargs)
+
 class Join(Instruction):
     """Represents a JOIN command."""
     def __init__(self, left_file, left_field, right_file, right_field, join_as=None, outer=False, is_all=False, **kwargs):

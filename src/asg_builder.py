@@ -579,6 +579,47 @@ class ReportASGBuilder(WebFocusReportVisitor):
         filename = ctx.qualified_name().getText()
         return HtmlFormDM(filename=filename)
 
+    def visitDm_read(self, ctx: WebFocusReportParser.Dm_readContext):
+        filename = ctx.qualified_name().getText()
+        variables = []
+
+        current_var = None
+        for i in range(2, ctx.getChildCount()):
+            child = ctx.getChild(i)
+            if isinstance(child, WebFocusReportParser.Amper_varContext):
+                if current_var:
+                    variables.append(current_var)
+                current_var = child.getText()
+            elif isinstance(child, WebFocusReportParser.Format_nameContext):
+                current_var += "." + child.getText()
+                variables.append(current_var)
+                current_var = None
+            elif isinstance(child, TerminalNode) and child.getText() == ';':
+                if current_var:
+                    variables.append(current_var)
+                current_var = None
+
+        if current_var:
+            variables.append(current_var)
+
+        return ReadDM(filename=filename, variables=variables)
+
+    def visitDm_write(self, ctx: WebFocusReportParser.Dm_writeContext):
+        filename = ctx.qualified_name().getText()
+        messages = []
+        for i in range(2, ctx.getChildCount()):
+            child = ctx.getChild(i)
+            if isinstance(child, TerminalNode):
+                continue
+            if isinstance(child, WebFocusReportParser.Dm_primaryContext):
+                messages.append(self.visit(child))
+        return WriteDM(filename=filename, messages=messages)
+
+    def visitDm_default(self, ctx: WebFocusReportParser.Dm_defaultContext):
+        variable = ctx.amper_var().getText()
+        expression = self.visit(ctx.dm_expression())
+        return DefaultDM(variable=variable, expression=expression)
+
     def visitDm_run(self, ctx: WebFocusReportParser.Dm_runContext):
         return RunDM()
 

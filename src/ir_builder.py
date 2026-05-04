@@ -184,6 +184,12 @@ class IRBuilder:
                 self.current_block.add_instruction(ir.Call(target=node.filename))
             elif class_name == 'HtmlFormDM':
                 self.current_block.add_instruction(ir.HtmlForm(filename=node.filename, content=node.content))
+            elif class_name == 'ReadDM':
+                self.current_block.add_instruction(ir.Read(filename=node.filename, variables=node.variables))
+            elif class_name == 'WriteDM':
+                self.current_block.add_instruction(ir.Write(filename=node.filename, messages=node.messages))
+            elif class_name == 'DefaultDM':
+                self.current_block.add_instruction(ir.Default(variable=node.variable, expression=node.expression))
             elif class_name == 'SetCommand':
                 self.current_block.add_instruction(ir.SetEnv(parameter=node.parameter, value=node.value))
             elif class_name == 'Join':
