@@ -96,5 +96,32 @@ class TestPrefixOperators(unittest.TestCase):
         self.assertIn("AVG(SRC.\"PRICE\")", sql)
         self.assertIn("GROUP BY SRC.\"COUNTRY\"", sql)
 
+    def test_advanced_window_prefixes(self):
+        fex = """
+        TABLE FILE CAR
+        SUM FST.MODEL LST.MODEL RNK.PRICE PCT.PRICE
+        BY COUNTRY
+        END
+        """
+        sql = self._compile_to_sql(fex)
+        # FST/LST via ARRAY_AGG
+        self.assertIn("(ARRAY_AGG(MODEL ORDER BY COUNTRY))[1]", sql)
+        self.assertIn("(ARRAY_AGG(MODEL ORDER BY COUNTRY))[ARRAY_UPPER(ARRAY_AGG(MODEL ORDER BY COUNTRY), 1)]", sql)
+        # RNK
+        self.assertIn("RANK() OVER (PARTITION BY COUNTRY ORDER BY SUM(PRICE) DESC)", sql)
+        # PCT
+        self.assertIn("(SUM(PRICE) * 100.0 / SUM(SUM(PRICE)) OVER ())", sql)
+
+    def test_print_advanced_prefixes(self):
+        fex = """
+        TABLE FILE CAR
+        PRINT FST.MODEL RNK.PRICE
+        BY COUNTRY
+        END
+        """
+        sql = self._compile_to_sql(fex)
+        self.assertIn("(ARRAY_AGG(MODEL ORDER BY COUNTRY))[1]", sql)
+        self.assertIn("RANK() OVER (PARTITION BY COUNTRY ORDER BY PRICE DESC)", sql)
+
 if __name__ == '__main__':
     unittest.main()
