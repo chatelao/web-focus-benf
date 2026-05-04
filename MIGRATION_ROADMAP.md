@@ -116,7 +116,10 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
     - [x] 3.3.2.1 Reachability Analysis: Remove unreachable blocks from CFG. (Implemented in `src/optimizer.py`)
     - [x] 3.3.2.2 Unused Assignment Elimination: Remove SSA assignments with no consumers. (Implemented in `src/optimizer.py`)
 - [ ] **3.4 Relational Lifting:**
-  - [ ] 3.4.1 Loop Analysis: Identify loops that iterate over data sources.
+  - [ ] 3.4.1 Loop Analysis:
+    - [ ] 3.4.1.1 Identification of constant vs. data-driven loops.
+    - [ ] 3.4.1.2 Lifting constant loops to PL/pgSQL procedural logic.
+    - [ ] 3.4.1.3 Identification of loops over data sources for relational lifting.
   - [ ] 3.4.2 Predicate Pushdown:
     - [x] 3.4.2.1 Filter Lifting: Move WHERE conditions to SQL. (Implemented in `src/emitter.py`)
     - [x] 3.4.2.2 Total Lifting: Move WHERE TOTAL conditions to SQL HAVING. (Implemented in `src/emitter.py`)
@@ -201,13 +204,14 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [x] 5.1.3.11.1 Grammar support for `DECODE` syntax.
       - [x] 5.1.3.11.2 ASG support for `DecodeExpression`.
       - [x] 5.1.3.11.3 Emitter support for translating `DECODE` to SQL `CASE`.
-    - [ ] 5.1.3.12 Support `MATCH FILE` command.
+    - [x] 5.1.3.12 Support `MATCH FILE` command.
       - [x] 5.1.3.12.1 Grammar support for `MATCH FILE`, `RUN`, `AFTER MATCH`, and merge phrases (`OLD-OR-NEW`, `OLD-AND-NEW`, `OLD-NOT-NEW`, `NEW-NOT-OLD`, `OLD-NOR-NEW`, `OLD`, `NEW`).
       - [x] 5.1.3.12.2 ASG support for `MatchRequest`, `SubMatch`, and `AfterMatchPhrase`.
       - [x] 5.1.3.12.3 Emitter support for `MATCH` logic.
         - [x] 5.1.3.12.3.1 IR support for `MATCH FILE`.
         - [x] 5.1.3.12.3.2 Basic SQL generation for `MATCH` (merging two files).
         - [x] 5.1.3.12.3.3 Support for all merge phrases (OLD-OR-NEW, etc.) and multi-file chaining.
+        - [x] 5.1.3.12.3.4 Support COMPUTE and virtual fields in MATCH sub-requests.
     - [x] 5.1.3.13 Support `MORE` phrase (Universal Concatenation).
       - [x] 5.1.3.13.1 Grammar support for `MORE` phrase in `TABLE` and `MATCH` requests.
       - [x] 5.1.3.13.2 ASG support for `MoreClause` and sub-requests.
@@ -217,6 +221,7 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [x] 5.1.4.1.1 Global vs. Local scope resolution for AmperVars.
       - [x] 5.1.4.1.2 Multi-segment field resolution in joined Master Files.
       - [x] 5.1.4.1.3 Virtual field shadowing rules (DEFINE vs. Master File).
+      - [x] 5.1.4.1.4 Symbol resolution within complex expression structures (tuples in lists).
     - [x] 5.1.4.2 Type Consistency:
       - [x] 5.1.4.2.1 Numeric precision mapping (I, F, D, P to PostgreSQL).
       - [x] 5.1.4.2.2 Alpha-numeric string truncation and padding semantics. (Verified via `test/test_alpha_parity.py`)
@@ -243,7 +248,10 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [x] 5.2.2.5.2 Parse `summary_report.fex`.
       - [x] 5.2.2.5.3 Parse `detail_report.fex`.
       - [x] 5.2.2.5.4 End-to-end PL/pgSQL emission for Drill Through.
-  - [ ] 5.2.3 Real-world Samples: Validate against complex samples in `test/realworld_samples/`.
+  - [ ] 5.2.3 Real-world Samples:
+    - [ ] 5.2.3.1 Complex Sales Reporting samples.
+    - [ ] 5.2.3.2 Financial Statement samples with complex RECAPs.
+    - [ ] 5.2.3.3 Multi-step MATCH FILE integration samples.
 - [ ] **5.3 Performance Benchmarking:**
   - [ ] 5.3.1 Query Execution: Compare generated SQL performance vs original WebFOCUS execution.
   - [x] 5.3.2 Compilation Overhead: Measure transpilation time for large projects. (Implemented in `scripts/benchmark_compilation.py`)

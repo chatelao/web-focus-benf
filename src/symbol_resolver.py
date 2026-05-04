@@ -40,6 +40,10 @@ class SymbolResolver:
                 for item in attr_value:
                     if isinstance(item, ASGNode):
                         self.visit(item)
+                    elif isinstance(item, tuple):
+                        for sub_item in item:
+                            if isinstance(sub_item, ASGNode):
+                                self.visit(sub_item)
 
     def visit_SetDM(self, node):
         """Registers a Dialogue Manager variable definition from -SET."""

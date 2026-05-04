@@ -32,6 +32,10 @@ class TypeInferrer:
                 for item in attr_value:
                     if isinstance(item, ASGNode):
                         self.visit(item)
+                    elif isinstance(item, tuple):
+                        for sub_item in item:
+                            if isinstance(sub_item, ASGNode):
+                                self.visit(sub_item)
         return None
 
     def _get_base_type(self, format_str):
@@ -192,3 +196,34 @@ class TypeInferrer:
         self.visit(node.expression)
         node.data_type = 'LOGICAL'
         return node.data_type
+
+    def visit_DecodeExpression(self, node):
+        self.visit(node.expression)
+        types = []
+        for val, res in node.pairs:
+            self.visit(val)
+            types.append(self.visit(res))
+
+        if node.default_value:
+            types.append(self.visit(node.default_value))
+
+        if any(t and t.startswith(('F', 'D', 'P')) for t in types):
+            node.data_type = self._pick_precise_type_list(types, ('F', 'D', 'P')) or 'F'
+        elif any(t and t.startswith('I') for t in types):
+            node.data_type = self._pick_precise_type_list(types, 'I') or 'I'
+        elif types:
+            # Filter out None and pick the first available
+            valid_types = [t for t in types if t]
+            node.data_type = valid_types[0] if valid_types else 'A'
+        else:
+            node.data_type = 'A'
+
+        return node.data_type
+
+    def _pick_precise_type_list(self, type_list, category_prefix):
+        """Helper to pick the most specific/precise type from a list of format strings."""
+        result = None
+        for t in type_list:
+            if t:
+                result = self._pick_precise_type(result, t, category_prefix)
+        return result
