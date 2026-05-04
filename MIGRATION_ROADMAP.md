@@ -204,10 +204,10 @@ Ensure the new system produces correct results and maintains parity with the leg
     - [ ] 5.1.3.12 Support `MATCH FILE` command.
       - [x] 5.1.3.12.1 Grammar support for `MATCH FILE`, `RUN`, `AFTER MATCH`, and merge phrases (`OLD-OR-NEW`, `OLD-AND-NEW`, `OLD-NOT-NEW`, `NEW-NOT-OLD`, `OLD-NOR-NEW`, `OLD`, `NEW`).
       - [x] 5.1.3.12.2 ASG support for `MatchRequest`, `SubMatch`, and `AfterMatchPhrase`.
-      - [ ] 5.1.3.12.3 Emitter support for `MATCH` logic.
+      - [x] 5.1.3.12.3 Emitter support for `MATCH` logic.
         - [x] 5.1.3.12.3.1 IR support for `MATCH FILE`.
         - [x] 5.1.3.12.3.2 Basic SQL generation for `MATCH` (merging two files).
-        - [ ] 5.1.3.12.3.3 Support for all merge phrases (OLD-OR-NEW, etc.).
+        - [x] 5.1.3.12.3.3 Support for all merge phrases (OLD-OR-NEW, etc.) and multi-file chaining.
     - [x] 5.1.3.13 Support `MORE` phrase (Universal Concatenation).
       - [x] 5.1.3.13.1 Grammar support for `MORE` phrase in `TABLE` and `MATCH` requests.
       - [x] 5.1.3.13.2 ASG support for `MoreClause` and sub-requests.

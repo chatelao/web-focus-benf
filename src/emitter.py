@@ -1032,7 +1032,7 @@ class PostgresEmitter:
         Translates ir.Match instruction into a SQL SELECT statement using CTEs.
         """
         if not instr.sub_matches:
-             return f"/* MATCH FILE {instr.filename} with no sub-matches */"
+            return f"/* MATCH FILE {instr.filename} with no sub-matches */"
 
         def process_match_request(filename, components):
             table_name = self._resolve_table_name(filename)
@@ -1078,57 +1078,74 @@ class PostgresEmitter:
                 sql += f" GROUP BY {', '.join(group_by_fields)}"
             return sql, [f.strip('"') for f in group_by_fields], value_fields
 
-        # First file
-        sql1, keys1, vals1 = process_match_request(instr.filename, instr.components)
+        # CTE definitions
+        ctes = []
+        sql_first, keys_first, vals_first = process_match_request(instr.filename, instr.components)
+        ctes.append(f"T1 AS (\n{self._indent(sql_first, 4)}\n)")
 
-        # For now, handle exactly one sub_match (merging two files)
-        sub = instr.sub_matches[0]
-        sql2, keys2, vals2 = process_match_request(sub.filename, sub.components)
+        # Sequential merges
+        current_name = "T1"
+        current_keys = keys_first
+        current_vals = vals_first
 
-        merge_type = "OLD-OR-NEW"
-        if sub.after_match:
-            merge_type = sub.after_match.merge_type.upper().replace('_', '-')
+        for idx, sub in enumerate(instr.sub_matches):
+            source_idx = idx + 2
+            sql_sub, keys_sub, vals_sub = process_match_request(sub.filename, sub.components)
+            ctes.append(f"T{source_idx} AS (\n{self._indent(sql_sub, 4)}\n)")
 
-        res = "WITH\n"
-        res += "  T1 AS (\n" + self._indent(sql1, 4) + "\n  ),\n"
-        res += "  T2 AS (\n" + self._indent(sql2, 4) + "\n  )\n"
+            merge_name = f"M{idx + 1}"
+            merge_type = "OLD-OR-NEW"
+            if sub.after_match:
+                merge_type = sub.after_match.merge_type.upper().replace('_', '-')
 
-        # Final SELECT
-        final_sel = []
-        for i in range(min(len(keys1), len(keys2))):
-            k1 = keys1[i]
-            k2 = keys2[i]
-            final_sel.append(f"COALESCE(T1.\"{k1}\", T2.\"{k2}\") AS \"{k1}\"")
+            # Determine JOIN type and WHERE filter
+            join_clause = "FULL OUTER JOIN"
+            where_filter = None
 
-        for v in vals1:
-            final_sel.append(f"T1.\"{v}\"")
-        for v in vals2:
-            final_sel.append(f"T2.\"{v}\"")
+            if merge_type == 'OLD-AND-NEW':
+                join_clause = "INNER JOIN"
+            elif merge_type == 'OLD-NOT-NEW':
+                join_clause = "LEFT JOIN"
+                where_filter = f"T{source_idx}.\"{keys_sub[0]}\" IS NULL"
+            elif merge_type == 'OLD':
+                join_clause = "LEFT JOIN"
+            elif merge_type == 'NEW-NOT-OLD':
+                join_clause = "RIGHT JOIN"
+                where_filter = f"{current_name}.\"{current_keys[0]}\" IS NULL"
+            elif merge_type == 'NEW':
+                join_clause = "RIGHT JOIN"
+            elif merge_type == 'OLD-NOR-NEW':
+                join_clause = "FULL OUTER JOIN"
+                where_filter = f"{current_name}.\"{current_keys[0]}\" IS NULL OR T{source_idx}.\"{keys_sub[0]}\" IS NULL"
 
-        res += "SELECT " + ", ".join(final_sel) + "\nFROM T1\n"
+            # Build the merge CTE
+            merge_sel = []
+            for i in range(min(len(current_keys), len(keys_sub))):
+                k_curr = current_keys[i]
+                k_sub = keys_sub[i]
+                merge_sel.append(f"COALESCE({current_name}.\"{k_curr}\", T{source_idx}.\"{k_sub}\") AS \"{k_curr}\"")
 
-        if merge_type == 'OLD-OR-NEW':
-            res += "FULL OUTER JOIN T2 ON "
-        elif merge_type == 'OLD-AND-NEW':
-            res += "INNER JOIN T2 ON "
-        elif merge_type in ('OLD-NOT-NEW', 'OLD'):
-            res += "LEFT JOIN T2 ON "
-        elif merge_type in ('NEW-NOT-OLD', 'NEW'):
-            res += "RIGHT JOIN T2 ON "
-        else:
-            res += "FULL OUTER JOIN T2 ON "
+            for v in current_vals:
+                merge_sel.append(f"{current_name}.\"{v}\"")
+            for v in vals_sub:
+                merge_sel.append(f"T{source_idx}.\"{v}\"")
 
-        on_conds = []
-        for i in range(min(len(keys1), len(keys2))):
-            on_conds.append(f"T1.\"{keys1[i]}\" = T2.\"{keys2[i]}\"")
-        res += " AND ".join(on_conds)
+            on_conds = []
+            for i in range(min(len(current_keys), len(keys_sub))):
+                on_conds.append(f"{current_name}.\"{current_keys[i]}\" = T{source_idx}.\"{keys_sub[i]}\"")
 
-        if merge_type == 'OLD-NOT-NEW':
-            res += f"\nWHERE T2.\"{keys2[0]}\" IS NULL"
-        elif merge_type == 'NEW-NOT-OLD':
-            res += f"\nWHERE T1.\"{keys1[0]}\" IS NULL"
+            m_sql = f"SELECT {', '.join(merge_sel)}\nFROM {current_name} {join_clause} T{source_idx} ON {' AND '.join(on_conds)}"
+            if where_filter:
+                m_sql += f"\nWHERE {where_filter}"
 
-        res += ";"
+            ctes.append(f"{merge_name} AS (\n{self._indent(m_sql, 4)}\n)")
+
+            current_name = merge_name
+            current_vals = current_vals + vals_sub
+            # Keys remain derived from the first file's naming convention for consistency in the chain
+
+        res = "WITH\n" + ",\n".join(ctes) + "\n"
+        res += f"SELECT * FROM {current_name};"
         return res
 
     def _resolve_table_name(self, filename):
