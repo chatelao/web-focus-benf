@@ -78,8 +78,8 @@ class Define(Instruction):
 
 class Report(Instruction):
     """Represents a report request (TABLE FILE)."""
-    def __init__(self, filename, components, joins=None, **kwargs):
-        super().__init__(filename=filename, components=components, joins=joins or [], **kwargs)
+    def __init__(self, filename, components, joins=None, more_clause=None, **kwargs):
+        super().__init__(filename=filename, components=components, joins=joins or [], more_clause=more_clause, **kwargs)
 
 class CompoundLayout(Instruction):
     """Represents the start of a COMPOUND LAYOUT block."""

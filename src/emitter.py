@@ -675,6 +675,7 @@ class PostgresEmitter:
             left_table_alias = alias_map.get(join.left_file, join.left_file)
             alias_part = f" {right_alias}" if right_alias != right_table else ""
             join_clauses.append(f"{join_type} {right_table}{alias_part} ON {left_table_alias}.{join.left_field} = {right_alias}.{join.right_field}")
+
         select_fields = []
         where_clauses = []
         group_by_fields = []
@@ -865,24 +866,125 @@ class PostgresEmitter:
         if not select_fields:
             select_fields = ['*']
 
-        sql = f"/* {instr.filename} */"
-        if report_comments:
-            sql += "\n" + "\n".join(report_comments)
-        sql += f"\nSELECT {', '.join(select_fields)} FROM {table_name}"
-        if join_clauses:
-            sql += "\n" + "\n".join(join_clauses)
+        if instr.more_clause:
+            # Construct a UNION ALL of all data sources first
+            source_queries = []
 
-        if where_clauses:
-            sql += "\nWHERE " + " AND ".join(where_clauses)
+            # 1. Primary file source
+            primary_src_fields = []
+            # We must include all fields needed by the outer query: BY fields and PRINT/SUM fields
+            # Actually, to make UNION ALL work, all branches must have the same columns.
+            # We'll use the raw field names (no aggregations) for the inner sources.
 
-        if is_aggregating and group_by_fields:
-            sql += "\nGROUP BY " + ", ".join(group_by_fields)
+            # Identify all unique raw fields needed
+            needed_raw_fields = []
+            for sc in sort_commands:
+                if sc.field.name not in needed_raw_fields:
+                    needed_raw_fields.append(sc.field.name)
+            for vc in verb_commands:
+                for f in vc.fields:
+                    if f.name != '*' and f.name not in needed_raw_fields:
+                        needed_raw_fields.append(f.name)
 
-        if having_clauses:
-            sql += "\nHAVING " + " AND ".join(having_clauses)
+            def get_source_select(table_alias, fields, q_func):
+                return [f"{q_func(f)} AS \"{f}\"" for f in fields]
 
-        if order_by_phrases:
-            sql += "\nORDER BY " + ", ".join(order_by_phrases)
+            primary_select = get_source_select(table_name, needed_raw_fields, qualify_field)
+            p_sql = f"SELECT {', '.join(primary_select)} FROM {table_name}"
+            if join_clauses:
+                p_sql += "\n" + "\n".join(join_clauses)
+            if where_clauses:
+                p_sql += "\nWHERE " + " AND ".join(where_clauses)
+            source_queries.append(p_sql)
+
+            # 2. MORE FILE sources
+            for sub in instr.more_clause.sub_requests:
+                sub_t = self._resolve_table_name(sub.filename)
+                sub_q_func = lambda f: f"{sub_t}.{f}"
+                sub_select = get_source_select(sub_t, needed_raw_fields, sub_q_func)
+                s_sql = f"SELECT {', '.join(sub_select)} FROM {sub_t}"
+                sub_where = [self.emit_expression(c.condition, in_query=True, virtual_fields=file_virtual_fields, qualifier=sub_q_func)
+                             for c in sub.where_clauses]
+                if sub_where:
+                    s_sql += "\nWHERE " + " AND ".join(sub_where)
+                source_queries.append(s_sql)
+
+            union_sql = "\nUNION ALL\n".join(source_queries)
+
+            # Now build the outer query
+            # Qualify everything to the "SRC" alias
+            outer_qualify = lambda f: f"SRC.\"{f}\""
+
+            outer_select = []
+            for sc in sort_commands:
+                if not sc.noprint:
+                    outer_select.append(f"{outer_qualify(sc.field.name)}" + (f" AS \"{sc.field.alias}\"" if sc.field.alias else ""))
+
+            for vc in verb_commands:
+                for f_sel in vc.fields:
+                    if f_sel.name == '*': continue
+                    sql_f = outer_qualify(f_sel.name)
+                    prefix = f_sel.prefix_operators[0] if f_sel.prefix_operators else None
+                    if prefix:
+                        prefix_map = {'AVE': 'AVG', 'MIN': 'MIN', 'MAX': 'MAX', 'SUM': 'SUM', 'CNT': 'COUNT', 'TOT': 'SUM'}
+                        agg_func = prefix_map.get(prefix)
+                        if agg_func: sql_f = f"{agg_func}({sql_f})"
+                    elif vc.verb == 'SUM': sql_f = f"SUM({sql_f})"
+                    elif vc.verb == 'COUNT': sql_f = f"COUNT({sql_f})"
+
+                    if f_sel.alias: sql_f = f"{sql_f} AS \"{f_sel.alias}\""
+                    outer_select.append(sql_f)
+
+            for cc in compute_commands:
+                sql_e = self.emit_expression(cc.expression, in_query=True, virtual_fields=file_virtual_fields, qualifier=outer_qualify, aggregate=is_aggregating, group_by_fields=[])
+                alias = getattr(cc, 'alias', None) or cc.name
+                outer_select.append(f"{sql_e} AS \"{alias}\"")
+
+            sql = f"/* {instr.filename} with MORE */"
+            if report_comments:
+                sql += "\n" + "\n".join(report_comments)
+
+            sql += f"\nSELECT {', '.join(outer_select)} FROM (\n"
+            sql += self._indent(union_sql, 4)
+            sql += "\n) AS SRC"
+
+            if is_aggregating and group_by_fields:
+                outer_group_by = [outer_qualify(sc.field.name) for sc in sort_commands]
+                sql += "\nGROUP BY " + ", ".join(outer_group_by)
+
+            if having_clauses:
+                 # Re-emit having clauses qualified to SRC
+                 outer_having = [self.emit_expression(c.condition, in_query=True, virtual_fields=file_virtual_fields, qualifier=outer_qualify, aggregate=is_aggregating, group_by_fields=[]) for c in instr.components
+                          if c.__class__.__name__ == 'WhereClause' and c.is_total]
+                 sql += "\nHAVING " + " AND ".join(outer_having)
+
+            if order_by_phrases:
+                outer_order_by = []
+                for sc in sort_commands:
+                     direction = "DESC" if sc.options.get("order") == "HIGHEST" else "ASC"
+                     outer_order_by.append(f"{outer_qualify(sc.field.name)} {direction}")
+                sql += "\nORDER BY " + ", ".join(outer_order_by)
+
+        else:
+            # Standard report logic (no MORE)
+            sql = f"/* {instr.filename} */"
+            if report_comments:
+                sql += "\n" + "\n".join(report_comments)
+            sql += f"\nSELECT {', '.join(select_fields)} FROM {table_name}"
+            if join_clauses:
+                sql += "\n" + "\n".join(join_clauses)
+
+            if where_clauses:
+                sql += "\nWHERE " + " AND ".join(where_clauses)
+
+            if is_aggregating and group_by_fields:
+                sql += "\nGROUP BY " + ", ".join(group_by_fields)
+
+            if having_clauses:
+                sql += "\nHAVING " + " AND ".join(having_clauses)
+
+            if order_by_phrases:
+                sql += "\nORDER BY " + ", ".join(order_by_phrases)
 
         if merge_cmd:
             target_table = self._resolve_table_name(merge_cmd.filename)
