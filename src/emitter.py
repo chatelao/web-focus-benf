@@ -804,7 +804,15 @@ class PostgresEmitter:
         for vc in verb_commands:
             if vc.verb in aggregating_verbs:
                 is_aggregating = True
+                break
+            # Check if any field has a prefix operator that implies aggregation
+            for field_sel in vc.fields:
+                if field_sel.prefix_operators:
+                    is_aggregating = True
+                    break
+            if is_aggregating: break
 
+        for vc in verb_commands:
             for field_sel in vc.fields:
                 if field_sel.name == '*':
                     select_fields.append('*')
@@ -826,23 +834,7 @@ class PostgresEmitter:
                             sql_expr = f"CAST({sql_expr} AS {pg_type})"
 
                 # Prefix operators
-                prefix = field_sel.prefix_operators[0] if field_sel.prefix_operators else None
-                if prefix:
-                    prefix_map = {
-                        'AVE': 'AVG',
-                        'MIN': 'MIN',
-                        'MAX': 'MAX',
-                        'SUM': 'SUM',
-                        'CNT': 'COUNT',
-                        'TOT': 'SUM'
-                    }
-                    agg_func = prefix_map.get(prefix)
-                    if agg_func:
-                        sql_expr = f"{agg_func}({sql_expr})"
-                elif vc.verb == 'SUM':
-                    sql_expr = f"SUM({sql_expr})"
-                elif vc.verb == 'COUNT':
-                    sql_expr = f"COUNT({sql_expr})"
+                sql_expr = self._apply_prefixes(sql_expr, field_sel.prefix_operators, vc.verb)
 
                 if field_sel.alias:
                     sql_expr = f"{sql_expr} AS \"{field_sel.alias}\""
@@ -939,13 +931,7 @@ class PostgresEmitter:
                 for f_sel in vc.fields:
                     if f_sel.name == '*': continue
                     sql_f = outer_qualify(f_sel.name)
-                    prefix = f_sel.prefix_operators[0] if f_sel.prefix_operators else None
-                    if prefix:
-                        prefix_map = {'AVE': 'AVG', 'MIN': 'MIN', 'MAX': 'MAX', 'SUM': 'SUM', 'CNT': 'COUNT', 'TOT': 'SUM'}
-                        agg_func = prefix_map.get(prefix)
-                        if agg_func: sql_f = f"{agg_func}({sql_f})"
-                    elif vc.verb == 'SUM': sql_f = f"SUM({sql_f})"
-                    elif vc.verb == 'COUNT': sql_f = f"COUNT({sql_f})"
+                    sql_f = self._apply_prefixes(sql_f, f_sel.prefix_operators, vc.verb)
 
                     if f_sel.alias: sql_f = f"{sql_f} AS \"{f_sel.alias}\""
                     outer_select.append(sql_f)
@@ -1310,6 +1296,59 @@ class PostgresEmitter:
                 self._collect_used_files_in_expr(val, mark_field_used, source_fn)
         elif class_name == 'IsMissingExpression':
             self._collect_used_files_in_expr(expr.expression, mark_field_used, source_fn)
+
+    def _apply_prefixes(self, sql_expr, prefixes, verb=None):
+        """
+        Applies WebFOCUS prefix operators to a SQL expression.
+        """
+        if not prefixes:
+            if verb == 'SUM':
+                return f"SUM({sql_expr})"
+            if verb == 'COUNT':
+                return f"COUNT({sql_expr})"
+            return sql_expr
+
+        # Normalize prefixes
+        prefixes = [p.upper() for p in prefixes]
+        is_distinct = 'DST' in prefixes
+
+        # MDN (Median) and MDE (Mode) have special syntax in PostgreSQL
+        if 'MDN' in prefixes:
+            return f"PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY {sql_expr})"
+        if 'MDE' in prefixes:
+            return f"MODE() WITHIN GROUP (ORDER BY {sql_expr})"
+
+        # ASQ: average sum of squares
+        if 'ASQ' in prefixes:
+            distinct_str = "DISTINCT " if is_distinct else ""
+            return f"AVG({distinct_str}({sql_expr}) * ({sql_expr}))"
+
+        # Mapping for standard aggregates
+        prefix_map = {
+            'AVE': 'AVG',
+            'MIN': 'MIN',
+            'MAX': 'MAX',
+            'SUM': 'SUM',
+            'TOT': 'SUM',
+            'CNT': 'COUNT',
+            'CT': 'COUNT'
+        }
+
+        agg_func = None
+        for p in prefixes:
+            if p in prefix_map:
+                agg_func = prefix_map[p]
+                break
+
+        # Standalone DST implies COUNT(DISTINCT ...)
+        if not agg_func and is_distinct:
+            agg_func = 'COUNT'
+
+        if agg_func:
+            distinct_str = "DISTINCT " if is_distinct else ""
+            return f"{agg_func}({distinct_str}{sql_expr})"
+
+        return sql_expr
 
     def _indent(self, text, spaces):
         """
