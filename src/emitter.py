@@ -1315,6 +1315,67 @@ class PostgresEmitter:
             'after_block': after_block
         }
 
+    def _find_simple_while_loop(self, cfg, header_name):
+        """
+        Identifies if a block is the header of a simple REPEAT...WHILE or REPEAT...UNTIL loop.
+        """
+        if not header_name.startswith('LOOP_HEADER_'):
+            return None
+
+        label = header_name[len('LOOP_HEADER_'):]
+        header_block = cfg.blocks.get(header_name)
+        if not header_block:
+            return None
+
+        branch_instr = None
+        for instr in header_block.instructions:
+            if isinstance(instr, ir.Branch):
+                branch_instr = instr
+                break
+
+        if not branch_instr:
+            return None
+
+        cond = branch_instr.condition
+        body_start = branch_instr.true_target
+        after_block = branch_instr.false_target
+
+        # Find the closing label block
+        closing_block = cfg.blocks.get(label)
+        if not closing_block:
+            return None
+
+        # Verify closing block ends with jump to header
+        if not closing_block.instructions:
+            return None
+
+        last_instr = closing_block.instructions[-1]
+        if not (isinstance(last_instr, ir.Jump) and last_instr.target == header_name):
+            return None
+
+        # Verify body is a linear sequence of blocks leading to the closing block
+        body_blocks = []
+        curr = body_start
+        visited = {header_name, after_block}
+        while curr != label:
+            if curr in visited:
+                return None
+            visited.add(curr)
+            body_blocks.append(curr)
+
+            b = cfg.blocks.get(curr)
+            if not b or len(b.successors) != 1:
+                return None
+            curr = b.successors[0].name
+
+        return {
+            'type': 'WHILE',
+            'condition': cond,
+            'body_blocks': body_blocks,
+            'closing_block': label,
+            'after_block': after_block
+        }
+
     def emit_cfg(self, cfg):
         """
         Generates a PL/pgSQL body from a ControlFlowGraph using a block dispatcher.
@@ -1328,6 +1389,9 @@ class PostgresEmitter:
         consumed_blocks = set()
         for b_name in cfg.blocks:
             loop = self._find_simple_for_loop(cfg, b_name)
+            if not loop:
+                loop = self._find_simple_while_loop(cfg, b_name)
+
             if loop:
                 loops[b_name] = loop
                 consumed_blocks.update(loop['body_blocks'])
@@ -1340,33 +1404,55 @@ class PostgresEmitter:
 
             if block_name in loops:
                 loop = loops[block_name]
-                # Emit native FOR loop
-                counter = self._sanitize_name(loop['counter'])
-                start = self.emit_expression(loop['start'])
-                limit = self.emit_expression(loop['limit'])
-                step_val = loop['step']
+                loop_code = ""
 
-                step_clause = ""
-                if isinstance(step_val, asg.Literal) and step_val.value != 1:
-                    step_clause = f" BY {step_val.value}"
-                elif not isinstance(step_val, asg.Literal):
-                    step_clause = f" BY {self.emit_expression(step_val)}"
+                if loop['type'] == 'FOR':
+                    # Emit native FOR loop
+                    counter = self._sanitize_name(loop['counter'])
+                    start = self.emit_expression(loop['start'])
+                    limit = self.emit_expression(loop['limit'])
+                    step_val = loop['step']
 
-                loop_body_lines = []
-                for b_in_loop in loop['body_blocks']:
-                    b = cfg.blocks[b_in_loop]
-                    # Emit only instructions, ignoring the terminal jump
-                    for instr in b.instructions:
-                        loop_body_lines.append(self.emit_instruction(instr, b, cfg))
+                    step_clause = ""
+                    if isinstance(step_val, asg.Literal) and step_val.value != 1:
+                        step_clause = f" BY {step_val.value}"
+                    elif not isinstance(step_val, asg.Literal):
+                        step_clause = f" BY {self.emit_expression(step_val)}"
 
-                # Also include instructions from closing block BEFORE the increment/jump
-                cb = cfg.blocks[loop['closing_block']]
-                for instr in cb.instructions[:-2]:
-                    loop_body_lines.append(self.emit_instruction(instr, cb, cfg))
+                    loop_body_lines = []
+                    for b_in_loop in loop['body_blocks']:
+                        b = cfg.blocks[b_in_loop]
+                        # Emit only instructions, ignoring the terminal jump
+                        for instr in b.instructions:
+                            loop_body_lines.append(self.emit_instruction(instr, b, cfg))
 
-                indented_body = self._indent("\n".join(loop_body_lines), 4)
-                loop_code = f"FOR {counter} IN {start}..{limit}{step_clause} LOOP\n{indented_body}\nEND LOOP;\n"
-                loop_code += f"v_next_block := '{loop['after_block']}';"
+                    # Also include instructions from closing block BEFORE the increment/jump
+                    cb = cfg.blocks[loop['closing_block']]
+                    for instr in cb.instructions[:-2]:
+                        loop_body_lines.append(self.emit_instruction(instr, cb, cfg))
+
+                    indented_body = self._indent("\n".join(loop_body_lines), 4)
+                    loop_code = f"FOR {counter} IN {start}..{limit}{step_clause} LOOP\n{indented_body}\nEND LOOP;\n"
+                    loop_code += f"v_next_block := '{loop['after_block']}';"
+
+                elif loop['type'] == 'WHILE':
+                    cond = self.emit_expression(loop['condition'])
+
+                    loop_body_lines = []
+                    for b_in_loop in loop['body_blocks']:
+                        b = cfg.blocks[b_in_loop]
+                        # Emit only instructions, ignoring the terminal jump
+                        for instr in b.instructions:
+                            loop_body_lines.append(self.emit_instruction(instr, b, cfg))
+
+                    # Also include instructions from closing block BEFORE the jump
+                    cb = cfg.blocks[loop['closing_block']]
+                    for instr in cb.instructions[:-1]:
+                        loop_body_lines.append(self.emit_instruction(instr, cb, cfg))
+
+                    indented_body = self._indent("\n".join(loop_body_lines), 4)
+                    loop_code = f"WHILE {cond} LOOP\n{indented_body}\nEND LOOP;\n"
+                    loop_code += f"v_next_block := '{loop['after_block']}';"
 
                 blocks_code.append(f"        WHEN '{block_name}' THEN\n{self._indent(loop_code, 8)}")
                 continue

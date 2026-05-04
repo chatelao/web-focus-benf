@@ -124,7 +124,7 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
         - [x] 3.4.1.3.1.1 Pattern matching of REPEAT...TIMES in CFG.
         - [x] 3.4.1.3.1.2 Pattern matching of REPEAT...FOR with literal bounds.
         - [x] 3.4.1.3.1.3 Native `FOR` loop emission in PL/pgSQL.
-      - [ ] 3.4.1.3.2 Simple `WHILE` loops with non-mutating condition variables.
+      - [x] 3.4.1.3.2 Simple `WHILE` loops with non-mutating condition variables.
     - [ ] 3.4.1.4 Identification of loops over data sources for relational lifting.
       - [ ] 3.4.1.4.1 Pattern matching for record-at-a-time `-READ` loops.
       - [ ] 3.4.1.4.2 Detection of procedural aggregations within data loops.
