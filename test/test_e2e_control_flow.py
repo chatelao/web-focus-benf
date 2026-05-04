@@ -105,5 +105,15 @@ class TestE2EControlFlow(unittest.TestCase):
         # because the optimization happens during emission based on CFG structure.
         self.assertIn("FOR v_REPEAT_COUNTER_END_REPEAT_0 IN 1..5 LOOP", sql)
 
+    def test_repeat_for_loop_optimization(self):
+        fex_code = """
+        -REPEAT END_REPEAT FOR &I FROM 1 TO 10 STEP 2
+        -TYPE &I
+        -END_REPEAT
+        """
+        sql = self._run_e2e(fex_code, optimize=False)
+        self.assertIn("FOR v_I_0 IN 1..10 BY 2 LOOP", sql)
+        self.assertIn("RAISE NOTICE '%', v_I_0;", sql)
+
 if __name__ == '__main__':
     unittest.main()
