@@ -163,9 +163,9 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
     - [ ] 4.3.1.5 Aggregations: Mapping prefix operators to SQL aggregate functions.
       - [x] 4.3.1.5.1 Basic operators: SUM, AVE, MIN, MAX, CNT, TOT. (Implemented in `src/emitter.py`)
       - [ ] 4.3.1.5.2 Advanced operators: FST, LST (First/Last via window functions).
-      - [ ] 4.3.1.5.3 Statistical operators: MDN, MDE, ASQ (Median, Mode, Average Square).
+      - [x] 4.3.1.5.3 Statistical operators: MDN, MDE, ASQ (Median, Mode, Average Square). (Implemented in `src/emitter.py`)
       - [ ] 4.3.1.5.4 Percentage operators: PCT, RPCT (Percentage, Row Percentage).
-      - [ ] 4.3.1.5.5 Rank and Distinct: RNK, DST.
+      - [ ] 4.3.1.5.5 Rank and Distinct: RNK, DST. (DST implemented in `src/emitter.py`)
     - [x] 4.3.1.6 Post-Aggregation Filtering: Mapping WHERE TOTAL to SQL `HAVING`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.7 Sorting: Mapping sort options to SQL `ORDER BY`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.8 Calculated Values: Mapping COMPUTE command to SQL expressions. (Implemented in `src/emitter.py`)
