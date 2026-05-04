@@ -834,7 +834,7 @@ class PostgresEmitter:
                             sql_expr = f"CAST({sql_expr} AS {pg_type})"
 
                 # Prefix operators
-                sql_expr = self._apply_prefixes(sql_expr, field_sel.prefix_operators, vc.verb)
+                sql_expr = self._apply_prefixes(sql_expr, field_sel.prefix_operators, vc.verb, group_by_fields)
 
                 if field_sel.alias:
                     sql_expr = f"{sql_expr} AS \"{field_sel.alias}\""
@@ -927,11 +927,12 @@ class PostgresEmitter:
                 if not sc.noprint:
                     outer_select.append(f"{outer_qualify(sc.field.name)}" + (f" AS \"{sc.field.alias}\"" if sc.field.alias else ""))
 
+            outer_group_by = [outer_qualify(sc.field.name) for sc in sort_commands]
             for vc in verb_commands:
                 for f_sel in vc.fields:
                     if f_sel.name == '*': continue
                     sql_f = outer_qualify(f_sel.name)
-                    sql_f = self._apply_prefixes(sql_f, f_sel.prefix_operators, vc.verb)
+                    sql_f = self._apply_prefixes(sql_f, f_sel.prefix_operators, vc.verb, outer_group_by)
 
                     if f_sel.alias: sql_f = f"{sql_f} AS \"{f_sel.alias}\""
                     outer_select.append(sql_f)
@@ -1297,7 +1298,7 @@ class PostgresEmitter:
         elif class_name == 'IsMissingExpression':
             self._collect_used_files_in_expr(expr.expression, mark_field_used, source_fn)
 
-    def _apply_prefixes(self, sql_expr, prefixes, verb=None):
+    def _apply_prefixes(self, sql_expr, prefixes, verb=None, group_by=None):
         """
         Applies WebFOCUS prefix operators to a SQL expression.
         """
@@ -1322,6 +1323,35 @@ class PostgresEmitter:
         if 'ASQ' in prefixes:
             distinct_str = "DISTINCT " if is_distinct else ""
             return f"AVG({distinct_str}({sql_expr}) * ({sql_expr}))"
+
+        # Advanced operators using ordered aggregates (compatible with GROUP BY)
+        order_by_clause = f"ORDER BY {', '.join(group_by)}" if group_by else ""
+
+        if 'FST' in prefixes:
+            if order_by_clause:
+                return f"(ARRAY_AGG({sql_expr} {order_by_clause}))[1]"
+            return f"MIN({sql_expr})" # Fallback if no sort order
+        if 'LST' in prefixes:
+            if order_by_clause:
+                return f"(ARRAY_AGG({sql_expr} {order_by_clause}))[ARRAY_UPPER(ARRAY_AGG({sql_expr} {order_by_clause}), 1)]"
+            return f"MAX({sql_expr})" # Fallback if no sort order
+        if 'RNK' in prefixes:
+            # Rank usually descending
+            base_expr = sql_expr
+            if verb == 'SUM' and not any(p in prefixes for p in ['AVE', 'MIN', 'MAX', 'CNT', 'TOT', 'CT']):
+                base_expr = f"SUM({sql_expr})"
+            elif verb == 'COUNT':
+                base_expr = f"COUNT({sql_expr})"
+
+            partition = f"PARTITION BY {', '.join(group_by)}" if group_by else ""
+            return f"RANK() OVER ({partition} ORDER BY {base_expr} DESC)"
+        if 'PCT' in prefixes or 'RPCT' in prefixes:
+            base_expr = sql_expr
+            if verb == 'SUM' and not any(p in prefixes for p in ['AVE', 'MIN', 'MAX', 'CNT', 'TOT', 'CT']):
+                base_expr = f"SUM({sql_expr})"
+            elif verb == 'COUNT':
+                base_expr = f"COUNT({sql_expr})"
+            return f"({base_expr} * 100.0 / SUM({base_expr}) OVER ())"
 
         # Mapping for standard aggregates
         prefix_map = {

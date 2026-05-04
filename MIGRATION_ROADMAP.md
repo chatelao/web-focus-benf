@@ -120,6 +120,8 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
     - [x] 3.4.1.1 Identification of constant vs. data-driven loops.
     - [x] 3.4.1.2 Lifting loops to PL/pgSQL procedural state machine. (Implemented in `src/emitter.py`)
     - [ ] 3.4.1.3 Identification of simple loops for native `FOR`/`WHILE` optimization.
+      - [ ] 3.4.1.3.1 Constant-bound `FOR` loops with literal start/end/step.
+      - [ ] 3.4.1.3.2 Simple `WHILE` loops with non-mutating condition variables.
     - [ ] 3.4.1.4 Identification of loops over data sources for relational lifting.
   - [ ] 3.4.2 Predicate Pushdown:
     - [x] 3.4.2.1 Filter Lifting: Move WHERE conditions to SQL. (Implemented in `src/emitter.py`)
@@ -162,10 +164,10 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
     - [x] 4.3.1.4 Grouping: Mapping BY/ACROSS phrases to SQL `GROUP BY`. (Implemented in `src/emitter.py`)
     - [ ] 4.3.1.5 Aggregations: Mapping prefix operators to SQL aggregate functions.
       - [x] 4.3.1.5.1 Basic operators: SUM, AVE, MIN, MAX, CNT, TOT. (Implemented in `src/emitter.py`)
-      - [ ] 4.3.1.5.2 Advanced operators: FST, LST (First/Last via window functions).
+      - [x] 4.3.1.5.2 Advanced operators: FST, LST (First/Last via ordered aggregates or window functions). (Implemented in `src/emitter.py`)
       - [x] 4.3.1.5.3 Statistical operators: MDN, MDE, ASQ (Median, Mode, Average Square). (Implemented in `src/emitter.py`)
-      - [ ] 4.3.1.5.4 Percentage operators: PCT, RPCT (Percentage, Row Percentage).
-      - [ ] 4.3.1.5.5 Rank and Distinct: RNK, DST. (DST implemented in `src/emitter.py`)
+      - [x] 4.3.1.5.4 Percentage operators: PCT, RPCT (Percentage, Row Percentage). (Implemented in `src/emitter.py`)
+      - [x] 4.3.1.5.5 Rank and Distinct: RNK, DST. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.6 Post-Aggregation Filtering: Mapping WHERE TOTAL to SQL `HAVING`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.7 Sorting: Mapping sort options to SQL `ORDER BY`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.8 Calculated Values: Mapping COMPUTE command to SQL expressions. (Implemented in `src/emitter.py`)
@@ -265,10 +267,16 @@ Ensure the new system produces correct results and maintains parity with the leg
     - [ ] 5.2.3.4 Financial Reconciliation: Complex `RECAP` logic, `COMPUTE` with conditional branching, and Dialogue Manager orchestration.
 - [ ] **5.3 Performance Benchmarking:**
   - [ ] 5.3.1 Query Execution: Compare generated SQL performance vs original WebFOCUS execution.
+    - [ ] 5.3.1.1 Establish baseline performance metrics for legacy reports in source environment.
+    - [ ] 5.3.1.2 Measure execution time of generated PostgreSQL queries in target environment.
+    - [ ] 5.3.1.3 Identify and document performance regressions or significant improvements.
   - [x] 5.3.2 Compilation Overhead: Measure transpilation time for large projects. (Implemented in `scripts/benchmark_compilation.py`)
 
 ## Phase 6: Decommissioning
 - [ ] 6.1 Transition Tests: Ensure all legacy tests pass against the new transpiler architecture.
+  - [ ] 6.1.1 Map legacy test cases to new transpiler test infrastructure.
+  - [ ] 6.1.2 Verify parity for all legacy core reporting tests.
+  - [ ] 6.1.3 Verify parity for all legacy Dialogue Manager tests.
 - [x] 6.2 Code Cleanup:
   - [x] 6.2.1 Remove Lark-related code (`wf_parser.py`, `master_file_parser.py`).
   - [x] 6.2.2 Remove `lark` from `requirements.txt`. (Completed: Verified absence in `requirements.txt`)
