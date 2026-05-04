@@ -18,6 +18,10 @@ class MetadataRegistry:
         if path not in self.search_paths:
             self.search_paths.append(path)
 
+    def register_master_file(self, master_file):
+        """Manually registers a MasterFile ASG node."""
+        self.cache[master_file.name.upper()] = master_file
+
     def get_master_file(self, name):
         """
         Retrieves a MasterFile ASG node by name.

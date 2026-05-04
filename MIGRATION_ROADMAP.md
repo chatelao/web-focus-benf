@@ -208,7 +208,7 @@ Ensure the new system produces correct results and maintains parity with the leg
     - [ ] 5.1.3.13 Support `MORE` phrase (Universal Concatenation).
       - [x] 5.1.3.13.1 Grammar support for `MORE` phrase in `TABLE` and `MATCH` requests.
       - [x] 5.1.3.13.2 ASG support for `MoreClause` and sub-requests.
-      - [ ] 5.1.3.13.3 Emitter support for `UNION ALL`.
+      - [x] 5.1.3.13.3 Emitter support for `UNION ALL`.
   - [x] 5.1.4 Semantic Parity: Verify that ASG and IR transformations preserve source semantics.
     - [x] 5.1.4.1 Symbol Resolution Validation:
       - [x] 5.1.4.1.1 Global vs. Local scope resolution for AmperVars.

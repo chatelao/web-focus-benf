@@ -204,7 +204,8 @@ class IRBuilder:
                 self.current_block.add_instruction(ir.Report(
                     filename=node.filename,
                     components=node.components,
-                    joins=list(self.active_joins)
+                    joins=list(self.active_joins),
+                    more_clause=node.more_clause
                 ))
             elif class_name == 'JoinClear':
                 self.current_block.add_instruction(ir.JoinClear())
