@@ -207,6 +207,13 @@ class IRBuilder:
                     joins=list(self.active_joins),
                     more_clause=node.more_clause
                 ))
+            elif class_name == 'MatchRequest':
+                self.current_block.add_instruction(ir.Match(
+                    filename=node.filename,
+                    components=node.components,
+                    sub_matches=node.sub_matches,
+                    more_clause=node.more_clause
+                ))
             elif class_name == 'JoinClear':
                 self.current_block.add_instruction(ir.JoinClear())
                 self.active_joins = []

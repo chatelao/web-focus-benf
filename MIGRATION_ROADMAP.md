@@ -205,7 +205,10 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [x] 5.1.3.12.1 Grammar support for `MATCH FILE`, `RUN`, `AFTER MATCH`, and merge phrases (`OLD-OR-NEW`, `OLD-AND-NEW`, `OLD-NOT-NEW`, `NEW-NOT-OLD`, `OLD-NOR-NEW`, `OLD`, `NEW`).
       - [x] 5.1.3.12.2 ASG support for `MatchRequest`, `SubMatch`, and `AfterMatchPhrase`.
       - [ ] 5.1.3.12.3 Emitter support for `MATCH` logic.
-    - [ ] 5.1.3.13 Support `MORE` phrase (Universal Concatenation).
+        - [x] 5.1.3.12.3.1 IR support for `MATCH FILE`.
+        - [ ] 5.1.3.12.3.2 Basic SQL generation for `MATCH` (merging two files).
+        - [ ] 5.1.3.12.3.3 Support for all merge phrases (OLD-OR-NEW, etc.).
+    - [x] 5.1.3.13 Support `MORE` phrase (Universal Concatenation).
       - [x] 5.1.3.13.1 Grammar support for `MORE` phrase in `TABLE` and `MATCH` requests.
       - [x] 5.1.3.13.2 ASG support for `MoreClause` and sub-requests.
       - [x] 5.1.3.13.3 Emitter support for `UNION ALL`.
@@ -247,7 +250,7 @@ Ensure the new system produces correct results and maintains parity with the leg
 
 ## Phase 6: Decommissioning
 - [ ] 6.1 Transition Tests: Ensure all legacy tests pass against the new transpiler architecture.
-- [ ] 6.2 Code Cleanup:
+- [x] 6.2 Code Cleanup:
   - [x] 6.2.1 Remove Lark-related code (`wf_parser.py`, `master_file_parser.py`).
   - [x] 6.2.2 Remove `lark` from `requirements.txt`. (Completed: Verified absence in `requirements.txt`)
 - [x] 6.3 Technical Debt: Close out remaining items in `TECHNICAL_DEBTS.md`. (Completed: All debts in `TECHNICAL_DEBTS.md` are marked as done)
