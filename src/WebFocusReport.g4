@@ -214,7 +214,7 @@ field: qualified_name (SLASH format_name)? as_phrase?;
 
 as_phrase: AS STRING;
 
-asterisk: ASTERISK;
+asterisk: MUL;
 
 // @category Report Requests
 by_command: RANKED? BY sort_options? field HIERARCHY? summarize_command? NOPRINT?;
@@ -410,7 +410,6 @@ IF: [iI][fF];
 DECODE: [dD][eE][cC][oO][dD][eE];
 DEFAULT: [dD][eE][fF][aA][uU][lL][tT];
 READ: [rR][eE][aA][dD];
-WRITE: [wW][rR][iI][tT][eE];
 
 HEADING: [hH][eE][aA][dD][iI][nN][gG];
 FOOTING: [fF][oO][oO][tT][iI][nN][gG];
@@ -486,11 +485,10 @@ CT: [cC][tT];
 DOT: '.';
 COMMA: ',';
 SEMI: ';';
-LPAREN: LPAREN;
-RPAREN: RPAREN;
-ASTERISK: ASTERISK;
+LPAREN: '(';
+RPAREN: ')';
+MUL: '*';
 SLASH: '/';
-MUL: ASTERISK;
 ADD_OP: '+';
 SUB_OP: '-';
 CONCAT: '||' | '|';

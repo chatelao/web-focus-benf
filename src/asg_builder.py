@@ -582,11 +582,26 @@ class ReportASGBuilder(WebFocusReportVisitor):
     def visitDm_read(self, ctx: WebFocusReportParser.Dm_readContext):
         filename = ctx.qualified_name().getText()
         variables = []
-        for i in range(1, ctx.getChildCount()):
+
+        current_var = None
+        for i in range(2, ctx.getChildCount()):
             child = ctx.getChild(i)
             if isinstance(child, WebFocusReportParser.Amper_varContext):
-                var_name = child.getText()
-                variables.append(var_name)
+                if current_var:
+                    variables.append(current_var)
+                current_var = child.getText()
+            elif isinstance(child, WebFocusReportParser.Format_nameContext):
+                current_var += "." + child.getText()
+                variables.append(current_var)
+                current_var = None
+            elif isinstance(child, TerminalNode) and child.getText() == ';':
+                if current_var:
+                    variables.append(current_var)
+                current_var = None
+
+        if current_var:
+            variables.append(current_var)
+
         return ReadDM(filename=filename, variables=variables)
 
     def visitDm_write(self, ctx: WebFocusReportParser.Dm_writeContext):
