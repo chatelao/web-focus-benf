@@ -1,9 +1,27 @@
 grammar WebFocusReport;
 
-start: (request | dm_command | join_command | set_command | define_file | compound_layout_block)* EOF;
+start: (request | match_request | dm_command | join_command | set_command | define_file | compound_layout_block)* EOF;
 
 // @category Report Requests
-request: table_file (verb_command | by_command | across_command | where_command | when_command | show_command | heading_command | footing_command | on_command | compute_command | recap_command | summarize_command | dm_command | STRING)* end_command;
+request: table_file (request_element)* more_phrase? end_command;
+
+// @category Report Requests
+match_request: MATCH FILE qualified_name (request_element)* more_phrase? (RUN sub_match)* end_command;
+
+// @internal
+sub_match: FILE qualified_name (request_element)* more_phrase? after_match_phrase?;
+
+// @internal
+after_match_phrase: AFTER MATCH output_command? merge_type;
+
+// @internal
+merge_type: OLD_OR_NEW_KW | OLD_AND_NEW_KW | OLD_NOT_NEW_KW | NEW_NOT_OLD_KW | OLD_NOR_NEW_KW | OLD | NEW;
+
+// @internal
+request_element: verb_command | by_command | across_command | where_command | when_command | show_command | heading_command | footing_command | on_command | compute_command | recap_command | summarize_command | dm_command | STRING;
+
+// @internal
+more_phrase: MORE_KW (FILE qualified_name (where_command)*)*;
 
 // @category Report Requests
 compound_layout_block: COMPOUND LAYOUT output_command (layout_statement)* end_command (request | dm_command | join_command | set_command | define_file)* COMPOUND END;
@@ -254,7 +272,8 @@ identifier: NAME
           | OFF | ON
           | RECAP | INDENT | ACROSS_TOTAL
           | COMPOUND | LAYOUT | SECTION | PAGELAYOUT | COMPONENT | MERGE | ORIENTATION
-          | LANDSCAPE | PORTRAIT | TYPE | POSITION | DIMENSION | STYLE | ENDSTYLE
+          | LANDSCAPE | PORTRAIT | TYPE | POSITION | DIMENSION | STYLE | ENDSTYLE | MATCH | AFTER | RUN | OLD | NEW
+          | OLD_OR_NEW_KW | OLD_AND_NEW_KW | OLD_NOT_NEW_KW | NEW_NOT_OLD_KW | OLD_NOR_NEW_KW
           | MATCHING | MATCHED | UPDATE | INSERT | INTO
           | HEADING | FOOTING | SUBHEAD | SUBFOOT | FORMAT
           | TIMES | WHILE | UNTIL | FOR | STEP | TOP | BOTTOM | RANKED | NOPRINT | AS | IN
@@ -291,8 +310,20 @@ IS_LESS_THAN: [iI][sS] '-' [lL][eE][sS][sS] '-' [tT][hH][aA][nN];
 IS_MORE_THAN: [iI][sS] '-' [mM][oO][rR][eE] '-' [tT][hH][aA][nN];
 IS_GREATER_THAN: [iI][sS] '-' [gG][rR][eE][aA][tT][eE][rR] '-' [tT][hH][aA][nN];
 
+OLD_OR_NEW_KW: [oO][lL][dD] '-' [oO][rR] '-' [nN][eE][wW];
+OLD_AND_NEW_KW: [oO][lL][dD] '-' [aA][nN][dD] '-' [nN][eE][wW];
+OLD_NOT_NEW_KW: [oO][lL][dD] '-' [nN][oO][tT] '-' [nN][eE][wW];
+NEW_NOT_OLD_KW: [nN][eE][wW] '-' [nN][oO][tT] '-' [oO][lL][dD];
+OLD_NOR_NEW_KW: [oO][lL][dD] '-' [nN][oO][rR] '-' [nN][eE][wW];
+
 LABEL_DM: '-' [a-zA-Z_] [a-zA-Z0-9_]*;
 COMMENT_DM: '-*' ~[\r\n]* -> skip;
+
+MATCH: [mM][aA][tT][cC][hH];
+AFTER: [aA][fF][tT][eE][rR];
+RUN: [rR][uU][nN];
+OLD: [oO][lL][dD];
+NEW: [nN][eE][wW];
 
 TABLE: [tT][aA][bB][lL][eE];
 FILE: [fF][iI][lL][eE];

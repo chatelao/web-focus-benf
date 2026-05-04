@@ -26,6 +26,60 @@ class WebFocusReportListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by WebFocusReportParser#match_request.
+    def enterMatch_request(self, ctx:WebFocusReportParser.Match_requestContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#match_request.
+    def exitMatch_request(self, ctx:WebFocusReportParser.Match_requestContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#sub_match.
+    def enterSub_match(self, ctx:WebFocusReportParser.Sub_matchContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#sub_match.
+    def exitSub_match(self, ctx:WebFocusReportParser.Sub_matchContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#after_match_phrase.
+    def enterAfter_match_phrase(self, ctx:WebFocusReportParser.After_match_phraseContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#after_match_phrase.
+    def exitAfter_match_phrase(self, ctx:WebFocusReportParser.After_match_phraseContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#merge_type.
+    def enterMerge_type(self, ctx:WebFocusReportParser.Merge_typeContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#merge_type.
+    def exitMerge_type(self, ctx:WebFocusReportParser.Merge_typeContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#request_element.
+    def enterRequest_element(self, ctx:WebFocusReportParser.Request_elementContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#request_element.
+    def exitRequest_element(self, ctx:WebFocusReportParser.Request_elementContext):
+        pass
+
+
+    # Enter a parse tree produced by WebFocusReportParser#more_phrase.
+    def enterMore_phrase(self, ctx:WebFocusReportParser.More_phraseContext):
+        pass
+
+    # Exit a parse tree produced by WebFocusReportParser#more_phrase.
+    def exitMore_phrase(self, ctx:WebFocusReportParser.More_phraseContext):
+        pass
+
+
     # Enter a parse tree produced by WebFocusReportParser#compound_layout_block.
     def enterCompound_layout_block(self, ctx:WebFocusReportParser.Compound_layout_blockContext):
         pass
