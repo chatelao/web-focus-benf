@@ -1201,15 +1201,126 @@ class PostgresEmitter:
 
         return "\n".join(lines)
 
+    def _find_simple_times_loop(self, cfg, header_name):
+        """
+        Identifies if a block is the header of a simple REPEAT...TIMES loop.
+        """
+        if not header_name.startswith('LOOP_HEADER_'):
+            return None
+
+        label = header_name[len('LOOP_HEADER_'):]
+        header_block = cfg.blocks.get(header_name)
+        if not header_block or len(header_block.instructions) != 1:
+            return None
+
+        instr = header_block.instructions[0]
+        if not isinstance(instr, ir.Branch):
+            return None
+
+        # condition should be counter <= limit
+        cond = instr.condition
+        if not (isinstance(cond, asg.BinaryOperation) and cond.operator == 'LE'):
+            return None
+
+        if not (isinstance(cond.left, asg.AmperVar) and cond.left.name.startswith('&REPEAT_COUNTER_')):
+            return None
+
+        counter_var = cond.left.name
+        limit = cond.right
+
+        body_start = instr.true_target
+        after_block = instr.false_target
+
+        # Find the closing label block
+        closing_block = cfg.blocks.get(label)
+        if not closing_block:
+            return None
+
+        # Verify closing block ends with increment and jump to header
+        if len(closing_block.instructions) < 2:
+            return None
+
+        last_instr = closing_block.instructions[-1]
+        inc_instr = closing_block.instructions[-2]
+
+        if not (isinstance(last_instr, ir.Jump) and last_instr.target == header_name):
+            return None
+
+        if not (isinstance(inc_instr, ir.Assign) and inc_instr.target == counter_var):
+            return None
+
+        # Verify body is a linear sequence of blocks leading to the closing block
+        body_blocks = []
+        curr = body_start
+        visited = {header_name, after_block}
+        while curr != label:
+            if curr in visited:
+                return None
+            visited.add(curr)
+            body_blocks.append(curr)
+
+            b = cfg.blocks.get(curr)
+            if not b or len(b.successors) != 1:
+                return None
+            curr = b.successors[0].name
+
+        return {
+            'type': 'TIMES',
+            'counter': counter_var,
+            'limit': limit,
+            'body_blocks': body_blocks,
+            'closing_block': label,
+            'after_block': after_block
+        }
+
     def emit_cfg(self, cfg):
         """
         Generates a PL/pgSQL body from a ControlFlowGraph using a block dispatcher.
+        Optimizes simple loops into native PL/pgSQL loops.
         """
         if not cfg.entry_block:
             return ""
 
+        # Identify simple loops
+        loops = {}
+        consumed_blocks = set()
+        for b_name in cfg.blocks:
+            loop = self._find_simple_times_loop(cfg, b_name)
+            if loop:
+                loops[b_name] = loop
+                consumed_blocks.update(loop['body_blocks'])
+                consumed_blocks.add(loop['closing_block'])
+
         blocks_code = []
         for block_name, block in cfg.blocks.items():
+            if block_name in consumed_blocks:
+                continue
+
+            if block_name in loops:
+                loop = loops[block_name]
+                # Emit native FOR loop
+                counter = self._sanitize_name(loop['counter'])
+                limit = self.emit_expression(loop['limit'])
+
+                loop_body_lines = []
+                for b_in_loop in loop['body_blocks']:
+                    b = cfg.blocks[b_in_loop]
+                    # Emit only instructions, ignoring the terminal jump
+                    for instr in b.instructions:
+                        loop_body_lines.append(self.emit_instruction(instr, b, cfg))
+
+                # Also include instructions from closing block BEFORE the increment/jump
+                cb = cfg.blocks[loop['closing_block']]
+                for instr in cb.instructions[:-2]:
+                    loop_body_lines.append(self.emit_instruction(instr, cb, cfg))
+
+                indented_body = self._indent("\n".join(loop_body_lines), 4)
+                loop_code = f"FOR {counter} IN 1..{limit} LOOP\n{indented_body}\nEND LOOP;\n"
+                loop_code += f"v_next_block := '{loop['after_block']}';"
+
+                blocks_code.append(f"        WHEN '{block_name}' THEN\n{self._indent(loop_code, 8)}")
+                continue
+
             block_code = self.emit_block(block, cfg)
             indented_block = self._indent(block_code, 8)
             blocks_code.append(f"        WHEN '{block_name}' THEN\n{indented_block}")

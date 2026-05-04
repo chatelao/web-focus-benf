@@ -120,7 +120,10 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
     - [x] 3.4.1.1 Identification of constant vs. data-driven loops.
     - [x] 3.4.1.2 Lifting loops to PL/pgSQL procedural state machine. (Implemented in `src/emitter.py`)
     - [ ] 3.4.1.3 Identification of simple loops for native `FOR`/`WHILE` optimization.
-      - [ ] 3.4.1.3.1 Constant-bound `FOR` loops with literal start/end/step.
+      - [ ] 3.4.1.3.1 Constant-bound `FOR` loops (TIMES/FOR).
+        - [x] 3.4.1.3.1.1 Pattern matching of REPEAT...TIMES in CFG.
+        - [ ] 3.4.1.3.1.2 Pattern matching of REPEAT...FOR with literal bounds.
+        - [x] 3.4.1.3.1.3 Native `FOR` loop emission in PL/pgSQL.
       - [ ] 3.4.1.3.2 Simple `WHILE` loops with non-mutating condition variables.
     - [ ] 3.4.1.4 Identification of loops over data sources for relational lifting.
   - [ ] 3.4.2 Predicate Pushdown:
