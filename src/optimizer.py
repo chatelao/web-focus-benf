@@ -1,6 +1,46 @@
 import ir
 import asg
 import copy
+from ir_utils import find_simple_for_loop, find_simple_while_loop
+
+class RelationalLiftingOptimizer:
+    """
+    Identifies procedural loops that can be lifted to relational operations.
+    """
+    def find_data_loops(self, cfg):
+        """
+        Identifies loops in the CFG that contain -READ instructions.
+        Returns a list of loop metadata dictionaries.
+        """
+        data_loops = []
+        for b_name in cfg.blocks:
+            loop = find_simple_for_loop(cfg, b_name)
+            if not loop:
+                loop = find_simple_while_loop(cfg, b_name)
+
+            if loop:
+                if self._contains_read(cfg, loop):
+                    data_loops.append(loop)
+        return data_loops
+
+    def _contains_read(self, cfg, loop):
+        """Checks if any block in the loop body contains an ir.Read instruction."""
+        # Check body blocks
+        for b_name in loop['body_blocks']:
+            block = cfg.blocks.get(b_name)
+            if block:
+                for instr in block.instructions:
+                    if isinstance(instr, ir.Read):
+                        return True
+
+        # Check closing block (minus terminal jump/increment)
+        closing_block = cfg.blocks.get(loop['closing_block'])
+        if closing_block:
+            end_offset = 2 if loop['type'] == 'FOR' else 1
+            for instr in closing_block.instructions[:-end_offset]:
+                if isinstance(instr, ir.Read):
+                    return True
+        return False
 
 class ConstantPropagator:
     """
