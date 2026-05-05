@@ -293,9 +293,9 @@ Ensure the new system produces correct results and maintains parity with the leg
 ## Phase 7: Continuous Integration & Runtime Verification
 Ensure the generated PL/pgSQL code is not only syntactically correct but also executes correctly against a live PostgreSQL database.
 
-- [ ] **7.1 Live Database Environment:**
-  - [ ] 7.1.1 Configure a PostgreSQL service container in the CI/CD pipeline (GitHub Actions).
-  - [ ] 7.1.2 Implement a robust database connection utility for use in the test suite.
+- [x] **7.1 Live Database Environment:**
+  - [x] 7.1.1 Configure a PostgreSQL service container in the CI/CD pipeline (GitHub Actions). (Implemented in `.github/workflows/cicd.yml`)
+  - [x] 7.1.2 Implement a robust database connection utility for use in the test suite. (Implemented in `src/db_utils.py`)
 - [ ] **7.2 Data & Schema Fixtures:**
   - [x] 7.2.1 Implement an automated DDL generator that transforms Master File metadata into PostgreSQL `CREATE TABLE` statements. (Implemented in `src/ddl_generator.py`)
   - [ ] 7.2.2 Develop a fixture loading mechanism to populate the live database with test data (from JSON/CSV) for each sample.
