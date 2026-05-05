@@ -48,5 +48,37 @@ class TestRuntimeRunner(unittest.TestCase):
 
         mock_conn.close.assert_called_once()
 
+    @patch('runtime_runner.DDLGenerator')
+    @patch('runtime_runner.get_db_connection')
+    def test_setup_schema(self, mock_get_conn, mock_ddl_gen_class):
+        mock_conn = MagicMock()
+        mock_get_conn.return_value = mock_conn
+        mock_cursor = MagicMock()
+        mock_conn.cursor.return_value.__enter__.return_value = mock_cursor
+
+        mock_ddl_gen = mock_ddl_gen_class.return_value
+        mock_ddl_gen.generate.return_value = "CREATE TABLE TEST;"
+
+        master = MagicMock()
+        runner = RuntimeRunner()
+        runner.setup_schema([master])
+
+        mock_ddl_gen.generate.assert_called_once_with(master)
+        mock_cursor.execute.assert_called_once_with("CREATE TABLE TEST;")
+
+    @patch('runtime_runner.FixtureLoader')
+    def test_load_fixtures(self, mock_loader_class):
+        mock_loader = mock_loader_class.return_value
+
+        runner = RuntimeRunner()
+        fixtures_config = [
+            ('TABLE1', 'data1.json'),
+            ('TABLE2', 'data2.csv')
+        ]
+        runner.load_fixtures(fixtures_config)
+
+        mock_loader.load_json.assert_called_once_with('TABLE1', 'data1.json')
+        mock_loader.load_csv.assert_called_once_with('TABLE2', 'data2.csv')
+
 if __name__ == '__main__':
     unittest.main()
