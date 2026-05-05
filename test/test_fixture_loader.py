@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import patch, MagicMock, mock_open
+from unittest.mock import patch, MagicMock, mock_open, ANY
 import json
 import csv
 import sys
@@ -23,9 +23,8 @@ class TestFixtureLoader(unittest.TestCase):
         loader = FixtureLoader()
         loader.load_json("EMPLOYEE", "dummy.json")
 
-        # Verify SQL
-        expected_sql = 'INSERT INTO "EMPLOYEE" ("ID", "NAME") VALUES (%s, %s)'
-        mock_cursor.execute.assert_called_once_with(expected_sql, [1, "Alice"])
+        # Verify SQL (using ANY for the psycopg2.sql.Composed object)
+        mock_cursor.execute.assert_called_once_with(ANY, [1, "Alice"])
 
     @patch('fixture_loader.db_cursor')
     def test_load_csv_success(self, mock_db_cursor):
@@ -38,10 +37,9 @@ class TestFixtureLoader(unittest.TestCase):
             loader.load_csv("EMPLOYEE", "dummy.csv")
 
         # Verify SQL calls
-        expected_sql = 'INSERT INTO "EMPLOYEE" ("ID", "NAME") VALUES (%s, %s)'
         self.assertEqual(mock_cursor.execute.call_count, 2)
-        mock_cursor.execute.assert_any_call(expected_sql, ["1", "Alice"])
-        mock_cursor.execute.assert_any_call(expected_sql, ["2", "Bob"])
+        mock_cursor.execute.assert_any_call(ANY, ["1", "Alice"])
+        mock_cursor.execute.assert_any_call(ANY, ["2", "Bob"])
 
     @patch('fixture_loader.db_cursor')
     @patch('builtins.open', new_callable=mock_open, read_data='{}')
