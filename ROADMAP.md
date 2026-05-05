@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] 0.137 Add new CI/CD steps to the roadmap if not yet implemented (#328)
+- [x] 0.137 Add new CI/CD steps to the roadmap if not yet implemented (#328) (completed at 2026-05-05 16:15:00)
 - [ ] 0.136 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#327)
 - [x] 0.135 Add CLI options to transpile single files and entire projects, add description about usage to "HOWTO.md" (#325) (completed at 2026-05-05 14:25:38)
 - [x] 0.134 Add `HOWTO.md` describing how to install and run the tool (#323) (completed at 2026-05-05 12:06:20)
@@ -217,3 +217,8 @@
   - [x] 6.3.1 Collect and organize real-world WebFOCUS samples in `test/samples/` (completed at 2026-04-25 03:28:06)
   - [x] 6.3.2 Implement an automated test runner for samples
   - [x] 6.3.3 Verify grammar coverage against samples
+
+## Chapter 7: CI/CD & Verification
+- [ ] 7.1 Setup live PostgreSQL database in CI environment
+- [ ] 7.2 Implement automated fixture loading for E2E tests
+- [ ] 7.3 Execute and verify transpiled PL/pgSQL on live DB
