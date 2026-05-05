@@ -300,6 +300,8 @@ Ensure the generated PL/pgSQL code is not only syntactically correct but also ex
   - [x] 7.2.1 Implement an automated DDL generator that transforms Master File metadata into PostgreSQL `CREATE TABLE` statements. (Implemented in `src/ddl_generator.py`)
   - [x] 7.2.2 Develop a fixture loading mechanism to populate the live database with test data (from JSON/CSV) for each sample. (Implemented in `src/fixture_loader.py`)
 - [ ] **7.3 Integration & Runtime Testing:**
-  - [ ] 7.3.1 Implement a runtime test runner that executes transpiled PL/pgSQL procedures on the live database.
+  - [ ] 7.3.1 Implement a runtime test runner.
+    - [x] 7.3.1.1 Implement procedure execution and notice capturing in `RuntimeRunner`. (Implemented in `src/runtime_runner.py`)
+    - [ ] 7.3.1.2 Integrate `DDLGenerator` and `FixtureLoader` into `RuntimeRunner` for automated environment setup.
   - [ ] 7.3.2 Verify result-set parity by comparing the output of executed procedures against expected results.
   - [ ] 7.3.3 Implement comprehensive error reporting for runtime failures (e.g., SQL syntax errors, type mismatches during execution).
