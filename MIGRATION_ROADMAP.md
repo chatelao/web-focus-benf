@@ -152,8 +152,8 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
 - [ ] **4.1.2 Variable Mapping: Implement mapping between SSA versions and PL/pgSQL variables.
     - [x] 4.1.2.1 Variable Discovery: Identify all unique SSA variables in the CFG. (Implemented in `src/emitter.py`)
     - [x] 4.1.2.2 Name Sanitization: Map WebFOCUS/SSA names to SQL-safe identifiers. (Implemented in `src/emitter.py`)
-    - [x] 4.1.2.3 Type Mapping: Map WebFOCUS types (I, F, A) to PostgreSQL types. (Implemented in `src/emitter.py`)
-    - [ ] 4.1.2.4 Type Integration: Use `TypeInferrer` for accurate PL/pgSQL variable declarations.
+    - [x] 4.1.2.3 Type Mapping: Map WebFOCUS types (I, F, A) to PostgreSQL types. (Implemented in `src/type_mapper.py`)
+    - [x] 4.1.2.4 Type Integration: Use `TypeInferrer` and `type_mapper` for accurate PL/pgSQL variable declarations.
 - [x] **4.2 Procedural Logic Emission:**
   - [x] 4.2.1 Variable Declaration: Generate `DECLARE` section for all discovered variables. (Implemented in `src/templates/base.sql.j2`)
   - [x] 4.2.2 Expression Translation: Transform WebFOCUS expressions to PostgreSQL-compatible SQL. (Implemented in `src/emitter.py`)
@@ -297,7 +297,7 @@ Ensure the generated PL/pgSQL code is not only syntactically correct but also ex
   - [ ] 7.1.1 Configure a PostgreSQL service container in the CI/CD pipeline (GitHub Actions).
   - [ ] 7.1.2 Implement a robust database connection utility for use in the test suite.
 - [ ] **7.2 Data & Schema Fixtures:**
-  - [ ] 7.2.1 Implement an automated DDL generator that transforms Master File metadata into PostgreSQL `CREATE TABLE` statements.
+  - [x] 7.2.1 Implement an automated DDL generator that transforms Master File metadata into PostgreSQL `CREATE TABLE` statements. (Implemented in `src/ddl_generator.py`)
   - [ ] 7.2.2 Develop a fixture loading mechanism to populate the live database with test data (from JSON/CSV) for each sample.
 - [ ] **7.3 Integration & Runtime Testing:**
   - [ ] 7.3.1 Implement a runtime test runner that executes transpiled PL/pgSQL procedures on the live database.
