@@ -126,7 +126,7 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
         - [x] 3.4.1.3.1.3 Native `FOR` loop emission in PL/pgSQL.
       - [x] 3.4.1.3.2 Simple `WHILE` loops with non-mutating condition variables.
     - [ ] 3.4.1.4 Identification of loops over data sources for relational lifting.
-      - [ ] 3.4.1.4.1 Identification of `REPEAT` loops containing `-READ` instructions.
+      - [x] 3.4.1.4.1 Identification of `REPEAT` loops containing `-READ` instructions.
       - [ ] 3.4.1.4.2 Analysis of I/O dependencies and record-at-a-time patterns.
       - [ ] 3.4.1.4.3 Detection of procedural aggregations and filters within data loops.
       - [ ] 3.4.1.4.4 Implementation of Relational Lift pass to map loops to set-based SQL.
