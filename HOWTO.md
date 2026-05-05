@@ -39,6 +39,33 @@ This guide describes how to install, run, and develop the WebFOCUS to PostgreSQL
 
 ## Usage
 
+### CLI Usage
+
+The transpiler provides a command-line interface for converting WebFOCUS files or entire projects.
+
+#### Transpiling a Single File
+To transpile a single `.fex` file and output the SQL to the console:
+```bash
+PYTHONPATH=src:. python3 scripts/transpile.py path/to/report.fex
+```
+
+To save the output to a specific file:
+```bash
+PYTHONPATH=src:. python3 scripts/transpile.py path/to/report.fex -o path/to/output.sql
+```
+
+#### Transpiling an Entire Project (Directory)
+To transpile all `.fex` files in a directory and its subdirectories, preserving the folder structure:
+```bash
+PYTHONPATH=src:. python3 scripts/transpile.py path/to/webfocus_project -o path/to/output_dir
+```
+
+#### Specifying Master File Paths
+If your reports depend on Master Files (`.mas`) located in different directories, use the `-m` option:
+```bash
+PYTHONPATH=src:. python3 scripts/transpile.py report.fex -m ./metadata -m ./shared_metadata
+```
+
 ### Running the Benchmark/Sample Script
 You can run the transpiler on a set of sample files to see it in action:
 ```bash
