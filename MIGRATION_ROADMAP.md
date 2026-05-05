@@ -116,10 +116,10 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
     - [x] 3.3.2.1 Reachability Analysis: Remove unreachable blocks from CFG. (Implemented in `src/optimizer.py`)
     - [x] 3.3.2.2 Unused Assignment Elimination: Remove SSA assignments with no consumers. (Implemented in `src/optimizer.py`)
 - [ ] **3.4 Relational Lifting:**
-  - [ ] 3.4.1 Loop Analysis: (Basic loop lifting to PL/pgSQL state machine implemented)
+- [x] **3.4.1 Loop Analysis:** (Basic loop lifting to PL/pgSQL state machine implemented)
     - [x] 3.4.1.1 Identification of constant vs. data-driven loops.
     - [x] 3.4.1.2 Lifting loops to PL/pgSQL procedural state machine. (Implemented in `src/emitter.py`)
-    - [ ] 3.4.1.3 Identification of simple loops for native `FOR`/`WHILE` optimization.
+    - [x] 3.4.1.3 Identification of simple loops for native `FOR`/`WHILE` optimization.
       - [x] 3.4.1.3.1 Constant-bound `FOR` loops (TIMES/FOR).
         - [x] 3.4.1.3.1.1 Pattern matching of REPEAT...TIMES in CFG.
         - [x] 3.4.1.3.1.2 Pattern matching of REPEAT...FOR with literal bounds.
@@ -170,7 +170,7 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
     - [x] 4.3.1.2 Data Sources: Mapping filenames to SQL tables (using `MetadataRegistry`). (Implemented in `src/emitter.py`)
     - [x] 4.3.1.3 Filtering: Mapping WHERE clauses to SQL `WHERE`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.4 Grouping: Mapping BY/ACROSS phrases to SQL `GROUP BY`. (Implemented in `src/emitter.py`)
-    - [ ] 4.3.1.5 Aggregations: Mapping prefix operators to SQL aggregate functions.
+    - [x] 4.3.1.5 Aggregations: Mapping prefix operators to SQL aggregate functions.
       - [x] 4.3.1.5.1 Basic operators: SUM, AVE, MIN, MAX, CNT, TOT. (Implemented in `src/emitter.py`)
       - [x] 4.3.1.5.2 Advanced operators: FST, LST (First/Last via ordered aggregates or window functions). (Implemented in `src/emitter.py`)
       - [x] 4.3.1.5.3 Statistical operators: MDN, MDE, ASQ (Median, Mode, Average Square). (Implemented in `src/emitter.py`)
@@ -298,7 +298,7 @@ Ensure the generated PL/pgSQL code is not only syntactically correct but also ex
   - [x] 7.1.2 Implement a robust database connection utility for use in the test suite. (Implemented in `src/db_utils.py`)
 - [ ] **7.2 Data & Schema Fixtures:**
   - [x] 7.2.1 Implement an automated DDL generator that transforms Master File metadata into PostgreSQL `CREATE TABLE` statements. (Implemented in `src/ddl_generator.py`)
-  - [ ] 7.2.2 Develop a fixture loading mechanism to populate the live database with test data (from JSON/CSV) for each sample.
+  - [x] 7.2.2 Develop a fixture loading mechanism to populate the live database with test data (from JSON/CSV) for each sample. (Implemented in `src/fixture_loader.py`)
 - [ ] **7.3 Integration & Runtime Testing:**
   - [ ] 7.3.1 Implement a runtime test runner that executes transpiled PL/pgSQL procedures on the live database.
   - [ ] 7.3.2 Verify result-set parity by comparing the output of executed procedures against expected results.
