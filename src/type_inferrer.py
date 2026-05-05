@@ -95,6 +95,16 @@ class TypeInferrer:
         return node.data_type
 
     def visit_AmperVar(self, node):
+        if hasattr(self, 'ssa_types') and node.name in self.ssa_types:
+            node.data_type = self.ssa_types[node.name]
+            return node.data_type
+
+        if hasattr(node, 'symbol') and node.symbol:
+            metadata = node.symbol.metadata
+            if 'data_type' in metadata:
+                node.data_type = metadata['data_type']
+                return node.data_type
+
         # Dialogue Manager variables are typically strings in WebFOCUS unless used in arithmetic
         node.data_type = 'A'
         return node.data_type
@@ -113,6 +123,10 @@ class TypeInferrer:
     def visit_BinaryOperation(self, node):
         left_type = self.visit(node.left)
         right_type = self.visit(node.right)
+
+        # If it's an assignment or operation involving AmperVar, we might want to propagate the type back
+        if node.operator == '=': # In some contexts, but BinaryOperation isn't usually assignment in ASG
+             pass
 
         op = node.operator.upper()
         if op in ('+', '-', '*', '/'):

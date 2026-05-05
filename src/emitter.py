@@ -2,6 +2,7 @@ import os
 import re
 import ir
 import asg
+from type_inferrer import TypeInferrer
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 class PostgresEmitter:
@@ -52,6 +53,36 @@ class PostgresEmitter:
         variables = {}
         variables['v_next_block'] = 'TEXT'
 
+        inferrer = TypeInferrer()
+        # Pass 1: Repeat type inference until types stabilize or max iterations
+        for _ in range(3):
+            for block in cfg.blocks.values():
+                for instr in block.instructions:
+                    # Run type inference on instruction components if they contain ASG nodes
+                    if hasattr(instr, 'source') and isinstance(instr.source, asg.ASGNode):
+                        dtype = inferrer.visit(instr.source)
+                        # Propagate inferred type to target symbol if it's an assignment
+                        if isinstance(instr, ir.Assign) and dtype:
+                            # instr.target might be a string (SSA name) or an ASG node
+                            target_name = instr.target if isinstance(instr.target, str) else getattr(instr.target, 'name', None)
+                            if target_name:
+                                # We need a way to store this inferred type for future lookups of this variable
+                                if not hasattr(inferrer, 'ssa_types'):
+                                    inferrer.ssa_types = {}
+                                inferrer.ssa_types[target_name] = dtype
+
+                    elif isinstance(instr, ir.Assign) and hasattr(instr, 'data_type') and instr.data_type:
+                        # Use explicitly set data_type on the instruction (e.g. from a test or earlier phase)
+                        target_name = instr.target if isinstance(instr.target, str) else getattr(instr.target, 'name', None)
+                        if target_name:
+                            if not hasattr(inferrer, 'ssa_types'):
+                                inferrer.ssa_types = {}
+                            inferrer.ssa_types[target_name] = instr.data_type
+
+                    if hasattr(instr, 'condition') and isinstance(instr.condition, asg.ASGNode):
+                        inferrer.visit(instr.condition)
+
+        # Pass 2: Discover variables and assign types
         for block in cfg.blocks.values():
             for instr in block.instructions:
                 targets = []
@@ -69,10 +100,17 @@ class PostgresEmitter:
                     if not data_type and hasattr(instr, 'source'):
                         data_type = getattr(instr.source, 'data_type', None)
 
-                    if not data_type:
-                        data_type = 'A' # Default to Alpha
+                    # If we have inferred types for SSA variables, use them
+                    target_name = target if isinstance(target, str) else getattr(target, 'name', None)
+                    if not data_type and hasattr(inferrer, 'ssa_types') and target_name in inferrer.ssa_types:
+                        data_type = inferrer.ssa_types[target_name]
 
                     if sql_name not in variables:
+                        if not data_type:
+                            data_type = 'A' # Default to Alpha
+                        variables[sql_name] = self._map_type(data_type)
+                    elif variables[sql_name] in ('TEXT', 'CHAR') and data_type and data_type != 'A':
+                        # Upgrade type if we found a more specific one
                         variables[sql_name] = self._map_type(data_type)
 
                 # Also check expressions for variables that might not be assigned (though SSA should handle this)
@@ -85,6 +123,8 @@ class PostgresEmitter:
         Example: &X_1 -> v_X_1
         """
         if isinstance(name, str):
+            if name.startswith('v_'):
+                return name
             clean_name = name.lstrip('&')
             # Replace common invalid chars with underscore
             clean_name = clean_name.replace('-', '_').replace('.', '_')

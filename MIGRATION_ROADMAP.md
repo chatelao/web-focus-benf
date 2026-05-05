@@ -126,9 +126,10 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
         - [x] 3.4.1.3.1.3 Native `FOR` loop emission in PL/pgSQL.
       - [x] 3.4.1.3.2 Simple `WHILE` loops with non-mutating condition variables.
     - [ ] 3.4.1.4 Identification of loops over data sources for relational lifting.
-      - [ ] 3.4.1.4.1 Pattern matching for record-at-a-time `-READ` loops.
-      - [ ] 3.4.1.4.2 Detection of procedural aggregations within data loops.
-      - [ ] 3.4.1.4.3 Mapping of data loops to set-based SQL operations.
+      - [ ] 3.4.1.4.1 Identification of `REPEAT` loops containing `-READ` instructions.
+      - [ ] 3.4.1.4.2 Analysis of I/O dependencies and record-at-a-time patterns.
+      - [ ] 3.4.1.4.3 Detection of procedural aggregations and filters within data loops.
+      - [ ] 3.4.1.4.4 Implementation of Relational Lift pass to map loops to set-based SQL.
   - [ ] 3.4.2 Predicate Pushdown:
     - [x] 3.4.2.1 Filter Lifting: Move WHERE conditions to SQL. (Implemented in `src/emitter.py`)
     - [x] 3.4.2.2 Total Lifting: Move WHERE TOTAL conditions to SQL HAVING. (Implemented in `src/emitter.py`)
@@ -148,10 +149,11 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
 
 - [x] **4.1 PL/pgSQL Emission Infrastructure:**
   - [x] 4.1.1 Template Environment: Setup Jinja2 and base layout templates.
-  - [x] 4.1.2 Variable Mapping: Implement mapping between SSA versions and PL/pgSQL variables.
+- [ ] **4.1.2 Variable Mapping: Implement mapping between SSA versions and PL/pgSQL variables.
     - [x] 4.1.2.1 Variable Discovery: Identify all unique SSA variables in the CFG. (Implemented in `src/emitter.py`)
     - [x] 4.1.2.2 Name Sanitization: Map WebFOCUS/SSA names to SQL-safe identifiers. (Implemented in `src/emitter.py`)
     - [x] 4.1.2.3 Type Mapping: Map WebFOCUS types (I, F, A) to PostgreSQL types. (Implemented in `src/emitter.py`)
+    - [ ] 4.1.2.4 Type Integration: Use `TypeInferrer` for accurate PL/pgSQL variable declarations.
 - [x] **4.2 Procedural Logic Emission:**
   - [x] 4.2.1 Variable Declaration: Generate `DECLARE` section for all discovered variables. (Implemented in `src/templates/base.sql.j2`)
   - [x] 4.2.2 Expression Translation: Transform WebFOCUS expressions to PostgreSQL-compatible SQL. (Implemented in `src/emitter.py`)
