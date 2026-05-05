@@ -149,7 +149,7 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
 
 - [x] **4.1 PL/pgSQL Emission Infrastructure:**
   - [x] 4.1.1 Template Environment: Setup Jinja2 and base layout templates.
-- [ ] **4.1.2 Variable Mapping: Implement mapping between SSA versions and PL/pgSQL variables.
+- [x] **4.1.2 Variable Mapping: Implement mapping between SSA versions and PL/pgSQL variables.
     - [x] 4.1.2.1 Variable Discovery: Identify all unique SSA variables in the CFG. (Implemented in `src/emitter.py`)
     - [x] 4.1.2.2 Name Sanitization: Map WebFOCUS/SSA names to SQL-safe identifiers. (Implemented in `src/emitter.py`)
     - [x] 4.1.2.3 Type Mapping: Map WebFOCUS types (I, F, A) to PostgreSQL types. (Implemented in `src/type_mapper.py`)
@@ -296,12 +296,12 @@ Ensure the generated PL/pgSQL code is not only syntactically correct but also ex
 - [x] **7.1 Live Database Environment:**
   - [x] 7.1.1 Configure a PostgreSQL service container in the CI/CD pipeline (GitHub Actions). (Implemented in `.github/workflows/cicd.yml`)
   - [x] 7.1.2 Implement a robust database connection utility for use in the test suite. (Implemented in `src/db_utils.py`)
-- [ ] **7.2 Data & Schema Fixtures:**
+- [x] **7.2 Data & Schema Fixtures:**
   - [x] 7.2.1 Implement an automated DDL generator that transforms Master File metadata into PostgreSQL `CREATE TABLE` statements. (Implemented in `src/ddl_generator.py`)
   - [x] 7.2.2 Develop a fixture loading mechanism to populate the live database with test data (from JSON/CSV) for each sample. (Implemented in `src/fixture_loader.py`)
 - [ ] **7.3 Integration & Runtime Testing:**
-  - [ ] 7.3.1 Implement a runtime test runner.
+  - [x] 7.3.1 Implement a runtime test runner.
     - [x] 7.3.1.1 Implement procedure execution and notice capturing in `RuntimeRunner`. (Implemented in `src/runtime_runner.py`)
-    - [ ] 7.3.1.2 Integrate `DDLGenerator` and `FixtureLoader` into `RuntimeRunner` for automated environment setup.
+    - [x] 7.3.1.2 Integrate `DDLGenerator` and `FixtureLoader` into `RuntimeRunner` for automated environment setup.
   - [ ] 7.3.2 Verify result-set parity by comparing the output of executed procedures against expected results.
   - [ ] 7.3.3 Implement comprehensive error reporting for runtime failures (e.g., SQL syntax errors, type mismatches during execution).
