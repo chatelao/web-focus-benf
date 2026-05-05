@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] 0.137 Add new CI/CD steps to the roadmap if not yet implemented (#328)
 - [ ] 0.136 Implement a next modest, feasible and reasonable MIGRATION_ROADMAP.md step (#327)
 - [x] 0.135 Add CLI options to transpile single files and entire projects, add description about usage to "HOWTO.md" (#325) (completed at 2026-05-05 14:25:38)
 - [x] 0.134 Add `HOWTO.md` describing how to install and run the tool (#323) (completed at 2026-05-05 12:06:20)
