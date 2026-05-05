@@ -289,3 +289,17 @@ Ensure the new system produces correct results and maintains parity with the leg
   - [x] 6.2.1 Remove Lark-related code (`wf_parser.py`, `master_file_parser.py`).
   - [x] 6.2.2 Remove `lark` from `requirements.txt`. (Completed: Verified absence in `requirements.txt`)
 - [x] 6.3 Technical Debt: Close out remaining items in `TECHNICAL_DEBTS.md`. (Completed: All debts in `TECHNICAL_DEBTS.md` are marked as done)
+
+## Phase 7: Continuous Integration & Runtime Verification
+Ensure the generated PL/pgSQL code is not only syntactically correct but also executes correctly against a live PostgreSQL database.
+
+- [ ] **7.1 Live Database Environment:**
+  - [ ] 7.1.1 Configure a PostgreSQL service container in the CI/CD pipeline (GitHub Actions).
+  - [ ] 7.1.2 Implement a robust database connection utility for use in the test suite.
+- [ ] **7.2 Data & Schema Fixtures:**
+  - [ ] 7.2.1 Implement an automated DDL generator that transforms Master File metadata into PostgreSQL `CREATE TABLE` statements.
+  - [ ] 7.2.2 Develop a fixture loading mechanism to populate the live database with test data (from JSON/CSV) for each sample.
+- [ ] **7.3 Integration & Runtime Testing:**
+  - [ ] 7.3.1 Implement a runtime test runner that executes transpiled PL/pgSQL procedures on the live database.
+  - [ ] 7.3.2 Verify result-set parity by comparing the output of executed procedures against expected results.
+  - [ ] 7.3.3 Implement comprehensive error reporting for runtime failures (e.g., SQL syntax errors, type mismatches during execution).
