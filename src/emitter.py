@@ -716,6 +716,7 @@ class PostgresEmitter:
             return f"{table_name}.{fname}"
 
         report_comments = []
+        hold_command = None
 
         # Sort commands (BY, ACROSS)
         sort_commands = [c for c in instr.components if c.__class__.__name__ == 'SortCommand']
@@ -769,6 +770,8 @@ class PostgresEmitter:
                 centered = " CENTER" if getattr(comp, 'centered', False) else ""
                 report_comments.append(f"/* {class_name.upper()}{centered} \"{comp.text}\" */")
             elif class_name == 'OutputCommand':
+                if comp.output_type == 'HOLD':
+                    hold_command = comp
                 report_comments.append(self._emit_output_command(comp))
             elif class_name == 'StyleBlock':
                 report_comments.append("/* SET STYLE * */")
@@ -784,6 +787,8 @@ class PostgresEmitter:
                     elif action_class == 'RecapCommand':
                         report_comments.append(f"/* ON {comp.target} {self._format_recap(action)} */")
                     elif action_class == 'OutputCommand':
+                        if action.output_type == 'HOLD':
+                            hold_command = action
                         report_comments.append(f"/* ON {comp.target} {self._emit_output_command(action).lstrip('/*').rstrip('*/').strip()} */")
                     elif action_class == 'StyleBlock':
                         report_comments.append(f"/* ON {comp.target} SET STYLE * */")
@@ -978,6 +983,16 @@ class PostgresEmitter:
 
             if order_by_phrases:
                 sql += "\nORDER BY " + ", ".join(order_by_phrases)
+
+        if hold_command:
+            hold_name = hold_command.filename or "HOLD"
+            # Sanitize hold name for SQL table name
+            hold_name = hold_name.replace('.', '_').replace('-', '_')
+
+            hold_sql = f"DROP TABLE IF EXISTS {hold_name};\n"
+            hold_sql += f"CREATE TEMP TABLE {hold_name} AS\n"
+            hold_sql += sql
+            sql = hold_sql
 
         if merge_cmd:
             target_table = self._resolve_table_name(merge_cmd.filename)
