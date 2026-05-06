@@ -74,7 +74,8 @@ class TestE2EControlFlow(unittest.TestCase):
         """
         sql = self._run_e2e(fex_code, optimize=False)
         # Check branching logic
-        self.assertIn("v_next_block := CASE WHEN (v_VAL > 5) THEN 'LABEL_TRUE' ELSE 'LABEL_FALSE' END;", sql)
+        # After fixing entry block, SSA now correctly versions &VAL to v_VAL_0
+        self.assertIn("v_next_block := CASE WHEN (v_VAL_0 > 5) THEN 'LABEL_TRUE' ELSE 'LABEL_FALSE' END;", sql)
         self.assertIn("WHEN 'LABEL_TRUE' THEN", sql)
         self.assertIn("RAISE NOTICE '%', v_TRUE;", sql)
 
@@ -89,10 +90,10 @@ class TestE2EControlFlow(unittest.TestCase):
         sql = self._run_e2e(fex_code, optimize=False)
         # Check loop structure
         self.assertIn("WHEN 'LOOP_HEADER_LOOP_END' THEN", sql)
-        # Condition check
-        self.assertIn("(v_I_0 <= 3)", sql)
+        # Condition check - v_I_1 is the Phi node result in the loop header
+        self.assertIn("(v_I_1 <= 3)", sql)
         # Increment
-        self.assertIn("v_I_0 := (v_I_0 + 1);", sql)
+        self.assertIn("v_I_2 := (v_I_1 + 1);", sql)
 
     def test_repeat_times_loop_no_opt(self):
         fex_code = """
@@ -103,7 +104,8 @@ class TestE2EControlFlow(unittest.TestCase):
         sql = self._run_e2e(fex_code, optimize=False)
         # With the new emitter, simple loops are optimized even without global optimize=True
         # because the optimization happens during emission based on CFG structure.
-        self.assertIn("FOR v_REPEAT_COUNTER_END_REPEAT_0 IN 1..5 LOOP", sql)
+        # v_REPEAT_COUNTER_END_REPEAT_1 is the counter in the loop header
+        self.assertIn("FOR v_REPEAT_COUNTER_END_REPEAT_1 IN 1..5 LOOP", sql)
 
     def test_repeat_for_loop_optimization(self):
         fex_code = """
@@ -112,8 +114,9 @@ class TestE2EControlFlow(unittest.TestCase):
         -END_REPEAT
         """
         sql = self._run_e2e(fex_code, optimize=False)
-        self.assertIn("FOR v_I_0 IN 1..10 BY 2 LOOP", sql)
-        self.assertIn("RAISE NOTICE '%', v_I_0;", sql)
+        # v_I_1 is the counter in the loop header
+        self.assertIn("FOR v_I_1 IN 1..10 BY 2 LOOP", sql)
+        self.assertIn("RAISE NOTICE '%', v_I_1;", sql)
 
 if __name__ == '__main__':
     unittest.main()
