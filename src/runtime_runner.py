@@ -1,4 +1,5 @@
 import psycopg2
+from psycopg2 import sql
 from db_utils import get_db_connection
 from ddl_generator import DDLGenerator
 from fixture_loader import FixtureLoader
@@ -59,7 +60,7 @@ class RuntimeRunner:
                 return self._run_internal(sql, procedure_name)
         return self._run_internal(sql, procedure_name)
 
-    def _run_internal(self, sql, procedure_name):
+    def _run_internal(self, procedure_sql, procedure_name):
         notices = []
         # Clear existing notices
         del self.conn.notices[:]
@@ -67,7 +68,7 @@ class RuntimeRunner:
         try:
             with self.conn.cursor() as cursor:
                 # 1. Define the procedure
-                cursor.execute(sql)
+                cursor.execute(procedure_sql)
 
                 # 2. Call the procedure
                 cursor.execute(f"CALL {procedure_name}();")
@@ -80,17 +81,45 @@ class RuntimeRunner:
                         clean_notice = clean_notice[len("NOTICE:  "):]
                     notices.append(clean_notice)
         except psycopg2.Error as e:
-            diag = getattr(e, 'diag', None)
-            if diag:
-                error_msg = f"PostgreSQL Runtime Error: {diag.message_primary}"
-                if diag.message_detail:
-                    error_msg += f"\nDetail: {diag.message_detail}"
-                if diag.context:
-                    error_msg += f"\nContext: {diag.context}"
-                if diag.internal_position:
-                    error_msg += f"\nPosition: {diag.internal_position}"
-                raise Exception(error_msg) from e
-            else:
-                raise Exception(f"PostgreSQL Runtime Error: {str(e)}") from e
+            self._handle_error(e)
 
         return notices
+
+    def fetch_table(self, table_name):
+        """
+        Retrieves all rows from a table (e.g., a HOLD table) as a list of dictionaries.
+        """
+        if not self.conn:
+            with self:
+                return self._fetch_internal(table_name)
+        return self._fetch_internal(table_name)
+
+    def _fetch_internal(self, table_name):
+        try:
+            with self.conn.cursor() as cursor:
+                cursor.execute(sql.SQL("SELECT * FROM {}").format(sql.Identifier(table_name)))
+
+                if cursor.description is None:
+                    return []
+
+                colnames = [desc[0] for desc in cursor.description]
+                results = []
+                for row in cursor.fetchall():
+                    results.append(dict(zip(colnames, row)))
+                return results
+        except psycopg2.Error as e:
+            self._handle_error(e)
+
+    def _handle_error(self, e):
+        diag = getattr(e, 'diag', None)
+        if diag:
+            error_msg = f"PostgreSQL Runtime Error: {diag.message_primary}"
+            if diag.message_detail:
+                error_msg += f"\nDetail: {diag.message_detail}"
+            if diag.context:
+                error_msg += f"\nContext: {diag.context}"
+            if diag.internal_position:
+                error_msg += f"\nPosition: {diag.internal_position}"
+            raise Exception(error_msg) from e
+        else:
+            raise Exception(f"PostgreSQL Runtime Error: {str(e)}") from e
