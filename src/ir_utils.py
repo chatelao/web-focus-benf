@@ -158,20 +158,21 @@ def find_simple_while_loop(cfg, header_name):
     if not (isinstance(last_instr, ir.Jump) and last_instr.target == header_name):
         return None
 
-    # Verify body is a linear sequence of blocks leading to the closing block
+    # Verify body is a sequence of blocks leading to the closing block
     body_blocks = []
-    curr = body_start
+    worklist = [body_start]
     visited = {header_name, after_block}
-    while curr != label:
-        if curr in visited:
-            return None
+    while worklist:
+        curr = worklist.pop(0)
+        if curr == label or curr in visited:
+            continue
         visited.add(curr)
         body_blocks.append(curr)
 
         b = cfg.blocks.get(curr)
-        if not b or len(b.successors) != 1:
-            return None
-        curr = b.successors[0].name
+        if not b: return None
+        for succ in b.successors:
+            worklist.append(succ.name)
 
     return {
         'type': 'WHILE',

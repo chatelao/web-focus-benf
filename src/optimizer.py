@@ -127,6 +127,68 @@ class RelationalLiftingOptimizer:
                             }
         return accumulators
 
+    def identify_filters(self, cfg, loop, read_map):
+        """
+        Detects procedural filters (conditional jumps skipping logic).
+        Returns a list of ASG expressions that must be TRUE to NOT skip the logic.
+        """
+        filters = []
+        closing_block_name = loop['closing_block']
+
+        # We look for branches within the loop body that jump to the closing block
+        # (directly or through an empty block).
+        for b_name in loop['body_blocks']:
+            block = cfg.blocks.get(b_name)
+            if not block: continue
+
+            for instr in block.instructions:
+                if isinstance(instr, ir.Branch):
+                    # Check if true_target leads to closing_block and skips logic
+                    if self._is_skip_to_closing(cfg, instr.true_target, closing_block_name):
+                        # Filter is NOT condition (the logic is only executed if condition is FALSE)
+                        cond = asg.UnaryOperation(operator='NOT', operand=instr.condition)
+                        if self._can_be_sql_filter(cond, read_map):
+                            filters.append(cond)
+
+                    # Check if false_target leads to closing_block and skips logic
+                    elif self._is_skip_to_closing(cfg, instr.false_target, closing_block_name):
+                        # Filter is condition (the logic is only executed if condition is TRUE)
+                        cond = instr.condition
+                        if self._can_be_sql_filter(cond, read_map):
+                            filters.append(cond)
+
+        return filters
+
+    def _is_skip_to_closing(self, cfg, target_name, closing_block_name):
+        """Checks if a target branch leads directly or through an empty block to the loop end."""
+        if target_name == closing_block_name:
+            return True
+
+        target_block = cfg.blocks.get(target_name)
+        # An "empty" block in this context has only a Jump to the closing block
+        if target_block and len(target_block.instructions) == 1:
+            instr = target_block.instructions[0]
+            if isinstance(instr, ir.Jump) and instr.target == closing_block_name:
+                return True
+        return False
+
+    def _can_be_sql_filter(self, expr, read_map):
+        """Recursively checks if an expression only uses variables from read_map or literals."""
+        if isinstance(expr, asg.Literal):
+            return True
+        if isinstance(expr, (asg.AmperVar, asg.Identifier)):
+            return get_base_name(expr.name) in read_map
+        if isinstance(expr, asg.BinaryOperation):
+            return self._can_be_sql_filter(expr.left, read_map) and \
+                   self._can_be_sql_filter(expr.right, read_map)
+        if isinstance(expr, asg.UnaryOperation):
+            return self._can_be_sql_filter(expr.operand, read_map)
+        if isinstance(expr, asg.IfExpression):
+            return self._can_be_sql_filter(expr.condition, read_map) and \
+                   self._can_be_sql_filter(expr.then_expr, read_map) and \
+                   self._can_be_sql_filter(expr.else_expr, read_map)
+        return False
+
 class ConstantPropagator:
     """
     Performs constant propagation and constant folding on a CFG in SSA form.

@@ -15,6 +15,7 @@ from ssa_transformer import SSATransformer
 from optimizer import RelationalLiftingOptimizer
 from metadata_registry import MetadataRegistry
 from asg import MasterFile, Segment, Field
+import asg
 
 class TestRelationalLifting(unittest.TestCase):
     def _get_cfg(self, fex_code):
@@ -142,6 +143,41 @@ class TestRelationalLifting(unittest.TestCase):
 
         self.assertEqual(read_map["&VAR1"], ("MYFILE", "FIELD1"))
         self.assertEqual(read_map["&VAR2"], ("MYFILE", "FIELD2"))
+
+    def test_identify_filters(self):
+        fex = """
+        -REPEAT LBL WHILE &I LE 10;
+        -READ MYFILE &VAR1 &VAR2
+        -IF &VAR1 EQ 'SKIP' GOTO LBL;
+        -SET &TOTAL = &TOTAL + &VAR2;
+        -LBL
+        """
+        # Setup metadata
+        registry = MetadataRegistry()
+        mf = MasterFile(name="MYFILE")
+        seg = Segment(name="S1")
+        seg.fields = [Field(name="FIELD1"), Field(name="FIELD2")]
+        mf.segments = [seg]
+        registry.register_master_file(mf)
+
+        cfg = self._get_cfg(fex)
+        optimizer = RelationalLiftingOptimizer()
+        data_loops = optimizer.find_data_loops(cfg)
+        self.assertEqual(len(data_loops), 1)
+
+        read_map = optimizer.map_read_variables(cfg, data_loops[0], registry)
+        filters = optimizer.identify_filters(cfg, data_loops[0], read_map)
+
+        self.assertEqual(len(filters), 1)
+        # Condition should be NOT (&VAR1 EQ 'SKIP')
+        cond = filters[0]
+        self.assertTrue(isinstance(cond, asg.UnaryOperation))
+        self.assertEqual(cond.operator, "NOT")
+        bin_op = cond.operand
+        self.assertTrue(isinstance(bin_op, asg.BinaryOperation))
+        self.assertEqual(bin_op.operator, "EQ")
+        self.assertEqual(bin_op.left.name, "&VAR1")
+        self.assertEqual(bin_op.right.value, "SKIP")
 
 if __name__ == '__main__':
     unittest.main()
