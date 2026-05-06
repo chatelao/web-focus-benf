@@ -310,4 +310,7 @@ Ensure the generated PL/pgSQL code is not only syntactically correct but also ex
     - [x] 7.3.1.1 Implement procedure execution and notice capturing in `RuntimeRunner`. (Implemented in `src/runtime_runner.py`)
     - [x] 7.3.1.2 Integrate `DDLGenerator` and `FixtureLoader` into `RuntimeRunner` for automated environment setup.
   - [ ] 7.3.2 Verify result-set parity by comparing the output of executed procedures against expected results.
-  - [ ] 7.3.3 Implement comprehensive error reporting for runtime failures (e.g., SQL syntax errors, type mismatches during execution).
+    - [x] 7.3.2.1 Support `HOLD` command in `PostgresEmitter` using `CREATE TEMP TABLE`.
+    - [ ] 7.3.2.2 Enhance `RuntimeRunner` to fetch and return result sets from temporary tables.
+    - [ ] 7.3.2.3 Add integration tests for result-set parity verification.
+  - [x] 7.3.3 Implement comprehensive error reporting for runtime failures (e.g., SQL syntax errors, type mismatches during execution). (Implemented in `src/runtime_runner.py`)
