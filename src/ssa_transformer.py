@@ -22,6 +22,10 @@ class SSATransformer:
         Inserts Phi instructions into the basic blocks of the CFG using the
         iterative dominance frontier algorithm.
         """
+        # 0. Ensure entry block is set
+        if not cfg.entry_block and cfg.blocks:
+            cfg.entry_block = next(iter(cfg.blocks.values()))
+
         # 1. Compute dominators and frontiers
         analysis = DominatorAnalysis(cfg)
         analysis.run()

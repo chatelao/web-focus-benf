@@ -13,6 +13,8 @@ from symbol_resolver import SymbolResolver
 from ir_builder import IRBuilder
 from ssa_transformer import SSATransformer
 from optimizer import RelationalLiftingOptimizer
+from metadata_registry import MetadataRegistry
+from asg import MasterFile, Segment, Field
 
 class TestRelationalLifting(unittest.TestCase):
     def _get_cfg(self, fex_code):
@@ -27,7 +29,8 @@ class TestRelationalLifting(unittest.TestCase):
 
         SymbolResolver().resolve(asg_nodes)
 
-        cfg = IRBuilder().build(asg_nodes)
+        ir_builder = IRBuilder()
+        cfg = ir_builder.build(asg_nodes)
         SSATransformer().transform(cfg)
         return cfg
 
@@ -71,6 +74,74 @@ class TestRelationalLifting(unittest.TestCase):
         data_loops = optimizer.find_data_loops(cfg)
 
         self.assertEqual(len(data_loops), 0)
+
+    def test_loop_carried_dependencies(self):
+        fex = """
+        -SET &TOTAL = 0;
+        -REPEAT LBL 10 TIMES;
+        -SET &TOTAL = &TOTAL + 1;
+        -LBL
+        """
+        cfg = self._get_cfg(fex)
+        optimizer = RelationalLiftingOptimizer()
+        data_loops = []
+        from ir_utils import find_simple_for_loop
+        for b in cfg.blocks:
+            loop = find_simple_for_loop(cfg, b)
+            if loop:
+                data_loops.append(loop)
+
+        self.assertEqual(len(data_loops), 1)
+
+        carried = optimizer.analyze_loop_carried_dependencies(cfg, data_loops[0])
+        self.assertIn("&TOTAL", carried)
+        self.assertIn("&REPEAT_COUNTER_LBL", carried)
+
+    def test_identify_accumulators(self):
+        fex = """
+        -SET &TOTAL = 0;
+        -REPEAT LBL 10 TIMES;
+        -SET &TOTAL = &TOTAL + 5;
+        -LBL
+        """
+        cfg = self._get_cfg(fex)
+        optimizer = RelationalLiftingOptimizer()
+        from ir_utils import find_simple_for_loop
+        loop = None
+        for b in cfg.blocks:
+            loop = find_simple_for_loop(cfg, b)
+            if loop: break
+
+        carried = optimizer.analyze_loop_carried_dependencies(cfg, loop)
+        accs = optimizer.identify_accumulators(cfg, loop, carried)
+
+        self.assertIn("&TOTAL", accs)
+        self.assertEqual(accs["&TOTAL"]["operator"], "+")
+        self.assertEqual(accs["&TOTAL"]["increment"].value, 5)
+
+    def test_map_read_variables(self):
+        fex = """
+        -REPEAT LBL WHILE &I LE 10;
+        -READ MYFILE &VAR1 &VAR2
+        -LBL
+        """
+        # Setup metadata
+        registry = MetadataRegistry()
+        mf = MasterFile(name="MYFILE")
+        seg = Segment(name="S1")
+        seg.fields = [Field(name="FIELD1"), Field(name="FIELD2")]
+        mf.segments = [seg]
+        registry.register_master_file(mf)
+
+        cfg = self._get_cfg(fex)
+        optimizer = RelationalLiftingOptimizer()
+        data_loops = optimizer.find_data_loops(cfg)
+
+        self.assertEqual(len(data_loops), 1)
+        read_map = optimizer.map_read_variables(cfg, data_loops[0], registry)
+
+        self.assertEqual(read_map["&VAR1"], ("MYFILE", "FIELD1"))
+        self.assertEqual(read_map["&VAR2"], ("MYFILE", "FIELD2"))
 
 if __name__ == '__main__':
     unittest.main()

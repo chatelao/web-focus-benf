@@ -58,9 +58,10 @@ class TestWhileOptimization(unittest.TestCase):
         sql = self._run_e2e(fex_code)
 
         # Verify it uses native WHILE loop
-        self.assertIn("WHILE (v_I_0 <= 5) LOOP", sql)
-        self.assertIn("RAISE NOTICE '%', v_I_0;", sql)
-        self.assertIn("v_I_0 := (v_I_0 + 1);", sql)
+        # v_I_1 is the Phi node result in the loop header
+        self.assertIn("WHILE (v_I_1 <= 5) LOOP", sql)
+        self.assertIn("RAISE NOTICE '%', v_I_1;", sql)
+        self.assertIn("v_I_2 := (v_I_1 + 1);", sql)
         self.assertIn("END LOOP;", sql)
 
         # Verify it doesn't have the body as separate CASE WHEN blocks
@@ -80,7 +81,8 @@ class TestWhileOptimization(unittest.TestCase):
 
         # UNTIL &I GT 5 is translated to WHILE NOT (&I GT 5)
         # Emitter might add space after NOT
-        self.assertIn("WHILE NOT ((v_I_0 > 5)) LOOP", sql)
+        # v_I_1 is the Phi node result in the loop header
+        self.assertIn("WHILE NOT ((v_I_1 > 5)) LOOP", sql)
         self.assertIn("END LOOP;", sql)
 
 if __name__ == '__main__':

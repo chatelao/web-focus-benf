@@ -110,6 +110,7 @@ def find_simple_for_loop(cfg, header_name):
 
     return {
         'type': 'FOR',
+        'header_block': header_name,
         'counter': counter_var,
         'start': start_val,
         'limit': limit,
@@ -174,6 +175,7 @@ def find_simple_while_loop(cfg, header_name):
 
     return {
         'type': 'WHILE',
+        'header_block': header_name,
         'condition': cond,
         'body_blocks': body_blocks,
         'closing_block': label,

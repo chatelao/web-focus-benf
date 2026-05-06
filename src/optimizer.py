@@ -1,7 +1,7 @@
 import ir
 import asg
 import copy
-from ir_utils import find_simple_for_loop, find_simple_while_loop
+from ir_utils import find_simple_for_loop, find_simple_while_loop, get_base_name
 
 class RelationalLiftingOptimizer:
     """
@@ -41,6 +41,91 @@ class RelationalLiftingOptimizer:
                 if isinstance(instr, ir.Read):
                     return True
         return False
+
+    def analyze_loop_carried_dependencies(self, cfg, loop):
+        """
+        Identifies Phi nodes in the loop header that merge values from inside
+        and outside the loop.
+        """
+        header_block = cfg.blocks.get(loop['header_block'])
+        if not header_block:
+            return {}
+
+        carried = {}
+        for instr in header_block.instructions:
+            if isinstance(instr, ir.Phi):
+                # Map original variable name to Phi instruction
+                # In SSATransformer, original_var was stored.
+                orig_var = getattr(instr, 'original_var', get_base_name(instr.target))
+                carried[orig_var] = instr
+
+        # If no Phis were found in the header, look for them in the body blocks.
+        # This handles cases where SSA placement might be slightly different.
+        if not carried:
+            for b_name in loop['body_blocks']:
+                block = cfg.blocks.get(b_name)
+                if not block: continue
+                for instr in block.instructions:
+                    if isinstance(instr, ir.Phi):
+                        orig_var = getattr(instr, 'original_var', get_base_name(instr.target))
+                        carried[orig_var] = instr
+
+        return carried
+
+    def map_read_variables(self, cfg, loop, metadata_registry):
+        """
+        Maps variables populated by -READ instructions within the loop to
+        Master File fields.
+        """
+        var_to_field = {}
+        for b_name in loop['body_blocks'] + [loop['closing_block']]:
+            block = cfg.blocks.get(b_name)
+            if not block: continue
+            for instr in block.instructions:
+                if isinstance(instr, ir.Read):
+                    master = metadata_registry.get_master_file(instr.filename)
+                    if master:
+                        # WebFOCUS -READ reads fields in the order they appear in the segment
+                        # For now, simple mapping of variables to the first segment's fields
+                        fields = master.segments[0].fields
+                        for i, var in enumerate(instr.variables):
+                            if i < len(fields):
+                                var_to_field[get_base_name(var)] = (instr.filename, fields[i].name)
+        return var_to_field
+
+    def identify_accumulators(self, cfg, loop, carried_vars):
+        """
+        Detects procedural accumulators like VAR = VAR + VAL.
+        """
+        accumulators = {}
+        for b_name in loop['body_blocks'] + [loop['closing_block']]:
+            block = cfg.blocks.get(b_name)
+            if not block: continue
+            for instr in block.instructions:
+                if isinstance(instr, ir.Assign) and isinstance(instr.source, asg.BinaryOperation):
+                    target_base = get_base_name(instr.target if isinstance(instr.target, str) else instr.target.name)
+                    if target_base in carried_vars:
+                        op = instr.source.operator.upper()
+                        left = instr.source.left
+                        right = instr.source.right
+
+                        # Check if it's VAR = VAR + X or VAR = X + VAR
+                        is_acc = False
+                        increment = None
+                        if isinstance(left, asg.AmperVar) and get_base_name(left.name) == target_base:
+                            is_acc = True
+                            increment = right
+                        elif isinstance(right, asg.AmperVar) and get_base_name(right.name) == target_base:
+                            is_acc = True
+                            increment = left
+
+                        if is_acc:
+                            accumulators[target_base] = {
+                                'operator': op,
+                                'increment': increment,
+                                'instruction': instr
+                            }
+        return accumulators
 
 class ConstantPropagator:
     """
