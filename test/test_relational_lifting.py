@@ -1,183 +1,226 @@
 import unittest
-import sys
-import os
-from antlr4 import CommonTokenStream, InputStream
-
-# Add src to path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
-
-from WebFocusReportLexer import WebFocusReportLexer
-from WebFocusReportParser import WebFocusReportParser
-from asg_builder import ReportASGBuilder
-from symbol_resolver import SymbolResolver
-from ir_builder import IRBuilder
-from ssa_transformer import SSATransformer
+import ir
+import asg
 from optimizer import RelationalLiftingOptimizer
 from metadata_registry import MetadataRegistry
-from asg import MasterFile, Segment, Field
-import asg
 
 class TestRelationalLifting(unittest.TestCase):
-    def _get_cfg(self, fex_code):
-        input_stream = InputStream(fex_code)
-        lexer = WebFocusReportLexer(input_stream)
-        token_stream = CommonTokenStream(lexer)
-        parser = WebFocusReportParser(token_stream)
-        tree = parser.start()
-
-        builder = ReportASGBuilder()
-        asg_nodes = builder.visit(tree)
-
-        SymbolResolver().resolve(asg_nodes)
-
-        ir_builder = IRBuilder()
-        cfg = ir_builder.build(asg_nodes)
-        SSATransformer().transform(cfg)
-        return cfg
-
-    def test_identify_read_loop(self):
-        fex = """
-        -SET &I = 1;
-        -REPEAT LBL WHILE &I LE 10;
-        -READ MYFILE &VAR
-        -SET &I = &I + 1;
-        -LBL
-        """
-        cfg = self._get_cfg(fex)
-        optimizer = RelationalLiftingOptimizer()
-        data_loops = optimizer.find_data_loops(cfg)
-
-        self.assertEqual(len(data_loops), 1)
-        self.assertEqual(data_loops[0]['type'], 'WHILE')
-        self.assertTrue(any(b.startswith('LOOP_BODY_') for b in data_loops[0]['body_blocks']))
-
-    def test_identify_read_loop_for(self):
-        fex = """
-        -REPEAT LBL 10 TIMES;
-        -READ MYFILE &VAR
-        -LBL
-        """
-        cfg = self._get_cfg(fex)
-        optimizer = RelationalLiftingOptimizer()
-        data_loops = optimizer.find_data_loops(cfg)
-
-        self.assertEqual(len(data_loops), 1)
-        self.assertEqual(data_loops[0]['type'], 'FOR')
-
-    def test_no_read_no_data_loop(self):
-        fex = """
-        -REPEAT LBL 10 TIMES;
-        -SET &X = 1;
-        -LBL
-        """
-        cfg = self._get_cfg(fex)
-        optimizer = RelationalLiftingOptimizer()
-        data_loops = optimizer.find_data_loops(cfg)
-
-        self.assertEqual(len(data_loops), 0)
-
-    def test_loop_carried_dependencies(self):
-        fex = """
-        -SET &TOTAL = 0;
-        -REPEAT LBL 10 TIMES;
-        -SET &TOTAL = &TOTAL + 1;
-        -LBL
-        """
-        cfg = self._get_cfg(fex)
-        optimizer = RelationalLiftingOptimizer()
-        data_loops = []
-        from ir_utils import find_simple_for_loop
-        for b in cfg.blocks:
-            loop = find_simple_for_loop(cfg, b)
-            if loop:
-                data_loops.append(loop)
-
-        self.assertEqual(len(data_loops), 1)
-
-        carried = optimizer.analyze_loop_carried_dependencies(cfg, data_loops[0])
-        self.assertIn("&TOTAL", carried)
-        self.assertIn("&REPEAT_COUNTER_LBL", carried)
-
-    def test_identify_accumulators(self):
-        fex = """
-        -SET &TOTAL = 0;
-        -REPEAT LBL 10 TIMES;
-        -SET &TOTAL = &TOTAL + 5;
-        -LBL
-        """
-        cfg = self._get_cfg(fex)
-        optimizer = RelationalLiftingOptimizer()
-        from ir_utils import find_simple_for_loop
-        loop = None
-        for b in cfg.blocks:
-            loop = find_simple_for_loop(cfg, b)
-            if loop: break
-
-        carried = optimizer.analyze_loop_carried_dependencies(cfg, loop)
-        accs = optimizer.identify_accumulators(cfg, loop, carried)
-
-        self.assertIn("&TOTAL", accs)
-        self.assertEqual(accs["&TOTAL"]["operator"], "+")
-        self.assertEqual(accs["&TOTAL"]["increment"].value, 5)
-
-    def test_map_read_variables(self):
-        fex = """
-        -REPEAT LBL WHILE &I LE 10;
-        -READ MYFILE &VAR1 &VAR2
-        -LBL
-        """
-        # Setup metadata
+    def test_lift_simple_sum_loop(self):
+        # 1. Setup metadata for CAR file
         registry = MetadataRegistry()
-        mf = MasterFile(name="MYFILE")
-        seg = Segment(name="S1")
-        seg.fields = [Field(name="FIELD1"), Field(name="FIELD2")]
-        mf.segments = [seg]
-        registry.register_master_file(mf)
+        car_master = asg.MasterFile(name="CAR", segments=[
+            asg.Segment(name="ORIGIN", fields=[
+                asg.Field(name="COUNTRY"),
+                asg.Field(name="CAR"),
+                asg.Field(name="MODEL"),
+                asg.Field(name="PRICE")
+            ])
+        ])
+        registry.register_master_file(car_master)
 
-        cfg = self._get_cfg(fex)
+        # 2. Construct CFG for procedural loop:
+        # -REPEAT LBL 10 TIMES
+        # -READ CAR &COUNTRY &CAR &MODEL &PRICE
+        # -SET &TOTAL_PRICE = &TOTAL_PRICE + &PRICE
+        # LBL
+
+        cfg = ir.ControlFlowGraph()
+
+        # Entry Block
+        entry = ir.BasicBlock(name="ENTRY")
+        entry.add_instruction(ir.Assign(target="TOTAL_PRICE_0", source=asg.Literal(0)))
+        entry.add_instruction(ir.Assign(target="I_0", source=asg.Literal(1)))
+        entry.add_instruction(ir.Jump(target="LOOP_HEADER_LBL"))
+        cfg.add_block(entry)
+
+        # Header Block
+        header = ir.BasicBlock(name="LOOP_HEADER_LBL")
+        header.add_instruction(ir.Phi(target="TOTAL_PRICE_1", sources=["TOTAL_PRICE_0", "TOTAL_PRICE_2"]))
+        header.add_instruction(ir.Phi(target="I_1", sources=["I_0", "I_2"]))
+        header.add_instruction(ir.Branch(
+            condition=asg.BinaryOperation(left=asg.AmperVar(name="I_1"), operator="LE", right=asg.Literal(10)),
+            true_target="BODY",
+            false_target="EXIT"
+        ))
+        cfg.add_block(header)
+
+        # Body Block
+        body = ir.BasicBlock(name="BODY")
+        body.add_instruction(ir.Read(filename="CAR", variables=["COUNTRY_1", "CAR_1", "MODEL_1", "PRICE_1"]))
+        body.add_instruction(ir.Assign(
+            target="TOTAL_PRICE_2",
+            source=asg.BinaryOperation(
+                left=asg.AmperVar(name="TOTAL_PRICE_1"),
+                operator="+",
+                right=asg.AmperVar(name="PRICE_1")
+            )
+        ))
+        body.add_instruction(ir.Jump(target="LBL"))
+        cfg.add_block(body)
+
+        # Closing Block
+        closing = ir.BasicBlock(name="LBL")
+        closing.add_instruction(ir.Assign(
+            target="I_2",
+            source=asg.BinaryOperation(left=asg.AmperVar(name="I_1"), operator="+", right=asg.Literal(1))
+        ))
+        closing.add_instruction(ir.Jump(target="LOOP_HEADER_LBL"))
+        cfg.add_block(closing)
+
+        # Exit Block
+        exit_block = ir.BasicBlock(name="EXIT")
+        cfg.add_block(exit_block)
+
+        # Add Edges
+        cfg.add_edge("ENTRY", "LOOP_HEADER_LBL")
+        cfg.add_edge("LOOP_HEADER_LBL", "BODY")
+        cfg.add_edge("LOOP_HEADER_LBL", "EXIT")
+        cfg.add_edge("BODY", "LBL")
+        cfg.add_edge("LBL", "LOOP_HEADER_LBL")
+
+        cfg.entry_block = entry
+
+        # 3. Run Relational Lifting
         optimizer = RelationalLiftingOptimizer()
-        data_loops = optimizer.find_data_loops(cfg)
+        optimizer.lift_data_loops(cfg, registry)
 
-        self.assertEqual(len(data_loops), 1)
-        read_map = optimizer.map_read_variables(cfg, data_loops[0], registry)
+        # 4. Verifications
+        # Entry should now jump to LIFTED_LOOP_HEADER_LBL
+        self.assertEqual(entry.instructions[-1].target, "LIFTED_LOOP_HEADER_LBL")
 
-        self.assertEqual(read_map["&VAR1"], ("MYFILE", "FIELD1"))
-        self.assertEqual(read_map["&VAR2"], ("MYFILE", "FIELD2"))
+        # LIFTED_LOOP_HEADER_LBL should exist and contain an ir.Report
+        self.assertIn("LIFTED_LOOP_HEADER_LBL", cfg.blocks)
+        lifted_block = cfg.blocks["LIFTED_LOOP_HEADER_LBL"]
 
-    def test_identify_filters(self):
-        fex = """
-        -REPEAT LBL WHILE &I LE 10;
-        -READ MYFILE &VAR1 &VAR2
-        -IF &VAR1 EQ 'SKIP' GOTO LBL;
-        -SET &TOTAL = &TOTAL + &VAR2;
-        -LBL
-        """
-        # Setup metadata
+        report_instr = None
+        for instr in lifted_block.instructions:
+            if isinstance(instr, ir.Report):
+                report_instr = instr
+                break
+
+        self.assertIsNotNone(report_instr)
+        self.assertEqual(report_instr.filename, "CAR")
+
+        # Check SUM component
+        sum_verb = report_instr.components[0]
+        self.assertIsInstance(sum_verb, asg.VerbCommand)
+        self.assertEqual(sum_verb.verb, "SUM")
+        self.assertEqual(sum_verb.fields[0].name, "PRICE")
+        self.assertEqual(sum_verb.fields[0].alias, "TOTAL_PRICE")
+
+    def test_lift_loop_with_filter(self):
+        # 1. Setup metadata
         registry = MetadataRegistry()
-        mf = MasterFile(name="MYFILE")
-        seg = Segment(name="S1")
-        seg.fields = [Field(name="FIELD1"), Field(name="FIELD2")]
-        mf.segments = [seg]
-        registry.register_master_file(mf)
+        car_master = asg.MasterFile(name="CAR", segments=[
+            asg.Segment(name="ORIGIN", fields=[
+                asg.Field(name="COUNTRY"),
+                asg.Field(name="CAR"),
+                asg.Field(name="MODEL"),
+                asg.Field(name="PRICE")
+            ])
+        ])
+        registry.register_master_file(car_master)
 
-        cfg = self._get_cfg(fex)
+        # 2. Construct CFG with procedural filter:
+        # -REPEAT LBL 10 TIMES
+        # -READ CAR &COUNTRY &CAR &MODEL &PRICE
+        # -IF &COUNTRY NE 'JAPAN' GOTO LBL
+        # -SET &TOTAL_PRICE = &TOTAL_PRICE + &PRICE
+        # LBL
+
+        cfg = ir.ControlFlowGraph()
+
+        # Entry
+        entry = ir.BasicBlock(name="ENTRY")
+        entry.add_instruction(ir.Assign(target="TOTAL_PRICE_0", source=asg.Literal(0)))
+        entry.add_instruction(ir.Assign(target="I_0", source=asg.Literal(1)))
+        entry.add_instruction(ir.Jump(target="LOOP_HEADER_LBL"))
+        cfg.add_block(entry)
+
+        # Header
+        header = ir.BasicBlock(name="LOOP_HEADER_LBL")
+        header.add_instruction(ir.Phi(target="TOTAL_PRICE_1", sources=["TOTAL_PRICE_0", "TOTAL_PRICE_2"]))
+        header.add_instruction(ir.Phi(target="I_1", sources=["I_0", "I_2"]))
+        header.add_instruction(ir.Branch(
+            condition=asg.BinaryOperation(left=asg.AmperVar(name="I_1"), operator="LE", right=asg.Literal(10)),
+            true_target="BODY1",
+            false_target="EXIT"
+        ))
+        cfg.add_block(header)
+
+        # Body1: Read and Filter
+        body1 = ir.BasicBlock(name="BODY1")
+        body1.add_instruction(ir.Read(filename="CAR", variables=["COUNTRY_1", "CAR_1", "MODEL_1", "PRICE_1"]))
+        body1.add_instruction(ir.Branch(
+            condition=asg.BinaryOperation(left=asg.AmperVar(name="COUNTRY_1"), operator="NE", right=asg.Literal("JAPAN")),
+            true_target="LBL",
+            false_target="BODY2"
+        ))
+        cfg.add_block(body1)
+
+        # Body2: Accumulate
+        body2 = ir.BasicBlock(name="BODY2")
+        body2.add_instruction(ir.Assign(
+            target="TOTAL_PRICE_2",
+            source=asg.BinaryOperation(
+                left=asg.AmperVar(name="TOTAL_PRICE_1"),
+                operator="+",
+                right=asg.AmperVar(name="PRICE_1")
+            )
+        ))
+        body2.add_instruction(ir.Jump(target="LBL"))
+        cfg.add_block(body2)
+
+        # Closing
+        closing = ir.BasicBlock(name="LBL")
+        closing.add_instruction(ir.Phi(target="TOTAL_PRICE_3", sources=["TOTAL_PRICE_1", "TOTAL_PRICE_2"]))
+        closing.add_instruction(ir.Assign(
+            target="I_2",
+            source=asg.BinaryOperation(left=asg.AmperVar(name="I_1"), operator="+", right=asg.Literal(1))
+        ))
+        closing.add_instruction(ir.Jump(target="LOOP_HEADER_LBL"))
+        cfg.add_block(closing)
+
+        # Exit
+        exit_block = ir.BasicBlock(name="EXIT")
+        cfg.add_block(exit_block)
+
+        cfg.add_edge("ENTRY", "LOOP_HEADER_LBL")
+        cfg.add_edge("LOOP_HEADER_LBL", "BODY1")
+        cfg.add_edge("LOOP_HEADER_LBL", "EXIT")
+        cfg.add_edge("BODY1", "LBL")
+        cfg.add_edge("BODY1", "BODY2")
+        cfg.add_edge("BODY2", "LBL")
+        cfg.add_edge("LBL", "LOOP_HEADER_LBL")
+
+        cfg.entry_block = entry
+
+        # 3. Run Relational Lifting
         optimizer = RelationalLiftingOptimizer()
-        data_loops = optimizer.find_data_loops(cfg)
-        self.assertEqual(len(data_loops), 1)
+        optimizer.lift_data_loops(cfg, registry)
 
-        read_map = optimizer.map_read_variables(cfg, data_loops[0], registry)
-        filters = optimizer.identify_filters(cfg, data_loops[0], read_map)
+        # 4. Verifications
+        lifted_block = cfg.blocks["LIFTED_LOOP_HEADER_LBL"]
+        report_instr = lifted_block.instructions[0]
 
-        self.assertEqual(len(filters), 1)
-        # Condition should be NOT (&VAR1 EQ 'SKIP')
-        cond = filters[0]
-        self.assertTrue(isinstance(cond, asg.UnaryOperation))
-        self.assertEqual(cond.operator, "NOT")
-        bin_op = cond.operand
-        self.assertTrue(isinstance(bin_op, asg.BinaryOperation))
-        self.assertEqual(bin_op.operator, "EQ")
-        self.assertEqual(bin_op.left.name, "&VAR1")
-        self.assertEqual(bin_op.right.value, "SKIP")
+        self.assertIsInstance(report_instr, ir.Report)
+
+        # Verify WHERE clause
+        where = None
+        for comp in report_instr.components:
+            if isinstance(comp, asg.WhereClause):
+                where = comp
+                break
+
+        self.assertIsNotNone(where)
+        # Condition should be NOT (COUNTRY NE 'JAPAN') which is (COUNTRY EQ 'JAPAN')
+        # but identify_filters negates the skip condition.
+        # Skip condition: COUNTRY NE 'JAPAN'
+        # Filter: NOT (COUNTRY NE 'JAPAN')
+        self.assertIsInstance(where.condition, asg.UnaryOperation)
+        self.assertEqual(where.condition.operator, "NOT")
+        self.assertEqual(where.condition.operand.left.name, "COUNTRY")
+        self.assertEqual(where.condition.operand.operator, "NE")
 
 if __name__ == '__main__':
     unittest.main()

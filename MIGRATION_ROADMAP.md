@@ -133,9 +133,9 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
       - [x] 3.4.1.4.3 Detection of procedural aggregations and filters within data loops.
       - [x] 3.4.1.4.3.1 Pattern matching for procedural accumulators (e.g., `VAR = VAR + READ_VAR`).
       - [x] 3.4.1.4.3.2 Pattern matching for procedural filters (e.g., conditional jumps skipping logic based on `-READ` values).
-      - [ ] 3.4.1.4.4 Implementation of Relational Lift pass to map loops to set-based SQL.
-      - [ ] 3.4.1.4.4.1 Synthesize SQL `SELECT` with `WHERE` and `GROUP BY` from detected patterns.
-      - [ ] 3.4.1.4.4.2 Replace procedural loop with a single `ir.Report` instruction in the CFG.
+      - [x] 3.4.1.4.4 Implementation of Relational Lift pass to map loops to set-based SQL.
+      - [x] 3.4.1.4.4.1 Synthesize SQL `SELECT` with `WHERE` and `GROUP BY` from detected patterns.
+      - [x] 3.4.1.4.4.2 Replace procedural loop with a single `ir.Report` instruction in the CFG.
   - [ ] 3.4.2 Predicate Pushdown:
     - [x] 3.4.2.1 Filter Lifting: Move WHERE conditions to SQL. (Implemented in `src/emitter.py`)
     - [x] 3.4.2.2 Total Lifting: Move WHERE TOTAL conditions to SQL HAVING. (Implemented in `src/emitter.py`)
