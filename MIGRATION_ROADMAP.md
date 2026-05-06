@@ -128,8 +128,14 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
     - [ ] 3.4.1.4 Identification of loops over data sources for relational lifting.
       - [x] 3.4.1.4.1 Identification of `REPEAT` loops containing `-READ` instructions.
       - [ ] 3.4.1.4.2 Analysis of I/O dependencies and record-at-a-time patterns.
+      - [ ] 3.4.1.4.2.1 Identify loop-carried dependencies for variables within `-READ` loops.
+      - [ ] 3.4.1.4.2.2 Map `-READ` variables to Master File fields to determine the underlying relational source.
       - [ ] 3.4.1.4.3 Detection of procedural aggregations and filters within data loops.
+      - [ ] 3.4.1.4.3.1 Pattern matching for procedural accumulators (e.g., `VAR = VAR + READ_VAR`).
+      - [ ] 3.4.1.4.3.2 Pattern matching for procedural filters (e.g., conditional jumps skipping logic based on `-READ` values).
       - [ ] 3.4.1.4.4 Implementation of Relational Lift pass to map loops to set-based SQL.
+      - [ ] 3.4.1.4.4.1 Synthesize SQL `SELECT` with `WHERE` and `GROUP BY` from detected patterns.
+      - [ ] 3.4.1.4.4.2 Replace procedural loop with a single `ir.Report` instruction in the CFG.
   - [ ] 3.4.2 Predicate Pushdown:
     - [x] 3.4.2.1 Filter Lifting: Move WHERE conditions to SQL. (Implemented in `src/emitter.py`)
     - [x] 3.4.2.2 Total Lifting: Move WHERE TOTAL conditions to SQL HAVING. (Implemented in `src/emitter.py`)
