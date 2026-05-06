@@ -77,20 +77,24 @@ def find_simple_for_loop(cfg, header_name):
 
     step = inc_instr.source.right
 
-    # Verify body is a linear sequence of blocks leading to the closing block
+    # Identify body blocks using reachability
     body_blocks = []
-    curr = body_start
+    worklist = [body_start]
     visited = {header_name, after_block}
-    while curr != label:
-        if curr in visited:
-            return None
+    is_linear = True
+    while worklist:
+        curr = worklist.pop(0)
+        if curr == label or curr in visited:
+            continue
         visited.add(curr)
         body_blocks.append(curr)
 
         b = cfg.blocks.get(curr)
-        if not b or len(b.successors) != 1:
-            return None
-        curr = b.successors[0].name
+        if not b: return None
+        if len(b.successors) != 1:
+            is_linear = False
+        for succ in b.successors:
+            worklist.append(succ.name)
 
     # Find start value
     start_val = asg.Literal(value=1) # Default for TIMES
@@ -117,7 +121,8 @@ def find_simple_for_loop(cfg, header_name):
         'step': step,
         'body_blocks': body_blocks,
         'closing_block': label,
-        'after_block': after_block
+        'after_block': after_block,
+        'is_linear': is_linear
     }
 
 def find_simple_while_loop(cfg, header_name):
@@ -162,6 +167,7 @@ def find_simple_while_loop(cfg, header_name):
     body_blocks = []
     worklist = [body_start]
     visited = {header_name, after_block}
+    is_linear = True
     while worklist:
         curr = worklist.pop(0)
         if curr == label or curr in visited:
@@ -171,6 +177,8 @@ def find_simple_while_loop(cfg, header_name):
 
         b = cfg.blocks.get(curr)
         if not b: return None
+        if len(b.successors) != 1:
+            is_linear = False
         for succ in b.successors:
             worklist.append(succ.name)
 
@@ -180,5 +188,6 @@ def find_simple_while_loop(cfg, header_name):
         'condition': cond,
         'body_blocks': body_blocks,
         'closing_block': label,
-        'after_block': after_block
+        'after_block': after_block,
+        'is_linear': is_linear
     }

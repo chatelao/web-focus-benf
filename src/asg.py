@@ -13,6 +13,8 @@ class Literal(Expression):
     def __init__(self, value, **kwargs):
         super().__init__(value=value, **kwargs)
     def __str__(self):
+        if isinstance(self.value, str):
+            return f"'{self.value}'"
         return str(self.value)
     def __eq__(self, other):
         return isinstance(other, Literal) and self.value == other.value
@@ -30,6 +32,10 @@ class AmperVar(Expression):
     """Represents a Dialogue Manager variable (e.g., &VAR)."""
     def __init__(self, name, **kwargs):
         super().__init__(name=name, **kwargs)
+    def __str__(self):
+        return self.name
+    def __eq__(self, other):
+        return isinstance(other, AmperVar) and self.name == other.name
 
 class BinaryOperation(Expression):
     """Represents a binary operation (e.g., a + b, a AND b)."""
@@ -58,6 +64,13 @@ class IfExpression(Expression):
     """Represents an inline IF expression (IF condition THEN expr1 ELSE expr2)."""
     def __init__(self, condition, then_expr, else_expr, **kwargs):
         super().__init__(condition=condition, then_expr=then_expr, else_expr=else_expr, **kwargs)
+    def __str__(self):
+        return f"(IF {self.condition} THEN {self.then_expr} ELSE {self.else_expr})"
+    def __eq__(self, other):
+        return isinstance(other, IfExpression) and \
+               self.condition == other.condition and \
+               self.then_expr == other.then_expr and \
+               self.else_expr == other.else_expr
 
 class BetweenExpression(Expression):
     """Represents a BETWEEN or FROM...TO expression."""

@@ -1255,7 +1255,7 @@ class PostgresEmitter:
             if not loop:
                 loop = find_simple_while_loop(cfg, b_name)
 
-            if loop:
+            if loop and loop.get('is_linear'):
                 loops[b_name] = loop
                 consumed_blocks.update(loop['body_blocks'])
                 consumed_blocks.add(loop['closing_block'])

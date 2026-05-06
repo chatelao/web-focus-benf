@@ -275,8 +275,13 @@ class RelationalLiftingOptimizer:
 
             filter_strs = {str(f) for f in filters}
 
+            # A guard is redundant if it matches one of the global filters (which are now WHERE clauses).
+            # or if it matches any other condition that skips to the loop end.
+            filter_strs = {str(f) for f in filters}
+            all_skip_conds = self._get_all_skip_conditions(cfg, loop)
+            all_skip_strs = {str(c) for c in all_skip_conds}
+
             # Remove guards from accumulators if they are already covered by global filters
-            # or if they are actually global skip conditions (which we've lifted to filters).
             for var_base, acc_info in accumulators.items():
                 guard = acc_info.get('guard')
                 if guard:
