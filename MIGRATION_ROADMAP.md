@@ -136,6 +136,9 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
       - [x] 3.4.1.4.4 Implementation of Relational Lift pass to map loops to set-based SQL.
       - [x] 3.4.1.4.4.1 Synthesize SQL `SELECT` with `WHERE` and `GROUP BY` from detected patterns.
       - [x] 3.4.1.4.4.2 Replace procedural loop with a single `ir.Report` instruction in the CFG.
+    - [ ] 3.4.1.5 Advanced Pattern Matching for Relational Lifting:
+      - [x] 3.4.1.5.1 Recognition of `COUNT` patterns (e.g., `VAR = VAR + 1`).
+      - [ ] 3.4.1.5.2 Recognition of conditional accumulation (e.g., `IF cond THEN VAR = VAR + VAL`).
   - [ ] 3.4.2 Predicate Pushdown:
     - [x] 3.4.2.1 Filter Lifting: Move WHERE conditions to SQL. (Implemented in `src/emitter.py`)
     - [x] 3.4.2.2 Total Lifting: Move WHERE TOTAL conditions to SQL HAVING. (Implemented in `src/emitter.py`)
@@ -234,6 +237,7 @@ Ensure the new system produces correct results and maintains parity with the leg
         - [x] 5.1.3.12.3.2 Basic SQL generation for `MATCH` (merging two files).
         - [x] 5.1.3.12.3.3 Support for all merge phrases (OLD-OR-NEW, etc.) and multi-file chaining.
         - [x] 5.1.3.12.3.4 Support COMPUTE and virtual fields in MATCH sub-requests.
+        - [x] 5.1.3.12.3.5 Support `HOLD` command in `MATCH FILE` results.
     - [x] 5.1.3.13 Support `MORE` phrase (Universal Concatenation).
       - [x] 5.1.3.13.1 Grammar support for `MORE` phrase in `TABLE` and `MATCH` requests.
       - [x] 5.1.3.13.2 ASG support for `MoreClause` and sub-requests.

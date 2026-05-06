@@ -1167,8 +1167,26 @@ class PostgresEmitter:
             current_vals = current_vals + vals_sub
             # Keys remain derived from the first file's naming convention for consistency in the chain
 
-        res = "WITH\n" + ",\n".join(ctes) + "\n"
-        res += f"SELECT * FROM {current_name};"
+        # Check for HOLD command in components
+        hold_command = None
+        for comp in instr.components:
+            if isinstance(comp, asg.OutputCommand) and comp.output_type == 'HOLD':
+                hold_command = comp
+                break
+
+        res = ""
+        query = "WITH\n" + ",\n".join(ctes) + "\n"
+        query += f"SELECT * FROM {current_name}"
+
+        if hold_command:
+            hold_name = hold_command.filename or "HOLD"
+            hold_name = hold_name.replace('.', '_').replace('-', '_')
+            res += f"DROP TABLE IF EXISTS {hold_name};\n"
+            res += f"CREATE TEMP TABLE {hold_name} AS\n"
+            res += query + ";"
+        else:
+            res += query + ";"
+
         return res
 
     def _resolve_table_name(self, filename):
