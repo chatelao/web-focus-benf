@@ -1,3 +1,4 @@
+import psycopg2
 from db_utils import get_db_connection
 from ddl_generator import DDLGenerator
 from fixture_loader import FixtureLoader
@@ -63,19 +64,33 @@ class RuntimeRunner:
         # Clear existing notices
         del self.conn.notices[:]
 
-        with self.conn.cursor() as cursor:
-            # 1. Define the procedure
-            cursor.execute(sql)
+        try:
+            with self.conn.cursor() as cursor:
+                # 1. Define the procedure
+                cursor.execute(sql)
 
-            # 2. Call the procedure
-            cursor.execute(f"CALL {procedure_name}();")
+                # 2. Call the procedure
+                cursor.execute(f"CALL {procedure_name}();")
 
-            # 3. Capture notices
-            for notice in self.conn.notices:
-                # notices in psycopg2 might have trailing newlines or "NOTICE: " prefix
-                clean_notice = notice.strip()
-                if clean_notice.startswith("NOTICE:  "):
-                    clean_notice = clean_notice[len("NOTICE:  "):]
-                notices.append(clean_notice)
+                # 3. Capture notices
+                for notice in self.conn.notices:
+                    # notices in psycopg2 might have trailing newlines or "NOTICE: " prefix
+                    clean_notice = notice.strip()
+                    if clean_notice.startswith("NOTICE:  "):
+                        clean_notice = clean_notice[len("NOTICE:  "):]
+                    notices.append(clean_notice)
+        except psycopg2.Error as e:
+            diag = getattr(e, 'diag', None)
+            if diag:
+                error_msg = f"PostgreSQL Runtime Error: {diag.message_primary}"
+                if diag.message_detail:
+                    error_msg += f"\nDetail: {diag.message_detail}"
+                if diag.context:
+                    error_msg += f"\nContext: {diag.context}"
+                if diag.internal_position:
+                    error_msg += f"\nPosition: {diag.internal_position}"
+                raise Exception(error_msg) from e
+            else:
+                raise Exception(f"PostgreSQL Runtime Error: {str(e)}") from e
 
         return notices

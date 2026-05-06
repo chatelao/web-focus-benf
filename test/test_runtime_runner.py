@@ -1,5 +1,6 @@
 import unittest
 from unittest.mock import patch, MagicMock
+import psycopg2
 import sys
 import os
 
@@ -79,6 +80,39 @@ class TestRuntimeRunner(unittest.TestCase):
 
         mock_loader.load_json.assert_called_once_with('TABLE1', 'data1.json')
         mock_loader.load_csv.assert_called_once_with('TABLE2', 'data2.csv')
+
+    @patch('runtime_runner.get_db_connection')
+    def test_run_procedure_error(self, mock_get_conn):
+        mock_conn = MagicMock()
+        mock_get_conn.return_value = mock_conn
+        mock_conn.notices = []
+        mock_cursor = MagicMock()
+        mock_conn.cursor.return_value.__enter__.return_value = mock_cursor
+
+        # We need an exception that RuntimeRunner will catch as psycopg2.Error
+        class MockError(Exception):
+            pass
+
+        mock_diag = MagicMock()
+        mock_diag.message_primary = "Primary error"
+        mock_diag.message_detail = "Detailed explanation"
+        mock_diag.context = "Procedure context"
+        mock_diag.internal_position = "42"
+
+        error_inst = MockError("Base error message")
+        error_inst.diag = mock_diag
+
+        mock_cursor.execute.side_effect = error_inst
+
+        runner = RuntimeRunner()
+        with patch('runtime_runner.psycopg2.Error', MockError):
+            with self.assertRaises(Exception) as cm:
+                runner.run_procedure("SELECT 1", "test")
+
+        self.assertIn("PostgreSQL Runtime Error: Primary error", str(cm.exception))
+        self.assertIn("Detail: Detailed explanation", str(cm.exception))
+        self.assertIn("Context: Procedure context", str(cm.exception))
+        self.assertIn("Position: 42", str(cm.exception))
 
 if __name__ == '__main__':
     unittest.main()
