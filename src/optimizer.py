@@ -119,7 +119,7 @@ class RelationalLiftingOptimizer:
                             is_acc = True
                             increment = left
 
-                        if is_acc:
+                        if is_acc and op == '+':
                             accumulators[target_base] = {
                                 'operator': op,
                                 'increment': increment,
@@ -210,17 +210,25 @@ class RelationalLiftingOptimizer:
             report_filename = list(read_map.values())[0][0]
             components = []
 
-            # SUM verb for accumulators
+            # SUM/COUNT verb for accumulators
             sum_fields = []
+            count_fields = []
             for var_base, acc_info in accumulators.items():
                 inc = acc_info['increment']
-                inc_name = get_base_name(inc.name) if isinstance(inc, asg.AmperVar) else None
-                if inc_name in read_map:
-                    _, inc_field_name = read_map[inc_name]
-                    sum_fields.append(asg.FieldSelection(name=inc_field_name, alias=var_base))
+                if isinstance(inc, asg.AmperVar):
+                    inc_name = get_base_name(inc.name)
+                    if inc_name in read_map:
+                        _, inc_field_name = read_map[inc_name]
+                        sum_fields.append(asg.FieldSelection(name=inc_field_name, alias=var_base))
+                elif isinstance(inc, asg.Literal) and inc.value == 1:
+                    # Pick any field from the read_map to COUNT
+                    _, any_field = list(read_map.values())[0]
+                    count_fields.append(asg.FieldSelection(name=any_field, alias=var_base))
 
             if sum_fields:
                 components.append(asg.VerbCommand(verb="SUM", fields=sum_fields))
+            if count_fields:
+                components.append(asg.VerbCommand(verb="COUNT", fields=count_fields))
 
             # WHERE clauses for filters
             for cond in filters:
