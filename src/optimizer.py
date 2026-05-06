@@ -93,9 +93,10 @@ class RelationalLiftingOptimizer:
                                 var_to_field[get_base_name(var)] = (instr.filename, fields[i].name)
         return var_to_field
 
-    def identify_accumulators(self, cfg, loop, carried_vars):
+    def identify_accumulators(self, cfg, loop, carried_vars, read_map):
         """
         Detects procedural accumulators like VAR = VAR + VAL.
+        Supports conditional accumulators if they are guarded by a branch.
         """
         accumulators = {}
         for b_name in loop['body_blocks'] + [loop['closing_block']]:
@@ -120,12 +121,49 @@ class RelationalLiftingOptimizer:
                             increment = left
 
                         if is_acc and op == '+':
+                            guard = self._find_guard_condition(cfg, loop, b_name, read_map)
                             accumulators[target_base] = {
                                 'operator': op,
                                 'increment': increment,
-                                'instruction': instr
+                                'instruction': instr,
+                                'guard': guard
                             }
         return accumulators
+
+    def _find_guard_condition(self, cfg, loop, block_name, read_map):
+        """
+        Attempts to find a condition that guards the execution of block_name
+        within the loop. Trace back from block_name to header_block.
+        """
+        header_name = loop['header_block']
+        if block_name == header_name:
+            return None
+
+        block = cfg.blocks.get(block_name)
+        if not block:
+            return None
+
+        # Simple case: block has one predecessor which is a branch in the loop body or header
+        if len(block.predecessors) == 1:
+            pred = block.predecessors[0]
+            if pred.name not in loop['body_blocks'] and pred.name != header_name:
+                return None
+
+            last_instr = pred.instructions[-1] if pred.instructions else None
+            if isinstance(last_instr, ir.Branch):
+                cond = last_instr.condition
+                if last_instr.true_target == block_name:
+                    if self._can_be_sql_filter(cond, read_map):
+                        return cond
+                elif last_instr.false_target == block_name:
+                    neg_cond = asg.UnaryOperation(operator='NOT', operand=cond)
+                    if self._can_be_sql_filter(neg_cond, read_map):
+                        return neg_cond
+
+            # Recurse up the predecessor chain
+            return self._find_guard_condition(cfg, loop, pred.name, read_map)
+
+        return None
 
     def identify_filters(self, cfg, loop, read_map):
         """
@@ -204,7 +242,7 @@ class RelationalLiftingOptimizer:
             if not read_map:
                 continue
 
-            accumulators = self.identify_accumulators(cfg, loop, carried_vars)
+            accumulators = self.identify_accumulators(cfg, loop, carried_vars, read_map)
             filters = self.identify_filters(cfg, loop, read_map)
 
             report_filename = list(read_map.values())[0][0]
@@ -215,15 +253,37 @@ class RelationalLiftingOptimizer:
             count_fields = []
             for var_base, acc_info in accumulators.items():
                 inc = acc_info['increment']
+                guard = acc_info['guard']
+
                 if isinstance(inc, asg.AmperVar):
                     inc_name = get_base_name(inc.name)
                     if inc_name in read_map:
                         _, inc_field_name = read_map[inc_name]
-                        sum_fields.append(asg.FieldSelection(name=inc_field_name, alias=var_base))
+                        field_expr = asg.Identifier(name=inc_field_name)
+                        if guard:
+                            translated_guard = self._translate_expression(guard, read_map)
+                            field_expr = asg.IfExpression(
+                                condition=translated_guard,
+                                then_expr=field_expr,
+                                else_expr=asg.Literal(value=0)
+                            )
+
+                        # Use SUM for both simple and conditional field accumulation
+                        sum_fields.append(asg.FieldSelection(name=field_expr if guard else inc_field_name, alias=var_base))
                 elif isinstance(inc, asg.Literal) and inc.value == 1:
-                    # Pick any field from the read_map to COUNT
-                    _, any_field = list(read_map.values())[0]
-                    count_fields.append(asg.FieldSelection(name=any_field, alias=var_base))
+                    if guard:
+                        translated_guard = self._translate_expression(guard, read_map)
+                        field_expr = asg.IfExpression(
+                            condition=translated_guard,
+                            then_expr=asg.Literal(value=1),
+                            else_expr=asg.Literal(value=0)
+                        )
+                        # Conditional count is implemented as SUM(IF cond THEN 1 ELSE 0)
+                        sum_fields.append(asg.FieldSelection(name=field_expr, alias=var_base))
+                    else:
+                        # Pick any field from the read_map to COUNT
+                        _, any_field = list(read_map.values())[0]
+                        count_fields.append(asg.FieldSelection(name=any_field, alias=var_base))
 
             if sum_fields:
                 components.append(asg.VerbCommand(verb="SUM", fields=sum_fields))

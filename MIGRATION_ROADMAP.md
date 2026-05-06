@@ -138,7 +138,7 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
       - [x] 3.4.1.4.4.2 Replace procedural loop with a single `ir.Report` instruction in the CFG.
     - [ ] 3.4.1.5 Advanced Pattern Matching for Relational Lifting:
       - [x] 3.4.1.5.1 Recognition of `COUNT` patterns (e.g., `VAR = VAR + 1`).
-      - [ ] 3.4.1.5.2 Recognition of conditional accumulation (e.g., `IF cond THEN VAR = VAR + VAL`).
+      - [x] 3.4.1.5.2 Recognition of conditional accumulation (e.g., `IF cond THEN VAR = VAR + VAL`).
   - [ ] 3.4.2 Predicate Pushdown:
     - [x] 3.4.2.1 Filter Lifting: Move WHERE conditions to SQL. (Implemented in `src/emitter.py`)
     - [x] 3.4.2.2 Total Lifting: Move WHERE TOTAL conditions to SQL HAVING. (Implemented in `src/emitter.py`)
