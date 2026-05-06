@@ -114,5 +114,30 @@ class TestRuntimeRunner(unittest.TestCase):
         self.assertIn("Context: Procedure context", str(cm.exception))
         self.assertIn("Position: 42", str(cm.exception))
 
+    @patch('runtime_runner.get_db_connection')
+    def test_fetch_table(self, mock_get_conn):
+        mock_conn = MagicMock()
+        mock_get_conn.return_value = mock_conn
+        mock_cursor = MagicMock()
+        mock_conn.cursor.return_value.__enter__.return_value = mock_cursor
+
+        # Mock cursor.description and fetchall
+        mock_cursor.description = [('id',), ('name',)]
+        mock_cursor.fetchall.return_value = [(1, 'Alice'), (2, 'Bob')]
+
+        runner = RuntimeRunner()
+        results = runner.fetch_table("MYHOLD")
+
+        # Verify SQL execution
+        # Note: psycopg2.sql.SQL.format returns a Composed object,
+        # but in mocks it's often easier to check just that execute was called.
+        self.assertTrue(mock_cursor.execute.called)
+
+        expected = [
+            {'id': 1, 'name': 'Alice'},
+            {'id': 2, 'name': 'Bob'}
+        ]
+        self.assertEqual(results, expected)
+
 if __name__ == '__main__':
     unittest.main()
