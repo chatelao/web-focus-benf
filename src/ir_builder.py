@@ -37,6 +37,7 @@ class IRBuilder:
 
         # Pass 2: Build instructions and edges
         self.current_block = self._new_block("ENTRY")
+        self.cfg.entry_block = self.current_block
         self._process_nodes(asg_nodes)
         return self.cfg
 

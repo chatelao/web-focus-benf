@@ -29,14 +29,37 @@ class DominatorAnalysis:
         visited = set()
         self.post_order = []
 
-        def walk(block):
-            visited.add(block.name)
-            for succ in block.successors:
-                if succ.name not in visited:
-                    walk(succ)
-            self.post_order.append(block.name)
+        # Ensure entry_block is what we think it is.
+        # If it has no predecessors but isn't marked as entry_block, we might have issues.
+        # But IRBuilder sets it correctly.
 
-        walk(self.cfg.entry_block)
+        # Use an iterative approach to avoid recursion depth issues
+        stack = [(self.cfg.entry_block, False)]
+        while stack:
+            block, visited_children = stack.pop()
+            if not block: continue
+
+            if visited_children:
+                if block.name not in self.post_order: # Safeguard
+                    self.post_order.append(block.name)
+            else:
+                if block.name not in visited:
+                    visited.add(block.name)
+                    stack.append((block, True))
+                    # Push successors in reverse to maintain same order as recursive
+                    for succ in reversed(block.successors):
+                        if succ.name not in visited:
+                            stack.append((succ, False))
+
+        # Check if all blocks were reached. If not, maybe some blocks are only reachable via back-edges?
+        # That shouldn't happen in a valid CFG starting from Entry.
+        # But let's check.
+        if len(self.post_order) < len(self.cfg.blocks):
+             # Try to reach other blocks
+             for name, block in self.cfg.blocks.items():
+                 if name not in visited:
+                      # This block is unreachable from entry!
+                      pass
 
         for i, name in enumerate(self.post_order):
             self.post_order_indices[name] = i
@@ -49,6 +72,13 @@ class DominatorAnalysis:
         rpo = self.post_order[::-1]
         nodes = [name for name in rpo if name != entry_name]
 
+        # Initialize idoms for other nodes
+        for node_name in nodes:
+            self.idoms[node_name] = None
+
+        # Fixed point for idoms is tricky with back-edges if we don't start from a good initial guess
+        # Actually, standard algorithm should work if we skip nodes with no idom yet.
+
         changed = True
         while changed:
             changed = False
@@ -58,13 +88,13 @@ class DominatorAnalysis:
                 # Find first predecessor that has an idom
                 new_idom = None
                 for pred in node.predecessors:
-                    if pred.name in self.idoms:
+                    if self.idoms.get(pred.name) is not None:
                         new_idom = pred.name
                         break
 
                 if new_idom:
                     for pred in node.predecessors:
-                        if pred.name != new_idom and pred.name in self.idoms:
+                        if pred.name != new_idom and self.idoms.get(pred.name) is not None:
                             new_idom = self._intersect(pred.name, new_idom)
 
                     if self.idoms.get(node_name) != new_idom:

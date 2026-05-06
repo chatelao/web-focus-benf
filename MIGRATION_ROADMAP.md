@@ -290,7 +290,16 @@ Ensure the new system produces correct results and maintains parity with the leg
 - [ ] 6.1 Transition Tests: Ensure all legacy tests pass against the new transpiler architecture.
   - [ ] 6.1.1 Map legacy test cases to new transpiler test infrastructure.
   - [ ] 6.1.2 Verify parity for all legacy core reporting tests.
+    - [ ] 6.1.2.1 Verb commands (PRINT, SUM, LIST, COUNT).
+    - [ ] 6.1.2.2 Sort phrases (BY, ACROSS) and sort options.
+    - [ ] 6.1.2.3 Selection criteria (WHERE, WHERE TOTAL).
+    - [ ] 6.1.2.4 Calculated fields (DEFINE, COMPUTE).
+    - [ ] 6.1.2.5 Joins and data source mapping.
   - [ ] 6.1.3 Verify parity for all legacy Dialogue Manager tests.
+    - [ ] 6.1.3.1 Variable assignment (-SET, -DEFAULT).
+    - [ ] 6.1.3.2 Control flow (-IF, -GOTO, -REPEAT).
+    - [ ] 6.1.3.3 Dialogue Manager I/O (-READ, -WRITE).
+    - [ ] 6.1.3.4 External interactions (-INCLUDE, -RUN, -HTMLFORM).
 - [x] 6.2 Code Cleanup:
   - [x] 6.2.1 Remove Lark-related code (`wf_parser.py`, `master_file_parser.py`).
   - [x] 6.2.2 Remove `lark` from `requirements.txt`. (Completed: Verified absence in `requirements.txt`)
