@@ -189,6 +189,104 @@ class RelationalLiftingOptimizer:
                    self._can_be_sql_filter(expr.else_expr, read_map)
         return False
 
+    def lift_data_loops(self, cfg, metadata_registry):
+        """
+        Main entry point for relational lifting.
+        """
+        data_loops = self.find_data_loops(cfg)
+        if not data_loops:
+            return cfg
+
+        for loop in data_loops:
+            carried_vars = self.analyze_loop_carried_dependencies(cfg, loop)
+            read_map = self.map_read_variables(cfg, loop, metadata_registry)
+
+            if not read_map:
+                continue
+
+            accumulators = self.identify_accumulators(cfg, loop, carried_vars)
+            filters = self.identify_filters(cfg, loop, read_map)
+
+            report_filename = list(read_map.values())[0][0]
+            components = []
+
+            # SUM verb for accumulators
+            sum_fields = []
+            for var_base, acc_info in accumulators.items():
+                inc = acc_info['increment']
+                inc_name = get_base_name(inc.name) if isinstance(inc, asg.AmperVar) else None
+                if inc_name in read_map:
+                    _, inc_field_name = read_map[inc_name]
+                    sum_fields.append(asg.FieldSelection(name=inc_field_name, alias=var_base))
+
+            if sum_fields:
+                components.append(asg.VerbCommand(verb="SUM", fields=sum_fields))
+
+            # WHERE clauses for filters
+            for cond in filters:
+                translated_cond = self._translate_expression(cond, read_map)
+                components.append(asg.WhereClause(condition=translated_cond))
+
+            if components:
+                report_instr = ir.Report(filename=report_filename, components=components)
+                self._replace_loop_with_instruction(cfg, loop, report_instr)
+
+        return cfg
+
+    def _translate_expression(self, expr, read_map):
+        if isinstance(expr, asg.AmperVar):
+            base_name = get_base_name(expr.name)
+            if base_name in read_map:
+                _, field_name = read_map[base_name]
+                return asg.Identifier(name=field_name)
+
+        if isinstance(expr, asg.BinaryOperation):
+            new_left = self._translate_expression(expr.left, read_map)
+            new_right = self._translate_expression(expr.right, read_map)
+            return asg.BinaryOperation(left=new_left, operator=expr.operator, right=new_right)
+
+        if isinstance(expr, asg.UnaryOperation):
+            new_operand = self._translate_expression(expr.operand, read_map)
+            return asg.UnaryOperation(operator=expr.operator, operand=new_operand)
+
+        return copy.deepcopy(expr)
+
+    def _replace_loop_with_instruction(self, cfg, loop, instruction):
+        header_name = loop['header_block']
+        header_block = cfg.blocks[header_name]
+        exit_name = loop['after_block']
+
+        lifted_block_name = f"LIFTED_{header_name}"
+        lifted_block = ir.BasicBlock(name=lifted_block_name)
+        lifted_block.add_instruction(instruction)
+        lifted_block.add_instruction(ir.Jump(target=exit_name))
+        cfg.add_block(lifted_block)
+
+        cfg.add_edge(lifted_block_name, exit_name)
+
+        body_and_closing = set(loop['body_blocks']) | {loop['closing_block']}
+        preds_to_redirect = [p for p in header_block.predecessors if p.name not in body_and_closing]
+
+        for pred in preds_to_redirect:
+            last_instr = pred.instructions[-1]
+            if isinstance(last_instr, ir.Jump) and last_instr.target == header_name:
+                last_instr.target = lifted_block_name
+            elif isinstance(last_instr, ir.Branch):
+                if last_instr.true_target == header_name:
+                    last_instr.true_target = lifted_block_name
+                if last_instr.false_target == header_name:
+                    last_instr.false_target = lifted_block_name
+
+            if header_block in pred.successors:
+                pred.successors.remove(header_block)
+            if lifted_block not in pred.successors:
+                pred.successors.append(lifted_block)
+
+            if pred in header_block.predecessors:
+                header_block.predecessors.remove(pred)
+            if pred not in lifted_block.predecessors:
+                lifted_block.predecessors.append(pred)
+
 class ConstantPropagator:
     """
     Performs constant propagation and constant folding on a CFG in SSA form.
