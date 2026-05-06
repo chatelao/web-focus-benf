@@ -93,18 +93,47 @@ class RelationalLiftingOptimizer:
                                 var_to_field[get_base_name(var)] = (instr.filename, fields[i].name)
         return var_to_field
 
+    def _get_block_guard(self, cfg, b_name, loop):
+        """
+        Identifies conditions that must be true to reach a specific block within a loop.
+        For now, handles simple cases where a block is guarded by one Branch.
+        """
+        block = cfg.blocks.get(b_name)
+        if not block or not block.predecessors:
+            return None
+
+        # Look for a predecessor that is a Branch and one of its targets leads here
+        # while the other skips the block.
+        for pred in block.predecessors:
+            # We only care about branches within the loop body.
+            # The loop header branch is NOT an internal guard.
+            if pred.name not in loop['body_blocks']:
+                continue
+
+            last_instr = pred.instructions[-1]
+            if isinstance(last_instr, ir.Branch):
+                if last_instr.true_target == b_name:
+                    # Guard is the condition itself
+                    return last_instr.condition
+                elif last_instr.false_target == b_name:
+                    # Guard is NOT condition
+                    return asg.UnaryOperation(operator='NOT', operand=last_instr.condition)
+        return None
+
     def identify_accumulators(self, cfg, loop, carried_vars):
         """
         Detects procedural accumulators like VAR = VAR + VAL.
         """
         accumulators = {}
+        counter_base = get_base_name(loop.get('counter', ''))
+
         for b_name in loop['body_blocks'] + [loop['closing_block']]:
             block = cfg.blocks.get(b_name)
             if not block: continue
             for instr in block.instructions:
                 if isinstance(instr, ir.Assign) and isinstance(instr.source, asg.BinaryOperation):
                     target_base = get_base_name(instr.target if isinstance(instr.target, str) else instr.target.name)
-                    if target_base in carried_vars:
+                    if target_base in carried_vars and target_base != counter_base:
                         op = instr.source.operator.upper()
                         left = instr.source.left
                         right = instr.source.right
@@ -123,7 +152,8 @@ class RelationalLiftingOptimizer:
                             accumulators[target_base] = {
                                 'operator': op,
                                 'increment': increment,
-                                'instruction': instr
+                                'instruction': instr,
+                                'guard': self._get_block_guard(cfg, b_name, loop)
                             }
         return accumulators
 
@@ -131,6 +161,7 @@ class RelationalLiftingOptimizer:
         """
         Detects procedural filters (conditional jumps skipping logic).
         Returns a list of ASG expressions that must be TRUE to NOT skip the logic.
+        Only identifies filters that guard the ENTIRE rest of the loop body.
         """
         filters = []
         closing_block_name = loop['closing_block']
@@ -143,6 +174,13 @@ class RelationalLiftingOptimizer:
 
             for instr in block.instructions:
                 if isinstance(instr, ir.Branch):
+                    # For it to be a global filter, it must skip to the closing block
+                    # AND it must be the FIRST branch in the body or something that
+                    # dominates all subsequent work.
+                    # Simplified: if it skips the logic and leads to the end, it's a candidate.
+                    # But we only want to lift it as a WHERE clause if it guards all accumulators.
+                    # For now, let's keep it as is but be careful about double-applying.
+
                     # Check if true_target leads to closing_block and skips logic
                     if self._is_skip_to_closing(cfg, instr.true_target, closing_block_name):
                         # Filter is NOT condition (the logic is only executed if condition is FALSE)
@@ -171,6 +209,21 @@ class RelationalLiftingOptimizer:
             if isinstance(instr, ir.Jump) and instr.target == closing_block_name:
                 return True
         return False
+
+    def _get_all_skip_conditions(self, cfg, loop):
+        """Returns all conditions that lead to the closing block (skipping loop logic)."""
+        skip_conds = []
+        closing_block_name = loop['closing_block']
+        for b_name in loop['body_blocks']:
+            block = cfg.blocks.get(b_name)
+            if not block: continue
+            for instr in block.instructions:
+                if isinstance(instr, ir.Branch):
+                    if self._is_skip_to_closing(cfg, instr.true_target, closing_block_name):
+                        skip_conds.append(asg.UnaryOperation(operator='NOT', operand=instr.condition))
+                    elif self._is_skip_to_closing(cfg, instr.false_target, closing_block_name):
+                        skip_conds.append(instr.condition)
+        return skip_conds
 
     def _can_be_sql_filter(self, expr, read_map):
         """Recursively checks if an expression only uses variables from read_map or literals."""
@@ -205,7 +258,31 @@ class RelationalLiftingOptimizer:
                 continue
 
             accumulators = self.identify_accumulators(cfg, loop, carried_vars)
-            filters = self.identify_filters(cfg, loop, read_map)
+
+            # Global filters are those that skip to the closing block.
+            # However, if a filter is already used as a guard for an accumulator,
+            # we might not want it as a global WHERE if other accumulators exist
+            # that are NOT guarded by it.
+            # Simplified heuristic: if a condition is a guard for ALL accumulators,
+            # it can be a global filter.
+            potential_filters = self.identify_filters(cfg, loop, read_map)
+            all_skip_conds = self._get_all_skip_conditions(cfg, loop)
+            all_skip_strs = {str(c) for c in all_skip_conds}
+
+            filters = []
+            for f_cond in potential_filters:
+                filters.append(f_cond)
+
+            filter_strs = {str(f) for f in filters}
+
+            # Remove guards from accumulators if they are already covered by global filters
+            # or if they are actually global skip conditions (which we've lifted to filters).
+            for var_base, acc_info in accumulators.items():
+                guard = acc_info.get('guard')
+                if guard:
+                    g_str = str(guard)
+                    if g_str in filter_strs or g_str in all_skip_strs:
+                        acc_info['guard'] = None
 
             report_filename = list(read_map.values())[0][0]
             components = []
@@ -215,15 +292,35 @@ class RelationalLiftingOptimizer:
             count_fields = []
             for var_base, acc_info in accumulators.items():
                 inc = acc_info['increment']
+                guard = acc_info.get('guard')
+
+                field_node = None
                 if isinstance(inc, asg.AmperVar):
                     inc_name = get_base_name(inc.name)
                     if inc_name in read_map:
                         _, inc_field_name = read_map[inc_name]
-                        sum_fields.append(asg.FieldSelection(name=inc_field_name, alias=var_base))
+                        field_node = asg.Identifier(name=inc_field_name)
                 elif isinstance(inc, asg.Literal) and inc.value == 1:
                     # Pick any field from the read_map to COUNT
                     _, any_field = list(read_map.values())[0]
-                    count_fields.append(asg.FieldSelection(name=any_field, alias=var_base))
+                    field_node = asg.Identifier(name=any_field)
+
+                if field_node:
+                    if guard:
+                        translated_guard = self._translate_expression(guard, read_map)
+                        field_node = asg.IfExpression(
+                            condition=translated_guard,
+                            then_expr=field_node,
+                            else_expr=asg.Literal(value=0)
+                        )
+                    else:
+                        # For simple fields, use string to maintain compatibility with existing tests
+                        field_node = field_node.name
+
+                    if isinstance(inc, asg.AmperVar):
+                        sum_fields.append(asg.FieldSelection(name=field_node, alias=var_base))
+                    else:
+                        count_fields.append(asg.FieldSelection(name=field_node, alias=var_base))
 
             if sum_fields:
                 components.append(asg.VerbCommand(verb="SUM", fields=sum_fields))

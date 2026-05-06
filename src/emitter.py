@@ -624,6 +624,10 @@ class PostgresEmitter:
 
         def mark_field_used(fname, source_fn=None):
             if not fname: return
+            if isinstance(fname, asg.ASGNode):
+                self._collect_used_files_in_expr(fname, mark_field_used, source_fn)
+                return
+
             if '.' in fname:
                 parts = fname.split('.')
                 qual = parts[0]
@@ -795,6 +799,11 @@ class PostgresEmitter:
                         report_comments.extend(self._emit_layout_statements(action.statements, indent=2))
                         report_comments.append("/* ENDSTYLE */")
 
+        # Aggregation detection
+        group_by_names = []
+        for sc in sort_commands:
+            group_by_names.append(sc.field.name)
+
         # Verbs and Fields
         verb_commands = [c for c in instr.components if c.__class__.__name__ == 'VerbCommand']
         for vc in verb_commands:
@@ -815,10 +824,15 @@ class PostgresEmitter:
                     continue
 
                 field_name = field_sel.name
-                sql_expr = qualify_field(field_name)
+                if isinstance(field_name, asg.ASGNode):
+                    # For complex expressions, we don't want internal aggregation on every identifier
+                    sql_expr = self.emit_expression(field_name, in_query=True, virtual_fields=file_virtual_fields, qualifier=qualify_field, aggregate=False, group_by_fields=group_by_names)
+                    is_virtual = False
+                else:
+                    sql_expr = qualify_field(field_name)
+                    is_virtual = field_name in report_virtual_fields
 
                 # Relational Lifting: Virtual Field Substitution
-                is_virtual = field_name in report_virtual_fields
                 if is_virtual:
                     expr, fmt, source_fn = report_virtual_fields[field_name]
                     sql_expr = self.emit_expression(expr, in_query=True, virtual_fields=file_virtual_fields, qualifier=lambda f: qualify_field(f, source_fn))

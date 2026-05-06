@@ -12,11 +12,19 @@ class Literal(Expression):
     """Represents a literal value (number, string, etc.)."""
     def __init__(self, value, **kwargs):
         super().__init__(value=value, **kwargs)
+    def __str__(self):
+        return str(self.value)
+    def __eq__(self, other):
+        return isinstance(other, Literal) and self.value == other.value
 
 class Identifier(Expression):
     """Represents a field or variable name."""
     def __init__(self, name, **kwargs):
         super().__init__(name=name, **kwargs)
+    def __str__(self):
+        return self.name
+    def __eq__(self, other):
+        return isinstance(other, Identifier) and self.name == other.name
 
 class AmperVar(Expression):
     """Represents a Dialogue Manager variable (e.g., &VAR)."""
@@ -27,11 +35,19 @@ class BinaryOperation(Expression):
     """Represents a binary operation (e.g., a + b, a AND b)."""
     def __init__(self, left, operator, right, **kwargs):
         super().__init__(left=left, operator=operator, right=right, **kwargs)
+    def __str__(self):
+        return f"({self.left} {self.operator} {self.right})"
+    def __eq__(self, other):
+        return isinstance(other, BinaryOperation) and self.left == other.left and self.operator == other.operator and self.right == other.right
 
 class UnaryOperation(Expression):
     """Represents a unary operation (e.g., -a, NOT a)."""
     def __init__(self, operator, operand, **kwargs):
         super().__init__(operator=operator, operand=operand, **kwargs)
+    def __str__(self):
+        return f"({self.operator} {self.operand})"
+    def __eq__(self, other):
+        return isinstance(other, UnaryOperation) and self.operator == other.operator and self.operand == other.operand
 
 class FunctionCall(Expression):
     """Represents a function call (e.g., ABS(field))."""
