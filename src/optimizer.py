@@ -97,15 +97,20 @@ class RelationalLiftingOptimizer:
         """
         Detects procedural accumulators like VAR = VAR + VAL.
         Supports conditional accumulators if they are guarded by a branch.
+        Also detects MIN/MAX patterns like IF VAL < VAR THEN VAR = VAL.
         """
         accumulators = {}
         for b_name in loop['body_blocks'] + [loop['closing_block']]:
             block = cfg.blocks.get(b_name)
             if not block: continue
             for instr in block.instructions:
-                if isinstance(instr, ir.Assign) and isinstance(instr.source, asg.BinaryOperation):
+                if isinstance(instr, ir.Assign):
                     target_base = get_base_name(instr.target if isinstance(instr.target, str) else instr.target.name)
-                    if target_base in carried_vars:
+                    if target_base not in carried_vars:
+                        continue
+
+                    # Case 1: VAR = VAR + X
+                    if isinstance(instr.source, asg.BinaryOperation):
                         op = instr.source.operator.upper()
                         left = instr.source.left
                         right = instr.source.right
@@ -128,9 +133,70 @@ class RelationalLiftingOptimizer:
                                 'instruction': instr,
                                 'guard': guard
                             }
+
+                    # Case 2: VAR = VAL (potentially MIN/MAX if guarded)
+                    elif isinstance(instr.source, asg.AmperVar):
+                        val_base = get_base_name(instr.source.name)
+                        if val_base in read_map:
+                            # For MIN/MAX, the guard condition involves the target variable,
+                            # so it's not a simple SQL filter.
+                            guard = self._find_guard_condition(cfg, loop, b_name, read_map, check_sql_filter=False)
+                            if guard:
+                                # Analyze guard for MIN/MAX pattern
+                                op = self._identify_min_max_op(guard, val_base, target_base)
+                                if op:
+                                    accumulators[target_base] = {
+                                        'operator': op,
+                                        'increment': instr.source,
+                                        'instruction': instr,
+                                        'guard': None # The guard is internal to the MIN/MAX
+                                    }
         return accumulators
 
-    def _find_guard_condition(self, cfg, loop, block_name, read_map):
+    def _identify_min_max_op(self, guard, val_base, target_base):
+        """
+        Identifies if a guard condition represents a MIN or MAX update.
+        MIN: VAL < VAR
+        MAX: VAL > VAR
+        """
+        if isinstance(guard, asg.UnaryOperation) and guard.operator == 'NOT':
+            inner = guard.operand
+            if not isinstance(inner, asg.BinaryOperation):
+                return None
+            # Negate operator
+            neg_map = {
+                'GT': 'LE', '>': '<=', 'GE': 'LT', '>=': '<',
+                'LT': 'GE', '<': '>=', 'LE': 'GT', '<=': '>'
+            }
+            new_op = neg_map.get(inner.operator.upper())
+            if not new_op:
+                return None
+            guard = asg.BinaryOperation(left=inner.left, operator=new_op, right=inner.right)
+
+        if not isinstance(guard, asg.BinaryOperation):
+            return None
+
+        op = guard.operator.upper()
+        left = guard.left
+        right = guard.right
+
+        if not (isinstance(left, asg.AmperVar) and isinstance(right, asg.AmperVar)):
+            return None
+
+        l_base = get_base_name(left.name)
+        r_base = get_base_name(right.name)
+
+        # Map (left, op, right) to MIN/MAX
+        if l_base == val_base and r_base == target_base:
+            if op in ('LT', '<', 'LE', '<='): return 'MIN'
+            if op in ('GT', '>', 'GE', '>='): return 'MAX'
+        elif l_base == target_base and r_base == val_base:
+            if op in ('GT', '>', 'GE', '>='): return 'MIN'
+            if op in ('LT', '<', 'LE', '<='): return 'MAX'
+
+        return None
+
+    def _find_guard_condition(self, cfg, loop, block_name, read_map, check_sql_filter=True):
         """
         Attempts to find a condition that guards the execution of block_name
         within the loop. Trace back from block_name to header_block.
@@ -153,15 +219,15 @@ class RelationalLiftingOptimizer:
             if isinstance(last_instr, ir.Branch):
                 cond = last_instr.condition
                 if last_instr.true_target == block_name:
-                    if self._can_be_sql_filter(cond, read_map):
+                    if not check_sql_filter or self._can_be_sql_filter(cond, read_map):
                         return cond
                 elif last_instr.false_target == block_name:
                     neg_cond = asg.UnaryOperation(operator='NOT', operand=cond)
-                    if self._can_be_sql_filter(neg_cond, read_map):
+                    if not check_sql_filter or self._can_be_sql_filter(neg_cond, read_map):
                         return neg_cond
 
             # Recurse up the predecessor chain
-            return self._find_guard_condition(cfg, loop, pred.name, read_map)
+            return self._find_guard_condition(cfg, loop, pred.name, read_map, check_sql_filter)
 
         return None
 
@@ -245,15 +311,22 @@ class RelationalLiftingOptimizer:
             accumulators = self.identify_accumulators(cfg, loop, carried_vars, read_map)
             filters = self.identify_filters(cfg, loop, read_map)
 
-            report_filename = list(read_map.values())[0][0]
+            # Filter out variables that are used as MIN/MAX source from being used in other filters
+            # and determine the correct data source.
+            source_filenames = [fn for fn, _ in read_map.values()]
+            report_filename = source_filenames[0] if source_filenames else None
+
             components = []
 
             # SUM/COUNT verb for accumulators
             sum_fields = []
             count_fields = []
+            min_fields = []
+            max_fields = []
             for var_base, acc_info in accumulators.items():
                 inc = acc_info['increment']
                 guard = acc_info['guard']
+                op = acc_info['operator']
 
                 if isinstance(inc, asg.AmperVar):
                     inc_name = get_base_name(inc.name)
@@ -268,8 +341,15 @@ class RelationalLiftingOptimizer:
                                 else_expr=asg.Literal(value=0)
                             )
 
-                        # Use SUM for both simple and conditional field accumulation
-                        sum_fields.append(asg.FieldSelection(name=field_expr if guard else inc_field_name, alias=var_base))
+                        if op == 'MIN':
+                            _, actual_inc_field = read_map[inc_name]
+                            min_fields.append(asg.FieldSelection(name=actual_inc_field, prefix_operators=['MIN'], alias=var_base))
+                        elif op == 'MAX':
+                            _, actual_inc_field = read_map[inc_name]
+                            max_fields.append(asg.FieldSelection(name=actual_inc_field, prefix_operators=['MAX'], alias=var_base))
+                        else:
+                            # Use SUM for both simple and conditional field accumulation
+                            sum_fields.append(asg.FieldSelection(name=field_expr if guard else inc_field_name, alias=var_base))
                 elif isinstance(inc, asg.Literal) and inc.value == 1:
                     if guard:
                         translated_guard = self._translate_expression(guard, read_map)
@@ -289,6 +369,10 @@ class RelationalLiftingOptimizer:
                 components.append(asg.VerbCommand(verb="SUM", fields=sum_fields))
             if count_fields:
                 components.append(asg.VerbCommand(verb="COUNT", fields=count_fields))
+            if min_fields:
+                components.append(asg.VerbCommand(verb="SUM", fields=min_fields))
+            if max_fields:
+                components.append(asg.VerbCommand(verb="SUM", fields=max_fields))
 
             # WHERE clauses for filters
             for cond in filters:
