@@ -298,8 +298,8 @@ Ensure the new system produces correct results and maintains parity with the leg
 ## Phase 6: Decommissioning
 - [ ] 6.1 Transition Tests: Ensure all legacy tests pass against the new transpiler architecture.
   - [ ] 6.1.1 Map legacy test cases to new transpiler test infrastructure.
-  - [ ] 6.1.2 Verify parity for all legacy core reporting tests.
-    - [ ] 6.1.2.1 Verb commands (PRINT, SUM, LIST, COUNT).
+  - [/] 6.1.2 Verify parity for all legacy core reporting tests.
+    - [x] 6.1.2.1 Verb commands (PRINT, SUM, LIST, COUNT). (Verified via `test/test_legacy_verb_parity.py`)
     - [ ] 6.1.2.2 Sort phrases (BY, ACROSS) and sort options.
     - [ ] 6.1.2.3 Selection criteria (WHERE, WHERE TOTAL).
     - [ ] 6.1.2.4 Calculated fields (DEFINE, COMPUTE).
