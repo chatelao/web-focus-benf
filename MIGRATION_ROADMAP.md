@@ -136,10 +136,10 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
       - [x] 3.4.1.4.4 Implementation of Relational Lift pass to map loops to set-based SQL.
       - [x] 3.4.1.4.4.1 Synthesize SQL `SELECT` with `WHERE` and `GROUP BY` from detected patterns.
       - [x] 3.4.1.4.4.2 Replace procedural loop with a single `ir.Report` instruction in the CFG.
-    - [/] 3.4.1.5 Advanced Pattern Matching for Relational Lifting:
+    - [x] 3.4.1.5 Advanced Pattern Matching for Relational Lifting:
       - [x] 3.4.1.5.1 Recognition of `COUNT` patterns (e.g., `VAR = VAR + 1`).
       - [x] 3.4.1.5.2 Recognition of conditional accumulation (e.g., `IF cond THEN VAR = VAR + VAL`).
-      - [/] 3.4.1.5.3 Recognition of MIN/MAX patterns (e.g., `IF VAL < VAR THEN VAR = VAL`).
+      - [x] 3.4.1.5.3 Recognition of MIN/MAX patterns (e.g., `IF VAL < VAR THEN VAR = VAL`).
   - [x] 3.4.2 Predicate Pushdown:
     - [x] 3.4.2.1 Filter Lifting: Move WHERE conditions to SQL. (Implemented in `src/emitter.py`)
     - [x] 3.4.2.2 Total Lifting: Move WHERE TOTAL conditions to SQL HAVING. (Implemented in `src/emitter.py`)
@@ -294,8 +294,8 @@ Ensure the new system produces correct results and maintains parity with the leg
 ## Phase 6: Decommissioning
 - [ ] 6.1 Transition Tests: Ensure all legacy tests pass against the new transpiler architecture.
   - [ ] 6.1.1 Map legacy test cases to new transpiler test infrastructure.
-  - [ ] 6.1.2 Verify parity for all legacy core reporting tests.
-    - [ ] 6.1.2.1 Verb commands (PRINT, SUM, LIST, COUNT).
+  - [/] 6.1.2 Verify parity for all legacy core reporting tests.
+    - [x] 6.1.2.1 Verb commands (PRINT, SUM, LIST, COUNT). (Verified via `test/test_legacy_verb_parity.py`)
     - [ ] 6.1.2.2 Sort phrases (BY, ACROSS) and sort options.
     - [ ] 6.1.2.3 Selection criteria (WHERE, WHERE TOTAL).
     - [ ] 6.1.2.4 Calculated fields (DEFINE, COMPUTE).
