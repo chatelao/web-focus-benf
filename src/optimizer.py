@@ -569,6 +569,47 @@ class ConstantPropagator:
                 except:
                     pass
 
+        if isinstance(expr, asg.FunctionCall):
+            args = [self._evaluate_constant(arg) for arg in expr.arguments]
+            if all(arg is not None for arg in args):
+                name = expr.function_name.upper()
+                try:
+                    res = None
+                    if name == 'ABS': res = abs(args[0].value)
+                    elif name == 'INT': res = int(args[0].value)
+                    elif name == 'MIN': res = min(a.value for a in args)
+                    elif name == 'MAX': res = max(a.value for a in args)
+                    elif name == 'UPCASE': res = str(args[0].value).upper()
+                    elif name == 'LOWCASE': res = str(args[0].value).lower()
+                    elif name == 'TRIM': res = str(args[0].value).strip()
+
+                    if res is not None:
+                        return asg.Literal(value=res)
+                except:
+                    pass
+
+        if isinstance(expr, asg.IfExpression):
+            cond = self._evaluate_constant(expr.condition)
+            if cond is not None:
+                if cond.value:
+                    return self._evaluate_constant(expr.then_expr)
+                else:
+                    return self._evaluate_constant(expr.else_expr)
+
+        if isinstance(expr, asg.DecodeExpression):
+            ctrl = self._evaluate_constant(expr.expression)
+            if ctrl is not None:
+                for val, res in expr.pairs:
+                    v_const = self._evaluate_constant(val)
+                    if v_const is None:
+                        # If a key is not constant, we cannot safely fold past it
+                        # because it might match the control value at runtime.
+                        return None
+                    if v_const.value == ctrl.value:
+                        return self._evaluate_constant(res)
+                if expr.default_value:
+                    return self._evaluate_constant(expr.default_value)
+
         return None
 
     def _substitute_constants(self, instr):

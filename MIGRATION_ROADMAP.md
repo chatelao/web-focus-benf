@@ -115,7 +115,7 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
   - [x] 3.3.2 Dead Code Elimination:
     - [x] 3.3.2.1 Reachability Analysis: Remove unreachable blocks from CFG. (Implemented in `src/optimizer.py`)
     - [x] 3.3.2.2 Unused Assignment Elimination: Remove SSA assignments with no consumers. (Implemented in `src/optimizer.py`)
-- [/] **3.4 Relational Lifting:**
+- [x] **3.4 Relational Lifting:**
 - [x] **3.4.1 Loop Analysis:** (Basic loop lifting to PL/pgSQL state machine implemented)
     - [x] 3.4.1.1 Identification of constant vs. data-driven loops.
     - [x] 3.4.1.2 Lifting loops to PL/pgSQL procedural state machine. (Implemented in `src/emitter.py`)
@@ -136,10 +136,10 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
       - [x] 3.4.1.4.4 Implementation of Relational Lift pass to map loops to set-based SQL.
       - [x] 3.4.1.4.4.1 Synthesize SQL `SELECT` with `WHERE` and `GROUP BY` from detected patterns.
       - [x] 3.4.1.4.4.2 Replace procedural loop with a single `ir.Report` instruction in the CFG.
-    - [/] 3.4.1.5 Advanced Pattern Matching for Relational Lifting:
+    - [x] 3.4.1.5 Advanced Pattern Matching for Relational Lifting:
       - [x] 3.4.1.5.1 Recognition of `COUNT` patterns (e.g., `VAR = VAR + 1`).
       - [x] 3.4.1.5.2 Recognition of conditional accumulation (e.g., `IF cond THEN VAR = VAR + VAL`).
-      - [/] 3.4.1.5.3 Recognition of MIN/MAX patterns (e.g., `IF VAL < VAR THEN VAR = VAL`).
+      - [x] 3.4.1.5.3 Recognition of MIN/MAX patterns (e.g., `IF VAL < VAR THEN VAR = VAL`).
   - [x] 3.4.2 Predicate Pushdown:
     - [x] 3.4.2.1 Filter Lifting: Move WHERE conditions to SQL. (Implemented in `src/emitter.py`)
     - [x] 3.4.2.2 Total Lifting: Move WHERE TOTAL conditions to SQL HAVING. (Implemented in `src/emitter.py`)
@@ -261,6 +261,9 @@ Ensure the new system produces correct results and maintains parity with the leg
       - [x] 5.1.4.3.1 Arithmetic expression folding.
       - [x] 5.1.4.3.2 Character concatenation folding.
       - [x] 5.1.4.3.3 Boolean logic short-circuiting parity.
+      - [x] 5.1.4.3.4 Built-in function folding (ABS, INT, MIN, MAX, UPCASE, LOWCASE, TRIM).
+      - [x] 5.1.4.3.5 DECODE expression folding.
+      - [x] 5.1.4.3.6 IfExpression folding.
     - [x] 5.1.4.4 Extended Relational Operators Parity: CONTAINS, OMITS, EXCEEDS, INCLUDES, EXCLUDES. (Verified via `test/test_e2e_extended_filtering.py`)
 - [x] **5.2 Sample Validation:**
   - [x] 5.2.1 Core Samples: Validate transpiler output against samples in `test/samples/`. (Verified via `test/test_core_samples.py`)

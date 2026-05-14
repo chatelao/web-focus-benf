@@ -264,5 +264,90 @@ class TestOptimizer(unittest.TestCase):
         self.assertEqual(propagator.constants["B3"].value, True)
         self.assertEqual(propagator.constants["B4"].value, False)
 
+    def test_constant_folding_functions(self):
+        cfg = ir.ControlFlowGraph()
+        entry = ir.BasicBlock("ENTRY")
+        cfg.add_block(entry)
+        cfg.entry_block = entry
+
+        entry.add_instruction(ir.Assign(target="F1", source=asg.FunctionCall("ABS", [asg.Literal(-10)])))
+        entry.add_instruction(ir.Assign(target="F2", source=asg.FunctionCall("MAX", [asg.Literal(10), asg.Literal(20), asg.Literal(15)])))
+        entry.add_instruction(ir.Assign(target="F3", source=asg.FunctionCall("UPCASE", [asg.Literal("hello")])))
+        entry.add_instruction(ir.Assign(target="F4", source=asg.FunctionCall("TRIM", [asg.Literal("  spaced  ")])))
+
+        propagator = ConstantPropagator()
+        propagator.run(cfg)
+
+        self.assertEqual(propagator.constants["F1"].value, 10)
+        self.assertEqual(propagator.constants["F2"].value, 20)
+        self.assertEqual(propagator.constants["F3"].value, "HELLO")
+        self.assertEqual(propagator.constants["F4"].value, "spaced")
+
+    def test_constant_folding_decode(self):
+        cfg = ir.ControlFlowGraph()
+        entry = ir.BasicBlock("ENTRY")
+        cfg.add_block(entry)
+        cfg.entry_block = entry
+
+        # DECODE 2 (1 'A' 2 'B' ELSE 'C') -> 'B'
+        decode = asg.DecodeExpression(
+            expression=asg.Literal(2),
+            pairs=[(asg.Literal(1), asg.Literal("A")), (asg.Literal(2), asg.Literal("B"))],
+            default_value=asg.Literal("C")
+        )
+        entry.add_instruction(ir.Assign(target="D1", source=decode))
+
+        # DECODE 3 (1 'A' 2 'B' ELSE 'C') -> 'C'
+        decode2 = asg.DecodeExpression(
+            expression=asg.Literal(3),
+            pairs=[(asg.Literal(1), asg.Literal("A")), (asg.Literal(2), asg.Literal("B"))],
+            default_value=asg.Literal("C")
+        )
+        entry.add_instruction(ir.Assign(target="D2", source=decode2))
+
+        propagator = ConstantPropagator()
+        propagator.run(cfg)
+
+        self.assertEqual(propagator.constants["D1"].value, "B")
+        self.assertEqual(propagator.constants["D2"].value, "C")
+
+    def test_constant_folding_decode_mixed(self):
+        cfg = ir.ControlFlowGraph()
+        entry = ir.BasicBlock("ENTRY")
+        cfg.add_block(entry)
+        cfg.entry_block = entry
+
+        # DECODE 1 (X 'A' 1 'B' ELSE 'C') -> should NOT fold if X is not constant
+        decode = asg.DecodeExpression(
+            expression=asg.Literal(1),
+            pairs=[(asg.AmperVar("X"), asg.Literal("A")), (asg.Literal(1), asg.Literal("B"))],
+            default_value=asg.Literal("C")
+        )
+        entry.add_instruction(ir.Assign(target="DM1", source=decode))
+
+        propagator = ConstantPropagator()
+        propagator.run(cfg)
+
+        self.assertNotIn("DM1", propagator.constants)
+
+    def test_constant_folding_if_expression(self):
+        cfg = ir.ControlFlowGraph()
+        entry = ir.BasicBlock("ENTRY")
+        cfg.add_block(entry)
+        cfg.entry_block = entry
+
+        # IF 10 > 5 THEN 'Yes' ELSE 'No' -> 'Yes'
+        if_expr = asg.IfExpression(
+            condition=asg.BinaryOperation(asg.Literal(10), ">", asg.Literal(5)),
+            then_expr=asg.Literal("Yes"),
+            else_expr=asg.Literal("No")
+        )
+        entry.add_instruction(ir.Assign(target="I1", source=if_expr))
+
+        propagator = ConstantPropagator()
+        propagator.run(cfg)
+
+        self.assertEqual(propagator.constants["I1"].value, "Yes")
+
 if __name__ == '__main__':
     unittest.main()
