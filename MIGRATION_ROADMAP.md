@@ -115,7 +115,7 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
   - [x] 3.3.2 Dead Code Elimination:
     - [x] 3.3.2.1 Reachability Analysis: Remove unreachable blocks from CFG. (Implemented in `src/optimizer.py`)
     - [x] 3.3.2.2 Unused Assignment Elimination: Remove SSA assignments with no consumers. (Implemented in `src/optimizer.py`)
-- [/] **3.4 Relational Lifting:**
+- [x] **3.4 Relational Lifting:**
 - [x] **3.4.1 Loop Analysis:** (Basic loop lifting to PL/pgSQL state machine implemented)
     - [x] 3.4.1.1 Identification of constant vs. data-driven loops.
     - [x] 3.4.1.2 Lifting loops to PL/pgSQL procedural state machine. (Implemented in `src/emitter.py`)
@@ -136,10 +136,10 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
       - [x] 3.4.1.4.4 Implementation of Relational Lift pass to map loops to set-based SQL.
       - [x] 3.4.1.4.4.1 Synthesize SQL `SELECT` with `WHERE` and `GROUP BY` from detected patterns.
       - [x] 3.4.1.4.4.2 Replace procedural loop with a single `ir.Report` instruction in the CFG.
-    - [/] 3.4.1.5 Advanced Pattern Matching for Relational Lifting:
+    - [x] 3.4.1.5 Advanced Pattern Matching for Relational Lifting:
       - [x] 3.4.1.5.1 Recognition of `COUNT` patterns (e.g., `VAR = VAR + 1`).
       - [x] 3.4.1.5.2 Recognition of conditional accumulation (e.g., `IF cond THEN VAR = VAR + VAL`).
-      - [/] 3.4.1.5.3 Recognition of MIN/MAX patterns (e.g., `IF VAL < VAR THEN VAR = VAL`).
+      - [x] 3.4.1.5.3 Recognition of MIN/MAX patterns (e.g., `IF VAL < VAR THEN VAR = VAL`).
   - [x] 3.4.2 Predicate Pushdown:
     - [x] 3.4.2.1 Filter Lifting: Move WHERE conditions to SQL. (Implemented in `src/emitter.py`)
     - [x] 3.4.2.2 Total Lifting: Move WHERE TOTAL conditions to SQL HAVING. (Implemented in `src/emitter.py`)
@@ -328,3 +328,7 @@ Ensure the generated PL/pgSQL code is not only syntactically correct but also ex
     - [x] 7.3.2.2 Enhance `RuntimeRunner` to fetch and return result sets from temporary tables.
     - [x] 7.3.2.3 Add integration tests for result-set parity verification. (Verified via `test/test_runtime_parity.py`)
   - [x] 7.3.3 Implement comprehensive error reporting for runtime failures (e.g., SQL syntax errors, type mismatches during execution). (Implemented in `src/runtime_runner.py`)
+
+## Phase 8: Operational Excellence
+- [ ] **8.1 CLI Diagnostics:**
+  - [ ] 8.1.1 Implement Source Code Statistics in CLI tool to provide metrics on processed files (LOC, Report count, DM command count).
