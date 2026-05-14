@@ -332,3 +332,7 @@ Ensure the generated PL/pgSQL code is not only syntactically correct but also ex
     - [x] 7.3.2.2 Enhance `RuntimeRunner` to fetch and return result sets from temporary tables.
     - [x] 7.3.2.3 Add integration tests for result-set parity verification. (Verified via `test/test_runtime_parity.py`)
   - [x] 7.3.3 Implement comprehensive error reporting for runtime failures (e.g., SQL syntax errors, type mismatches during execution). (Implemented in `src/runtime_runner.py`)
+
+## Phase 8: Operational Excellence
+- [ ] **8.1 CLI Diagnostics:**
+  - [ ] 8.1.1 Implement Source Code Statistics in CLI tool to provide metrics on processed files (LOC, Report count, DM command count).
