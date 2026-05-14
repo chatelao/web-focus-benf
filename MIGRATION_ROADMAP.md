@@ -139,7 +139,7 @@ Transform the ASG into a Control Flow Graph (CFG) using Static Single Assignment
     - [/] 3.4.1.5 Advanced Pattern Matching for Relational Lifting:
       - [x] 3.4.1.5.1 Recognition of `COUNT` patterns (e.g., `VAR = VAR + 1`).
       - [x] 3.4.1.5.2 Recognition of conditional accumulation (e.g., `IF cond THEN VAR = VAR + VAL`).
-      - [/] 3.4.1.5.3 Recognition of MIN/MAX patterns (e.g., `IF VAL < VAR THEN VAR = VAL`).
+      - [x] 3.4.1.5.3 Recognition of MIN/MAX patterns (e.g., `IF VAL < VAR THEN VAR = VAL`).
   - [x] 3.4.2 Predicate Pushdown:
     - [x] 3.4.2.1 Filter Lifting: Move WHERE conditions to SQL. (Implemented in `src/emitter.py`)
     - [x] 3.4.2.2 Total Lifting: Move WHERE TOTAL conditions to SQL HAVING. (Implemented in `src/emitter.py`)
@@ -186,6 +186,7 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
       - [x] 4.3.1.5.3 Statistical operators: MDN, MDE, ASQ (Median, Mode, Average Square). (Implemented in `src/emitter.py`)
       - [x] 4.3.1.5.4 Percentage operators: PCT, RPCT (Percentage, Row Percentage). (Implemented in `src/emitter.py`)
       - [x] 4.3.1.5.5 Rank and Distinct: RNK, DST. (Implemented in `src/emitter.py`)
+      - [x] 4.3.1.5.6 Support for COUNT * and basic LIST verb in PostgresEmitter. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.6 Post-Aggregation Filtering: Mapping WHERE TOTAL to SQL `HAVING`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.7 Sorting: Mapping sort options to SQL `ORDER BY`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.8 Calculated Values: Mapping COMPUTE command to SQL expressions. (Implemented in `src/emitter.py`)

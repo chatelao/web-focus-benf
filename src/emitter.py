@@ -809,9 +809,15 @@ class PostgresEmitter:
             if is_aggregating: break
 
         for vc in verb_commands:
+            if vc.verb == 'LIST':
+                select_fields.append('ROW_NUMBER() OVER () AS "LIST"')
+
             for field_sel in vc.fields:
                 if field_sel.name == '*':
-                    select_fields.append('*')
+                    if vc.verb == 'COUNT':
+                        select_fields.append('COUNT(*) AS "COUNT"')
+                    else:
+                        select_fields.append('*')
                     continue
 
                 field_name = field_sel.name
