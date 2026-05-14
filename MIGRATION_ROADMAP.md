@@ -186,6 +186,7 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
       - [x] 4.3.1.5.3 Statistical operators: MDN, MDE, ASQ (Median, Mode, Average Square). (Implemented in `src/emitter.py`)
       - [x] 4.3.1.5.4 Percentage operators: PCT, RPCT (Percentage, Row Percentage). (Implemented in `src/emitter.py`)
       - [x] 4.3.1.5.5 Rank and Distinct: RNK, DST. (Implemented in `src/emitter.py`)
+      - [x] 4.3.1.5.6 Support for COUNT * and basic LIST verb in PostgresEmitter. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.6 Post-Aggregation Filtering: Mapping WHERE TOTAL to SQL `HAVING`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.7 Sorting: Mapping sort options to SQL `ORDER BY`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.8 Calculated Values: Mapping COMPUTE command to SQL expressions. (Implemented in `src/emitter.py`)
