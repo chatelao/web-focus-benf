@@ -186,6 +186,7 @@ Use Jinja2 templates to generate the final PostgreSQL and middle-tier code.
       - [x] 4.3.1.5.3 Statistical operators: MDN, MDE, ASQ (Median, Mode, Average Square). (Implemented in `src/emitter.py`)
       - [x] 4.3.1.5.4 Percentage operators: PCT, RPCT (Percentage, Row Percentage). (Implemented in `src/emitter.py`)
       - [x] 4.3.1.5.5 Rank and Distinct: RNK, DST. (Implemented in `src/emitter.py`)
+      - [x] 4.3.1.5.6 Support for COUNT * and basic LIST verb in PostgresEmitter. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.6 Post-Aggregation Filtering: Mapping WHERE TOTAL to SQL `HAVING`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.7 Sorting: Mapping sort options to SQL `ORDER BY`. (Implemented in `src/emitter.py`)
     - [x] 4.3.1.8 Calculated Values: Mapping COMPUTE command to SQL expressions. (Implemented in `src/emitter.py`)
@@ -297,8 +298,8 @@ Ensure the new system produces correct results and maintains parity with the leg
 ## Phase 6: Decommissioning
 - [ ] 6.1 Transition Tests: Ensure all legacy tests pass against the new transpiler architecture.
   - [ ] 6.1.1 Map legacy test cases to new transpiler test infrastructure.
-  - [ ] 6.1.2 Verify parity for all legacy core reporting tests.
-    - [ ] 6.1.2.1 Verb commands (PRINT, SUM, LIST, COUNT).
+  - [/] 6.1.2 Verify parity for all legacy core reporting tests.
+    - [x] 6.1.2.1 Verb commands (PRINT, SUM, LIST, COUNT). (Verified via `test/test_legacy_verb_parity.py`)
     - [ ] 6.1.2.2 Sort phrases (BY, ACROSS) and sort options.
     - [ ] 6.1.2.3 Selection criteria (WHERE, WHERE TOTAL).
     - [ ] 6.1.2.4 Calculated fields (DEFINE, COMPUTE).

@@ -797,6 +797,13 @@ class PostgresEmitter:
 
         # Verbs and Fields
         verb_commands = [c for c in instr.components if c.__class__.__name__ == 'VerbCommand']
+
+        # Handle LIST verb by adding a counter
+        if any(vc.verb == 'LIST' for vc in verb_commands):
+            partition = f"PARTITION BY {', '.join(group_by_fields)}" if group_by_fields else ""
+            order_by = f"ORDER BY {', '.join(order_by_phrases)}" if order_by_phrases else ""
+            select_fields.insert(0, f"ROW_NUMBER() OVER ({partition} {order_by}) AS \"LIST\"")
+
         for vc in verb_commands:
             if vc.verb in aggregating_verbs:
                 is_aggregating = True
@@ -809,9 +816,15 @@ class PostgresEmitter:
             if is_aggregating: break
 
         for vc in verb_commands:
+            if vc.verb == 'LIST':
+                select_fields.append('ROW_NUMBER() OVER () AS "LIST"')
+
             for field_sel in vc.fields:
                 if field_sel.name == '*':
-                    select_fields.append('*')
+                    if vc.verb == 'COUNT':
+                        select_fields.append('COUNT(*) AS "COUNT"')
+                    else:
+                        select_fields.append('*')
                     continue
 
                 field_name = field_sel.name
