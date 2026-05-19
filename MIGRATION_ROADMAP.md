@@ -335,4 +335,6 @@ Ensure the generated PL/pgSQL code is not only syntactically correct but also ex
 
 ## Phase 8: Operational Excellence
 - [ ] **8.1 CLI Diagnostics:**
-  - [ ] 8.1.1 Implement Source Code Statistics in CLI tool to provide metrics on processed files (LOC, Report count, DM command count).
+  - [x] 8.1.1 Source Code Statistics (LOC, Report and DM command counts) (completed at 2026-05-15 10:00:00)
+  - [x] 8.1.2 Control Flow Analysis (Cyclomatic Complexity) (completed at 2026-05-15 10:00:00)
+  - [ ] 8.1.3 Data Lineage Analysis (Field-level usage tracking)
