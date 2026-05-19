@@ -28,15 +28,26 @@ def collect_stats(code, asg_nodes):
         'details': {}
     }
 
+    dm_classes = (asg.Goto, asg.Label, asg.Repeat)
+
     for node in asg_nodes:
         if isinstance(node, (asg.ReportRequest, asg.MatchRequest)):
             stats['report_requests'] += 1
         elif isinstance(node, asg.Command):
             class_name = node.__class__.__name__
-            if class_name.endswith('DM'):
+            if class_name.endswith('DM') or isinstance(node, dm_classes):
                 stats['dm_commands'] += 1
                 stats['details'][class_name] = stats['details'].get(class_name, 0) + 1
     return stats
+
+def calculate_complexity(cfg):
+    """Calculates Cyclomatic Complexity (M = E - V + 2P)."""
+    if not cfg or not cfg.blocks:
+        return 0
+    v = len(cfg.blocks)
+    e = sum(len(block.successors) for block in cfg.blocks.values())
+    p = 1 # Assuming a single connected component
+    return e - v + 2
 
 def transpile_code(code, metadata_registry):
     """Executes the full transpilation pipeline on a string of WebFOCUS code."""
@@ -51,8 +62,6 @@ def transpile_code(code, metadata_registry):
     builder = ReportASGBuilder()
     asg_nodes = builder.visit(tree)
 
-    stats = collect_stats(code, asg_nodes)
-
     # 3. IR Construction
     ir_builder = IRBuilder()
     cfg = ir_builder.build(asg_nodes)
@@ -60,6 +69,9 @@ def transpile_code(code, metadata_registry):
     # 4. SSA Transformation
     ssa_transformer = SSATransformer()
     ssa_transformer.transform(cfg)
+
+    stats = collect_stats(code, asg_nodes)
+    stats['complexity'] = calculate_complexity(cfg)
 
     # 5. Backend Emission
     emitter = PostgresEmitter(metadata_registry=metadata_registry)
@@ -87,8 +99,9 @@ def transpile_file(input_path, output_path, metadata_registry, show_stats=False)
             print(f"Lines of Code: {stats['loc']}")
             print(f"Report Requests: {stats['report_requests']}")
             print(f"Dialogue Manager Commands: {stats['dm_commands']}")
-            for cmd, count in stats['details'].items():
+            for cmd, count in sorted(stats['details'].items()):
                 print(f"  - {cmd}: {count}")
+            print(f"Cyclomatic Complexity: {stats['complexity']}")
 
         return stats
     except Exception as e:
@@ -104,6 +117,7 @@ def transpile_directory(input_dir, output_dir, metadata_registry, show_stats=Fal
         'loc': 0,
         'report_requests': 0,
         'dm_commands': 0,
+        'complexity': 0,
         'details': {},
         'files_processed': 0
     }
@@ -126,6 +140,7 @@ def transpile_directory(input_dir, output_dir, metadata_registry, show_stats=Fal
                     total_stats['loc'] += stats['loc']
                     total_stats['report_requests'] += stats['report_requests']
                     total_stats['dm_commands'] += stats['dm_commands']
+                    total_stats['complexity'] += stats['complexity']
                     total_stats['files_processed'] += 1
                     for cmd, count in stats['details'].items():
                         total_stats['details'][cmd] = total_stats['details'].get(cmd, 0) + count
@@ -138,6 +153,7 @@ def transpile_directory(input_dir, output_dir, metadata_registry, show_stats=Fal
         print(f"Total Dialogue Manager Commands: {total_stats['dm_commands']}")
         for cmd, count in sorted(total_stats['details'].items()):
             print(f"  - {cmd}: {count}")
+        print(f"Total Cyclomatic Complexity: {total_stats['complexity']}")
 
 def main():
     parser = argparse.ArgumentParser(description="WebFOCUS to PostgreSQL Transpiler CLI")

@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] 0.1 Implement a next, modest, feasible and reasonable ROADMAP.md step of chapter '6.2 Develop a CLI tool for automated WebFOCUS code analysis' (#375)
+- [x] 0.1 Implement a next, modest, feasible and reasonable ROADMAP.md step of chapter '6.2 Develop a CLI tool for automated WebFOCUS code analysis' (#375) (completed at 2026-05-19 22:31:47)
 
 ## Chapter 1: Project Foundation & Meta
 - [ ] 1.4 Reverse engineer the WebFOCUS programming language syntax and functionality
@@ -74,6 +74,9 @@
 ## Chapter 6: Tooling & Integration
 - [ ] 6.1 Integrate parser results into the documentation generator
 - [ ] 6.2 Develop a CLI tool for automated WebFOCUS code analysis
+  - [x] 6.2.1 Source Code Statistics (LOC, Report and DM command counts) (completed at 2026-05-15 10:00:00)
+  - [x] 6.2.2 Control Flow Analysis (Cyclomatic Complexity) (completed at 2026-05-15 10:00:00)
+  - [ ] 6.2.3 Data Lineage Analysis (Field-level usage tracking)
 - [x] 6.3 Create a comprehensive test suite for the transpiler using real-world WebFOCUS samples (completed at 2026-05-03 10:15:00)
   - [x] 6.3.1 Collect and organize real-world WebFOCUS samples in `test/samples/` (completed at 2026-04-25 03:28:06)
   - [x] 6.3.2 Implement an automated test runner for samples
