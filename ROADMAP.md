@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] 0.1 Implement a next, modest, feasible and reasonable ROADMAP.md step of chapter '6.2 Develop a CLI tool for automated WebFOCUS code analysis' (#375)
 
 ## Chapter 1: Project Foundation & Meta
 - [ ] 1.4 Reverse engineer the WebFOCUS programming language syntax and functionality
