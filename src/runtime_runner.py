@@ -105,12 +105,14 @@ class RuntimeRunner:
     def _fetch_internal(self, table_name):
         try:
             with self.conn.cursor() as cursor:
-                cursor.execute(sql.SQL("SELECT * FROM {}").format(sql.Identifier(table_name.upper())))
+                # Use lower case for table lookup as unquoted tables are folded to lower case
+                cursor.execute(sql.SQL("SELECT * FROM {}").format(sql.Identifier(table_name.lower())))
 
                 if cursor.description is None:
                     return []
 
-                colnames = [desc[0] for desc in cursor.description]
+                # Convert column names to upper case for consistency with WebFOCUS expectations
+                colnames = [desc[0].upper() for desc in cursor.description]
                 results = []
                 for row in cursor.fetchall():
                     results.append(dict(zip(colnames, row)))

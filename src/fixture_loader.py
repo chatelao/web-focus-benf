@@ -51,10 +51,10 @@ class FixtureLoader:
         columns = list(data[0].keys())
 
         # Prepare the INSERT statement using psycopg2.sql for safety
-        # Use upper case for consistency with DDL generation
+        # Use lower case for compatibility with unquoted DDL generation
         stmt = sql.SQL("INSERT INTO {} ({}) VALUES ({})").format(
-            sql.Identifier(table_name.upper()),
-            sql.SQL(", ").join(map(sql.Identifier, [c.upper() for c in columns])),
+            sql.Identifier(table_name.lower()),
+            sql.SQL(", ").join(map(sql.Identifier, [c.lower() for c in columns])),
             sql.SQL(", ").join([sql.Placeholder()] * len(columns))
         )
 
