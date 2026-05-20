@@ -41,11 +41,11 @@ class TestPrefixOperators(unittest.TestCase):
         END
         """
         sql = self._compile_to_sql(fex)
-        self.assertIn("AVG(PRICE)", sql)
-        self.assertIn("MIN(PRICE)", sql)
-        self.assertIn("MAX(PRICE)", sql)
-        self.assertIn("COUNT(PRICE)", sql)
-        self.assertIn("SUM(PRICE)", sql) # TOT.PRICE
+        self.assertIn("AVG(\"CAR\".\"PRICE\")", sql)
+        self.assertIn("MIN(\"CAR\".\"PRICE\")", sql)
+        self.assertIn("MAX(\"CAR\".\"PRICE\")", sql)
+        self.assertIn("COUNT(\"CAR\".\"PRICE\")", sql)
+        self.assertIn("SUM(\"CAR\".\"PRICE\")", sql) # TOT.PRICE
 
     def test_distinct_prefixes(self):
         fex = """
@@ -55,9 +55,9 @@ class TestPrefixOperators(unittest.TestCase):
         END
         """
         sql = self._compile_to_sql(fex)
-        self.assertIn("COUNT(DISTINCT COUNTRY)", sql)
-        self.assertIn("SUM(DISTINCT PRICE)", sql)
-        self.assertIn("AVG(DISTINCT PRICE)", sql)
+        self.assertIn("COUNT(DISTINCT \"CAR\".\"COUNTRY\")", sql)
+        self.assertIn("SUM(DISTINCT \"CAR\".\"PRICE\")", sql)
+        self.assertIn("AVG(DISTINCT \"CAR\".\"PRICE\")", sql)
 
     def test_statistical_prefixes(self):
         fex = """
@@ -67,9 +67,9 @@ class TestPrefixOperators(unittest.TestCase):
         END
         """
         sql = self._compile_to_sql(fex)
-        self.assertIn("AVG((PRICE) * (PRICE))", sql)
-        self.assertIn("PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY PRICE)", sql)
-        self.assertIn("MODE() WITHIN GROUP (ORDER BY PRICE)", sql)
+        self.assertIn("AVG((\"CAR\".\"PRICE\") * (\"CAR\".\"PRICE\"))", sql)
+        self.assertIn("PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY \"CAR\".\"PRICE\")", sql)
+        self.assertIn("MODE() WITHIN GROUP (ORDER BY \"CAR\".\"PRICE\")", sql)
 
     def test_print_with_prefixes(self):
         fex = """
@@ -79,9 +79,9 @@ class TestPrefixOperators(unittest.TestCase):
         END
         """
         sql = self._compile_to_sql(fex)
-        self.assertIn("SUM(PRICE)", sql)
-        self.assertIn("AVG(PRICE)", sql)
-        self.assertIn("GROUP BY COUNTRY", sql)
+        self.assertIn("SUM(\"CAR\".\"PRICE\")", sql)
+        self.assertIn("AVG(\"CAR\".\"PRICE\")", sql)
+        self.assertIn("GROUP BY \"CAR\".\"COUNTRY\"", sql)
 
     def test_more_with_prefixes(self):
         fex = """
@@ -105,12 +105,12 @@ class TestPrefixOperators(unittest.TestCase):
         """
         sql = self._compile_to_sql(fex)
         # FST/LST via ARRAY_AGG
-        self.assertIn("(ARRAY_AGG(MODEL ORDER BY COUNTRY))[1]", sql)
-        self.assertIn("(ARRAY_AGG(MODEL ORDER BY COUNTRY))[ARRAY_UPPER(ARRAY_AGG(MODEL ORDER BY COUNTRY), 1)]", sql)
+        self.assertIn("(ARRAY_AGG(\"CAR\".\"MODEL\" ORDER BY \"CAR\".\"COUNTRY\"))[1]", sql)
+        self.assertIn("(ARRAY_AGG(\"CAR\".\"MODEL\" ORDER BY \"CAR\".\"COUNTRY\"))[ARRAY_UPPER(ARRAY_AGG(\"CAR\".\"MODEL\" ORDER BY \"CAR\".\"COUNTRY\"), 1)]", sql)
         # RNK
-        self.assertIn("RANK() OVER (PARTITION BY COUNTRY ORDER BY SUM(PRICE) DESC)", sql)
+        self.assertIn("RANK() OVER (PARTITION BY \"CAR\".\"COUNTRY\" ORDER BY SUM(\"CAR\".\"PRICE\") DESC)", sql)
         # PCT
-        self.assertIn("(SUM(PRICE) * 100.0 / SUM(SUM(PRICE)) OVER ())", sql)
+        self.assertIn("(SUM(\"CAR\".\"PRICE\") * 100.0 / SUM(SUM(\"CAR\".\"PRICE\")) OVER ())", sql)
 
     def test_print_advanced_prefixes(self):
         fex = """
@@ -120,8 +120,8 @@ class TestPrefixOperators(unittest.TestCase):
         END
         """
         sql = self._compile_to_sql(fex)
-        self.assertIn("(ARRAY_AGG(MODEL ORDER BY COUNTRY))[1]", sql)
-        self.assertIn("RANK() OVER (PARTITION BY COUNTRY ORDER BY PRICE DESC)", sql)
+        self.assertIn("(ARRAY_AGG(\"CAR\".\"MODEL\" ORDER BY \"CAR\".\"COUNTRY\"))[1]", sql)
+        self.assertIn("RANK() OVER (PARTITION BY \"CAR\".\"COUNTRY\" ORDER BY \"CAR\".\"PRICE\" DESC)", sql)
 
 if __name__ == '__main__':
     unittest.main()

@@ -47,7 +47,7 @@ class FixtureLoader:
             return
 
         # Use the keys from the first dictionary as column names
-        columns = list(data[0].keys())
+        columns = [c.upper() for c in data[0].keys()]
 
         # Prepare the INSERT statement
         col_str = ", ".join([f'"{c}"' for c in columns])
@@ -61,6 +61,10 @@ class FixtureLoader:
                 self._execute_insert(cursor, sql, data, columns)
 
     def _execute_insert(self, cursor, sql, data, columns):
+        # We need to map the original keys to the upper-case column names
+        original_keys = list(data[0].keys())
+        key_map = {c.upper(): c for c in original_keys}
+
         for row in data:
-            values = [row.get(c) for c in columns]
+            values = [row.get(key_map[c]) for c in columns]
             cursor.execute(sql, values)

@@ -22,10 +22,10 @@ class TestDDLGenerator(unittest.TestCase):
         ddl = generator.generate(master)
 
         # Verify
-        expected = """CREATE TABLE EMPLOYEE (
-    ID CHAR(9),
-    NAME CHAR(30),
-    SALARY NUMERIC(12, 2)
+        expected = """CREATE TABLE "EMPLOYEE" (
+    "ID" CHAR(9),
+    "NAME" CHAR(30),
+    "SALARY" NUMERIC(12, 2)
 );"""
         self.assertEqual(ddl.strip(), expected.strip())
 

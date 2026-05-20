@@ -19,9 +19,9 @@ class TestHoldEmitter(unittest.TestCase):
 
         sql = emitter.emit_instruction(instr)
 
-        self.assertIn("DROP TABLE IF EXISTS MYHOLD;", sql)
-        self.assertIn("CREATE TEMP TABLE MYHOLD AS", sql)
-        self.assertIn("SELECT FIELD1 FROM MYTABLE", sql)
+        self.assertIn("DROP TABLE IF EXISTS \"MYHOLD\";", sql)
+        self.assertIn("CREATE TEMP TABLE \"MYHOLD\" AS", sql)
+        self.assertIn("SELECT \"MYTABLE\".\"FIELD1\" FROM \"MYTABLE\"", sql)
 
     def test_emit_instruction_report_with_on_table_hold(self):
         emitter = PostgresEmitter()
@@ -33,9 +33,9 @@ class TestHoldEmitter(unittest.TestCase):
 
         sql = emitter.emit_instruction(instr)
 
-        self.assertIn("DROP TABLE IF EXISTS ON_TABLE_HOLD;", sql)
-        self.assertIn("CREATE TEMP TABLE ON_TABLE_HOLD AS", sql)
-        self.assertIn("SELECT FIELD1 FROM MYTABLE", sql)
+        self.assertIn("DROP TABLE IF EXISTS \"ON_TABLE_HOLD\";", sql)
+        self.assertIn("CREATE TEMP TABLE \"ON_TABLE_HOLD\" AS", sql)
+        self.assertIn("SELECT \"MYTABLE\".\"FIELD1\" FROM \"MYTABLE\"", sql)
 
     def test_emit_instruction_report_with_hold_sanitization(self):
         emitter = PostgresEmitter()
@@ -48,8 +48,8 @@ class TestHoldEmitter(unittest.TestCase):
         sql = emitter.emit_instruction(instr)
 
         # Should be sanitized to MY_DATA_TMP
-        self.assertIn("DROP TABLE IF EXISTS MY_DATA_TMP;", sql)
-        self.assertIn("CREATE TEMP TABLE MY_DATA_TMP AS", sql)
+        self.assertIn("DROP TABLE IF EXISTS \"MY_DATA_TMP\";", sql)
+        self.assertIn("CREATE TEMP TABLE \"MY_DATA_TMP\" AS", sql)
 
 if __name__ == '__main__':
     unittest.main()

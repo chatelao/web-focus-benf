@@ -83,7 +83,7 @@ class TestLiveParity(unittest.TestCase):
             with RuntimeRunner() as runner:
                 # Cleanup if previous run failed
                 with runner.conn.cursor() as cur:
-                    cur.execute("DROP TABLE IF EXISTS LIVE_SALES CASCADE;")
+                    cur.execute("DROP TABLE IF EXISTS \"LIVE_SALES\" CASCADE;")
                     cur.execute("DROP PROCEDURE IF EXISTS test_live_parity_proc();")
 
                 runner.setup_schema([f1])
@@ -112,7 +112,7 @@ class TestLiveParity(unittest.TestCase):
                 try:
                     conn = get_db_connection()
                     with conn.cursor() as cur:
-                        cur.execute("DROP TABLE IF EXISTS LIVE_SALES CASCADE;")
+                        cur.execute("DROP TABLE IF EXISTS \"LIVE_SALES\" CASCADE;")
                         cur.execute("DROP PROCEDURE IF EXISTS test_live_parity_proc();")
                     conn.commit()
                     conn.close()

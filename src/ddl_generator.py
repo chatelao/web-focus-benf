@@ -23,7 +23,7 @@ class DDLGenerator:
         for field in segment.fields:
             column_name = field.name.upper()
             pg_type = map_wf_type_to_pg(field.format)
-            columns.append(f"    {column_name} {pg_type}")
+            columns.append(f"    \"{column_name}\" {pg_type}")
 
         columns_str = ",\n".join(columns)
-        return f"CREATE TABLE {table_name} (\n{columns_str}\n);"
+        return f"CREATE TABLE \"{table_name}\" (\n{columns_str}\n);"

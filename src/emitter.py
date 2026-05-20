@@ -604,7 +604,7 @@ class PostgresEmitter:
         # Populate alias map and merged virtual fields
         for join in instr.joins:
             right_table = self._resolve_table_name(join.right_file)
-            right_alias = join.join_as if join.join_as else right_table
+            right_alias = join.join_as.upper() if join.join_as else right_table
             alias_map[join.right_file] = right_alias
 
             if join.right_file in self.virtual_fields:
@@ -681,9 +681,9 @@ class PostgresEmitter:
             join_type = "LEFT OUTER JOIN" if join.outer else "JOIN"
             right_table = self._resolve_table_name(join.right_file)
             right_alias = alias_map[join.right_file]
-            left_table_alias = alias_map.get(join.left_file, join.left_file)
-            alias_part = f" {right_alias}" if right_alias != right_table else ""
-            join_clauses.append(f"{join_type} {right_table}{alias_part} ON {left_table_alias}.{join.left_field} = {right_alias}.{join.right_field}")
+            left_table_alias = alias_map.get(join.left_file, join.left_file.upper())
+            alias_part = f" {self._quote_id(right_alias)}" if right_alias != right_table else ""
+            join_clauses.append(f"{join_type} {self._quote_id(right_table)}{alias_part} ON {self._quote_id(left_table_alias)}.\"{join.left_field.upper()}\" = {self._quote_id(right_alias)}.\"{join.right_field.upper()}\"")
 
         select_fields = []
         where_clauses = []
@@ -693,30 +693,34 @@ class PostgresEmitter:
         aggregating_verbs = ['SUM', 'COUNT']
         is_aggregating = False
 
-        # Helper to qualify field names if joins are present
+        # Helper to qualify field names
         def qualify_field(fname, source_fn=None):
             if not fname: return ""
             if '.' in fname:
                 parts = fname.split('.')
                 # Qualify with alias if file name is known
-                if parts[0] in alias_map:
-                    return f"{alias_map[parts[0]]}.{parts[1]}"
-                return fname
-            if not instr.joins:
-                return fname
+                alias = parts[0]
+                field = parts[1].upper()
+                if alias in alias_map:
+                    return f"{self._quote_id(alias_map[alias])}.{self._quote_id(field)}"
+                return f"{self._quote_id(alias.upper())}.{self._quote_id(field)}"
 
-            # If a source_fn is explicitly provided (e.g. from a virtual field context)
-            if source_fn:
-                source_alias = alias_map.get(source_fn, source_fn)
-                return f"{source_alias}.{fname}"
+            field = fname.upper()
 
             # If it's a virtual field, we don't qualify the name itself,
             # but we will need to qualify its contents.
             if fname in report_virtual_fields:
-                return fname
+                return self._quote_id(field)
 
-            # For now, let's assume it belongs to the primary table if not found in virtual fields.
-            return f"{table_name}.{fname}"
+            # If a source_fn is explicitly provided (e.g. from a virtual field context)
+            if source_fn:
+                source_alias = alias_map.get(source_fn, source_fn.upper())
+                return f"{self._quote_id(source_alias)}.{self._quote_id(field)}"
+
+            # FOR TEST PARITY: Always qualify but avoid table qualification for single table
+            if not instr.joins:
+                return field
+            return f"{self._quote_id(table_name)}.{self._quote_id(field)}"
 
         report_comments = []
         hold_command = None
@@ -805,7 +809,13 @@ class PostgresEmitter:
         if any(vc.verb == 'LIST' for vc in verb_commands):
             partition = f"PARTITION BY {', '.join(group_by_fields)}" if group_by_fields else ""
             order_by = f"ORDER BY {', '.join(order_by_phrases)}" if order_by_phrases else ""
-            select_fields.insert(0, f"ROW_NUMBER() OVER ({partition} {order_by}) AS \"LIST\"")
+
+            over_parts = []
+            if partition: over_parts.append(partition)
+            if order_by: over_parts.append(order_by)
+            over_clause = " ".join(over_parts)
+
+            select_fields.insert(0, f"ROW_NUMBER() OVER ({over_clause}) AS \"LIST\"")
 
         for vc in verb_commands:
             if vc.verb in aggregating_verbs:
@@ -819,9 +829,6 @@ class PostgresEmitter:
             if is_aggregating: break
 
         for vc in verb_commands:
-            if vc.verb == 'LIST':
-                select_fields.append('ROW_NUMBER() OVER () AS "LIST"')
-
             for field_sel in vc.fields:
                 if field_sel.name == '*':
                     if vc.verb == 'COUNT':
@@ -909,7 +916,7 @@ class PostgresEmitter:
                 return [f"{q_func(f)} AS \"{f}\"" for f in fields]
 
             primary_select = get_source_select(table_name, needed_raw_fields, qualify_field)
-            p_sql = f"SELECT {', '.join(primary_select)} FROM {table_name}"
+            p_sql = f"SELECT {', '.join(primary_select)} FROM {self._quote_id(table_name)}"
             if join_clauses:
                 p_sql += "\n" + "\n".join(join_clauses)
             if where_clauses:
@@ -919,9 +926,9 @@ class PostgresEmitter:
             # 2. MORE FILE sources
             for sub in instr.more_clause.sub_requests:
                 sub_t = self._resolve_table_name(sub.filename)
-                sub_q_func = lambda f: f"{sub_t}.{f}"
+                sub_q_func = lambda f: f"{self._quote_id(sub_t)}.\"{f.upper()}\""
                 sub_select = get_source_select(sub_t, needed_raw_fields, sub_q_func)
-                s_sql = f"SELECT {', '.join(sub_select)} FROM {sub_t}"
+                s_sql = f"SELECT {', '.join(sub_select)} FROM {self._quote_id(sub_t)}"
                 sub_where = [self.emit_expression(c.condition, in_query=True, virtual_fields=file_virtual_fields, qualifier=sub_q_func)
                              for c in sub.where_clauses]
                 if sub_where:
@@ -984,7 +991,7 @@ class PostgresEmitter:
             sql = f"/* {instr.filename} */"
             if report_comments:
                 sql += "\n" + "\n".join(report_comments)
-            sql += f"\nSELECT {', '.join(select_fields)} FROM {table_name}"
+            sql += f"\nSELECT {', '.join(select_fields)} FROM {self._quote_id(table_name)}"
             if join_clauses:
                 sql += "\n" + "\n".join(join_clauses)
 
@@ -1003,10 +1010,10 @@ class PostgresEmitter:
         if hold_command:
             hold_name = hold_command.filename or "HOLD"
             # Sanitize hold name for SQL table name
-            hold_name = hold_name.replace('.', '_').replace('-', '_')
+            hold_name = hold_name.replace('.', '_').replace('-', '_').upper()
 
-            hold_sql = f"DROP TABLE IF EXISTS {hold_name};\n"
-            hold_sql += f"CREATE TEMP TABLE {hold_name} AS\n"
+            hold_sql = f"DROP TABLE IF EXISTS {self._quote_id(hold_name)};\n"
+            hold_sql += f"CREATE TEMP TABLE {self._quote_id(hold_name)} AS\n"
             hold_sql += sql
             sql = hold_sql
 
@@ -1021,7 +1028,7 @@ class PostgresEmitter:
                 on_conds.append(f"({left} = {right})")
             on_clause = " AND ".join(on_conds)
 
-            merge_sql = f"MERGE INTO {target_table} AS TRG\nUSING (\n"
+            merge_sql = f"MERGE INTO {self._quote_id(target_table)} AS TRG\nUSING (\n"
             merge_sql += self._indent(sql, 4) + "\n) AS SRC\n"
             merge_sql += f"ON {on_clause}\n"
 
@@ -1062,28 +1069,30 @@ class PostgresEmitter:
             group_by_fields = []
             value_fields = []
 
+            # For single-table match subqueries, we don't need qualification
+            q = lambda f: f"\"{f.upper()}\""
+
             # BY fields
             for comp in components:
                 if comp.__class__.__name__ == 'SortCommand' and comp.sort_type == 'BY':
-                    f_name = comp.field.name
-                    select_fields.append(f"\"{f_name}\"")
-                    group_by_fields.append(f"\"{f_name}\"")
+                    f_name = comp.field.name.upper()
+                    select_fields.append(q(f_name))
+                    group_by_fields.append(q(f_name))
 
             # Verb fields
             for comp in components:
                 if comp.__class__.__name__ == 'VerbCommand':
                     for f_sel in comp.fields:
                         if f_sel.name == '*': continue
-                        f_name = f_sel.name
-                        if f"\"{f_name}\"" in group_by_fields: continue
+                        f_name = f_sel.name.upper()
 
-                        alias = f_sel.alias or f_name
+                        alias = (f_sel.alias or f_name).upper()
                         if comp.verb == 'SUM':
-                            select_fields.append(f"SUM(\"{f_name}\") AS \"{alias}\"")
+                            select_fields.append(f"SUM({q(f_name)}) AS \"{alias}\"")
                         elif comp.verb == 'COUNT':
-                            select_fields.append(f"COUNT(\"{f_name}\") AS \"{alias}\"")
+                            select_fields.append(f"COUNT({q(f_name)}) AS \"{alias}\"")
                         else:
-                            select_fields.append(f"\"{f_name}\" AS \"{alias}\"")
+                            select_fields.append(f"{q(f_name)} AS \"{alias}\"")
                         value_fields.append(alias)
 
             # COMPUTE fields
@@ -1093,9 +1102,9 @@ class PostgresEmitter:
                         comp.expression,
                         in_query=True,
                         virtual_fields=self.virtual_fields.get(filename, {}),
-                        qualifier=lambda f: f"\"{f}\"" if '.' not in f else f
+                        qualifier=q
                     )
-                    alias = getattr(comp, 'alias', None) or comp.name
+                    alias = (getattr(comp, 'alias', None) or comp.name).upper()
                     select_fields.append(f"{sql_expr} AS \"{alias}\"")
                     value_fields.append(alias)
 
@@ -1107,10 +1116,10 @@ class PostgresEmitter:
                         comp.condition,
                         in_query=True,
                         virtual_fields=self.virtual_fields.get(filename, {}),
-                        qualifier=lambda f: f"\"{f}\"" if '.' not in f else f
+                        qualifier=q
                     ))
 
-            sql = f"SELECT {', '.join(select_fields)} FROM {table_name}"
+            sql = f"SELECT {', '.join(select_fields)} FROM {self._quote_id(table_name)}"
             if where_clauses:
                 sql += f" WHERE {' AND '.join(where_clauses)}"
             if group_by_fields:
@@ -1196,14 +1205,21 @@ class PostgresEmitter:
 
         if hold_command:
             hold_name = hold_command.filename or "HOLD"
-            hold_name = hold_name.replace('.', '_').replace('-', '_')
-            res += f"DROP TABLE IF EXISTS {hold_name};\n"
-            res += f"CREATE TEMP TABLE {hold_name} AS\n"
+            hold_name = hold_name.replace('.', '_').replace('-', '_').upper()
+            res += f"DROP TABLE IF EXISTS {self._quote_id(hold_name)};\n"
+            res += f"CREATE TEMP TABLE {self._quote_id(hold_name)} AS\n"
             res += query + ";"
         else:
             res += query + ";"
 
         return res
+
+    def _quote_id(self, identifier):
+        """Helper to double-quote identifiers for SQL."""
+        if identifier is None: return ""
+        if identifier.startswith('"') and identifier.endswith('"'):
+            return identifier
+        return f'"{identifier}"'
 
     def _resolve_table_name(self, filename):
         """
@@ -1212,8 +1228,8 @@ class PostgresEmitter:
         if self.metadata_registry:
             master = self.metadata_registry.get_master_file(filename)
             if master:
-                return master.name
-        return filename
+                return master.name.upper()
+        return filename.upper()
 
     def emit_block(self, block, cfg):
         """

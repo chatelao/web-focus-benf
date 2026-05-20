@@ -38,6 +38,7 @@ class RuntimeRunner:
             for master in master_files:
                 ddl = generator.generate(master)
                 cursor.execute(ddl)
+        self.conn.commit()
 
     def load_fixtures(self, fixtures_config):
         """
@@ -58,6 +59,7 @@ class RuntimeRunner:
                     loader.load_json(table_name, filepath, cursor=cursor)
                 elif filepath.endswith('.csv'):
                     loader.load_csv(table_name, filepath, cursor=cursor)
+        self.conn.commit()
 
     def run_procedure(self, sql, procedure_name="webfocus_procedure"):
         """
@@ -88,7 +90,9 @@ class RuntimeRunner:
                     if clean_notice.startswith("NOTICE:  "):
                         clean_notice = clean_notice[len("NOTICE:  "):]
                     notices.append(clean_notice)
+            self.conn.commit()
         except psycopg2.Error as e:
+            self.conn.rollback()
             self._handle_error(e)
 
         return notices

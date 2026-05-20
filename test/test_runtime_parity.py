@@ -112,7 +112,7 @@ class TestRuntimeParity(unittest.TestCase):
 
             # Verify that DDL, Insert (fixtures), and Procedure were "executed"
             # Check for CREATE TABLE in one of the calls
-            ddl_called = any("CREATE TABLE SALES_DATA" in str(call) for call in mock_cursor.execute.call_args_list)
+            ddl_called = any("CREATE TABLE \"SALES_DATA\"" in str(call) for call in mock_cursor.execute.call_args_list)
             self.assertTrue(ddl_called)
 
             # Check for procedure call
