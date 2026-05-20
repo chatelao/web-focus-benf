@@ -63,5 +63,15 @@ class TestFixtureLoader(unittest.TestCase):
         loader._insert_data("TABLE", [])
         mock_cursor.execute.assert_not_called()
 
+    def test_insert_data_with_external_cursor(self):
+        mock_cursor = MagicMock()
+        loader = FixtureLoader()
+        data = [{"ID": 1, "NAME": "Alice"}]
+
+        loader._insert_data("EMPLOYEE", data, cursor=mock_cursor)
+
+        expected_sql = 'INSERT INTO "EMPLOYEE" ("ID", "NAME") VALUES (%s, %s)'
+        mock_cursor.execute.assert_called_once_with(expected_sql, [1, "Alice"])
+
 if __name__ == '__main__':
     unittest.main()
