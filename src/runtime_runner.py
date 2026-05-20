@@ -19,6 +19,10 @@ class RuntimeRunner:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         if self.conn:
+            if exc_type is None:
+                self.conn.commit()
+            else:
+                self.conn.rollback()
             self.conn.close()
             self.conn = None
 
@@ -44,12 +48,20 @@ class RuntimeRunner:
         Populates tables using FixtureLoader.
         fixtures_config: list of (table_name, filepath) tuples.
         """
+        if not self.conn:
+            with self:
+                self._load_fixtures_internal(fixtures_config)
+        else:
+            self._load_fixtures_internal(fixtures_config)
+
+    def _load_fixtures_internal(self, fixtures_config):
         loader = FixtureLoader()
-        for table_name, filepath in fixtures_config:
-            if filepath.endswith('.json'):
-                loader.load_json(table_name, filepath)
-            elif filepath.endswith('.csv'):
-                loader.load_csv(table_name, filepath)
+        with self.conn.cursor() as cursor:
+            for table_name, filepath in fixtures_config:
+                if filepath.endswith('.json'):
+                    loader.load_json(table_name, filepath, cursor=cursor)
+                elif filepath.endswith('.csv'):
+                    loader.load_csv(table_name, filepath, cursor=cursor)
 
     def run_procedure(self, sql, procedure_name="webfocus_procedure"):
         """

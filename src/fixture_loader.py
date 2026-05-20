@@ -7,7 +7,7 @@ class FixtureLoader:
     Loads test data from JSON or CSV files into PostgreSQL tables.
     """
 
-    def load_json(self, table_name, filepath):
+    def load_json(self, table_name, filepath, cursor=None):
         """
         Loads data from a JSON file into the specified table.
         The JSON file should contain a list of dictionaries.
@@ -21,9 +21,9 @@ class FixtureLoader:
         if not data:
             return
 
-        self._insert_data(table_name, data)
+        self._insert_data(table_name, data, cursor=cursor)
 
-    def load_csv(self, table_name, filepath):
+    def load_csv(self, table_name, filepath, cursor=None):
         """
         Loads data from a CSV file into the specified table.
         The CSV file must have a header row.
@@ -37,9 +37,9 @@ class FixtureLoader:
         if not data:
             return
 
-        self._insert_data(table_name, data)
+        self._insert_data(table_name, data, cursor=cursor)
 
-    def _insert_data(self, table_name, data):
+    def _insert_data(self, table_name, data, cursor=None):
         """
         Internal helper to insert a list of dictionaries into a table.
         """
@@ -54,7 +54,12 @@ class FixtureLoader:
         placeholders = ", ".join(["%s"] * len(columns))
         sql = f'INSERT INTO "{table_name.upper()}" ({col_str}) VALUES ({placeholders})'
 
-        with db_cursor() as cursor:
+        if cursor:
             for row in data:
                 values = [row.get(c) for c in columns]
                 cursor.execute(sql, values)
+        else:
+            with db_cursor() as cursor:
+                for row in data:
+                    values = [row.get(c) for c in columns]
+                    cursor.execute(sql, values)
