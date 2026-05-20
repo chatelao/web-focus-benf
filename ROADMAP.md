@@ -1,6 +1,6 @@
 # ROADMAP
 - [ ] 0.9 Implement a next, modest, very small, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification' (#391)
-- [ ] 0.8 Implement a next, modest, very small, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification' (#389)
+- [x] 0.8 Implement a next, modest, very small, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification' (#389) (completed at 2026-05-20 20:39:19)
 - [x] 0.7 Implement a next, modest, small, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification' (#387) (completed at 2026-05-20 20:29:15)
 - [x] 0.6 Implement a next, modest, very small, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification' (#385) (completed at 2026-05-20 19:15:59)
 - [x] 0.5 Implement a next, modest, very small, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification' (#383) (completed at 2026-05-20 18:40:49)
@@ -100,5 +100,5 @@
   - [x] 7.3.1 Implement a live database connectivity check utility (completed at 2026-05-20)
   - [ ] 7.3.2 Implement a live database integration test suite (skipping when DB is unavailable)
     - [x] 7.3.2.1 Implement basic report result-set parity test on live DB (completed at 2026-05-20 19:27:14)
-    - [ ] 7.3.2.2 Implement aggregation and grouping parity test on live DB
+    - [x] 7.3.2.2 Implement aggregation and grouping parity test on live DB (completed at 2026-05-20)
   - [x] 7.3.3 Refactor FixtureLoader to support external cursors for transaction consistency (completed at 2026-05-20 19:02:13)

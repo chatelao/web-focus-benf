@@ -103,5 +103,75 @@ class TestLiveParity(unittest.TestCase):
             if os.path.exists(fixture_path):
                 os.remove(fixture_path)
 
+    @unittest.skipUnless(is_db_available(), "PostgreSQL not available")
+    def test_aggregation_parity(self):
+        """
+        Verify SUM and BY parity on a live database.
+        """
+        # 1. Define Metadata
+        registry = MetadataRegistry()
+        f1 = MasterFile(name="LIVE_AGG_DATA")
+        s1 = Segment(name="LIVE_AGG_DATA")
+        s1.fields = [
+            Field(name="CATEGORY", alias="CAT", usage="A20"),
+            Field(name="AMOUNT", alias="AMT", usage="I8")
+        ]
+        f1.segments = [s1]
+        registry.register_master_file(f1)
+
+        # 2. Prepare Fixtures
+        sample_data = [
+            {"CATEGORY": "A", "AMOUNT": 10},
+            {"CATEGORY": "A", "AMOUNT": 20},
+            {"CATEGORY": "B", "AMOUNT": 5},
+        ]
+        fixture_path = "live_agg_fixtures.json"
+        with open(fixture_path, "w") as f:
+            json.dump(sample_data, f)
+
+        try:
+            # 3. Transpile
+            fex_code = """
+            TABLE FILE LIVE_AGG_DATA
+            SUM AMOUNT
+            BY CATEGORY
+            ON TABLE HOLD AS AGG_RESULTS
+            END
+            """
+            input_stream = InputStream(fex_code)
+            lexer = WebFocusReportLexer(input_stream)
+            token_stream = CommonTokenStream(lexer)
+            parser = WebFocusReportParser(token_stream)
+            tree = parser.start()
+
+            asg_nodes = ReportASGBuilder().visit(tree)
+            cfg = IRBuilder().build(asg_nodes)
+            SSATransformer().transform(cfg)
+
+            emitter = PostgresEmitter(metadata_registry=registry)
+            sql_procedure = emitter.emit(cfg, "live_agg_proc")
+
+            # 4. Execute on Live DB
+            with RuntimeRunner() as runner:
+                with runner.conn.cursor() as cursor:
+                    cursor.execute('DROP TABLE IF EXISTS "LIVE_AGG_DATA" CASCADE;')
+                    cursor.execute('DROP TABLE IF EXISTS "AGG_RESULTS" CASCADE;')
+
+                runner.setup_schema([f1])
+                runner.load_fixtures([("LIVE_AGG_DATA", fixture_path)])
+                runner.run_procedure(sql_procedure, "live_agg_proc")
+                results = runner.fetch_table("AGG_RESULTS")
+
+            # 5. Verify
+            self.assertEqual(len(results), 2)
+            cat_a = next(r for r in results if r['CATEGORY'].strip() == "A")
+            self.assertEqual(cat_a['AMOUNT'], 30)
+            cat_b = next(r for r in results if r['CATEGORY'].strip() == "B")
+            self.assertEqual(cat_b['AMOUNT'], 5)
+
+        finally:
+            if os.path.exists(fixture_path):
+                os.remove(fixture_path)
+
 if __name__ == '__main__':
     unittest.main()
