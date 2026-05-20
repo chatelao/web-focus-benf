@@ -22,10 +22,10 @@ class TestDDLGenerator(unittest.TestCase):
         ddl = generator.generate(master)
 
         # Verify
-        expected = """CREATE TABLE EMPLOYEE (
-    ID CHAR(9),
-    NAME CHAR(30),
-    SALARY NUMERIC(12, 2)
+        expected = """CREATE TABLE "EMPLOYEE" (
+    "ID" CHAR(9),
+    "NAME" CHAR(30),
+    "SALARY" NUMERIC(12, 2)
 );"""
         self.assertEqual(ddl.strip(), expected.strip())
 
@@ -46,10 +46,10 @@ class TestDDLGenerator(unittest.TestCase):
         ddl = generator.generate(master)
 
         # Verify
-        self.assertIn("CREATE TABLE DEPT", ddl)
-        self.assertIn("DEPT_ID INTEGER", ddl)
-        self.assertIn("CREATE TABLE EMP", ddl)
-        self.assertIn("EMP_ID BIGINT", ddl)
+        self.assertIn('CREATE TABLE "DEPT"', ddl)
+        self.assertIn('"DEPT_ID" INTEGER', ddl)
+        self.assertIn('CREATE TABLE "EMP"', ddl)
+        self.assertIn('"EMP_ID" BIGINT', ddl)
 
     def test_date_types_ddl(self):
         # Setup
@@ -63,8 +63,8 @@ class TestDDLGenerator(unittest.TestCase):
         ddl = generator.generate(master)
 
         # Verify
-        self.assertIn("HIRE_DATE DATE", ddl)
-        self.assertIn("LAST_UPDATE TIMESTAMP", ddl)
+        self.assertIn('"HIRE_DATE" DATE', ddl)
+        self.assertIn('"LAST_UPDATE" TIMESTAMP', ddl)
 
 if __name__ == '__main__':
     unittest.main()

@@ -216,8 +216,8 @@ class TestEmitter(unittest.TestCase):
 
         sql = emitter.emit_instruction(instr)
 
-        self.assertIn("SELECT FIELD1, FIELD2", sql)
-        self.assertIn("FROM MYTABLE", sql)
+        self.assertIn('SELECT "FIELD1", "FIELD2"', sql)
+        self.assertIn('FROM "MYTABLE"', sql)
         self.assertIn("/* MYTABLE */", sql)
 
     def test_emit_instruction_report_with_where(self):
@@ -240,10 +240,10 @@ class TestEmitter(unittest.TestCase):
 
         sql = emitter.emit_instruction(instr)
 
-        self.assertIn("WHERE (FIELD1 > 10)", sql)
-        self.assertIn("AND (FIELD2 BETWEEN 1 AND 100)", sql)
-        self.assertIn("AND (FIELD3 IN ('A', 'B'))", sql)
-        self.assertIn("AND (FIELD4 IS NULL)", sql)
+        self.assertIn('WHERE ("FIELD1" > 10)', sql)
+        self.assertIn('AND ("FIELD2" BETWEEN 1 AND 100)', sql)
+        self.assertIn('AND ("FIELD3" IN (\'A\', \'B\'))', sql)
+        self.assertIn('AND ("FIELD4" IS NULL)', sql)
 
     def test_emit_instruction_report_advanced(self):
         emitter = PostgresEmitter()
@@ -267,12 +267,12 @@ class TestEmitter(unittest.TestCase):
 
         # SELECT should include non-noprint sort fields and verb fields
         # Note: sort fields come first in my implementation
-        self.assertIn("SELECT REGION, DATE, SUM(SALES) AS \"Total Sales\", AVG(COST)", sql)
-        self.assertIn("FROM SALES_DATA", sql)
+        self.assertIn('SELECT "REGION", "DATE", SUM("SALES") AS "Total Sales", AVG("COST")', sql)
+        self.assertIn('FROM "SALES_DATA"', sql)
         # GROUP BY should include all sort fields
-        self.assertIn("GROUP BY REGION, DATE, DEPT", sql)
+        self.assertIn('GROUP BY "REGION", "DATE", "DEPT"', sql)
         # ORDER BY
-        self.assertIn("ORDER BY REGION ASC, DATE DESC, DEPT ASC", sql)
+        self.assertIn('ORDER BY "REGION" ASC, "DATE" DESC, "DEPT" ASC', sql)
 
     def test_emit_instruction_report_with_where_total(self):
         emitter = PostgresEmitter()
@@ -289,9 +289,9 @@ class TestEmitter(unittest.TestCase):
 
         sql = emitter.emit_instruction(instr)
 
-        self.assertIn("SELECT REGION, SUM(SALES)", sql)
-        self.assertIn("GROUP BY REGION", sql)
-        self.assertIn("HAVING (SUM(SALES) > 1000)", sql)
+        self.assertIn('SELECT "REGION", SUM("SALES")', sql)
+        self.assertIn('GROUP BY "REGION"', sql)
+        self.assertIn('HAVING (SUM("SALES") > 1000)', sql)
 
     def test_emit_instruction_report_with_compute(self):
         emitter = PostgresEmitter()
@@ -305,7 +305,7 @@ class TestEmitter(unittest.TestCase):
 
         sql = emitter.emit_instruction(instr)
 
-        self.assertIn("SELECT SUM(SALES), (SUM(SALES) / 1000) AS \"RATIO\"", sql)
+        self.assertIn('SELECT SUM("SALES"), (SUM("SALES") / 1000) AS "RATIO"', sql)
 
     def test_emit_instruction_define_and_lift(self):
         emitter = PostgresEmitter()
@@ -329,7 +329,7 @@ class TestEmitter(unittest.TestCase):
 
         sql = emitter.emit_instruction(report)
 
-        self.assertIn("SELECT SUM(SALES), SUM((SALES * 0.1)) AS \"BONUS\"", sql)
+        self.assertIn('SELECT SUM("SALES"), SUM(("SALES" * 0.1)) AS "BONUS"', sql)
 
     def test_emit_instruction_define_recursive_lifting(self):
         emitter = PostgresEmitter()
@@ -352,7 +352,7 @@ class TestEmitter(unittest.TestCase):
 
         sql = emitter.emit_instruction(report)
 
-        self.assertIn("SELECT (SALARY + (SALES * 0.1)) AS \"TOTAL_COMP\"", sql)
+        self.assertIn('SELECT ("SALARY" + ("SALES" * 0.1)) AS "TOTAL_COMP"', sql)
 
     def test_emit_instruction_join_context(self):
         emitter = PostgresEmitter()
@@ -387,9 +387,9 @@ class TestEmitter(unittest.TestCase):
 
         sql = emitter.emit_instruction(report)
 
-        self.assertIn("SELECT LEFT_FILE.FLD1, J1.FLD2", sql)
-        self.assertIn("FROM LEFT_FILE", sql)
-        self.assertIn("JOIN RIGHT_FILE J1 ON LEFT_FILE.FLD1 = J1.FLD2", sql)
+        self.assertIn('SELECT "LEFT_FILE"."FLD1", "J1"."FLD2"', sql)
+        self.assertIn('FROM "LEFT_FILE"', sql)
+        self.assertIn('JOIN "RIGHT_FILE" "J1" ON "LEFT_FILE"."FLD1" = "J1"."FLD2"', sql)
 
     def test_emit_instruction_report_with_outer_join(self):
         emitter = PostgresEmitter()
@@ -406,7 +406,7 @@ class TestEmitter(unittest.TestCase):
 
         sql = emitter.emit_instruction(report)
 
-        self.assertIn("LEFT OUTER JOIN RIGHT_FILE ON LEFT_FILE.FLD1 = RIGHT_FILE.FLD2", sql)
+        self.assertIn('LEFT OUTER JOIN "RIGHT_FILE" ON "LEFT_FILE"."FLD1" = "RIGHT_FILE"."FLD2"', sql)
 
     def test_emit_instruction_report_with_chained_joins(self):
         emitter = PostgresEmitter()
@@ -421,8 +421,8 @@ class TestEmitter(unittest.TestCase):
 
         sql = emitter.emit_instruction(report)
 
-        self.assertIn("JOIN F2 ON F1.A = F2.B", sql)
-        self.assertIn("JOIN F3 ON F2.C = F3.D", sql)
+        self.assertIn('JOIN "F2" ON "F1"."A" = "F2"."B"', sql)
+        self.assertIn('JOIN "F3" ON "F2"."C" = "F3"."D"', sql)
 
     def test_emit_instruction_report_with_join_and_virtual_lifting(self):
         emitter = PostgresEmitter()
@@ -447,8 +447,8 @@ class TestEmitter(unittest.TestCase):
         sql = emitter.emit_instruction(report)
 
         # Should lift CALC from RIGHT_FILE and qualify FLD2
-        self.assertIn("(RIGHT_FILE.FLD2 * 2) AS \"CALC\"", sql)
-        self.assertIn("JOIN RIGHT_FILE ON LEFT_FILE.FLD1 = RIGHT_FILE.FLD2", sql)
+        self.assertIn('("RIGHT_FILE"."FLD2" * 2) AS "CALC"', sql)
+        self.assertIn('JOIN "RIGHT_FILE" ON "LEFT_FILE"."FLD1" = "RIGHT_FILE"."FLD2"', sql)
 
 if __name__ == '__main__':
     unittest.main()

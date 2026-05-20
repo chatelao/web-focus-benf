@@ -68,8 +68,8 @@ class TestCompoundLayout(unittest.TestCase):
         # 6. Verifications
         self.assertIn("COMPOUND LAYOUT", sql_output)
         self.assertIn("GGSALES", sql_output)
-        self.assertIn("SUM(DOLLARS)", sql_output)
-        self.assertIn("SUM(UNITS)", sql_output)
+        self.assertIn('SUM("DOLLARS")', sql_output)
+        self.assertIn('SUM("UNITS")', sql_output)
 
 if __name__ == '__main__':
     unittest.main()

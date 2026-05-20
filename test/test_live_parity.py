@@ -85,8 +85,8 @@ class TestLiveParity(unittest.TestCase):
             with RuntimeRunner() as runner:
                 # Cleanup if table exists (optional, but good for repeatability)
                 with runner.conn.cursor() as cursor:
-                    cursor.execute("DROP TABLE IF EXISTS LIVE_SALES CASCADE;")
-                    cursor.execute("DROP TABLE IF EXISTS LIVE_RESULTS CASCADE;")
+                    cursor.execute('DROP TABLE IF EXISTS "LIVE_SALES" CASCADE;')
+                    cursor.execute('DROP TABLE IF EXISTS "LIVE_RESULTS" CASCADE;')
 
                 runner.setup_schema([f1])
                 runner.load_fixtures([("LIVE_SALES", fixture_path)])

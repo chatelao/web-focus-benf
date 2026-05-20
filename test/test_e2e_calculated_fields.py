@@ -57,8 +57,8 @@ class TestE2ECalculatedFields(unittest.TestCase):
         END
         """
         sql = self._run_e2e(fex_code)
-        self.assertIn("(PRICE * 0.85) AS \"PRICE_EUR\"", sql)
-        self.assertIn("SELECT CAR, MODEL, PRICE, (PRICE * 0.85) AS \"PRICE_EUR\"", sql)
+        self.assertIn('("PRICE" * 0.85) AS "PRICE_EUR"', sql)
+        self.assertIn('SELECT "CAR", "MODEL", "PRICE", ("PRICE" * 0.85) AS "PRICE_EUR"', sql)
 
     def test_define_in_sum(self):
         fex_code = """
@@ -71,8 +71,8 @@ class TestE2ECalculatedFields(unittest.TestCase):
         """
         sql = self._run_e2e(fex_code)
         # REVENUE is (SALES * PRICE). SUM(REVENUE) -> SUM(SALES * PRICE)
-        self.assertIn("SUM((SALES * PRICE)) AS \"REVENUE\"", sql)
-        self.assertIn("GROUP BY COUNTRY", sql)
+        self.assertIn('SUM(("SALES" * "PRICE")) AS "REVENUE"', sql)
+        self.assertIn('GROUP BY "COUNTRY"', sql)
 
     def test_compute_in_print(self):
         fex_code = """
@@ -83,7 +83,7 @@ class TestE2ECalculatedFields(unittest.TestCase):
         """
         sql = self._run_e2e(fex_code)
         # In PRINT, COMPUTE should behave like a regular expression
-        self.assertIn("(PRICE * 0.85) AS \"PRICE_EUR\"", sql)
+        self.assertIn('("PRICE" * 0.85) AS "PRICE_EUR"', sql)
 
     def test_compute_in_sum(self):
         fex_code = """
@@ -97,7 +97,7 @@ class TestE2ECalculatedFields(unittest.TestCase):
         # In SUM, fields in COMPUTE should be aggregated.
         # WebFOCUS: SUM SALES COMPUTE AVG_PRICE = SALES / 10;
         # means AVG_PRICE = SUM(SALES) / 10
-        self.assertIn("(SUM(SALES) / 10) AS \"AVG_PRICE\"", sql)
+        self.assertIn('(SUM("SALES") / 10) AS "AVG_PRICE"', sql)
 
     def test_recursive_define_and_compute(self):
         fex_code = """
@@ -114,8 +114,8 @@ class TestE2ECalculatedFields(unittest.TestCase):
         # TOTAL_PRICE = PRICE + (PRICE * 0.1)
         # SUM(TOTAL_PRICE) = SUM(PRICE + (PRICE * 0.1))
         # COMPUTE NET_PROFIT = SUM(TOTAL_PRICE) * 0.5 = SUM(PRICE + (PRICE * 0.1)) * 0.5
-        self.assertIn("SUM((PRICE + (PRICE * 0.1))) AS \"TOTAL_PRICE\"", sql)
-        self.assertIn("(SUM((PRICE + (PRICE * 0.1))) * 0.5) AS \"NET_PROFIT\"", sql)
+        self.assertIn('SUM(("PRICE" + ("PRICE" * 0.1))) AS "TOTAL_PRICE"', sql)
+        self.assertIn('(SUM(("PRICE" + ("PRICE" * 0.1))) * 0.5) AS "NET_PROFIT"', sql)
 
 if __name__ == '__main__':
     unittest.main()

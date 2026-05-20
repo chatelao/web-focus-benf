@@ -51,7 +51,7 @@ class TestJoinPruning(unittest.TestCase):
         END
         """
         sql = self._run_e2e(fex_code)
-        self.assertIn("JOIN COUNTRY J1", sql)
+        self.assertIn('JOIN "COUNTRY" "J1"', sql)
 
     def test_unused_outer_join_is_pruned(self):
         # LEFT OUTER JOIN does not filter, so it can be pruned if unused
@@ -62,8 +62,8 @@ class TestJoinPruning(unittest.TestCase):
         END
         """
         sql = self._run_e2e(fex_code)
-        self.assertNotIn("JOIN COUNTRY J1", sql)
-        self.assertIn("SELECT CAR.CAR, CAR.MODEL", sql)
+        self.assertNotIn('JOIN "COUNTRY" "J1"', sql)
+        self.assertIn('SELECT "CAR"."CAR", "CAR"."MODEL"', sql)
 
     def test_used_outer_join_is_kept(self):
         fex_code = """
@@ -73,8 +73,8 @@ class TestJoinPruning(unittest.TestCase):
         END
         """
         sql = self._run_e2e(fex_code)
-        self.assertIn("LEFT OUTER JOIN COUNTRY J1 ON CAR.COUNTRY = J1.COUNTRY", sql)
-        self.assertIn("SELECT CAR.CAR, CAR.MODEL, J1.COUNTRY", sql)
+        self.assertIn('LEFT OUTER JOIN "COUNTRY" "J1" ON "CAR"."COUNTRY" = "J1"."COUNTRY"', sql)
+        self.assertIn('SELECT "CAR"."CAR", "CAR"."MODEL", "J1"."COUNTRY"', sql)
 
     def test_join_pruning_with_where_clause(self):
         fex_code = """
@@ -86,8 +86,8 @@ class TestJoinPruning(unittest.TestCase):
         """
         sql = self._run_e2e(fex_code)
         # Should keep the join because it's used in WHERE
-        self.assertIn("JOIN COUNTRY J1", sql)
-        self.assertIn("WHERE (J1.COUNTRY = 'ENGLAND')", sql)
+        self.assertIn('JOIN "COUNTRY" "J1"', sql)
+        self.assertIn('WHERE ("J1"."COUNTRY" = \'ENGLAND\')', sql)
 
     def test_join_pruning_with_virtual_field(self):
         # LEFT OUTER JOIN with virtual field dependency
@@ -101,7 +101,7 @@ class TestJoinPruning(unittest.TestCase):
         END
         """
         sql = self._run_e2e(fex_code)
-        self.assertIn("JOIN COUNTRY J1", sql)
+        self.assertIn('JOIN "COUNTRY" "J1"', sql)
         self.assertIn("IS_EUROPE", sql)
 
     def test_chained_join_pruning(self):
@@ -114,8 +114,8 @@ class TestJoinPruning(unittest.TestCase):
         END
         """
         sql = self._run_e2e(fex_code)
-        self.assertIn("JOIN COUNTRY J1", sql)
-        self.assertNotIn("JOIN REGION J2", sql)
+        self.assertIn('JOIN "COUNTRY" "J1"', sql)
+        self.assertNotIn('JOIN "REGION" "J2"', sql)
 
     def test_chained_join_keeping(self):
         # Chain: CAR -> COUNTRY (J1, OUTER) -> REGION (J2, OUTER)
@@ -128,8 +128,8 @@ class TestJoinPruning(unittest.TestCase):
         END
         """
         sql = self._run_e2e(fex_code)
-        self.assertIn("JOIN COUNTRY J1", sql)
-        self.assertIn("JOIN REGION J2", sql)
+        self.assertIn('JOIN "COUNTRY" "J1"', sql)
+        self.assertIn('JOIN "REGION" "J2"', sql)
 
 if __name__ == '__main__':
     unittest.main()

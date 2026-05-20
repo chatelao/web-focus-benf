@@ -53,7 +53,7 @@ class TestE2EMerge(unittest.TestCase):
         print(sql)
 
         # 5. Assertions
-        self.assertIn("MERGE INTO DMRPTS", sql.upper())
+        self.assertIn('MERGE INTO "DMRPTS"', sql.upper())
         self.assertIn("USING (", sql.upper())
         self.assertIn("ON (TRG.PROD_NUM = SRC.PROD_NUM)", sql.upper())
         self.assertIn("WHEN MATCHED THEN", sql.upper())

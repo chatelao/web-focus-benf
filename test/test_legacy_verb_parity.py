@@ -127,9 +127,9 @@ class TestLegacyVerbParity(unittest.TestCase):
         results = self._transpile_and_run(fex, "test_sum", mock_cursor, expected_data)
 
         # Verify SQL semantics
-        self.assertIn("SUM(QTY)", self.last_sql)
+        self.assertIn('SUM("QTY")', self.last_sql)
         self.assertIn("GROUP BY", self.last_sql)
-        self.assertIn("CATEGORY", self.last_sql)
+        self.assertIn('"CATEGORY"', self.last_sql)
 
         self.assertEqual(len(results), 2)
         electronics = next(r for r in results if r['CATEGORY'] == 'ELECTRONICS')
@@ -161,7 +161,7 @@ class TestLegacyVerbParity(unittest.TestCase):
         results = self._transpile_and_run(fex, "test_count", mock_cursor, expected_data)
 
         # Verify SQL semantics
-        self.assertIn("COUNT(PROD_ID)", self.last_sql)
+        self.assertIn('COUNT("PROD_ID")', self.last_sql)
         self.assertIn("GROUP BY", self.last_sql)
 
         self.assertEqual(len(results), 2)
@@ -200,7 +200,7 @@ class TestLegacyVerbParity(unittest.TestCase):
         # Verify SQL semantics
         # LIST uses ROW_NUMBER() in our implementation for ordering/indexing if BY is present
         self.assertIn("ROW_NUMBER()", self.last_sql)
-        self.assertIn("OVER (PARTITION BY CATEGORY", self.last_sql)
+        self.assertIn('OVER (PARTITION BY "CATEGORY"', self.last_sql)
 
         self.assertEqual(len(results), 3)
         self.assertEqual(results[0]['LIST'], 1)

@@ -31,9 +31,9 @@ class TestE2EComputeAlias(unittest.TestCase):
         sql_output = emitter.emit(cfg)
 
         # Verification
-        self.assertIn("(SUM(SALES) / 1000) AS \"Sales Ratio\"", sql_output)
-        self.assertIn("SUM(SALES)", sql_output)
-        self.assertIn("GROUP BY COUNTRY", sql_output)
+        self.assertIn('(SUM("SALES") / 1000) AS "Sales Ratio"', sql_output)
+        self.assertIn('SUM("SALES")', sql_output)
+        self.assertIn('GROUP BY "COUNTRY"', sql_output)
 
 if __name__ == '__main__':
     unittest.main()
