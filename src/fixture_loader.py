@@ -50,9 +50,9 @@ class FixtureLoader:
         columns = list(data[0].keys())
 
         # Prepare the INSERT statement
-        col_str = ", ".join([f'"{c}"' for c in columns])
+        col_str = ", ".join(columns)
         placeholders = ", ".join(["%s"] * len(columns))
-        sql = f'INSERT INTO "{table_name.upper()}" ({col_str}) VALUES ({placeholders})'
+        sql = f'INSERT INTO {table_name} ({col_str}) VALUES ({placeholders})'
 
         if cursor:
             for row in data:
