@@ -6,7 +6,7 @@ import sys
 # Add src to path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
 
-from db_utils import get_db_connection, db_cursor
+from db_utils import get_db_connection, db_cursor, is_db_available
 
 class TestDBUtils(unittest.TestCase):
 
@@ -69,6 +69,24 @@ class TestDBUtils(unittest.TestCase):
         mock_conn.rollback.assert_called_once()
         mock_conn.close.assert_called_once()
         mock_conn.commit.assert_not_called()
+
+    @patch('db_utils.get_db_connection')
+    def test_is_db_available_true(self, mock_get_conn):
+        mock_conn = MagicMock()
+        mock_get_conn.return_value = mock_conn
+
+        available = is_db_available()
+
+        self.assertTrue(available)
+        mock_conn.close.assert_called_once()
+
+    @patch('db_utils.get_db_connection')
+    def test_is_db_available_false(self, mock_get_conn):
+        mock_get_conn.side_effect = Exception("No DB")
+
+        available = is_db_available()
+
+        self.assertFalse(available)
 
 if __name__ == '__main__':
     unittest.main()
