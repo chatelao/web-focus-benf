@@ -45,11 +45,19 @@ class RuntimeRunner:
         fixtures_config: list of (table_name, filepath) tuples.
         """
         loader = FixtureLoader()
-        for table_name, filepath in fixtures_config:
-            if filepath.endswith('.json'):
-                loader.load_json(table_name, filepath)
-            elif filepath.endswith('.csv'):
-                loader.load_csv(table_name, filepath)
+        if not self.conn:
+            with self:
+                self._load_fixtures_internal(loader, fixtures_config)
+        else:
+            self._load_fixtures_internal(loader, fixtures_config)
+
+    def _load_fixtures_internal(self, loader, fixtures_config):
+        with self.conn.cursor() as cursor:
+            for table_name, filepath in fixtures_config:
+                if filepath.endswith('.json'):
+                    loader.load_json(table_name, filepath, cursor=cursor)
+                elif filepath.endswith('.csv'):
+                    loader.load_csv(table_name, filepath, cursor=cursor)
 
     def run_procedure(self, sql, procedure_name="webfocus_procedure"):
         """

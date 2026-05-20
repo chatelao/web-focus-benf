@@ -88,6 +88,8 @@
   - [x] 6.3.3 Verify grammar coverage against samples
 
 ## Chapter 7: CI/CD & Verification
-- [ ] 7.1 Setup live PostgreSQL database in CI environment
-- [ ] 7.2 Implement automated fixture loading for E2E tests
-- [ ] 7.3 Execute and verify transpiled PL/pgSQL on live DB
+- [x] 7.1 Setup live PostgreSQL database in CI environment (completed at 2026-05-20)
+- [x] 7.2 Implement automated fixture loading for E2E tests (completed at 2026-05-20)
+- [x] 7.3 Execute and verify transpiled PL/pgSQL
+  - [x] 7.3.1 Result-set parity verification via Mocks (completed at 2026-05-20)
+  - [x] 7.3.2 Result-set parity verification on Live Database (completed at 2026-05-20)

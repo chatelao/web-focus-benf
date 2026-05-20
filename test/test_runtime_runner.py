@@ -67,8 +67,14 @@ class TestRuntimeRunner(unittest.TestCase):
         mock_ddl_gen.generate.assert_called_once_with(master)
         mock_cursor.execute.assert_called_once_with("CREATE TABLE TEST;")
 
+    @patch('runtime_runner.get_db_connection')
     @patch('runtime_runner.FixtureLoader')
-    def test_load_fixtures(self, mock_loader_class):
+    def test_load_fixtures(self, mock_loader_class, mock_get_conn):
+        mock_conn = MagicMock()
+        mock_get_conn.return_value = mock_conn
+        mock_cursor = MagicMock()
+        mock_conn.cursor.return_value.__enter__.return_value = mock_cursor
+
         mock_loader = mock_loader_class.return_value
 
         runner = RuntimeRunner()
@@ -78,8 +84,9 @@ class TestRuntimeRunner(unittest.TestCase):
         ]
         runner.load_fixtures(fixtures_config)
 
-        mock_loader.load_json.assert_called_once_with('TABLE1', 'data1.json')
-        mock_loader.load_csv.assert_called_once_with('TABLE2', 'data2.csv')
+        # In the new implementation, it should pass the cursor
+        mock_loader.load_json.assert_called_once_with('TABLE1', 'data1.json', cursor=mock_cursor)
+        mock_loader.load_csv.assert_called_once_with('TABLE2', 'data2.csv', cursor=mock_cursor)
 
     @patch('runtime_runner.get_db_connection')
     def test_run_procedure_error(self, mock_get_conn):
