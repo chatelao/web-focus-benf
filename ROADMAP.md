@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] 0.3 Implement a next, modest, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification' (#379)
 - [x] 0.2 Implement a next, modest, feasible and reasonable ROADMAP.md step of chapter '6.2 Develop a CLI tool for automated WebFOCUS code analysis' (#377) (completed at 2026-05-20 14:48:34)
 - [x] 0.1 Implement a next, modest, feasible and reasonable ROADMAP.md step of chapter '6.2 Develop a CLI tool for automated WebFOCUS code analysis' (#375) (completed at 2026-05-19 22:31:47)
 
