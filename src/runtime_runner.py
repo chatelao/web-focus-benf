@@ -105,7 +105,7 @@ class RuntimeRunner:
     def _fetch_internal(self, table_name):
         try:
             with self.conn.cursor() as cursor:
-                cursor.execute(sql.SQL("SELECT * FROM {}").format(sql.Identifier(table_name)))
+                cursor.execute(sql.SQL("SELECT * FROM {}").format(sql.Identifier(table_name.upper())))
 
                 if cursor.description is None:
                     return []
