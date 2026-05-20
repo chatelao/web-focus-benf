@@ -848,15 +848,18 @@ class PostgresEmitter:
                 # Prefix operators
                 sql_expr = self._apply_prefixes(sql_expr, field_sel.prefix_operators, vc.verb, group_by_fields)
 
-                if field_sel.alias:
-                    sql_expr = f"{sql_expr} AS \"{field_sel.alias}\""
-                elif is_virtual:
-                    # If it's a virtual field, use its name as alias for the expression
-                    sql_expr = f"{sql_expr} AS \"{field_name}\""
-                elif merge_cmd:
-                    # Ensure the column has a predictable name for MERGE
-                    alias_name = field_name.split('.')[-1]
-                    sql_expr = f"{sql_expr} AS \"{alias_name}\""
+                # Determine alias for the column
+                alias = field_sel.alias
+                if not alias:
+                    if vc.verb in aggregating_verbs or field_sel.prefix_operators:
+                        alias = field_name
+                    elif is_virtual:
+                        alias = field_name
+                    elif merge_cmd:
+                        alias = field_name.split('.')[-1]
+
+                if alias:
+                    sql_expr = f"{sql_expr} AS \"{alias}\""
 
                 select_fields.append(sql_expr)
 
