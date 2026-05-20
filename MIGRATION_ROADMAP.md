@@ -337,4 +337,7 @@ Ensure the generated PL/pgSQL code is not only syntactically correct but also ex
 - [ ] **8.1 CLI Diagnostics:**
   - [x] 8.1.1 Source Code Statistics (LOC, Report and DM command counts) (completed at 2026-05-15 10:00:00)
   - [x] 8.1.2 Control Flow Analysis (Cyclomatic Complexity) (completed at 2026-05-15 10:00:00)
-  - [ ] 8.1.3 Data Lineage Analysis (Field-level usage tracking)
+  - [ ] 8.1.3 Data Lineage Analysis:
+    - [x] 8.1.3.1 Field Usage Tracking (Verbs, Sorts, and Filters)
+    - [ ] 8.1.3.2 Virtual Field Lineage (DEFINE/COMPUTE)
+    - [ ] 8.1.3.3 Data Source and Target Mapping (TABLE FILE / HOLD)

@@ -5,7 +5,10 @@ import asg
 from type_inferrer import TypeInferrer
 from type_mapper import map_wf_type_to_pg
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-from ir_utils import get_base_name, find_simple_for_loop, find_simple_while_loop
+from ir_utils import (
+    get_base_name, find_simple_for_loop, find_simple_while_loop,
+    collect_fields_from_component, collect_fields_from_expression
+)
 
 class PostgresEmitter:
     """
@@ -637,7 +640,7 @@ class PostgresEmitter:
             elif fname in report_virtual_fields:
                 expr, fmt, s_fn = report_virtual_fields[fname]
                 used_files.add(s_fn)
-                self._collect_used_files_in_expr(expr, mark_field_used, s_fn)
+                collect_fields_from_expression(expr, mark_field_used, s_fn)
             else:
                 # Unqualified name.
                 # Without metadata, we assume it's the primary file,
@@ -648,7 +651,7 @@ class PostgresEmitter:
         file_virtual_fields = {f: (e_fmt[0], e_fmt[1]) for f, e_fmt in report_virtual_fields.items()}
 
         for comp in instr.components:
-            self._collect_used_files_recursive(comp, mark_field_used, used_files)
+            collect_fields_from_component(comp, mark_field_used, used_files)
 
         # If * was found, we add all potential join targets
         if '*' in used_files:
@@ -1353,59 +1356,6 @@ class PostgresEmitter:
                 res.append(f"{target} := {source};")
 
         return "\n".join(res)
-
-    def _collect_used_files_recursive(self, node, mark_field_used, used_files=None):
-        if node is None: return
-        class_name = node.__class__.__name__
-
-        if class_name == 'VerbCommand':
-            for f in node.fields:
-                if f.name == '*':
-                    # If PRINT * is used, we must keep all files
-                    if used_files is not None:
-                        used_files.add('*')
-                else:
-                    mark_field_used(f.name)
-        elif class_name == 'SortCommand':
-            mark_field_used(node.field.name)
-        elif class_name == 'ComputeCommand':
-            self._collect_used_files_in_expr(node.expression, mark_field_used)
-        elif class_name == 'WhereClause':
-            self._collect_used_files_in_expr(node.condition, mark_field_used)
-        elif class_name == 'WhenCommand':
-            self._collect_used_files_in_expr(node.condition, mark_field_used)
-        elif class_name == 'OnCommand':
-            for action in node.actions:
-                self._collect_used_files_recursive(action, mark_field_used)
-
-    def _collect_used_files_in_expr(self, expr, mark_field_used, source_fn=None):
-        if expr is None: return
-        class_name = expr.__class__.__name__
-
-        if class_name == 'Identifier':
-            mark_field_used(expr.name, source_fn)
-        elif class_name == 'BinaryOperation':
-            self._collect_used_files_in_expr(expr.left, mark_field_used, source_fn)
-            self._collect_used_files_in_expr(expr.right, mark_field_used, source_fn)
-        elif class_name == 'UnaryOperation':
-            self._collect_used_files_in_expr(expr.operand, mark_field_used, source_fn)
-        elif class_name == 'FunctionCall':
-            for arg in expr.arguments:
-                self._collect_used_files_in_expr(arg, mark_field_used, source_fn)
-        elif class_name == 'IfExpression':
-            self._collect_used_files_in_expr(expr.condition, mark_field_used, source_fn)
-            self._collect_used_files_in_expr(expr.then_expr, mark_field_used, source_fn)
-            self._collect_used_files_in_expr(expr.else_expr, mark_field_used, source_fn)
-        elif class_name == 'BetweenExpression':
-            self._collect_used_files_in_expr(expr.expression, mark_field_used, source_fn)
-            self._collect_used_files_in_expr(expr.lower, mark_field_used, source_fn)
-            self._collect_used_files_in_expr(expr.upper, mark_field_used, source_fn)
-        elif class_name == 'InExpression':
-            self._collect_used_files_in_expr(expr.expression, mark_field_used, source_fn)
-            for val in expr.values:
-                self._collect_used_files_in_expr(val, mark_field_used, source_fn)
-        elif class_name == 'IsMissingExpression':
-            self._collect_used_files_in_expr(expr.expression, mark_field_used, source_fn)
 
     def _apply_prefixes(self, sql_expr, prefixes, verb=None, group_by=None):
         """
