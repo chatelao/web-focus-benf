@@ -45,8 +45,8 @@ class TestLiveParity(unittest.TestCase):
         f1 = MasterFile(name="LIVE_SALES")
         s1 = Segment(name="LIVE_SALES")
         s1.fields = [
-            Field(name="PROD", alias="PROD", usage="A20"),
-            Field(name="PRICE", alias="PRICE", usage="D12.2")
+            Field(name="PROD", alias="PROD", format="A20"),
+            Field(name="PRICE", alias="PRICE", format="D12.2")
         ]
         f1.segments = [s1]
         registry.register_master_file(f1)
@@ -113,8 +113,8 @@ class TestLiveParity(unittest.TestCase):
         f1 = MasterFile(name="LIVE_AGG_DATA")
         s1 = Segment(name="LIVE_AGG_DATA")
         s1.fields = [
-            Field(name="CATEGORY", alias="CAT", usage="A20"),
-            Field(name="AMOUNT", alias="AMT", usage="I8")
+            Field(name="CATEGORY", alias="CAT", format="A20"),
+            Field(name="AMOUNT", alias="AMT", format="I8")
         ]
         f1.segments = [s1]
         registry.register_master_file(f1)

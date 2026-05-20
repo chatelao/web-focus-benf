@@ -299,6 +299,9 @@ class Segment(DataModelNode):
 class Field(DataModelNode):
     """Represents a field within a segment."""
     def __init__(self, name, alias=None, format=None, **kwargs):
+        # Handle 'usage' as an alias for 'format' often used in WebFOCUS metadata
+        if format is None and 'usage' in kwargs:
+            format = kwargs.pop('usage')
         super().__init__(name=name, alias=alias, format=format, **kwargs)
 
 class CompoundLayout(Statement):
