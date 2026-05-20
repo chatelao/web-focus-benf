@@ -1,6 +1,6 @@
 # ROADMAP
 - [ ] 0.8 Implement a next, modest, very small, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification' (#389)
-- [ ] 0.7 Implement a next, modest, small, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification' (#387)
+- [x] 0.7 Implement a next, modest, small, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification' (#387) (completed at 2026-05-20 20:29:15)
 - [x] 0.6 Implement a next, modest, very small, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification' (#385) (completed at 2026-05-20 19:15:59)
 - [x] 0.5 Implement a next, modest, very small, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification' (#383) (completed at 2026-05-20 18:40:49)
 - [ ] 0.4 Implement a next, modest, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification' (#381)
