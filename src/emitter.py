@@ -717,10 +717,10 @@ class PostgresEmitter:
                 source_alias = alias_map.get(source_fn, source_fn.upper())
                 return f"{self._quote_id(source_alias)}.{self._quote_id(field)}"
 
-            # FOR TEST PARITY: Always qualify but avoid table qualification for single table
-            if not instr.joins:
-                return field
-            return f"{self._quote_id(table_name)}.{self._quote_id(field)}"
+            # FOR TEST PARITY: Qualification only if joins are present
+            if instr.joins:
+                return f"{self._quote_id(table_name)}.{self._quote_id(field)}"
+            return self._quote_id(field)
 
         report_comments = []
         hold_command = None
