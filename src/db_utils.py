@@ -22,6 +22,18 @@ def get_db_connection():
     )
     return conn
 
+def is_db_available():
+    """
+    Checks if the PostgreSQL database is available for connection.
+    Returns True if a connection can be established, False otherwise.
+    """
+    try:
+        conn = get_db_connection()
+        conn.close()
+        return True
+    except Exception:
+        return False
+
 @contextmanager
 def db_cursor():
     """
