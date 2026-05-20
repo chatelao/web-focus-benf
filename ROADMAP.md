@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] 0.4 Implement a next, modest, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification' (#381)
+- [x] 0.4 Implement a next, modest, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification' (#381) (completed at 2026-05-20 17:35:08)
 - [ ] 0.3 Implement a next, modest, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification' (#379)
 - [x] 0.2 Implement a next, modest, feasible and reasonable ROADMAP.md step of chapter '6.2 Develop a CLI tool for automated WebFOCUS code analysis' (#377) (completed at 2026-05-20 14:48:34)
 - [x] 0.1 Implement a next, modest, feasible and reasonable ROADMAP.md step of chapter '6.2 Develop a CLI tool for automated WebFOCUS code analysis' (#375) (completed at 2026-05-19 22:31:47)
@@ -89,6 +89,8 @@
   - [x] 6.3.3 Verify grammar coverage against samples
 
 ## Chapter 7: CI/CD & Verification
-- [ ] 7.1 Setup live PostgreSQL database in CI environment
-- [ ] 7.2 Implement automated fixture loading for E2E tests
+- [x] 7.1 Setup live PostgreSQL database in CI environment (completed at 2026-05-20 18:00:00)
+- [x] 7.2 Implement automated fixture loading for E2E tests (completed at 2026-05-20 18:00:00)
 - [ ] 7.3 Execute and verify transpiled PL/pgSQL on live DB
+  - [x] 7.3.1 Implement a live database verification suite that runs in CI (non-mocked) (completed at 2026-05-20 18:30:00)
+  - [ ] 7.3.2 Verify core reporting parity on the live database
