@@ -15,17 +15,19 @@ try:
     from ssa_transformer import SSATransformer
     from emitter import PostgresEmitter
     from metadata_registry import MetadataRegistry
+    from lineage_analyzer import LineageAnalyzer
 except ImportError as e:
     print(f"Error: Could not import transpiler modules. Ensure 'src' is in PYTHONPATH. {e}")
     sys.exit(1)
 
-def collect_stats(code, asg_nodes):
+def collect_stats(code, asg_nodes, cfg=None):
     """Collects metrics from the source code and ASG."""
     stats = {
         'loc': len(code.splitlines()),
         'report_requests': 0,
         'dm_commands': 0,
-        'details': {}
+        'details': {},
+        'lineage': None
     }
 
     dm_classes = (asg.Goto, asg.Label, asg.Repeat)
@@ -38,6 +40,11 @@ def collect_stats(code, asg_nodes):
             if class_name.endswith('DM') or isinstance(node, dm_classes):
                 stats['dm_commands'] += 1
                 stats['details'][class_name] = stats['details'].get(class_name, 0) + 1
+
+    if cfg:
+        analyzer = LineageAnalyzer()
+        stats['lineage'] = analyzer.analyze(cfg)
+
     return stats
 
 def calculate_complexity(cfg):
@@ -70,7 +77,7 @@ def transpile_code(code, metadata_registry):
     ssa_transformer = SSATransformer()
     ssa_transformer.transform(cfg)
 
-    stats = collect_stats(code, asg_nodes)
+    stats = collect_stats(code, asg_nodes, cfg)
     stats['complexity'] = calculate_complexity(cfg)
 
     # 5. Backend Emission
@@ -102,6 +109,15 @@ def transpile_file(input_path, output_path, metadata_registry, show_stats=False)
             for cmd, count in sorted(stats['details'].items()):
                 print(f"  - {cmd}: {count}")
             print(f"Cyclomatic Complexity: {stats['complexity']}")
+
+            if stats['lineage']:
+                print("Data Lineage:")
+                print(f"  Sources: {', '.join(stats['lineage']['sources'])}")
+                if stats['lineage']['targets']:
+                    print(f"  Targets: {', '.join(stats['lineage']['targets'])}")
+                print(f"  Fields (Select): {', '.join(stats['lineage']['fields']['select'])}")
+                print(f"  Fields (Sort): {', '.join(stats['lineage']['fields']['sort'])}")
+                print(f"  Fields (Filter): {', '.join(stats['lineage']['fields']['filter'])}")
 
         return stats
     except Exception as e:

@@ -76,7 +76,10 @@
 - [ ] 6.2 Develop a CLI tool for automated WebFOCUS code analysis
   - [x] 6.2.1 Source Code Statistics (LOC, Report and DM command counts) (completed at 2026-05-15 10:00:00)
   - [x] 6.2.2 Control Flow Analysis (Cyclomatic Complexity) (completed at 2026-05-15 10:00:00)
-  - [ ] 6.2.3 Data Lineage Analysis (Field-level usage tracking)
+  - [ ] 6.2.3 Data Lineage Analysis
+    - [x] 6.2.3.1 Field Usage Tracking (Verbs, Sorts, and Filters) (completed at 2026-05-20 14:41:08)
+    - [ ] 6.2.3.2 Virtual Field Lineage (DEFINE/COMPUTE)
+    - [ ] 6.2.3.3 Data Source and Target Mapping (TABLE FILE / HOLD)
 - [x] 6.3 Create a comprehensive test suite for the transpiler using real-world WebFOCUS samples (completed at 2026-05-03 10:15:00)
   - [x] 6.3.1 Collect and organize real-world WebFOCUS samples in `test/samples/` (completed at 2026-04-25 03:28:06)
   - [x] 6.3.2 Implement an automated test runner for samples

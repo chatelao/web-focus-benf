@@ -120,6 +120,65 @@ def find_simple_for_loop(cfg, header_name):
         'after_block': after_block
     }
 
+def collect_fields_from_component(node, mark_field_used, used_files=None):
+    """
+    Recursively collects field references from report components.
+    """
+    if node is None: return
+    class_name = node.__class__.__name__
+
+    if class_name == 'VerbCommand':
+        for f in node.fields:
+            if f.name == '*':
+                # If PRINT * is used, we must keep all files
+                if used_files is not None:
+                    used_files.add('*')
+            else:
+                mark_field_used(f.name)
+    elif class_name == 'SortCommand':
+        mark_field_used(node.field.name)
+    elif class_name == 'ComputeCommand':
+        collect_fields_from_expression(node.expression, mark_field_used)
+    elif class_name == 'WhereClause':
+        collect_fields_from_expression(node.condition, mark_field_used)
+    elif class_name == 'WhenCommand':
+        collect_fields_from_expression(node.condition, mark_field_used)
+    elif class_name == 'OnCommand':
+        for action in node.actions:
+            collect_fields_from_component(action, mark_field_used, used_files)
+
+def collect_fields_from_expression(expr, mark_field_used, source_fn=None):
+    """
+    Recursively collects field references from ASG expressions.
+    """
+    if expr is None: return
+    class_name = expr.__class__.__name__
+
+    if class_name == 'Identifier':
+        mark_field_used(expr.name, source_fn)
+    elif class_name == 'BinaryOperation':
+        collect_fields_from_expression(expr.left, mark_field_used, source_fn)
+        collect_fields_from_expression(expr.right, mark_field_used, source_fn)
+    elif class_name == 'UnaryOperation':
+        collect_fields_from_expression(expr.operand, mark_field_used, source_fn)
+    elif class_name == 'FunctionCall':
+        for arg in expr.arguments:
+            collect_fields_from_expression(arg, mark_field_used, source_fn)
+    elif class_name == 'IfExpression':
+        collect_fields_from_expression(expr.condition, mark_field_used, source_fn)
+        collect_fields_from_expression(expr.then_expr, mark_field_used, source_fn)
+        collect_fields_from_expression(expr.else_expr, mark_field_used, source_fn)
+    elif class_name == 'BetweenExpression':
+        collect_fields_from_expression(expr.expression, mark_field_used, source_fn)
+        collect_fields_from_expression(expr.lower, mark_field_used, source_fn)
+        collect_fields_from_expression(expr.upper, mark_field_used, source_fn)
+    elif class_name == 'InExpression':
+        collect_fields_from_expression(expr.expression, mark_field_used, source_fn)
+        for val in expr.values:
+            collect_fields_from_expression(val, mark_field_used, source_fn)
+    elif class_name == 'IsMissingExpression':
+        collect_fields_from_expression(expr.expression, mark_field_used, source_fn)
+
 def find_simple_while_loop(cfg, header_name):
     """
     Identifies if a block is the header of a simple REPEAT...WHILE or REPEAT...UNTIL loop.
