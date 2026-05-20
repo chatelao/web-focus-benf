@@ -57,8 +57,8 @@ class TestMatchHold(unittest.TestCase):
         sql = emitter._emit_match(match_instr)
 
         # 3. Verifications
-        self.assertIn("DROP TABLE IF EXISTS MATCH_RESULTS;", sql)
-        self.assertIn("CREATE TEMP TABLE MATCH_RESULTS AS", sql)
+        self.assertIn('DROP TABLE IF EXISTS "MATCH_RESULTS";', sql)
+        self.assertIn('CREATE TEMP TABLE "MATCH_RESULTS" AS', sql)
         self.assertIn("WITH", sql)
         self.assertIn("FULL OUTER JOIN T2", sql)
         self.assertTrue(sql.strip().endswith(";"))

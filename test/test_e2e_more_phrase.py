@@ -59,11 +59,11 @@ class TestE2EMorePhrase(unittest.TestCase):
         # Wrapping subquery
         self.assertIn('SELECT SRC."EMP_ID", SUM(SRC."SALARY") FROM (', sql)
         # Main source query
-        self.assertIn('SELECT EMP_ID AS "EMP_ID", SALARY AS "SALARY" FROM EMP1', sql)
-        self.assertIn("WHERE (DEPT = 'A')", sql)
+        self.assertIn('SELECT "EMP_ID" AS "EMP_ID", "SALARY" AS "SALARY" FROM "EMP1"', sql)
+        self.assertIn('WHERE ("DEPT" = \'A\')', sql)
         # Sub source query
-        self.assertIn('SELECT EMP2.EMP_ID AS "EMP_ID", EMP2.SALARY AS "SALARY" FROM EMP2', sql)
-        self.assertIn("WHERE (EMP2.DEPT = 'B')", sql)
+        self.assertIn('SELECT "EMP2"."EMP_ID" AS "EMP_ID", "EMP2"."SALARY" AS "SALARY" FROM "EMP2"', sql)
+        self.assertIn('WHERE ("EMP2"."DEPT" = \'B\')', sql)
         # Final aggregation
         self.assertIn('GROUP BY SRC."EMP_ID"', sql)
         self.assertIn('ORDER BY SRC."EMP_ID" ASC', sql)

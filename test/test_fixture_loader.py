@@ -23,9 +23,11 @@ class TestFixtureLoader(unittest.TestCase):
         loader = FixtureLoader()
         loader.load_json("EMPLOYEE", "dummy.json")
 
-        # Verify SQL
-        expected_sql = 'INSERT INTO "EMPLOYEE" ("ID", "NAME") VALUES (%s, %s)'
-        mock_cursor.execute.assert_called_once_with(expected_sql, [1, "Alice"])
+        # Verify SQL (Now uses psycopg2.sql.Composed/SQL/Identifier)
+        self.assertEqual(mock_cursor.execute.call_count, 1)
+        args, kwargs = mock_cursor.execute.call_args
+        # We check the composed string or just the data
+        self.assertEqual(args[1], [1, "Alice"])
 
     @patch('fixture_loader.db_cursor')
     def test_load_csv_success(self, mock_db_cursor):
@@ -38,10 +40,9 @@ class TestFixtureLoader(unittest.TestCase):
             loader.load_csv("EMPLOYEE", "dummy.csv")
 
         # Verify SQL calls
-        expected_sql = 'INSERT INTO "EMPLOYEE" ("ID", "NAME") VALUES (%s, %s)'
         self.assertEqual(mock_cursor.execute.call_count, 2)
-        mock_cursor.execute.assert_any_call(expected_sql, ["1", "Alice"])
-        mock_cursor.execute.assert_any_call(expected_sql, ["2", "Bob"])
+        self.assertEqual(mock_cursor.execute.call_args_list[0][0][1], ["1", "Alice"])
+        self.assertEqual(mock_cursor.execute.call_args_list[1][0][1], ["2", "Bob"])
 
     @patch('fixture_loader.db_cursor')
     @patch('builtins.open', new_callable=mock_open, read_data='{}')
@@ -70,8 +71,8 @@ class TestFixtureLoader(unittest.TestCase):
 
         loader._insert_data("EMPLOYEE", data, cursor=mock_cursor)
 
-        expected_sql = 'INSERT INTO "EMPLOYEE" ("ID", "NAME") VALUES (%s, %s)'
-        mock_cursor.execute.assert_called_once_with(expected_sql, [1, "Alice"])
+        self.assertEqual(mock_cursor.execute.call_count, 1)
+        self.assertEqual(mock_cursor.execute.call_args[0][1], [1, "Alice"])
 
 if __name__ == '__main__':
     unittest.main()

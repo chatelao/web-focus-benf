@@ -59,7 +59,7 @@ class TestE2EAdvancedFiltering(unittest.TestCase):
         END
         """
         sql_output = self._transpile(fex_code)
-        self.assertIn("COUNTRY IN ('ENGLAND', 'FRANCE', 'ITALY')", sql_output)
+        self.assertIn('"COUNTRY" IN (\'ENGLAND\', \'FRANCE\', \'ITALY\')', sql_output)
 
     def test_in_file_filtering(self):
         fex_code = """
@@ -72,7 +72,7 @@ class TestE2EAdvancedFiltering(unittest.TestCase):
         sql_output = self._transpile(fex_code)
         # Based on emitter.py, it should produce something like:
         # (COUNTRY IN (SELECT * FROM TOP_COUNTRIES))
-        self.assertIn("COUNTRY IN (SELECT * FROM TOP_COUNTRIES)", sql_output)
+        self.assertIn('"COUNTRY" IN (SELECT * FROM "TOP_COUNTRIES")', sql_output)
 
     def test_missing_filtering(self):
         fex_code = """
@@ -83,7 +83,7 @@ class TestE2EAdvancedFiltering(unittest.TestCase):
         END
         """
         sql_output = self._transpile(fex_code)
-        self.assertIn("SALES IS NULL", sql_output)
+        self.assertIn('"SALES" IS NULL', sql_output)
 
         fex_code_not = """
         TABLE FILE CAR
@@ -93,7 +93,7 @@ class TestE2EAdvancedFiltering(unittest.TestCase):
         END
         """
         sql_output_not = self._transpile(fex_code_not)
-        self.assertIn("SALES IS NOT NULL", sql_output_not)
+        self.assertIn('"SALES" IS NOT NULL', sql_output_not)
 
 if __name__ == '__main__':
     unittest.main()

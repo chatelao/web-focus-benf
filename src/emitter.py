@@ -343,7 +343,7 @@ class PostgresEmitter:
             expr_val = self.emit_expression(expr.expression, **kwargs)
             if hasattr(expr, 'filename') and expr.filename:
                 table_name = self._resolve_table_name(expr.filename)
-                return f"({expr_val} IN (SELECT * FROM {table_name}))"
+                return f"({expr_val} IN (SELECT * FROM \"{table_name}\"))"
             else:
                 values = [self.emit_expression(val, **kwargs) for val in expr.values]
                 return f"({expr_val} IN ({', '.join(values)}))"
@@ -682,8 +682,8 @@ class PostgresEmitter:
             right_table = self._resolve_table_name(join.right_file)
             right_alias = alias_map[join.right_file]
             left_table_alias = alias_map.get(join.left_file, join.left_file)
-            alias_part = f" {right_alias}" if right_alias != right_table else ""
-            join_clauses.append(f"{join_type} {right_table}{alias_part} ON {left_table_alias}.{join.left_field} = {right_alias}.{join.right_field}")
+            alias_part = f' "{right_alias}"' if right_alias != right_table else ""
+            join_clauses.append(f'{join_type} "{right_table}"{alias_part} ON "{left_table_alias}"."{join.left_field}" = "{right_alias}"."{join.right_field}"')
 
         select_fields = []
         where_clauses = []
@@ -700,23 +700,23 @@ class PostgresEmitter:
                 parts = fname.split('.')
                 # Qualify with alias if file name is known
                 if parts[0] in alias_map:
-                    return f"{alias_map[parts[0]]}.{parts[1]}"
-                return fname
+                    return f'"{alias_map[parts[0]]}"."{parts[1]}"'
+                return f'"{parts[0]}"."{parts[1]}"'
             if not instr.joins:
-                return fname
+                return f'"{fname}"'
 
             # If a source_fn is explicitly provided (e.g. from a virtual field context)
             if source_fn:
                 source_alias = alias_map.get(source_fn, source_fn)
-                return f"{source_alias}.{fname}"
+                return f'"{source_alias}"."{fname}"'
 
             # If it's a virtual field, we don't qualify the name itself,
             # but we will need to qualify its contents.
             if fname in report_virtual_fields:
-                return fname
+                return f'"{fname}"'
 
             # For now, let's assume it belongs to the primary table if not found in virtual fields.
-            return f"{table_name}.{fname}"
+            return f'"{table_name}"."{fname}"'
 
         report_comments = []
         hold_command = None
@@ -909,7 +909,7 @@ class PostgresEmitter:
                 return [f"{q_func(f)} AS \"{f}\"" for f in fields]
 
             primary_select = get_source_select(table_name, needed_raw_fields, qualify_field)
-            p_sql = f"SELECT {', '.join(primary_select)} FROM {table_name}"
+            p_sql = f'SELECT {", ".join(primary_select)} FROM "{table_name}"'
             if join_clauses:
                 p_sql += "\n" + "\n".join(join_clauses)
             if where_clauses:
@@ -919,9 +919,9 @@ class PostgresEmitter:
             # 2. MORE FILE sources
             for sub in instr.more_clause.sub_requests:
                 sub_t = self._resolve_table_name(sub.filename)
-                sub_q_func = lambda f: f"{sub_t}.{f}"
+                sub_q_func = lambda f: f'"{sub_t}"."{f}"'
                 sub_select = get_source_select(sub_t, needed_raw_fields, sub_q_func)
-                s_sql = f"SELECT {', '.join(sub_select)} FROM {sub_t}"
+                s_sql = f'SELECT {", ".join(sub_select)} FROM "{sub_t}"'
                 sub_where = [self.emit_expression(c.condition, in_query=True, virtual_fields=file_virtual_fields, qualifier=sub_q_func)
                              for c in sub.where_clauses]
                 if sub_where:
@@ -984,7 +984,7 @@ class PostgresEmitter:
             sql = f"/* {instr.filename} */"
             if report_comments:
                 sql += "\n" + "\n".join(report_comments)
-            sql += f"\nSELECT {', '.join(select_fields)} FROM {table_name}"
+            sql += f"\nSELECT {', '.join(select_fields)} FROM \"{table_name}\""
             if join_clauses:
                 sql += "\n" + "\n".join(join_clauses)
 
@@ -1005,8 +1005,8 @@ class PostgresEmitter:
             # Sanitize hold name for SQL table name
             hold_name = hold_name.replace('.', '_').replace('-', '_')
 
-            hold_sql = f"DROP TABLE IF EXISTS {hold_name};\n"
-            hold_sql += f"CREATE TEMP TABLE {hold_name} AS\n"
+            hold_sql = f"DROP TABLE IF EXISTS \"{hold_name}\";\n"
+            hold_sql += f"CREATE TEMP TABLE \"{hold_name}\" AS\n"
             hold_sql += sql
             sql = hold_sql
 
@@ -1021,7 +1021,7 @@ class PostgresEmitter:
                 on_conds.append(f"({left} = {right})")
             on_clause = " AND ".join(on_conds)
 
-            merge_sql = f"MERGE INTO {target_table} AS TRG\nUSING (\n"
+            merge_sql = f"MERGE INTO \"{target_table}\" AS TRG\nUSING (\n"
             merge_sql += self._indent(sql, 4) + "\n) AS SRC\n"
             merge_sql += f"ON {on_clause}\n"
 
@@ -1110,7 +1110,7 @@ class PostgresEmitter:
                         qualifier=lambda f: f"\"{f}\"" if '.' not in f else f
                     ))
 
-            sql = f"SELECT {', '.join(select_fields)} FROM {table_name}"
+            sql = f"SELECT {', '.join(select_fields)} FROM \"{table_name}\""
             if where_clauses:
                 sql += f" WHERE {' AND '.join(where_clauses)}"
             if group_by_fields:
@@ -1197,8 +1197,8 @@ class PostgresEmitter:
         if hold_command:
             hold_name = hold_command.filename or "HOLD"
             hold_name = hold_name.replace('.', '_').replace('-', '_')
-            res += f"DROP TABLE IF EXISTS {hold_name};\n"
-            res += f"CREATE TEMP TABLE {hold_name} AS\n"
+            res += f"DROP TABLE IF EXISTS \"{hold_name}\";\n"
+            res += f"CREATE TEMP TABLE \"{hold_name}\" AS\n"
             res += query + ";"
         else:
             res += query + ";"

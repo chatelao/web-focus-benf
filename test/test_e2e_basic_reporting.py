@@ -59,9 +59,9 @@ class TestE2EBasicReporting(unittest.TestCase):
         # 8. Verifications
         self.assertIn("CREATE OR REPLACE PROCEDURE", sql_output)
         self.assertIn("SELECT", sql_output)
-        self.assertIn("FROM CAR", sql_output) # It seems it's not quoted in current emitter implementation
-        self.assertIn("WHERE (PRICE > 10000)", sql_output)
-        self.assertIn("ORDER BY COUNTRY ASC", sql_output)
+        self.assertIn('FROM "CAR"', sql_output)
+        self.assertIn('WHERE ("PRICE" > 10000)', sql_output)
+        self.assertIn('ORDER BY "COUNTRY" ASC', sql_output)
         # Checking for the specific SQL generated for basic reporting
         self.assertIn("CAR", sql_output)
         self.assertIn("MODEL", sql_output)
@@ -107,11 +107,11 @@ class TestE2EBasicReporting(unittest.TestCase):
         sql_output = emitter.emit(cfg)
 
         # 8. Verifications
-        self.assertIn("SUM(UNITS)", sql_output)
-        self.assertIn("SUM(DOLLARS)", sql_output)
-        self.assertIn("FROM SALES", sql_output)
-        self.assertIn("WHERE (MONTH = 'JAN')", sql_output)
-        self.assertIn("GROUP BY REGION, MONTH", sql_output)
+        self.assertIn('SUM("UNITS")', sql_output)
+        self.assertIn('SUM("DOLLARS")', sql_output)
+        self.assertIn('FROM "SALES"', sql_output)
+        self.assertIn('WHERE ("MONTH" = \'JAN\')', sql_output)
+        self.assertIn('GROUP BY "REGION", "MONTH"', sql_output)
 
 if __name__ == '__main__':
     unittest.main()

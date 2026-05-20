@@ -1,5 +1,6 @@
 import json
 import csv
+from psycopg2 import sql
 from db_utils import db_cursor
 
 class FixtureLoader:
@@ -49,18 +50,20 @@ class FixtureLoader:
         # Use the keys from the first dictionary as column names
         columns = list(data[0].keys())
 
-        # Prepare the INSERT statement
-        col_str = ", ".join([f'"{c}"' for c in columns])
-        placeholders = ", ".join(["%s"] * len(columns))
-        sql = f'INSERT INTO "{table_name.upper()}" ({col_str}) VALUES ({placeholders})'
+        # Prepare the INSERT statement using psycopg2.sql for safe identifier handling
+        query = sql.SQL("INSERT INTO {} ({}) VALUES ({})").format(
+            sql.Identifier(table_name.upper()),
+            sql.SQL(", ").join(map(sql.Identifier, columns)),
+            sql.SQL(", ").join([sql.Placeholder()] * len(columns))
+        )
 
         if cursor:
-            self._execute_insert(cursor, sql, data, columns)
+            self._execute_insert(cursor, query, data, columns)
         else:
             with db_cursor() as cursor:
-                self._execute_insert(cursor, sql, data, columns)
+                self._execute_insert(cursor, query, data, columns)
 
-    def _execute_insert(self, cursor, sql, data, columns):
+    def _execute_insert(self, cursor, query, data, columns):
         for row in data:
             values = [row.get(c) for c in columns]
-            cursor.execute(sql, values)
+            cursor.execute(query, values)

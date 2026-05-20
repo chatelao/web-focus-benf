@@ -55,8 +55,8 @@ class TestE2EDataIntegration(unittest.TestCase):
         END
         """
         sql = self._run_e2e(fex_code)
-        self.assertIn("JOIN COUNTRY J1 ON CAR.COUNTRY = J1.COUNTRY", sql)
-        self.assertIn("SELECT CAR.CAR, CAR.MODEL, J1.COUNTRY", sql)
+        self.assertIn('JOIN "COUNTRY" "J1" ON "CAR"."COUNTRY" = "J1"."COUNTRY"', sql)
+        self.assertIn('SELECT "CAR"."CAR", "CAR"."MODEL", "J1"."COUNTRY"', sql)
 
     def test_left_outer_join(self):
         fex_code = """
@@ -66,7 +66,7 @@ class TestE2EDataIntegration(unittest.TestCase):
         END
         """
         sql = self._run_e2e(fex_code)
-        self.assertIn("LEFT OUTER JOIN COUNTRY J1 ON CAR.COUNTRY = J1.COUNTRY", sql)
+        self.assertIn('LEFT OUTER JOIN "COUNTRY" "J1" ON "CAR"."COUNTRY" = "J1"."COUNTRY"', sql)
 
     def test_virtual_field_lifting_from_joined_table(self):
         fex_code = """
@@ -81,8 +81,8 @@ class TestE2EDataIntegration(unittest.TestCase):
         sql = self._run_e2e(fex_code)
         # IS_EUROPE expression should be lifted from COUNTRY file context.
         # Inside the expression, 'COUNTRY' should be qualified as 'J1.COUNTRY'.
-        self.assertIn("(CASE WHEN ((((J1.COUNTRY = 'ENGLAND') OR (J1.COUNTRY = 'FRANCE')) OR (J1.COUNTRY = 'ITALY')) OR (J1.COUNTRY = 'W GERMANY')) THEN 'YES' ELSE 'NO' END) AS \"IS_EUROPE\"", sql)
-        self.assertIn("JOIN COUNTRY J1 ON CAR.COUNTRY = J1.COUNTRY", sql)
+        self.assertIn('(CASE WHEN (((("J1"."COUNTRY" = \'ENGLAND\') OR ("J1"."COUNTRY" = \'FRANCE\')) OR ("J1"."COUNTRY" = \'ITALY\')) OR ("J1"."COUNTRY" = \'W GERMANY\')) THEN \'YES\' ELSE \'NO\' END) AS "IS_EUROPE"', sql)
+        self.assertIn('JOIN "COUNTRY" "J1" ON "CAR"."COUNTRY" = "J1"."COUNTRY"', sql)
 
     def test_chained_joins(self):
         fex_code = """
@@ -93,9 +93,9 @@ class TestE2EDataIntegration(unittest.TestCase):
         END
         """
         sql = self._run_e2e(fex_code)
-        self.assertIn("JOIN COUNTRY J1 ON CAR.COUNTRY = J1.COUNTRY", sql)
-        self.assertIn("JOIN REGION J2 ON J1.COUNTRY = J2.COUNTRY", sql)
-        self.assertIn("SELECT CAR.CAR, J2.REGION", sql)
+        self.assertIn('JOIN "COUNTRY" "J1" ON "CAR"."COUNTRY" = "J1"."COUNTRY"', sql)
+        self.assertIn('JOIN "REGION" "J2" ON "J1"."COUNTRY" = "J2"."COUNTRY"', sql)
+        self.assertIn('SELECT "CAR"."CAR", "J2"."REGION"', sql)
 
 if __name__ == '__main__':
     unittest.main()

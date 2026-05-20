@@ -79,7 +79,7 @@ class TestDecode(unittest.TestCase):
 
         # In reports, fields are often qualified or aggregated.
         # Here DEPARTMENT is not in BY, so it's wrapped in SUM() because the report is aggregating (SUM SALARY).
-        self.assertIn("(CASE SUM(DEPARTMENT) WHEN 'MIS' THEN 'Mgmt' WHEN 'PROD' THEN 'Prod' ELSE 'Other' END)", sql)
+        self.assertIn("(CASE SUM(\"DEPARTMENT\") WHEN 'MIS' THEN 'Mgmt' WHEN 'PROD' THEN 'Prod' ELSE 'Other' END)", sql)
 
 if __name__ == '__main__':
     unittest.main()
