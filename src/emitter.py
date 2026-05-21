@@ -715,7 +715,25 @@ class PostgresEmitter:
             if fname in report_virtual_fields:
                 return f'"{fname}"'
 
-            # For now, let's assume it belongs to the primary table if not found in virtual fields.
+            # Resolve using metadata if available
+            if self.metadata_registry:
+                # Check primary table
+                master = self.metadata_registry.get_master_file(filename)
+                if master:
+                    for seg in master.segments:
+                        if any(f.name.upper() == fname.upper() for f in seg.fields):
+                            return f'"{table_name}"."{fname}"'
+
+                # Check joined tables
+                for join in instr.joins:
+                    join_master = self.metadata_registry.get_master_file(join.right_file)
+                    if join_master:
+                        for seg in join_master.segments:
+                            if any(f.name.upper() == fname.upper() for f in seg.fields):
+                                alias = alias_map.get(join.right_file, join.right_file)
+                                return f'"{alias}"."{fname}"'
+
+            # Fallback to primary table
             return f'"{table_name}"."{fname}"'
 
         report_comments = []
