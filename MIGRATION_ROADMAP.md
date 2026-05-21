@@ -334,6 +334,7 @@ Ensure the generated PL/pgSQL code is not only syntactically correct but also ex
     - [x] 7.3.2.4 Implement live database parity verification suite. (Completed: `test/test_live_parity.py` updated with aggregation tests)
     - [x] 7.3.2.5 Verify JOIN and multi-table parity on live DB.
     - [x] 7.3.2.6 Verify calculated fields (DEFINE/COMPUTE) parity on live DB.
+    - [x] 7.3.2.7 Verify WHERE and WHERE TOTAL (HAVING) parity on live DB.
   - [x] 7.3.3 Implement comprehensive error reporting for runtime failures (e.g., SQL syntax errors, type mismatches during execution). (Implemented in `src/runtime_runner.py`)
 
 ## Phase 8: Operational Excellence
