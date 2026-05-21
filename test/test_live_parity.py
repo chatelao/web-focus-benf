@@ -281,5 +281,86 @@ class TestLiveParity(unittest.TestCase):
             if os.path.exists(f2_fixture):
                 os.remove(f2_fixture)
 
+    @unittest.skipUnless(is_db_available(), "PostgreSQL not available")
+    def test_calculated_fields_parity(self):
+        """
+        Verify DEFINE and COMPUTE parity on a live database.
+        """
+        # 1. Define Metadata
+        registry = MetadataRegistry()
+        f1 = MasterFile(name="CALC_DATA")
+        s1 = Segment(name="CALC_DATA")
+        s1.fields = [
+            Field(name="PRODUCT", alias="PROD", usage="A20"),
+            Field(name="AMOUNT", alias="AMT", usage="I8")
+        ]
+        f1.segments = [s1]
+        registry.register_master_file(f1)
+
+        # 2. Prepare Fixtures
+        sample_data = [
+            {"PRODUCT": "Widgets", "AMOUNT": 100},
+            {"PRODUCT": "Gadgets", "AMOUNT": 200},
+        ]
+        fixture_path = "calc_test_fixtures.json"
+        with open(fixture_path, "w") as f:
+            json.dump(sample_data, f)
+
+        try:
+            # 3. Transpile
+            fex_code = """
+            DEFINE FILE CALC_DATA
+            TAX = AMOUNT * 0.1;
+            END
+            TABLE FILE CALC_DATA
+            SUM AMOUNT TAX
+            COMPUTE TOTAL = AMOUNT + TAX;
+            BY PRODUCT
+            ON TABLE HOLD AS CALC_RESULTS
+            END
+            """
+            input_stream = InputStream(fex_code)
+            lexer = WebFocusReportLexer(input_stream)
+            token_stream = CommonTokenStream(lexer)
+            parser = WebFocusReportParser(token_stream)
+            tree = parser.start()
+
+            asg_nodes = ReportASGBuilder().visit(tree)
+            cfg = IRBuilder().build(asg_nodes)
+            SSATransformer().transform(cfg)
+
+            emitter = PostgresEmitter(metadata_registry=registry)
+            sql_procedure = emitter.emit(cfg, "calc_parity_proc")
+
+            # 4. Execute on Live DB
+            with RuntimeRunner() as runner:
+                with runner.conn.cursor() as cursor:
+                    cursor.execute('DROP TABLE IF EXISTS "CALC_DATA" CASCADE;')
+                    cursor.execute('DROP TABLE IF EXISTS "CALC_RESULTS" CASCADE;')
+
+                runner.setup_schema([f1])
+                runner.load_fixtures([("CALC_DATA", fixture_path)])
+                runner.run_procedure(sql_procedure, "calc_parity_proc")
+                results = runner.fetch_table("CALC_RESULTS")
+
+            # 5. Verify
+            self.assertEqual(len(results), 2)
+
+            # Find Gadgets: AMT=200, TAX=20, TOTAL=220
+            gadgets = next(r for r in results if r['PRODUCT'].strip() == 'Gadgets')
+            self.assertEqual(float(gadgets['AMOUNT']), 200.0)
+            self.assertEqual(float(gadgets['TAX']), 20.0)
+            self.assertEqual(float(gadgets['TOTAL']), 220.0)
+
+            # Find Widgets: AMT=100, TAX=10, TOTAL=110
+            widgets = next(r for r in results if r['PRODUCT'].strip() == 'Widgets')
+            self.assertEqual(float(widgets['AMOUNT']), 100.0)
+            self.assertEqual(float(widgets['TAX']), 10.0)
+            self.assertEqual(float(widgets['TOTAL']), 110.0)
+
+        finally:
+            if os.path.exists(fixture_path):
+                os.remove(fixture_path)
+
 if __name__ == '__main__':
     unittest.main()
