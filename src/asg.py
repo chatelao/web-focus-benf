@@ -299,6 +299,9 @@ class Segment(DataModelNode):
 class Field(DataModelNode):
     """Represents a field within a segment."""
     def __init__(self, name, alias=None, format=None, **kwargs):
+        # Treat 'usage' as an alias for 'format' if format is not provided
+        if format is None and 'usage' in kwargs:
+            format = kwargs.pop('usage')
         super().__init__(name=name, alias=alias, format=format, **kwargs)
 
 class CompoundLayout(Statement):
