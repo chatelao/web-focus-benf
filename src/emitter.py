@@ -853,6 +853,10 @@ class PostgresEmitter:
                 elif is_virtual:
                     # If it's a virtual field, use its name as alias for the expression
                     sql_expr = f"{sql_expr} AS \"{field_name}\""
+                elif field_sel.prefix_operators or vc.verb in aggregating_verbs:
+                    # Aggregated fields need an alias to be predictable
+                    alias_name = field_name.split('.')[-1]
+                    sql_expr = f"{sql_expr} AS \"{alias_name}\""
                 elif merge_cmd:
                     # Ensure the column has a predictable name for MERGE
                     alias_name = field_name.split('.')[-1]

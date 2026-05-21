@@ -140,8 +140,8 @@ class TestRuntimeRunner(unittest.TestCase):
         self.assertTrue(mock_cursor.execute.called)
 
         expected = [
-            {'id': 1, 'name': 'Alice'},
-            {'id': 2, 'name': 'Bob'}
+            {'ID': 1, 'NAME': 'Alice'},
+            {'ID': 2, 'NAME': 'Bob'}
         ]
         self.assertEqual(results, expected)
 

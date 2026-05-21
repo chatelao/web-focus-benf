@@ -305,7 +305,7 @@ class TestEmitter(unittest.TestCase):
 
         sql = emitter.emit_instruction(instr)
 
-        self.assertIn('SELECT SUM("SALES"), (SUM("SALES") / 1000) AS "RATIO"', sql)
+        self.assertIn('SELECT SUM("SALES") AS "SALES", (SUM("SALES") / 1000) AS "RATIO"', sql)
 
     def test_emit_instruction_define_and_lift(self):
         emitter = PostgresEmitter()
@@ -329,7 +329,7 @@ class TestEmitter(unittest.TestCase):
 
         sql = emitter.emit_instruction(report)
 
-        self.assertIn('SELECT SUM("SALES"), SUM(("SALES" * 0.1)) AS "BONUS"', sql)
+        self.assertIn('SELECT SUM("SALES") AS "SALES", SUM(("SALES" * 0.1)) AS "BONUS"', sql)
 
     def test_emit_instruction_define_recursive_lifting(self):
         emitter = PostgresEmitter()
