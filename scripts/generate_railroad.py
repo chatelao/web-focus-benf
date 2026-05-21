@@ -194,6 +194,36 @@ def post_process_xhtml(filepath, metadata=None):
         border-left: 3px solid #002b80;
         padding-left: 10px;
     }
+    .used-by-container {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-family: 'Verdana', sans-serif;
+        font-size: 11px;
+    }
+    .used-by-header {
+        font-weight: bold;
+        color: #666;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        display: inline-block;
+        margin-right: 8px;
+    }
+    .used-by-link {
+        color: #4D88FF;
+        text-decoration: none;
+        margin-right: 10px;
+        background-color: #f0f5ff;
+        padding: 2px 6px;
+        border-radius: 3px;
+        border: 1px solid #d0d7de;
+        display: inline-block;
+        margin-bottom: 4px;
+    }
+    .used-by-link:hover {
+        text-decoration: underline;
+        background-color: #eef4ff;
+        border-color: #002b80;
+    }
     """
 
     # The RR tool embeds CSS in every SVG. We'll append our overrides to the main head style block
@@ -343,13 +373,15 @@ def wrap_rules_in_containers(content, metadata):
         description = meta.get("description", "")
         category = meta.get("category") or "Other Rules"
         examples = meta.get("examples") or []
+        used_by = meta.get("used_by") or []
 
         rule_blocks.append({
             "name": rule_name,
             "body": rule_body.strip(),
             "description": description,
             "category": category,
-            "examples": examples
+            "examples": examples,
+            "used_by": used_by
         })
 
     # Group by category
@@ -372,6 +404,7 @@ def wrap_rules_in_containers(content, metadata):
             rule_name = block["name"]
             description = block["description"]
             examples = block["examples"]
+            used_by = block["used_by"]
             safe_desc_attr = html.escape(description)
 
             new_content += f'   <div class="rule-container" id="{rule_name}" data-rule="{rule_name}" data-description="{safe_desc_attr}">\n'
@@ -379,6 +412,13 @@ def wrap_rules_in_containers(content, metadata):
             if description:
                 safe_desc_html = html.escape(description).replace('\n', '<br/>')
                 new_content += f'      <div class="rule-description">{safe_desc_html}</div>\n'
+
+            if used_by:
+                new_content += '      <div class="used-by-container">\n'
+                new_content += '          <div class="used-by-header">Used By:</div>\n'
+                for ref in sorted(used_by):
+                    new_content += f'          <a href="#{ref}" class="used-by-link">{html.escape(ref)}</a>\n'
+                new_content += '      </div>\n'
 
             if examples:
                 new_content += '      <div class="rule-example-container">\n'

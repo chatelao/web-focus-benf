@@ -344,6 +344,36 @@
         border-left: 3px solid #002b80;
         padding-left: 10px;
     }
+    .used-by-container {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-family: 'Verdana', sans-serif;
+        font-size: 11px;
+    }
+    .used-by-header {
+        font-weight: bold;
+        color: #666;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        display: inline-block;
+        margin-right: 8px;
+    }
+    .used-by-link {
+        color: #4D88FF;
+        text-decoration: none;
+        margin-right: 10px;
+        background-color: #f0f5ff;
+        padding: 2px 6px;
+        border-radius: 3px;
+        border: 1px solid #d0d7de;
+        display: inline-block;
+        margin-bottom: 4px;
+    }
+    .used-by-link:hover {
+        text-decoration: underline;
+        background-color: #eef4ff;
+        border-color: #002b80;
+    }
       </style><svg xmlns="http://www.w3.org/2000/svg">
          <defs>
             <style type="text/css">
@@ -450,6 +480,11 @@
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">no references</xhtml:p>
    </div>
    <div class="rule-container" id="layout_value" data-rule="layout_value" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compound_layout_block" class="used-by-link">compound_layout_block</a>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="layout_value">layout_value:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="633" height="599">
          <defs>
             <style type="text/css">
@@ -560,6 +595,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="define_file" data-rule="define_file" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compound_layout_block" class="used-by-link">compound_layout_block</a>
+          <a href="#start" class="used-by-link">start</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="define_file">define_file:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="605" height="71">
          <defs>
             <style type="text/css">
@@ -621,6 +661,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="define_assignment" data-rule="define_assignment" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#define_file" class="used-by-link">define_file</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="define_assignment">define_assignment:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="667" height="69">
          <defs>
             <style type="text/css">
@@ -683,6 +727,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="compute_command" data-rule="compute_command" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#request" class="used-by-link">request</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="compute_command">compute_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="937" height="155">
          <defs>
             <style type="text/css">
@@ -755,6 +804,13 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="recap_command" data-rule="recap_command" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#on_field_options" class="used-by-link">on_field_options</a>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+          <a href="#request" class="used-by-link">request</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="recap_command">recap_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="319" height="53">
          <defs>
             <style type="text/css">
@@ -809,6 +865,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="recap_assignment" data-rule="recap_assignment" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#recap_command" class="used-by-link">recap_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="recap_assignment">recap_assignment:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="845" height="201">
          <defs>
             <style type="text/css">
@@ -881,6 +941,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="recap_option" data-rule="recap_option" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#recap_assignment" class="used-by-link">recap_assignment</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="recap_option">recap_option:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="263" height="125">
          <defs>
             <style type="text/css">
@@ -939,6 +1003,15 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="format_name" data-rule="format_name" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compute_command" class="used-by-link">compute_command</a>
+          <a href="#define_assignment" class="used-by-link">define_assignment</a>
+          <a href="#dm_read" class="used-by-link">dm_read</a>
+          <a href="#field" class="used-by-link">field</a>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+          <a href="#recap_assignment" class="used-by-link">recap_assignment</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="format_name">format_name:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="421" height="147">
          <defs>
             <style type="text/css">
@@ -1003,6 +1076,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="set_value" data-rule="set_value" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#set_command" class="used-by-link">set_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="set_value">set_value:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="239" height="81">
          <defs>
             <style type="text/css">
@@ -1055,6 +1132,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="hyphenated_name" data-rule="hyphenated_name" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#set_command" class="used-by-link">set_command</a>
+          <a href="#set_value" class="used-by-link">set_value</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="hyphenated_name">hyphenated_name:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="621" height="4425">
          <defs>
             <style type="text/css">
@@ -1710,6 +1792,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dm_token" data-rule="dm_token" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#hyphenated_name" class="used-by-link">hyphenated_name</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_token">dm_token:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="203" height="389">
          <defs>
             <style type="text/css">
@@ -1789,6 +1875,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dm_read" data-rule="dm_read" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_command" class="used-by-link">dm_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_read">dm_read:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="765" height="101">
          <defs>
             <style type="text/css">
@@ -1850,6 +1940,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dm_write" data-rule="dm_write" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_command" class="used-by-link">dm_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_write">dm_write:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="975" height="403">
          <defs>
             <style type="text/css">
@@ -1941,6 +2035,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dm_default" data-rule="dm_default" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_command" class="used-by-link">dm_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_default">dm_default:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="601" height="125">
          <defs>
             <style type="text/css">
@@ -2007,6 +2105,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dm_set" data-rule="dm_set" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_command" class="used-by-link">dm_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_set">dm_set:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="519" height="69">
          <defs>
             <style type="text/css">
@@ -2066,6 +2168,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dm_goto" data-rule="dm_goto" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_command" class="used-by-link">dm_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_goto">dm_goto:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="299" height="69">
          <defs>
             <style type="text/css">
@@ -2119,6 +2225,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dm_repeat" data-rule="dm_repeat" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_command" class="used-by-link">dm_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_repeat">dm_repeat:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="2079" height="1005">
          <defs>
             <style type="text/css">
@@ -2347,6 +2457,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dm_label" data-rule="dm_label" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_command" class="used-by-link">dm_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_label">dm_label:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="145" height="37">
          <defs>
             <style type="text/css">
@@ -2394,6 +2508,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dm_if" data-rule="dm_if" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_command" class="used-by-link">dm_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_if">dm_if:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="961" height="113">
          <defs>
             <style type="text/css">
@@ -2466,6 +2584,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dm_type" data-rule="dm_type" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_command" class="used-by-link">dm_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_type">dm_type:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="827" height="403">
          <defs>
             <style type="text/css">
@@ -2554,6 +2676,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dm_include" data-rule="dm_include" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_command" class="used-by-link">dm_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_include">dm_include:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="385" height="69">
          <defs>
             <style type="text/css">
@@ -2608,6 +2734,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dm_run" data-rule="dm_run" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_command" class="used-by-link">dm_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_run">dm_run:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="217" height="69">
          <defs>
             <style type="text/css">
@@ -2658,6 +2788,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dm_exit" data-rule="dm_exit" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_command" class="used-by-link">dm_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_exit">dm_exit:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="219" height="69">
          <defs>
             <style type="text/css">
@@ -2708,6 +2842,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dm_htmlform" data-rule="dm_htmlform" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_command" class="used-by-link">dm_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_htmlform">dm_htmlform:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="435" height="113">
          <defs>
             <style type="text/css">
@@ -2766,6 +2904,14 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dm_logical_expression" data-rule="dm_logical_expression" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_if" class="used-by-link">dm_if</a>
+          <a href="#dm_if_expression" class="used-by-link">dm_if_expression</a>
+          <a href="#dm_repeat" class="used-by-link">dm_repeat</a>
+          <a href="#when_command" class="used-by-link">when_command</a>
+          <a href="#where_command" class="used-by-link">where_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_logical_expression">dm_logical_expression:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="595" height="213">
          <defs>
             <style type="text/css">
@@ -2842,6 +2988,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dm_relational_expression" data-rule="dm_relational_expression" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_logical_expression" class="used-by-link">dm_logical_expression</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_relational_expression">dm_relational_expression:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="965" height="1989">
          <defs>
             <style type="text/css">
@@ -3057,6 +3207,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dm_relational_op" data-rule="dm_relational_op" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_relational_expression" class="used-by-link">dm_relational_expression</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_relational_op">dm_relational_op:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="521" height="881">
          <defs>
             <style type="text/css">
@@ -3184,6 +3338,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dm_unary_expression" data-rule="dm_unary_expression" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_relational_expression" class="used-by-link">dm_relational_expression</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_unary_expression">dm_unary_expression:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="655" height="449">
          <defs>
             <style type="text/css">
@@ -3273,6 +3431,14 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="decode_expression" data-rule="decode_expression" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_repeat" class="used-by-link">dm_repeat</a>
+          <a href="#dm_type" class="used-by-link">dm_type</a>
+          <a href="#dm_unary_expression" class="used-by-link">dm_unary_expression</a>
+          <a href="#dm_write" class="used-by-link">dm_write</a>
+          <a href="#show_command" class="used-by-link">show_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="decode_expression">decode_expression:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="1159" height="1219">
          <defs>
             <style type="text/css">
@@ -3484,6 +3650,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="field_list" data-rule="field_list" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#verb_command" class="used-by-link">verb_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="field_list">field_list:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="333" height="135">
          <defs>
             <style type="text/css">
@@ -3538,6 +3708,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="field_separator" data-rule="field_separator" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#field_list" class="used-by-link">field_list</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="field_separator">field_separator:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="253" height="157">
          <defs>
             <style type="text/css">
@@ -3598,6 +3772,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="field_or_prefixed" data-rule="field_or_prefixed" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#field_list" class="used-by-link">field_list</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="field_or_prefixed">field_or_prefixed:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="345" height="729">
          <defs>
             <style type="text/css">
@@ -3698,6 +3876,13 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="field" data-rule="field" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#across_command" class="used-by-link">across_command</a>
+          <a href="#by_command" class="used-by-link">by_command</a>
+          <a href="#field_or_prefixed" class="used-by-link">field_or_prefixed</a>
+          <a href="#summarize_command" class="used-by-link">summarize_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="field">field:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="537" height="69">
          <defs>
             <style type="text/css">
@@ -3756,6 +3941,15 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="as_phrase" data-rule="as_phrase" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#across_command" class="used-by-link">across_command</a>
+          <a href="#compute_command" class="used-by-link">compute_command</a>
+          <a href="#field" class="used-by-link">field</a>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+          <a href="#recap_option" class="used-by-link">recap_option</a>
+          <a href="#summarize_command" class="used-by-link">summarize_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="as_phrase">as_phrase:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="183" height="37">
          <defs>
             <style type="text/css">
@@ -3812,6 +4006,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="across_command" data-rule="across_command" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#request" class="used-by-link">request</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="across_command">across_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="829" height="101">
          <defs>
             <style type="text/css">
@@ -3876,6 +4075,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="when_command" data-rule="when_command" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#request" class="used-by-link">request</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="when_command">when_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="389" height="69">
          <defs>
             <style type="text/css">
@@ -3931,6 +4135,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="show_command" data-rule="show_command" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#request" class="used-by-link">request</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="show_command">show_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="949" height="771">
          <defs>
             <style type="text/css">
@@ -4070,6 +4279,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="sort_options" data-rule="sort_options" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#across_command" class="used-by-link">across_command</a>
+          <a href="#by_command" class="used-by-link">by_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="sort_options">sort_options:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="353" height="213">
          <defs>
             <style type="text/css">
@@ -4135,6 +4349,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="footing_command" data-rule="footing_command" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#request" class="used-by-link">request</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="footing_command">footing_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="401" height="85">
          <defs>
             <style type="text/css">
@@ -4190,6 +4409,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="on_command" data-rule="on_command" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#request" class="used-by-link">request</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="on_command">on_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="423" height="81">
          <defs>
             <style type="text/css">
@@ -4251,6 +4475,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="on_table_options" data-rule="on_table_options" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#on_command" class="used-by-link">on_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="on_table_options">on_table_options:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="1101" height="4875">
          <defs>
             <style type="text/css">
@@ -4686,6 +4914,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="on_field_options" data-rule="on_field_options" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#on_command" class="used-by-link">on_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="on_field_options">on_field_options:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="483" height="229">
          <defs>
             <style type="text/css">
@@ -4755,6 +4987,14 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="summarize_command" data-rule="summarize_command" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#by_command" class="used-by-link">by_command</a>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#on_field_options" class="used-by-link">on_field_options</a>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+          <a href="#request" class="used-by-link">request</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="summarize_command">summarize_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="659" height="169">
          <defs>
             <style type="text/css">
@@ -4824,6 +5064,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="summarize_options" data-rule="summarize_options" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#summarize_command" class="used-by-link">summarize_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="summarize_options">summarize_options:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="479" height="757">
          <defs>
             <style type="text/css">
@@ -4977,6 +5221,12 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="output_command" data-rule="output_command" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compound_layout_block" class="used-by-link">compound_layout_block</a>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="output_command">output_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="785" height="169">
          <defs>
             <style type="text/css">
@@ -5056,6 +5306,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="merge_command" data-rule="merge_command" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="merge_command">merge_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="773" height="155">
          <defs>
             <style type="text/css">
@@ -5122,6 +5376,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="matching_clause" data-rule="matching_clause" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#merge_command" class="used-by-link">merge_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="matching_clause">matching_clause:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="609" height="113">
          <defs>
             <style type="text/css">
@@ -5185,6 +5443,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="when_matched_clause" data-rule="when_matched_clause" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#merge_command" class="used-by-link">merge_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="when_matched_clause">when_matched_clause:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="775" height="85">
          <defs>
             <style type="text/css">
@@ -5251,6 +5513,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="when_not_matched_clause" data-rule="when_not_matched_clause" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#merge_command" class="used-by-link">merge_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="when_not_matched_clause">when_not_matched_clause:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="839" height="85">
          <defs>
             <style type="text/css">
@@ -5320,6 +5586,35 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="qualified_name" data-rule="qualified_name" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compute_command" class="used-by-link">compute_command</a>
+          <a href="#decode_expression" class="used-by-link">decode_expression</a>
+          <a href="#define_assignment" class="used-by-link">define_assignment</a>
+          <a href="#define_file" class="used-by-link">define_file</a>
+          <a href="#dm_htmlform" class="used-by-link">dm_htmlform</a>
+          <a href="#dm_include" class="used-by-link">dm_include</a>
+          <a href="#dm_read" class="used-by-link">dm_read</a>
+          <a href="#dm_relational_expression" class="used-by-link">dm_relational_expression</a>
+          <a href="#dm_repeat" class="used-by-link">dm_repeat</a>
+          <a href="#dm_type" class="used-by-link">dm_type</a>
+          <a href="#dm_unary_expression" class="used-by-link">dm_unary_expression</a>
+          <a href="#dm_write" class="used-by-link">dm_write</a>
+          <a href="#field" class="used-by-link">field</a>
+          <a href="#join_command" class="used-by-link">join_command</a>
+          <a href="#layout_value" class="used-by-link">layout_value</a>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#matching_clause" class="used-by-link">matching_clause</a>
+          <a href="#merge_command" class="used-by-link">merge_command</a>
+          <a href="#on_command" class="used-by-link">on_command</a>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+          <a href="#output_command" class="used-by-link">output_command</a>
+          <a href="#recap_assignment" class="used-by-link">recap_assignment</a>
+          <a href="#request" class="used-by-link">request</a>
+          <a href="#show_command" class="used-by-link">show_command</a>
+          <a href="#when_matched_clause" class="used-by-link">when_matched_clause</a>
+          <a href="#when_not_matched_clause" class="used-by-link">when_not_matched_clause</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="qualified_name">qualified_name:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="287" height="4305">
          <defs>
             <style type="text/css">
@@ -5701,6 +5996,11 @@
    <div class="rule-container" id="SET_DM" data-rule="SET_DM" data-description="Keywords
 -SET command">
       <div class="rule-description">Keywords<br/>-SET command</div>
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_set" class="used-by-link">dm_set</a>
+          <a href="#dm_token" class="used-by-link">dm_token</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="SET_DM">SET_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="149" height="37">
          <defs>
             <style type="text/css">
@@ -5754,6 +6054,11 @@
    </div>
    <div class="rule-container" id="GOTO_DM" data-rule="GOTO_DM" data-description="-GOTO command">
       <div class="rule-description">-GOTO command</div>
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_goto" class="used-by-link">dm_goto</a>
+          <a href="#dm_token" class="used-by-link">dm_token</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="GOTO_DM">GOTO_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="165" height="37">
          <defs>
             <style type="text/css">
@@ -5806,6 +6111,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="REPEAT_DM" data-rule="REPEAT_DM" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_repeat" class="used-by-link">dm_repeat</a>
+          <a href="#dm_token" class="used-by-link">dm_token</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="REPEAT_DM">REPEAT_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="177" height="37">
          <defs>
             <style type="text/css">
@@ -5859,6 +6169,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="IF_DM" data-rule="IF_DM" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_if" class="used-by-link">dm_if</a>
+          <a href="#dm_token" class="used-by-link">dm_token</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="IF_DM">IF_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="139" height="37">
          <defs>
             <style type="text/css">
@@ -5911,6 +6226,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="TYPE_DM" data-rule="TYPE_DM" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_token" class="used-by-link">dm_token</a>
+          <a href="#dm_type" class="used-by-link">dm_type</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="TYPE_DM">TYPE_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="159" height="37">
          <defs>
             <style type="text/css">
@@ -5963,6 +6283,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="INCLUDE_DM" data-rule="INCLUDE_DM" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_include" class="used-by-link">dm_include</a>
+          <a href="#dm_token" class="used-by-link">dm_token</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="INCLUDE_DM">INCLUDE_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="185" height="37">
          <defs>
             <style type="text/css">
@@ -6016,6 +6341,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="HTMLFORM_DM" data-rule="HTMLFORM_DM" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_htmlform" class="used-by-link">dm_htmlform</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="HTMLFORM_DM">HTMLFORM_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="201" height="37">
          <defs>
             <style type="text/css">
@@ -6068,6 +6397,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="HTMLFORM_BLOCK" data-rule="HTMLFORM_BLOCK" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_htmlform" class="used-by-link">dm_htmlform</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="HTMLFORM_BLOCK">HTMLFORM_BLOCK:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="865" height="159">
          <defs>
             <style type="text/css">
@@ -6153,6 +6486,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="READ_DM" data-rule="READ_DM" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_read" class="used-by-link">dm_read</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="READ_DM">READ_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="161" height="37">
          <defs>
             <style type="text/css">
@@ -6204,6 +6541,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="WRITE_DM" data-rule="WRITE_DM" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_write" class="used-by-link">dm_write</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="WRITE_DM">WRITE_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="171" height="37">
          <defs>
             <style type="text/css">
@@ -6255,6 +6596,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="DEFAULT_DM" data-rule="DEFAULT_DM" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_default" class="used-by-link">dm_default</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="DEFAULT_DM">DEFAULT_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="185" height="37">
          <defs>
             <style type="text/css">
@@ -6307,6 +6652,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="DEFAULTS_DM" data-rule="DEFAULTS_DM" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_default" class="used-by-link">dm_default</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="DEFAULTS_DM">DEFAULTS_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="195" height="37">
          <defs>
             <style type="text/css">
@@ -6359,6 +6708,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="DEFAULTH_DM" data-rule="DEFAULTH_DM" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_default" class="used-by-link">dm_default</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="DEFAULTH_DM">DEFAULTH_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="195" height="37">
          <defs>
             <style type="text/css">
@@ -6411,6 +6764,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="RUN_DM" data-rule="RUN_DM" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_run" class="used-by-link">dm_run</a>
+          <a href="#dm_token" class="used-by-link">dm_token</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="RUN_DM">RUN_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="153" height="37">
          <defs>
             <style type="text/css">
@@ -6463,6 +6821,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="EXIT_DM" data-rule="EXIT_DM" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_exit" class="used-by-link">dm_exit</a>
+          <a href="#dm_token" class="used-by-link">dm_token</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="EXIT_DM">EXIT_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="157" height="37">
          <defs>
             <style type="text/css">
@@ -6515,6 +6878,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="SUB_TOTAL" data-rule="SUB_TOTAL" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#summarize_command" class="used-by-link">summarize_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="SUB_TOTAL">SUB_TOTAL:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="237" height="37">
          <defs>
             <style type="text/css">
@@ -6570,6 +6937,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="COLUMN_TOTAL_KW" data-rule="COLUMN_TOTAL_KW" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="COLUMN_TOTAL_KW">COLUMN_TOTAL_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="267" height="37">
          <defs>
             <style type="text/css">
@@ -6625,6 +6996,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="ROW_TOTAL_KW" data-rule="ROW_TOTAL_KW" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="ROW_TOTAL_KW">ROW_TOTAL_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="243" height="37">
          <defs>
             <style type="text/css">
@@ -6680,6 +7055,14 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="ACROSS_TOTAL" data-rule="ACROSS_TOTAL" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#across_command" class="used-by-link">across_command</a>
+          <a href="#compound_layout_block" class="used-by-link">compound_layout_block</a>
+          <a href="#hyphenated_name" class="used-by-link">hyphenated_name</a>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+          <a href="#qualified_name" class="used-by-link">qualified_name</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="ACROSS_TOTAL">ACROSS_TOTAL:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="265" height="37">
          <defs>
             <style type="text/css">
@@ -6739,6 +7122,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="IS_NOT" data-rule="IS_NOT" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_relational_expression" class="used-by-link">dm_relational_expression</a>
+          <a href="#dm_relational_op" class="used-by-link">dm_relational_op</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="IS_NOT">IS_NOT:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="209" height="37">
          <defs>
             <style type="text/css">
@@ -6794,6 +7182,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="IS_FROM" data-rule="IS_FROM" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_relational_expression" class="used-by-link">dm_relational_expression</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="IS_FROM">IS_FROM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="221" height="37">
          <defs>
             <style type="text/css">
@@ -6848,6 +7240,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="NOT_FROM" data-rule="NOT_FROM" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_relational_expression" class="used-by-link">dm_relational_expression</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="NOT_FROM">NOT_FROM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="233" height="37">
          <defs>
             <style type="text/css">
@@ -6902,6 +7298,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="IS_LESS_THAN" data-rule="IS_LESS_THAN" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_relational_op" class="used-by-link">dm_relational_op</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="IS_LESS_THAN">IS_LESS_THAN:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="339" height="37">
          <defs>
             <style type="text/css">
@@ -6963,6 +7363,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="IS_MORE_THAN" data-rule="IS_MORE_THAN" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_relational_op" class="used-by-link">dm_relational_op</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="IS_MORE_THAN">IS_MORE_THAN:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="345" height="37">
          <defs>
             <style type="text/css">
@@ -7024,6 +7428,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="IS_GREATER_THAN" data-rule="IS_GREATER_THAN" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_relational_op" class="used-by-link">dm_relational_op</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="IS_GREATER_THAN">IS_GREATER_THAN:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="367" height="37">
          <defs>
             <style type="text/css">
@@ -7085,6 +7493,14 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="OLD_OR_NEW_KW" data-rule="OLD_OR_NEW_KW" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compound_layout_block" class="used-by-link">compound_layout_block</a>
+          <a href="#hyphenated_name" class="used-by-link">hyphenated_name</a>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+          <a href="#qualified_name" class="used-by-link">qualified_name</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="OLD_OR_NEW_KW">OLD_OR_NEW_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="331" height="37">
          <defs>
             <style type="text/css">
@@ -7150,6 +7566,14 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="OLD_AND_NEW_KW" data-rule="OLD_AND_NEW_KW" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compound_layout_block" class="used-by-link">compound_layout_block</a>
+          <a href="#hyphenated_name" class="used-by-link">hyphenated_name</a>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+          <a href="#qualified_name" class="used-by-link">qualified_name</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="OLD_AND_NEW_KW">OLD_AND_NEW_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="339" height="37">
          <defs>
             <style type="text/css">
@@ -7215,6 +7639,14 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="OLD_NOT_NEW_KW" data-rule="OLD_NOT_NEW_KW" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compound_layout_block" class="used-by-link">compound_layout_block</a>
+          <a href="#hyphenated_name" class="used-by-link">hyphenated_name</a>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+          <a href="#qualified_name" class="used-by-link">qualified_name</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="OLD_NOT_NEW_KW">OLD_NOT_NEW_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="339" height="37">
          <defs>
             <style type="text/css">
@@ -7280,6 +7712,14 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="NEW_NOT_OLD_KW" data-rule="NEW_NOT_OLD_KW" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compound_layout_block" class="used-by-link">compound_layout_block</a>
+          <a href="#hyphenated_name" class="used-by-link">hyphenated_name</a>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+          <a href="#qualified_name" class="used-by-link">qualified_name</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="NEW_NOT_OLD_KW">NEW_NOT_OLD_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="339" height="37">
          <defs>
             <style type="text/css">
@@ -7345,6 +7785,14 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="OLD_NOR_NEW_KW" data-rule="OLD_NOR_NEW_KW" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compound_layout_block" class="used-by-link">compound_layout_block</a>
+          <a href="#hyphenated_name" class="used-by-link">hyphenated_name</a>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+          <a href="#qualified_name" class="used-by-link">qualified_name</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="OLD_NOR_NEW_KW">OLD_NOR_NEW_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="341" height="37">
          <defs>
             <style type="text/css">
@@ -7410,6 +7858,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="LABEL_DM" data-rule="LABEL_DM" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_label" class="used-by-link">dm_label</a>
+          <a href="#dm_token" class="used-by-link">dm_token</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="LABEL_DM">LABEL_DM:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="329" height="291">
          <defs>
             <style type="text/css">
@@ -7528,6 +7981,22 @@
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">no references</xhtml:p>
    </div>
    <div class="rule-container" id="EQ" data-rule="EQ" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compound_layout_block" class="used-by-link">compound_layout_block</a>
+          <a href="#compute_command" class="used-by-link">compute_command</a>
+          <a href="#define_assignment" class="used-by-link">define_assignment</a>
+          <a href="#dm_default" class="used-by-link">dm_default</a>
+          <a href="#dm_relational_expression" class="used-by-link">dm_relational_expression</a>
+          <a href="#dm_relational_op" class="used-by-link">dm_relational_op</a>
+          <a href="#dm_set" class="used-by-link">dm_set</a>
+          <a href="#matching_clause" class="used-by-link">matching_clause</a>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+          <a href="#recap_assignment" class="used-by-link">recap_assignment</a>
+          <a href="#set_command" class="used-by-link">set_command</a>
+          <a href="#when_matched_clause" class="used-by-link">when_matched_clause</a>
+          <a href="#when_not_matched_clause" class="used-by-link">when_not_matched_clause</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="EQ">EQ:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="137" height="81">
          <defs>
             <style type="text/css">
@@ -7592,6 +8061,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="NE" data-rule="NE" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_relational_expression" class="used-by-link">dm_relational_expression</a>
+          <a href="#dm_relational_op" class="used-by-link">dm_relational_op</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="NE">NE:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="137" height="81">
          <defs>
             <style type="text/css">
@@ -7645,6 +8119,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="LT" data-rule="LT" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_relational_op" class="used-by-link">dm_relational_op</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="LT">LT:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="135" height="81">
          <defs>
             <style type="text/css">
@@ -7697,6 +8175,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="GT" data-rule="GT" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_relational_op" class="used-by-link">dm_relational_op</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="GT">GT:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="137" height="81">
          <defs>
             <style type="text/css">
@@ -7749,6 +8231,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="LE" data-rule="LE" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_relational_op" class="used-by-link">dm_relational_op</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="LE">LE:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="139" height="81">
          <defs>
             <style type="text/css">
@@ -7801,6 +8287,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="GE" data-rule="GE" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_relational_op" class="used-by-link">dm_relational_op</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="GE">GE:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="139" height="81">
          <defs>
             <style type="text/css">
@@ -7853,6 +8343,14 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="PAGE_BREAK" data-rule="PAGE_BREAK" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compound_layout_block" class="used-by-link">compound_layout_block</a>
+          <a href="#hyphenated_name" class="used-by-link">hyphenated_name</a>
+          <a href="#on_field_options" class="used-by-link">on_field_options</a>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+          <a href="#qualified_name" class="used-by-link">qualified_name</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="PAGE_BREAK">PAGE_BREAK:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="245" height="37">
          <defs>
             <style type="text/css">
@@ -7912,6 +8410,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="ROLL_DOT" data-rule="ROLL_DOT" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#summarize_options" class="used-by-link">summarize_options</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="ROLL_DOT">ROLL_DOT:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="159" height="37">
          <defs>
             <style type="text/css">
@@ -7963,6 +8465,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="CONCAT" data-rule="CONCAT" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_relational_expression" class="used-by-link">dm_relational_expression</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="CONCAT">CONCAT:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="131" height="81">
          <defs>
             <style type="text/css">
@@ -8015,6 +8521,20 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="NUMBER" data-rule="NUMBER" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#decode_expression" class="used-by-link">decode_expression</a>
+          <a href="#dm_repeat" class="used-by-link">dm_repeat</a>
+          <a href="#dm_type" class="used-by-link">dm_type</a>
+          <a href="#dm_unary_expression" class="used-by-link">dm_unary_expression</a>
+          <a href="#dm_write" class="used-by-link">dm_write</a>
+          <a href="#format_name" class="used-by-link">format_name</a>
+          <a href="#hyphenated_name" class="used-by-link">hyphenated_name</a>
+          <a href="#layout_value" class="used-by-link">layout_value</a>
+          <a href="#recap_option" class="used-by-link">recap_option</a>
+          <a href="#show_command" class="used-by-link">show_command</a>
+          <a href="#sort_options" class="used-by-link">sort_options</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="NUMBER">NUMBER:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="161" height="53">
          <defs>
             <style type="text/css">
@@ -8073,6 +8593,24 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="STRING" data-rule="STRING" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#as_phrase" class="used-by-link">as_phrase</a>
+          <a href="#decode_expression" class="used-by-link">decode_expression</a>
+          <a href="#dm_repeat" class="used-by-link">dm_repeat</a>
+          <a href="#dm_type" class="used-by-link">dm_type</a>
+          <a href="#dm_unary_expression" class="used-by-link">dm_unary_expression</a>
+          <a href="#dm_write" class="used-by-link">dm_write</a>
+          <a href="#footing_command" class="used-by-link">footing_command</a>
+          <a href="#heading_command" class="used-by-link">heading_command</a>
+          <a href="#layout_value" class="used-by-link">layout_value</a>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#on_field_options" class="used-by-link">on_field_options</a>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+          <a href="#request" class="used-by-link">request</a>
+          <a href="#set_value" class="used-by-link">set_value</a>
+          <a href="#show_command" class="used-by-link">show_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="STRING">STRING:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="511" height="149">
          <defs>
             <style type="text/css">
@@ -8157,6 +8695,19 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="AMPER_VAR" data-rule="AMPER_VAR" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#decode_expression" class="used-by-link">decode_expression</a>
+          <a href="#dm_default" class="used-by-link">dm_default</a>
+          <a href="#dm_read" class="used-by-link">dm_read</a>
+          <a href="#dm_repeat" class="used-by-link">dm_repeat</a>
+          <a href="#dm_set" class="used-by-link">dm_set</a>
+          <a href="#dm_type" class="used-by-link">dm_type</a>
+          <a href="#dm_unary_expression" class="used-by-link">dm_unary_expression</a>
+          <a href="#dm_write" class="used-by-link">dm_write</a>
+          <a href="#hyphenated_name" class="used-by-link">hyphenated_name</a>
+          <a href="#show_command" class="used-by-link">show_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="AMPER_VAR">AMPER_VAR:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="383" height="291">
          <defs>
             <style type="text/css">
@@ -8239,6 +8790,19 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="NAME" data-rule="NAME" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compound_layout_block" class="used-by-link">compound_layout_block</a>
+          <a href="#dm_goto" class="used-by-link">dm_goto</a>
+          <a href="#dm_if" class="used-by-link">dm_if</a>
+          <a href="#dm_repeat" class="used-by-link">dm_repeat</a>
+          <a href="#format_name" class="used-by-link">format_name</a>
+          <a href="#hyphenated_name" class="used-by-link">hyphenated_name</a>
+          <a href="#join_command" class="used-by-link">join_command</a>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+          <a href="#output_command" class="used-by-link">output_command</a>
+          <a href="#qualified_name" class="used-by-link">qualified_name</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="NAME">NAME:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="283" height="291">
          <defs>
             <style type="text/css">
@@ -8371,6 +8935,11 @@
    </div>
    <div class="category-header">Report Requests</div>
    <div class="rule-container" id="request" data-rule="request" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compound_layout_block" class="used-by-link">compound_layout_block</a>
+          <a href="#start" class="used-by-link">start</a>
+      </div>
       <div class="rule-example-container">
           <div class="rule-example-header">Examples</div>
           <code class="rule-example">TABLE FILE CAR PRINT * END</code>
@@ -8485,6 +9054,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="match_request" data-rule="match_request" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#start" class="used-by-link">start</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="match_request">match_request:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="1805" height="1857">
          <defs>
             <style type="text/css">
@@ -8685,6 +9258,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="compound_layout_block" data-rule="compound_layout_block" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#start" class="used-by-link">start</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="compound_layout_block">compound_layout_block:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="945" height="4663">
          <defs>
             <style type="text/css">
@@ -9085,6 +9662,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="verb_command" data-rule="verb_command" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#request" class="used-by-link">request</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="verb_command">verb_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="239" height="81">
          <defs>
             <style type="text/css">
@@ -9141,6 +9723,11 @@
    </div>
    <div class="rule-container" id="verb" data-rule="verb" data-description="Supported report verbs.">
       <div class="rule-description">Supported report verbs.</div>
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#output_command" class="used-by-link">output_command</a>
+          <a href="#verb_command" class="used-by-link">verb_command</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="verb">verb:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="167" height="257">
          <defs>
             <style type="text/css">
@@ -9210,6 +9797,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="by_command" data-rule="by_command" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#request" class="used-by-link">request</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="by_command">by_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="981" height="69">
          <defs>
             <style type="text/css">
@@ -9276,6 +9868,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="where_command" data-rule="where_command" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#request" class="used-by-link">request</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="where_command">where_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="521" height="69">
          <defs>
             <style type="text/css">
@@ -9334,6 +9931,11 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="heading_command" data-rule="heading_command" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#request" class="used-by-link">request</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="heading_command">heading_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="401" height="85">
          <defs>
             <style type="text/css">
@@ -9390,6 +9992,11 @@
    </div>
    <div class="category-header">Environment</div>
    <div class="rule-container" id="join_command" data-rule="join_command" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compound_layout_block" class="used-by-link">compound_layout_block</a>
+          <a href="#start" class="used-by-link">start</a>
+      </div>
       <div class="rule-example-container">
           <div class="rule-example-header">Examples</div>
           <code class="rule-example">JOIN CAR.BODY.COUNTRY TO ALL COUNTRY.COUNTRY.COUNTRY AS J1</code>
@@ -9484,6 +10091,12 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="set_command" data-rule="set_command" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compound_layout_block" class="used-by-link">compound_layout_block</a>
+          <a href="#on_table_options" class="used-by-link">on_table_options</a>
+          <a href="#start" class="used-by-link">start</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="set_command">set_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="585" height="101">
          <defs>
             <style type="text/css">
@@ -9547,6 +10160,13 @@
    </div>
    <div class="category-header">Dialogue Manager</div>
    <div class="rule-container" id="dm_command" data-rule="dm_command" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compound_layout_block" class="used-by-link">compound_layout_block</a>
+          <a href="#match_request" class="used-by-link">match_request</a>
+          <a href="#request" class="used-by-link">request</a>
+          <a href="#start" class="used-by-link">start</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_command">dm_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="203" height="565">
          <defs>
             <style type="text/css">
@@ -9647,6 +10267,23 @@
    </div>
    <div class="category-header">Expressions</div>
    <div class="rule-container" id="dm_expression" data-rule="dm_expression" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compute_command" class="used-by-link">compute_command</a>
+          <a href="#decode_expression" class="used-by-link">decode_expression</a>
+          <a href="#define_assignment" class="used-by-link">define_assignment</a>
+          <a href="#dm_default" class="used-by-link">dm_default</a>
+          <a href="#dm_if_expression" class="used-by-link">dm_if_expression</a>
+          <a href="#dm_repeat" class="used-by-link">dm_repeat</a>
+          <a href="#dm_set" class="used-by-link">dm_set</a>
+          <a href="#dm_type" class="used-by-link">dm_type</a>
+          <a href="#dm_unary_expression" class="used-by-link">dm_unary_expression</a>
+          <a href="#dm_write" class="used-by-link">dm_write</a>
+          <a href="#recap_assignment" class="used-by-link">recap_assignment</a>
+          <a href="#show_command" class="used-by-link">show_command</a>
+          <a href="#when_matched_clause" class="used-by-link">when_matched_clause</a>
+          <a href="#when_not_matched_clause" class="used-by-link">when_not_matched_clause</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_expression">dm_expression:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="191" height="37">
          <defs>
             <style type="text/css">
@@ -9708,6 +10345,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dm_if_expression" data-rule="dm_if_expression" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#dm_expression" class="used-by-link">dm_expression</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dm_if_expression">dm_if_expression:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="737" height="81">
          <defs>
             <style type="text/css">
