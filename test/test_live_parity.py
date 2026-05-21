@@ -177,5 +177,109 @@ class TestLiveParity(unittest.TestCase):
             if os.path.exists(fixture_path):
                 os.remove(fixture_path)
 
+    @unittest.skipUnless(is_db_available(), "PostgreSQL not available")
+    def test_join_parity(self):
+        """
+        Verify multi-table JOIN parity on a live database.
+        """
+        # 1. Define Metadata
+        registry = MetadataRegistry()
+
+        # Primary File
+        f1 = MasterFile(name="ORDERS")
+        s1 = Segment(name="ORDERS")
+        s1.fields = [
+            Field(name="ORDER_ID", alias="OID", usage="I8"),
+            Field(name="PROD_ID", alias="PID", usage="I8"),
+            Field(name="QTY", alias="QTY", usage="I8")
+        ]
+        f1.segments = [s1]
+        registry.register_master_file(f1)
+
+        # Joined File
+        f2 = MasterFile(name="PRODUCTS")
+        s2 = Segment(name="PRODUCTS")
+        s2.fields = [
+            Field(name="PROD_ID", alias="PID", usage="I8"),
+            Field(name="PROD_NAME", alias="PNAME", usage="A20")
+        ]
+        f2.segments = [s2]
+        registry.register_master_file(f2)
+
+        # 2. Prepare Fixtures
+        orders_data = [
+            {"ORDER_ID": 101, "PROD_ID": 1, "QTY": 5},
+            {"ORDER_ID": 102, "PROD_ID": 2, "QTY": 3},
+        ]
+        products_data = [
+            {"PROD_ID": 1, "PROD_NAME": "Widget"},
+            {"PROD_ID": 2, "PROD_NAME": "Gadget"},
+        ]
+
+        f1_fixture = "orders_fixtures.json"
+        f2_fixture = "products_fixtures.json"
+
+        with open(f1_fixture, "w") as f:
+            json.dump(orders_data, f)
+        with open(f2_fixture, "w") as f:
+            json.dump(products_data, f)
+
+        try:
+            # 3. Transpile
+            fex_code = """
+            JOIN PROD_ID IN ORDERS TO PROD_ID IN PRODUCTS AS J1
+            TABLE FILE ORDERS
+            PRINT ORDER_ID PROD_NAME QTY
+            ON TABLE HOLD AS JOIN_RESULTS
+            END
+            """
+            input_stream = InputStream(fex_code)
+            lexer = WebFocusReportLexer(input_stream)
+            token_stream = CommonTokenStream(lexer)
+            parser = WebFocusReportParser(token_stream)
+            tree = parser.start()
+
+            asg_nodes = ReportASGBuilder().visit(tree)
+            cfg = IRBuilder().build(asg_nodes)
+            SSATransformer().transform(cfg)
+
+            emitter = PostgresEmitter(metadata_registry=registry)
+            sql_procedure = emitter.emit(cfg, "join_parity_proc")
+
+            # 4. Execute on Live DB
+            with RuntimeRunner() as runner:
+                with runner.conn.cursor() as cursor:
+                    cursor.execute('DROP TABLE IF EXISTS "ORDERS" CASCADE;')
+                    cursor.execute('DROP TABLE IF EXISTS "PRODUCTS" CASCADE;')
+                    cursor.execute('DROP TABLE IF EXISTS "JOIN_RESULTS" CASCADE;')
+
+                runner.setup_schema([f1, f2])
+                runner.load_fixtures([
+                    ("ORDERS", f1_fixture),
+                    ("PRODUCTS", f2_fixture)
+                ])
+                runner.run_procedure(sql_procedure, "join_parity_proc")
+                results = runner.fetch_table("JOIN_RESULTS")
+
+            # 5. Verify
+            self.assertEqual(len(results), 2)
+
+            # Sort by ORDER_ID for consistent verification
+            results.sort(key=lambda x: x['ORDER_ID'])
+
+            self.assertEqual(results[0]['ORDER_ID'], 101)
+            self.assertEqual(results[0]['PROD_NAME'].strip(), "Widget")
+            self.assertEqual(results[0]['QTY'], 5)
+
+            self.assertEqual(results[1]['ORDER_ID'], 102)
+            self.assertEqual(results[1]['PROD_NAME'].strip(), "Gadget")
+            self.assertEqual(results[1]['QTY'], 3)
+
+        finally:
+            if os.path.exists(f1_fixture):
+                os.remove(f1_fixture)
+            if os.path.exists(f2_fixture):
+                os.remove(f2_fixture)
+
 if __name__ == '__main__':
     unittest.main()
