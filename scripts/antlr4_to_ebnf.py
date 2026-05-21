@@ -2,7 +2,7 @@ import re
 import sys
 
 class Rule:
-    def __init__(self, name, body, tags, description="", is_fragment=False, is_lexer=False, category=None):
+    def __init__(self, name, body, tags, description="", is_fragment=False, is_lexer=False, category=None, examples=None):
         self.name = name
         self.body = body
         self.tags = tags
@@ -10,6 +10,7 @@ class Rule:
         self.is_fragment = is_fragment
         self.is_lexer = is_lexer
         self.category = category
+        self.examples = examples or []
 
 def convert_antlr_to_ebnf(antlr_content):
     """
@@ -18,54 +19,73 @@ def convert_antlr_to_ebnf(antlr_content):
     # Rule regex that handles strings correctly.
     rule_regex = r'(?m)^\s*(fragment\s+)?([a-zA-Z]\w*)\s*:\s*((?:\'(?:\'\'|[^\'])*\'|"(?:\"\"|[^\"])*"|[^;])+)\s*;'
 
+
     rules = {}
 
     # 1. Extraction
+    last_end = 0
     for match in re.finditer(rule_regex, antlr_content):
         fragment, name, body = match.groups()
         start_pos = match.start()
 
         # Search for tags and descriptions in the comments before this rule
-        prev_content = antlr_content[:start_pos]
-        last_semi = prev_content.rfind(';')
-        if last_semi == -1:
-            search_window = prev_content
-        else:
-            search_window = prev_content[last_semi:]
+        # We look back to the previous rule's end or start of file.
+        search_window = antlr_content[last_end:start_pos]
+        last_end = match.end()
 
-        tags = [t[1:] for t in re.findall(r'@\w+', search_window)]
+        # Extract all comments in the search window to look for tags
+        comments_list = re.findall(r'/\*.*?\*/|//[^\r\n]*', search_window, re.DOTALL)
 
-        # Extract category if present
-        category_match = re.search(r'@category\s+([^\r\n*]+)', search_window)
-        category = category_match.group(1).strip() if category_match else None
+        # Pre-process comments to extract tags and examples
+        tags = []
+        category = None
+        examples = []
+
+        for comment in comments_list:
+            if comment.startswith('//'):
+                content = comment[2:]
+            else:
+                content = comment[2:-2]
+
+            # Clean up content (remove leading *)
+            lines = [line.strip().lstrip('*').strip() for line in content.split('\n')]
+            clean_content = "\n".join(lines)
+
+            tags.extend([t[1:] for t in re.findall(r'@\w+', clean_content)])
+
+            # Remove tags from description extraction by cleaning them out
+            tag_free_content = re.sub(r'@\w+(\s+[^\r\n]*)?', '', clean_content).strip()
+
+            cat_match = re.search(r'@category\s+([^\r\n]+)', clean_content)
+            if cat_match and not category:
+                category = cat_match.group(1).strip()
+
+            examples.extend([m.group(1).strip() for m in re.finditer(r'@example\s+([^\r\n]+)', clean_content)])
 
         # Extract description (all comments that are not tags)
-        description = ""
-        # Find all comments: /* ... */ or // ...
-        # Using (?ms) for multiline and dotall, but // should only match until end of line.
-        comment_matches = re.findall(r'/\*.*?\*/|//[^\r\n]*', search_window, re.DOTALL)
-        if comment_matches:
-            description_lines = []
-            for comment in comment_matches:
-                # Strip // or /* */
-                if comment.startswith('//'):
-                    line = comment[2:].strip()
-                else:
-                    line = comment[2:-2].strip()
+        description_lines = []
+        for comment in comments_list:
+            if comment.startswith('//'):
+                content = comment[2:]
+            else:
+                content = comment[2:-2]
 
-                # Clean up individual lines in multiline comments
-                lines = [l.strip().lstrip('*').strip() for l in line.split('\n')]
-                # Filter out lines that only contain tags
-                filtered_lines = [l for l in lines if l and not re.match(r'^\s*@\w+(\s+[^\r\n*]+)?\s*$', l)]
-                if filtered_lines:
-                    description_lines.extend(filtered_lines)
+            lines = [line.strip().lstrip('*').strip() for line in content.split('\n')]
+            for line in lines:
+                # Skip lines that are just tags
+                if not line or re.match(r'^\s*@\w+(\s+[^\r\n]*)?$', line):
+                    continue
+                # Clean tags from lines that might have them and other text (though unlikely)
+                clean_line = re.sub(r'@\w+(\s+[^\r\n]*)?', '', line).strip()
+                if clean_line:
+                    description_lines.append(clean_line)
 
-            description = "\n".join(description_lines).strip()
+        description = "\n".join(description_lines).strip()
 
         is_lexer = name[0].isupper()
         body = format_body(body, is_lexer=is_lexer)
 
-        rules[name] = Rule(name, body, tags, description=description, is_fragment=bool(fragment), is_lexer=is_lexer, category=category)
+        rules[name] = Rule(name, body, tags, description=description, is_fragment=bool(fragment), is_lexer=is_lexer, category=category, examples=examples)
 
     # 2. Inlining
     to_inline = [name for name, rule in rules.items() if 'inline' in rule.tags or 'internal' in rule.tags]
@@ -248,8 +268,9 @@ if __name__ == "__main__":
         metadata = {
             name: {
                 "description": rule.description,
-                "category": rule.category
-            } for name, rule in rules.items() if rule.description or rule.category
+                "category": rule.category,
+                "examples": rule.examples
+            } for name, rule in rules.items() if rule.description or rule.category or rule.examples
         }
         with open(args.metadata, 'w') as f:
             json.dump(metadata, f, indent=2)
