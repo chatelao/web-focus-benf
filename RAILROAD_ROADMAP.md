@@ -61,10 +61,11 @@ This document outlines the tasks required to implement the automated railroad di
 
 ## Phase 7: Advanced Documentation Features
 - [x] 7.1 Implement cross-references (links) between rules in railroad diagrams.
+- [x] 7.2 Implement 'Used By' back-references for each rule.
 
 ## Phase 8: Content Enrichment
 - [x] 8.1 Extract and display rule descriptions from ANTLR4 comments.
-- [ ] 8.2 Extract and display rule examples from @example tags.
+- [x] 8.2 Extract and display rule examples from @example tags.
 
 ## Phase 9: Advanced Rule Organization & Search
 - [x] 9.1 Implement rule categorization using `@category` tags.

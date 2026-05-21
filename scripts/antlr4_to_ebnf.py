@@ -2,7 +2,7 @@ import re
 import sys
 
 class Rule:
-    def __init__(self, name, body, tags, description="", is_fragment=False, is_lexer=False, category=None, examples=None):
+    def __init__(self, name, body, tags, description="", is_fragment=False, is_lexer=False, category=None, examples=None, used_by=None):
         self.name = name
         self.body = body
         self.tags = tags
@@ -11,6 +11,7 @@ class Rule:
         self.is_lexer = is_lexer
         self.category = category
         self.examples = examples or []
+        self.used_by = used_by or []
 
 def convert_antlr_to_ebnf(antlr_content):
     """
@@ -146,16 +147,27 @@ def convert_antlr_to_ebnf(antlr_content):
         if not any_changed:
             break
 
-    # 3. Final Formatting
-    ebnf_rules = []
+    # 3. Back-references calculation
+    final_names = []
     for name, rule in rules.items():
-        # A rule is removed if it was successfully inlined into something else,
-        # OR if it was tagged for inlining/pruning and is NOT recursive (safe to remove).
         if name in actually_inlined:
             continue
         if (name in to_inline) and not re.search(rf'\b{name}\b', rule.body):
             continue
+        final_names.append(name)
 
+    for name in final_names:
+        pattern = re.compile(rf'\b{name}\b')
+        for other_name in final_names:
+            if name == other_name:
+                continue
+            if pattern.search(rules[other_name].body):
+                rules[name].used_by.append(other_name)
+
+    # 4. Final Formatting
+    ebnf_rules = []
+    for name in final_names:
+        rule = rules[name]
         ebnf_rules.append(f"{name} ::= {rule.body}")
 
     return "\n".join(ebnf_rules), rules
@@ -269,8 +281,9 @@ if __name__ == "__main__":
             name: {
                 "description": rule.description,
                 "category": rule.category,
-                "examples": rule.examples
-            } for name, rule in rules.items() if rule.description or rule.category or rule.examples
+                "examples": rule.examples,
+                "used_by": rule.used_by
+            } for name, rule in rules.items() if rule.description or rule.category or rule.examples or rule.used_by
         }
         with open(args.metadata, 'w') as f:
             json.dump(metadata, f, indent=2)

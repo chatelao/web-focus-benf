@@ -344,6 +344,36 @@
         border-left: 3px solid #002b80;
         padding-left: 10px;
     }
+    .used-by-container {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-family: 'Verdana', sans-serif;
+        font-size: 11px;
+    }
+    .used-by-header {
+        font-weight: bold;
+        color: #666;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        display: inline-block;
+        margin-right: 8px;
+    }
+    .used-by-link {
+        color: #4D88FF;
+        text-decoration: none;
+        margin-right: 10px;
+        background-color: #f0f5ff;
+        padding: 2px 6px;
+        border-radius: 3px;
+        border: 1px solid #d0d7de;
+        display: inline-block;
+        margin-bottom: 4px;
+    }
+    .used-by-link:hover {
+        text-decoration: underline;
+        background-color: #eef4ff;
+        border-color: #002b80;
+    }
       </style><svg xmlns="http://www.w3.org/2000/svg">
          <defs>
             <style type="text/css">
@@ -432,6 +462,10 @@
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">no references</xhtml:p>
    </div>
    <div class="rule-container" id="item" data-rule="item" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#start" class="used-by-link">start</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="item">item:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="409" height="181">
          <defs>
             <style type="text/css">
@@ -489,6 +523,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="declaration" data-rule="declaration" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#item" class="used-by-link">item</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="declaration">declaration:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="409" height="533">
          <defs>
             <style type="text/css">
@@ -579,6 +617,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="variable_decl" data-rule="variable_decl" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#declaration" class="used-by-link">declaration</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="variable_decl">variable_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="619" height="503">
          <defs>
             <style type="text/css">
@@ -658,6 +700,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="define_decl" data-rule="define_decl" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#declaration" class="used-by-link">declaration</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="define_decl">define_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="939" height="1025">
          <defs>
             <style type="text/css">
@@ -799,6 +845,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="compute_decl" data-rule="compute_decl" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#declaration" class="used-by-link">declaration</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="compute_decl">compute_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="955" height="1025">
          <defs>
             <style type="text/css">
@@ -940,6 +990,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="other_decl" data-rule="other_decl" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#declaration" class="used-by-link">declaration</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="other_decl">other_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="957" height="459">
          <defs>
             <style type="text/css">
@@ -1032,6 +1086,12 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="FILENAME_KW" data-rule="FILENAME_KW" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compute_decl" class="used-by-link">compute_decl</a>
+          <a href="#define_decl" class="used-by-link">define_decl</a>
+          <a href="#file_decl" class="used-by-link">file_decl</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="FILENAME_KW">FILENAME_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="189" height="81">
          <defs>
             <style type="text/css">
@@ -1087,6 +1147,12 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="SEGNAME_KW" data-rule="SEGNAME_KW" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compute_decl" class="used-by-link">compute_decl</a>
+          <a href="#define_decl" class="used-by-link">define_decl</a>
+          <a href="#segment_decl" class="used-by-link">segment_decl</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="SEGNAME_KW">SEGNAME_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="185" height="81">
          <defs>
             <style type="text/css">
@@ -1142,6 +1208,12 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="FIELDNAME_KW" data-rule="FIELDNAME_KW" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compute_decl" class="used-by-link">compute_decl</a>
+          <a href="#define_decl" class="used-by-link">define_decl</a>
+          <a href="#field_decl" class="used-by-link">field_decl</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="FIELDNAME_KW">FIELDNAME_KW:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="199" height="81">
          <defs>
             <style type="text/css">
@@ -1197,6 +1269,18 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="ATTR" data-rule="ATTR" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compute_decl" class="used-by-link">compute_decl</a>
+          <a href="#define_decl" class="used-by-link">define_decl</a>
+          <a href="#dimension_decl" class="used-by-link">dimension_decl</a>
+          <a href="#field_decl" class="used-by-link">field_decl</a>
+          <a href="#file_decl" class="used-by-link">file_decl</a>
+          <a href="#hierarchy_decl" class="used-by-link">hierarchy_decl</a>
+          <a href="#other_decl" class="used-by-link">other_decl</a>
+          <a href="#segment_decl" class="used-by-link">segment_decl</a>
+          <a href="#variable_decl" class="used-by-link">variable_decl</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="ATTR">ATTR:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="283" height="335">
          <defs>
             <style type="text/css">
@@ -1274,6 +1358,18 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="UNQUOTED_VALUE" data-rule="UNQUOTED_VALUE" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compute_decl" class="used-by-link">compute_decl</a>
+          <a href="#define_decl" class="used-by-link">define_decl</a>
+          <a href="#dimension_decl" class="used-by-link">dimension_decl</a>
+          <a href="#field_decl" class="used-by-link">field_decl</a>
+          <a href="#file_decl" class="used-by-link">file_decl</a>
+          <a href="#hierarchy_decl" class="used-by-link">hierarchy_decl</a>
+          <a href="#other_decl" class="used-by-link">other_decl</a>
+          <a href="#segment_decl" class="used-by-link">segment_decl</a>
+          <a href="#variable_decl" class="used-by-link">variable_decl</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="UNQUOTED_VALUE">UNQUOTED_VALUE:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="201" height="757">
          <defs>
             <style type="text/css">
@@ -1379,6 +1475,18 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="STRING" data-rule="STRING" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compute_decl" class="used-by-link">compute_decl</a>
+          <a href="#define_decl" class="used-by-link">define_decl</a>
+          <a href="#dimension_decl" class="used-by-link">dimension_decl</a>
+          <a href="#field_decl" class="used-by-link">field_decl</a>
+          <a href="#file_decl" class="used-by-link">file_decl</a>
+          <a href="#hierarchy_decl" class="used-by-link">hierarchy_decl</a>
+          <a href="#other_decl" class="used-by-link">other_decl</a>
+          <a href="#segment_decl" class="used-by-link">segment_decl</a>
+          <a href="#variable_decl" class="used-by-link">variable_decl</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="STRING">STRING:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="383" height="119">
          <defs>
             <style type="text/css">
@@ -1458,6 +1566,20 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="WS" data-rule="WS" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#compute_decl" class="used-by-link">compute_decl</a>
+          <a href="#declaration" class="used-by-link">declaration</a>
+          <a href="#define_decl" class="used-by-link">define_decl</a>
+          <a href="#dimension_decl" class="used-by-link">dimension_decl</a>
+          <a href="#field_decl" class="used-by-link">field_decl</a>
+          <a href="#file_decl" class="used-by-link">file_decl</a>
+          <a href="#hierarchy_decl" class="used-by-link">hierarchy_decl</a>
+          <a href="#item" class="used-by-link">item</a>
+          <a href="#other_decl" class="used-by-link">other_decl</a>
+          <a href="#segment_decl" class="used-by-link">segment_decl</a>
+          <a href="#variable_decl" class="used-by-link">variable_decl</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="WS">WS:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="167" height="229">
          <defs>
             <style type="text/css">
@@ -1529,6 +1651,10 @@
    </div>
    <div class="category-header">Metadata</div>
    <div class="rule-container" id="file_decl" data-rule="file_decl" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#declaration" class="used-by-link">declaration</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="file_decl">file_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="975" height="475">
          <defs>
             <style type="text/css">
@@ -1624,6 +1750,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="segment_decl" data-rule="segment_decl" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#declaration" class="used-by-link">declaration</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="segment_decl">segment_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="973" height="475">
          <defs>
             <style type="text/css">
@@ -1719,6 +1849,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="field_decl" data-rule="field_decl" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#declaration" class="used-by-link">declaration</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="field_decl">field_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="983" height="475">
          <defs>
             <style type="text/css">
@@ -1814,6 +1948,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="dimension_decl" data-rule="dimension_decl" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#declaration" class="used-by-link">declaration</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="dimension_decl">dimension_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="965" height="475">
          <defs>
             <style type="text/css">
@@ -1910,6 +2048,10 @@
       </xhtml:p>
    </div>
    <div class="rule-container" id="hierarchy_decl" data-rule="hierarchy_decl" data-description="">
+      <div class="used-by-container">
+          <div class="used-by-header">Used By:</div>
+          <a href="#declaration" class="used-by-link">declaration</a>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="hierarchy_decl">hierarchy_decl:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="963" height="475">
          <defs>
             <style type="text/css">
