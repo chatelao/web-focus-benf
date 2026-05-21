@@ -110,7 +110,7 @@ class RuntimeRunner:
                 if cursor.description is None:
                     return []
 
-                colnames = [desc[0] for desc in cursor.description]
+                colnames = [desc[0].upper() for desc in cursor.description]
                 results = []
                 for row in cursor.fetchall():
                     results.append(dict(zip(colnames, row)))

@@ -113,8 +113,8 @@ class TestLiveParity(unittest.TestCase):
         f1 = MasterFile(name="SALES_DATA")
         s1 = Segment(name="SALES_DATA")
         s1.fields = [
-            Field(name="PRODUCT", alias="PRODUCT", usage="A20"),
-            Field(name="AMOUNT", alias="AMOUNT", usage="I8")
+            Field(name="PRODUCT", alias="PROD_ALIAS", usage="A20"),
+            Field(name="AMOUNT", alias="AMT_ALIAS", usage="I8")
         ]
         f1.segments = [s1]
         registry.register_master_file(f1)
@@ -133,8 +133,8 @@ class TestLiveParity(unittest.TestCase):
             # 3. Transpile
             fex_code = """
             TABLE FILE SALES_DATA
-            SUM AMOUNT
-            BY PRODUCT
+            SUM AMOUNT AS 'AMT_ALIAS'
+            BY PRODUCT AS 'PROD_ALIAS'
             ON TABLE HOLD AS AGG_RESULTS
             END
             """
@@ -166,12 +166,12 @@ class TestLiveParity(unittest.TestCase):
             self.assertEqual(len(results), 2)
 
             # Find Gadgets
-            gadgets = next(r for r in results if r['PRODUCT'].strip() == 'Gadgets')
-            self.assertEqual(gadgets['AMOUNT'], 50)
+            gadgets = next(r for r in results if r['PROD_ALIAS'].strip() == 'Gadgets')
+            self.assertEqual(gadgets['AMT_ALIAS'], 50)
 
             # Find Widgets
-            widgets = next(r for r in results if r['PRODUCT'].strip() == 'Widgets')
-            self.assertEqual(widgets['AMOUNT'], 300)
+            widgets = next(r for r in results if r['PROD_ALIAS'].strip() == 'Widgets')
+            self.assertEqual(widgets['AMT_ALIAS'], 300)
 
         finally:
             if os.path.exists(fixture_path):
