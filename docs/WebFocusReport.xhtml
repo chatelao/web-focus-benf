@@ -306,6 +306,33 @@
         background-color: #3b6edb;
     }
 
+    .rule-example-container {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: #f8f9fa;
+        border-radius: 4px;
+        padding: 8px;
+        border-left: 3px solid #4D88FF;
+    }
+    .rule-example-header {
+        font-weight: bold;
+        color: #002b80;
+        font-size: 11px;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        font-family: 'Verdana', sans-serif;
+    }
+    .rule-example {
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        color: #333;
+        white-space: pre-wrap;
+        display: block;
+        margin-bottom: 4px;
+    }
+    .rule-example:last-child {
+        margin-bottom: 0;
+    }
     .rule-description {
         font-style: italic;
         color: #555;
@@ -8344,6 +8371,10 @@
    </div>
    <div class="category-header">Report Requests</div>
    <div class="rule-container" id="request" data-rule="request" data-description="">
+      <div class="rule-example-container">
+          <div class="rule-example-header">Examples</div>
+          <code class="rule-example">TABLE FILE CAR PRINT * END</code>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="request">request:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="697" height="791">
          <defs>
             <style type="text/css">
@@ -9359,6 +9390,10 @@
    </div>
    <div class="category-header">Environment</div>
    <div class="rule-container" id="join_command" data-rule="join_command" data-description="">
+      <div class="rule-example-container">
+          <div class="rule-example-header">Examples</div>
+          <code class="rule-example">JOIN CAR.BODY.COUNTRY TO ALL COUNTRY.COUNTRY.COUNTRY AS J1</code>
+      </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="join_command">join_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="1303" height="297">
          <defs>
             <style type="text/css">

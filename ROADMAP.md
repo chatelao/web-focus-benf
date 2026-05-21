@@ -1,6 +1,4 @@
 # ROADMAP
-- [ ] 0.13 Implement a next, modest, very small, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification'
-- [x] 0.12 Implement a next, modest, very small, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification' (#399) (completed at 2026-05-21 09:42:14)
 - [x] 0.11 Implement a next, modest, very small, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification' (#395) (completed at 2026-05-21 08:35:00)
 - [x] 0.10 Implement a next, modest, very small, feasible and reasonable ROADMAP.md step of chapter 'Chapter 7: CI/CD & Verification' (#393) (completed at 2026-05-21 07:10:00)
 - [x] 0.9 Verify calculated fields (DEFINE/COMPUTE) parity on live DB (#391)
