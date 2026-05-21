@@ -3,6 +3,7 @@ grammar WebFocusReport;
 start: (request | match_request | dm_command | join_command | set_command | define_file | compound_layout_block)* EOF;
 
 // @category Report Requests
+// @example TABLE FILE CAR PRINT * END
 request: table_file (request_element)* more_phrase? end_command;
 
 // @category Report Requests
@@ -59,6 +60,7 @@ recap_option: as_phrase
 format_name: NAME (DOT NUMBER)? (NAME | NUMBER)*;
 
 // @category Environment
+// @example JOIN CAR.BODY.COUNTRY TO ALL COUNTRY.COUNTRY.COUNTRY AS J1
 join_command: JOIN (CLEAR asterisk | (LEFT? OUTER)? qualified_name IN qualified_name TO ALL? qualified_name IN qualified_name (AS NAME)?) SEMI?;
 
 // @category Environment
@@ -193,6 +195,8 @@ dm_float: NUMBER DOT NUMBER;
 amper_var: AMPER_VAR;
 
 // @inline
+// @example TABLE FILE CAR
+// @example TABLE FILE SALES
 table_file: TABLE FILE qualified_name;
 
 // @category Report Requests

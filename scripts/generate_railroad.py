@@ -156,6 +156,33 @@ def post_process_xhtml(filepath, metadata=None):
 
     # Add styling for rule descriptions
     oracle_styles += """
+    .rule-example-container {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: #f8f9fa;
+        border-radius: 4px;
+        padding: 8px;
+        border-left: 3px solid #4D88FF;
+    }
+    .rule-example-header {
+        font-weight: bold;
+        color: #002b80;
+        font-size: 11px;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        font-family: 'Verdana', sans-serif;
+    }
+    .rule-example {
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        color: #333;
+        white-space: pre-wrap;
+        display: block;
+        margin-bottom: 4px;
+    }
+    .rule-example:last-child {
+        margin-bottom: 0;
+    }
     .rule-description {
         font-style: italic;
         color: #555;
@@ -315,12 +342,14 @@ def wrap_rules_in_containers(content, metadata):
 
         description = meta.get("description", "")
         category = meta.get("category") or "Other Rules"
+        examples = meta.get("examples") or []
 
         rule_blocks.append({
             "name": rule_name,
             "body": rule_body.strip(),
             "description": description,
-            "category": category
+            "category": category,
+            "examples": examples
         })
 
     # Group by category
@@ -342,6 +371,7 @@ def wrap_rules_in_containers(content, metadata):
         for block in category_map[cat_name]:
             rule_name = block["name"]
             description = block["description"]
+            examples = block["examples"]
             safe_desc_attr = html.escape(description)
 
             new_content += f'   <div class="rule-container" id="{rule_name}" data-rule="{rule_name}" data-description="{safe_desc_attr}">\n'
@@ -349,6 +379,13 @@ def wrap_rules_in_containers(content, metadata):
             if description:
                 safe_desc_html = html.escape(description).replace('\n', '<br/>')
                 new_content += f'      <div class="rule-description">{safe_desc_html}</div>\n'
+
+            if examples:
+                new_content += '      <div class="rule-example-container">\n'
+                new_content += '          <div class="rule-example-header">Examples</div>\n'
+                for example in examples:
+                    new_content += f'          <code class="rule-example">{html.escape(example)}</code>\n'
+                new_content += '      </div>\n'
 
             new_content += f'      {block["body"]}\n'
             new_content += '   </div>\n'

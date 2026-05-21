@@ -206,3 +206,21 @@ def test_coverage_check_recursive_inline_preserved():
     assert "a ::= a 'x' | 'y'" in ebnf
     missing = check_coverage(antlr, ebnf)
     assert missing == []
+
+def test_example_extraction():
+    antlr = """
+    // @example TABLE FILE CAR
+    // @example JOIN CAR.BODY.COUNTRY TO ALL COUNTRY.COUNTRY.COUNTRY AS J1
+    rule1: 'A';
+
+    /*
+     * @example -SET &VAR = 1;
+     */
+    rule2: 'B';
+    """
+    _, rules = convert_antlr_to_ebnf(antlr)
+    assert rules['rule1'].examples == [
+        "TABLE FILE CAR",
+        "JOIN CAR.BODY.COUNTRY TO ALL COUNTRY.COUNTRY.COUNTRY AS J1"
+    ]
+    assert rules['rule2'].examples == ["-SET &VAR = 1;"]
