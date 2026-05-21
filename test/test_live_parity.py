@@ -103,5 +103,79 @@ class TestLiveParity(unittest.TestCase):
             if os.path.exists(fixture_path):
                 os.remove(fixture_path)
 
+    @unittest.skipUnless(is_db_available(), "PostgreSQL not available")
+    def test_aggregation_parity(self):
+        """
+        Verify aggregation (SUM) and grouping (BY) parity on a live database.
+        """
+        # 1. Define Metadata
+        registry = MetadataRegistry()
+        f1 = MasterFile(name="SALES_DATA")
+        s1 = Segment(name="SALES_DATA")
+        s1.fields = [
+            Field(name="PRODUCT", alias="PRODUCT", usage="A20"),
+            Field(name="AMOUNT", alias="AMOUNT", usage="I8")
+        ]
+        f1.segments = [s1]
+        registry.register_master_file(f1)
+
+        # 2. Prepare Fixtures
+        sample_data = [
+            {"PRODUCT": "Widgets", "AMOUNT": 100},
+            {"PRODUCT": "Widgets", "AMOUNT": 200},
+            {"PRODUCT": "Gadgets", "AMOUNT": 50},
+        ]
+        fixture_path = "aggregation_test_fixtures.json"
+        with open(fixture_path, "w") as f:
+            json.dump(sample_data, f)
+
+        try:
+            # 3. Transpile
+            fex_code = """
+            TABLE FILE SALES_DATA
+            SUM AMOUNT
+            BY PRODUCT
+            ON TABLE HOLD AS AGG_RESULTS
+            END
+            """
+            input_stream = InputStream(fex_code)
+            lexer = WebFocusReportLexer(input_stream)
+            token_stream = CommonTokenStream(lexer)
+            parser = WebFocusReportParser(token_stream)
+            tree = parser.start()
+
+            asg_nodes = ReportASGBuilder().visit(tree)
+            cfg = IRBuilder().build(asg_nodes)
+            SSATransformer().transform(cfg)
+
+            emitter = PostgresEmitter(metadata_registry=registry)
+            sql_procedure = emitter.emit(cfg, "agg_parity_proc")
+
+            # 4. Execute on Live DB
+            with RuntimeRunner() as runner:
+                with runner.conn.cursor() as cursor:
+                    cursor.execute('DROP TABLE IF EXISTS "SALES_DATA" CASCADE;')
+                    cursor.execute('DROP TABLE IF EXISTS "AGG_RESULTS" CASCADE;')
+
+                runner.setup_schema([f1])
+                runner.load_fixtures([("SALES_DATA", fixture_path)])
+                runner.run_procedure(sql_procedure, "agg_parity_proc")
+                results = runner.fetch_table("AGG_RESULTS")
+
+            # 5. Verify
+            self.assertEqual(len(results), 2)
+
+            # Find Gadgets
+            gadgets = next(r for r in results if r['PRODUCT'].strip() == 'Gadgets')
+            self.assertEqual(gadgets['AMOUNT'], 50)
+
+            # Find Widgets
+            widgets = next(r for r in results if r['PRODUCT'].strip() == 'Widgets')
+            self.assertEqual(widgets['AMOUNT'], 300)
+
+        finally:
+            if os.path.exists(fixture_path):
+                os.remove(fixture_path)
+
 if __name__ == '__main__':
     unittest.main()
