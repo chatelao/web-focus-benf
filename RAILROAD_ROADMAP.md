@@ -71,3 +71,6 @@ This document outlines the tasks required to implement the automated railroad di
 - [x] 9.1 Implement rule categorization using `@category` tags.
 - [x] 9.2 Group rules by category in the generated documentation.
 - [x] 9.3 Enhance search functionality to include rule descriptions and handle category groupings.
+
+## Phase 10: UI & Interactivity
+- [x] 10.1 Add a 'Copy' button to all rule examples for easy extraction.
