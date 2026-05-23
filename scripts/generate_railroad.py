@@ -169,8 +169,21 @@ def post_process_xhtml(filepath, metadata=None):
         color: #002b80;
         font-size: 11px;
         text-transform: uppercase;
-        margin-bottom: 4px;
+        margin-bottom: 8px;
         font-family: 'Verdana', sans-serif;
+    }
+    .example-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 6px;
+        background-color: #ffffff;
+        padding: 4px 8px;
+        border-radius: 4px;
+        border: 1px solid #eef0f2;
+    }
+    .example-row:last-child {
+        margin-bottom: 0;
     }
     .rule-example {
         font-family: 'Courier New', monospace;
@@ -178,7 +191,25 @@ def post_process_xhtml(filepath, metadata=None):
         color: #333;
         white-space: pre-wrap;
         display: block;
-        margin-bottom: 4px;
+        flex-grow: 1;
+    }
+    .copy-button {
+        background-color: #f0f5ff;
+        color: #002b80;
+        border: 1px solid #d0d7de;
+        border-radius: 3px;
+        padding: 2px 8px;
+        font-size: 10px;
+        cursor: pointer;
+        margin-left: 10px;
+        font-family: 'Verdana', sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
+        transition: all 0.2s;
+    }
+    .copy-button:hover {
+        background-color: #002b80;
+        color: #ffffff;
     }
     .rule-example:last-child {
         margin-bottom: 0;
@@ -294,6 +325,22 @@ def post_process_xhtml(filepath, metadata=None):
             updateFilter();
             searchInput.focus();
         });
+
+        window.copyExample = function(btn, text) {
+            navigator.clipboard.writeText(text).then(function() {
+                const originalText = btn.textContent;
+                btn.textContent = 'COPIED!';
+                btn.style.backgroundColor = '#28a745';
+                btn.style.color = '#fff';
+                setTimeout(function() {
+                    btn.textContent = originalText;
+                    btn.style.backgroundColor = '';
+                    btn.style.color = '';
+                }, 2000);
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
 
         function handleHashChange() {
             if (window.location.hash) {
@@ -421,10 +468,17 @@ def wrap_rules_in_containers(content, metadata):
                 new_content += '      </div>\n'
 
             if examples:
+                import json
                 new_content += '      <div class="rule-example-container">\n'
                 new_content += '          <div class="rule-example-header">Examples</div>\n'
                 for example in examples:
-                    new_content += f'          <code class="rule-example">{html.escape(example)}</code>\n'
+                    safe_example = html.escape(example)
+                    # We use json.dumps to ensure it's a valid JS string literal, then escape it for HTML
+                    js_safe_example = html.escape(json.dumps(example))
+                    new_content += '          <div class="example-row">\n'
+                    new_content += f'              <code class="rule-example">{safe_example}</code>\n'
+                    new_content += f'              <button class="copy-button" onclick="copyExample(this, {js_safe_example})">Copy</button>\n'
+                    new_content += '          </div>\n'
                 new_content += '      </div>\n'
 
             new_content += f'      {block["body"]}\n'
