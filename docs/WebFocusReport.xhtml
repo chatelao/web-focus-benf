@@ -319,8 +319,21 @@
         color: #002b80;
         font-size: 11px;
         text-transform: uppercase;
-        margin-bottom: 4px;
+        margin-bottom: 8px;
         font-family: 'Verdana', sans-serif;
+    }
+    .example-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 6px;
+        background-color: #ffffff;
+        padding: 4px 8px;
+        border-radius: 4px;
+        border: 1px solid #eef0f2;
+    }
+    .example-row:last-child {
+        margin-bottom: 0;
     }
     .rule-example {
         font-family: 'Courier New', monospace;
@@ -328,7 +341,25 @@
         color: #333;
         white-space: pre-wrap;
         display: block;
-        margin-bottom: 4px;
+        flex-grow: 1;
+    }
+    .copy-button {
+        background-color: #f0f5ff;
+        color: #002b80;
+        border: 1px solid #d0d7de;
+        border-radius: 3px;
+        padding: 2px 8px;
+        font-size: 10px;
+        cursor: pointer;
+        margin-left: 10px;
+        font-family: 'Verdana', sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
+        transition: all 0.2s;
+    }
+    .copy-button:hover {
+        background-color: #002b80;
+        color: #ffffff;
     }
     .rule-example:last-child {
         margin-bottom: 0;
@@ -8942,7 +8973,10 @@
       </div>
       <div class="rule-example-container">
           <div class="rule-example-header">Examples</div>
-          <code class="rule-example">TABLE FILE CAR PRINT * END</code>
+          <div class="example-row">
+              <code class="rule-example">TABLE FILE CAR PRINT * END</code>
+              <button class="copy-button" onclick="copyExample(this, &quot;TABLE FILE CAR PRINT * END&quot;)">Copy</button>
+          </div>
       </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="request">request:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="697" height="791">
          <defs>
@@ -9999,7 +10033,10 @@
       </div>
       <div class="rule-example-container">
           <div class="rule-example-header">Examples</div>
-          <code class="rule-example">JOIN CAR.BODY.COUNTRY TO ALL COUNTRY.COUNTRY.COUNTRY AS J1</code>
+          <div class="example-row">
+              <code class="rule-example">JOIN CAR.BODY.COUNTRY TO ALL COUNTRY.COUNTRY.COUNTRY AS J1</code>
+              <button class="copy-button" onclick="copyExample(this, &quot;JOIN CAR.BODY.COUNTRY TO ALL COUNTRY.COUNTRY.COUNTRY AS J1&quot;)">Copy</button>
+          </div>
       </div>
       <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml" style="font-size: 14px; font-weight:bold"><xhtml:a name="join_command">join_command:</xhtml:a></xhtml:p><svg xmlns="http://www.w3.org/2000/svg" width="1303" height="297">
          <defs>
@@ -10483,6 +10520,22 @@
             updateFilter();
             searchInput.focus();
         });
+
+        window.copyExample = function(btn, text) {
+            navigator.clipboard.writeText(text).then(function() {
+                const originalText = btn.textContent;
+                btn.textContent = 'COPIED!';
+                btn.style.backgroundColor = '#28a745';
+                btn.style.color = '#fff';
+                setTimeout(function() {
+                    btn.textContent = originalText;
+                    btn.style.backgroundColor = '';
+                    btn.style.color = '';
+                }, 2000);
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
 
         function handleHashChange() {
             if (window.location.hash) {

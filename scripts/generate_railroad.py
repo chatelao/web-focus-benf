@@ -20,6 +20,17 @@ def is_up_to_date(source_path, target_path):
         return False
     return os.path.getmtime(target_path) > os.path.getmtime(source_path)
 
+def count_ebnf_rules(ebnf_path):
+    """Counts the number of rules in an EBNF file."""
+    if not os.path.exists(ebnf_path):
+        return 0
+    count = 0
+    with open(ebnf_path, "r") as f:
+        for line in f:
+            if "::=" in line:
+                count += 1
+    return count
+
 def post_process_xhtml(filepath, metadata=None):
     """Injects custom CSS and JS into the generated XHTML to match Oracle style and add filtering."""
     print(f"Post-processing {filepath} for Oracle styling and filtering...")
@@ -518,7 +529,8 @@ def generate_docs(grammars=None, output_dir="docs", ebnf_dir="build/ebnf", metad
 
         if not force and is_up_to_date(grammar_path, xhtml_path):
             print(f"Skipping {grammar_name} (already up-to-date).")
-            generated_files.append((grammar_name, xhtml_name))
+            rule_count = count_ebnf_rules(ebnf_path)
+            generated_files.append((grammar_name, xhtml_name, rule_count))
             continue
 
         print(f"Generating EBNF and Metadata for {grammar_name}...")
@@ -526,7 +538,8 @@ def generate_docs(grammars=None, output_dir="docs", ebnf_dir="build/ebnf", metad
             # We assume scripts/antlr4_to_ebnf.py exists and is in the current working directory or relative to it.
             subprocess.run(["python3", "scripts/antlr4_to_ebnf.py", grammar_path, "--check", "--metadata", metadata_path], stdout=f, check=True)
 
-        print(f"Generating Railroad Diagram for {grammar_name}...")
+        rule_count = count_ebnf_rules(ebnf_path)
+        print(f"Generating Railroad Diagram for {grammar_name} ({rule_count} rules)...")
         rr.generate(ebnf_path, out_path=xhtml_path, color=color, width=width,
                     suppress_ebnf=suppress_ebnf, offset=offset)
 
@@ -538,7 +551,7 @@ def generate_docs(grammars=None, output_dir="docs", ebnf_dir="build/ebnf", metad
 
         post_process_xhtml(xhtml_path, metadata=metadata)
         validate_output(xhtml_path)
-        generated_files.append((grammar_name, xhtml_name))
+        generated_files.append((grammar_name, xhtml_name, rule_count))
 
     generate_index(output_dir, generated_files)
 
@@ -547,7 +560,7 @@ def generate_index(output_dir, files):
     index_path = os.path.join(output_dir, "index.html")
     print(f"Generating Index at {index_path}...")
 
-    links = "".join([f'<li><a href="{path}">{name}</a></li>' for name, path in files])
+    links = "".join([f'<li><a href="{path}">{name}</a> <span class="rule-count">({count} rules)</span></li>' for name, path, count in files])
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     html_content = f"""<!DOCTYPE html>
@@ -562,6 +575,7 @@ def generate_index(output_dir, files):
         li {{ margin: 10px 0; }}
         a {{ text-decoration: none; color: #4D88FF; font-weight: bold; font-size: 1.2em; }}
         a:hover {{ text-decoration: underline; }}
+        .rule-count {{ color: #666; font-size: 0.9em; margin-left: 10px; font-style: italic; }}
     </style>
 </head>
 <body>
