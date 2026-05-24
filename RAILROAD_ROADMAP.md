@@ -74,3 +74,6 @@ This document outlines the tasks required to implement the automated railroad di
 
 ## Phase 10: UI & Interactivity
 - [x] 10.1 Add a 'Copy' button to all rule examples for easy extraction.
+
+## Phase 11: Index Page Enhancements
+- [x] 11.1 Display total rule count for each grammar on the index page.
