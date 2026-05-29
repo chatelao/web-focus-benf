@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] 0.16 Create a `JAVA_PORT_ROADMAP.md` based on the `JAVA_PORT_DESIGN.md` (#411)
+- [x] 0.16 Create a `JAVA_PORT_ROADMAP.md` based on the `JAVA_PORT_DESIGN.md` (#411) (completed at 2026-05-29 18:35:38)
 - [ ] 0.15 Create a high-level concept to port the tool from Python to Java callecd `JAVA_PORT_DESIGN.md` (#409)
 - [x] 0.14 Implement a next, modest, very small, feasible and reasonable RAILROAD_ROADMAP.md step (#407) (completed at 2026-05-23 14:46:41)
 - [x] 0.13 Implement a next, modest, very small, feasible and reasonable RAILROAD_ROADMAP.md step (#405) (completed at 2026-05-23 12:58:41)
