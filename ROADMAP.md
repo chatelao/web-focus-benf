@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] 0.23 What is slow in these (#426)
 - [ ] 0.22 What kind of metrics would help a lot to create accurate synthetic test files from a given run (e.g. File size statistics, number of files, other critical AFP elements, etc.) - Describe in `PERF_METRICS_PLUS.md` (#425)
 - [ ] 0.21 Implement a next, modest, very small, feasible and reasonable JAVA_PORT_ROADMAP.md step (#423)
 - [x] 0.20 Implement a next, modest, very small, feasible and reasonable JAVA_PORT_ROADMAP.md step (#419) (completed at 2026-05-30 06:33:56)
