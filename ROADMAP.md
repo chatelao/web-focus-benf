@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] 0.30 Implement a next, modest, very small, feasible and reasonable JAVA_PORT_ROADMAP.md step (#441)
+- [x] 0.30 Implement a next, modest, very small, feasible and reasonable JAVA_PORT_ROADMAP.md step (#441) (completed at 2026-05-30 21:44:26)
 - [x] 0.29 Implement a next, modest, very small, feasible and reasonable JAVA_PORT_ROADMAP.md step (#439) (completed at 2026-05-30 19:49:46)
 - [x] 0.28 Implement a next, modest, very small, feasible and reasonable JAVA_PORT_ROADMAP.md step (#437) (completed at 2026-05-30 18:03:17)
 - [x] 0.27 test the New jav implementation with the old Tests as far as possible (#435) (completed at 2026-05-30 17:30:34)
