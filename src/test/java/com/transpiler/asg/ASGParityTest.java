@@ -161,10 +161,17 @@ class ASGParityTest {
 
     @Test
     void testEnvironmentAndVirtualFieldNodes() {
-        Join join = new Join("EMP", "ID", "SAL", "ID", "EMPSAL", true);
+        Join join = new Join("EMP", "ID", "SAL", "ID", "EMPSAL", true, false);
         assertEquals("EMP", join.leftFile());
         assertEquals("EMPSAL", join.joinAs());
         assertTrue(join.outer());
+        assertFalse(join.isAll());
+
+        Join joinAll = new Join("EMP", "ID", "SAL", "ID", "EMPSAL", false, true);
+        assertTrue(joinAll.isAll());
+
+        JoinClear joinClear = new JoinClear();
+        assertNotNull(joinClear);
 
         SetCommand setCmd = new SetCommand("NODATA", "MISSING");
         assertEquals("NODATA", setCmd.parameter());

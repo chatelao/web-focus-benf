@@ -1,7 +1,7 @@
-package com.transpiler.asg;
+package com.transpiler.ir;
 
 /**
- * Represents a JOIN command.
+ * Represents a JOIN command in the IR.
  */
 public record Join(
     String leftFile,
@@ -11,5 +11,5 @@ public record Join(
     String joinAs,
     boolean outer,
     boolean isAll
-) implements Command {
+) implements Instruction {
 }
