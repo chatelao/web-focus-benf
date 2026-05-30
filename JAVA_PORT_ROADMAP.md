@@ -9,30 +9,30 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
 - [x] 1.4 Logging & Diagnostics: Setup SLF4J/Logback and initial diagnostic reporting.
 
 ## Phase 2: ASG & IR Models (Data Structures)
-- [ ] 2.1 ASG Node Porting: Implement Java `record` types or immutable classes for ASG nodes (`asg.py` parity).
+- [x] 2.1 ASG Node Porting: Implement Java `record` types or immutable classes for ASG nodes (`asg.py` parity).
   - [x] 2.1.1 Base Nodes: ASGNode, Expression, Statement, Command.
-  - [ ] 2.1.2 Expressions:
+  - [x] 2.1.2 Expressions:
     - [x] 2.1.2.1 Literals, Identifiers, AmperVars.
     - [x] 2.1.2.2 Binary and Unary operations.
     - [x] 2.1.2.3 Function calls and Built-in functions.
-    - [ ] 2.1.2.4 Conditional expressions:
+    - [x] 2.1.2.4 Conditional expressions:
       - [x] 2.1.2.4.1 IfExpression (IF-THEN-ELSE).
       - [x] 2.1.2.4.2 DecodeExpression (DECODE).
     - [x] 2.1.2.5 Set-based expressions (IN, BETWEEN, IS MISSING).
-  - [ ] 2.1.3 Dialogue Manager Commands:
+  - [x] 2.1.3 Dialogue Manager Commands:
     - [x] 2.1.3.1 Control Flow: Goto, Label, IfDM.
     - [x] 2.1.3.2 Variables & Defaults: SetDM, DefaultDM.
     - [x] 2.1.3.3 Output: TypeDM, HtmlFormDM.
     - [x] 2.1.3.4 Loops: Repeat.
     - [x] 2.1.3.5 I/O: ReadDM, WriteDM, IncludeDM.
     - [x] 2.1.3.6 Execution Control: RunDM, ExitDM.
-  - [ ] 2.1.4 Report Commands:
+  - [x] 2.1.4 Report Commands:
     - [x] 2.1.4.1 Basic: ReportRequest, VerbCommand, SortCommand, WhereClause, etc.
     - [x] 2.1.4.2 Output: OutputCommand (HOLD, PCHOLD, etc.).
     - [x] 2.1.4.3 Multi-file: MatchRequest, SubMatch, AfterMatchPhrase, MoreClause, MoreSubRequest.
   - [x] 2.1.5 Data Model Nodes: MasterFile, Segment, Field.
 - [ ] 2.2 IR Instruction Porting: Implement IR instruction set and Control Flow Graph (CFG) structures using JGraphT.
-  - [ ] 2.2.1 Base IR Infrastructure (IRNode, Instruction, BasicBlock, ControlFlowGraph).
+  - [x] 2.2.1 Base IR Infrastructure (IRNode, Instruction, BasicBlock, ControlFlowGraph).
   - [ ] 2.2.2 Control Flow Instructions (Label, Jump, Branch, Phi).
   - [ ] 2.2.3 Data & Assignment Instructions (Assign, SetEnv, Default).
   - [ ] 2.2.4 Procedure & I/O Instructions (Call, Type, HtmlForm, Read, Write).
