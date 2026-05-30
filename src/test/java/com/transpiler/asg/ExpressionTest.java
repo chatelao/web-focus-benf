@@ -1,6 +1,9 @@
 package com.transpiler.asg;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ExpressionTest {
@@ -39,5 +42,40 @@ class ExpressionTest {
         assertTrue(lit instanceof ASGNode);
         assertTrue(id instanceof ASGNode);
         assertTrue(var instanceof ASGNode);
+    }
+
+    @Test
+    void testBinaryOperation() {
+        Expression left = new Literal(1);
+        Expression right = new Literal(2);
+        BinaryOperation op = new BinaryOperation(left, "+", right);
+
+        assertEquals(left, op.left());
+        assertEquals("+", op.operator());
+        assertEquals(right, op.right());
+        assertTrue(op instanceof Expression);
+    }
+
+    @Test
+    void testUnaryOperation() {
+        Expression operand = new Identifier("MYFIELD");
+        UnaryOperation op = new UnaryOperation("-", operand);
+
+        assertEquals("-", op.operator());
+        assertEquals(operand, op.operand());
+        assertTrue(op instanceof Expression);
+    }
+
+    @Test
+    void testFunctionCall() {
+        Expression arg1 = new Identifier("FIELD1");
+        Expression arg2 = new Literal(10);
+        List<Expression> args = List.of(arg1, arg2);
+        FunctionCall call = new FunctionCall("ABS", args);
+
+        assertEquals("ABS", call.functionName());
+        assertEquals(args, call.arguments());
+        assertEquals(2, call.arguments().size());
+        assertTrue(call instanceof Expression);
     }
 }
