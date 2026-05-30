@@ -22,12 +22,12 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
   - [ ] 2.1.3 Dialogue Manager Commands:
     - [x] 2.1.3.1 Control Flow: Goto, Label, IfDM.
     - [x] 2.1.3.2 Variables & Defaults: SetDM, DefaultDM.
-    - [ ] 2.1.3.3 Output: TypeDM, HtmlFormDM.
-    - [ ] 2.1.3.4 Loops: Repeat.
-    - [ ] 2.1.3.5 I/O: ReadDM, WriteDM, IncludeDM.
-    - [ ] 2.1.3.6 Execution Control: RunDM, ExitDM.
-  - [ ] 2.1.4 Report Commands: ReportRequest, VerbCommand, SortCommand, WhereClause, etc.
-  - [ ] 2.1.5 Data Model Nodes: MasterFile, Segment, Field.
+    - [x] 2.1.3.3 Output: TypeDM, HtmlFormDM (Partial).
+    - [x] 2.1.3.4 Loops: Repeat.
+    - [x] 2.1.3.5 I/O: ReadDM, WriteDM, IncludeDM.
+    - [x] 2.1.3.6 Execution Control: RunDM, ExitDM.
+  - [x] 2.1.4 Report Commands: ReportRequest, VerbCommand, SortCommand, WhereClause, etc.
+  - [x] 2.1.5 Data Model Nodes: MasterFile, Segment, Field.
 - [ ] 2.2 IR Instruction Porting: Implement IR instruction set and Control Flow Graph (CFG) structures using JGraphT.
 - [ ] 2.3 Metadata Models: Port Master File and Segment metadata models.
 
@@ -49,6 +49,6 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
 - [ ] 5.3 Variable Mapping: Implement Java-based mapping between SSA versions and SQL identifiers.
 
 ## Phase 6: Verification & Parity
-- [ ] 6.1 Unit Test Porting: Port core unit tests to JUnit 5.
+- [x] 6.1 Unit Test Porting: Port core unit tests to JUnit 5 (ASG parity complete).
 - [ ] 6.2 Golden File Verification: Compare Java output against Python "Golden Files" for functional parity.
 - [ ] 6.3 E2E Integration: Execute generated Java output against live PostgreSQL and verify result-set parity.
