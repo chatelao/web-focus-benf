@@ -35,7 +35,7 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
   - [x] 2.2.1 Base IR Infrastructure (IRNode, Instruction, BasicBlock, ControlFlowGraph).
   - [x] 2.2.2 Control Flow Instructions (Label, Jump, Branch, Phi).
   - [x] 2.2.3 Data & Assignment Instructions (Assign, SetEnv, Default).
-  - [ ] 2.2.4 Procedure & I/O Instructions (Call, Type, HtmlForm, Read, Write).
+  - [x] 2.2.4 Procedure & I/O Instructions (Call, Type, HtmlForm, Read, Write).
   - [ ] 2.2.5 Relational Instructions (Join, JoinClear, Define, Report, Match).
   - [ ] 2.2.6 Layout Instructions (CompoundLayout, CompoundEnd).
 - [ ] 2.3 Metadata Models: Port Master File and Segment metadata models.
