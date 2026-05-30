@@ -21,7 +21,7 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
     - [x] 2.1.2.5 Set-based expressions (IN, BETWEEN, IS MISSING).
   - [ ] 2.1.3 Dialogue Manager Commands:
     - [x] 2.1.3.1 Control Flow: Goto, Label, IfDM.
-    - [ ] 2.1.3.2 Variables & Defaults: SetDM, DefaultDM.
+    - [x] 2.1.3.2 Variables & Defaults: SetDM, DefaultDM.
     - [ ] 2.1.3.3 Output: TypeDM, HtmlFormDM.
     - [ ] 2.1.3.4 Loops: Repeat.
     - [ ] 2.1.3.5 I/O: ReadDM, WriteDM, IncludeDM.

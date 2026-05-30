@@ -34,4 +34,24 @@ class CommandTest {
         IfDM ifDMNoElse = new IfDM(condition, "THEN_LABEL");
         assertNull(ifDMNoElse.elseTarget());
     }
+
+    @Test
+    void testSetDM() {
+        Expression expr = new Literal(100);
+        SetDM setDM = new SetDM("&MYVAR", expr);
+
+        assertEquals("&MYVAR", setDM.variable());
+        assertEquals(expr, setDM.expression());
+        assertTrue(setDM instanceof Command);
+    }
+
+    @Test
+    void testDefaultDM() {
+        Expression expr = new Literal("DEFAULT_VAL");
+        DefaultDM defaultDM = new DefaultDM("&MYVAR", expr);
+
+        assertEquals("&MYVAR", defaultDM.variable());
+        assertEquals(expr, defaultDM.expression());
+        assertTrue(defaultDM instanceof Command);
+    }
 }
