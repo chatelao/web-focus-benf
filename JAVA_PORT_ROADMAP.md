@@ -33,7 +33,7 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
   - [x] 2.1.5 Data Model Nodes: MasterFile, Segment, Field.
 - [ ] 2.2 IR Instruction Porting: Implement IR instruction set and Control Flow Graph (CFG) structures using JGraphT.
   - [x] 2.2.1 Base IR Infrastructure (IRNode, Instruction, BasicBlock, ControlFlowGraph).
-  - [ ] 2.2.2 Control Flow Instructions (Label, Jump, Branch, Phi).
+  - [x] 2.2.2 Control Flow Instructions (Label, Jump, Branch, Phi).
   - [ ] 2.2.3 Data & Assignment Instructions (Assign, SetEnv, Default).
   - [ ] 2.2.4 Procedure & I/O Instructions (Call, Type, HtmlForm, Read, Write).
   - [ ] 2.2.5 Relational Instructions (Join, JoinClear, Define, Report, Match).
