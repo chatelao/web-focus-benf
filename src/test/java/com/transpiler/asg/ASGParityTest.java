@@ -16,6 +16,27 @@ class ASGParityTest {
     }
 
     @Test
+    void testOutputAndMatchNodes() {
+        OutputCommand hold = new OutputCommand("HOLD", "MYHOLD", "FOCUS", null);
+        assertEquals("HOLD", hold.outputType());
+        assertEquals("MYHOLD", hold.filename());
+
+        MoreSubRequest moreSub = new MoreSubRequest("FILE2", List.of(new WhereClause("COUNTRY EQ 'USA'", false)));
+        MoreClause more = new MoreClause(List.of(moreSub));
+        assertEquals(1, more.subRequests().size());
+        assertEquals("FILE2", more.subRequests().get(0).filename());
+
+        AfterMatchPhrase after = new AfterMatchPhrase("OLD-OR-NEW", hold);
+        SubMatch subMatch = new SubMatch("FILE1", List.of(new FieldSelection("ID")), null, after);
+
+        MatchRequest match = new MatchRequest("MAINFILE", List.of(new FieldSelection("ID")), more, List.of(subMatch));
+        assertEquals("MAINFILE", match.filename());
+        assertEquals(more, match.moreClause());
+        assertEquals(1, match.subMatches().size());
+        assertEquals(after, match.subMatches().get(0).afterMatch());
+    }
+
+    @Test
     void testStatementInstantiation() {
         // In Java, Statement is an interface, so we test one of its implementations
         Statement stmt = new ReportRequest("EMPLOYEE");

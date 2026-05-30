@@ -22,13 +22,22 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
   - [ ] 2.1.3 Dialogue Manager Commands:
     - [x] 2.1.3.1 Control Flow: Goto, Label, IfDM.
     - [x] 2.1.3.2 Variables & Defaults: SetDM, DefaultDM.
-    - [x] 2.1.3.3 Output: TypeDM, HtmlFormDM (Partial).
+    - [x] 2.1.3.3 Output: TypeDM, HtmlFormDM.
     - [x] 2.1.3.4 Loops: Repeat.
     - [x] 2.1.3.5 I/O: ReadDM, WriteDM, IncludeDM.
     - [x] 2.1.3.6 Execution Control: RunDM, ExitDM.
-  - [x] 2.1.4 Report Commands: ReportRequest, VerbCommand, SortCommand, WhereClause, etc.
+  - [ ] 2.1.4 Report Commands:
+    - [x] 2.1.4.1 Basic: ReportRequest, VerbCommand, SortCommand, WhereClause, etc.
+    - [x] 2.1.4.2 Output: OutputCommand (HOLD, PCHOLD, etc.).
+    - [x] 2.1.4.3 Multi-file: MatchRequest, SubMatch, AfterMatchPhrase, MoreClause, MoreSubRequest.
   - [x] 2.1.5 Data Model Nodes: MasterFile, Segment, Field.
 - [ ] 2.2 IR Instruction Porting: Implement IR instruction set and Control Flow Graph (CFG) structures using JGraphT.
+  - [ ] 2.2.1 Base IR Infrastructure (IRNode, Instruction, BasicBlock, ControlFlowGraph).
+  - [ ] 2.2.2 Control Flow Instructions (Label, Jump, Branch, Phi).
+  - [ ] 2.2.3 Data & Assignment Instructions (Assign, SetEnv, Default).
+  - [ ] 2.2.4 Procedure & I/O Instructions (Call, Type, HtmlForm, Read, Write).
+  - [ ] 2.2.5 Relational Instructions (Join, JoinClear, Define, Report, Match).
+  - [ ] 2.2.6 Layout Instructions (CompoundLayout, CompoundEnd).
 - [ ] 2.3 Metadata Models: Port Master File and Segment metadata models.
 
 ## Phase 3: Frontend & Semantic Analysis

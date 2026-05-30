@@ -54,4 +54,42 @@ class CommandTest {
         assertEquals(expr, defaultDM.expression());
         assertTrue(defaultDM instanceof Command);
     }
+
+    @Test
+    void testReadDM() {
+        ReadDM readDM = new java.util.ArrayList<String>() {{
+            add("&VAR1");
+            add("&VAR2");
+        }}.stream().collect(java.util.stream.Collectors.collectingAndThen(
+            java.util.stream.Collectors.toList(),
+            vars -> new ReadDM("MYFILE", vars)
+        ));
+
+        assertEquals("MYFILE", readDM.filename());
+        assertEquals(2, readDM.variables().size());
+        assertEquals("&VAR1", readDM.variables().get(0));
+        assertTrue(readDM instanceof Command);
+    }
+
+    @Test
+    void testWriteDM() {
+        WriteDM writeDM = new WriteDM("LOGFILE", java.util.List.of("Message 1", "Message 2"));
+
+        assertEquals("LOGFILE", writeDM.filename());
+        assertEquals(2, writeDM.messages().size());
+        assertEquals("Message 1", writeDM.messages().get(0));
+        assertTrue(writeDM instanceof Command);
+    }
+
+    @Test
+    void testHtmlFormDM() {
+        HtmlFormDM htmlFormDM = new HtmlFormDM("TEMPLATE.HTML", null);
+        assertEquals("TEMPLATE.HTML", htmlFormDM.filename());
+        assertNull(htmlFormDM.content());
+
+        HtmlFormDM htmlBlock = new HtmlFormDM(null, "<html><body>Hello</body></html>");
+        assertNull(htmlBlock.filename());
+        assertEquals("<html><body>Hello</body></html>", htmlBlock.content());
+        assertTrue(htmlFormDM instanceof Command);
+    }
 }
