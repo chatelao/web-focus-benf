@@ -91,4 +91,21 @@ class ExpressionTest {
         assertEquals(elseExpr, ifExpr.elseExpression());
         assertTrue(ifExpr instanceof Expression);
     }
+
+    @Test
+    void testDecodeExpression() {
+        Expression target = new Identifier("COUNTRY");
+        List<DecodeExpression.Pair> pairs = List.of(
+            new DecodeExpression.Pair(new Literal("ENGLAND"), new Literal("UK")),
+            new DecodeExpression.Pair(new Literal("FRANCE"), new Literal("EU"))
+        );
+        Expression defaultValue = new Literal("OTHER");
+        DecodeExpression decode = new DecodeExpression(target, pairs, defaultValue);
+
+        assertEquals(target, decode.expression());
+        assertEquals(pairs, decode.pairs());
+        assertEquals(2, decode.pairs().size());
+        assertEquals(defaultValue, decode.defaultValue());
+        assertTrue(decode instanceof Expression);
+    }
 }
