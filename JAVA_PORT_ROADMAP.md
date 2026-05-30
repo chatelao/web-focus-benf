@@ -19,7 +19,13 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
       - [x] 2.1.2.4.1 IfExpression (IF-THEN-ELSE).
       - [x] 2.1.2.4.2 DecodeExpression (DECODE).
     - [x] 2.1.2.5 Set-based expressions (IN, BETWEEN, IS MISSING).
-  - [ ] 2.1.3 Dialogue Manager Commands: Goto, Label, IfDM, Repeat, SetDM, etc.
+  - [ ] 2.1.3 Dialogue Manager Commands:
+    - [x] 2.1.3.1 Control Flow: Goto, Label, IfDM.
+    - [ ] 2.1.3.2 Variables & Defaults: SetDM, DefaultDM.
+    - [ ] 2.1.3.3 Output: TypeDM, HtmlFormDM.
+    - [ ] 2.1.3.4 Loops: Repeat.
+    - [ ] 2.1.3.5 I/O: ReadDM, WriteDM, IncludeDM.
+    - [ ] 2.1.3.6 Execution Control: RunDM, ExitDM.
   - [ ] 2.1.4 Report Commands: ReportRequest, VerbCommand, SortCommand, WhereClause, etc.
   - [ ] 2.1.5 Data Model Nodes: MasterFile, Segment, Field.
 - [ ] 2.2 IR Instruction Porting: Implement IR instruction set and Control Flow Graph (CFG) structures using JGraphT.
