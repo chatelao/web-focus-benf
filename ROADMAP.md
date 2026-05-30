@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] 0.18 Implement a next, modest, very small, feasible and reasonable JAVA_PORT_ROADMAP.md step (#415)
+- [x] 0.18 Implement a next, modest, very small, feasible and reasonable JAVA_PORT_ROADMAP.md step (#415) (completed at 2026-05-30 06:16:43)
 - [x] 0.17 Implement a next, modest, very small, feasible and reasonable JAVA_PORT_ROADMAP.md step (#413) (completed at 2026-05-30 05:41:30)
 - [x] 0.16 Create a `JAVA_PORT_ROADMAP.md` based on the `JAVA_PORT_DESIGN.md` (#411) (completed at 2026-05-29 18:35:38)
 - [ ] 0.15 Create a high-level concept to port the tool from Python to Java callecd `JAVA_PORT_DESIGN.md` (#409)
