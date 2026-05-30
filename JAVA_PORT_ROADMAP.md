@@ -11,7 +11,12 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
 ## Phase 2: ASG & IR Models (Data Structures)
 - [ ] 2.1 ASG Node Porting: Implement Java `record` types or immutable classes for ASG nodes (`asg.py` parity).
   - [x] 2.1.1 Base Nodes: ASGNode, Expression, Statement, Command.
-  - [ ] 2.1.2 Expressions: Literals, Identifiers, Binary/Unary operations, Function calls.
+  - [ ] 2.1.2 Expressions:
+    - [x] 2.1.2.1 Literals, Identifiers, AmperVars.
+    - [ ] 2.1.2.2 Binary and Unary operations.
+    - [ ] 2.1.2.3 Function calls and Built-in functions.
+    - [ ] 2.1.2.4 Conditional expressions (IF-THEN-ELSE, DECODE).
+    - [ ] 2.1.2.5 Set-based expressions (IN, BETWEEN, IS MISSING).
   - [ ] 2.1.3 Dialogue Manager Commands: Goto, Label, IfDM, Repeat, SetDM, etc.
   - [ ] 2.1.4 Report Commands: ReportRequest, VerbCommand, SortCommand, WhereClause, etc.
   - [ ] 2.1.5 Data Model Nodes: MasterFile, Segment, Field.
