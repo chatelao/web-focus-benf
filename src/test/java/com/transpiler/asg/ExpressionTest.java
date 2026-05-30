@@ -78,4 +78,17 @@ class ExpressionTest {
         assertEquals(2, call.arguments().size());
         assertTrue(call instanceof Expression);
     }
+
+    @Test
+    void testIfExpression() {
+        Expression condition = new BinaryOperation(new Identifier("A"), ">", new Literal(0));
+        Expression thenExpr = new Literal(1);
+        Expression elseExpr = new Literal(-1);
+        IfExpression ifExpr = new IfExpression(condition, thenExpr, elseExpr);
+
+        assertEquals(condition, ifExpr.condition());
+        assertEquals(thenExpr, ifExpr.thenExpression());
+        assertEquals(elseExpr, ifExpr.elseExpression());
+        assertTrue(ifExpr instanceof Expression);
+    }
 }
