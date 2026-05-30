@@ -17,7 +17,7 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
     - [x] 2.1.2.3 Function calls and Built-in functions.
     - [ ] 2.1.2.4 Conditional expressions:
       - [x] 2.1.2.4.1 IfExpression (IF-THEN-ELSE).
-      - [ ] 2.1.2.4.2 DecodeExpression (DECODE).
+      - [x] 2.1.2.4.2 DecodeExpression (DECODE).
     - [ ] 2.1.2.5 Set-based expressions (IN, BETWEEN, IS MISSING).
   - [ ] 2.1.3 Dialogue Manager Commands: Goto, Label, IfDM, Repeat, SetDM, etc.
   - [ ] 2.1.4 Report Commands: ReportRequest, VerbCommand, SortCommand, WhereClause, etc.
