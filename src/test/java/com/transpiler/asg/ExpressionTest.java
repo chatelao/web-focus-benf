@@ -108,4 +108,42 @@ class ExpressionTest {
         assertEquals(defaultValue, decode.defaultValue());
         assertTrue(decode instanceof Expression);
     }
+
+    @Test
+    void testBetweenExpression() {
+        Expression target = new Identifier("AGE");
+        Expression lower = new Literal(18);
+        Expression upper = new Literal(65);
+        BetweenExpression between = new BetweenExpression(target, lower, upper);
+
+        assertEquals(target, between.expression());
+        assertEquals(lower, between.lower());
+        assertEquals(upper, between.upper());
+        assertTrue(between instanceof Expression);
+    }
+
+    @Test
+    void testInExpression() {
+        Expression target = new Identifier("DEPT");
+        List<Expression> values = List.of(new Literal("SALES"), new Literal("MARKETING"));
+        InExpression in = new InExpression(target, values);
+
+        assertEquals(target, in.expression());
+        assertEquals(values, in.values());
+        assertEquals(2, in.values().size());
+        assertTrue(in instanceof Expression);
+    }
+
+    @Test
+    void testIsMissingExpression() {
+        Expression target = new Identifier("EMAIL");
+        IsMissingExpression isMissing = new IsMissingExpression(target, false);
+
+        assertEquals(target, isMissing.expression());
+        assertFalse(isMissing.inverted());
+        assertTrue(isMissing instanceof Expression);
+
+        IsMissingExpression isNotMissing = new IsMissingExpression(target, true);
+        assertTrue(isNotMissing.inverted());
+    }
 }
