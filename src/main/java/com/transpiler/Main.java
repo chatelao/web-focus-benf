@@ -1,9 +1,10 @@
 package com.transpiler;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
-import picocli.CommandLine.Parameters;
 
 import java.io.File;
 import java.util.List;
@@ -14,6 +15,8 @@ import java.util.concurrent.Callable;
         subcommands = {Main.TranspileCommand.class, Main.CheckCommand.class, Main.LineageCommand.class})
 public class Main implements Runnable {
 
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
     @Override
     public void run() {
         CommandLine.usage(this, System.out);
@@ -21,6 +24,8 @@ public class Main implements Runnable {
 
     @Command(name = "transpile", description = "Main command to convert .fex files")
     static class TranspileCommand implements Callable<Integer> {
+        private static final Logger logger = LoggerFactory.getLogger(TranspileCommand.class);
+
         @Option(names = {"-i", "--input"}, required = true, description = "Input .fex file or directory")
         private File input;
 
@@ -35,31 +40,35 @@ public class Main implements Runnable {
 
         @Override
         public Integer call() {
-            System.out.println("Transpiling: " + input.getAbsolutePath());
+            logger.info("Transpiling: {}", input.getAbsolutePath());
             return 0;
         }
     }
 
     @Command(name = "check", description = "Validate WebFOCUS syntax without full transpilation")
     static class CheckCommand implements Callable<Integer> {
+        private static final Logger logger = LoggerFactory.getLogger(CheckCommand.class);
+
         @Option(names = {"-i", "--input"}, required = true, description = "Input .fex file")
         private File input;
 
         @Override
         public Integer call() {
-            System.out.println("Checking syntax: " + input.getAbsolutePath());
+            logger.info("Checking syntax: {}", input.getAbsolutePath());
             return 0;
         }
     }
 
     @Command(name = "lineage", description = "Output data lineage in JSON format")
     static class LineageCommand implements Callable<Integer> {
+        private static final Logger logger = LoggerFactory.getLogger(LineageCommand.class);
+
         @Option(names = {"-i", "--input"}, required = true, description = "Input .fex file")
         private File input;
 
         @Override
         public Integer call() {
-            System.out.println("Analyzing lineage: " + input.getAbsolutePath());
+            logger.info("Analyzing lineage: {}", input.getAbsolutePath());
             return 0;
         }
     }

@@ -6,10 +6,15 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
 - [x] 1.1 Maven Project Initialization: Setup `pom.xml` with dependencies (ANTLR4, Picocli, FreeMarker, Jackson, JGraphT, JUnit 5).
 - [x] 1.2 ANTLR4 Configuration: Integrate `antlr4-maven-plugin` and verify grammar compilation.
 - [x] 1.3 CLI Foundation: Implement basic command-line interface using Picocli (transpile, check, lineage).
-- [ ] 1.4 Logging & Diagnostics: Setup SLF4J/Logback and initial diagnostic reporting.
+- [x] 1.4 Logging & Diagnostics: Setup SLF4J/Logback and initial diagnostic reporting.
 
 ## Phase 2: ASG & IR Models (Data Structures)
-- [ ] 2.1 ASG Node Porting: Implement Java `record` types or immutable classes for all ASG nodes (`asg.py` parity).
+- [ ] 2.1 ASG Node Porting: Implement Java `record` types or immutable classes for ASG nodes (`asg.py` parity).
+  - [ ] 2.1.1 Base Nodes: ASGNode, Expression, Statement, Command.
+  - [ ] 2.1.2 Expressions: Literals, Identifiers, Binary/Unary operations, Function calls.
+  - [ ] 2.1.3 Dialogue Manager Commands: Goto, Label, IfDM, Repeat, SetDM, etc.
+  - [ ] 2.1.4 Report Commands: ReportRequest, VerbCommand, SortCommand, WhereClause, etc.
+  - [ ] 2.1.5 Data Model Nodes: MasterFile, Segment, Field.
 - [ ] 2.2 IR Instruction Porting: Implement IR instruction set and Control Flow Graph (CFG) structures using JGraphT.
 - [ ] 2.3 Metadata Models: Port Master File and Segment metadata models.
 
