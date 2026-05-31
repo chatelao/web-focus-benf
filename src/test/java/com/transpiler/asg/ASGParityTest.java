@@ -77,13 +77,26 @@ class ASGParityTest {
     @Test
     void testNodeNesting() {
         Field fld = new Field("LASTNAME", "LN", "A15");
-        Segment seg = new Segment("EMPDATA", "S1", "EMPLOYEE", List.of(fld));
-        MasterFile mf = new MasterFile("EMPLOYEE", "FOC", List.of(seg));
+        Field virtualFld = new Field("FULLNAME", null, "A30");
+        Segment seg = new Segment("EMPDATA", "S1", "EMPLOYEE", List.of(fld), List.of(virtualFld));
+
+        Dimension dim = new Dimension("TIME");
+        Hierarchy hier = new Hierarchy("YEAR_MONTH");
+        MasterFile mf = new MasterFile("EMPLOYEE", "FOC", List.of(seg), List.of(virtualFld), List.of(dim), List.of(hier));
 
         assertEquals(1, mf.segments().size());
         assertEquals("EMPDATA", mf.segments().get(0).name());
         assertEquals(1, mf.segments().get(0).fields().size());
         assertEquals("LASTNAME", mf.segments().get(0).fields().get(0).name());
+        assertEquals(1, mf.segments().get(0).virtualFields().size());
+        assertEquals("FULLNAME", mf.segments().get(0).virtualFields().get(0).name());
+
+        assertEquals(1, mf.virtualFields().size());
+        assertEquals("FULLNAME", mf.virtualFields().get(0).name());
+        assertEquals(1, mf.dimensions().size());
+        assertEquals("TIME", mf.dimensions().get(0).name());
+        assertEquals(1, mf.hierarchies().size());
+        assertEquals("YEAR_MONTH", mf.hierarchies().get(0).name());
     }
 
     @Test
