@@ -145,53 +145,111 @@ public class WebFocusReportASGBuilder extends WebFocusReportBaseVisitor<Object> 
 
     @Override
     public Object visitDm_logical_expression(WebFocusReportParser.Dm_logical_expressionContext ctx) {
-        if (ctx.getChildCount() == 3 && ctx.getChild(0).getText().equals("(")) {
+        if (ctx.getChildCount() == 1) {
+            return visit(ctx.getChild(0));
+        }
+        if (ctx.getChild(0).getText().equals("(")) {
             return visit(ctx.dm_logical_expression(0));
         }
-        if (ctx.dm_relational_expression() != null && ctx.getChildCount() == 1) {
-            return visit(ctx.dm_relational_expression());
+        if (ctx.getChildCount() == 2) { // NOT case
+            String operator = ctx.getChild(0).getText().toUpperCase();
+            Expression operand = (Expression) visit(ctx.getChild(1));
+            return new UnaryOperation(operator, operand);
         }
-        return null; // NOT, AND, OR not handled yet
+        // Handle binary logical operations (AND, OR)
+        Expression left = (Expression) visit(ctx.getChild(0));
+        String operator = ctx.getChild(1).getText().toUpperCase();
+        Expression right = (Expression) visit(ctx.getChild(2));
+        return new BinaryOperation(left, operator, right);
     }
 
     @Override
     public Object visitDm_relational_expression(WebFocusReportParser.Dm_relational_expressionContext ctx) {
-        if (ctx.dm_concat_expression() != null && ctx.getChildCount() == 1) {
+        if (ctx.getChildCount() == 1) {
             return visit(ctx.dm_concat_expression(0));
         }
-        return null; // MISSING, FROM-TO, IN, etc not handled yet
+
+        // Case: INCLUDES / EXCLUDES
+        if (ctx.INCLUDES() != null || ctx.EXCLUDES() != null) {
+            Expression left = (Expression) visit(ctx.dm_concat_expression(0));
+            String op = ctx.INCLUDES() != null ? "CONTAINS" : "OMITS";
+            List<WebFocusReportParser.Dm_concat_expressionContext> exprs = ctx.dm_concat_expression();
+
+            Expression node = new BinaryOperation(left, op, (Expression) visit(exprs.get(1)));
+            for (int i = 2; i < exprs.size(); i++) {
+                Expression rightExpr = new BinaryOperation(left, op, (Expression) visit(exprs.get(i)));
+                node = new BinaryOperation(node, "AND", rightExpr);
+            }
+            return node;
+        }
+
+        // Case: Relational op with optional OR
+        if (ctx.dm_relational_op() != null) {
+            Expression left = (Expression) visit(ctx.dm_concat_expression(0));
+            String opText = ctx.dm_relational_op().getText().toUpperCase().replace("-", " ");
+            List<WebFocusReportParser.Dm_concat_expressionContext> exprs = ctx.dm_concat_expression();
+
+            Expression node = new BinaryOperation(left, opText, (Expression) visit(exprs.get(1)));
+            for (int i = 2; i < exprs.size(); i++) {
+                Expression rightExpr = new BinaryOperation(left, opText, (Expression) visit(exprs.get(i)));
+                node = new BinaryOperation(node, "OR", rightExpr);
+            }
+            return node;
+        }
+
+        return visit(ctx.getChild(0));
     }
 
     @Override
     public Object visitDm_concat_expression(WebFocusReportParser.Dm_concat_expressionContext ctx) {
-        if (ctx.dm_additive_expression() != null && ctx.getChildCount() == 1) {
-            return visit(ctx.dm_additive_expression(0));
+        if (ctx.getChildCount() == 1) {
+            return visit(ctx.getChild(0));
         }
-        return null; // CONCAT not handled yet
+        Expression left = (Expression) visit(ctx.getChild(0));
+        for (int i = 1; i < ctx.getChildCount(); i += 2) {
+            String operator = ctx.getChild(i).getText();
+            Expression right = (Expression) visit(ctx.getChild(i + 1));
+            left = new BinaryOperation(left, operator, right);
+        }
+        return left;
     }
 
     @Override
     public Object visitDm_additive_expression(WebFocusReportParser.Dm_additive_expressionContext ctx) {
-        if (ctx.dm_multiplicative_expression() != null && ctx.getChildCount() == 1) {
-            return visit(ctx.dm_multiplicative_expression(0));
+        if (ctx.getChildCount() == 1) {
+            return visit(ctx.getChild(0));
         }
-        return null; // ADD, SUB not handled yet
+        Expression left = (Expression) visit(ctx.getChild(0));
+        for (int i = 1; i < ctx.getChildCount(); i += 2) {
+            String operator = ctx.getChild(i).getText();
+            Expression right = (Expression) visit(ctx.getChild(i + 1));
+            left = new BinaryOperation(left, operator, right);
+        }
+        return left;
     }
 
     @Override
     public Object visitDm_multiplicative_expression(WebFocusReportParser.Dm_multiplicative_expressionContext ctx) {
-        if (ctx.dm_unary_expression() != null && ctx.getChildCount() == 1) {
-            return visit(ctx.dm_unary_expression(0));
+        if (ctx.getChildCount() == 1) {
+            return visit(ctx.getChild(0));
         }
-        return null; // MUL, DIV not handled yet
+        Expression left = (Expression) visit(ctx.getChild(0));
+        for (int i = 1; i < ctx.getChildCount(); i += 2) {
+            String operator = ctx.getChild(i).getText();
+            Expression right = (Expression) visit(ctx.getChild(i + 1));
+            left = new BinaryOperation(left, operator, right);
+        }
+        return left;
     }
 
     @Override
     public Object visitDm_unary_expression(WebFocusReportParser.Dm_unary_expressionContext ctx) {
-        if (ctx.dm_primary() != null) {
-            return visit(ctx.dm_primary());
+        if (ctx.getChildCount() == 1) {
+            return visit(ctx.getChild(0));
         }
-        return null; // Unary ops not handled yet
+        String operator = ctx.getChild(0).getText();
+        Expression operand = (Expression) visit(ctx.getChild(1));
+        return new UnaryOperation(operator, operand);
     }
 
     @Override

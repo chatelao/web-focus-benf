@@ -50,7 +50,7 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
   - [x] 3.1.1 Infrastructure: Base visitor skeleton and Start/Request/Table nodes.
   - [ ] 3.1.2 Expressions:
     - [x] 3.1.2.1 Literals, Identifiers, and AmperVars.
-    - [ ] 3.1.2.2 Binary and Unary operations.
+    - [x] 3.1.2.2 Binary and Unary operations.
     - [ ] 3.1.2.3 Function calls and Built-in functions.
     - [ ] 3.1.2.4 Conditional expressions (IfExpression, DecodeExpression).
     - [ ] 3.1.2.5 Set-based expressions (IN, BETWEEN, IS MISSING).
