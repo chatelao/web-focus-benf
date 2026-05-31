@@ -121,6 +121,91 @@ public class WebFocusReportASGBuilderTest {
         assertEquals(123, lit.value());
     }
 
+    @Test
+    public void testArithmeticOperations() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // Addition
+        WebFocusReportParser parser = createParser("1 + 2");
+        BinaryOperation op = (BinaryOperation) builder.visit(parser.dm_expression());
+        assertEquals("+", op.operator());
+        assertEquals(1, ((Literal) op.left()).value());
+        assertEquals(2, ((Literal) op.right()).value());
+
+        // Precedence: 1 + 2 * 3
+        parser = createParser("1 + 2 * 3");
+        op = (BinaryOperation) builder.visit(parser.dm_expression());
+        assertEquals("+", op.operator());
+        assertEquals(1, ((Literal) op.left()).value());
+        BinaryOperation rightOp = (BinaryOperation) op.right();
+        assertEquals("*", rightOp.operator());
+
+        // Unary: -1
+        parser = createParser("-1");
+        UnaryOperation unary = (UnaryOperation) builder.visit(parser.dm_expression());
+        assertEquals("-", unary.operator());
+        assertEquals(1, ((Literal) unary.operand()).value());
+    }
+
+    @Test
+    public void testLogicalOperations() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // AND
+        WebFocusReportParser parser = createParser("A AND B");
+        BinaryOperation op = (BinaryOperation) builder.visit(parser.dm_expression());
+        assertEquals("AND", op.operator());
+        assertEquals("A", ((Identifier) op.left()).name());
+        assertEquals("B", ((Identifier) op.right()).name());
+
+        // NOT
+        parser = createParser("NOT A");
+        UnaryOperation unary = (UnaryOperation) builder.visit(parser.dm_expression());
+        assertEquals("NOT", unary.operator());
+        assertEquals("A", ((Identifier) unary.operand()).name());
+    }
+
+    @Test
+    public void testRelationalOperations() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // EQ
+        WebFocusReportParser parser = createParser("A EQ B");
+        BinaryOperation op = (BinaryOperation) builder.visit(parser.dm_expression());
+        assertEquals("EQ", op.operator());
+
+        // Multiple RHS: A EQ B OR C
+        parser = createParser("A EQ B OR C");
+        op = (BinaryOperation) builder.visit(parser.dm_expression());
+        assertEquals("OR", op.operator());
+        BinaryOperation left = (BinaryOperation) op.left();
+        assertEquals("EQ", left.operator());
+        assertEquals("A", ((Identifier) left.left()).name());
+        assertEquals("B", ((Identifier) left.right()).name());
+        BinaryOperation right = (BinaryOperation) op.right();
+        assertEquals("EQ", right.operator());
+        assertEquals("A", ((Identifier) right.left()).name());
+        assertEquals("C", ((Identifier) right.right()).name());
+    }
+
+    @Test
+    public void testIncludesExcludes() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // INCLUDES
+        WebFocusReportParser parser = createParser("A INCLUDES B AND C");
+        BinaryOperation op = (BinaryOperation) builder.visit(parser.dm_expression());
+        assertEquals("AND", op.operator());
+        BinaryOperation left = (BinaryOperation) op.left();
+        assertEquals("CONTAINS", left.operator());
+        assertEquals("A", ((Identifier) left.left()).name());
+        assertEquals("B", ((Identifier) left.right()).name());
+        BinaryOperation right = (BinaryOperation) op.right();
+        assertEquals("CONTAINS", right.operator());
+        assertEquals("A", ((Identifier) right.left()).name());
+        assertEquals("C", ((Identifier) right.right()).name());
+    }
+
     private WebFocusReportParser createParser(String input) {
         WebFocusReportLexer lexer = new WebFocusReportLexer(CharStreams.fromString(input));
         return new WebFocusReportParser(new CommonTokenStream(lexer));
