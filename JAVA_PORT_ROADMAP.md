@@ -30,8 +30,8 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
     - [x] 2.1.4.1 Basic: ReportRequest, VerbCommand, SortCommand, WhereClause, etc.
     - [x] 2.1.4.2 Output: OutputCommand (HOLD, PCHOLD, etc.).
     - [x] 2.1.4.3 Multi-file: MatchRequest, SubMatch, AfterMatchPhrase, MoreClause, MoreSubRequest.
-  - [x] 2.1.5 Data Model Nodes: MasterFile, Segment, Field.
-- [ ] 2.2 IR Instruction Porting: Implement IR instruction set and Control Flow Graph (CFG) structures using JGraphT.
+  - [x] 2.1.5 Data Model Nodes: MasterFile, Segment, Field, Dimension, Hierarchy.
+- [x] 2.2 IR Instruction Porting: Implement IR instruction set and Control Flow Graph (CFG) structures using JGraphT.
   - [x] 2.2.1 Base IR Infrastructure (IRNode, Instruction, BasicBlock, ControlFlowGraph).
   - [x] 2.2.2 Control Flow Instructions (Label, Jump, Branch, Phi).
   - [x] 2.2.3 Data & Assignment Instructions (Assign, SetEnv, Default).
@@ -41,13 +41,18 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
     - [x] 2.2.5.2 Data-driven IR (Define, Report, Match).
   - [x] 2.2.6 Layout Instructions:
     - [x] 2.2.6.1 Layout blocks (CompoundLayout, CompoundEnd).
-- [ ] 2.3 Metadata Models: Port Master File and Segment metadata models.
+- [x] 2.3 Metadata Models: Port Master File and Segment metadata models.
+  - [x] 2.3.1 Basic Metadata: MasterFile, Segment, Field.
+  - [x] 2.3.2 Enhanced Metadata: Dimension, Hierarchy, Virtual Fields support in MasterFile/Segment.
 
 ## Phase 3: Frontend & Semantic Analysis
 - [ ] 3.1 ASG Builder: Port `asg_builder.py` to Java `WebFocusReportVisitor` implementation.
 - [ ] 3.2 Symbol Table: Port hierarchical symbol resolution and scoping logic.
 - [ ] 3.3 Type System: Port `TypeInferrer` and `TypeMapper` to Java.
 - [ ] 3.4 Master File Parser: Port `master_file_parser.py` to Java implementation.
+  - [ ] 3.4.1 Infrastructure: Lexer/Parser integration.
+  - [ ] 3.4.2 Visitor: Implement `MasterFileASGBuilder` parity in Java.
+  - [ ] 3.4.3 Registry: Implement `MetadataRegistry` (caching and search paths).
 
 ## Phase 4: Optimization (SSA & Relational Lifting)
 - [ ] 4.1 SSA Transformer: Port SSA transformation logic (dominator analysis, Phi-node insertion, variable renaming).
