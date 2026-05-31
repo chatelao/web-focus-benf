@@ -47,11 +47,31 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
 
 ## Phase 3: Frontend & Semantic Analysis
 - [ ] 3.1 ASG Builder: Port `asg_builder.py` to Java `WebFocusReportVisitor` implementation.
-  - [ ] 3.1.1 Infrastructure: Base visitor skeleton and Start/Request/Table nodes.
-  - [ ] 3.1.2 Expressions: Port literal, identifier, binary/unary, and function call visitors.
-  - [ ] 3.1.3 Dialogue Manager Commands: Port Goto, Label, IfDM, SetDM, etc.
-  - [ ] 3.1.4 Report Commands: Port Verb, Sort, Where, Heading/Footing, etc.
-  - [ ] 3.1.5 Advanced Features: Port Compound Layout, Match, and Define visitors.
+  - [x] 3.1.1 Infrastructure: Base visitor skeleton and Start/Request/Table nodes.
+  - [ ] 3.1.2 Expressions:
+    - [ ] 3.1.2.1 Literals, Identifiers, and AmperVars.
+    - [ ] 3.1.2.2 Binary and Unary operations.
+    - [ ] 3.1.2.3 Function calls and Built-in functions.
+    - [ ] 3.1.2.4 Conditional expressions (IfExpression, DecodeExpression).
+    - [ ] 3.1.2.5 Set-based expressions (IN, BETWEEN, IS MISSING).
+  - [ ] 3.1.3 Dialogue Manager Commands:
+    - [ ] 3.1.3.1 Control Flow (Goto, Label, IfDM).
+    - [ ] 3.1.3.2 Variables & Defaults (SetDM, DefaultDM).
+    - [ ] 3.1.3.3 Output & I/O (TypeDM, HtmlFormDM, ReadDM, WriteDM, IncludeDM).
+    - [ ] 3.1.3.4 Loops (Repeat).
+    - [ ] 3.1.3.5 Execution Control (RunDM, ExitDM).
+  - [ ] 3.1.4 Report Commands:
+    - [ ] 3.1.4.1 Verb Commands (PRINT, SUM, etc.) and Field Selections.
+    - [ ] 3.1.4.2 Sort Commands (BY, ACROSS).
+    - [ ] 3.1.4.3 Filter Commands (WHERE, WHEN).
+    - [ ] 3.1.4.4 Formatting (HEADING, FOOTING, ON ... SUBHEAD/SUBFOOT).
+    - [ ] 3.1.4.5 Calculations (COMPUTE, RECAP).
+    - [ ] 3.1.4.6 Summarization (SUBTOTAL, SUMMARIZE).
+  - [ ] 3.1.5 Advanced Features:
+    - [ ] 3.1.5.1 Compound Layout.
+    - [ ] 3.1.5.2 Match File and SubMatch.
+    - [ ] 3.1.5.3 Join and Define File.
+    - [ ] 3.1.5.4 Styling (StyleBlock) and Set Commands.
 - [ ] 3.2 Symbol Table: Port hierarchical symbol resolution and scoping logic.
 - [ ] 3.3 Type System: Port `TypeInferrer` and `TypeMapper` to Java.
 - [ ] 3.4 Master File Parser: Port `master_file_parser.py` to Java implementation.
