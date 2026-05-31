@@ -1,6 +1,8 @@
 package com.transpiler.ir;
 
+import com.transpiler.asg.DefineAssignment;
 import org.junit.jupiter.api.Test;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RelationalInstructionTest {
@@ -26,11 +28,11 @@ class RelationalInstructionTest {
 
     @Test
     void testDefineInstruction() {
-        java.util.Map<String, String> assignment = java.util.Map.of("NAME", "VAL", "FORMAT", "A10");
-        Define define = new Define("EMP", java.util.List.of(assignment));
+        DefineAssignment assignment = new DefineAssignment("VAL", "EXPR", "A10");
+        Define define = new Define("EMP", List.of(assignment));
         assertEquals("EMP", define.filename());
         assertEquals(1, define.assignments().size());
-        assertEquals("VAL", define.assignments().get(0).get("NAME"));
+        assertEquals("VAL", define.assignments().get(0).name());
     }
 
     @Test

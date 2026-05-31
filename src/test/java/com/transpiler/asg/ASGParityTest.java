@@ -56,6 +56,9 @@ class ASGParityTest {
         assertEquals("EMPLOYEE", mf.name());
         assertEquals("FOC", mf.suffix());
         assertTrue(mf.segments().isEmpty());
+        assertTrue(mf.virtualFields().isEmpty());
+        assertTrue(mf.dimensions().isEmpty());
+        assertTrue(mf.hierarchies().isEmpty());
     }
 
     @Test
@@ -64,6 +67,7 @@ class ASGParityTest {
         assertEquals("EMPDATA", seg.name());
         assertEquals("S1", seg.segtype());
         assertTrue(seg.fields().isEmpty());
+        assertTrue(seg.virtualFields().isEmpty());
     }
 
     @Test
@@ -77,13 +81,16 @@ class ASGParityTest {
     @Test
     void testNodeNesting() {
         Field fld = new Field("LASTNAME", "LN", "A15");
-        Segment seg = new Segment("EMPDATA", "S1", "EMPLOYEE", List.of(fld));
-        MasterFile mf = new MasterFile("EMPLOYEE", "FOC", List.of(seg));
+        DefineAssignment virtualField = new DefineAssignment("FULLNAME", "FIRSTNAME || LASTNAME", "A30");
+        Segment seg = new Segment("EMPDATA", "S1", "EMPLOYEE", List.of(fld), List.of(virtualField));
+        MasterFile mf = new MasterFile("EMPLOYEE", "FOC", List.of(seg), List.of(), List.of(), List.of());
 
         assertEquals(1, mf.segments().size());
         assertEquals("EMPDATA", mf.segments().get(0).name());
         assertEquals(1, mf.segments().get(0).fields().size());
         assertEquals("LASTNAME", mf.segments().get(0).fields().get(0).name());
+        assertEquals(1, mf.segments().get(0).virtualFields().size());
+        assertEquals("FULLNAME", mf.segments().get(0).virtualFields().get(0).name());
     }
 
     @Test
@@ -177,9 +184,11 @@ class ASGParityTest {
         assertEquals("NODATA", setCmd.parameter());
         assertEquals("MISSING", setCmd.value());
 
-        DefineFile define = new DefineFile("EMPLOYEE", List.of(Map.of("name", "FULLNAME", "expression", "FIRSTNAME || LASTNAME")));
+        DefineAssignment assignment = new DefineAssignment("FULLNAME", "FIRSTNAME || LASTNAME", "A30");
+        DefineFile define = new DefineFile("EMPLOYEE", List.of(assignment));
         assertEquals("EMPLOYEE", define.filename());
         assertEquals(1, define.assignments().size());
+        assertEquals("FULLNAME", define.assignments().get(0).name());
     }
 
     @Test
@@ -219,5 +228,20 @@ class ASGParityTest {
         InExpression inExpr = new InExpression(ident, List.of(new Literal(1), new Literal(2)));
         assertEquals(ident, inExpr.expression());
         assertEquals(2, inExpr.values().size());
+    }
+
+    @Test
+    void testDimensionAndHierarchyNodes() {
+        Dimension dim = new Dimension("GEOGRAPHY");
+        assertEquals("GEOGRAPHY", dim.name());
+
+        Hierarchy hry = new Hierarchy("REGIONAL");
+        assertEquals("REGIONAL", hry.name());
+
+        MasterFile mf = new MasterFile("SALES", "FOC", List.of(), List.of(), List.of(dim), List.of(hry));
+        assertEquals(1, mf.dimensions().size());
+        assertEquals("GEOGRAPHY", mf.dimensions().get(0).name());
+        assertEquals(1, mf.hierarchies().size());
+        assertEquals("REGIONAL", mf.hierarchies().get(0).name());
     }
 }
