@@ -1,16 +1,15 @@
 package com.transpiler.asg;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Represents a DEFINE FILE block.
  */
 public record DefineFile(
     String filename,
-    List<Map<String, String>> assignments
+    List<DefineAssignment> assignments
 ) implements Statement {
-    public DefineFile(String filename, List<Map<String, String>> assignments) {
+    public DefineFile(String filename, List<DefineAssignment> assignments) {
         this.filename = filename;
         this.assignments = assignments != null ? List.copyOf(assignments) : List.of();
     }

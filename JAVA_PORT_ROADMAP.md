@@ -30,7 +30,7 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
     - [x] 2.1.4.1 Basic: ReportRequest, VerbCommand, SortCommand, WhereClause, etc.
     - [x] 2.1.4.2 Output: OutputCommand (HOLD, PCHOLD, etc.).
     - [x] 2.1.4.3 Multi-file: MatchRequest, SubMatch, AfterMatchPhrase, MoreClause, MoreSubRequest.
-  - [x] 2.1.5 Data Model Nodes: MasterFile, Segment, Field.
+  - [x] 2.1.5 Data Model Nodes: MasterFile, Segment, Field, DefineAssignment, Dimension, Hierarchy.
 - [ ] 2.2 IR Instruction Porting: Implement IR instruction set and Control Flow Graph (CFG) structures using JGraphT.
   - [x] 2.2.1 Base IR Infrastructure (IRNode, Instruction, BasicBlock, ControlFlowGraph).
   - [x] 2.2.2 Control Flow Instructions (Label, Jump, Branch, Phi).
@@ -44,10 +44,22 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
 - [ ] 2.3 Metadata Models: Port Master File and Segment metadata models.
 
 ## Phase 3: Frontend & Semantic Analysis
-- [ ] 3.1 ASG Builder: Port `asg_builder.py` to Java `WebFocusReportVisitor` implementation.
-- [ ] 3.2 Symbol Table: Port hierarchical symbol resolution and scoping logic.
-- [ ] 3.3 Type System: Port `TypeInferrer` and `TypeMapper` to Java.
-- [ ] 3.4 Master File Parser: Port `master_file_parser.py` to Java implementation.
+- [ ] 3.1 ASG Builder Infrastructure:
+  - [ ] 3.1.1 Base Visitor: Implement `WebFocusReportVisitor` and `MasterFileVisitor` skeleton.
+  - [ ] 3.1.2 Dispatcher Logic: Implement node traversal and construction orchestration.
+- [ ] 3.2 Expression & Command Builders:
+  - [ ] 3.2.1 Expression Builder: Support all arithmetic, character, and logical expressions.
+  - [ ] 3.2.2 Dialogue Manager Builder: Port visitor logic for -SET, -IF, -GOTO, -REPEAT, etc.
+  - [ ] 3.2.3 Report Request Builder: Port visitor logic for TABLE FILE, verbs, sorts, and filters.
+  - [ ] 3.2.4 Environment Builder: Port visitor logic for JOIN, SET, and DEFINE FILE.
+- [ ] 3.3 Master File Parser & Builder:
+  - [ ] 3.3.1 Port `MasterFileParserWrapper` and `MasterFileASGBuilder` to Java.
+- [ ] 3.4 Symbol Table & Scoping:
+  - [ ] 3.4.1 Implement hierarchical `SymbolTable` (block-level and global).
+  - [ ] 3.4.2 Port `SymbolResolver` for AmperVars and database field resolution.
+- [ ] 3.5 Type System:
+  - [ ] 3.5.1 Implement `TypeInferrer` for literal and expression typing.
+  - [ ] 3.5.2 Implement `TypeMapper` for metadata-driven type resolution.
 
 ## Phase 4: Optimization (SSA & Relational Lifting)
 - [ ] 4.1 SSA Transformer: Port SSA transformation logic (dominator analysis, Phi-node insertion, variable renaming).

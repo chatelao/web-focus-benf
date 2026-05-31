@@ -1,16 +1,16 @@
 package com.transpiler.ir;
 
+import com.transpiler.asg.DefineAssignment;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Represents a set of virtual field definitions (DEFINE FILE).
  */
 public record Define(
     String filename,
-    List<Map<String, String>> assignments
+    List<DefineAssignment> assignments
 ) implements Instruction {
-    public Define(String filename, List<Map<String, String>> assignments) {
+    public Define(String filename, List<DefineAssignment> assignments) {
         this.filename = filename;
         this.assignments = assignments != null ? List.copyOf(assignments) : List.of();
     }
