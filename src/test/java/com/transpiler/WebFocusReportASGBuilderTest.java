@@ -206,6 +206,38 @@ public class WebFocusReportASGBuilderTest {
         assertEquals("C", ((Identifier) right.right()).name());
     }
 
+    @Test
+    public void testIfExpression() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+        WebFocusReportParser parser = createParser("IF A EQ B THEN 1 ELSE 2");
+        IfExpression ifExpr = (IfExpression) builder.visit(parser.dm_expression());
+
+        BinaryOperation condition = (BinaryOperation) ifExpr.condition();
+        assertEquals("EQ", condition.operator());
+        assertEquals(1, ((Literal) ifExpr.thenExpression()).value());
+        assertEquals(2, ((Literal) ifExpr.elseExpression()).value());
+    }
+
+    @Test
+    public void testDecodeExpression() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // Without ELSE
+        WebFocusReportParser parser = createParser("DECODE A (1 10 2 20)");
+        DecodeExpression decodeExpr = (DecodeExpression) builder.visit(parser.dm_expression());
+        assertEquals("A", ((Identifier) decodeExpr.expression()).name());
+        assertEquals(2, decodeExpr.pairs().size());
+        assertEquals(1, ((Literal) decodeExpr.pairs().get(0).search()).value());
+        assertEquals(10, ((Literal) decodeExpr.pairs().get(0).result()).value());
+        assertNull(decodeExpr.defaultValue());
+
+        // With ELSE
+        parser = createParser("DECODE A (1 10 ELSE 30)");
+        decodeExpr = (DecodeExpression) builder.visit(parser.dm_expression());
+        assertEquals(1, decodeExpr.pairs().size());
+        assertEquals(30, ((Literal) decodeExpr.defaultValue()).value());
+    }
+
     private WebFocusReportParser createParser(String input) {
         WebFocusReportLexer lexer = new WebFocusReportLexer(CharStreams.fromString(input));
         return new WebFocusReportParser(new CommonTokenStream(lexer));
