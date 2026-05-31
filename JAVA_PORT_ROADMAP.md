@@ -47,10 +47,15 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
 
 ## Phase 3: Frontend & Semantic Analysis
 - [ ] 3.1 ASG Builder: Port `asg_builder.py` to Java `WebFocusReportVisitor` implementation.
+  - [ ] 3.1.1 Infrastructure: Base visitor skeleton and Start/Request/Table nodes.
+  - [ ] 3.1.2 Expressions: Port literal, identifier, binary/unary, and function call visitors.
+  - [ ] 3.1.3 Dialogue Manager Commands: Port Goto, Label, IfDM, SetDM, etc.
+  - [ ] 3.1.4 Report Commands: Port Verb, Sort, Where, Heading/Footing, etc.
+  - [ ] 3.1.5 Advanced Features: Port Compound Layout, Match, and Define visitors.
 - [ ] 3.2 Symbol Table: Port hierarchical symbol resolution and scoping logic.
 - [ ] 3.3 Type System: Port `TypeInferrer` and `TypeMapper` to Java.
 - [ ] 3.4 Master File Parser: Port `master_file_parser.py` to Java implementation.
-  - [ ] 3.4.1 Infrastructure: Lexer/Parser integration.
+  - [ ] 3.4.1 Infrastructure: Lexer/Parser integration and error handling.
   - [ ] 3.4.2 Visitor: Implement `MasterFileASGBuilder` parity in Java.
   - [ ] 3.4.3 Registry: Implement `MetadataRegistry` (caching and search paths).
 
