@@ -49,7 +49,7 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
 - [ ] 3.1 ASG Builder: Port `asg_builder.py` to Java `WebFocusReportVisitor` implementation.
   - [x] 3.1.1 Infrastructure: Base visitor skeleton and Start/Request/Table nodes.
   - [ ] 3.1.2 Expressions:
-    - [ ] 3.1.2.1 Literals, Identifiers, and AmperVars.
+    - [x] 3.1.2.1 Literals, Identifiers, and AmperVars.
     - [ ] 3.1.2.2 Binary and Unary operations.
     - [ ] 3.1.2.3 Function calls and Built-in functions.
     - [ ] 3.1.2.4 Conditional expressions (IfExpression, DecodeExpression).

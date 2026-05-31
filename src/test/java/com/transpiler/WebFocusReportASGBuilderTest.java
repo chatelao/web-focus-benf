@@ -1,7 +1,6 @@
 package com.transpiler;
 
-import com.transpiler.asg.ASGNode;
-import com.transpiler.asg.ReportRequest;
+import com.transpiler.asg.*;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.junit.jupiter.api.Test;
@@ -77,5 +76,53 @@ public class WebFocusReportASGBuilderTest {
         assertEquals("SUM", verbCmd.verb());
         assertEquals(1, verbCmd.fields().size());
         assertEquals("*", verbCmd.fields().get(0).name());
+    }
+
+    @Test
+    public void testExpressionLiterals() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // Integer literal
+        WebFocusReportParser parser = createParser("123");
+        Literal litInt = (Literal) builder.visit(parser.dm_expression());
+        assertEquals(123, litInt.value());
+
+        // Float literal
+        parser = createParser("12.34");
+        Literal litFloat = (Literal) builder.visit(parser.dm_expression());
+        assertEquals(12.34, litFloat.value());
+
+        // String literal
+        parser = createParser("'Hello'");
+        Literal litStr = (Literal) builder.visit(parser.dm_expression());
+        assertEquals("Hello", litStr.value());
+    }
+
+    @Test
+    public void testExpressionIdentifierAndAmperVar() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // Identifier
+        WebFocusReportParser parser = createParser("COUNTRY");
+        Identifier ident = (Identifier) builder.visit(parser.dm_expression());
+        assertEquals("COUNTRY", ident.name());
+
+        // AmperVar
+        parser = createParser("&VAR");
+        AmperVar amper = (AmperVar) builder.visit(parser.dm_expression());
+        assertEquals("&VAR", amper.name());
+    }
+
+    @Test
+    public void testNestedExpression() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+        WebFocusReportParser parser = createParser("((123))");
+        Literal lit = (Literal) builder.visit(parser.dm_expression());
+        assertEquals(123, lit.value());
+    }
+
+    private WebFocusReportParser createParser(String input) {
+        WebFocusReportLexer lexer = new WebFocusReportLexer(CharStreams.fromString(input));
+        return new WebFocusReportParser(new CommonTokenStream(lexer));
     }
 }

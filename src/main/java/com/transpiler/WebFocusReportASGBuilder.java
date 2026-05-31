@@ -129,4 +129,106 @@ public class WebFocusReportASGBuilder extends WebFocusReportBaseVisitor<Object> 
     public Object visitAsterisk(WebFocusReportParser.AsteriskContext ctx) {
         return new FieldSelection("*");
     }
+
+    @Override
+    public Object visitDm_expression(WebFocusReportParser.Dm_expressionContext ctx) {
+        return visit(ctx.dm_if_expression());
+    }
+
+    @Override
+    public Object visitDm_if_expression(WebFocusReportParser.Dm_if_expressionContext ctx) {
+        if (ctx.dm_logical_expression() != null && ctx.getChildCount() == 1) {
+            return visit(ctx.dm_logical_expression());
+        }
+        return null; // IF-THEN-ELSE not handled yet
+    }
+
+    @Override
+    public Object visitDm_logical_expression(WebFocusReportParser.Dm_logical_expressionContext ctx) {
+        if (ctx.getChildCount() == 3 && ctx.getChild(0).getText().equals("(")) {
+            return visit(ctx.dm_logical_expression(0));
+        }
+        if (ctx.dm_relational_expression() != null && ctx.getChildCount() == 1) {
+            return visit(ctx.dm_relational_expression());
+        }
+        return null; // NOT, AND, OR not handled yet
+    }
+
+    @Override
+    public Object visitDm_relational_expression(WebFocusReportParser.Dm_relational_expressionContext ctx) {
+        if (ctx.dm_concat_expression() != null && ctx.getChildCount() == 1) {
+            return visit(ctx.dm_concat_expression(0));
+        }
+        return null; // MISSING, FROM-TO, IN, etc not handled yet
+    }
+
+    @Override
+    public Object visitDm_concat_expression(WebFocusReportParser.Dm_concat_expressionContext ctx) {
+        if (ctx.dm_additive_expression() != null && ctx.getChildCount() == 1) {
+            return visit(ctx.dm_additive_expression(0));
+        }
+        return null; // CONCAT not handled yet
+    }
+
+    @Override
+    public Object visitDm_additive_expression(WebFocusReportParser.Dm_additive_expressionContext ctx) {
+        if (ctx.dm_multiplicative_expression() != null && ctx.getChildCount() == 1) {
+            return visit(ctx.dm_multiplicative_expression(0));
+        }
+        return null; // ADD, SUB not handled yet
+    }
+
+    @Override
+    public Object visitDm_multiplicative_expression(WebFocusReportParser.Dm_multiplicative_expressionContext ctx) {
+        if (ctx.dm_unary_expression() != null && ctx.getChildCount() == 1) {
+            return visit(ctx.dm_unary_expression(0));
+        }
+        return null; // MUL, DIV not handled yet
+    }
+
+    @Override
+    public Object visitDm_unary_expression(WebFocusReportParser.Dm_unary_expressionContext ctx) {
+        if (ctx.dm_primary() != null) {
+            return visit(ctx.dm_primary());
+        }
+        return null; // Unary ops not handled yet
+    }
+
+    @Override
+    public Object visitDm_primary(WebFocusReportParser.Dm_primaryContext ctx) {
+        if (ctx.NUMBER() != null) {
+            return new Literal(Integer.parseInt(ctx.NUMBER().getText()));
+        }
+        if (ctx.dm_float() != null) {
+            return visit(ctx.dm_float());
+        }
+        if (ctx.qualified_name() != null) {
+            if (ctx.getChildCount() > 1 && ctx.getChild(1).getText().equals("(")) {
+                return null; // FunctionCall not handled yet
+            } else {
+                return new Identifier(ctx.qualified_name().getText());
+            }
+        }
+        if (ctx.amper_var() != null) {
+            return visit(ctx.amper_var());
+        }
+        if (ctx.STRING() != null) {
+            String val = ctx.STRING().getText();
+            return new Literal(val.substring(1, val.length() - 1));
+        }
+        if (ctx.getChildCount() == 3 && ctx.getChild(0).getText().equals("(")) {
+            return visit(ctx.dm_expression(0));
+        }
+        return null;
+    }
+
+    @Override
+    public Object visitAmper_var(WebFocusReportParser.Amper_varContext ctx) {
+        return new AmperVar(ctx.getText());
+    }
+
+    @Override
+    public Object visitDm_float(WebFocusReportParser.Dm_floatContext ctx) {
+        return new Literal(Double.parseDouble(ctx.getText()));
+    }
 }
