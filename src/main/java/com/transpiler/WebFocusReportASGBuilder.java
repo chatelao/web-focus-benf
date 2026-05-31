@@ -137,10 +137,32 @@ public class WebFocusReportASGBuilder extends WebFocusReportBaseVisitor<Object> 
 
     @Override
     public Object visitDm_if_expression(WebFocusReportParser.Dm_if_expressionContext ctx) {
-        if (ctx.dm_logical_expression() != null && ctx.getChildCount() == 1) {
-            return visit(ctx.dm_logical_expression());
+        if (ctx.IF() != null) {
+            Expression condition = (Expression) visit(ctx.dm_logical_expression());
+            Expression thenExpr = (Expression) visit(ctx.dm_expression(0));
+            Expression elseExpr = (Expression) visit(ctx.dm_expression(1));
+            return new IfExpression(condition, thenExpr, elseExpr);
         }
-        return null; // IF-THEN-ELSE not handled yet
+        return visit(ctx.getChild(0));
+    }
+
+    @Override
+    public Object visitDecode_expression(WebFocusReportParser.Decode_expressionContext ctx) {
+        Expression expression = (Expression) visit(ctx.dm_primary(0));
+        List<DecodeExpression.Pair> pairs = new ArrayList<>();
+
+        int numPrimaries = ctx.dm_primary().size();
+        boolean hasElse = ctx.ELSE() != null;
+        int endPairsIdx = hasElse ? numPrimaries - 1 : numPrimaries;
+
+        for (int i = 1; i < endPairsIdx; i += 2) {
+            Expression search = (Expression) visit(ctx.dm_primary(i));
+            Expression result = (Expression) visit(ctx.dm_primary(i + 1));
+            pairs.add(new DecodeExpression.Pair(search, result));
+        }
+
+        Expression defaultValue = hasElse ? (Expression) visit(ctx.dm_primary(numPrimaries - 1)) : null;
+        return new DecodeExpression(expression, pairs, defaultValue);
     }
 
     @Override
@@ -273,6 +295,9 @@ public class WebFocusReportASGBuilder extends WebFocusReportBaseVisitor<Object> 
         if (ctx.STRING() != null) {
             String val = ctx.STRING().getText();
             return new Literal(val.substring(1, val.length() - 1));
+        }
+        if (ctx.decode_expression() != null) {
+            return visit(ctx.decode_expression());
         }
         if (ctx.getChildCount() == 3 && ctx.getChild(0).getText().equals("(")) {
             return visit(ctx.dm_expression(0));
