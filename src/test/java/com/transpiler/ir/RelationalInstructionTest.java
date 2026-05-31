@@ -23,4 +23,31 @@ class RelationalInstructionTest {
         assertNotNull(joinClear);
         assertTrue(joinClear instanceof Instruction);
     }
+
+    @Test
+    void testDefineInstruction() {
+        java.util.Map<String, String> assignment = java.util.Map.of("NAME", "VAL", "FORMAT", "A10");
+        Define define = new Define("EMP", java.util.List.of(assignment));
+        assertEquals("EMP", define.filename());
+        assertEquals(1, define.assignments().size());
+        assertEquals("VAL", define.assignments().get(0).get("NAME"));
+    }
+
+    @Test
+    void testReportInstruction() {
+        Report report = new Report("EMP", java.util.List.of());
+        assertEquals("EMP", report.filename());
+        assertTrue(report.components().isEmpty());
+        assertTrue(report.joins().isEmpty());
+        assertNull(report.moreClause());
+    }
+
+    @Test
+    void testMatchInstruction() {
+        Match match = new Match("EMP", java.util.List.of());
+        assertEquals("EMP", match.filename());
+        assertTrue(match.components().isEmpty());
+        assertTrue(match.subMatches().isEmpty());
+        assertNull(match.moreClause());
+    }
 }
