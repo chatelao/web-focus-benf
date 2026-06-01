@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] 0.46 Implement a next, modest, very small, feasible and reasonable JAVA_PORT_ROADMAP.md step (#475)
 - [x] 0.45 Implement a next, modest, very small, feasible and reasonable JAVA_PORT_ROADMAP.md step (#473) (completed at 2026-06-01 17:25:47)
 - [x] 0.44 Implement a next, modest, very small, feasible and reasonable JAVA_PORT_ROADMAP.md step (#471) (completed at 2026-06-01 11:16:29)
 - [x] 0.43 Implement a next, modest, very small, feasible and reasonable JAVA_PORT_ROADMAP.md step (#469) (completed at 2026-06-01 05:21:13)
