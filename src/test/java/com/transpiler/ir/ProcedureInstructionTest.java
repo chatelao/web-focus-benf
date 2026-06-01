@@ -1,5 +1,7 @@
 package com.transpiler.ir;
 
+import com.transpiler.asg.Expression;
+import com.transpiler.asg.Literal;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,18 +11,18 @@ class ProcedureInstructionTest {
 
     @Test
     void testType() {
-        List<String> messages = List.of("Hello", "World");
+        List<Expression> messages = List.of(new Literal("Hello"), new Literal("World"));
         Type type = new Type(messages);
         assertEquals(messages, type.messages());
 
         // Verify immutability
-        List<String> mutableMessages = new ArrayList<>();
-        mutableMessages.add("Test");
+        List<Expression> mutableMessages = new ArrayList<>();
+        mutableMessages.add(new Literal("Test"));
         Type type2 = new Type(mutableMessages);
-        mutableMessages.add("Changed");
+        mutableMessages.add(new Literal("Changed"));
         assertEquals(1, type2.messages().size());
-        assertEquals("Test", type2.messages().get(0));
-        assertThrows(UnsupportedOperationException.class, () -> type2.messages().add("New"));
+        assertEquals(new Literal("Test"), type2.messages().get(0));
+        assertThrows(UnsupportedOperationException.class, () -> type2.messages().add(new Literal("New")));
     }
 
     @Test
@@ -63,16 +65,16 @@ class ProcedureInstructionTest {
 
     @Test
     void testWrite() {
-        List<String> msgs = List.of("Line 1", "Line 2");
+        List<Expression> msgs = List.of(new Literal("Line 1"), new Literal("Line 2"));
         Write write = new Write("output.txt", msgs);
         assertEquals("output.txt", write.filename());
         assertEquals(msgs, write.messages());
 
         // Verify immutability
-        List<String> mutableMsgs = new ArrayList<>();
-        mutableMsgs.add("m");
+        List<Expression> mutableMsgs = new ArrayList<>();
+        mutableMsgs.add(new Literal("m"));
         Write write2 = new Write("file", mutableMsgs);
-        mutableMsgs.add("m2");
+        mutableMsgs.add(new Literal("m2"));
         assertEquals(1, write2.messages().size());
     }
 }

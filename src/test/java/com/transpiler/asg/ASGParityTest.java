@@ -123,8 +123,8 @@ class ASGParityTest {
         assertEquals("&VAR", setNode.variable());
         assertEquals(new Literal("100"), setNode.expression());
 
-        TypeDM typeNode = new TypeDM(List.of("Hello", "World"));
-        assertEquals(List.of("Hello", "World"), typeNode.messages());
+        TypeDM typeNode = new TypeDM(List.of(new Literal("Hello"), new Literal("World")));
+        assertEquals(List.of(new Literal("Hello"), new Literal("World")), typeNode.messages());
 
         IncludeDM includeNode = new IncludeDM("MYFEX.FEX");
         assertEquals("MYFEX.FEX", includeNode.filename());
