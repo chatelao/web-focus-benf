@@ -21,7 +21,7 @@ class ASGParityTest {
         assertEquals("HOLD", hold.outputType());
         assertEquals("MYHOLD", hold.filename());
 
-        MoreSubRequest moreSub = new MoreSubRequest("FILE2", List.of(new WhereClause("COUNTRY EQ 'USA'", false)));
+        MoreSubRequest moreSub = new MoreSubRequest("FILE2", List.of(new WhereClause(new BinaryOperation(new Identifier("COUNTRY"), "EQ", new Literal("USA")), false)));
         MoreClause more = new MoreClause(List.of(moreSub));
         assertEquals(1, more.subRequests().size());
         assertEquals("FILE2", more.subRequests().get(0).filename());
@@ -150,8 +150,9 @@ class ASGParityTest {
         assertEquals("BY", sort.sortType());
         assertEquals("DEPARTMENT", sort.field().name());
 
-        WhereClause where = new WhereClause("SALARY GT 50000", false);
-        assertEquals("SALARY GT 50000", where.condition());
+        Expression whereCond = new BinaryOperation(new Identifier("SALARY"), "GT", new Literal(50000));
+        WhereClause where = new WhereClause(whereCond, false);
+        assertEquals(whereCond, where.condition());
         assertFalse(where.isTotal());
 
         Heading heading = new Heading("Employee Report", true);
