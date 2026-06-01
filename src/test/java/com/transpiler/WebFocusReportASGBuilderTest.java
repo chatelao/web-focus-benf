@@ -361,6 +361,31 @@ public class WebFocusReportASGBuilderTest {
         assertNotNull(exitDM);
     }
 
+    @Test
+    public void testIncludeCommand() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+        WebFocusReportParser parser = createParser("-INCLUDE MYFILE;");
+        IncludeDM includeDM = (IncludeDM) builder.visit(parser.dm_command());
+        assertEquals("MYFILE", includeDM.filename());
+    }
+
+    @Test
+    public void testHtmlFormCommand() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // File-based
+        WebFocusReportParser parser = createParser("-HTMLFORM MYFORM;");
+        HtmlFormDM formDM = (HtmlFormDM) builder.visit(parser.dm_command());
+        assertEquals("MYFORM", formDM.filename());
+        assertNull(formDM.content());
+
+        // Block-based
+        parser = createParser("-HTMLFORM BEGIN\n<html><body>Hello</body></html>\n-HTMLFORM END");
+        formDM = (HtmlFormDM) builder.visit(parser.dm_command());
+        assertNull(formDM.filename());
+        assertTrue(formDM.content().contains("<html><body>Hello</body></html>"));
+    }
+
     private WebFocusReportParser createParser(String input) {
         WebFocusReportLexer lexer = new WebFocusReportLexer(CharStreams.fromString(input));
         return new WebFocusReportParser(new CommonTokenStream(lexer));

@@ -59,10 +59,10 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
     - [x] 3.1.3.2 Variables & Defaults (SetDM, DefaultDM).
     - [ ] 3.1.3.3 Output & I/O:
       - [ ] 3.1.3.3.1 TypeDM.
-      - [ ] 3.1.3.3.2 HtmlFormDM.
+      - [x] 3.1.3.3.2 HtmlFormDM.
       - [ ] 3.1.3.3.3 ReadDM.
       - [ ] 3.1.3.3.4 WriteDM.
-      - [ ] 3.1.3.3.5 IncludeDM.
+      - [x] 3.1.3.3.5 IncludeDM.
     - [ ] 3.1.3.4 Loops (Repeat).
     - [x] 3.1.3.5 Execution Control (RunDM, ExitDM).
   - [ ] 3.1.4 Report Commands:
