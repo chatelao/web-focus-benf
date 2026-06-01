@@ -191,6 +191,47 @@ public class WebFocusReportASGBuilder extends WebFocusReportBaseVisitor<Object> 
             return visit(ctx.dm_concat_expression(0));
         }
 
+        // Case: MISSING
+        if (ctx.MISSING() != null) {
+            Expression expr = (Expression) visit(ctx.dm_concat_expression(0));
+            boolean inverted = ctx.NE() != null || ctx.is_not_op() != null;
+            return new IsMissingExpression(expr, inverted);
+        }
+
+        // Case: FROM...TO
+        if (ctx.TO() != null) {
+            Expression expr = (Expression) visit(ctx.dm_concat_expression(0));
+            Expression lower = (Expression) visit(ctx.dm_concat_expression(1));
+            Expression upper = (Expression) visit(ctx.dm_concat_expression(2));
+            if (expr == null || lower == null || upper == null) {
+                return null;
+            }
+            Expression node = new BetweenExpression(expr, lower, upper);
+            if (ctx.not_from_op() != null) {
+                return new UnaryOperation("NOT", node);
+            }
+            return node;
+        }
+
+        // Case: IN
+        if (ctx.IN() != null) {
+            Expression expr = (Expression) visit(ctx.dm_concat_expression(0));
+            if (expr == null) return null;
+            if (ctx.FILE() != null) {
+                String filename = ctx.qualified_name().getText();
+                return new InExpression(expr, List.of(), filename);
+            } else {
+                List<Expression> values = new ArrayList<>();
+                for (int i = 1; i < ctx.dm_concat_expression().size(); i++) {
+                    Expression v = (Expression) visit(ctx.dm_concat_expression(i));
+                    if (v != null) {
+                        values.add(v);
+                    }
+                }
+                return new InExpression(expr, values);
+            }
+        }
+
         // Case: INCLUDES / EXCLUDES
         if (ctx.INCLUDES() != null || ctx.EXCLUDES() != null) {
             Expression left = (Expression) visit(ctx.dm_concat_expression(0));

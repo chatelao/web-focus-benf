@@ -238,6 +238,49 @@ public class WebFocusReportASGBuilderTest {
         assertEquals(30, ((Literal) decodeExpr.defaultValue()).value());
     }
 
+    @Test
+    public void testSetBasedExpressions() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // IS MISSING
+        WebFocusReportParser parser = createParser("A IS MISSING");
+        IsMissingExpression missingExpr = (IsMissingExpression) builder.visit(parser.dm_expression());
+        assertEquals("A", ((Identifier) missingExpr.expression()).name());
+        assertFalse(missingExpr.inverted());
+
+        // IS NOT MISSING
+        parser = createParser("A IS NOT MISSING");
+        missingExpr = (IsMissingExpression) builder.visit(parser.dm_expression());
+        assertTrue(missingExpr.inverted());
+
+        // FROM...TO
+        parser = createParser("A FROM 1 TO 10");
+        BetweenExpression betweenExpr = (BetweenExpression) builder.visit(parser.dm_expression());
+        assertEquals("A", ((Identifier) betweenExpr.expression()).name());
+        assertEquals(1, ((Literal) betweenExpr.lower()).value());
+        assertEquals(10, ((Literal) betweenExpr.upper()).value());
+
+        // NOT FROM...TO
+        parser = createParser("A NOT FROM 1 TO 10");
+        UnaryOperation notBetween = (UnaryOperation) builder.visit(parser.dm_expression());
+        assertEquals("NOT", notBetween.operator());
+        assertTrue(notBetween.operand() instanceof BetweenExpression);
+
+        // IN (list)
+        parser = createParser("A IN (1, 2, 3)");
+        InExpression inExpr = (InExpression) builder.visit(parser.dm_expression());
+        assertEquals("A", ((Identifier) inExpr.expression()).name());
+        assertEquals(3, inExpr.values().size());
+        assertNull(inExpr.filename());
+
+        // IN FILE
+        parser = createParser("A IN FILE CAR");
+        inExpr = (InExpression) builder.visit(parser.dm_expression());
+        assertEquals("A", ((Identifier) inExpr.expression()).name());
+        assertEquals(0, inExpr.values().size());
+        assertEquals("CAR", inExpr.filename());
+    }
+
     private WebFocusReportParser createParser(String input) {
         WebFocusReportLexer lexer = new WebFocusReportLexer(CharStreams.fromString(input));
         return new WebFocusReportParser(new CommonTokenStream(lexer));
