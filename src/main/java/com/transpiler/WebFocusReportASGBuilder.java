@@ -325,7 +325,12 @@ public class WebFocusReportASGBuilder extends WebFocusReportBaseVisitor<Object> 
         }
         if (ctx.qualified_name() != null) {
             if (ctx.getChildCount() > 1 && ctx.getChild(1).getText().equals("(")) {
-                return null; // FunctionCall not handled yet
+                String functionName = ctx.qualified_name().getText().toUpperCase();
+                List<Expression> arguments = new ArrayList<>();
+                for (var exprCtx : ctx.dm_expression()) {
+                    arguments.add((Expression) visit(exprCtx));
+                }
+                return new FunctionCall(functionName, arguments);
             } else {
                 return new Identifier(ctx.qualified_name().getText());
             }

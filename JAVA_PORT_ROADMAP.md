@@ -51,17 +51,24 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
   - [ ] 3.1.2 Expressions:
     - [x] 3.1.2.1 Literals, Identifiers, and AmperVars.
     - [x] 3.1.2.2 Binary and Unary operations.
-    - [ ] 3.1.2.3 Function calls and Built-in functions.
+    - [x] 3.1.2.3 Function calls and Built-in functions.
     - [x] 3.1.2.4 Conditional expressions (IfExpression, DecodeExpression).
     - [x] 3.1.2.5 Set-based expressions (IN, BETWEEN, IS MISSING).
   - [ ] 3.1.3 Dialogue Manager Commands:
     - [x] 3.1.3.1 Control Flow (Goto, Label, IfDM).
     - [x] 3.1.3.2 Variables & Defaults (SetDM, DefaultDM).
-    - [ ] 3.1.3.3 Output & I/O (TypeDM, HtmlFormDM, ReadDM, WriteDM, IncludeDM).
+    - [ ] 3.1.3.3 Output & I/O:
+      - [ ] 3.1.3.3.1 TypeDM.
+      - [ ] 3.1.3.3.2 HtmlFormDM.
+      - [ ] 3.1.3.3.3 ReadDM.
+      - [ ] 3.1.3.3.4 WriteDM.
+      - [ ] 3.1.3.3.5 IncludeDM.
     - [ ] 3.1.3.4 Loops (Repeat).
     - [x] 3.1.3.5 Execution Control (RunDM, ExitDM).
   - [ ] 3.1.4 Report Commands:
-    - [ ] 3.1.4.1 Verb Commands (PRINT, SUM, etc.) and Field Selections.
+    - [ ] 3.1.4.1 Verb Commands:
+      - [x] 3.1.4.1.1 Basic Verb and Field Selection.
+      - [x] 3.1.4.1.2 Prefix Operators.
     - [ ] 3.1.4.2 Sort Commands (BY, ACROSS).
     - [ ] 3.1.4.3 Filter Commands (WHERE, WHEN).
     - [ ] 3.1.4.4 Formatting (HEADING, FOOTING, ON ... SUBHEAD/SUBFOOT).
