@@ -416,4 +416,83 @@ public class WebFocusReportASGBuilder extends WebFocusReportBaseVisitor<Object> 
         }
         return new HtmlFormDM(ctx.qualified_name().getText(), null);
     }
+
+    @Override
+    public Object visitDm_type(WebFocusReportParser.Dm_typeContext ctx) {
+        List<Expression> messages = new ArrayList<>();
+        for (var prim : ctx.dm_primary()) {
+            messages.add((Expression) visit(prim));
+        }
+        return new TypeDM(messages);
+    }
+
+    @Override
+    public Object visitDm_read(WebFocusReportParser.Dm_readContext ctx) {
+        String filename = ctx.qualified_name().getText();
+        List<String> variables = new ArrayList<>();
+
+        String currentVar = null;
+        for (int i = 2; i < ctx.getChildCount(); i++) {
+            var child = ctx.getChild(i);
+            if (child instanceof WebFocusReportParser.Amper_varContext) {
+                if (currentVar != null) {
+                    variables.add(currentVar);
+                }
+                currentVar = child.getText();
+            } else if (child instanceof WebFocusReportParser.Format_nameContext) {
+                currentVar += "." + child.getText();
+                variables.add(currentVar);
+                currentVar = null;
+            } else if (child instanceof TerminalNode && child.getText().equals(";")) {
+                if (currentVar != null) {
+                    variables.add(currentVar);
+                }
+                currentVar = null;
+            }
+        }
+        if (currentVar != null) {
+            variables.add(currentVar);
+        }
+        return new ReadDM(filename, variables);
+    }
+
+    @Override
+    public Object visitDm_write(WebFocusReportParser.Dm_writeContext ctx) {
+        String filename = ctx.qualified_name().getText();
+        List<Expression> messages = new ArrayList<>();
+        for (var prim : ctx.dm_primary()) {
+            messages.add((Expression) visit(prim));
+        }
+        return new WriteDM(filename, messages);
+    }
+
+    @Override
+    public Object visitDm_repeat(WebFocusReportParser.Dm_repeatContext ctx) {
+        String label = ctx.NAME().getText();
+        Expression condition = null;
+        String conditionType = null;
+        Expression times = null;
+        String loopVar = null;
+        Expression startVal = null;
+        Expression endVal = null;
+        Expression stepVal = null;
+
+        if (ctx.WHILE() != null) {
+            condition = (Expression) visit(ctx.dm_logical_expression());
+            conditionType = "WHILE";
+        } else if (ctx.UNTIL() != null) {
+            condition = (Expression) visit(ctx.dm_logical_expression());
+            conditionType = "UNTIL";
+        } else if (ctx.TIMES() != null) {
+            times = (Expression) visit(ctx.dm_primary(0));
+        } else if (ctx.FOR() != null) {
+            loopVar = ctx.amper_var().getText();
+            startVal = (Expression) visit(ctx.dm_primary(0));
+            endVal = (Expression) visit(ctx.dm_primary(1));
+            if (ctx.STEP() != null) {
+                stepVal = (Expression) visit(ctx.dm_primary(2));
+            }
+        }
+        return new Repeat(label, condition, conditionType, times, loopVar, startVal, endVal, stepVal);
+    }
 }

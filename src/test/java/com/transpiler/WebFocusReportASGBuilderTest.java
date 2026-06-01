@@ -386,6 +386,64 @@ public class WebFocusReportASGBuilderTest {
         assertTrue(formDM.content().contains("<html><body>Hello</body></html>"));
     }
 
+    @Test
+    public void testTypeCommand() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+        WebFocusReportParser parser = createParser("-TYPE Hello &VAR World;");
+        TypeDM typeDM = (TypeDM) builder.visit(parser.dm_command());
+        assertEquals(3, typeDM.messages().size());
+        assertEquals("Hello", ((Identifier) typeDM.messages().get(0)).name());
+        assertEquals("&VAR", ((AmperVar) typeDM.messages().get(1)).name());
+        assertEquals("World", ((Identifier) typeDM.messages().get(2)).name());
+    }
+
+    @Test
+    public void testReadCommand() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+        WebFocusReportParser parser = createParser("-READ MYFILE &VAR1.A10 &VAR2;");
+        ReadDM readDM = (ReadDM) builder.visit(parser.dm_command());
+        assertEquals("MYFILE", readDM.filename());
+        assertEquals(2, readDM.variables().size());
+        assertEquals("&VAR1.A10", readDM.variables().get(0));
+        assertEquals("&VAR2", readDM.variables().get(1));
+    }
+
+    @Test
+    public void testWriteCommand() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+        WebFocusReportParser parser = createParser("-WRITE MYFILE 'Result is ' &RESULT;");
+        WriteDM writeDM = (WriteDM) builder.visit(parser.dm_command());
+        assertEquals("MYFILE", writeDM.filename());
+        assertEquals(2, writeDM.messages().size());
+        assertEquals("Result is ", ((Literal) writeDM.messages().get(0)).value());
+        assertEquals("&RESULT", ((AmperVar) writeDM.messages().get(1)).name());
+    }
+
+    @Test
+    public void testRepeatCommand() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // WHILE
+        WebFocusReportParser parser = createParser("-REPEAT MYLOOP WHILE &I LT 10;");
+        Repeat repeat = (Repeat) builder.visit(parser.dm_command());
+        assertEquals("MYLOOP", repeat.label());
+        assertEquals("WHILE", repeat.conditionType());
+        assertTrue(repeat.condition() instanceof BinaryOperation);
+
+        // TIMES
+        parser = createParser("-REPEAT MYLOOP 5 TIMES;");
+        repeat = (Repeat) builder.visit(parser.dm_command());
+        assertEquals(5, ((Literal) repeat.times()).value());
+
+        // FOR
+        parser = createParser("-REPEAT MYLOOP FOR &I FROM 1 TO 10 STEP 2;");
+        repeat = (Repeat) builder.visit(parser.dm_command());
+        assertEquals("&I", repeat.loopVar());
+        assertEquals(1, ((Literal) repeat.startVal()).value());
+        assertEquals(10, ((Literal) repeat.endVal()).value());
+        assertEquals(2, ((Literal) repeat.stepVal()).value());
+    }
+
     private WebFocusReportParser createParser(String input) {
         WebFocusReportLexer lexer = new WebFocusReportLexer(CharStreams.fromString(input));
         return new WebFocusReportParser(new CommonTokenStream(lexer));

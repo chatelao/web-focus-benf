@@ -1,6 +1,7 @@
 package com.transpiler.asg;
 
 import org.junit.jupiter.api.Test;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CommandTest {
@@ -73,11 +74,12 @@ class CommandTest {
 
     @Test
     void testWriteDM() {
-        WriteDM writeDM = new WriteDM("LOGFILE", java.util.List.of("Message 1", "Message 2"));
+        List<Expression> messages = List.of(new Literal("Message 1"), new Literal("Message 2"));
+        WriteDM writeDM = new WriteDM("LOGFILE", messages);
 
         assertEquals("LOGFILE", writeDM.filename());
         assertEquals(2, writeDM.messages().size());
-        assertEquals("Message 1", writeDM.messages().get(0));
+        assertEquals(new Literal("Message 1"), writeDM.messages().get(0));
         assertTrue(writeDM instanceof Command);
     }
 
