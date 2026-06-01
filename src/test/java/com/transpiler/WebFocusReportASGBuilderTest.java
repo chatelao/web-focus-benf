@@ -298,6 +298,49 @@ public class WebFocusReportASGBuilderTest {
         assertEquals("CAR", inExpr.filename());
     }
 
+    @Test
+    public void testControlFlowCommands() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // -GOTO
+        WebFocusReportParser parser = createParser("-GOTO TARGET;");
+        Goto gotoNode = (Goto) builder.visit(parser.dm_command());
+        assertEquals("TARGET", gotoNode.target());
+
+        // -LABEL
+        parser = createParser("-TARGET");
+        Label labelNode = (Label) builder.visit(parser.dm_command());
+        assertEquals("TARGET", labelNode.name());
+
+        // -IF
+        parser = createParser("-IF &VAR EQ 1 THEN GOTO TARGET1 ELSE GOTO TARGET2;");
+        IfDM ifDM = (IfDM) builder.visit(parser.dm_command());
+        assertTrue(ifDM.condition() instanceof BinaryOperation);
+        assertEquals("TARGET1", ifDM.thenTarget());
+        assertEquals("TARGET2", ifDM.elseTarget());
+
+        // -IF without ELSE
+        parser = createParser("-IF &VAR EQ 1 THEN GOTO TARGET1;");
+        ifDM = (IfDM) builder.visit(parser.dm_command());
+        assertEquals("TARGET1", ifDM.thenTarget());
+        assertNull(ifDM.elseTarget());
+    }
+
+    @Test
+    public void testExecutionControlCommands() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // -RUN
+        WebFocusReportParser parser = createParser("-RUN;");
+        RunDM runDM = (RunDM) builder.visit(parser.dm_command());
+        assertNotNull(runDM);
+
+        // -EXIT
+        parser = createParser("-EXIT;");
+        ExitDM exitDM = (ExitDM) builder.visit(parser.dm_command());
+        assertNotNull(exitDM);
+    }
+
     private WebFocusReportParser createParser(String input) {
         WebFocusReportLexer lexer = new WebFocusReportLexer(CharStreams.fromString(input));
         return new WebFocusReportParser(new CommonTokenStream(lexer));

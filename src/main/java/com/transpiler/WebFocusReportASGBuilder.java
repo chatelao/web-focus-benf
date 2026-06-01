@@ -369,4 +369,33 @@ public class WebFocusReportASGBuilder extends WebFocusReportBaseVisitor<Object> 
         Expression expression = (Expression) visit(ctx.dm_expression());
         return new DefaultDM(variable, expression);
     }
+
+    @Override
+    public Object visitDm_goto(WebFocusReportParser.Dm_gotoContext ctx) {
+        return new Goto(ctx.NAME().getText());
+    }
+
+    @Override
+    public Object visitDm_label(WebFocusReportParser.Dm_labelContext ctx) {
+        // LABEL_DM starts with '-'
+        return new Label(ctx.LABEL_DM().getText().substring(1));
+    }
+
+    @Override
+    public Object visitDm_if(WebFocusReportParser.Dm_ifContext ctx) {
+        Expression condition = (Expression) visit(ctx.dm_logical_expression());
+        String thenTarget = ctx.NAME(0).getText();
+        String elseTarget = ctx.NAME().size() > 1 ? ctx.NAME(1).getText() : null;
+        return new IfDM(condition, thenTarget, elseTarget);
+    }
+
+    @Override
+    public Object visitDm_run(WebFocusReportParser.Dm_runContext ctx) {
+        return new RunDM();
+    }
+
+    @Override
+    public Object visitDm_exit(WebFocusReportParser.Dm_exitContext ctx) {
+        return new ExitDM();
+    }
 }

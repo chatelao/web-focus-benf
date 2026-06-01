@@ -55,11 +55,11 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
     - [x] 3.1.2.4 Conditional expressions (IfExpression, DecodeExpression).
     - [x] 3.1.2.5 Set-based expressions (IN, BETWEEN, IS MISSING).
   - [ ] 3.1.3 Dialogue Manager Commands:
-    - [ ] 3.1.3.1 Control Flow (Goto, Label, IfDM).
+    - [x] 3.1.3.1 Control Flow (Goto, Label, IfDM).
     - [x] 3.1.3.2 Variables & Defaults (SetDM, DefaultDM).
     - [ ] 3.1.3.3 Output & I/O (TypeDM, HtmlFormDM, ReadDM, WriteDM, IncludeDM).
     - [ ] 3.1.3.4 Loops (Repeat).
-    - [ ] 3.1.3.5 Execution Control (RunDM, ExitDM).
+    - [x] 3.1.3.5 Execution Control (RunDM, ExitDM).
   - [ ] 3.1.4 Report Commands:
     - [ ] 3.1.4.1 Verb Commands (PRINT, SUM, etc.) and Field Selections.
     - [ ] 3.1.4.2 Sort Commands (BY, ACROSS).
