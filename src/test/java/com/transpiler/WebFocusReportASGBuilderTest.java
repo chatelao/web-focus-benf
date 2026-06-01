@@ -327,6 +327,26 @@ public class WebFocusReportASGBuilderTest {
     }
 
     @Test
+    public void testFunctionCall() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // ABS(HEIGHT)
+        WebFocusReportParser parser = createParser("ABS(HEIGHT)");
+        FunctionCall call = (FunctionCall) builder.visit(parser.dm_expression());
+        assertEquals("ABS", call.functionName());
+        assertEquals(1, call.arguments().size());
+        assertEquals("HEIGHT", ((Identifier) call.arguments().get(0)).name());
+
+        // MAX(1, 2) - testing multiple arguments if supported by grammar
+        parser = createParser("MAX(1, 2)");
+        call = (FunctionCall) builder.visit(parser.dm_expression());
+        assertEquals("MAX", call.functionName());
+        assertEquals(2, call.arguments().size());
+        assertEquals(1, ((Literal) call.arguments().get(0)).value());
+        assertEquals(2, ((Literal) call.arguments().get(1)).value());
+    }
+
+    @Test
     public void testExecutionControlCommands() {
         WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
 
