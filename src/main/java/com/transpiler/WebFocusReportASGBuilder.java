@@ -355,4 +355,18 @@ public class WebFocusReportASGBuilder extends WebFocusReportBaseVisitor<Object> 
     public Object visitDm_float(WebFocusReportParser.Dm_floatContext ctx) {
         return new Literal(Double.parseDouble(ctx.getText()));
     }
+
+    @Override
+    public Object visitDm_set(WebFocusReportParser.Dm_setContext ctx) {
+        String variable = ctx.amper_var().getText();
+        Expression expression = (Expression) visit(ctx.dm_expression());
+        return new SetDM(variable, expression);
+    }
+
+    @Override
+    public Object visitDm_default(WebFocusReportParser.Dm_defaultContext ctx) {
+        String variable = ctx.amper_var().getText();
+        Expression expression = (Expression) visit(ctx.dm_expression());
+        return new DefaultDM(variable, expression);
+    }
 }

@@ -239,6 +239,23 @@ public class WebFocusReportASGBuilderTest {
     }
 
     @Test
+    public void testSetAndDefaultCommands() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // -SET
+        WebFocusReportParser parser = createParser("-SET &VAR = 123;");
+        SetDM setDM = (SetDM) builder.visit(parser.dm_command());
+        assertEquals("&VAR", setDM.variable());
+        assertEquals(123, ((Literal) setDM.expression()).value());
+
+        // -DEFAULT
+        parser = createParser("-DEFAULT &VAR = 'Hello';");
+        DefaultDM defaultDM = (DefaultDM) builder.visit(parser.dm_command());
+        assertEquals("&VAR", defaultDM.variable());
+        assertEquals("Hello", ((Literal) defaultDM.expression()).value());
+    }
+
+    @Test
     public void testSetBasedExpressions() {
         WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
 
