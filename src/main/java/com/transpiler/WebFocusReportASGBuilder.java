@@ -403,4 +403,17 @@ public class WebFocusReportASGBuilder extends WebFocusReportBaseVisitor<Object> 
     public Object visitDm_exit(WebFocusReportParser.Dm_exitContext ctx) {
         return new ExitDM();
     }
+
+    @Override
+    public Object visitDm_include(WebFocusReportParser.Dm_includeContext ctx) {
+        return new IncludeDM(ctx.qualified_name().getText());
+    }
+
+    @Override
+    public Object visitDm_htmlform(WebFocusReportParser.Dm_htmlformContext ctx) {
+        if (ctx.HTMLFORM_BLOCK() != null) {
+            return new HtmlFormDM(null, ctx.HTMLFORM_BLOCK().getText());
+        }
+        return new HtmlFormDM(ctx.qualified_name().getText(), null);
+    }
 }
