@@ -5,6 +5,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Transforms a WebFocusReport parse tree into an Abstract Semantic Graph (ASG).
@@ -501,5 +502,23 @@ public class WebFocusReportASGBuilder extends WebFocusReportBaseVisitor<Object> 
             }
         }
         return new Repeat(label, condition, conditionType, times, loopVar, startVal, endVal, stepVal);
+    }
+
+    @Override
+    public Object visitHeading_command(WebFocusReportParser.Heading_commandContext ctx) {
+        boolean centered = ctx.CENTER() != null;
+        String text = ctx.STRING().stream()
+                .map(s -> s.getText().substring(1, s.getText().length() - 1))
+                .collect(Collectors.joining(" "));
+        return new Heading(text, centered);
+    }
+
+    @Override
+    public Object visitFooting_command(WebFocusReportParser.Footing_commandContext ctx) {
+        boolean centered = ctx.CENTER() != null;
+        String text = ctx.STRING().stream()
+                .map(s -> s.getText().substring(1, s.getText().length() - 1))
+                .collect(Collectors.joining(" "));
+        return new Footing(text, centered);
     }
 }
