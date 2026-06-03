@@ -4,7 +4,9 @@ import com.transpiler.asg.*;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -35,6 +37,73 @@ public class WebFocusReportASGBuilder extends WebFocusReportBaseVisitor<Object> 
             }
         }
         return nodes;
+    }
+
+    @Override
+    public Object visitBy_command(WebFocusReportParser.By_commandContext ctx) {
+        String sortType = "BY";
+        Map<String, Object> options = ctx.sort_options() != null ? (Map<String, Object>) visit(ctx.sort_options()) : Map.of();
+        FieldSelection field = (FieldSelection) visit(ctx.field());
+        SummarizeCommand summarize = ctx.summarize_command() != null ? (SummarizeCommand) visit(ctx.summarize_command()) : null;
+        boolean noprint = ctx.NOPRINT() != null;
+        boolean isHierarchy = ctx.HIERARCHY() != null;
+        return new SortCommand(sortType, field, options, summarize, noprint, false, null, isHierarchy);
+    }
+
+    @Override
+    public Object visitAcross_command(WebFocusReportParser.Across_commandContext ctx) {
+        String sortType = "ACROSS";
+        Map<String, Object> options = ctx.sort_options() != null ? (Map<String, Object>) visit(ctx.sort_options()) : Map.of();
+        FieldSelection field = (FieldSelection) visit(ctx.field());
+        boolean acrossTotal = ctx.ACROSS_TOTAL() != null;
+        String totalAs = ctx.as_phrase() != null ? (String) visit(ctx.as_phrase()) : null;
+        boolean noprint = ctx.NOPRINT() != null;
+        return new SortCommand(sortType, field, options, null, noprint, acrossTotal, totalAs, false);
+    }
+
+    @Override
+    public Object visitSort_options(WebFocusReportParser.Sort_optionsContext ctx) {
+        Map<String, Object> options = new HashMap<>();
+        if (ctx.HIGHEST() != null) options.put("order", "HIGHEST");
+        if (ctx.LOWEST() != null) options.put("order", "LOWEST");
+        if (ctx.TOP() != null) options.put("order", "TOP");
+        if (ctx.BOTTOM() != null) options.put("order", "BOTTOM");
+        if (ctx.NUMBER() != null) {
+            options.put("limit", Integer.parseInt(ctx.NUMBER().getText()));
+        }
+        return options;
+    }
+
+    @Override
+    public Object visitSummarize_command(WebFocusReportParser.Summarize_commandContext ctx) {
+        String verb = ctx.getChild(0).getText().toUpperCase();
+        Map<String, Object> options = ctx.summarize_options() != null ? (Map<String, Object>) visit(ctx.summarize_options()) : Map.of();
+
+        FieldSelection fieldNode = ctx.field() != null ? (FieldSelection) visit(ctx.field()) : null;
+        String fieldName = fieldNode != null ? fieldNode.name() : null;
+        String alias = fieldNode != null ? fieldNode.alias() : null;
+
+        if (ctx.as_phrase() != null) {
+            alias = (String) visit(ctx.as_phrase());
+        }
+
+        return new SummarizeCommand(verb, fieldName, alias, options);
+    }
+
+    @Override
+    public Object visitSummarize_options(WebFocusReportParser.Summarize_optionsContext ctx) {
+        Map<String, Object> options = new HashMap<>();
+        if (ctx.ROLL_DOT() != null) {
+            options.put("roll", true);
+        }
+
+        List<String> prefixes = ctx.prefix_operator().stream()
+                .map(p -> p.getText().toUpperCase())
+                .toList();
+        if (!prefixes.isEmpty()) {
+            options.put("prefixes", prefixes);
+        }
+        return options;
     }
 
     @Override

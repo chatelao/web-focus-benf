@@ -69,9 +69,9 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
     - [ ] 3.1.4.1 Verb Commands:
       - [x] 3.1.4.1.1 Basic Verb and Field Selection.
       - [x] 3.1.4.1.2 Prefix Operators.
-    - [ ] 3.1.4.2 Sort Commands:
-      - [ ] 3.1.4.2.1 BY phrase and sort options (NOPRINT, AS, etc.).
-      - [ ] 3.1.4.2.2 ACROSS phrase and ACROSS-TOTAL.
+    - [x] 3.1.4.2 Sort Commands:
+      - [x] 3.1.4.2.1 BY phrase and sort options (NOPRINT, AS, etc.).
+      - [x] 3.1.4.2.2 ACROSS phrase and ACROSS-TOTAL.
     - [ ] 3.1.4.3 Filter Commands:
       - [x] 3.1.4.3.1 WHERE clause and relational expressions.
       - [x] 3.1.4.3.2 WHERE TOTAL (HAVING) clause.
