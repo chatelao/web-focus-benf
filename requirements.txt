@@ -3,3 +3,4 @@ jinja2
 pytest
 pre-commit
 psycopg2-binary
+pyinstaller
