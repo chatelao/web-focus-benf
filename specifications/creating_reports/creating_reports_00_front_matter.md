@@ -5,7 +5,7 @@ Release 8207
 May 2021
 DN4501639.0521
 
-TIBCO WebFOCUS®Copyright© 2021.TIBCOSoftwareInc.AllRightsReserved. Contents
+TIBCO WebFOCUS®Copyright© 2021.TIBCOSoftwareInc.AllRightsReserved. Contents
 
 1. Creating Reports Overview . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .29
 
@@ -75,7 +75,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  3
 
-Contents
+Contents
 
 Rolling Up Calculations on Summary Rows. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 75
 
@@ -143,7 +143,7 @@ Restricting Sort Field Values by Highest/Lowest Rank . . . . . . . . . . . . . .
 
 4
 
-Contents
+Contents
 
 Sorting and Aggregating Report Columns . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 173
 
@@ -213,7 +213,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  5
 
-Contents
+Contents
 
 Setting Limits on the Number of Records Read . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 258
 
@@ -281,7 +281,7 @@ FORECAST_DOUBLEXP: Using Double Exponential Smoothing. . . . . . . . . . . . . .
 
 6
 
-Contents
+Contents
 
 FORECAST_SEASONAL: Using Triple Exponential Smoothing. . . . . . . . . . . . . . . . . . . . 326
 
@@ -351,7 +351,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  7
 
-Contents
+Contents
 
 Types of Expressions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 430
 
@@ -419,7 +419,7 @@ Creating a Conditional Expression . . . . . . . . . . . . . . . . . . . . . . . 
 
 8
 
-Contents
+Contents
 
 Saving Your Report Output . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .472
 
@@ -489,7 +489,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  9
 
-Contents
+Contents
 
 Scaling PDF Report Output to Fit the Page Width. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 590
 
@@ -559,7 +559,7 @@ Using XLSX FORMULA With Prefix Operators. . . . . . . . . . . . . . . . . . . . 
 
 10
 
-Contents
+Contents
 
 NODATA With Formulas. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .675
 
@@ -631,7 +631,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  11
 
-Contents
+Contents
 
 PowerPoint PPTX Compound Syntax. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 788
 
@@ -699,7 +699,7 @@ Creating a Compound Report . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 12
 
-Contents
+Contents
 
 Creating a Compound Layout Report With Document Syntax. . . . . . . . . . . . . . . . . . . . . . . . . 877
 
@@ -769,7 +769,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  13
 
-Contents
+Contents
 
 Propagating Missing Values to Reformatted Fields in a Request. . . . . . . . . . . . . . . . . . . . .1054
 
@@ -837,7 +837,7 @@ Displaying Joined Structures . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 14
 
-Contents
+Contents
 
 Clearing Joined Structures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .1151
 
@@ -907,7 +907,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  15
 
-Contents
+Contents
 
 Data, Report, and Title Styling. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .1212
 
@@ -975,7 +975,7 @@ Working With an External Cascading Style Sheet . . . . . . . . . . . . . . . . .
 
 16
 
-Contents
+Contents
 
 Choosing an External Cascading Style Sheet. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1303
 
@@ -1045,7 +1045,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  17
 
-Contents
+Contents
 
 Displaying the Total Page Count Within a Sort Group. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1392
 
@@ -1113,7 +1113,7 @@ Customizing a Column Title . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 18
 
-Contents
+Contents
 
 Customizing a Column Title in a Master File. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1594
 
@@ -1183,7 +1183,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  19
 
-Contents
+Contents
 
 Alternating Background Color By Wrapped Line . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1709
 
@@ -1251,7 +1251,7 @@ Basic Date Support for X and Y Axes. . . . . . . . . . . . . . . . . . . . . . .
 
 20
 
-Contents
+Contents
 
 Formatting Dates for Y-Axis Values. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1781
 
@@ -1321,7 +1321,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  21
 
-Contents
+Contents
 
 Controlling the Creation of Column Reference Numbers. . . . . . . . . . . . . . . . . . . . . . . . . . . . 1840
 
@@ -1389,7 +1389,7 @@ Using SQL Translator Commands . . . . . . . . . . . . . . . . . . . . . . . . . 
 
 22
 
-Contents
+Contents
 
 The SQL SELECT Statement. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .1912
 
@@ -1459,7 +1459,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  23
 
-Contents
+Contents
 
 EDUCFILE Structure Diagram. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1943
 
@@ -1529,7 +1529,7 @@ LOCATOR Master File. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 24
 
-Contents
+Contents
 
 LOCATOR Structure Diagram. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1955
 
@@ -1601,7 +1601,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  25
 
-Contents
+Contents
 
 CENTHR Master File. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1970
 
@@ -1667,7 +1667,7 @@ Listing Field Names, Aliases, and Format Information. . . . . . . . . . . . . . 
 
 26
 
-Legal and Third-Party Notices . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1997
+Legal and Third-Party Notices . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1997
 
 Contents
 
@@ -1675,6 +1675,6 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  27
 
-Contents
+Contents
 
 28

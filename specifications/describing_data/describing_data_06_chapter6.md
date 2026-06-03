@@ -43,7 +43,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  293
 
-Types of FOCUS Data Sources
+Types of FOCUS Data Sources
 
 Types of FOCUS Data Sources
 
@@ -109,7 +109,7 @@ required, except for MDI options.
 
 294
 
-6. Describing a FOCUS Data Source
+6. Describing a FOCUS Data Source
 
 You can convert to an XFOCUS data source from a FOCUS data source by changing the SUFFIX
 in the Master File and applying the REBUILD utility.
@@ -151,7 +151,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  295
 
-Types of FOCUS Data Sources
+Types of FOCUS Data Sources
 
 Procedure: How to Create an XFOCUS Data Source
 
@@ -204,7 +204,7 @@ SUFFIX FOC and XFOCUS in a single COMBINE.
 
 296
 
-6. Describing a FOCUS Data Source
+6. Describing a FOCUS Data Source
 
 Designing a FOCUS Data Source
 
@@ -240,7 +240,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  297
 
-Designing a FOCUS Data Source
+Designing a FOCUS Data Source
 
 Join Considerations
 
@@ -290,7 +290,7 @@ unsorted data sources (FIXFORM).
 
 298
 
-6. Describing a FOCUS Data Source
+6. Describing a FOCUS Data Source
 
 Use segments with a SEGTYPE of SH1 when adding and maintaining data in date
 sequence. In this case, a SEGTYPE of SH1 logically positions the most recent dates at the
@@ -341,7 +341,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  299
 
-Describing a Single Segment
+Describing a Single Segment
 
 Three additional segment attributes that describe joins between FOCUS segments, CRFILE,
 CRKEY, and CRSEGNAME, are described in Defining a Join in a Master File on page 349.
@@ -388,7 +388,7 @@ instances.
 
 300
 
-6. Describing a FOCUS Data Source
+6. Describing a FOCUS Data Source
 
 (blank)
 
@@ -441,7 +441,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  301
 
-Describing a Single Segment
+Describing a Single Segment
 
 KL
 
@@ -491,7 +491,7 @@ highest value and continuing to the lowest.
 
 302
 
-6. Describing a FOCUS Data Source
+6. Describing a FOCUS Data Source
 
 Segments whose key is a date field often use a high-to-low sort order, since it ensures that
 the segment instances with the most recent dates are the first ones encountered in a
@@ -598,7 +598,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  303
 
-Describing a Single Segment
+Describing a Single Segment
 
 Describing Segment Relationships
 
@@ -646,7 +646,7 @@ data sources allows you to use different disk drives.
 
 304
 
-6. Describing a FOCUS Data Source
+6. Describing a FOCUS Data Source
 
 Divided data sources require more careful file maintenance. Be especially careful about
 procedures that are done separately to separate data sources, such as backups. For example,
@@ -692,7 +692,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  305
 
-Describing a Single Segment
+Describing a Single Segment
 
 This description groups the five segments into two physical files, as shown in the following
 diagram:
@@ -719,7 +719,7 @@ fields can be stored in one file.
 
 306
 
-6. Describing a FOCUS Data Source
+6. Describing a FOCUS Data Source
 
 In the following example, the text fields DESCRIPTION and TOPICS are stored in the LOCATION
 file CRSEDESC. The text field PREREQUISITE is stored in another file, PREREQS.
@@ -771,7 +771,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  307
 
-Describing a Single Segment
+Describing a Single Segment
 
 Number of Segments
 
@@ -821,7 +821,7 @@ message.
 
 308
 
-6. Describing a FOCUS Data Source
+6. Describing a FOCUS Data Source
 
 If DATASET is used in a Master File whose data source is managed by the FOCUS Database
 Server, the DATASET attribute is ignored on the server side because the FOCUS Database
@@ -876,7 +876,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  309
 
-Describing a Single Segment
+Describing a Single Segment
 
 or
 
@@ -932,7 +932,7 @@ FILE = ...
 
 310
 
-Timestamping a FOCUS Segment: AUTODATE
+Timestamping a FOCUS Segment: AUTODATE
 
 6. Describing a FOCUS Data Source
 
@@ -985,7 +985,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  311
 
-Describing a Single Segment
+Describing a Single Segment
 
 Example:
 
@@ -1042,7 +1042,7 @@ DATECHK                       DIFF_DAYS
 
 312
 
-Reference: Usage Notes for AUTODATE
+Reference: Usage Notes for AUTODATE
 
 PRINT * and PRINT.SEG.fld print the AUTODATE field.
 
@@ -1089,7 +1089,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  313
 
-GROUP Attribute
+GROUP Attribute
 
 Syntax:
 
@@ -1148,7 +1148,7 @@ Are the USAGE formats of the component fields in the group.
 
 314
 
-6. Describing a FOCUS Data Source
+6. Describing a FOCUS Data Source
 
 FIELDTYPE=I
 
@@ -1201,7 +1201,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  315
 
-GROUP Attribute
+GROUP Attribute
 
 Although MODIFY enables you to update group components even if they are key fields, this
 is not recommended. Instead, use SCAN or FSCAN to update key fields.
@@ -1255,7 +1255,7 @@ STEVENS        ALFRED      071382660   80/06/02
 
 316
 
-6. Describing a FOCUS Data Source
+6. Describing a FOCUS Data Source
 
 Example:
 
@@ -1313,7 +1313,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  317
 
-GROUP Attribute
+GROUP Attribute
 
 To avoid the need to calculate these lengths, you can use the GROUP ELEMENTS option, which
 describes a group as a set of elements without USAGE and ACTUAL formats.
@@ -1366,7 +1366,7 @@ Are ACTUAL formats for each field.
 
 318
 
-Reference: Usage Notes for Group Elements
+Reference: Usage Notes for Group Elements
 
 6. Describing a FOCUS Data Source
 
@@ -1475,7 +1475,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  319
 
-ACCEPT Attribute
+ACCEPT Attribute
 
 ACCEPT Attribute
 
@@ -1525,7 +1525,7 @@ acceptable values.
 
 320
 
-INDEX Attribute
+INDEX Attribute
 
 6. Describing a FOCUS Data Source
 
@@ -1570,7 +1570,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  321
 
-INDEX Attribute
+INDEX Attribute
 
 Joins and the INDEX Attribute
 
@@ -1585,7 +1585,7 @@ data source.
 
 322
 
-6. Describing a FOCUS Data Source
+6. Describing a FOCUS Data Source
 
 The value for the field named JOBCODE in the EMPLOYEE data source is matched to the field
 named JOBCODE in the JOBFILE data source by using the index for the JOBCODE field in the
@@ -1617,7 +1617,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  323
 
-Describing a Partitioned FOCUS Data Source
+Describing a Partitioned FOCUS Data Source
 
 You can index the field after the data source has already been created and populated with
 records, by using the REBUILD facility with the INDEX option.
@@ -1666,7 +1666,7 @@ in size over time, and can be repartitioned based on the requirements of the app
 
 324
 
-Intelligent Partitioning
+Intelligent Partitioning
 
 6. Describing a FOCUS Data Source
 
@@ -1714,7 +1714,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  325
 
-Describing a Partitioned FOCUS Data Source
+Describing a Partitioned FOCUS Data Source
 
 Syntax:
 
@@ -1764,7 +1764,7 @@ FILENAME=VIDEOTR2,  SUFFIX=FOC,
 
 326
 
-Reference: Using a Partitioned Data Source
+Reference: Using a Partitioned Data Source
 
 The following illustrates how to use an intelligently partitioned data source. The Access File for
 the VIDEOTR2 data source describes three partitions based on DATE:
@@ -1795,7 +1795,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  327
 
-Describing a Partitioned FOCUS Data Source
+Describing a Partitioned FOCUS Data Source
 
 Reference: Usage Notes for Partitioned FOCUS Data Sources
 
@@ -1841,7 +1841,7 @@ attribute in the Master File, the request is processed with the Master File alon
 
 328
 
-Reference: Access File Attributes for a FOCUS Access File
+Reference: Access File Attributes for a FOCUS Access File
 
 6. Describing a FOCUS Data Source
 
@@ -1889,7 +1889,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  329
 
-Describing a Partitioned FOCUS Data Source
+Describing a Partitioned FOCUS Data Source
 
 DATA=file_specification,
    [WHERE= expression; ,]$
@@ -1944,7 +1944,7 @@ Is the name of the MDI.
 
 330
 
-6. Describing a FOCUS Data Source
+6. Describing a FOCUS Data Source
 
 segname
 
@@ -1979,7 +1979,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  331
 
-Describing a Partitioned FOCUS Data Source
+Describing a Partitioned FOCUS Data Source
 
 Example:
 
@@ -2044,7 +2044,7 @@ MASTER=VIDEOTR2 ,$
 
 
 
-The following shows the Access File, named VIDEOTR2, on Windows:
+The following shows the Access File, named VIDEOTR2, on Windows:
 
 6. Describing a FOCUS Data Source
 
@@ -2101,7 +2101,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
 
 
-Multi-Dimensional Index (MDI)
+Multi-Dimensional Index (MDI)
 
 An MDI can be partitioned into multiple MDI files. However, even if the data source on which
 the MDI is built is partitioned, each MDI partition spans all data source partitions.
@@ -2159,7 +2159,7 @@ Are the fields to use as dimensions. At least two dimensions are required for an
 334
 
 
-6. Describing a FOCUS Data Source
+6. Describing a FOCUS Data Source
 
 mdifile1, ..., mdifilen
 
@@ -2213,7 +2213,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  335
 
-Multi-Dimensional Index (MDI)
+Multi-Dimensional Index (MDI)
 
 Example:
 
@@ -2268,7 +2268,7 @@ Fields used as the basis for vertical partitioning, such as date or region.
 
 336
 
-6. Describing a FOCUS Data Source
+6. Describing a FOCUS Data Source
 
 Derived dimensions (DEFINE fields) that define a new category based on an existing
 category. For example, if your data source contains the field STATE but you need region for
@@ -2305,7 +2305,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  337
 
-Multi-Dimensional Index (MDI)
+Multi-Dimensional Index (MDI)
 
 The total size of all dimensions in an MDI cannot exceed 256 bytes. However, if you
 include the MAXVALUES attribute in the Access File declaration for a dimension,
@@ -2351,7 +2351,7 @@ must then rebuild the MDI.
 
 338
 
-Example:
+Example:
 
 Creating a Multi-Dimensional Index
 
@@ -2404,7 +2404,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  339
 
-Multi-Dimensional Index (MDI)
+Multi-Dimensional Index (MDI)
 
 Syntax:
 
@@ -2455,7 +2455,7 @@ platforms and to enable it on forward byte platforms.
 
 340
 
-6. Describing a FOCUS Data Source
+6. Describing a FOCUS Data Source
 
 In its analysis, AUTOINDEX considers the following factors:
 
@@ -2509,7 +2509,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  341
 
-Multi-Dimensional Index (MDI)
+Multi-Dimensional Index (MDI)
 
 Joining to a Multi-Dimensional Index
 
@@ -2552,7 +2552,7 @@ total retrieval time.
 
 342
 
-6. Describing a FOCUS Data Source
+6. Describing a FOCUS Data Source
 
 Syntax:
 
@@ -2599,7 +2599,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  343
 
-Multi-Dimensional Index (MDI)
+Multi-Dimensional Index (MDI)
 
 Syntax:
 
@@ -2658,7 +2658,7 @@ The ALL attribute is required.
 
 344
 
-6. Describing a FOCUS Data Source
+6. Describing a FOCUS Data Source
 
 Encoding Values in a Multi-Dimensional Index
 
@@ -2716,7 +2716,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  345
 
-Multi-Dimensional Index (MDI)
+Multi-Dimensional Index (MDI)
 
 request
 
@@ -2772,7 +2772,7 @@ END
 
 346
 
-6. Describing a FOCUS Data Source
+6. Describing a FOCUS Data Source
 
 Partitioning a Multi-Dimensional Index
 
@@ -2831,7 +2831,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  347
 
-Multi-Dimensional Index (MDI)
+Multi-Dimensional Index (MDI)
 
 Displaying a Warning Message
 

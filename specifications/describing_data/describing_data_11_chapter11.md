@@ -43,7 +43,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  441
 
-Creating a New Data Source: The CREATE Command
+Creating a New Data Source: The CREATE Command
 
 Creating a New Data Source: The CREATE Command
 
@@ -93,7 +93,7 @@ data source.
 
 442
 
-11. Creating and Rebuilding a Data Source
+11. Creating and Rebuilding a Data Source
 
 Note the following when issuing CREATE on z/OS:
 
@@ -148,7 +148,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  443
 
-Rebuilding a Data Source: The REBUILD Command
+Rebuilding a Data Source: The REBUILD Command
 
 The following message appears:
 
@@ -201,7 +201,7 @@ prerequisites regarding file allocation, security authorization, and backup.
 
 444
 
-Reference: Before You Use REBUILD: Prerequisites
+Reference: Before You Use REBUILD: Prerequisites
 
 Before you use the REBUILD facility, there are several prerequisites that you must consider:
 
@@ -254,7 +254,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  445
 
-Rebuilding a Data Source: The REBUILD Command
+Rebuilding a Data Source: The REBUILD Command
 
 Controlling the Frequency of REBUILD Messages
 
@@ -304,7 +304,7 @@ CHECK COMPLETED...
 
 446
 
-Optimizing File Size: The REBUILD Subcommand
+Optimizing File Size: The REBUILD Subcommand
 
 11. Creating and Rebuilding a Data Source
 
@@ -362,7 +362,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  447
 
-Optimizing File Size: The REBUILD Subcommand
+Optimizing File Size: The REBUILD Subcommand
 
 2. Select the REBUILD subcommand by entering:
 
@@ -422,7 +422,7 @@ The following procedure:
 
 448
 
-11. Creating and Rebuilding a Data Source
+11. Creating and Rebuilding a Data Source
 
 4. Indicates that no record selection tests are required.
 
@@ -472,7 +472,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  449
 
-Changing Data Source Structure: The REORG Subcommand
+Changing Data Source Structure: The REORG Subcommand
 
 Procedure: How to Use the REORG Subcommand
 
@@ -537,7 +537,7 @@ and the name and statistics for the temporary file used to hold the data.
 
 450
 
-8. After the DUMP phase is complete, you are ready to begin the second phase of REBUILD
+8. After the DUMP phase is complete, you are ready to begin the second phase of REBUILD
 
 11. Creating and Rebuilding a Data Source
 
@@ -593,7 +593,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  451
 
-Changing Data Source Structure: The REORG Subcommand
+Changing Data Source Structure: The REORG Subcommand
 
 Example:
 
@@ -641,7 +641,7 @@ The data source will be loaded and the appropriate statistics will be generated.
 
 452
 
-11. Creating and Rebuilding a Data Source
+11. Creating and Rebuilding a Data Source
 
 Indexing Fields: The INDEX Subcommand
 
@@ -675,7 +675,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  453
 
-Indexing Fields: The INDEX Subcommand
+Indexing Fields: The INDEX Subcommand
 
 Procedure: How to Use the INDEX Subcommand
 
@@ -738,7 +738,7 @@ The field will be indexed and the appropriate statistics will be generated.
 
 454
 
-Creating an External Index: The EXTERNAL INDEX Subcommand
+Creating an External Index: The EXTERNAL INDEX Subcommand
 
 11. Creating and Rebuilding a Data Source
 
@@ -781,7 +781,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  455
 
-Creating an External Index: The EXTERNAL INDEX Subcommand
+Creating an External Index: The EXTERNAL INDEX Subcommand
 
 Procedure: How to Use the EXTERNAL INDEX Subcommand
 
@@ -842,7 +842,7 @@ EMPLOYEE
 
 456
 
-11. Creating and Rebuilding a Data Source
+11. Creating and Rebuilding a Data Source
 
 7. Specify the name of the field to index:
 
@@ -890,7 +890,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  457
 
-Creating an External Index: The EXTERNAL INDEX Subcommand
+Creating an External Index: The EXTERNAL INDEX Subcommand
 
 Verification of the component files is now done for both the date and time stamp of file
 creation. Files with the same date and time stamp that are copied display the following
@@ -936,7 +936,7 @@ add index records. If it is, REBUILD EXTERNAL INDEX generates the following mess
 
 458
 
-Positioning Indexed Fields
+Positioning Indexed Fields
 
 11. Creating and Rebuilding a Data Source
 
@@ -992,7 +992,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  459
 
-Checking Data Source Integrity: The CHECK Subcommand
+Checking Data Source Integrity: The CHECK Subcommand
 
 REPLACE
 
@@ -1047,7 +1047,7 @@ offending segment or instance.
 
 460
 
-11. Creating and Rebuilding a Data Source
+11. Creating and Rebuilding a Data Source
 
 Although CHECK is able to report on a good deal of data that would otherwise be lost, it is
 important to remember that frequently backing up your FOCUS data sources is the best
@@ -1102,7 +1102,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  461
 
-Checking Data Source Integrity: The CHECK Subcommand
+Checking Data Source Integrity: The CHECK Subcommand
 
 DELETE indicates that the data has been deleted and should not have been retrieved.
 
@@ -1160,7 +1160,7 @@ SET ALL = ON
 
 462
 
-11. Creating and Rebuilding a Data Source
+11. Creating and Rebuilding a Data Source
 
 3. Enter:
 
@@ -1225,7 +1225,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
 
 
-Changing the Data Source Creation Date and Time: The TIMESTAMP Subcommand
+Changing the Data Source Creation Date and Time: The TIMESTAMP Subcommand
 
 Note that the BANK_NAME count in the TABLEF report is different than the number of
 FUNDTRAN instances reported by the ? FILE query. This is because FUNDTRAN is a unique
@@ -1273,7 +1273,7 @@ searched for using the EDAPATH variable.
 
 464
 
-11. Creating and Rebuilding a Data Source
+11. Creating and Rebuilding a Data Source
 
 4. Enter one of the following options for the source of the date and time:
 
@@ -1323,7 +1323,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  465
 
-Converting Legacy Dates: The DATE NEW Subcommand
+Converting Legacy Dates: The DATE NEW Subcommand
 
 The storage size of integer dates (I6YMD, I6MDY, for example) is 4 bytes, so no pad field is
 added.
@@ -1373,7 +1373,7 @@ keys in the data source.
 
 466
 
-11. Creating and Rebuilding a Data Source
+11. Creating and Rebuilding a Data Source
 
 Adequate workspace must be available for the temporary REBUILD file. As a rule of thumb,
 have space 10 to 20% larger than the size of the existing file available.
@@ -1431,7 +1431,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  467
 
-Converting Legacy Dates: The DATE NEW Subcommand
+Converting Legacy Dates: The DATE NEW Subcommand
 
 The dates will be converted and the appropriate statistics will be generated, including the
 number of segments changed.
@@ -1480,7 +1480,7 @@ the previous field format to any field coded without an explicit USAGE= statemen
 
 468
 
-11. Creating and Rebuilding a Data Source
+11. Creating and Rebuilding a Data Source
 
 Using the New Master File Created by DATE NEW
 
@@ -1541,7 +1541,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  469
 
-Creating a Multi-Dimensional Index: The MDINDEX Subcommand
+Creating a Multi-Dimensional Index: The MDINDEX Subcommand
 
 Action Taken on a Date Field During REBUILD/DATE NEW
 

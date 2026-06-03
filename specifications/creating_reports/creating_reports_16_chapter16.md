@@ -49,7 +49,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1187
 
-What Kinds of Formatting Can I Do?
+What Kinds of Formatting Can I Do?
 
 You can also select which character to use to mark decimal position, using either a period
 (.) or a comma (,), to match the convention of the country in which the report will be read.
@@ -92,7 +92,7 @@ Choosing a Display Format on page 575.
 
 1188
 
-16. Formatting Reports: An Overview
+16. Formatting Reports: An Overview
 
 Making a report accessible to all users regardless of their physical abilities, their browser
 type, or their screen settings. For example, you can design a report fonts, colors, layout,
@@ -114,7 +114,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1189
 
-How to Specify Formatting in a Report
+How to Specify Formatting in a Report
 
 Consider how the formatting applied to the version on the left:
 
@@ -163,7 +163,7 @@ about them and how to choose between them in How to Choose a Type of Style Sheet
 
 1190
 
-Example:
+Example:
 
 Specifying Formatting for the Order Revenue Report
 
@@ -182,7 +182,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1191
 
-How to Specify Formatting in a Report
+How to Specify Formatting in a Report
 
    TABLE FILE CENTORD
 1.HEADING
@@ -243,7 +243,7 @@ explanations in the topics that describe each formatting feature.
 
 1192
 
-16. Formatting Reports: An Overview
+16. Formatting Reports: An Overview
 
 The formatting logic that you apply to your own reports may be briefer or more extensive than
 this example, depending on the report and on what formatting you choose to apply.
@@ -291,7 +291,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1193
 
-Standard and Legacy Formatting
+Standard and Legacy Formatting
 
 Standard and Legacy Formatting
 
@@ -339,7 +339,7 @@ can quickly update formatting for multiple report components.
 
 1194
 
-16. Formatting Reports: An Overview
+16. Formatting Reports: An Overview
 
 For example, if you declare all the report data to be blue, all data in all columns will be
 displayed as blue. If you also declare all vertical sort (BY) columns to be orange, this will
@@ -386,7 +386,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1195
 
-Navigating From a Report to Other Resources
+Navigating From a Report to Other Resources
 
 Use a table of contents to jump directly to the data that interests that reader. The report
 generates the table of contents dynamically based on sort values, and enables the reader

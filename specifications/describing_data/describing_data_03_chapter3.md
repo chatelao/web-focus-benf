@@ -61,7 +61,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  65
 
-Defining a Single Group of Fields
+Defining a Single Group of Fields
 
 For each ID number there is one first and last name, one date hired, one department, and
 one current salary.
@@ -88,7 +88,7 @@ source, a segment instance is the same as a record.
 
 66
 
-The relationship of a segment to its instances is illustrated in the following diagram.
+The relationship of a segment to its instances is illustrated in the following diagram.
 
 3. Describing a Group of Fields
 
@@ -108,7 +108,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  67
 
-Defining a Single Group of Fields
+Defining a Single Group of Fields
 
 Identifying a Key Field
 
@@ -155,7 +155,7 @@ segment name in both.
 
 68
 
-3. Describing a Group of Fields
+3. Describing a Group of Fields
 
 Syntax:
 
@@ -212,7 +212,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  69
 
-Identifying a Logical View: Redefining a Segment
+Identifying a Logical View: Redefining a Segment
 
 Example:
 
@@ -267,7 +267,7 @@ SEGNAME = EMPINFO, SEGTYPE = S1 ,$
 
 70
 
-3. Describing a Group of Fields
+3. Describing a Group of Fields
 
 If you develop an application that refers to only the employee ID and name fields, and you want
 this to be reflected in the application view of the segment, you can code an alternative Master
@@ -319,7 +319,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  71
 
-Relating Multiple Groups of Fields
+Relating Multiple Groups of Fields
 
 A related facility, the MATCH FILE command, enables many types of relationships by first
 describing a relationship as a series of extraction and merging conditions, then merging the
@@ -371,7 +371,7 @@ PARENT = SALINFO
 
 72
 
-3. Describing a Group of Fields
+3. Describing a Group of Fields
 
 Identifying the Type of Relationship: SEGTYPE
 
@@ -403,7 +403,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  73
 
-Logical Dependence: The Parent-Child Relationship
+Logical Dependence: The Parent-Child Relationship
 
 For joined structures, there is an implicit reference to the root segment, which is always
 retrieved in a database request. If a request involving a joined structure references fields from
@@ -448,7 +448,7 @@ who the employee is (that is, a child instance without the parent instance).
 
 74
 
-The following diagram illustrates the concept of a parent-child relationship.
+The following diagram illustrates the concept of a parent-child relationship.
 
 3. Describing a Group of Fields
 
@@ -466,7 +466,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  75
 
-Logical Dependence: The Parent-Child Relationship
+Logical Dependence: The Parent-Child Relationship
 
 EMPINFO is related to SALINFO, and in this relationship EMPINFO is the parent segment and
 SALINFO is the child segment. SALINFO is also related to DEDUCT. In this second relationship,
@@ -491,7 +491,7 @@ branching of the data structure tree ends with the leaf. DEDUCT is a leaf.
 
 76
 
-The following diagram illustrates the concept of a descendant segment.
+The following diagram illustrates the concept of a descendant segment.
 
 3. Describing a Group of Fields
 
@@ -504,7 +504,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  77
 
-Logical Independence: Multiple Paths
+Logical Independence: Multiple Paths
 
 Logical Independence: Multiple Paths
 
@@ -522,7 +522,7 @@ of EMPINFO (the employee) exists.
 
 78
 
-3. Describing a Group of Fields
+3. Describing a Group of Fields
 
 Understanding Multiple Paths
 
@@ -537,7 +537,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  79
 
-Cardinal Relationships Between Segments
+Cardinal Relationships Between Segments
 
 Understanding Logical Independence
 
@@ -587,7 +587,7 @@ Segments from the same type of data source.
 
 80
 
-3. Describing a Group of Fields
+3. Describing a Group of Fields
 
 Segments from different types of data sources. For example, you can define the
 relationship between an Oracle table and a FOCUS data source. Note that you can join
@@ -614,7 +614,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  81
 
-One-to-One Relationship
+One-to-One Relationship
 
 Example:
 
@@ -646,7 +646,7 @@ relationship.
 
 82
 
-3. Describing a Group of Fields
+3. Describing a Group of Fields
 
 When you retrieve data from a segment described as unique, the request treats the segment
 as an extension of its parent. If the unique segment has multiple instances, the request
@@ -692,7 +692,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  83
 
-One-to-Many Relationship
+One-to-Many Relationship
 
 The following diagram illustrates the concept of a one-to-many relationship.
 
@@ -707,7 +707,7 @@ relationship between EMPINFO and SALINFO is one-to-many.
 
 84
 
-The following diagram further illustrates the concept of a one-to-many relationship.
+The following diagram further illustrates the concept of a one-to-many relationship.
 
 3. Describing a Group of Fields
 
@@ -745,7 +745,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  85
 
-Many-to-Many Relationship
+Many-to-Many Relationship
 
 You can also specify a one-to-many relationship between two records in different data sources
 by issuing the JOIN command with the ALL or MULTIPLE option, or defining the join in the
@@ -780,7 +780,7 @@ The many-to-many type of relationship is illustrated in the following diagram.
 
 86
 
-3. Describing a Group of Fields
+3. Describing a Group of Fields
 
 When the M:M relationship is seen from the perspective of either of the two tables, it looks
 like a 1:M relationship. One student taking many classes (1:M from the perspective of
@@ -810,7 +810,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  87
 
-Many-to-Many Relationship
+Many-to-Many Relationship
 
 Implementing a Many-to-Many Relationship Indirectly
 
@@ -833,7 +833,7 @@ related to many instances of ENROLLED (since one class can have many employees e
 
 88
 
-These relationships are illustrated in the following diagram.
+These relationships are illustrated in the following diagram.
 
 3. Describing a Group of Fields
 
@@ -848,7 +848,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  89
 
-Many-to-Many Relationship
+Many-to-Many Relationship
 
 This type of join is illustrated in the following diagram.
 
@@ -871,7 +871,7 @@ JOIN EMP_ID IN ENROLLED TO EMP_ID IN EMPINFO
 
 90
 
-The new structure is illustrated in the following diagram.
+The new structure is illustrated in the following diagram.
 
 3. Describing a Group of Fields
 
@@ -892,7 +892,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  91
 
-Recursive Relationships
+Recursive Relationships
 
 Example:
 
@@ -916,7 +916,7 @@ cross-referenced field, for which the alias is prefixed instead of the field nam
 
 92
 
-3. Describing a Group of Fields
+3. Describing a Group of Fields
 
 After you have issued the join, you can generate an answer set that looks like this:
 
@@ -949,13 +949,13 @@ Describing Data With TIBCO WebFOCUS® Language
 
  93
 
-Recursive Relationships
+Recursive Relationships
 
 This produces the following data structure.
 
 94
 
-3. Describing a Group of Fields
+3. Describing a Group of Fields
 
 Relating Segments From Different Types of Data Sources
 
@@ -974,7 +974,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  95
 
-Rotating a Data Source: An Alternate View
+Rotating a Data Source: An Alternate View
 
 Rotating a Data Source: An Alternate View
 
@@ -1001,7 +1001,7 @@ alternate view field must include INDEX = I in the Master File.
 
 96
 
-3. Describing a Group of Fields
+3. Describing a Group of Fields
 
 You use the field in a record selection test, with the WHERE or IF phrases, and make the
 selection criteria an equality or range test.
@@ -1020,7 +1020,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  97
 
-Defining a Prefix for Field Titles
+Defining a Prefix for Field Titles
 
 Syntax:
 
@@ -1078,7 +1078,7 @@ Is a valid segment name.
 
 98
 
-3. Describing a Group of Fields
+3. Describing a Group of Fields
 
 'prefix'
 
@@ -1124,7 +1124,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  99
 
-Defining a Prefix for Field Titles
+Defining a Prefix for Field Titles
 
 All three segments have the same fields. The SEG_TITLE_PREFIX displays on the report output
 and indicates which segment the field came from. The following request sums DAYSDELAYED
@@ -1155,7 +1155,7 @@ END
 
 100
 
-The column heading on the output shows that the TIME_QTR value is coming from the
+The column heading on the output shows that the TIME_QTR value is coming from the
 WF_RETAIL_TIME_DELIVERED segment.
 
 3. Describing a Group of Fields
@@ -1190,6 +1190,6 @@ Describing Data With TIBCO WebFOCUS® Language
 
  101
 
-Defining a Prefix for Field Titles
+Defining a Prefix for Field Titles
 
 102

@@ -62,7 +62,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  217
 
-Choosing a Filtering Method
+Choosing a Filtering Method
 
 For non-FOCUS data sources that have group keys, you can select records based on group
 key values. See Selections Based on Group Key Values on page 257.
@@ -115,7 +115,7 @@ are described in Operators Supported for WHERE and IF Tests on page 236.
 
 218
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 ;
 
@@ -164,7 +164,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  219
 
-Selections Based on Individual Values
+Selections Based on Individual Values
 
 Example:
 
@@ -204,7 +204,7 @@ The output is:
 
 220
 
-For related information, see Using Compound Expressions for Record Selection on page 235.
+For related information, see Using Compound Expressions for Record Selection on page 235.
 
 Controlling Record Selection in Multi-path Data Sources
 
@@ -259,7 +259,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  221
 
-Selections Based on Individual Values
+Selections Based on Individual Values
 
 It lacks any referenced child on a path, but the child is optional.
 
@@ -293,7 +293,7 @@ WHERE criteria that screen on more than one path with the OR operator are not su
 
 222
 
-Example:
+Example:
 
 Retrieving Data From Multiple Paths
 
@@ -324,7 +324,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  223
 
-Selections Based on Individual Values
+Selections Based on Individual Values
 
 The output is:
 
@@ -376,7 +376,7 @@ Same as SIMPLE.
 
 224
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 Request
 
@@ -476,7 +476,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  225
 
-Selection Based on Aggregate Values
+Selection Based on Aggregate Values
 
 Reference: Rules for Determining If a Segment Is Required
 
@@ -531,7 +531,7 @@ defined in a valid expression that evaluates as true or false (that is, a Boolea
 
 226
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 expression). Expressions are described in detail in Using Expressions on page 429.
 Operators that can be used in WHERE expressions (such as, IS and GT) are described
@@ -584,7 +584,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  227
 
-Applying Selection Criteria to the Internal Matrix Prior to COMPUTE Processing
+Applying Selection Criteria to the Internal Matrix Prior to COMPUTE Processing
 
 Now, add a WHERE TOTAL phrase to the request in order to generate a report that lists only
 the departments where the total of the salaries is more than $110,000.
@@ -641,7 +641,7 @@ WHERE_GROUPED expression
 
 228
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 where:
 
@@ -675,13 +675,13 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  229
 
-Applying Selection Criteria to the Internal Matrix Prior to COMPUTE Processing
+Applying Selection Criteria to the Internal Matrix Prior to COMPUTE Processing
 
 The output is shown in the following image.
 
 230
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 The following version of the request adds a WHERE TOTAL test to select only those months
 where DAYSDELAYED exceeded 200 days.
@@ -703,7 +703,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  231
 
-Applying Selection Criteria to the Internal Matrix Prior to COMPUTE Processing
+Applying Selection Criteria to the Internal Matrix Prior to COMPUTE Processing
 
 The output is shown in the following image. The COMPUTE calculations for CTR and NEWDAYS
 were processed prior to eliminating the rows in which TOTAL DAYSDELAYED were 200 or less,
@@ -714,7 +714,7 @@ the COMPUTE expressions are evaluated. This requires WHERE_GROUPED.
 
 232
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 The following version of the request replaces the WHERE TOTAL test with a WHERE_GROUPED
 test.
@@ -736,7 +736,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  233
 
-Applying Selection Criteria to the Internal Matrix Prior to COMPUTE Processing
+Applying Selection Criteria to the Internal Matrix Prior to COMPUTE Processing
 
 The output is shown in the following image. The COMPUTE calculation for NEWDAYS was
 processed after eliminating the rows in which TOTAL DAYSDELAYED were 200 or less, so its
@@ -757,7 +757,7 @@ part of a WHERE_GROUPED test.
 
 234
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 WHERE_GROUPED can be optimized for SQL data sources by creating a GROUP BY
 fieldname HAVING expression clause, where the expression is the WHERE_GROUPED
@@ -808,7 +808,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  235
 
-Using Operators in Record Selection Tests
+Using Operators in Record Selection Tests
 
 If parentheses are excluded, the logical AND is evaluated before the literal OR.
 
@@ -895,7 +895,7 @@ than the test value.
 Tests for and selects values less
 than the test value.
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 WHERE Operator
 
@@ -989,7 +989,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
 
 
-Using Operators in Record Selection Tests
+Using Operators in Record Selection Tests
 
 WHERE Operator
 
@@ -1062,7 +1062,7 @@ phrase.
 
 
 
-Example:
+Example:
 
 Using Operators to Compare a Field to One or More Values
 
@@ -1116,7 +1116,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  239
 
-Using Operators in Record Selection Tests
+Using Operators in Record Selection Tests
 
 Example 10: The value of CAR must be equal to one of the alphanumeric values in the
 unordered list. Single quotation marks must enclose alphanumeric list values.
@@ -1145,7 +1145,7 @@ END
 
 240
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 The output is shown in the following image. In the selected records, WHOLESALEPR is greater
 than $15.00 if LISTPR is greater than $20.00. WHOLESALEPR is greater than $11.00 if
@@ -1155,7 +1155,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  241
 
-Using Operators in Record Selection Tests
+Using Operators in Record Selection Tests
 
 Example:
 
@@ -1184,7 +1184,7 @@ Select a region from the drop-down list and click Submit. The output for the NE 
 
 242
 
-Types of Record Selection Tests
+Types of Record Selection Tests
 
 4. Selecting Records for Your Report
 
@@ -1241,7 +1241,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  243
 
-Types of Record Selection Tests
+Types of Record Selection Tests
 
 upper
 
@@ -1301,7 +1301,7 @@ ACROSS MONTH FROM 6 TO 10
 
 244
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 Range Tests With GE and LE or GT and LT
 
@@ -1357,7 +1357,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  245
 
-Types of Record Selection Tests
+Types of Record Selection Tests
 
 Example:
 
@@ -1415,7 +1415,7 @@ Are record selection operators. EQ and IS are synonyms.
 
 246
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 Syntax:
 
@@ -1477,7 +1477,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  247
 
-Types of Record Selection Tests
+Types of Record Selection Tests
 
 The output is:
 
@@ -1522,7 +1522,7 @@ WHERE field LIKE 'mask'
 
 248
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 To reject records based on the mask value, use either
 
@@ -1586,7 +1586,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  249
 
-Types of Record Selection Tests
+Types of Record Selection Tests
 
 To reject records based on the mask value, use
 
@@ -1636,7 +1636,7 @@ END
 
 250
 
-The output is:
+The output is:
 
 4. Selecting Records for Your Report
 
@@ -1682,7 +1682,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  251
 
-Types of Record Selection Tests
+Types of Record Selection Tests
 
 Example:
 
@@ -1745,7 +1745,7 @@ handy$man@usa.com, which has a dollar sign.
 
 252
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 handyiman@usa.com, which has the letter i in the same position as the $ character in the
 other email address.
@@ -1792,7 +1792,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  253
 
-Types of Record Selection Tests
+Types of Record Selection Tests
 
 Syntax:
 
@@ -1855,7 +1855,7 @@ The escape character itself can be escaped, thus becoming a normal character in 
 
 254
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 Only one escape character can be used per LIKE phrase in a WHERE phrase.
 
@@ -1910,7 +1910,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  255
 
-Types of Record Selection Tests
+Types of Record Selection Tests
 
 Example:
 
@@ -1969,7 +1969,7 @@ a separate line.
 
 256
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 You can connect the literals you are testing for with ANDs and ORs; however, the ORs are
 changed to ANDs.
@@ -2027,7 +2027,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  257
 
-Setting Limits on the Number of Records Read
+Setting Limits on the Number of Records Read
 
 Example:
 
@@ -2084,7 +2084,7 @@ to be performed. For details, see the appropriate data adapter manual.
 
 258
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 Tip: If an attempt is made to apply the READLIMIT test to a FOCUS data source, the request is
 processed correctly, but the READLIMIT phrase is ignored.
@@ -2147,7 +2147,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  259
 
-Reading Selection Values From a File
+Reading Selection Values From a File
 
 Note that all literals that contain blanks (for example, New York City) and all date and date-
 time literals must be enclosed within single quotation marks.
@@ -2193,7 +2193,7 @@ maintaining the criteria in just one location.
 
 260
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 If the selection values already exist in a data source, you can quickly create a file of
 selection values by generating a report and saving the output in a HOLD or SAVE file. You
@@ -2253,7 +2253,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  261
 
-Reading Selection Values From a File
+Reading Selection Values From a File
 
 file1, file1
 
@@ -2310,7 +2310,7 @@ For WHERE, alphanumeric values with embedded blanks or any mathematical operator
 
 262
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 For WHERE, when a compound WHERE phrase uses IN FILE more than once, the specified
 files must have the same record formats.
@@ -2367,7 +2367,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  263
 
-Reading Selection Values From a File
+Reading Selection Values From a File
 
 TABLE FILE GGPRODS
 BY PRODUCT_ID BY PRODUCT_DESCRIPTION
@@ -2422,7 +2422,7 @@ IF PRODUCT_DESCRIPTION EQ 'B141' or 'B142'
 
 264
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 The output is:
 
@@ -2465,7 +2465,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  265
 
-Assigning Screening Conditions to a File
+Assigning Screening Conditions to a File
 
 Syntax:
 
@@ -2528,7 +2528,7 @@ Cannot be referenced in a DEFINE or TABLE command.
 
 266
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 Support any syntax valid for virtual fields in a DEFINE command.
 
@@ -2583,7 +2583,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  267
 
-Assigning Screening Conditions to a File
+Assigning Screening Conditions to a File
 
 Syntax:
 
@@ -2638,7 +2638,7 @@ SET FILTER = G IN CAR OFF
 
 268
 
-The following commands activate some filters and deactivate others:
+The following commands activate some filters and deactivate others:
 
 4. Selecting Records for Your Report
 
@@ -2692,7 +2692,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  269
 
-Assigning Screening Conditions to a File
+Assigning Screening Conditions to a File
 
 Example:
 
@@ -2748,7 +2748,7 @@ NO FILTERS DEFINED FOR FILE NAMED CAR
 
 270
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 If filters are defined for the CAR data source, the following screen displays:
 
@@ -2798,7 +2798,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  271
 
-Assigning Screening Conditions to a File
+Assigning Screening Conditions to a File
 
 Syntax:
 
@@ -2862,7 +2862,7 @@ END
 
 
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 The output shows that the TABLE request retrieved only the data that satisfies the UNITPR
 filter:
@@ -2918,7 +2918,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
 
 
-VSAM Record Selection Efficiencies
+VSAM Record Selection Efficiencies
 
 Now, J1 is cleared. The output of the ? FILTER command shows that the YEARS1 filter that
 was created after the JOIN command was issued no longer exists. The UNITPR filter created
@@ -2970,7 +2970,7 @@ a key other than the primary key.
 274
 
 
-4. Selecting Records for Your Report
+4. Selecting Records for Your Report
 
 All benefits and limitations inherent with screening on the primary or partial key are applicable
 to screening on the alternate index or partial alternate index.
@@ -2981,6 +2981,6 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  275
 
-VSAM Record Selection Efficiencies
+VSAM Record Selection Efficiencies
 
 276

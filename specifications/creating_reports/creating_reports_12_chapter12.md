@@ -48,7 +48,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1029
 
-Bursting Reports Overview
+Bursting Reports Overview
 
 PCSEND
 
@@ -95,7 +95,7 @@ ON TABLE SUBHEAD
 
 1030
 
-12. Bursting Reports Into Multiple HTML Files
+12. Bursting Reports Into Multiple HTML Files
 
 and
 
@@ -136,7 +136,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1031
 
-Bursting Reports Overview
+Bursting Reports Overview
 
 Example:
 
@@ -177,7 +177,7 @@ Regional Report
 
 1032
 
-12. Bursting Reports Into Multiple HTML Files
+12. Bursting Reports Into Multiple HTML Files
 
 Region
 
@@ -273,6 +273,6 @@ Creating Reports With TIBCO® WebFOCUS Language
 
 
 
-Bursting Reports Overview
+Bursting Reports Overview
 
 1034

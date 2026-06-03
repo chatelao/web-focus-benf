@@ -67,7 +67,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
 
 
-EMPLOYEE Data Source
+EMPLOYEE Data Source
 
 PAYINFO
 
@@ -115,7 +115,7 @@ Lists the dates that employees attended in-house courses.
 
 
 
-COURSEG (from EDUCFILE)
+COURSEG (from EDUCFILE)
 
 Lists the courses that the employees attended.
 
@@ -167,7 +167,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1939
 
-JOBFILE Data Source
+JOBFILE Data Source
 
 EMPLOYEE Structure Diagram
 
@@ -185,7 +185,7 @@ Describes what each position is. The field JOBCODE in this segment is indexed.
 
 
 
-A. Master Files and Diagrams
+A. Master Files and Diagrams
 
 SKILLSEG
 
@@ -243,7 +243,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
 
 
-EDUCFILE Data Source
+EDUCFILE Data Source
 
 EDUCFILE Data Source
 
@@ -273,7 +273,7 @@ FILENAME=EDUCFILE, SUFFIX=FOC
 
 
 
-EDUCFILE Structure Diagram
+EDUCFILE Structure Diagram
 
 SECTION 01
               STRUCTURE OF FOCUS    FILE EDUCFILE ON 05/15/03 AT 14.45.44
@@ -331,7 +331,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
 
 
-SALES Data Source
+SALES Data Source
 
 SALES Master File
 
@@ -353,7 +353,7 @@ FILENAME=KSALES,   SUFFIX=FOC
 
 1944
 
-SALES Structure Diagram
+SALES Structure Diagram
 
 SECTION 01
              STRUCTURE OF FOCUS    FILE SALES ON 05/15/03 AT 14.50.28
@@ -413,7 +413,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
 
 
-CAR Data Source
+CAR Data Source
 
 COMP
 
@@ -449,7 +449,7 @@ The aliases in the CAR Master File are specified without the ALIAS keyword.
 
 
 
-CAR Master File
+CAR Master File
 
 A. Master Files and Diagrams
 
@@ -486,7 +486,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1947
 
-LEDGER Data Source
+LEDGER Data Source
 
 CAR Structure Diagram
 
@@ -498,7 +498,7 @@ and the commas act as placeholders.
 
 1948
 
-A. Master Files and Diagrams
+A. Master Files and Diagrams
 
 LEDGER Master File
 
@@ -543,7 +543,7 @@ Creating Reports With TIBCO® WebFOCUS Language
  1949
 
 
-REGION Data Source
+REGION Data Source
 
 FINANCE Structure Diagram
 
@@ -597,7 +597,7 @@ SECTION 01
 
 
 
-A. Master Files and Diagrams
+A. Master Files and Diagrams
 
 EMPDATA Data Source
 
@@ -649,7 +649,7 @@ Creating Reports With TIBCO® WebFOCUS Language
  1951
 
 
-COURSE Data Source
+COURSE Data Source
 
 TRAINING Master File
 
@@ -700,7 +700,7 @@ FILENAME=COURSE,   SUFFIX=FOC
 1952
 
 
-COURSE Structure Diagram
+COURSE Structure Diagram
 
 SECTION 01
              STRUCTURE OF FOCUS    FILE COURSE   ON 05/15/03 AT 12.26.05
@@ -756,7 +756,7 @@ Creating Reports With TIBCO® WebFOCUS Language
  1953
 
 
-LOCATOR Data Source
+LOCATOR Data Source
 
 JOBLIST Master File
 
@@ -803,7 +803,7 @@ SEGNAME=LOCATOR,   SEGTYPE=S1,
 
 1954
 
-A. Master Files and Diagrams
+A. Master Files and Diagrams
 
 LOCATOR Structure Diagram
 
@@ -861,7 +861,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1955
 
-SALHIST Data Source
+SALHIST Data Source
 
 SALHIST Data Source
 
@@ -899,7 +899,7 @@ are used in examples that illustrate the use of the Maintain Data facility.
 
 1956
 
-VIDEOTRK Master File
+VIDEOTRK Master File
 
 A. Master Files and Diagrams
 
@@ -931,7 +931,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1957
 
-VIDEOTRK, MOVIES, and ITEMS Data Sources
+VIDEOTRK, MOVIES, and ITEMS Data Sources
 
 VIDEOTRK Structure Diagram
 
@@ -978,7 +978,7 @@ SECTION 01
 1958
 
 
-A. Master Files and Diagrams
+A. Master Files and Diagrams
 
 MOVIES Master File
 
@@ -1025,7 +1025,7 @@ Creating Reports With TIBCO® WebFOCUS Language
  1959
 
 
-VIDEOTR2 Data Source
+VIDEOTR2 Data Source
 
 ITEMS Structure Diagram
 
@@ -1077,7 +1077,7 @@ FILENAME=VIDEOTR2, SUFFIX=FOC
 1960
 
 
-VIDEOTR2 Structure Diagram
+VIDEOTR2 Structure Diagram
 
 SECTION 01
      STRUCTURE OF FOCUS    FILE VIDEOTR2 ON 05/15/03 AT 16.45.48
@@ -1138,7 +1138,7 @@ Creating Reports With TIBCO® WebFOCUS Language
  1961
 
 
-Gotham Grinds Data Sources
+Gotham Grinds Data Sources
 
 GGPRODS contains product information for Gotham Grinds. It consists of one segment,
 PRODS01.
@@ -1180,7 +1180,7 @@ FILENAME=GGDEMOG, SUFFIX=FOC
 
 1962
 
-GGDEMOG Structure Diagram
+GGDEMOG Structure Diagram
 
 SECTION 01
      STRUCTURE OF FOCUS    FILE GGDEMOG  ON 05/15/03 AT 12.26.05
@@ -1220,7 +1220,7 @@ Creating Reports With TIBCO® WebFOCUS Language
  1963
 
 
-Gotham Grinds Data Sources
+Gotham Grinds Data Sources
 
 GGORDER Structure Diagram
 
@@ -1272,7 +1272,7 @@ FILENAME=GGPRODS, SUFFIX=FOC
 1964
 
 
-GGPRODS Structure Diagram
+GGPRODS Structure Diagram
 
 SECTION 01
      STRUCTURE OF FOCUS    FILE GGPRODS  ON 05/15/03 AT 12.26.05
@@ -1326,7 +1326,7 @@ Creating Reports With TIBCO® WebFOCUS Language
  1965
 
 
-Gotham Grinds Data Sources
+Gotham Grinds Data Sources
 
 GGSALES Structure Diagram
 
@@ -1383,7 +1383,7 @@ SECTION 01
 
 
 
-Century Corp Data Sources
+Century Corp Data Sources
 
 A. Master Files and Diagrams
 
@@ -1432,7 +1432,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1967
 
-Century Corp Data Sources
+Century Corp Data Sources
 
 CENTCOMP Master File
 
@@ -1483,7 +1483,7 @@ SECTION 01
 1968
 
 
-CENTFIN Master File
+CENTFIN Master File
 
 A. Master Files and Diagrams
 
@@ -1532,7 +1532,7 @@ Creating Reports With TIBCO® WebFOCUS Language
  1969
 
 
-Century Corp Data Sources
+Century Corp Data Sources
 
 CENTHR Master File
 
@@ -1582,7 +1582,7 @@ FILE=CENTHR, SUFFIX=FOC
 
 1970
 
-A. Master Files and Diagrams
+A. Master Files and Diagrams
 
   DEFINE BQUARTER/Q=START_DATE;
    TITLE='Beginning,Quarter',
@@ -1636,7 +1636,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1971
 
-Century Corp Data Sources
+Century Corp Data Sources
 
   DEFINE SALARY/D12.2=IF BMONTH LT 4 THEN PAYLEVEL * 12321
    ELSE IF BMONTH GE 4 AND BMONTH LT 8 THEN PAYLEVEL * 13827
@@ -1666,7 +1666,7 @@ SECTION 01
 1972
 
 
-CENTINV Master File
+CENTINV Master File
 
 A. Master Files and Diagrams
 
@@ -1722,7 +1722,7 @@ Creating Reports With TIBCO® WebFOCUS Language
  1973
 
 
-Century Corp Data Sources
+Century Corp Data Sources
 
 CENTORD Master File
 
@@ -1770,7 +1770,7 @@ FILE=CENTORD, SUFFIX=FOC
 
 1974
 
-CENTORD Structure Diagram
+CENTORD Structure Diagram
 
 SECTION 01
       STRUCTURE OF FOCUS    FILE CENTORD  ON 05/15/03 AT 10.17.52
@@ -1819,7 +1819,7 @@ Creating Reports With TIBCO® WebFOCUS Language
  1975
 
 
-Century Corp Data Sources
+Century Corp Data Sources
 
 CENTQA Master File
 
@@ -1871,7 +1871,7 @@ FILE=CENTQA, SUFFIX=FOC, FDFC=19, FYRT=00
 
 1976
 
-CENTQA Structure Diagram
+CENTQA Structure Diagram
 
 SECTION 01
        STRUCTURE OF FOCUS    FILE CENTQA   ON 05/15/03 AT 10.46.43
@@ -1928,7 +1928,7 @@ Creating Reports With TIBCO® WebFOCUS Language
  1977
 
 
-Century Corp Data Sources
+Century Corp Data Sources
 
 CENTGL Structure Diagram
 
@@ -1978,7 +1978,7 @@ SECTION 01
 
 
 
-CENTSTMT Master File
+CENTSTMT Master File
 
 A. Master Files and Diagrams
 
@@ -2013,7 +2013,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1979
 
-Century Corp Data Sources
+Century Corp Data Sources
 
 CENTSTMT Structure Diagram
 
@@ -2068,7 +2068,7 @@ FIELDNAME=SYS_ACCOUNT,          ALIAS=ALINE,   FORMAT=A6,
 1980
 
 
-CENTGLL Structure Diagram
+CENTGLL Structure Diagram
 
 SECTION 01
        STRUCTURE OF FOCUS    FILE CENTGLL ON 05/15/03 AT 14.45.44
@@ -2091,6 +2091,6 @@ Creating Reports With TIBCO® WebFOCUS Language
  1981
 
 
-Century Corp Data Sources
+Century Corp Data Sources
 
 1982

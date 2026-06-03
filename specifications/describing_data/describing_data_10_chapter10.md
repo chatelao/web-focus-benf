@@ -50,7 +50,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  405
 
-Implementing Data Source Security
+Implementing Data Source Security
 
 You can ensure that only records that pass a validation test are retrieved using the
 RESTRICT attribute discussed in Limiting Data Source Access: The RESTRICT Attribute on
@@ -98,7 +98,7 @@ security placed on it have access to that data source.
 
 406
 
-10. Providing Data Source Security: DBA
+10. Providing Data Source Security: DBA
 
 The ACCESS attribute defines the type of access a given user has. The four types of access
 available are:
@@ -157,7 +157,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  407
 
-Implementing Data Source Security
+Implementing Data Source Security
 
 Reference: Special Considerations for Data Source Security
 
@@ -206,7 +206,7 @@ DBA=JONES76,$
 
 408
 
-10. Providing Data Source Security: DBA
+10. Providing Data Source Security: DBA
 
 Procedure: How to Change a DBA Password
 
@@ -264,7 +264,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  409
 
-Implementing Data Source Security
+Implementing Data Source Security
 
 Syntax:
 
@@ -318,7 +318,7 @@ be changed within the session.
 
 410
 
-10. Providing Data Source Security: DBA
+10. Providing Data Source Security: DBA
 
 Syntax:
 
@@ -377,7 +377,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  411
 
-Implementing Data Source Security
+Implementing Data Source Security
 
 Controlling Case Sensitivity of Passwords
 
@@ -432,7 +432,7 @@ SET USER = User2
 
 412
 
-10. Providing Data Source Security: DBA
+10. Providing Data Source Security: DBA
 
 Establishing User Identity
 
@@ -493,7 +493,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  413
 
-Specifying an Access Type: The ACCESS Attribute
+Specifying an Access Type: The ACCESS Attribute
 
 The password is MARY in file FIVE and FRANK in all other files:
 
@@ -541,7 +541,7 @@ data source.
 
 414
 
-10. Providing Data Source Security: DBA
+10. Providing Data Source Security: DBA
 
 You can assign the ACCESS attribute one of four values. These are:
 
@@ -644,7 +644,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
 
 
-Specifying an Access Type: The ACCESS Attribute
+Specifying an Access Type: The ACCESS Attribute
 
 Command
 
@@ -723,7 +723,7 @@ command. Users with access of W or U may not.
 
 
 
-Reference: RESTRICT Attribute Keywords
+Reference: RESTRICT Attribute Keywords
 
 10. Providing Data Source Security: DBA
 
@@ -784,7 +784,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  417
 
-Limiting Data Source Access: The RESTRICT Attribute
+Limiting Data Source Access: The RESTRICT Attribute
 
 The optional RESTRICT attribute further restricts a user access to certain fields, values, or
 segments.
@@ -837,7 +837,7 @@ VALIDATE.
 
 418
 
-10. Providing Data Source Security: DBA
+10. Providing Data Source Security: DBA
 
 name
 
@@ -890,7 +890,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  419
 
-Limiting Data Source Access: The RESTRICT Attribute
+Limiting Data Source Access: The RESTRICT Attribute
 
 The following request sets the password to USER1 and sums dollar sales and units by
 REGION, CATEGORY, and PRODUCT:
@@ -949,7 +949,7 @@ FIELD specifies that the user cannot access the fields named with the NAME param
 
 420
 
-10. Providing Data Source Security: DBA
+10. Providing Data Source Security: DBA
 
 SEGMENT specifies that the user cannot access the segments named with the NAME
 parameter.
@@ -1001,7 +1001,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  421
 
-Limiting Data Source Access: The RESTRICT Attribute
+Limiting Data Source Access: The RESTRICT Attribute
 
 Example:
 
@@ -1048,7 +1048,7 @@ Note: RESTRICT=VALUE is not supported in Maintain Data.
 
 422
 
-10. Providing Data Source Security: DBA
+10. Providing Data Source Security: DBA
 
 Syntax:
 
@@ -1102,7 +1102,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  423
 
-Controlling the Source of Access Restrictions in a Multi-file Structure
+Controlling the Source of Access Restrictions in a Multi-file Structure
 
 You can apply the test conditions to the parent segments of the data segments on which the
 tests are applicable. Consider the following example:
@@ -1148,7 +1148,7 @@ File on page 428.
 
 424
 
-10. Providing Data Source Security: DBA
+10. Providing Data Source Security: DBA
 
 The SET DBASOURCE command can only be issued one time in a session or connection. Any
 attempt to issue the command additional times will be ignored. If the value is set in a profile,
@@ -1203,7 +1203,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  425
 
-Controlling the Source of Access Restrictions in a Multi-file Structure
+Controlling the Source of Access Restrictions in a Multi-file Structure
 
 If the SET DBASOURCE command is issued more than once in a session, the following
 message displays and the value is not changed:
@@ -1262,7 +1262,7 @@ BYPASSING TO END OF COMMAND
 
 426
 
-10. Providing Data Source Security: DBA
+10. Providing Data Source Security: DBA
 
 Now, issue the following SET PASS command:
 
@@ -1315,7 +1315,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  427
 
-Adding DBA Restrictions to the Join Condition
+Adding DBA Restrictions to the Join Condition
 
 Adding DBA Restrictions to the Join Condition
 
@@ -1358,7 +1358,7 @@ attribute.
 
 428
 
-10. Providing Data Source Security: DBA
+10. Providing Data Source Security: DBA
 
 Note:
 
@@ -1411,7 +1411,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  429
 
-Placing Security Information in a Central Master File
+Placing Security Information in a Central Master File
 
 filename
 
@@ -1466,7 +1466,7 @@ FILENAME=THREE,$
 
 430
 
-10. Providing Data Source Security: DBA
+10. Providing Data Source Security: DBA
 
 Example:
 
@@ -1521,7 +1521,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  431
 
-Placing Security Information in a Central Master File
+Placing Security Information in a Central Master File
 
 Add the following security attributes to the bottom of the COURSE Master File. These attributes
 makes the EMPDATA Master File the central file that contains the security attributes to use for
@@ -1567,7 +1567,7 @@ filename
 
 432
 
-10. Providing Data Source Security: DBA
+10. Providing Data Source Security: DBA
 
 File Naming Requirements for DBAFILE
 
@@ -1624,7 +1624,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
 
 
-Summary of Security Attributes
+Summary of Security Attributes
 
 In the new system, the DBA sections of all data sources in a JOIN or COMBINE are examined.
 If DBAFILE is included in a Master File, then its passwords and restrictions are read. To make
@@ -1688,7 +1688,7 @@ source.
 
 434
 
-Attribute
+Attribute
 
 Alias
 
@@ -1774,7 +1774,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  435
 
-Hiding Restriction Rules: The ENCRYPT Command
+Hiding Restriction Rules: The ENCRYPT Command
 
 Hiding Restriction Rules: The ENCRYPT Command
 
@@ -1828,7 +1828,7 @@ request for encryption is made in the Master File by setting the attribute ENCRY
 
 436
 
-10. Providing Data Source Security: DBA
+10. Providing Data Source Security: DBA
 
 Example:
 
@@ -1854,7 +1854,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  437
 
-FOCEXEC Security
+FOCEXEC Security
 
 Note: If you change the DBA password, you must issue the RESTRICT command, as described
 in How to Change a DBA Password on page 409.
@@ -1905,7 +1905,7 @@ ENCRYPT FILE SALERPT FOCEXEC
 
 438
 
-10. Providing Data Source Security: DBA
+10. Providing Data Source Security: DBA
 
 You use the following procedure to decrypt the FOCEXEC named SALERPT:
 
@@ -1916,6 +1916,6 @@ Describing Data With TIBCO WebFOCUS® Language
 
  439
 
-FOCEXEC Security
+FOCEXEC Security
 
 440

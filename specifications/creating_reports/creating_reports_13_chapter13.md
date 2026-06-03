@@ -43,7 +43,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1035
 
-Missing Field Values
+Missing Field Values
 
 Example:
 
@@ -78,7 +78,7 @@ prefix operators such as MAX. and AVE.
 
 1036
 
-13. Handling Records With Missing Field Values
+13. Handling Records With Missing Field Values
 
 To prevent the use of these default values in calculations (which might then give erroneous
 results), you can add the MISSING attribute to the field declaration in the Master File, for
@@ -131,7 +131,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1037
 
-Missing Field Values
+Missing Field Values
 
 The numeric values in the first two records are missing (indicated by the periods). The last two
 records have values of 1 and 3. If you average these fields without the MISSING attribute
@@ -178,7 +178,7 @@ missing.
 
 1038
 
-13. Handling Records With Missing Field Values
+13. Handling Records With Missing Field Values
 
 Example:
 
@@ -226,7 +226,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1039
 
-Missing Field Values
+Missing Field Values
 
 To ensure that missing values are handled properly for temporary fields, you can set the
 MISSING attribute ON for the virtual field in the DEFINE or COMPUTE command, and specify
@@ -281,7 +281,7 @@ Is optional. It helps to clarify the meaning of the command.
 
 1040
 
-13. Handling Records With Missing Field Values
+13. Handling Records With Missing Field Values
 
 expression
 
@@ -338,7 +338,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1041
 
-Missing Field Values
+Missing Field Values
 
 Notice that the products C13, C14, and E2 in the New York section all show missing values for
 either RETURNS or DAMAGED, because the MISSING ON attribute has been set in the Master
@@ -370,7 +370,7 @@ END
 
 1042
 
-13. Handling Records With Missing Field Values
+13. Handling Records With Missing Field Values
 
 The output is:
 
@@ -401,7 +401,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1043
 
-Missing Field Values
+Missing Field Values
 
 ALL
 
@@ -439,7 +439,7 @@ unless both AAA and BBB are missing.
 
 1044
 
-13. Handling Records With Missing Field Values
+13. Handling Records With Missing Field Values
 
 Changing SET MISS_ON to ALL, produces the following output. CCC is assigned a missing
 value because one of the fields used to calculate it is always missing.
@@ -485,7 +485,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1045
 
-Missing Field Values
+Missing Field Values
 
 Consider the following request. CCC uses EQ 0 in the IF-THEN-ELSE test, and DDD uses IS
 MISSING.
@@ -529,7 +529,7 @@ SET MISSINGTEST = {NEW|OLD|SPECIAL}
 
 1046
 
-13. Handling Records With Missing Field Values
+13. Handling Records With Missing Field Values
 
 where:
 
@@ -586,7 +586,7 @@ Creating Reports With TIBCO® WebFOCUS Language
  1047
 
 
-Missing Field Values
+Missing Field Values
 
 Running the request with MISSINGTEST=OLD produces the output shown in the following
 image:
@@ -615,7 +615,7 @@ You can specify WHERE criteria to identify segment instances with missing field 
 
 1048
 
-13. Handling Records With Missing Field Values
+13. Handling Records With Missing Field Values
 
 You cannot use these tests to identify missing instances. See Handling a Missing Segment
 Instance on page 1056.
@@ -659,7 +659,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1049
 
-Missing Field Values
+Missing Field Values
 
 Example:
 
@@ -691,7 +691,7 @@ END
 
 1050
 
-13. Handling Records With Missing Field Values
+13. Handling Records With Missing Field Values
 
 The output is:
 
@@ -726,7 +726,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1051
 
-Missing Field Values
+Missing Field Values
 
 Syntax:
 
@@ -782,7 +782,7 @@ HOLD Master File and the missing data symbols are replaced with default values.
 
 1052
 
-13. Handling Records With Missing Field Values
+13. Handling Records With Missing Field Values
 
 Syntax:
 
@@ -832,7 +832,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1053
 
-Missing Field Values
+Missing Field Values
 
 The output is:
 
@@ -890,7 +890,7 @@ adds missing values to the SALES data source, has been run.
 
 1054
 
-13. Handling Records With Missing Field Values
+13. Handling Records With Missing Field Values
 
 SET COMPMISS = OFF
 TABLE FILE SALES
@@ -945,7 +945,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1055
 
-Handling a Missing Segment Instance
+Handling a Missing Segment Instance
 
 Reference: Usage Notes for SET COMPMISS
 
@@ -982,7 +982,7 @@ are missing.
 
 1056
 
-13. Handling Records With Missing Field Values
+13. Handling Records With Missing Field Values
 
 Nonexistent descendant instances affect whether parent segment instances are included in
 report results. The SET ALL parameter and the ALL. prefix enable you to include parent
@@ -1037,7 +1037,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1057
 
-Handling a Missing Segment Instance
+Handling a Missing Segment Instance
 
 Example:
 
@@ -1187,7 +1187,7 @@ Note: The report output has been truncated for demonstration purposes.
 
 1058
 
-13. Handling Records With Missing Field Values
+13. Handling Records With Missing Field Values
 
 Including Missing Instances in Reports With the ALL. Prefix
 
@@ -1248,7 +1248,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1059
 
-Handling a Missing Segment Instance
+Handling a Missing Segment Instance
 
 Note: A request with WHERE or IF criteria, which screen fields in a segment that has missing
 instances, omits instances in the parent segment even if you use the SET ALL=ON command.
@@ -1299,7 +1299,7 @@ value.
 
 1060
 
-13. Handling Records With Missing Field Values
+13. Handling Records With Missing Field Values
 
 ON
 
@@ -1335,7 +1335,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1061
 
-Handling a Missing Segment Instance
+Handling a Missing Segment Instance
 
 The output is:
 
@@ -1364,7 +1364,7 @@ command or a JOIN LEFT_OUTER command (either inside or outside of the Master Fil
 
 1062
 
-13. Handling Records With Missing Field Values
+13. Handling Records With Missing Field Values
 
 Reference: Usage Notes for SET SHORTPATH = SQL
 
@@ -1407,7 +1407,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1063
 
-Handling a Missing Segment Instance
+Handling a Missing Segment Instance
 
 EMP_ID     COURSE_CODE     COURSE_NAME
 ------     -----------     -----------
@@ -1457,7 +1457,7 @@ EMP_ID     COURSE_CODE     COURSE_NAME
 
 1064
 
-13. Handling Records With Missing Field Values
+13. Handling Records With Missing Field Values
 
 The following request adds the SET SHORTPATH = SQL command.
 
@@ -1517,7 +1517,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1065
 
-Setting the NODATA Character String
+Setting the NODATA Character String
 
 Testing for Missing Instances in FOCUS Data Sources
 
@@ -1671,7 +1671,7 @@ NODATA character is a period. However, you can change this character designation
 
 1066
 
-13. Handling Records With Missing Field Values
+13. Handling Records With Missing Field Values
 
 Syntax:
 
@@ -1716,6 +1716,6 @@ Creating Reports With TIBCO® WebFOCUS Language
  1067
 
 
-Setting the NODATA Character String
+Setting the NODATA Character String
 
 1068

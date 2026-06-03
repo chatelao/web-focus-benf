@@ -70,7 +70,7 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
       - [x] 3.1.4.1.1 Basic Verb and Field Selection.
       - [x] 3.1.4.1.2 Prefix Operators.
     - [ ] 3.1.4.2 Sort Commands:
-      - [ ] 3.1.4.2.1 BY phrase and sort options (NOPRINT, AS, etc.).
+      - [ ] 3.1.4.2.1 BY phrase and sort options (NOPRINT, AS).
       - [ ] 3.1.4.2.2 ACROSS phrase and ACROSS-TOTAL.
     - [ ] 3.1.4.3 Filter Commands:
       - [x] 3.1.4.3.1 WHERE clause and relational expressions.
@@ -78,9 +78,14 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
       - [x] 3.1.4.3.3 WHEN clause (Dialogue Manager filtering).
     - [ ] 3.1.4.4 Formatting:
       - [x] 3.1.4.4.1 HEADING and FOOTING.
-      - [ ] 3.1.4.4.2 ON ... SUBHEAD/SUBFOOT.
-    - [ ] 3.1.4.5 Calculations (COMPUTE, RECAP).
-    - [ ] 3.1.4.6 Summarization (SUBTOTAL, SUMMARIZE).
+      - [ ] 3.1.4.4.2 ON field SUBHEAD/SUBFOOT.
+      - [ ] 3.1.4.4.3 ON TABLE SUBHEAD/SUBFOOT.
+    - [ ] 3.1.4.5 Calculations:
+      - [ ] 3.1.4.5.1 COMPUTE command.
+      - [ ] 3.1.4.5.2 RECAP command.
+    - [ ] 3.1.4.6 Summarization:
+      - [ ] 3.1.4.6.1 SUBTOTAL/SUB-TOTAL.
+      - [ ] 3.1.4.6.2 SUMMARIZE/RECOMPUTE.
   - [ ] 3.1.5 Advanced Features:
     - [ ] 3.1.5.1 Compound Layout.
     - [ ] 3.1.5.2 Match File and SubMatch.

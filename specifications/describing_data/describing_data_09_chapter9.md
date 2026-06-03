@@ -50,7 +50,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  395
 
-CHECK Command Display
+CHECK Command Display
 
 RETRIEVE
 
@@ -107,7 +107,7 @@ Is the number of segments in the Master File, including cross-referenced segment
 
 396
 
-9. Checking and Changing a Master File: CHECK
+9. Checking and Changing a Master File: CHECK
 
 REAL
 
@@ -162,7 +162,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  397
 
-CHECK Command Display
+CHECK Command Display
 
 Determining Common Errors
 
@@ -198,7 +198,7 @@ AA IN SEGMENT SEGB        (VS SEGA)
 
 398
 
-9. Checking and Changing a Master File: CHECK
+9. Checking and Changing a Master File: CHECK
 
 PICTURE Option
 
@@ -269,7 +269,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
 
 
-PICTURE Option
+PICTURE Option
 
 where:
 
@@ -308,7 +308,7 @@ Parent segments are shown above children segments connected by straight lines.
 
 400
 
-9. Checking and Changing a Master File: CHECK
+9. Checking and Changing a Master File: CHECK
 
 Example:
 
@@ -368,7 +368,7 @@ Describing Data With TIBCO WebFOCUS® Language
  401
 
 
-HOLD Option
+HOLD Option
 
 File Attributes:
 
@@ -422,7 +422,7 @@ source, the segment types, and the attributes of the fields: field names, aliase
 
 402
 
-9. Checking and Changing a Master File: CHECK
+9. Checking and Changing a Master File: CHECK
 
 CHECK FILE EMPLOYEE HOLD
 TABLE FILE HOLD
@@ -480,7 +480,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
 
 
-HOLD Option
+HOLD Option
 
 Specifying an Alternate File Name With the HOLD Option
 

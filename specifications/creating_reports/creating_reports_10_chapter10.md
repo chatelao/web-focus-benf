@@ -57,7 +57,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  819
 
-Linking to Another Report
+Linking to Another Report
 
 The links you create can be dynamic. With a dynamic link, your selection passes the value of
 the selected report component to the linked report (procedure, URL, or JavaScript function).
@@ -114,7 +114,7 @@ page 1249.
 
 820
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 fex
 
@@ -162,7 +162,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  821
 
-Linking to Another Report
+Linking to Another Report
 
 Procedure: How to Determine a WebFOCUS File Name
 
@@ -184,7 +184,7 @@ the request.
 
 822
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 The main report is:
 
@@ -243,7 +243,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  823
 
-Linking to Another Report
+Linking to Another Report
 
 The first page of output for the main report follows. If you select Sales By Product for Store
 R1020, the value R1020 is passed to the PRDSALES procedure. If you select Sales By Date for
@@ -299,7 +299,7 @@ Thermos
 
 824
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 Linking to a URL
 
@@ -355,7 +355,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  825
 
-Linking to a URL
+Linking to a URL
 
 If the URL refers to a WebFOCUS Servlet program that takes parameters, the URL must
 end with a question mark (?).
@@ -405,7 +405,7 @@ END
 
 826
 
-The output is:
+The output is:
 
 10. Linking a Report to Other Resources
 
@@ -431,7 +431,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  827
 
-Linking to a URL
+Linking to a URL
 
 The main procedure is:
 
@@ -468,7 +468,7 @@ END
 
 828
 
-The output of the main report is:
+The output of the main report is:
 
 10. Linking a Report to Other Resources
 
@@ -476,7 +476,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  829
 
-Linking to a URL
+Linking to a URL
 
 If you click the region Northeast, the output is:
 
@@ -503,7 +503,7 @@ TYPE = type, HYPERLINK-COLOR = color
 
 830
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 where:
 
@@ -545,7 +545,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  831
 
-Linking to a URL
+Linking to a URL
 
 TABLE FILE GGSALES
 SUM DOLLARS/D12CM UNITS/D12C
@@ -579,7 +579,7 @@ declaration of the style sheet.
 
 832
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 For compound reports, set the HYPERLINK-COLOR attribute using the TYPE=REPORT
 declaration of the style sheet of the first component report (excluding anything on the Page
@@ -633,7 +633,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  833
 
-Linking to a JavaScript Function
+Linking to a JavaScript Function
 
 The maximum length of a JAVASCRIPT=function argument, including any associated
 parameters, is 2400 characters and can span more than one line. If you split a single
@@ -677,7 +677,7 @@ The report request (which contains the inline StyleSheet) is:
 
 834
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 TABLE FILE GGORDER
 SUM PRODUCT_ID
@@ -719,7 +719,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  835
 
-Linking to a Maintain Data Procedure
+Linking to a Maintain Data Procedure
 
 When you execute the report procedure, the following report displays in the web browser. If you
 select a Product Code link, the JavaScript function ShowItem executes, and displays the value
@@ -742,7 +742,7 @@ not display a user interface.
 
 836
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 If it is a JavaScript drilldown, it uses the parent.IbComposer_drillMntdata function.
 
@@ -805,7 +805,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  837
 
-Linking to a Maintain Data Procedure
+Linking to a Maintain Data Procedure
 
 MAINTAIN FILE ggprods
 module import(mntuws FOCCOMP)
@@ -838,7 +838,7 @@ IWC.getAppCGIValue function to retrieve the correct value.
 
 838
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 Form 1 in the Maintain Data procedure ggupd1 opens and you can update the unit price for
 that product:
@@ -880,7 +880,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  839
 
-Linking to a Maintain Data Procedure
+Linking to a Maintain Data Procedure
 
 rptcol
 
@@ -910,7 +910,7 @@ $
 
 840
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 The following is the Maintain code needed in order to pass these values from the report. The
 Maintain procedure is named Request2.
@@ -919,7 +919,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  841
 
-Multi-Drill Feature With Cascading Menus and User-Defined Styling
+Multi-Drill Feature With Cascading Menus and User-Defined Styling
 
 When the report and the Maintain form are placed on the same HTML page, clicking one of the
 links in the report passes the values to the Maintain form, as shown in the following image.
@@ -955,7 +955,7 @@ Use keystrokes to navigate to the link in the report.
 
 842
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 Open the cascading menu item and then press Enter to view the item.
 
@@ -1011,7 +1011,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  843
 
-Multi-Drill Feature With Cascading Menus and User-Defined Styling
+Multi-Drill Feature With Cascading Menus and User-Defined Styling
 
 hover_backcolor
 
@@ -1079,7 +1079,7 @@ Double line
 
 3D ridge
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 Style
 
@@ -1134,7 +1134,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  845
 
-Multi-Drill Feature With Cascading Menus and User-Defined Styling
+Multi-Drill Feature With Cascading Menus and User-Defined Styling
 
 The exception to this rule will be parent items containing children entries linked with the
 NAME/PARENT pairing. In this instance, the action will be to present the children in the
@@ -1189,7 +1189,7 @@ TYPE=type, [subtype], FOCEXEC=fex[(parameters...)], [TARGET=frame,]
 
 846
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 URL=url string
 
@@ -1245,7 +1245,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  847
 
-Multi-Drill Feature With Cascading Menus and User-Defined Styling
+Multi-Drill Feature With Cascading Menus and User-Defined Styling
 
 A WebFOCUS compiled Maintain Data procedure. The StyleSheet attribute is URL with the
 keyword MNTCON RUN. For details on the syntax, see Linking to a Maintain Data Procedure
@@ -1271,7 +1271,7 @@ FONT=TAHOMA, GRID=OFF,$
 
 848
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 TYPE=DATA,COLUMN=B2,
   DRILLMENUITEM='Sales Details', NAME=menu2,
@@ -1326,19 +1326,19 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  849
 
-Multi-Drill Feature With Cascading Menus and User-Defined Styling
+Multi-Drill Feature With Cascading Menus and User-Defined Styling
 
 This code generates a menu structure that looks like the following images.
 
 850
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 Creating Reports With TIBCO® WebFOCUS Language
 
  851
 
-Multi-Drill Feature With Cascading Menus and User-Defined Styling
+Multi-Drill Feature With Cascading Menus and User-Defined Styling
 
 To apply custom styling to the menus, add the following syntax to the StyleSheet:
 
@@ -1349,7 +1349,7 @@ The menu structure will now look like the following images.
 
 852
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 Reference: Usage Notes for Multi-Drill Menus
 
@@ -1397,7 +1397,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  853
 
-Creating Parameters
+Creating Parameters
 
 .
 .
@@ -1431,7 +1431,7 @@ to.
 
 854
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 Parameters are useful when you want to create a dynamic link. For example, your first report is
 a summary report that lists the total number of products ordered by a company on a specific
@@ -1489,7 +1489,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  855
 
-Creating Parameters
+Creating Parameters
 
 Note: The usual use of an amper variable is to pass a constant value. If the amper
 variable corresponds to an alphanumeric field, the amper variable would have to be
@@ -1544,7 +1544,7 @@ END
 
 856
 
-The output for the main report is:
+The output for the main report is:
 
 10. Linking a Report to Other Resources
 
@@ -1608,7 +1608,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  857
 
-Creating Parameters
+Creating Parameters
 
 FAR EAST
 
@@ -1692,7 +1692,7 @@ Drill-down report (SALES):
 
 858
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 TABLE FILE GGSALES
 ON TABLE SET PAGE-NUM OFF
@@ -1721,7 +1721,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  859
 
-Creating Parameters
+Creating Parameters
 
 Main report:
 
@@ -1756,7 +1756,7 @@ When the main report request is run, the following prompt opens:
 
 860
 
-Enter MIS and click Submit. The output is:
+Enter MIS and click Submit. The output is:
 
 10. Linking a Report to Other Resources
 
@@ -1800,7 +1800,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  861
 
-Creating Parameters
+Creating Parameters
 
 Example:
 
@@ -1853,7 +1853,7 @@ END
 
 862
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 When you run the drill-down request with DRILLMETHOD=POST and select a category, for
 example, Coffee, the parameters and values are not included in the URL, as shown in the
@@ -1889,7 +1889,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  863
 
-Creating Parameters
+Creating Parameters
 
 Drill-down report (REPORT2):
 
@@ -1910,7 +1910,7 @@ When the main report request is run, the following prompt opens:
 
 864
 
-Enter MIS and click Submit. The output is:
+Enter MIS and click Submit. The output is:
 
 10. Linking a Report to Other Resources
 
@@ -1955,7 +1955,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  865
 
-Linking With Conditions
+Linking With Conditions
 
 To specify a conditional link to a URL use:
 
@@ -2015,7 +2015,7 @@ marks.
 
 866
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 frame
 
@@ -2064,7 +2064,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  867
 
-Linking From a Graphic Image
+Linking From a Graphic Image
 
 DEPARTMENT
 
@@ -2137,7 +2137,7 @@ TYPE=type, [subtype], IMAGE=image, JAVASCRIPT=function
 
 868
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 where:
 
@@ -2195,7 +2195,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  869
 
-Linking From a Graphic Image
+Linking From a Graphic Image
 
 url
 
@@ -2254,7 +2254,7 @@ Drill-down report (IMAGE-D):
 
 870
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 TABLE FILE EMPDATA
 PRINT SALARY
@@ -2278,7 +2278,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  871
 
-Specifying a Base URL
+Specifying a Base URL
 
 CE
 
@@ -2334,7 +2334,7 @@ For more details on specifying URLs, see Navigating Within an HTML Report on pag
 
 872
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 Syntax:
 
@@ -2390,7 +2390,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  873
 
-Specifying a Target Frame
+Specifying a Target Frame
 
 There are two ways to specify a target frame. You can specify:
 
@@ -2443,7 +2443,7 @@ report components.
 
 874
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 fex
 
@@ -2497,7 +2497,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  875
 
-Creating a Compound Report
+Creating a Compound Report
 
 Example:
 
@@ -2549,7 +2549,7 @@ for the Compound Layout report.
 
 876
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 In a Coordinated Compound Layout report, if at least one component contains data for a
 specific sort field value, a page is generated for that value even though some of the
@@ -2599,7 +2599,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  877
 
-Creating a Compound Report
+Creating a Compound Report
 
 The compound layout block consists of SECTION, PAGELAYOUT, and COMPONENT
 declarations. The general structure of the compound layout block of syntax is:
@@ -2647,7 +2647,7 @@ SECTION=section-name, LAYOUT=ON, [MERGE=ON|OFF,]
 
 878
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 where:
 
@@ -2709,7 +2709,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  879
 
-Creating a Compound Report
+Creating a Compound Report
 
 The PAGELAYOUT=ALL syntax specifies a component that appears on every page. This
 is useful for components that generate page headers or footers.
@@ -2760,7 +2760,7 @@ END
 
 880
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 Note that the recommended way to create a design theme with repeating text and images
 on a page master is to place drawing objects on the page master. For information, see How
@@ -2804,7 +2804,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  881
 
-Creating a Compound Report
+Creating a Compound Report
 
 The COMPONENT syntax appears as:
 
@@ -2859,7 +2859,7 @@ overflows its initial bounding box.
 
 882
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 OVERFLOW-POSITION and OVERFLOW-DIMENSION are supported for flowing components,
 as well. For example:
@@ -2913,7 +2913,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  883
 
-Creating a Compound Report
+Creating a Compound Report
 
 Can be one of the following:
 
@@ -2947,7 +2947,7 @@ Enter the following syntax in the Text Editor.
 
 884
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 SET PAGE-NUM=OFF
 COMPOUND LAYOUT PCHOLD FORMAT PDF
@@ -3003,7 +3003,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  885
 
-Creating a Compound Report
+Creating a Compound Report
 
 The first page of output is:
 
@@ -3035,7 +3035,7 @@ END
 
 886
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 SET COMPONENT=Sales
 GRAPH FILE GGSALES
@@ -3081,7 +3081,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  887
 
-Creating a Compound Report
+Creating a Compound Report
 
 TABLE FILE GGSALES
 "Percent of Sales by Product in <REGION"
@@ -3118,7 +3118,7 @@ COMPOUND END
 
 888
 
-The first page of output is:
+The first page of output is:
 
 10. Linking a Report to Other Resources
 
@@ -3152,7 +3152,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  889
 
-Creating a Compound Report
+Creating a Compound Report
 
 We will use components R1 and R2 from the previous example. If you did not already do so,
 save them as REPORT1.FEX and REPORT2.FEX. Enter the following syntax as the R3 report
@@ -3197,7 +3197,7 @@ COMPOUND END
 
 890
 
-Page 1 of the output is:
+Page 1 of the output is:
 
 10. Linking a Report to Other Resources
 
@@ -3207,7 +3207,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  891
 
-Creating a Compound Report
+Creating a Compound Report
 
 Example:
 
@@ -3260,7 +3260,7 @@ END
 
 892
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 SET COMPONENT=R2
 TABLE FILE GGSALES
@@ -3293,13 +3293,13 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  893
 
-Creating a Compound Report
+Creating a Compound Report
 
 The first page of output is:
 
 894
 
-The second page of output is:
+The second page of output is:
 
 10. Linking a Report to Other Resources
 
@@ -3326,7 +3326,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  895
 
-Creating a Compound Report
+Creating a Compound Report
 
 OBJECT=LINE, POSITION=(1 1), ENDPOINT=(8 1),
         BORDER=HEAVY, BORDER-COLOR=RED, BORDER-STYLE=DASHED, $
@@ -3377,7 +3377,7 @@ OFF},] [FONT=f,] [SIZE=sz,] [STYLE=st,] [COLOR=c,]
 
 896
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 where:
 
@@ -3442,7 +3442,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  897
 
-Creating a Compound Report
+Creating a Compound Report
 
 LINESPACING=type(value)
 
@@ -3509,7 +3509,7 @@ any textual object in a report. For example:
 
 898
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 OBJECT=STRING, POSITION=(1 1), TEXT='Hello world!',
         FONT=TIMES, SIZE=12, STYLE=BOLD, COLOR=RED, $
@@ -3532,7 +3532,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  899
 
-Creating a Compound Report
+Creating a Compound Report
 
 Example:
 
@@ -3580,7 +3580,7 @@ COMPOUND END
 
 900
 
-The first page of output is:
+The first page of output is:
 
 10. Linking a Report to Other Resources
 
@@ -3617,7 +3617,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  901
 
-Creating a Compound Report
+Creating a Compound Report
 
 For example:
 
@@ -3672,7 +3672,7 @@ Vertical Alignment
 
 902
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 Top Alignment:
 
@@ -3726,7 +3726,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  903
 
-Creating a Compound Report
+Creating a Compound Report
 
 By default, Arabic numerals (type=1) are used for the ordering of the list. You can specify the
 following types of order:
@@ -3783,7 +3783,7 @@ MARKUP=OFF.
 
 904
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 MARKUP=OFF, TEXT='Page <ibi-page-number/> of <ibi-total-pages/> of Sales
 Report', $
@@ -3809,7 +3809,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  905
 
-Creating a Compound Report
+Creating a Compound Report
 
 Example:
 
@@ -3868,7 +3868,7 @@ The markup for this formatting is:
 
 906
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 <b><font face="Arial" size=12>This paragraph is triple-spaced
 (LINESPACING=MULTIPLE(3)):</font></b>
@@ -3890,7 +3890,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  907
 
-Creating a Compound Report
+Creating a Compound Report
 
 Example:
 
@@ -3921,7 +3921,7 @@ END
 
 908
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 SET COMPONENT=HEADER
 TABLE FILE GGSALES
@@ -3973,13 +3973,13 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  909
 
-Creating a Compound Report
+Creating a Compound Report
 
 The first page of output is:
 
 910
 
-The second page of output has the same drawing objects:
+The second page of output has the same drawing objects:
 
 10. Linking a Report to Other Resources
 
@@ -3997,7 +3997,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  911
 
-Creating a Compound Report
+Creating a Compound Report
 
 In the right box, the text is aligned vertically at the bottom.
 
@@ -4042,7 +4042,7 @@ components segmented to display the data that corresponds to that sort field val
 
 912
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 A Coordinated Compound Layout report page is generated in the designated page layout for
 every sort field value found in at least one of the component reports, presenting the
@@ -4094,7 +4094,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  913
 
-Creating a Compound Report
+Creating a Compound Report
 
 To demonstrate how this works we will first build a set of data files: a header file containing
 contact information for the selected set of stores, and transaction files for each inventory
@@ -4163,7 +4163,7 @@ END
 
 914
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 The following procedure creates the data source GGHDR:
 
@@ -4221,7 +4221,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  915
 
-Creating a Compound Report
+Creating a Compound Report
 
 The following procedure creates the data source GG3:
 
@@ -4280,7 +4280,7 @@ END
 
 916
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 The following procedure, GGRPT1.FEX, creates the second report component for the
 Coordinated Compound Layout report. For the same store code value in the header report, it
@@ -4326,7 +4326,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  917
 
-Creating a Compound Report
+Creating a Compound Report
 
 The following procedure, GGRPT2.FEX, creates the third report component for the Coordinated
 Compound Layout report. For the same store code value in the header report, it displays data
@@ -4370,7 +4370,7 @@ END
 
 918
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 The following procedure, GGRPT3.FEX, creates the final report component for the Coordinated
 Compound Layout report. For the same store code value in the header report, it displays data
@@ -4416,7 +4416,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  919
 
-Creating a Compound Report
+Creating a Compound Report
 
 Example:
 
@@ -4428,7 +4428,7 @@ in the following diagram:
 
 920
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 The Coordinated Compound Layout syntax is:
 
@@ -4466,14 +4466,14 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  921
 
-Creating a Compound Report
+Creating a Compound Report
 
 On the first page of the PDF output file, all components have data and appear on the report
 output:
 
 922
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 On the second page, report GGRPT2.FEX did not retrieve any data for the store in the header.
 Therefore, the Coffee component is missing. Note that because Component 3 and 4 are
@@ -4485,7 +4485,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  923
 
-Creating a Compound Report
+Creating a Compound Report
 
 On page 5, the header report did not retrieve any data for a store code value present in the
 other three components. A page is still generated for this store code. Since the second
@@ -4500,7 +4500,7 @@ compound report.
 
 924
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 In PPTX, the Table of Contents can be presented as a Table of Contents page placed at the
 beginning of the document. In PDF, the Table of Contents can be presented as either PDF
@@ -4552,7 +4552,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  925
 
-Creating a Compound Report
+Creating a Compound Report
 
 Note: If the Table of Contents overflows to more than one page at run time, the remaining
 content is executed with the same size and dimensions as the first page until the entire TOC
@@ -4612,7 +4612,7 @@ COMPOUND END
 
 926
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 The output shows that each component report is at Table of Contents level 1 and has two
 levels of sort fields under it, as shown in the following image. For the Sales by Product report,
@@ -4624,7 +4624,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  927
 
-Creating a Compound Report
+Creating a Compound Report
 
 From PowerPoint presentation view, clicking any entry on the Table of Contents page opens the
 page containing that entry. For example, clicking the Sales by Region Southeast entry displays
@@ -4632,7 +4632,7 @@ the following page.
 
 928
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 Syntax:
 
@@ -4697,7 +4697,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  929
 
-Creating a Compound Report
+Creating a Compound Report
 
 font='font2', color={color|RGB(rgb)},size=sz2,
 
@@ -4756,7 +4756,7 @@ the selected data element on the page.
 
 930
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 Reports used for headings or footings on overflow pages (DisplayOn=OVERFLOW-ONLY)
 should not be included in any TOC or BYTOC entries. These components will generate
@@ -4812,7 +4812,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  931
 
-Creating a Compound Report
+Creating a Compound Report
 
 SET COMPONENT=report1
 TABLE FILE GGSALES
@@ -4847,7 +4847,7 @@ COMPOUND END
 
 932
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 The output shows that each component reports is at Table of Contents level 1 and has two
 levels of sort fields under it. For the Sales by Product report, the BY fields are Category and
@@ -4858,7 +4858,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  933
 
-Creating a Compound Report
+Creating a Compound Report
 
 Clicking any entry on the Table of Contents page or in the bookmarks pane opens the page
 containing that entry. For example, clicking the Sales by Region/Southeast entry opens the
@@ -4884,7 +4884,7 @@ Compound Reports, see Creating a Compound Excel Report Using EXL2K on page 943.
 
 934
 
-Syntax:
+Syntax:
 
 How to Display Compound Reports
 
@@ -4937,7 +4937,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  935
 
-Creating a Compound Report
+Creating a Compound Report
 
 Note:
 
@@ -4985,7 +4985,7 @@ END
 
 936
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 Report 2:
 
@@ -5019,7 +5019,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  937
 
-Creating a Compound Report
+Creating a Compound Report
 
 The output displays as a PDF report. Because the syntax for reports 1 and 2 contain the
 NOBREAK command, the three reports appear on a single page. (Without NOBREAK, each
@@ -5041,7 +5041,7 @@ For details on saving a graph as an image file, see Creating a Graph on page 174
 
 938
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 To embed a graphic in a compound report, you must identify the image file in the StyleSheet
 declaration of the report in which you want to include it, along with size and position
@@ -5093,7 +5093,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  939
 
-Creating a Compound Report
+Creating a Compound Report
 
 Report 2:
 
@@ -5124,7 +5124,7 @@ END
 
 940
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 Report 3:
 
@@ -5160,13 +5160,13 @@ Creating Reports With TIBCO® WebFOCUS Language
  941
 
 
-Creating a Compound Report
+Creating a Compound Report
 
 The output is:
 
 942
 
-Creating a Compound Excel Report Using EXL2K
+Creating a Compound Excel Report Using EXL2K
 
 10. Linking a Report to Other Resources
 
@@ -5219,7 +5219,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  943
 
-Creating a Compound Report
+Creating a Compound Report
 
 ON TABLE HOLD AS MYHOLD FORMAT EXL2K OPEN NOBREAK
 
@@ -5268,7 +5268,7 @@ there would be no way to remove them.
 
 944
 
-Example:
+Example:
 
 Creating a Simple Compound Report Using EXL2K
 
@@ -5318,13 +5318,13 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  945
 
-Creating a Compound Report
+Creating a Compound Report
 
 The output for each tab in the Excel worksheet is:
 
 946
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 Example:
 
@@ -5348,7 +5348,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  947
 
-Creating a Compound Report
+Creating a Compound Report
 
 TABLE FILE CAR
 HEADING
@@ -5389,7 +5389,7 @@ END
 
 948
 
-The output for each tab in the Excel worksheet is:
+The output for each tab in the Excel worksheet is:
 
 10. Linking a Report to Other Resources
 
@@ -5397,11 +5397,11 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  949
 
-Creating a Compound Report
+Creating a Compound Report
 
 950
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 Example:
 
@@ -5459,7 +5459,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  951
 
-Creating a Compound Report
+Creating a Compound Report
 
 TABLE FILE GGSALES
 HEADING
@@ -5479,7 +5479,7 @@ END
 
 952
 
-The output is:
+The output is:
 
 10. Linking a Report to Other Resources
 
@@ -5487,7 +5487,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  953
 
-Creating a PDF Compound Report With Drill Through Links
+Creating a PDF Compound Report With Drill Through Links
 
 Creating a PDF Compound Report With Drill Through Links
 
@@ -5538,7 +5538,7 @@ You can format the reports using a WebFOCUS StyleSheet.
 
 954
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 You can indicate a hyperlink by color, font, underlining, and so forth.
 
@@ -5589,7 +5589,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  955
 
-Creating a PDF Compound Report With Drill Through Links
+Creating a PDF Compound Report With Drill Through Links
 
 Procedure: How to Create a Drill Through in a PDF Compound Report
 
@@ -5651,7 +5651,7 @@ Links to the first Drill Through report in the sequence.
 
 956
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 link_fields
 
@@ -5712,7 +5712,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  957
 
-Creating a PDF Compound Report With Drill Through Links
+Creating a PDF Compound Report With Drill Through Links
 
 Note: The double parentheses around the DRILLMAP values are required.
 
@@ -5761,7 +5761,7 @@ Drill Through is only supported for reports (TABLE).
 
 958
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 Sample Drill Through PDF Compound Reports
 
@@ -5785,7 +5785,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  959
 
-Creating a PDF Compound Report With Drill Through Links
+Creating a PDF Compound Report With Drill Through Links
 
 Example:
 
@@ -5815,7 +5815,7 @@ END
 
 960
 
-Example:
+Example:
 
 Connecting the Reports With Hyperlinks (Step 3)
 
@@ -5866,7 +5866,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  961
 
-Creating a PDF Compound Report With Drill Through Links
+Creating a PDF Compound Report With Drill Through Links
 
 The detail report:
 
@@ -5924,7 +5924,7 @@ attributes to the COMPONENT declarations.
 
 962
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 Add SET COMPONENT commands and the two reports.
 
@@ -5965,7 +5965,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  963
 
-Creating a PDF Compound Report With Drill Through Links
+Creating a PDF Compound Report With Drill Through Links
 
 -* Add report2 code and SET COMPONENT command
 SET COMPONENT='REPORT2'
@@ -6008,7 +6008,7 @@ intervening page breaks.
 
 964
 
-This example uses the OPEN and CLOSE options on the PCHOLD FORMAT PDF command:
+This example uses the OPEN and CLOSE options on the PCHOLD FORMAT PDF command:
 
 10. Linking a Report to Other Resources
 
@@ -6046,7 +6046,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  965
 
-Creating a PDF Compound Report With Drill Through Links
+Creating a PDF Compound Report With Drill Through Links
 
 Example:
 
@@ -6062,7 +6062,7 @@ Click the hyperlink Return to Summary to return to the first page (summary repor
 
 966
 
-10. Linking a Report to Other Resources
+10. Linking a Report to Other Resources
 
 Reference: Guidelines on Links For FIRST
 
@@ -6114,7 +6114,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  967
 
-Creating a PDF Compound Report With Drill Through Links
+Creating a PDF Compound Report With Drill Through Links
 
 The link fields in the source and target reports must have the same internal (actual) format:
 the stopped data type and internal length must be identical. Formatting options, such as

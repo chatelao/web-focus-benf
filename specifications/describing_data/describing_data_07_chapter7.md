@@ -45,7 +45,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  349
 
-Static Joins Defined in the Master File: SEGTYPE = KU and KM
+Static Joins Defined in the Master File: SEGTYPE = KU and KM
 
 Statically within a Master File. This method is helpful if you want to access the joined
 structure frequently. The link (pointer) information needed to implement the join is
@@ -89,7 +89,7 @@ JOBCODE field contains a code that specifies the employee job.
 
 350
 
-7. Defining a Join in a Master File
+7. Defining a Join in a Master File
 
 The complete description of the job and other related information is stored in a separate data
 source named JOBFILE. You can retrieve the job description from JOBFILE by locating the
@@ -113,7 +113,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  351
 
-Static Joins Defined in the Master File: SEGTYPE = KU and KM
+Static Joins Defined in the Master File: SEGTYPE = KU and KM
 
 The EMPLOYEE data source is viewed as follows:
 
@@ -153,7 +153,7 @@ Both fields must have the same format type and length.
 
 352
 
-7. Defining a Join in a Master File
+7. Defining a Join in a Master File
 
 The cross-referenced field must be indexed (FIELDTYPE=I or INDEX=I).
 
@@ -205,7 +205,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  353
 
-Static Joins Defined in the Master File: SEGTYPE = KU and KM
+Static Joins Defined in the Master File: SEGTYPE = KU and KM
 
 Using a Unique Join for Decoding
 
@@ -243,7 +243,7 @@ SEGTYPE = KM
 
 354
 
-Example:
+Example:
 
 Specifying a Static Multiple Join
 
@@ -278,7 +278,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  355
 
-Using Cross-Referenced Descendant Segments: SEGTYPE = KL and KLU
+Using Cross-Referenced Descendant Segments: SEGTYPE = KL and KLU
 
 Within a report request, both cross-referenced data sources, JOBFILE and EDUCFILE, are
 treated as though they are part of the EMPLOYEE data source. The data structure resembles
@@ -304,7 +304,7 @@ CRFILE = db_name, [CRSEGNAME = crsegname,]
 
 356
 
-7. Defining a Join in a Master File
+7. Defining a Join in a Master File
 
 where:
 
@@ -358,7 +358,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  357
 
-Using Cross-Referenced Descendant Segments: SEGTYPE = KL and KLU
+Using Cross-Referenced Descendant Segments: SEGTYPE = KL and KLU
 
 Example:
 
@@ -376,7 +376,7 @@ static (KM) and dynamic (DKM) joins.
 
 358
 
-When the JOBSEG segment is retrieved from JOBFILE, it also retrieves all of the children for
+When the JOBSEG segment is retrieved from JOBFILE, it also retrieves all of the children for
 JOBSEG that were declared with KL or KLU SEGTYPEs in the EMPLOYEE Master File:
 
 7. Defining a Join in a Master File
@@ -385,7 +385,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  359
 
-Using Cross-Referenced Descendant Segments: SEGTYPE = KL and KLU
+Using Cross-Referenced Descendant Segments: SEGTYPE = KL and KLU
 
 Example:
 
@@ -406,7 +406,7 @@ descriptions in COURSEG by declaring it as a linked segment.
 
 360
 
-From this perspective, COURSEG is a child of ATTNDSEG, as shown in the following diagram.
+From this perspective, COURSEG is a child of ATTNDSEG, as shown in the following diagram.
 
 7. Defining a Join in a Master File
 
@@ -436,7 +436,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  361
 
-Dynamic Joins Defined in the Master File: SEGTYPE = DKU and DKM
+Dynamic Joins Defined in the Master File: SEGTYPE = DKU and DKM
 
 Hierarchy of Linked Segments
 
@@ -469,7 +469,7 @@ report request.
 
 362
 
-7. Defining a Join in a Master File
+7. Defining a Join in a Master File
 
 This makes static joins much faster than dynamic ones, but harder to change. You can
 redefine or remove a static join only using the REBUILD facility. You can redefine or remove a
@@ -525,7 +525,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  363
 
-Conditional Joins in the Master File
+Conditional Joins in the Master File
 
 Conditional Joins in the Master File
 
@@ -582,7 +582,7 @@ traditional cross-references in the Master File.
 
 364
 
-7. Defining a Join in a Master File
+7. Defining a Join in a Master File
 
 Note: If you specify a unique join when the relationship between the host and cross-
 referenced files is one-to-many, the results will be unpredictable.
@@ -633,7 +633,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  365
 
-Conditional Joins in the Master File
+Conditional Joins in the Master File
 
 The following request uses the joined Master File.
 
@@ -659,7 +659,7 @@ the characters 019, as specified in the join condition:
 366
 
 
-Comparing Static and Dynamic Joins
+Comparing Static and Dynamic Joins
 
 7. Defining a Join in a Master File
 
@@ -726,7 +726,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  367
 
-Joining to One Cross-Referenced Segment From Several Host Segments
+Joining to One Cross-Referenced Segment From Several Host Segments
 
 Join Type
 
@@ -796,7 +796,7 @@ handle these data structures using Master File defined joins.
 
 368
 
-7. Defining a Join in a Master File
+7. Defining a Join in a Master File
 
 Joining From Several Segments in One Host Data Source
 
@@ -815,7 +815,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  369
 
-Joining to One Cross-Referenced Segment From Several Host Segments
+Joining to One Cross-Referenced Segment From Several Host Segments
 
 You cannot retrieve this information with a standard Master File defined join because there are
 two cross-reference keys in the host data source (PRODMGR and DIVMGR) and in your reports
@@ -865,7 +865,7 @@ to separately in reports. The actual field names in PERSFILE are supplied as ali
 
 370
 
-7. Defining a Join in a Master File
+7. Defining a Join in a Master File
 
 Note that the NAME field cannot be renamed since it is the common join field. It must be
 included in the declaration along with the fields being renamed, as it is described in the cross-
@@ -904,7 +904,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  371
 
-Joining to One Cross-Referenced Segment From Several Host Segments
+Joining to One Cross-Referenced Segment From Several Host Segments
 
 Consider an application that keeps track of customer orders for parts, warehouse inventory of
 parts, and general part information. If this were described as a single data source, it would be
@@ -920,7 +920,7 @@ segment. In the ORDERS data source, ORDER is the host segment.
 
 372
 
-7. Defining a Join in a Master File
+7. Defining a Join in a Master File
 
 In addition, there is a one-to-many join from the STOCK segment in the INVENTRY data source
 to the ORDER segment in the ORDERS data source, and a reciprocal one-to-many join from the
@@ -940,7 +940,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  373
 
-Creating a Single-Root Cluster Master File
+Creating a Single-Root Cluster Master File
 
 A description for this case, shown for two levels of subparts, is:
 
@@ -964,7 +964,7 @@ SEGSUF=DFIX (Delimited Flat File).
 
 374
 
-Syntax:
+Syntax:
 
 How to Read a Field Containing Delimited Values as Individual Rows
 
@@ -1025,7 +1025,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  375
 
-Creating a Single-Root Cluster Master File
+Creating a Single-Root Cluster Master File
 
 delimiter
 
@@ -1085,7 +1085,7 @@ United States  -97.0000000,38.0000000
 
 376
 
-7. Defining a Join in a Master File
+7. Defining a Join in a Master File
 
 Following is the original Master File, COMMA1.
 
@@ -1143,7 +1143,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  377
 
-Creating a Multiple-Root Cluster Master File
+Creating a Multiple-Root Cluster Master File
 
 Creating a Multiple-Root Cluster Master File
 
@@ -1168,7 +1168,7 @@ WebFOCUS Language manual.
 
 378
 
-7. Defining a Join in a Master File
+7. Defining a Join in a Master File
 
 Syntax:
 
@@ -1230,7 +1230,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  379
 
-Creating a Multiple-Root Cluster Master File
+Creating a Multiple-Root Cluster Master File
 
 CRFILE=[dapp/]dfilename
 
@@ -1286,7 +1286,7 @@ SEGMENT=WF_RETAIL_CUSTOMER, CRFILE=wfretail/dimensions/wf_retail_customer,
 
 380
 
-7. Defining a Join in a Master File
+7. Defining a Join in a Master File
 
 The following is an example of a non-shared dimension segment definition from the
 WF_RETAIL_LITE Master File, where the synonym is defined in in the wfretail application.
@@ -1303,6 +1303,6 @@ Describing Data With TIBCO WebFOCUS® Language
 
  381
 
-Creating a Multiple-Root Cluster Master File
+Creating a Multiple-Root Cluster Master File
 
 382
