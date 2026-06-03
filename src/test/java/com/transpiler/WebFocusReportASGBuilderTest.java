@@ -465,6 +465,40 @@ public class WebFocusReportASGBuilderTest {
         assertEquals(2, ((Literal) repeat.stepVal()).value());
     }
 
+    @Test
+    public void testHeadingCommand() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // HEADING simple
+        WebFocusReportParser parser = createParser("HEADING \"My Report\"");
+        Heading heading = (Heading) builder.visit(parser.heading_command());
+        assertEquals("My Report", heading.text());
+        assertFalse(heading.centered());
+
+        // HEADING centered with multiple strings
+        parser = createParser("HEADING CENTER \"Line 1\" \"Line 2\"");
+        heading = (Heading) builder.visit(parser.heading_command());
+        assertEquals("Line 1 Line 2", heading.text());
+        assertTrue(heading.centered());
+    }
+
+    @Test
+    public void testFootingCommand() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // FOOTING simple
+        WebFocusReportParser parser = createParser("FOOTING \"End of Report\"");
+        Footing footing = (Footing) builder.visit(parser.footing_command());
+        assertEquals("End of Report", footing.text());
+        assertFalse(footing.centered());
+
+        // FOOTING centered
+        parser = createParser("FOOTING CENTER \"Confidential\"");
+        footing = (Footing) builder.visit(parser.footing_command());
+        assertEquals("Confidential", footing.text());
+        assertTrue(footing.centered());
+    }
+
     private WebFocusReportParser createParser(String input) {
         WebFocusReportLexer lexer = new WebFocusReportLexer(CharStreams.fromString(input));
         return new WebFocusReportParser(new CommonTokenStream(lexer));
