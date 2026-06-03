@@ -1,5 +1,5 @@
 # ROADMAP
-- [ ] 0.56 Implement a next, modest, very small, feasible and reasonable `specifications/ROADMAP.md` step (#504)
+- [x] 0.56 Implement a next, modest, very small, feasible and reasonable `specifications/ROADMAP.md` step (#504) (completed at 2026-06-03 18:46:36)
 - [x] 0.55 Create roadmap to improve the formating of all markdown files in `specifications` (#500)
 - [ ] 0.54 Überprüfe ob alle Dateiformate unterstützt werden, wenn nein erstelle die Datei `FILE_FORMAT_SUPPORT_GAP.md` (#498)
 - [x] 0.53 Find out why the compiled installers are not added to the release v1.1 (#496) (completed at 2026-06-03 16:14:52)
