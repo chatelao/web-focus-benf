@@ -3,6 +3,7 @@ name: CI/CD
 on:
   push:
     branches: [ "**" ]
+    tags: [ "v*" ]
   pull_request:
     branches: [ "**" ]
 
@@ -147,7 +148,11 @@ jobs:
 
       - name: Build with PyInstaller
         shell: bash
-        run: pyinstaller cli.spec
+        run: python -m PyInstaller cli.spec
+
+      - name: List dist directory
+        shell: bash
+        run: ls -R dist/
 
       - name: Rename artifact
         shell: bash
@@ -158,5 +163,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: dist/${{ matrix.asset_name }}
+          fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
