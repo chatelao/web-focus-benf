@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] 0.52 Implement a next, modest, very small, feasible and reasonable JAVA_PORT_ROADMAP.md step (#494)
 - [x] 0.51 create for each release with the gh cicd an ".exe" of the CLI with pyinstaller (#485) (completed at 2026-06-03 07:55:15)
 - [x] 0.50 create an ".exe" of the CLI with pyinstaller (#484) (completed at 2026-06-03 07:55:15)
 - [ ] 0.49 Implement a next, modest, very small, feasible and reasonable JAVA_PORT_ROADMAP.md step (#482)
