@@ -500,6 +500,59 @@ public class WebFocusReportASGBuilderTest {
     }
 
     @Test
+    public void testSortCommands() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // BY simple
+        WebFocusReportParser parser = createParser("BY COUNTRY");
+        SortCommand sort = (SortCommand) builder.visit(parser.by_command());
+        assertEquals("BY", sort.sortType());
+        assertEquals("COUNTRY", sort.field().name());
+        assertFalse(sort.noprint());
+
+        // BY HIGHEST 5 with NOPRINT
+        parser = createParser("BY HIGHEST 5 COUNTRY NOPRINT");
+        sort = (SortCommand) builder.visit(parser.by_command());
+        assertEquals("HIGHEST", sort.options().get("order"));
+        assertEquals(5, sort.options().get("limit"));
+        assertTrue(sort.noprint());
+
+        // BY with SUBTOTAL
+        parser = createParser("BY COUNTRY SUBTOTAL SALARY");
+        sort = (SortCommand) builder.visit(parser.by_command());
+        assertNotNull(sort.summarize());
+        assertEquals("SUBTOTAL", sort.summarize().verb());
+        assertEquals("SALARY", sort.summarize().field());
+
+        // ACROSS simple
+        parser = createParser("ACROSS MODEL");
+        sort = (SortCommand) builder.visit(parser.across_command());
+        assertEquals("ACROSS", sort.sortType());
+        assertEquals("MODEL", sort.field().name());
+
+        // ACROSS with ACROSS-TOTAL
+        parser = createParser("ACROSS MODEL ACROSS-TOTAL AS 'Total Model'");
+        sort = (SortCommand) builder.visit(parser.across_command());
+        assertTrue(sort.acrossTotal());
+        assertEquals("Total Model", sort.totalAs());
+    }
+
+    @Test
+    public void testSummarizeCommand() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // SUMMARIZE with ROLL. and prefixes
+        WebFocusReportParser parser = createParser("SUMMARIZE ROLL. AVE. SALARY AS 'Avg Salary'");
+        SummarizeCommand summarize = (SummarizeCommand) builder.visit(parser.summarize_command());
+        assertEquals("SUMMARIZE", summarize.verb());
+        assertEquals("SALARY", summarize.field());
+        assertEquals("Avg Salary", summarize.alias());
+        assertTrue((Boolean) summarize.options().get("roll"));
+        List<String> prefixes = (List<String>) summarize.options().get("prefixes");
+        assertEquals(List.of("AVE"), prefixes);
+    }
+
+    @Test
     public void testWhenCommand() {
         WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
         WebFocusReportParser parser = createParser("WHEN COUNTRY EQ 'USA'");
