@@ -420,6 +420,27 @@ public class WebFocusReportASGBuilderTest {
     }
 
     @Test
+    public void testWhereCommand() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // WHERE
+        WebFocusReportParser parser = createParser("WHERE COUNTRY EQ 'USA'");
+        WhereClause where = (WhereClause) builder.visit(parser.where_command());
+        assertFalse(where.isTotal());
+        assertTrue(where.condition() instanceof BinaryOperation);
+        BinaryOperation op = (BinaryOperation) where.condition();
+        assertEquals("EQ", op.operator());
+        assertEquals("COUNTRY", ((Identifier) op.left()).name());
+        assertEquals("USA", ((Literal) op.right()).value());
+
+        // WHERE TOTAL
+        parser = createParser("WHERE TOTAL SALARY GT 50000");
+        where = (WhereClause) builder.visit(parser.where_command());
+        assertTrue(where.isTotal());
+        assertTrue(where.condition() instanceof BinaryOperation);
+    }
+
+    @Test
     public void testRepeatCommand() {
         WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
 

@@ -73,8 +73,8 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
       - [ ] 3.1.4.2.1 BY phrase and sort options (NOPRINT, AS, etc.).
       - [ ] 3.1.4.2.2 ACROSS phrase and ACROSS-TOTAL.
     - [ ] 3.1.4.3 Filter Commands:
-      - [ ] 3.1.4.3.1 WHERE clause and relational expressions.
-      - [ ] 3.1.4.3.2 WHERE TOTAL (HAVING) clause.
+      - [x] 3.1.4.3.1 WHERE clause and relational expressions.
+      - [x] 3.1.4.3.2 WHERE TOTAL (HAVING) clause.
       - [ ] 3.1.4.3.3 WHEN clause (Dialogue Manager filtering).
     - [ ] 3.1.4.4 Formatting (HEADING, FOOTING, ON ... SUBHEAD/SUBFOOT).
     - [ ] 3.1.4.5 Calculations (COMPUTE, RECAP).
