@@ -1,5 +1,3 @@
-Chapter10
-
 Providing Data Source Security: DBA
 
 As Database Administrator, you can use DBA security features to provide security for any
@@ -46,11 +44,8 @@ attribute discussed in Specifying an Access Type: The ACCESS Attribute on page 4
 You can restrict a user access to certain fields or segments using the RESTRICT attribute
 discussed in Limiting Data Source Access: The RESTRICT Attribute on page 417.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 405
-
-Implementing Data Source Security
+Implementing Data Source Security
 
 You can ensure that only records that pass a validation test are retrieved using the
 RESTRICT attribute discussed in Limiting Data Source Access: The RESTRICT Attribute on
@@ -96,9 +91,6 @@ The USER attribute identifies a user as a legitimate user of the data source. On
 whose name or password is specified in the Master File of a FOCUS data source with
 security placed on it have access to that data source.
 
-406
-
-10. Providing Data Source Security: DBA
 
 The ACCESS attribute defines the type of access a given user has. The four types of access
 available are:
@@ -153,11 +145,8 @@ USER=MARY   ,ACCESS=W  ,RESTRICT=VALUE    ,NAME=SALTEST,
                                            NAME=HISTTEST,
    VALUE=DIV NE ' ' AND DATE GT 0,$
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 407
-
-Implementing Data Source Security
+Implementing Data Source Security
 
 Reference: Special Considerations for Data Source Security
 
@@ -204,9 +193,6 @@ Identifying the DBA Using the DBA Attribute
 
 DBA=JONES76,$
 
-408
-
-10. Providing Data Source Security: DBA
 
 Procedure: How to Change a DBA Password
 
@@ -260,11 +246,8 @@ inadequate for the type of access requested, the following message appears:
 (FOC047) THE USER DOES NOT HAVE SUFFICIENT ACCESS RIGHTS TO THE FILE:
 filename
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 409
-
-Implementing Data Source Security
+Implementing Data Source Security
 
 Syntax:
 
@@ -316,9 +299,6 @@ VALUE WAS NOT CHANGED
 Note: Only one permanent password can be established in a session. Once it is set, it cannot
 be changed within the session.
 
-410
-
-10. Providing Data Source Security: DBA
 
 Syntax:
 
@@ -373,11 +353,8 @@ SET PASS = USERRW
 (FOC32409) A permanent PASS is in effect. Your PASS will not be honored.
 VALUE WAS NOT CHANGED
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 411
-
-Implementing Data Source Security
+Implementing Data Source Security
 
 Controlling Case Sensitivity of Passwords
 
@@ -430,9 +407,6 @@ With DBACSENSITIV ON, the user must issue the following command:
 
 SET USER = User2
 
-412
-
-10. Providing Data Source Security: DBA
 
 Establishing User Identity
 
@@ -489,11 +463,8 @@ Here, all files have password SALLY except files SIX and SEVEN, which have passw
 SET PASS=SALLY, DAVE IN SIX
 SET PASS=DAVE IN SEVEN
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 413
-
-Specifying an Access Type: The ACCESS Attribute
+Specifying an Access Type: The ACCESS Attribute
 
 The password is MARY in file FIVE and FRANK in all other files:
 
@@ -539,9 +510,6 @@ USER=TOM, ACCESS=RW,$
 This declaration gives Tom read and write (for adding new segment instances) access to the
 data source.
 
-414
-
-10. Providing Data Source Security: DBA
 
 You can assign the ACCESS attribute one of four values. These are:
 
@@ -627,24 +595,8 @@ X
 
 X
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 415
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Specifying an Access Type: The ACCESS Attribute
+Specifying an Access Type: The ACCESS Attribute
 
 Command
 
@@ -710,22 +662,9 @@ RESTRICT Command. Only users with the DBA password may use the RESTRICT command.
 TABLE or MATCH Command. A user who has access of R or RW may use the TABLE
 command. Users with access of W or U may not.
 
-416
 
+Reference: RESTRICT Attribute Keywords
 
-
-
-
-
-
-
-
-
-
-
-Reference: RESTRICT Attribute Keywords
-
-10. Providing Data Source Security: DBA
 
 The RESTRICT attribute keywords affect the resulting HOLD file created by the CHECK
 command as follows:
@@ -780,11 +719,8 @@ Limiting Data Source Access: The RESTRICT Attribute
 
 The ACCESS attribute determines what a user can do with a data source.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 417
-
-Limiting Data Source Access: The RESTRICT Attribute
+Limiting Data Source Access: The RESTRICT Attribute
 
 The optional RESTRICT attribute further restricts a user access to certain fields, values, or
 segments.
@@ -835,9 +771,6 @@ Note: A field with RESTRICT=NOPRINT can be referenced in a display command (verb
 but not in any type of filtering command, such as IF, WHERE, FIND, LOOKUP, or
 VALIDATE.
 
-418
-
-10. Providing Data Source Security: DBA
 
 name
 
@@ -886,11 +819,8 @@ DBA = USERD,$
 USER = USER1, ACCESS = R, NAME = SALES01, RESTRICT = VALUE_WHERE,
        VALUE = REGION EQ 'West' AND PRODUCT LIKE 'C%'; ,$
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 419
-
-Limiting Data Source Access: The RESTRICT Attribute
+Limiting Data Source Access: The RESTRICT Attribute
 
 The following request sets the password to USER1 and sums dollar sales and units by
 REGION, CATEGORY, and PRODUCT:
@@ -947,9 +877,6 @@ Can be one of the following:
 
 FIELD specifies that the user cannot access the fields named with the NAME parameter.
 
-420
-
-10. Providing Data Source Security: DBA
 
 SEGMENT specifies that the user cannot access the segments named with the NAME
 parameter.
@@ -997,11 +924,8 @@ as it is specified in the USER attribute for the NAME value, the new user will b
 the same restrictions as the one named in the NAME attribute. You can then add additional
 restrictions, as they are needed.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 421
-
-Limiting Data Source Access: The RESTRICT Attribute
+Limiting Data Source Access: The RESTRICT Attribute
 
 Example:
 
@@ -1046,9 +970,6 @@ ACCESS=R value restrictions must follow the rules for an IF test in a report req
 
 Note: RESTRICT=VALUE is not supported in Maintain Data.
 
-422
-
-10. Providing Data Source Security: DBA
 
 Syntax:
 
@@ -1098,11 +1019,8 @@ USER=SAM, ACCESS=R, RESTRICT=VALUE, NAME=IDSEG,
 
 Note: The second and subsequent lines of a value restriction must begin with the keyword OR.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 423
-
-Controlling the Source of Access Restrictions in a Multi-file Structure
+Controlling the Source of Access Restrictions in a Multi-file Structure
 
 You can apply the test conditions to the parent segments of the data segments on which the
 tests are applicable. Consider the following example:
@@ -1146,9 +1064,6 @@ restrictions from all files in a JOIN or COMBINE structure. For information abou
 Master File to contain access restrictions, see Placing Security Information in a Central Master
 File on page 428.
 
-424
-
-10. Providing Data Source Security: DBA
 
 The SET DBASOURCE command can only be issued one time in a session or connection. Any
 attempt to issue the command additional times will be ignored. If the value is set in a profile,
@@ -1199,11 +1114,8 @@ Reference: Usage Notes for SET DBASOURCE
 All files in the JOIN or COMBINE structure must have the same DBA password. If the DBA
 attributes are not the same, there will be no way to access the structure.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 425
-
-Controlling the Source of Access Restrictions in a Multi-file Structure
+Controlling the Source of Access Restrictions in a Multi-file Structure
 
 If the SET DBASOURCE command is issued more than once in a session, the following
 message displays and the value is not changed:
@@ -1260,9 +1172,6 @@ Running the same request produces the following message:
 TRAINING
 BYPASSING TO END OF COMMAND
 
-426
-
-10. Providing Data Source Security: DBA
 
 Now, issue the following SET PASS command:
 
@@ -1311,11 +1220,8 @@ that it was not changed:
 (FOC32575) DBASOURCE CANNOT BE RESET
 VALUE WAS NOT CHANGED
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 427
-
-Adding DBA Restrictions to the Join Condition
+Adding DBA Restrictions to the Join Condition
 
 Adding DBA Restrictions to the Join Condition
 
@@ -1356,9 +1262,6 @@ The central DBAFILE is a standard Master File. Other Master Files can use the pa
 security restrictions listed in the central file by specifying its file name with the DBAFILE
 attribute.
 
-428
-
-10. Providing Data Source Security: DBA
 
 Note:
 
@@ -1407,11 +1310,8 @@ dbaname
 
 Is the same as the dbaname in the central file.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 429
-
-Placing Security Information in a Central Master File
+Placing Security Information in a Central Master File
 
 filename
 
@@ -1464,9 +1364,6 @@ FILENAME=THREE,$
    PASS=JOE,ACCESS=R,RESTRICT=...,$
    PASS=TOM,ACCESS=R,$
 
-430
-
-10. Providing Data Source Security: DBA
 
 Example:
 
@@ -1517,11 +1414,8 @@ USER = CUSER2, ACCESS=RW,$
 With these DBA attributes, user EUSER will have read access to all files that use EMPDATA as
 their DBAFILE. User CUSER2 will have read/write access to the COURSE data source.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 431
-
-Placing Security Information in a Central Master File
+Placing Security Information in a Central Master File
 
 Add the following security attributes to the bottom of the COURSE Master File. These attributes
 makes the EMPDATA Master File the central file that contains the security attributes to use for
@@ -1565,9 +1459,6 @@ structure produces one of the following messages, and the request does not run:
 (FOC047) THE USER DOES NOT HAVE SUFFICIENT ACCESS RIGHTS TO THE FILE:
 filename
 
-432
-
-10. Providing Data Source Security: DBA
 
 File Naming Requirements for DBAFILE
 
@@ -1618,13 +1509,8 @@ JOINed, the first data source in the list is the controlling data source. Its pa
 only ones examined. For a COMBINE, only the last data source passwords take effect. All data
 sources must have the same DBA password.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 433
-
-
-
-Summary of Security Attributes
+Summary of Security Attributes
 
 In the new system, the DBA sections of all data sources in a JOIN or COMBINE are examined.
 If DBAFILE is included in a Master File, then its passwords and restrictions are read. To make
@@ -1686,9 +1572,8 @@ Database Administrator (DBA) who
 has unrestricted access to the data
 source.
 
-434
 
-Attribute
+Attribute
 
 Alias
 
@@ -1728,7 +1613,6 @@ DBAFILE
 
 8
 
-10. Providing Data Source Security: DBA
 
 Maximum
 Length
@@ -1770,11 +1654,8 @@ of limit.
 Names the Master File containing
 passwords and restrictions to use.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 435
-
-Hiding Restriction Rules: The ENCRYPT Command
+Hiding Restriction Rules: The ENCRYPT Command
 
 Hiding Restriction Rules: The ENCRYPT Command
 
@@ -1826,9 +1707,6 @@ from unauthorized examination.
 Encryption takes place on the segment level. That is, the entire segment is encrypted. The
 request for encryption is made in the Master File by setting the attribute ENCRYPT to ON.
 
-436
-
-10. Providing Data Source Security: DBA
 
 Example:
 
@@ -1850,11 +1728,8 @@ suppose the data items on a segment are:
 
 They should be grouped as:
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 437
-
-FOCEXEC Security
+FOCEXEC Security
 
 Note: If you change the DBA password, you must issue the RESTRICT command, as described
 in How to Change a DBA Password on page 409.
@@ -1903,19 +1778,12 @@ You use the following procedure to encrypt the FOCEXEC named SALERPT:
 SET PASS = DOHIDE
 ENCRYPT FILE SALERPT FOCEXEC
 
-438
-
-10. Providing Data Source Security: DBA
 
 You use the following procedure to decrypt the FOCEXEC named SALERPT:
 
 SET PASS = DOHIDE
 DECRYPT FILE SALERPT FOCEXEC
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 439
+FOCEXEC Security
 
-FOCEXEC Security
-
-440

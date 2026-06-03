@@ -1,5 +1,3 @@
-Chapter1
-
 Understanding a Data Source Description
 
 Information Builders products provide a flexible data description language, which you can
@@ -42,11 +40,8 @@ Naming a Master File
 
 What Is in a Master File?
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 17
-
-A Note About Data Source Terminology
+A Note About Data Source Terminology
 
 A Note About Data Source Terminology
 
@@ -83,11 +78,9 @@ additional information that completes the description of the data source. For ex
 includes the full data source name and location. You require one Master File and, for some
 data sources, one Access File to describe a data source.
 
-18
 
-How an Application Uses a Data Source Description
+How an Application Uses a Data Source Description
 
-1. Understanding a Data Source Description
 
 Master Files and Access Files are stored separately, apart from the associated data source.
 Your application uses a data source Master File (and if required, the corresponding Access
@@ -138,11 +131,8 @@ Identify and relate groups of fields.
 
 Describe individual fields.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 19
-
-What Does a Master File Describe?
+What Does a Master File Describe?
 
 Note:
 
@@ -192,9 +182,6 @@ and then describe only those fields in your Master File.
 
 For more information, see Describing an Individual Field on page 103.
 
-20
-
-1. Understanding a Data Source Description
 
 Note: Master Files/data source descriptions must contain uppercase field and segment
 names if you are using them with Maintain Data.
@@ -233,11 +220,8 @@ Master File names for FOCUS and fixed-format sequential data sources can be up t
 characters long on z/OS, UNIX, and Windows platforms. Except where noted, this length is
 supported in all functional areas that reference a Master File.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 21
-
-Naming a Master File
+Naming a Master File
 
 Using Long Master File Names on z/OS
 
@@ -280,9 +264,6 @@ This process can continue until the prefix is one character and the index number
 characters. If you delete one of these members from the HOLDMAST PDS, the member name
 will be reused for the next new long name created with the same prefix.
 
-22
-
-1. Understanding a Data Source Description
 
 Example:
 
@@ -352,11 +333,8 @@ contains the following attribute
 
 $ VIRT = long_filename
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 23
-
-Naming a Master File
+Naming a Master File
 
 where:
 
@@ -409,9 +387,6 @@ After issuing the DYNAM FREE LONGNAME command, you cannot reference the data sou
 using the long Master File name. However, you can reference it using the short ddname that
 was specified in the DYNAM ALLOC command.
 
-24
-
-1. Understanding a Data Source Description
 
 Example:
 
@@ -465,11 +440,8 @@ SEGNAME=EMPINFO,  SEGTYPE=S1
          .
          .
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 25
-
-What Is in a Master File?
+What Is in a Master File?
 
 Reference: Usage Notes for Long Master File Names
 
@@ -511,9 +483,6 @@ The specifications for an Access File are similar, although the details vary by 
 source. The appropriate documentation for your adapter indicates whether you require an
 Access File and, if so, what the Access File attributes are.
 
-26
-
-1. Understanding a Data Source Description
 
 Syntax:
 
@@ -563,11 +532,8 @@ make the Master File easier to read. To position text, use blank spaces, not the
 You can also include blank lines to separate declarations. Blank spaces and lines are not
 required and are ignored by the application.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 27
-
-What Is in a Master File?
+What Is in a Master File?
 
 Example:
 
@@ -624,9 +590,6 @@ FILENAME = EMPLOYEE, SUFFIX = FOC ,$ This is the personnel data source.
 $ This data source tracks employee salaries and raises.
 SEGNAME = EMPINFO, SEGTYPE = S1 ,$
 
-28
-
-1. Understanding a Data Source Description
 
 Editing and Validating a Master File
 
@@ -641,10 +604,6 @@ when you run a request against it.
 
 For more information, see Checking and Changing a Master File: CHECK on page 395.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 29
+What Is in a Master File?
 
-What Is in a Master File?
-
-30

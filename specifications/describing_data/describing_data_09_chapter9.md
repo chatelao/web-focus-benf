@@ -1,5 +1,3 @@
-Chapter9
-
 Checking and Changing a Master File:
 CHECK
 
@@ -46,11 +44,8 @@ Is an option that displays a diagram showing the complete data source structure.
 keyword PICTURE can be abbreviated to PICT. This option is explained in PICTURE Option
 on page 399.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 395
-
-CHECK Command Display
+CHECK Command Display
 
 RETRIEVE
 
@@ -105,9 +100,6 @@ NUMBER OF SEGMENTS
 
 Is the number of segments in the Master File, including cross-referenced segments.
 
-396
-
-9. Checking and Changing a Master File: CHECK
 
 REAL
 
@@ -158,11 +150,8 @@ NUMBER OF SEGMENTS=  11     ( REAL=   6 VIRTUAL=  5 )
 NUMBER OF FIELDS=    34     INDEXES=  0 FILES=    3
 TOTAL LENGTH OF ALL FIELDS = 365
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 397
-
-CHECK Command Display
+CHECK Command Display
 
 Determining Common Errors
 
@@ -196,9 +185,6 @@ indicates where the first duplicate field resides:
 WARNING: FOLLOWING FIELDS APPEAR MORE THAN ONCE
 AA IN SEGMENT SEGB        (VS SEGA)
 
-398
-
-9. Checking and Changing a Master File: CHECK
 
 PICTURE Option
 
@@ -263,13 +249,8 @@ segname
    :............:
            crfile
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 399
-
-
-
-PICTURE Option
+PICTURE Option
 
 where:
 
@@ -306,9 +287,6 @@ Is the name of the cross-referenced data source if the segment is cross-referenc
 The diagram also shows the relationship between segments (see the following example).
 Parent segments are shown above children segments connected by straight lines.
 
-400
-
-9. Checking and Changing a Master File: CHECK
 
 Example:
 
@@ -363,12 +341,8 @@ named the same as attributes in Master Files. Each field stores the values of th
 named attribute. The fields can be grouped into file attributes, segment attributes, and field
 attributes.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 401
-
-
-HOLD Option
+HOLD Option
 
 File Attributes:
 
@@ -420,9 +394,6 @@ This sample procedure creates a HOLD file describing the EMPLOYEE data source. I
 writes a report that displays the names of cross-referenced segments in the EMPLOYEE data
 source, the segment types, and the attributes of the fields: field names, aliases, and formats.
 
-402
-
-9. Checking and Changing a Master File: CHECK
 
 CHECK FILE EMPLOYEE HOLD
 TABLE FILE HOLD
@@ -474,13 +445,8 @@ FDEFCENT    FYRTHRESH
 --------    ---------
       19           50
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 403
-
-
-
-HOLD Option
+HOLD Option
 
 Specifying an Alternate File Name With the HOLD Option
 
@@ -520,4 +486,3 @@ corresponding changes are made in several places.
 You can use a text editor to make permitted changes to the Master File. The checking
 procedure, CHECK, should be used after any change.
 
-404

@@ -1,5 +1,3 @@
-Chapter12
-
 Bursting Reports Into Multiple HTML Files
 
 Bursting separates a single report into multiple HTML files based on the value of the first
@@ -44,11 +42,8 @@ You can burst a report into a maximum of 10,000 separate files. Therefore, you c
 a report only if the number of individual values of the first sort field does not exceed
 10,000.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1029
-
-Bursting Reports Overview
+Bursting Reports Overview
 
 PCSEND
 
@@ -93,9 +88,6 @@ To include a heading or footing on the HTML index page, use the commands:
 
 ON TABLE SUBHEAD
 
-1030
-
-12. Bursting Reports Into Multiple HTML Files
 
 and
 
@@ -132,11 +124,8 @@ in the PCSEND command. Default styling is applied to the HTML report output page
 For details on including heading and footings in reports, see Using Headings, Footings, Titles,
 and Labels on page 1517.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1031
-
-Bursting Reports Overview
+Bursting Reports Overview
 
 Example:
 
@@ -175,9 +164,6 @@ Selecting the Midwest hyperlink displays the following HTML report:
 
 Regional Report
 
-1032
-
-12. Bursting Reports Into Multiple HTML Files
 
 Region
 
@@ -255,24 +241,6 @@ Notice that the headings specified in the ON TABLE SUBHEAD command are displayed
 HTML index page. See Rules for Headings and Footings on Index Pages and Bursted Reports on
 page 1030.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1033
+Bursting Reports Overview
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Bursting Reports Overview
-
-1034

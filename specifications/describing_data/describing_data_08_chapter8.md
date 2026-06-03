@@ -1,5 +1,3 @@
-Chapter8
-
 Creating a Business View of a Master File
 
 A Business View (BV) of a Master File groups related items together to reflect an
@@ -42,11 +40,8 @@ in the Business View display.
 A Business View can include real fields, calculated values (COMPUTEs), virtual fields
 (DEFINEs), and filters from the original Master File.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 383
-
-Grouping Business Logic In a Business View
+Grouping Business Logic In a Business View
 
 Business Views are most useful as views of relational and FOCUS data sources.
 
@@ -96,9 +91,6 @@ field, or a calculated value. If bv_field_name matches real_field_name, the ALIA
 can be omitted. If no ALIAS is specified, the Business View field name must match the
 field name in the original Master File.
 
-384
-
-8. Creating a Business View of a Master File
 
 real_segment_name
 
@@ -160,11 +152,8 @@ ARB
 
 BAL
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 385
-
-Grouping Business Logic In a Business View
+Grouping Business Logic In a Business View
 
 Language Name
 
@@ -298,7 +287,7 @@ NOR
 
 POL
 
-Language Name
+Language Name
 
 Portuguese - Brazilian
 
@@ -314,7 +303,6 @@ Thai
 
 Turkish
 
-8. Creating a Business View of a Master File
 
 Two-Letter
 Language Code
@@ -377,11 +365,8 @@ Master File profiles (MFD_PROFILE attribute) are run for each Master File access
 
 SORTOBJ and STYLEOBJ declarations are not supported in the original master
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 387
-
-Grouping Business Logic In a Business View
+Grouping Business Logic In a Business View
 
 You can issue an SQL SELECT command against a Business View. However, a Direct SQL
 Passthru request is not supported against a Business View.
@@ -414,9 +399,6 @@ segment of the original Master File.
 The third folder contains the job code and job description fields from the JOBSEG segment,
 which is a cross-referenced segment.
 
-388
-
-8. Creating a Business View of a Master File
 
 Note that a field named JOBCODE exists in folders 2 and 3. The BELONGS_TO_SEGMENT
 attribute distinguishes between the JOBCODE field from the PAYINFO segment and the
@@ -462,11 +444,8 @@ SEGNAME=SKILLSEG,SEGTYPE=KL, PARENT=JOBSEG,  CRFILE=JOBFILE,$
 SEGNAME=ATTNDSEG,SEGTYPE=KM, PARENT=EMPINFO, CRFILE=EDUCFILE,CRKEY=EMP_ID,$
 SEGNAME=COURSEG, SEGTYPE=KLU,PARENT=ATTNDSEG,CRFILE=EDUCFILE,$
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 389
-
-Grouping Business Logic In a Business View
+Grouping Business Logic In a Business View
 
 FOLDER=FOLDER1, $
  FIELDNAME=EMPID, ALIAS=EMP_ID,
@@ -521,9 +500,6 @@ BY LASTNAME BY FIRSTNAME
 BY HIGHEST 1 DAT_INC  NOPRINT
 END
 
-390
-
-8. Creating a Business View of a Master File
 
 The output is:
 
@@ -573,11 +549,8 @@ JONES            DIANE       B03      PROGRAMMER ANALYST
 MCCOY            JOHN        B02      PROGRAMMER
 SMITH            MARY        B14      FILE QUALITY
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 391
-
-Business View DV Roles
+Business View DV Roles
 
 Business View DV Roles
 
@@ -625,9 +598,6 @@ recommendation is to use the DV structure if one already exists.
 Only the folders will be displayed in the WebFOCUS tools, not the real segments, and only the
 fields within the folder structure will be accessible for reporting.
 
-392
-
-8. Creating a Business View of a Master File
 
 You can assign a DV role to a folder or field by right-clicking the folder or field and selecting a
 DV role.
@@ -672,11 +642,8 @@ in the WebFOCUS tools, will automatically be added to the request as an aggregat
 (SUM), if it is numeric. If it is alphanumeric, it will be added as a vertical (BY) sort field. A
 folder or field can be assigned the role Measure.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 393
-
-Business View DV Roles
+Business View DV Roles
 
 For a folder or field assigned the DV role Measure, the following attribute is added to the
 folder or field declaration in the synonym.
@@ -714,4 +681,3 @@ The DV_ROLE for the PRODUCT folder is DIMENSION.
     DV_ROLE=DIMENSION,
     DESCRIPTION='Product and Vendor', $
 
-394

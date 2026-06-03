@@ -1,5 +1,3 @@
-Chapter5
-
 Describing a Sequential, VSAM, or ISAM
 Data Source
 
@@ -45,11 +43,8 @@ Using a VSAM Alternate Index
 
 Describing a Token-Delimited Data Source
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 231
-
-Sequential Data Source Formats
+Sequential Data Source Formats
 
 Sequential Data Source Formats
 
@@ -99,9 +94,6 @@ A number, like an ISBN number, that identifies the book by publisher, author, an
 
 The name of the author.
 
-232
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 The title of the book.
 
@@ -147,11 +139,8 @@ When using Maintain Data to read a fixed-format data source, the record length a
 described in the Master File may not exceed the actual length of the data record (the
 LRECL value).
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 233
-
-Sequential Data Source Formats
+Sequential Data Source Formats
 
 You must describe the entire record. The values for field name and alias can be omitted for
 fields that do not need to be accessed. This is significant when using existing data sources,
@@ -201,9 +190,6 @@ Note: SET HOLDLIST is not supported for delimited files.
 You can also create delimited files using any token as the delimiter. For information, see
 Describing a Token-Delimited Data Source on page 282.
 
-234
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 You can use the SET HNODATA command to specify how to propagate missing data to these
 data sources when you create them using the HOLD command. For more information, see the
@@ -249,11 +235,8 @@ field is identified by two consecutive double quotation marks.
 Each record is completely contained on one line and terminated with the cr/lf character
 combination.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 235
-
-Sequential Data Source Formats
+Sequential Data Source Formats
 
 Reference: Accessing SUFFIX=TAB Data Sources
 
@@ -299,9 +282,6 @@ Note: Free-format comma-delimited data sources do not have character fields encl
 double quotation marks, and use the comma-dollar sign character combination to terminate
 the record.
 
-236
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 You can use the system editor to change values, add new records, and delete records. Since
 the number of data fields on a line varies depending on the presence or absence of fields and
@@ -348,11 +328,8 @@ BI=H, PRICE=17.95,$
 BI=H, PR=17.95,$
 BI=H, P=17.95,$
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 237
-
-Standard Master File Attributes for a Sequential Data Source
+Standard Master File Attributes for a Sequential Data Source
 
 Standard Master File Attributes for a Sequential Data Source
 
@@ -400,9 +377,6 @@ attribute supplies the name of the segment that is the hierarchical parent or ow
 current segment. If no PARENT attribute appears, the default is the immediately preceding
 segment. The PARENT name may be one to eight characters.
 
-238
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 SEGTYPE. The SEGTYPE attribute should be S0 for VSAM data sources. (For a general
 description of the SEGTYPE attribute, see Describing a Group of Fields on page 65.)
@@ -451,11 +425,8 @@ Fields of type F have a value of 4.
 Fields of type P that are 8 bytes can have a USAGE of P15.x or P16 (sign and decimal for a
 total of 15 digits). Fields that are 16 bytes have a USAGE of P16.x, P17 or larger.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 239
-
-Standard Master File Attributes for a VSAM or ISAM Data Source
+Standard Master File Attributes for a VSAM or ISAM Data Source
 
 Fields of type D have a value of 8.
 
@@ -507,9 +478,6 @@ FILE = LIBRARY5, SUFFIX = VSAM,$
   FIELDNAME = SYNOPSIS ,ALIAS = SY  ,USAGE = A150  ,ACTUAL = A150 ,$
   FIELDNAME = RECTYPE  ,ALIAS = B   ,USAGE = A1    ,ACTUAL = A1   ,$
 
-240
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 Example:
 
@@ -563,11 +531,8 @@ the USAGE format for the group had to be calculated as the sum of the component 
 where each integer or single precision field counted as 4 bytes, each double precision field as
 8 bytes, and each packed field counted as either 8 or 16 bytes depending on its size.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 241
-
-Standard Master File Attributes for a VSAM or ISAM Data Source
+Standard Master File Attributes for a VSAM or ISAM Data Source
 
 To avoid the need to calculate these lengths, you can use the GROUP ELEMENTS option, which
 describes a group as a set of elements without USAGE and ACTUAL formats.
@@ -618,11 +583,9 @@ afmt11, afmt2k
 
 Are ACTUAL formats for each field.
 
-242
 
-Reference: Usage Notes for Group Elements
+Reference: Usage Notes for Group Elements
 
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 To use the ELEMENTS attribute, the GROUP field declaration should specify only a group
 name and number of elements.
@@ -725,11 +688,8 @@ A7
 
 A7
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 243
-
-Describing a Multiply Occurring Field in a Free-Format Data Source
+Describing a Multiply Occurring Field in a Free-Format Data Source
 
 Note that the display characteristics of the group have not changed. The mixed format group
 GRP1 will still display as all alphanumeric.
@@ -762,9 +722,6 @@ Similarly, information that occurs several times in relation to the descendant s
 an individual serial number for each copy of the book, is placed in a segment that is a
 descendant of the first descendant segment, as shown in the following diagram:
 
-244
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 Describe this data source as follows:
 
@@ -817,11 +774,8 @@ are placed in a descendant segment. You use an additional segment attribute, the
 attribute, to specify that these segments represent multiply occurring fields. In certain cases,
 you may also need a second attribute, called the POSITION attribute.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 245
-
-Describing a Multiply Occurring Field in a Fixed-Format, VSAM, or ISAM Data Source
+Describing a Multiply Occurring Field in a Fixed-Format, VSAM, or ISAM Data Source
 
 Using the OCCURS Attribute
 
@@ -868,9 +822,6 @@ contains a nested group), but it may not be followed by any other segment with t
 parent. There can be no other segments to its right in the hierarchical data structure. This
 restriction is necessary to ensure that data in the record is interpreted unambiguously.
 
-246
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 Example:
 
@@ -933,11 +884,8 @@ C1
 
 C2
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 247
-
-Describing a Multiply Occurring Field in a Fixed-Format, VSAM, or ISAM Data Source
+Describing a Multiply Occurring Field in a Fixed-Format, VSAM, or ISAM Data Source
 
 In this example, fields B1 and B2 and fields C1 and C2 repeat within the record. The number
 of times that fields B1 and B2 occur has nothing to do with the number of times fields C1 and
@@ -974,9 +922,6 @@ C1
 
 C1
 
-248
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 In this example, field C1 only occurs after fields B1 and B2 occur once. It occurs varying
 numbers of times, recorded by a counter field, B2. There is not a set of occurrences of C1
@@ -1050,28 +995,9 @@ E
 1
 
 E
-1
-
-Describing Data With TIBCO WebFOCUS® Language
-
- 249
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Describing a Multiply Occurring Field in a Fixed-Format, VSAM, or ISAM Data Source
+Describing a Multiply Occurring Field in a Fixed-Format, VSAM, or ISAM Data Source
 
 It produces the following data structure:
 
@@ -1092,9 +1018,6 @@ FILENAME = EXAMPLE3, SUFFIX = FIX,$
  SEGNAME = FIVE,  SEGTYPE=S0, PARENT = ONE, OCCURS = VARIABLE,$
   FIELDNAME = E1 ,ALIAS= ,ACTUAL = A5  ,USAGE = A5  ,$
 
-250
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 Note:
 
@@ -1133,11 +1056,8 @@ length of the field in the parent segment is 32 characters.
 You can also use the POSITION attribute to redescribe fields with SEGTYPE=U. For more
 information, see Redefining a Field in a Non-FOCUS Data Source on page 254.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 251
-
-Describing a Multiply Occurring Field in a Fixed-Format, VSAM, or ISAM Data Source
+Describing a Multiply Occurring Field in a Fixed-Format, VSAM, or ISAM Data Source
 
 Syntax:
 
@@ -1196,9 +1116,6 @@ FILENAME = EXAMPLE3, SUFFIX = FIX,$
  SEGNAME = TWO, SEGTYPE=S0, PARENT = ONE, POSITION = QFIL, OCCURS = 4 ,$
   FIELDNAME = Q1   ,ALIAS= ,USAGE = D8  ,ACTUAL = D8  ,$
 
-252
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 This produces the following structure:
 
@@ -1220,11 +1137,8 @@ To associate a sequence number with each occurrence of the field, you may define
 counter field in any OCCURS segment. A value is automatically supplied that defines the
 sequence number of each repeating group.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 253
-
-Redefining a Field in a Non-FOCUS Data Source
+Redefining a Field in a Non-FOCUS Data Source
 
 Syntax:
 
@@ -1272,9 +1186,6 @@ Within the Master File, the redefined fields must be described in a separate uni
 
 The redefined fields can have any user-defined name.
 
-254
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 Syntax:
 
@@ -1322,12 +1233,8 @@ FILE = REDEF, SUFFIX = VSAM,$
  SEGNAME = TWO, SEGTYPE = U, POSITION = FLD2,OCCURS = 1, PARENT = ONE ,$
    FIELDNAME = RFLD1,, USAGE = P8.2 ,ACTUAL = Z4 ,$
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 255
-
-
-Extra-Large Record Length Support
+Extra-Large Record Length Support
 
 Reference: Special Considerations for Redefining a Field
 
@@ -1371,11 +1278,9 @@ MAXLRECL parameter by using the ? SET MAXLRECL command.
 If the actual record length is longer than specified, retrieval halts and the actual record length
 appears in hexadecimal notation.
 
-256
 
-Describing Multiple Record Types
+Describing Multiple Record Types
 
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 Fixed-format sequential, VSAM, and ISAM data sources can contain more than one type of
 record. When they do, they can be structured in one of two ways:
@@ -1420,11 +1325,8 @@ has no descendants, or to a segment whose descendants are described with an OCCU
 attribute. In Describing VSAM Positionally Related Records on page 262, the RECTYPE field is
 added to the group key in the SERIANO segment, the lowest descendant segment in the chain.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 257
-
-Describing Multiple Record Types
+Describing Multiple Record Types
 
 SEGTYPE Attributes With RECTYPE Fields
 
@@ -1470,9 +1372,6 @@ value
 Is the record type in alphanumeric format, if an ACCEPT list is not specified. If there is an
 ACCEPT list, this can be any value.
 
-258
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 format
 
@@ -1523,11 +1422,8 @@ marks.
 To specify a range of values, include the lowest value, the keyword TO, and the highest
 value, in that order. For example:
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 259
-
-Describing Multiple Record Types
+Describing Multiple Record Types
 
 FIELDNAME = RECTYPE, ALIAS = ACCTREC, USAGE = P3,ACTUAL = P2,
  ACCEPT = 100 TO 200, $
@@ -1555,9 +1451,6 @@ segment in the Master File. The synopsis is common to all copies of a given book
 data source it is described as a series of repeating fields of ten characters each, in order to
 save space.
 
-260
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 The synopsis is assigned to its own subordinate segment with an attribute of
 OCCURS=VARIABLE in the Master File. Although there are segments in the diagram to the right
@@ -1606,11 +1499,8 @@ does not need descendants. Specify how you want data in missing segment instance
 in your reports by using the SET command to change the ALL parameter. The SET command is
 described in the Developing Reporting Applications manual.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 261
-
-Describing Multiple Record Types
+Describing Multiple Record Types
 
 In the example in Describing Positionally Related Records on page 260, if the first record in the
 data source is not a PUBINFO record, the record is considered to be a child without a parent.
@@ -1663,9 +1553,6 @@ segment. The length of the key increases as you traverse the structure.
 Note: Each segment key describes as much of the true key as needed to find the next
 instance of that segment.
 
-262
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 In the sample data source, the repetition of the publisher number as PUBNO1 and PUBNO2 in
 the descendant segments interrelates the three types of records.
@@ -1682,11 +1569,8 @@ Since PUBNO is part of the key, retrieval can occur quickly, and the processing 
 further speed retrieval, add search criteria based on the BINDING field, which is also part of
 the key.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 263
-
-Describing Multiple Record Types
+Describing Multiple Record Types
 
 Describing Unrelated Records
 
@@ -1718,9 +1602,6 @@ The data source can look like this:
 
 A structure such as the following can also describe this data source:
 
-264
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 The Master File for the structure in this example is:
 
@@ -1779,11 +1660,8 @@ Book
 
 Book
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 265
-
-Describing Multiple Record Types
+Describing Multiple Record Types
 
 Magazine
 
@@ -1813,13 +1691,11 @@ The sequence of record types in the data source can be arbitrary.
 
 Both types of file structure can be represented by the following:
 
-266
 
-Example:
+Example:
 
 Describing a Key and a Record Type for a VSAM Data Source With Unrelated Records
 
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 FILE=LIBRARY7, SUFFIX=VSAM,$
  SEGMENT=DUMMY,$
@@ -1862,11 +1738,8 @@ segments you need to describe in the Master File.
 When using a generalized segment, you identify RECTYPE values using the ACCEPT attribute.
 You can assign any value to the ALIAS attribute.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 267
-
-Describing Multiple Record Types
+Describing Multiple Record Types
 
 Syntax:
 
@@ -1914,13 +1787,11 @@ value, in that order. For example:
 FIELDNAME = RECTYPE, ALIAS = ACCTREC, USAGE = P3,ACTUAL = P2,
 ACCEPT = 100 TO 200, $
 
-268
 
-Example:
+Example:
 
 Using a Generalized Record Type
 
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 To illustrate the use of the generalized record type in a VSAM Master File, consider the
 following record layouts in the DOC data source. Record type DN is the root segment and
@@ -1964,11 +1835,8 @@ The generalized RECTYPE capability enables you to code just one set of field nam
 applies to the record layout for both record type M and I. The ACCEPT attribute can be used for
 any RECTYPE specification, even when there is only one acceptable value.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 269
-
-Describing Multiple Record Types
+Describing Multiple Record Types
 
 FILENAME=DOC2, SUFFIX=VSAM,$
 SEGNAME=ROOT, SEGTYPE=SO,$
@@ -2001,9 +1869,6 @@ You can include an alias for the RECTYPE field if you use the ACCEPT attribute t
 or more RECTYPE values in the Master File. This enables you to use the alias in a report
 request as a display field, as a sort field, or in selection tests using either WHERE or IF.
 
-270
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 Example:
 
@@ -2062,13 +1927,8 @@ Descendant segments consisting of multiply occurring fields.
 
 Additional descendant segments consisting of multiple record types.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 271
-
-
-
-Combining Multiply Occurring Fields and Multiple Record Types
+Combining Multiply Occurring Fields and Multiple Record Types
 
 Describing a Multiply Occurring Field and Multiple Record Types
 
@@ -2103,9 +1963,6 @@ FILENAME = EXAMPLE1, SUFFIX = FIX,$
   FIELDNAME = RECTYPE   ,ALIAS = 03   ,USAGE = A2   ,ACTUAL = A2 ,$
   FIELDNAME = F1        ,ALIAS =      ,USAGE = A1   ,ACTUAL = A1 ,$
 
-272
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 It produces the following data structure:
 
@@ -2129,11 +1986,8 @@ type. If you look at the data structure, the pattern that makes up Segment B and
 descendants (the repetition of fields B1, B2, C1, and D1) extends from the first mention of
 fields B1 and B2 to the end of the record.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 273
-
-Combining Multiply Occurring Fields and Multiple Record Types
+Combining Multiply Occurring Fields and Multiple Record Types
 
 Although fields C1 and D1 appear in separate segments, they are actually part of the
 repeating pattern that makes up the OCCURS=VARIABLE segment. Since they occur
@@ -2165,9 +2019,6 @@ RECTYPE must appear at the start of the OCCURS segment. This enables you to desc
 complex data sources, including those with nested and parallel repeating groups that depend
 on RECTYPEs.
 
-274
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 Example:
 
@@ -2211,11 +2062,8 @@ The first record contains header information, values for A and B, followed by an
 segment of C and D that was identified by its preceding record indicator. The second record
 has a different record indicator and contains a different repeating group, this time for E.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 275
-
-Combining Multiply Occurring Fields and Multiple Record Types
+Combining Multiply Occurring Fields and Multiple Record Types
 
 The following diagram illustrates this relationship:
 
@@ -2230,9 +2078,6 @@ The following diagram illustrates this relationship:
 MAPFIELD is assigned as the ALIAS of the field that is the record indicator. It may have any
 name.
 
-276
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 Syntax:
 
@@ -2290,11 +2135,8 @@ ACTUAL
 
 Is the same format as the MAPFIELD format in the parent segment.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 277
-
-Establishing VSAM Data and Index Buffers
+Establishing VSAM Data and Index Buffers
 
 list
 
@@ -2349,9 +2191,6 @@ Establishing VSAM Data and Index Buffers
 Two SET commands make it possible to establish DATA and INDEX buffers for processing
 VSAM data sources online.
 
-278
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 The AMP subparameters BUFND and BUFNI enable z/OS batch users to enhance the I/O
 efficiency of TABLE, TABLEF, MODIFY, and JOIN against VSAM data sources by holding
@@ -2401,11 +2240,8 @@ The alternate index is a VSAM structure and is, consequently, created and mainta
 VSAM environment. It can, however, be described in your Master File, so that you can take
 advantage of the benefits of an alternate index.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 279
-
-Using a VSAM Alternate Index
+Using a VSAM Alternate Index
 
 The primary benefit of these indexes is improved efficiency. You can use it as an alternate,
 more efficient, retrieval sequence or take advantage of its potential indirectly, with screening
@@ -2445,9 +2281,6 @@ If you are not sure of the path names and alternate indexes associated with a gi
 cluster, you can use the IDCAMS utility. (See the IBM manual entitled Using VSAM Commands
 and Macros for details.)
 
-280
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 Example:
 
@@ -2505,13 +2338,8 @@ IDCAMS output (fragments):
 
 This gives you the path names: CUST.PATH1 and CUST.PATH2.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 281
-
-
-
-Describing a Token-Delimited Data Source
+Describing a Token-Delimited Data Source
 
 This information, along with the TSO DDNAME command, may be used to ensure the proper
 allocation of your alternate index.
@@ -2556,9 +2384,6 @@ FIELDNAME=DELIMITER, ALIAS=delimiter, USAGE=ufmt, ACTUAL=afmt ,$
 To use a delimiter that consists of multiple non-printable characters or a combination of
 printable and non-printable characters, the delimiter is defined as a group:
 
-282
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 GROUP=DELIMITER,      ALIAS=          , USAGE=ufmtg, ACTUAL=afmtg ,$
  FIELDNAME=DELIMITER, ALIAS=delimiter1, USAGE=ufmt1, ACTUAL=afmt1 ,$
@@ -2625,11 +2450,8 @@ used as delimiters in Master File syntax), it must be enclosed in single quotati
 If the data is numeric and has a zoned format (ACTUAL=Zn), the data must be unsigned
 (cannot contain a positive or negative value).
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 283
-
-Describing a Token-Delimited Data Source
+Describing a Token-Delimited Data Source
 
 Numeric values may be used to represent any character, but are predominantly used for
 non-printable characters such as Tab. The numeric values may differ between EBCDIC and
@@ -2675,9 +2497,6 @@ GROUP=DELIMITER,  ALIAS=   ,USAGE=A9, ACTUAL=A3  ,$
  FIELDNAME=DEL2,  ALIAS=/  ,USAGE=A1, ACTUAL=A1  ,$
  FIELDNAME=DEL3,  ALIAS=05 ,USAGE=I4, ACTUAL=I1  ,$
 
-284
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 Example:
 
@@ -2731,11 +2550,8 @@ DELIMITER = delimiter [,ENCLOSURE = enclosure]
   [,HEADER = {YES|NO}] [,SKIP_ROWS = n] [,PRESERVESPACE={YES|NO}]
   [,RDELIMITER=rdelimiter], $
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 285
-
-Describing a Token-Delimited Data Source
+Describing a Token-Delimited Data Source
 
 where:
 
@@ -2784,9 +2600,6 @@ SKIP_ROWS = n
 Specifies the number of rows above the header row that should be ignored when creating
 the synonym and reading the data.
 
-286
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 PRESERVESPACE={YES|NO}
 
@@ -2832,11 +2645,8 @@ SOUTH|2002|431575|107858412.0
 WEST|2001|155252|39167974.18
 WEST|2002|170421|42339953.45
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 287
-
-Describing a Token-Delimited Data Source
+Describing a Token-Delimited Data Source
 
 The PIPE1 Master File is:
 
@@ -2889,9 +2699,6 @@ in the data file:
 
 SEGNAME=PIPE1, DELIMITER=|, ENCLOSURE=", HEADER=YES, $
 
-288
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 Example:
 
@@ -2925,11 +2732,8 @@ The following Access File is generated:
 
 SEGNAME=DFIX1, DELIMITER=',', HEADER=NO, PRESERVESPACE=YES, $
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 289
-
-Describing a Token-Delimited Data Source
+Describing a Token-Delimited Data Source
 
 In the DFIX1 file, the alphanumeric fields contain all of the blank spaces that existed in the
 original file:
@@ -2974,9 +2778,6 @@ West       ,Gifts      ,Coffee Pot      ,613624,47432
 West       ,Gifts      ,Mug             ,1188664,93881
 West       ,Gifts      ,Thermos         ,571368,45648
 
-290
-
-5. Describing a Sequential, VSAM, or ISAM Data Source
 
 Creating the same file with PRESERVESPACE NO removes the trailing blank spaces:
 
@@ -3034,11 +2835,8 @@ codes.
 
 2C: hexadecimal value for comma (,).
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 291
-
-Describing a Token-Delimited Data Source
+Describing a Token-Delimited Data Source
 
 24: hexadecimal value for dollar sign ($).
 
@@ -3090,4 +2888,3 @@ return and line space. A partial listing follows:
 15435,1029,'Coffee','Northeast',$
 14270,1427,'Coffee','Northeast',$
 
-292

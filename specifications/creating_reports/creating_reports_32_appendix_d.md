@@ -43,11 +43,8 @@ Using the alias (the field name synonym) defined in the Master File.
 Using the shortest unique truncation of the field name or the alias. When a truncation is
 used, it must be unique. If it is not unique, an error message is displayed.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1993
-
-Referring to Fields Using Qualified Field Names
+Referring to Fields Using Qualified Field Names
 
 Adding the letter S to the end of a field name defined in the Master File.
 
@@ -101,9 +98,8 @@ fieldname
 
 Specifies the activation status of long and qualified field names. Valid identifiers include:
 
-1994
 
-D. Referring to Fields in a Report Request
+D. Referring to Fields in a Report Request
 
 NEW specifies that 512-character and qualified field names are supported. NEW is the
 default value.
@@ -152,11 +148,8 @@ FIELDNAME = PACKAGE_TYPE
 FIELDNAME = SIZE
 FIELDNAME = UNIT_PRICE
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1995
-
-Displaying a List of Field Names
+Displaying a List of Field Names
 
 To write a report that includes data from every field in the segment, you can issue either of the
 following requests:
@@ -201,9 +194,8 @@ qualified by the segment name with both ?F and ?FF.
 Field names longer than 31 characters are truncated in the display, and a caret (>) is
 appended in the 32nd position to indicate that the field name is longer than the display.
 
-1996
 
-Legal and Third-Party Notices
+Legal and Third-Party Notices
 
 SOME TIBCO SOFTWARE EMBEDS OR BUNDLES OTHER TIBCO SOFTWARE. USE OF SUCH
 EMBEDDED OR BUNDLED TIBCO SOFTWARE IS SOLELY TO ENABLE THE FUNCTIONALITY (OR
@@ -249,9 +241,8 @@ BE INCORPORATED IN NEW EDITIONS OF THIS DOCUMENT. TIBCO SOFTWARE INC. MAY MAKE
 IMPROVEMENTS AND/OR CHANGES IN THE PRODUCT(S) AND/OR THE PROGRAM(S)
 DESCRIBED IN THIS DOCUMENT AT ANY TIME.
 
- 1997
 
-THE CONTENTS OF THIS DOCUMENT MAY BE MODIFIED AND/OR QUALIFIED, DIRECTLY OR
+THE CONTENTS OF THIS DOCUMENT MAY BE MODIFIED AND/OR QUALIFIED, DIRECTLY OR
 INDIRECTLY, BY OTHER DOCUMENTATION WHICH ACCOMPANIES THIS SOFTWARE, INCLUDING
 BUT NOT LIMITED TO ANY RELEASE NOTES AND "READ ME" FILES.
 
@@ -260,9 +251,8 @@ refer to TIBCO's Virtual Patent Marking document (https://www.tibco.com/patents)
 
 Copyright © 2021. TIBCO Software Inc. All Rights Reserved.
 
-1998
 
-Index
+Index
 
 _ masking character 248
 
@@ -372,11 +362,8 @@ ADD option 287
 
 ADD parameter 1860
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1999
-
-Index
+Index
 
 adding attributes to WebFOCUS StyleSheets 981,
 
@@ -498,9 +485,8 @@ adding headings to graphs 1798
 
 adding values for numeric fields 51
 
-2000
 
-adding virtual fields 287
+adding virtual fields 287
 
 addition operator 435
 
@@ -622,11 +608,8 @@ alphanumeric fields 247–255, 389
 
 components 1306, 1307
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2001
-
-Index
+Index
 
 assigning classes in cascading style sheets to
 
@@ -748,7 +731,7 @@ BOTTOM 207
 
 bottom margins 1337
 
-Index
+Index
 
 BOTTOMGAP attribute 1341, 1343, 1687
 
@@ -866,11 +849,8 @@ Cartesian product 1184, 1185
 
 Cartesian product answer sets 1920
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2003
-
-Index
+Index
 
 Cartesian product answer sets and SQL Translator
 
@@ -992,9 +972,8 @@ CDN (Continental Decimal Notation) 1717, 1920
 
 choosing report formatting style sheets 1193
 
-2004
 
-Index
+Index
 
 CLASS attribute 1299, 1306, 1307, 1323
 
@@ -1116,11 +1095,8 @@ COLUMN-TOTAL phrase 367–369
 
 combining values 1823, 1824, 1826
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2005
-
-Index
+Index
 
 COMMA format 514
 
@@ -1244,7 +1220,7 @@ conditional formatting and WHEN phrase 1239,
 
 1241–1244, 1553
 
-Index
+Index
 
 conditional grid formatting 1718, 1719
 
@@ -1366,11 +1342,8 @@ in FML (Financial Modeling Language) 1829
 
 CREATE VIEW command 1918, 1919
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2007
-
-Index
+Index
 
 creating bar graphs 1754, 1755
 
@@ -1488,9 +1461,8 @@ creating single-line headings 1527, 1535
 
 creating sort headings 1545
 
-2008
 
-D
+D
 
 data 1262, 1263
 
@@ -1612,11 +1584,8 @@ displaying 365
 
 limitations 361
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2009
-
-Index
+Index
 
 DEFINE function 361
 
@@ -1740,7 +1709,7 @@ display PRINT command 88
 
 display PRINT commands 39, 41
 
-Index
+Index
 
 display SUM command 50, 51, 88
 
@@ -1860,11 +1829,8 @@ double exponential smoothing 324, 347, 348
 
 FORECAST_DOUBLEXP 324
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2011
-
-Index
+Index
 
 drill through compound reports in PDF format
 
@@ -1986,7 +1952,7 @@ escape characters 253–255
 
 ESSBASE hierarchies 1853
 
-Index
+Index
 
 establishing segment locations 290
 
@@ -2106,11 +2072,8 @@ external cascading style sheet rules 1294, 1299
 
 EXL2K PIVOT format 520
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2013
-
-Index
+Index
 
 external cascading style sheet rules BODY
 
@@ -2232,7 +2195,7 @@ file names 820
 
 FILECOMPRESS parameter 586
 
-Index
+Index
 
 FILEDEF command 472, 498
 
@@ -2354,11 +2317,8 @@ font attributes 1609, 1684
 
 font colors 1697, 1701, 1706, 1708
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2015
-
-Index
+Index
 
 font file 625, 627
 
@@ -2478,9 +2438,8 @@ formatting PCHOLD files 509
 
 limit 315, 340
 
-2016
 
-Index
+Index
 
 formatting reports 1187, 1189, 1293, 1296,
 
@@ -2598,11 +2557,8 @@ sheets 1306, 1323
 
 graph formatting TD element 1304
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2017
-
-Index
+Index
 
 graph formatting with external cascading style
 
@@ -2724,7 +2680,7 @@ hiding columns 1372, 1375
 
 hiding display fields 1371
 
-hiding fields 1372, 1375
+hiding fields 1372, 1375
 
 hiding fields in y-axis 1771
 
@@ -2846,11 +2802,8 @@ HOLD files and merge phrases 1158, 1164, 1165
 
 XML 534
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2019
-
-Index
+Index
 
 HOLD formats 511
 
@@ -2972,7 +2925,7 @@ identifying free text in FML reports 1277
 
 identifying free text in report components 1277
 
-Index
+Index
 
 identifying headings in a style sheet 1277, 1279,
 
@@ -3094,11 +3047,8 @@ and missing tests 1045
 
 inner join 1069, 1085, 1090
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2021
-
-Index
+Index
 
 inner join structures 1090
 
@@ -3220,7 +3170,7 @@ join structures and virtual fields 1094, 1095,
 
 1097, 1145, 1147
 
-join structures and WHERE phrase 1149
+join structures and WHERE phrase 1149
 
 K
 
@@ -3340,11 +3290,8 @@ limitations for headings and footings 1519
 
 limitations in display fields 55
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2023
-
-Index
+Index
 
 limitations of dynamic tables of contents 989
 
@@ -3466,7 +3413,7 @@ linking report pages 1022
 
 loading a hierarchy into memory 1867, 1868
 
-Index
+Index
 
 LOCATOR data source;sample data sources
 
@@ -3586,11 +3533,8 @@ merge phrases 1158, 1165
 
 merge phrases and HOLD files 1158, 1164, 1165
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2025
-
-Index
+Index
 
 merge phrases and MATCH FILE command 1158,
 
@@ -3712,9 +3656,8 @@ missing values and DEFINE command 1038–1042
 
 multiple parameters 863
 
-2026
 
-multiple records 1823
+multiple records 1823
 
 NOSPLIT command 1383, 1384
 
@@ -3832,11 +3775,8 @@ operators prefix 57
 
 optimized join structures 1926
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2027
-
-Index
+Index
 
 optimizing join structures 1926
 
@@ -3958,7 +3898,7 @@ page colors 1331, 1336, 1337
 
 page count 1390, 1392
 
-Index
+Index
 
 page footings 1532, 1536, 1538
 
@@ -4080,11 +4020,8 @@ PDF format 576, 584
 
 PDF format on UNIX 641
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2029
-
-Index
+Index
 
 PDF OPEN/CLOSE and PCHOLD formats 961
 
@@ -4206,7 +4143,7 @@ PostScript fonts 623, 625
 
 PostScript fonts in UNIX 625
 
-Index
+Index
 
 PostScript fonts in Windows 625
 
@@ -4322,11 +4259,8 @@ R
 
 radar graphs 1749, 1767
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2031
-
-Index
+Index
 
 range of records
 
@@ -4448,9 +4382,8 @@ RECORDLIMIT operator 258, 259
 
 repeating fields 1076
 
-2032
 
-Index
+Index
 
 repeating fields in join structures 1076
 
@@ -4570,11 +4503,8 @@ requirements for external sorting 188
 
 reserved words 1910
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2033
-
-Index
+Index
 
 restricting sort field values 156, 158, 172, 173
 
@@ -4696,7 +4626,7 @@ ITEMS 1959, 1960
 
 JOBFILE 1940, 1941
 
-sample data sources 1937
+sample data sources 1937
 
 LEDGER 1948, 1949
 
@@ -4818,11 +4748,8 @@ saving HOLD Master Files 498, 499
 
 selecting paper size for style sheets 622
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2035
-
-Index
+Index
 
 selecting paper size PostScript (PS) format 621
 
@@ -4944,9 +4871,8 @@ SET commands 971, 972
 
 SET LINES parameter 1378
 
-2036
 
-Index
+Index
 
 SET LOOKGRAPH parameter 1759, 1760
 
@@ -5068,11 +4994,8 @@ SET STYLESHEET parameter 1200, 1248
 
 skipped lines 1288–1290, 1442, 1443
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2037
-
-Index
+Index
 
 sort field values 172
 
@@ -5194,9 +5117,8 @@ sorting report columns 173, 174
 
 (CDN) 1920
 
-2038
 
-Index
+Index
 
 SQL Translator and CREATE TABLE command
 
@@ -5318,11 +5240,8 @@ STYLEMODE SET parameter 1378
 
 StyleSheet attributes 1871
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2039
-
-Index
+Index
 
 StyleSheet CLASS attribute 1306, 1307
 
@@ -5444,9 +5363,8 @@ subquery file 527
 
 summing columns 174
 
-2040
 
-summing field values 88
+summing field values 88
 
 summing report columns 174
 
@@ -5566,11 +5484,8 @@ evaluation 279
 
 types 278
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2041
-
-Index
+Index
 
 temporary sort fields 95
 
@@ -5688,9 +5603,8 @@ timestamp data type 450
 
 timestamp fields 1921
 
-2042
 
-U
+U
 
 UNDER-LINE option 1440, 1446
 
@@ -5810,11 +5724,8 @@ using ACROSS phrase with Accordion Reports 989
 
 verifying external sorting 189
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2043
-
-Index
+Index
 
 vertical bar graphs 1499
 
@@ -5934,7 +5845,7 @@ WHEN for SAP BW 207
 
 WHEN phrase 378, 427, 429, 1241
 
-WHEN phrase and conditional formatting 1239,
+WHEN phrase and conditional formatting 1239,
 
 WPMINWIDTH parameter 533
 
@@ -6040,10 +5951,6 @@ z/OS requirements 188
 
 zeros 1050
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 2045
+Index
 
-Index
-
-2046

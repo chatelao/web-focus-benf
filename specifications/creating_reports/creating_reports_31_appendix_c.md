@@ -16,11 +16,8 @@ FOR Syntax Summary
 
 TABLE Limits
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1985
-
-TABLE Syntax Summary
+TABLE Syntax Summary
 
 TABLE Syntax Summary
 
@@ -72,9 +69,8 @@ ON sfld RECAP fld1[/fmt] = FORECAST(fld2, interval, npredict, 'SEASONAL',
 ON   sfld  RECAP   fld1  [/fmt] = FORECAST (fld2, intvl, npredct,
 'REGRESS');
 
-1986
 
-C. Table Syntax Summary and Limits
+C. Table Syntax Summary and Limits
 
 ON {sortfield|TABLE} RECAP y[/fmt] = REGRESS(n, x1, [x2, [x3,]] z);
 ON   sfld  RECAP   fld1  [/fmt] = FORECAST (infield, interval, npredict,
@@ -122,11 +118,8 @@ BY hierarchy_field [HIERARCHY [WHEN expression_using_hierarchy_fields;]
 [ON hierarchy_field HIERARCHY [WHEN expression_using_hierarchy_fields;]
   [SHOW [TOP|UP n] [TO BOTTOM|DOWN m] [byoption [WHEN condition] ...]]
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1987
-
-TABLEF Syntax Summary
+TABLEF Syntax Summary
 
 TABLEF Syntax Summary
 
@@ -178,11 +171,8 @@ Prefix operators DST., PCT., PCT.CNT., RPCT., and TOT.
 
 Variables TABPAGENO, TABLASTPAGE, and BYLASTPAGE.
 
-1988
 
-
-
-C. Table Syntax Summary and Limits
+C. Table Syntax Summary and Limits
 
 SET SQUEEZE
 
@@ -236,11 +226,8 @@ OLD-NOT-NEW
 
 NEW-NOT-OLD
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1989
-
-FOR Syntax Summary
+FOR Syntax Summary
 
 OLD-AND-NEW
 
@@ -287,12 +274,8 @@ options
 
 Can be any of the following:
 
-1990
 
-
-
-
-C. Table Syntax Summary and Limits
+C. Table Syntax Summary and Limits
 
 AS 'text'
 [INDENT m]
@@ -342,14 +325,10 @@ Note: FOCUS data sources are limited to 64 segments.
 
 The maximum number of field pairs in a join is 128.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1991
-
-TABLE Limits
+TABLE Limits
 
 Maximum size of Alphanumeric fields: 4K characters ( in UTF, this means 12K bytes)
 
 Maximum number of display commands in a TABLE request: 64.
 
-1992

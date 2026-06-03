@@ -1,5 +1,3 @@
-Chapter15
-
 Merging Data Sources
 
 You can gather data for your reports by merging the contents of data structures with the
@@ -42,11 +40,8 @@ other relationships. For example, you can merge all records in each data source 
 values are not matched in the other data source. Yet another type of merge combines all
 records from the first data source with any matching records from the second data source.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1155
-
-Merging Data
+Merging Data
 
 You can merge up to 16 sets of data in one Match request. For example, you can merge
 different data sources, or data from the same data source.
@@ -99,11 +94,9 @@ The END command must follow the final AFTER MATCH command.
 MATCH generates a HOLD file. You can print the contents of the HOLD file using the PRINT
 command with the wildcard character (*).
 
-1156
 
-Types of MATCH Processing
+Types of MATCH Processing
 
-15. Merging Data Sources
 
 There are two types of MATCH processing, grouped and ungrouped. Grouped processing is the
 newer type of MATCH processing, and is the processing used by default. Ungrouped
@@ -145,11 +138,8 @@ For example, if you use MATCH to create output that includes a list of products 
 of aggregations based on differing sorts, MATCHCOLUMNORDER=UNGROUPED will ensure that
 the sequence of the column output will remain what it was in the past.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1157
-
-Types of MATCH Processing
+Types of MATCH Processing
 
 The way MATCH merges data depends on the order in which you name data sources in the
 request, the BY fields, display commands, the type of processing, and the merge phrases you
@@ -204,9 +194,6 @@ MATCH. It will be created as a single-segment BINARY or ALPHA HOLD file, dependi
 the value of the HOLDFORMAT parameter. The merge process does not change the original
 data sources.
 
-1158
-
-15. Merging Data Sources
 
 Alias names are assigned sequentially (E01, E02, ...) in the HOLD Master File that results
 from the MATCH request. When the same field name is used mutliple times in the MATCH,
@@ -240,11 +227,8 @@ ALL.
 The following prefix operators are not supported in MATCH requests: DST., DST.CNT., RNK.,
 ST., and CT.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1159
-
-Types of MATCH Processing
+Types of MATCH Processing
 
 Example: Merging Data Sources
 
@@ -290,9 +274,8 @@ EMP_ID     COURSE_CODE         CURR_SAL  LAST_NAME        FIRST_NAME
 543729165                     $9,000.00  GREENSPAN        MARY
 818692173  302               $27,062.00  CROSS            BARBARA
 
-1160
 
-Example:
+Example:
 
 Comparing Grouped and Ungrouped Processing
 
@@ -300,7 +283,6 @@ The following MATCH request has two SUM commands and one PRINT command for each 
 with all sort fields common to both files. The SET MATCHCOLUMNORDER = UNGROUPED
 command is issued to invoke legacy processing.
 
-15. Merging Data Sources
 
 SET MATCHCOLUMNORDER = UNGROUPED
 MATCH FILE GGSALES
@@ -341,11 +323,8 @@ FILENAME=HOLD, SUFFIX=FIX     , IOTYPE=BINARY, $
     FIELDNAME=BUDDOLLARS, ALIAS=E08, USAGE=I08, ACTUAL=I04, $
     FIELDNAME=BUDUNITS, ALIAS=E09, USAGE=I08, ACTUAL=I04, $
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1161
-
-Types of MATCH Processing
+Types of MATCH Processing
 
 The partial output is shown in the following image.
 
@@ -372,9 +351,6 @@ HOLD command to produce a FORMAT FOCUS output file, as follows.
 
 AFTER MATCH HOLD FORMAT FOCUS OLD-OR-NEW
 
-1162
-
-15. Merging Data Sources
 
 The following hierarchical multi-segment Master File is generated.
 
@@ -412,17 +388,11 @@ MATCH logic depends on the concept of old and new data sources. Old refers to th
 source named in the request, and new refers to the second data source. The result of each
 merge creates a HOLD file until the END command is encountered.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1163
-
-Types of MATCH Processing
+Types of MATCH Processing
 
 The following diagram illustrates the general merge process:
 
-1164
-
-15. Merging Data Sources
 
 Syntax:
 
@@ -454,11 +424,8 @@ appear in the HOLD file. (The intersection of the sets.)
 OLD-NOT-NEW specifies that records that appear only in the old data source appear in the
 HOLD file.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1165
-
-MATCH Processing With Common High-Order Sort Fields
+MATCH Processing With Common High-Order Sort Fields
 
 NEW-NOT-OLD specifies that records that appear only in the new data source appear in the
 HOLD file.
@@ -480,9 +447,6 @@ sort field) used for both data sources is the same, the match compares the value
 common high-order sort fields. If the entire sequence of sort fields is common to both files, all
 are compared.
 
-1166
-
-15. Merging Data Sources
 
 At least one pair of sort fields is required. Field formats must be the same. In some cases, you
 can redefine a field format using the DEFINE command. If the field names differ, use the AS
@@ -552,11 +516,8 @@ Record n: 071382660 STEVENS 101
 There are records from both files with an EMP_ID value of 112847612. Since there is a
 match, this record is written to the HOLD file:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1167
-
-MATCH Processing With Common High-Order Sort Fields
+MATCH Processing With Common High-Order Sort Fields
 
 Record n: 112847612 SMITH 103
 
@@ -655,21 +616,12 @@ COURSE_CODE
 
 101
 
-302
 
-
-
-
-
-
-
-
-Example: Merging With a Common High-Order Sort Field
+Example: Merging With a Common High-Order Sort Field
 
 This request combines data from the EMPLOYEE and EMPDATA data sources. The sort fields
 are EID and PIN.
 
-15. Merging Data Sources
 
 MATCH FILE EMPLOYEE
 PRINT LN FN DPT
@@ -767,17 +719,9 @@ RICHARD
 
 MICHAEL
 
-000000020
 
-Creating Reports With TIBCO® WebFOCUS Language
+Fine-Tuning MATCH Processing
 
- 1169
-
-
-
-Fine-Tuning MATCH Processing
-
-119329144
 
 BANNING
 
@@ -941,44 +885,14 @@ generates one record from many, while PRINT displays each individual record. Thr
 choices of BY fields, it is possible to use only the SUM command and get the same result that
 PRINT would produce.
 
-1170
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Example:
+Example:
 
 Using Display Commands in MATCH Processing
 
 To illustrate the effects of PRINT and SUM on the MATCH process, consider data sources A
 and B and the series of requests that follow:
 
-15. Merging Data Sources
 
      A               B
 
@@ -1028,15 +942,8 @@ F1   F2   F3   F4   F5
 2    y    200  c    30
 2    y    200  d    40
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1171
-
-
-
-
-
-Fine-Tuning MATCH Processing
+Fine-Tuning MATCH Processing
 
 Note that the records from file A are duplicated for each record from file B.
 
@@ -1082,14 +989,10 @@ F1   F2   F3   F4   F5
 
 Note the blank value for F2 and the 0 for F3.
 
-1172
 
-
-
-Request 5: This request sums the fields F2 and F3 from file A, sums the field F5 from file B
+Request 5: This request sums the fields F2 and F3 from file A, sums the field F5 from file B
 and sorts it by field F1, the common high-order sort field, and by F4.
 
-15. Merging Data Sources
 
 MATCH FILE A
 SUM F2 AND F3 BY F1
@@ -1131,12 +1034,8 @@ concatenated data source. If they do not, you must create them as virtual fields
 During retrieval, data is gathered from each data source in turn, then all data is sorted and the
 output formatted as specified in the main request.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1173
-
-
-Universal Concatenation
+Universal Concatenation
 
 Syntax:
 
@@ -1190,9 +1089,6 @@ subrequest
 
 Is a subrequest. Subrequests can only include WHERE and IF phrases.
 
-1174
-
-15. Merging Data Sources
 
 END|RUN
 
@@ -1235,11 +1131,8 @@ defines the print and sort fields for both data sources.
 EXPERSON. No display commands are allowed in the subrequest. IF and WHERE criteria are
 the only report components permitted in a subrequest.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1175
-
-Universal Concatenation
+Universal Concatenation
 
 Field Name and Format Matching
 
@@ -1282,14 +1175,12 @@ always correspond.
 
 Text (TX) fields and CLOB fields (if supported) cannot be concatenated.
 
-1176
 
-Example: Matching Field Names and Formats
+Example: Matching Field Names and Formats
 
 The following annotated example concatenates data from the EMPDATA and SALHIST data
 sources.
 
-15. Merging Data Sources
 
    DEFINE FILE EMPDATA
 1. NEWID/A11=EDIT (ID,'999-99-9999');
@@ -1345,16 +1236,8 @@ SALARY
 
  $70,000.00
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1177
-
-
-
-
-
-
-Merging Concatenated Data Sources
+Merging Concatenated Data Sources
 
 000-00-0070
 
@@ -1417,9 +1300,6 @@ Only records common to both files (OLD-AND-NEW).
 
 Records from the first file with no match in the second file (OLD-NOT-NEW).
 
-1178
-
-15. Merging Data Sources
 
 Records from the second file with no match in the first file (NEW-NOT-OLD).
 
@@ -1478,11 +1358,8 @@ second answer set using the AFTER MATCH merge_phrase in the second answer set.
 
 set.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1179
-
-Merging Concatenated Data Sources
+Merging Concatenated Data Sources
 
 9. All merged data from the first and second answer sets, now a HOLD file, is merged with the
 data concatenated in the third answer set using the AFTER MATCH merge_phrase in the
@@ -1503,14 +1380,12 @@ If the files in the MATCH do not share a high-order sort field, the fields are n
 Instead, the fields from the first record in each data source are merged to create the first
 record in the HOLD file, and so on for all remaining records.
 
-1180
 
-Example: Merging Concatenated Data Sources With Common High-Order Sort Fields
+Example: Merging Concatenated Data Sources With Common High-Order Sort Fields
 
 The following annotated sample stored procedure illustrates MATCH with MORE, using a
 common sort field:
 
-15. Merging Data Sources
 
 1. DEFINE FILE EMPDATA
    CURR_SAL/D12.2M = CSAL;
@@ -1564,16 +1439,8 @@ included in the final HOLD file.
 
 7. Prints the values from the merged file.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1181
-
-
-
-
-
-
-Merging Concatenated Data Sources
+Merging Concatenated Data Sources
 
 The first page of output is:
 
@@ -1597,13 +1464,11 @@ SSN                CURRENT  FIRST        EXPENSES
 000000120       $49,500.00  KATE         2,200.00
 000000130       $62,500.00  MARCUS              .
 
-1182
 
-Example: Merging Concatenated Data Sources Without a Common Sort Field
+Example: Merging Concatenated Data Sources Without a Common Sort Field
 
 In this example, the merged data sources do not share a sort field:
 
-15. Merging Data Sources
 
 DEFINE FILE EMPDATA
 CURR_SAL/D12.2M = CSAL;
@@ -1641,19 +1506,8 @@ END
 The AS phrase changes the answer set. Since the sort fields no longer have the same names,
 the fields are merged with no regard to matching records.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1183
-
-
-
-
-
-
-
-
-
-Cartesian Product
+Cartesian Product
 
 The first page of output is:
 
@@ -1711,9 +1565,6 @@ Reference: Usage Notes for Cartesian Product
 Cartesian product is performed on the lowest segment common to all paths, whether or not
 a field in that segment is referenced.
 
-1184
-
-15. Merging Data Sources
 
 Short paths do not display in requests with Cartesian product.
 
@@ -1788,11 +1639,8 @@ WRAP AROUND BUMPERS
 
 POWER STEERING
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1185
-
-Cartesian Product
+Cartesian Product
 
 XJ12L AUTO
 
@@ -1839,4 +1687,3 @@ WHITEWALL RADIAL PLY TIRES
 
 WRAP AROUND BUMPERS
 
-1186

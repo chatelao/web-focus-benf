@@ -1,5 +1,3 @@
-Chapter5
-
 Creating Temporary Fields
 
 When you create a report, you are not restricted to the fields that exist in your data
@@ -40,11 +38,8 @@ deductions to salaries using the following expression:
 
 deduction / salary
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 277
-
-What Is a Temporary Field?
+What Is a Temporary Field?
 
 You can specify the expression yourself, or you can use one of the many supplied functions
 that perform specific calculations or manipulations. In addition, you can use expressions and
@@ -64,14 +59,12 @@ A calculated value (COMPUTE) is evaluated after all the data that meets the sele
 is retrieved, sorted, and summed. Therefore, the calculation is performed using the aggregated
 values of the fields.
 
-278
 
-Reference: Evaluation of Temporary Fields
+Reference: Evaluation of Temporary Fields
 
 The following illustration shows how a request processes, and when each type of temporary
 field is evaluated:
 
-5. Creating Temporary Fields
 
 Example:
 
@@ -90,11 +83,8 @@ SUM DELIVER_AMT AND OPENING_AMT AND DRATIO
 COMPUTE CRATIO = DELIVER_AMT/OPENING_AMT;
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 279
-
-Defining a Virtual Field
+Defining a Virtual Field
 
 The output is:
 
@@ -139,11 +129,9 @@ Tip: If your environment supports the KEEPDEFINES parameter, you can set KEEPDEF
 ON to protect virtual fields from being cleared by a subsequent JOIN command. For details, see
 Joining Data Sources on page 1069.
 
-280
 
-Reference: Usage Notes for Creating Virtual Fields
+Reference: Usage Notes for Creating Virtual Fields
 
-5. Creating Temporary Fields
 
 If you do not use the KEEPDEFINES parameter, when a JOIN is issued, all pre-existing
 virtual fields for that data source are cleared except those defined in the Master File.
@@ -185,11 +173,8 @@ treated as a literal string, not a field reference.
 A DEFINE FILE command overwrites a DEFINE in the Master File with same name as long as
 you do not redefine the format (which is not allowed).
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 281
-
-Defining a Virtual Field
+Defining a Virtual Field
 
 Syntax:
 
@@ -247,9 +232,6 @@ FOCUS data sources must be less than or equal to 12 characters. It can be the na
 of a new virtual field that you are defining, or an existing field declared in the Master
 File, which you want to redefine.
 
-282
-
-5. Creating Temporary Fields
 
 The name can include any combination of letters, digits, and underscores (_), and should
 begin with a letter.
@@ -307,11 +289,8 @@ description
 Is the description to be associated with the virtual field, enclosed in single quotation
 marks. The description displays in the tools that browse Master Files.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 283
-
-Defining a Virtual Field
+Defining a Virtual Field
 
 REDEFINES qualifier.fieldname
 
@@ -362,16 +341,14 @@ DELIVER_AMT  OPENING_AMT           RATIO
         100          100            1.00
          80           90             .89
 
-284
 
-Example:
+Example:
 
 Redefining a Field
 
 The following request redefines the salary field in the EMPDATA data source to print asterisks
 for job titles that contain the word EXECUTIVE:
 
-5. Creating Temporary Fields
 
 SET EXTENDNUM=OFF
 DEFINE FILE EMPDATA
@@ -400,11 +377,8 @@ SALES MANAGER              $70,000.00
 SALES SPECIALIST           $82,000.00
 SENIOR SALES EXEC.         $43,400.00
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 285
-
-Defining a Virtual Field
+Defining a Virtual Field
 
 Example:
 
@@ -456,9 +430,6 @@ defined virtual fields in that data source are cleared.
 
 If you want to clear a virtual field for a particular data source, use the CLEAR option.
 
-286
-
-5. Creating Temporary Fields
 
 Syntax:
 
@@ -512,11 +483,8 @@ Procedure: How to Display Virtual Fields
 
 Click the Defined Fields tab in the Define tool.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 287
-
-Defining a Virtual Field
+Defining a Virtual Field
 
 Clearing a Virtual Field
 
@@ -561,9 +529,6 @@ information about the DECODE function, see the Using Functions manual.
 
 in the last DEFINE is available for further requests.
 
-288
-
-5. Creating Temporary Fields
 
 Establishing a Segment Location for a Virtual Field
 
@@ -594,11 +559,8 @@ specify in which segment you want the expression to be placed. To associate a vi
 with a specific segment, use the WITH phrase. The field name following WITH may be any real
 field in the Master File.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 289
-
-Defining a Virtual Field
+Defining a Virtual Field
 
 For FOCUS data sources, you may be able to increase the retrieval speed with an external
 index on the virtual field. In this case, you can associate the index with a target segment
@@ -637,11 +599,9 @@ Increasing the Speed of Calculations in Virtual Fields
 
 Virtual fields are compiled into machine code in order to increase the speed of calculations.
 
-290
 
-Preserving Virtual Fields Using DEFINE FILE SAVE and RETURN
+Preserving Virtual Fields Using DEFINE FILE SAVE and RETURN
 
-5. Creating Temporary Fields
 
 Occasionally, new code needs to be added to an existing application. When adding code, there
 is always the possibility of over-writing existing virtual fields by reusing their names
@@ -693,11 +653,8 @@ RETURN
 Clears the current context if it was created by DEFINE FILE SAVE, and restores the
 previous context.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 291
-
-Defining a Virtual Field
+Defining a Virtual Field
 
 Applying Dynamically Formatted Virtual Fields to Report Columns
 
@@ -745,13 +702,11 @@ Any date-time field can be reformatted to any other date-time format.
 If the field-based format is invalid or specifies an impermissible type of conversion, the field
 displays with plus signs (++++) on the report output.
 
-292
 
-Syntax:
+Syntax:
 
 How to Define and Apply a Format Field
 
-5. Creating Temporary Fields
 
 With a DEFINE command:
 
@@ -805,11 +760,8 @@ just
 Is a justification option: L, R, or C. The justification option can be placed before or
 after the format field, separated from the format by a slash.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 293
-
-Defining a Virtual Field
+Defining a Virtual Field
 
 Reference: Usage Notes for Field-Based Reformatting
 
@@ -859,9 +811,6 @@ MYFORMAT/A8=DECODE CATEGORY ('Coffee' 'P15.3' 'Gifts' 'P15.0' ELSE
 DOLLARS2/P15.2 = DOLLARS + .5;
 END
 
-294
-
-5. Creating Temporary Fields
 
 TABLE FILE GGSALES
 SUM DOLLARS2/MYFORMAT AS 'Dynamic' DOLLARS2/P10.2 AS 'Specific'
@@ -899,11 +848,8 @@ The function must be a row-based scalar function and have a parameter list that 
 of a comma-delimited list of column names or constants. If the function uses anything
 other than a list of comma separated values, the SQL. syntax cannot be used to pass it.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 295
-
-Defining a Virtual Field
+Defining a Virtual Field
 
 Constant DEFINE fields must be assigned a segment location using the WITH phrase.
 
@@ -953,11 +899,6 @@ ORDER BY
 T2."PRODUCT_CATEGORY"
 FOR FETCH ONLY;
 
-296
-
-
-
-5. Creating Temporary Fields
 
 Creating a Calculated Value
 
@@ -997,11 +938,8 @@ specified last:
 
 ACROSS acrossfield [AND] COMPUTE compute_expression; COLUMNS values
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 297
-
-Creating a Calculated Value
+Creating a Calculated Value
 
 Syntax:
 
@@ -1056,9 +994,6 @@ POSTAL_CODE. Postal code.
 
 STATE. State name.
 
-298
-
-5. Creating Temporary Fields
 
 expression
 
@@ -1104,11 +1039,8 @@ format
 Is the format of the field. The default is D12.2. For information on formats, see the
 Describing Data With WebFOCUS Language manual.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 299
-
-Creating a Calculated Value
+Creating a Calculated Value
 
 Example:
 
@@ -1162,16 +1094,13 @@ so forth. The BY field columns are not counted.
 For additional information about column reference numbers, see Assigning Column Reference
 Numbers on page 302.
 
-300
 
-
-Example:
+Example:
 
 Using Positional Column Referencing
 
 The following example demonstrates positional field references in a COMPUTE command:
 
-5. Creating Temporary Fields
 
 TABLE FILE CAR
 SUM AVE.DEALER_COST
@@ -1218,11 +1147,8 @@ UNIT_SOLD    NEWVAL UNIT_SOLD    NEWVAL UNIT_SOLD    NEWVAL UNIT_SOLD    NEWVAL
 --------------------------------------------------------------------------------
       162  1,764.18        42    104.16       376  4,805.28        65    297.70
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 301
-
-Assigning Column Reference Numbers
+Assigning Column Reference Numbers
 
 Example:
 
@@ -1272,9 +1198,6 @@ Column notation assigns a sequential column number to each column in the interna
 created for a report request. If you want to control the creation of column reference numbers
 for the columns that are used in your report, use the CNOTATION column notation command.
 
-302
-
-5. Creating Temporary Fields
 
 Because column numbers refer to columns in the internal matrix, they are assigned after
 retrieval and aggregation of data are completed. Columns created and displayed in a report are
@@ -1326,11 +1249,8 @@ sequence or series of columns.
 Refer to a particular cell in an FML request using the notation E(r,c), where r is a row
 number and c is a column number.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 303
-
-Assigning Column Reference Numbers
+Assigning Column Reference Numbers
 
 Example:
 
@@ -1382,10 +1302,6 @@ PRODUCT = C1 * C2;
 BY TRANSDATE
 END
 
-304
-
-
-5. Creating Temporary Fields
 
 The output is:
 
@@ -1445,12 +1361,8 @@ The output is:
     LAST
     YEAR
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 305
-
-
-Assigning Column Reference Numbers
+Assigning Column Reference Numbers
 
 CASH ON HAND
 
@@ -1542,9 +1454,6 @@ INVENTORY
 
 23329.00
 
-306
-
-5. Creating Temporary Fields
 
 --------
 
@@ -1600,11 +1509,8 @@ CHANGE IN CASH
 
    4,044
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 307
-
-Assigning Column Reference Numbers
+Assigning Column Reference Numbers
 
 Example:
 
@@ -1631,9 +1537,6 @@ END
 
 The output is:
 
-308
-
-5. Creating Temporary Fields
 
 Example:
 
@@ -1680,11 +1583,8 @@ UNIT_COST1, which is calculated by dividing column1 by column2.
 
 UNIT_COST2, which is calculated by dividing column1 by QUANTITY.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 309
-
-Assigning Column Reference Numbers
+Assigning Column Reference Numbers
 
 SET CNOTATION = ALL
 TABLE FILE VIDEOTRK
@@ -1736,9 +1636,6 @@ column references:
 
 C1 is QUANTITY with format D7.2.
 
-310
-
-5. Creating Temporary Fields
 
 C2 is TRANSCODE.
 
@@ -1787,11 +1684,8 @@ TRANSDATE  QUANTITY  TRANSCODE     TTOT2  UNIT_COST1  UNIT_COST2
  91/06/27      9.00          7     60.24        6.69        6.69
  91/06/28      3.00          3     31.00       10.33       10.33
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 311
-
-Assigning Column Reference Numbers
+Assigning Column Reference Numbers
 
 Example:
 
@@ -1849,12 +1743,6 @@ Reference: Usage Notes for Column Numbers
 
 BY fields are not assigned column numbers.
 
-312
-
-
-
-
-5. Creating Temporary Fields
 
 ACROSS columns are assigned column numbers.
 
@@ -1903,11 +1791,8 @@ Single exponential smoothing (FORECAST_EXPAVE). Calculates an average that allow
 you to choose weights to apply to newer and older values. For details, see
 FORECAST_EXPAVE: Using Single Exponential Smoothing on page 320.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 313
-
-Using FORECAST in a COMPUTE Command
+Using FORECAST in a COMPUTE Command
 
 Double exponential smoothing (FORECAST_DOUBLEXP). Accounts for the tendency of
 data to either increase or decrease over time without repeating. For details, see
@@ -1954,9 +1839,6 @@ The sort field used for FORECAST must be in a numeric or date format.
 When using simple moving average and exponential moving average methods, data values
 should be spaced evenly in order to get meaningful results.
 
-314
-
-5. Creating Temporary Fields
 
 The use of column notation is not supported in the FORECAST expression. Column notation
 continues to be supported as before outside of this expression. The process of generating
@@ -2002,11 +1884,8 @@ highs and lows, since this method gives equal weight to each point.
 Predicted values beyond the range of the data values are calculated using a moving average
 that treats the calculated trend values as new data points.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 315
-
-Using FORECAST in a COMPUTE Command
+Using FORECAST in a COMPUTE Command
 
 The first complete moving average occurs at the nth data point because the calculation
 requires n values. This is called the lag. The moving average values for the lag rows are
@@ -2057,9 +1936,6 @@ interpreted. For example, if the format is YMD, MDY, or DMY, an interval value o
 interpreted as meaning two days. If the format is YM, the 2 is interpreted as meaning two
 months.
 
-316
-
-5. Creating Temporary Fields
 
 npredict
 
@@ -2096,11 +1972,8 @@ GRID=OFF,$
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 317
-
-Using FORECAST in a COMPUTE Command
+Using FORECAST in a COMPUTE Command
 
 The output is:
 
@@ -2112,9 +1985,6 @@ calculation of the moving average begins in the following way:
 
 The first MOVAVE value (801,123.0) is equal to the first DOLLARS value.
 
-318
-
-5. Creating Temporary Fields
 
 The second MOVAVE value (741,731.5) is the mean of DOLLARS values one and two:
 (801,123 + 682,340) /2.
@@ -2158,11 +2028,8 @@ GRID=OFF,$
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 319
-
-Using FORECAST in a COMPUTE Command
+Using FORECAST in a COMPUTE Command
 
 The output is shown in the following image:
 
@@ -2180,9 +2047,6 @@ k
 
 Is the newest value.
 
-320
-
-5. Creating Temporary Fields
 
 n
 
@@ -2238,11 +2102,8 @@ next value. This must be a positive integer. To sort in descending order, use th
 HIGHEST phrase. The result of adding this number to the sort field values is converted
 to the same format as the sort field.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 321
-
-Using FORECAST in a COMPUTE Command
+Using FORECAST in a COMPUTE Command
 
 For date fields, the minimal component in the format determines how the number is
 interpreted. For example, if the format is YMD, MDY, or DMY, an interval value of 2 is
@@ -2286,9 +2147,6 @@ GRID=OFF,$
 ENDSTYLE
 END
 
-322
-
-5. Creating Temporary Fields
 
 The output is shown in the following image:
 
@@ -2345,11 +2203,8 @@ k = 2/(1+n) = 2/4 = 0.5
 EXPAVE = (EXPAVE*(1-k))+(new-DOLLARS*k) = (801123*0.5) + (682340*0.50) =
 400561.5 + 341170 = 741731.5
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 323
-
-Using FORECAST in a COMPUTE Command
+Using FORECAST in a COMPUTE Command
 
 The third EXPAVE value (753,404.8) is calculated as follows:
 
@@ -2397,9 +2252,6 @@ How to Calculate a Double Exponential Smoothing Column
 FORECAST_DOUBLEXP(display, infield,
 interval, npredict, npoint1, npoint2)
 
-324
-
-5. Creating Temporary Fields
 
 where:
 
@@ -2455,11 +2307,8 @@ npoint2
 For DOUBLEXP, this positive whole number is used to calculate the weights for each
 term in the trend. The weight, g, is calculated by the following formula:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 325
-
-Using FORECAST in a COMPUTE Command
+Using FORECAST in a COMPUTE Command
 
 g=2/(1+npoint2)
 
@@ -2491,10 +2340,6 @@ growing and in which 25% of sales always occur during December contains both tre
 seasonality. Triple exponential smoothing takes both the trend and seasonality into account by
 using three equations with three constants.
 
-326
-
-
-5. Creating Temporary Fields
 
 For triple exponential smoothing you, need to know the number of data points in each time
 period (designated as L in the following equations). To account for the seasonality, a seasonal
@@ -2542,11 +2387,8 @@ within the period (1<= n <= L):
 
 I(n) = ( y(n)/A(1) + y(L+n)/A(2) + ... + y((N-1)L+n)/A(N) ) / N
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 327
-
-Using FORECAST in a COMPUTE Command
+Using FORECAST in a COMPUTE Command
 
 The three constants must be chosen carefully. The best results are usually obtained by
 choosing the constants to minimize the mean-squared error (MSE) between the data values
@@ -2601,9 +2443,6 @@ next value. This must be a positive integer. To sort in descending order, use th
 HIGHEST phrase. The result of adding this number to the sort field values is converted
 to the same format as the sort field.
 
-328
-
-5. Creating Temporary Fields
 
 For date fields, the minimal component in the format determines how the number is
 interpreted. For example, if the format is YMD, MDY, or DMY, an interval value of 2 is
@@ -2646,11 +2485,8 @@ term in the seasonal adjustment. The weight, p, is calculated by the following f
 
 p=2/(1+npoint3)
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 329
-
-Using FORECAST in a COMPUTE Command
+Using FORECAST in a COMPUTE Command
 
 Example:
 
@@ -2673,9 +2509,6 @@ END
 In the output, npredict is 3. Therefore, three periods (nine points, nperiod * npredict) are
 generated.
 
-330
-
-5. Creating Temporary Fields
 
 FORECAST_LINEAR: Using a Linear Regression Equation
 
@@ -2725,11 +2558,8 @@ Is the sort field values (independent variables).
 
 Trend values, as well as predicted values, are calculated using the regression line equation.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 331
-
-Using FORECAST in a COMPUTE Command
+Using FORECAST in a COMPUTE Command
 
 Syntax:
 
@@ -2779,16 +2609,14 @@ Is the number of predictions for FORECAST to calculate. It must be an integer gr
 than or equal to zero. Zero indicates that you do not want predictions, and is only
 supported with a non-recursive FORECAST.
 
-332
 
-Example:
+Example:
 
 Calculating a New Linear Regression Field
 
 The following request calculates a regression line using the VIDEOTRK data source of
 QUANTITY by TRANSDATE. The interval is one day, and three predicted values are calculated.
 
-5. Creating Temporary Fields
 
 TABLE FILE VIDEOTRK
 SUM QUANTITY
@@ -2813,11 +2641,8 @@ There are no QUANTITY values for the generated FORTOT values.
 Each FORTOT value is computed using a regression line, calculated using all of the actual
 data values for QUANTITY.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 333
-
-Using FORECAST in a COMPUTE Command
+Using FORECAST in a COMPUTE Command
 
 TRANSDATE is the independent variable (x) and QUANTITY is the dependent variable (y).
 The equation is used to calculate QUANTITY FORECAST trend and predicted values.
@@ -2842,9 +2667,6 @@ is a constant other than zero. Rows in the report output that represent actual r
 data source will appear with a value that is not zero. Rows that represent predicted values will
 display zero. You can also propagate this field to a HOLD file.
 
-334
-
-5. Creating Temporary Fields
 
 Example:
 
@@ -2873,11 +2695,8 @@ END
 
 The output is shown in the following image:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 335
-
-Calculating Trends and Predicting Values With FORECAST
+Calculating Trends and Predicting Values With FORECAST
 
 Calculating Trends and Predicting Values With FORECAST
 
@@ -2920,11 +2739,9 @@ FORECAST performs the calculations based on the data provided, but decisions abo
 use and reliability are the responsibility of the user. Therefore, FORECAST predictions are not
 always reliable, and many factors determine how accurate a prediction will be.
 
-336
 
-FORECAST Processing
+FORECAST Processing
 
-5. Creating Temporary Fields
 
 You invoke FORECAST processing by including FORECAST in a RECAP command. In this
 command, you specify the parameters needed for generating estimated values, including the
@@ -2969,11 +2786,8 @@ EXPAVE calculation
 ON sortfield RECAP result_field[/fmt] = FORECAST(infield, interval,
  npredict, 'EXPAVE',npoint1);
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 337
-
-Calculating Trends and Predicting Values With FORECAST
+Calculating Trends and Predicting Values With FORECAST
 
 DOUBLEXP calculation
 
@@ -3030,9 +2844,6 @@ interpreted. For example, if the format is YMD, MDY, or DMY, an interval value o
 interpreted as meaning two days; if the format is YM, the 2 is interpreted as meaning two
 months.
 
-338
-
-5. Creating Temporary Fields
 
 npredict
 
@@ -3086,11 +2897,8 @@ To specify options such as AS or IN:
 In a non-recursive FORECAST request, use an empty COMPUTE command prior to the
 RECAP.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 339
-
-Calculating Trends and Predicting Values With FORECAST
+Calculating Trends and Predicting Values With FORECAST
 
 In a recursive FORECAST request, specify the options when the field is first referenced
 in the report request.
@@ -3136,11 +2944,9 @@ FORECAST.
 
 MISSING attribute.
 
-340
 
-Using a Simple Moving Average
+Using a Simple Moving Average
 
-5. Creating Temporary Fields
 
 A simple moving average is a series of arithmetic means calculated with a specified number of
 values from a field. Each new mean in the series is calculated by dropping the first value used
@@ -3182,11 +2988,8 @@ TABLE FILE GGSALES
   ON PERIOD RECAP MOVAVE/D10.1= FORECAST(DOLLARS,1,3,'MOVAVE',3);
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 341
-
-Calculating Trends and Predicting Values With FORECAST
+Calculating Trends and Predicting Values With FORECAST
 
 The output is:
 
@@ -3198,9 +3001,6 @@ calculation of the moving average begins in the following way:
 
 The first MOVAVE value (801,123.0) is equal to the first DOLLARS value.
 
-342
-
-5. Creating Temporary Fields
 
 The second MOVAVE value (741,731.5) is the mean of DOLLARS values one and two:
 (801,123 + 682,340) /2.
@@ -3241,17 +3041,11 @@ TABLE FILE GGSALES
   ON PERIOD RECAP DOLLARS/D10.1 = FORECAST(DOLLARS,1,3,'MOVAVE',3);
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 343
-
-Calculating Trends and Predicting Values With FORECAST
+Calculating Trends and Predicting Values With FORECAST
 
 The output is:
 
-344
-
-5. Creating Temporary Fields
 
 Using Single Exponential Smoothing
 
@@ -3305,11 +3099,8 @@ TABLE FILE GGSALES
   ON PERIOD RECAP EXPAVE/D10.1= FORECAST(DOLLARS,1,3,'EXPAVE',3);
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 345
-
-Calculating Trends and Predicting Values With FORECAST
+Calculating Trends and Predicting Values With FORECAST
 
 The output is:
 
@@ -3322,9 +3113,6 @@ calculation of the moving average begins in the following way:
 
 The first EXPAVE value (801,123.0) is the same as the first DOLLARS value.
 
-346
-
-5. Creating Temporary Fields
 
 The second EXPAVE value (741,731.5) is calculated as follows. Note that because of
 rounding and the number of decimal places used, the value derived in this sample
@@ -3371,11 +3159,8 @@ period. b(t) represents the average trend. The weight constant is g:
 
 b(t) = g * (DOUBLEXP(t)-DOUBLEXP(t-1)) + (1 - g) * (b(t-1))
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 347
-
-Calculating Trends and Predicting Values With FORECAST
+Calculating Trends and Predicting Values With FORECAST
 
 These two equations are solved to derive the smoothed average. The first smoothed average is
 set to the first data value. The first trend component is set to zero. For choosing the two
@@ -3413,12 +3198,9 @@ END
 
 The output is:
 
-348
 
+Using Triple Exponential Smoothing
 
-Using Triple Exponential Smoothing
-
-5. Creating Temporary Fields
 
 Triple exponential smoothing produces an exponential moving average that takes into account
 the tendency of data to repeat itself in intervals over time. For example, sales data that is
@@ -3466,11 +3248,8 @@ within each period, A(j) (1<=j<=N):
 
 A(j) = ( y((j-1)L+1) + y((j-1)L+2) + ... + y(jL) ) / L
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 349
-
-Calculating Trends and Predicting Values With FORECAST
+Calculating Trends and Predicting Values With FORECAST
 
 3. Then, the initial periodicity factor is given by the following formula, where N is the number
 of full periods available in the data, L is the number of points per period and n is a point
@@ -3510,12 +3289,10 @@ ON TRANSDATE RECAP SEASONAL/D10.1 = FORECAST(TRANSTOT,1,3,'SEASONAL',
 WHERE TRANSDATE NE '19910617'
 END
 
-350
 
-In the output, npredict is 3. Therefore, three periods (nine points, nperiod * npredict) are
+In the output, npredict is 3. Therefore, three periods (nine points, nperiod * npredict) are
 generated.
 
-5. Creating Temporary Fields
 
 Using a Linear Regression Equation
 
@@ -3539,11 +3316,8 @@ Is the independent variable.
 
 Is the slope of the line.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 351
-
-Calculating Trends and Predicting Values With FORECAST
+Calculating Trends and Predicting Values With FORECAST
 
 b
 
@@ -3581,9 +3355,6 @@ WHERE MPG NE 0.0
   ON DEALER_COST RECAP FORMPG=FORECAST(MPG,1000,3,'REGRESS');
 END
 
-352
-
-5. Creating Temporary Fields
 
 The output is:
 
@@ -3647,11 +3418,8 @@ FORMPG
 
 6.91
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 353
-
-Calculating Trends and Predicting Values With FORECAST
+Calculating Trends and Predicting Values With FORECAST
 
 DEALER_COST
 
@@ -3707,11 +3475,9 @@ TABLE FILE GGSALES
   ON PERIOD RECAP BUDEXPAVE/D10.1 = FORECAST(BUDDOLLARS,1,0,'EXPAVE',4);
 END
 
-354
 
-The output is shown in the following image.
+The output is shown in the following image.
 
-5. Creating Temporary Fields
 
 Example: Moving the FORECAST Column
 
@@ -3735,11 +3501,8 @@ DOLLARS
   ON PERIOD RECAP MOVAVE/D10.1= FORECAST(DOLLARS,1,3,'MOVAVE',3);
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 355
-
-Calculating Trends and Predicting Values With FORECAST
+Calculating Trends and Predicting Values With FORECAST
 
 The output is shown in the following image.
 
@@ -3797,11 +3560,9 @@ DEALER_COST  DATA_ROW  PREDICT             MPG          FORMPG
       8,000         0  YES               19.32           19.32
       9,000         0  YES               18.08           18.08
 
-356
 
-Calculating Trends and Predicting Values With Multivariate REGRESS
+Calculating Trends and Predicting Values With Multivariate REGRESS
 
-5. Creating Temporary Fields
 
 The REGRESS method derives a linear equation that best fits a set of numeric data points, and
 uses this equation to create a new column in the report output. The equation can be based on
@@ -3849,11 +3610,8 @@ n
 
 Is a whole number from 1 to 3 indicating the number of independent variables.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 357
-
-Calculating Trends and Predicting Values With Multivariate REGRESS
+Calculating Trends and Predicting Values With Multivariate REGRESS
 
 x1, x2, x3
 
@@ -3902,9 +3660,6 @@ creating a currency-denominated field.
 
 Fields with missing values cannot be used in the regression.
 
-358
-
-5. Creating Temporary Fields
 
 Larger amounts of data produce more useful results.
 
@@ -3932,11 +3687,8 @@ WHERE REGION EQ 'West'
 WHERE UNITS GT 1600 AND UNITS LT 1700
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 359
-
-Using Text Fields in DEFINE and COMPUTE
+Using Text Fields in DEFINE and COMPUTE
 
 The output is:
 
@@ -3948,9 +3700,6 @@ alphanumeric field, the value is truncated before being assigned to the alphanum
 
 Note: COMPUTE commands in Maintain do not support text fields.
 
-360
-
-5. Creating Temporary Fields
 
 Example:
 
@@ -3996,12 +3745,8 @@ alphanumeric arguments are truncated.
 All calculations within the function are done in double precision. Format conversions occur only
 across equal signs (=) in the assignments that define temporary fields.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 361
-
-
-Creating Temporary Fields Independent of a Master File
+Creating Temporary Fields Independent of a Master File
 
 Syntax:
 
@@ -4054,9 +3799,6 @@ line1,line2 ...
 Are the lines of default column title to be displayed for the virtual field unless overridden
 by an AS phrase.
 
-362
-
-5. Creating Temporary Fields
 
 description
 
@@ -4108,11 +3850,8 @@ DEFINE FUNCTION SUBTRACT (VAL1/D8, VAL2/D8)
  SUBTRACT/D8.2 = VAL1 - VAL2;
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 363
-
-Creating Temporary Fields Independent of a Master File
+Creating Temporary Fields Independent of a Master File
 
 TABLE FILE MOVIES
  PRINT TITLE LISTPR IN 35 WHOLESALEPR AND
@@ -4230,31 +3969,6 @@ AFTER, THE
 
   9.96
 
-364
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5. Creating Temporary Fields
 
 PSYCHO
 
@@ -4334,17 +4048,8 @@ If you issue the ? FUNCTION command when no functions are defined, the following
 
 NO FUNCTIONS CURRENTLY IN EFFECT
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 365
-
-
-
-
-
-
-
-Creating Temporary Fields Independent of a Master File
+Creating Temporary Fields Independent of a Master File
 
 Syntax:
 
@@ -4362,4 +4067,3 @@ Is the name of the function name to clear.
 
 Clears all active DEFINE functions.
 
-366

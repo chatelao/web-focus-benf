@@ -45,11 +45,8 @@ Within a report request, as an inline StyleSheet. This is useful when you need t
 StyleSheet to only one report. For details, see Creating a WebFOCUS StyleSheet Within a
 Report Request on page 1198.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1197
-
-Creating a WebFOCUS StyleSheet
+Creating a WebFOCUS StyleSheet
 
 Outside of a report request, as a separate file. This enables you to apply one StyleSheet to
 multiple reports. For details, see Creating and Applying a WebFOCUS StyleSheet File on page
@@ -101,9 +98,6 @@ Creating a WebFOCUS StyleSheet Within a Report Request
 
 The following illustrates an inline StyleSheet. The StyleSheet is highlighted in the request.
 
-1198
-
-17. Creating and Managing a WebFOCUS StyleSheet
 
 TABLE FILE GGSALES
 SUM UNITS DOLLARS BY CATEGORY BY PRODUCT
@@ -129,11 +123,8 @@ How to Include a StyleSheet File in Another StyleSheet
 
 INCLUDE = stysheet,$
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1199
-
-Creating a WebFOCUS StyleSheet
+Creating a WebFOCUS StyleSheet
 
 where:
 
@@ -176,9 +167,6 @@ You can apply a StyleSheet file to a report using the SET STYLESHEET command, as
 in How to Apply a WebFOCUS StyleSheet File to a Report on page 1201. For information about
 StyleSheet declarations, see General WebFOCUS StyleSheet Syntax on page 1202.
 
-1200
-
-17. Creating and Managing a WebFOCUS StyleSheet
 
 As an alternative to creating a new StyleSheet file, you can use one of the sample StyleSheet
 files provided with WebFOCUS as a template.
@@ -226,11 +214,8 @@ stylesheet
 
 Is the name of the StyleSheet file. Do not include the file extension.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1201
-
-General WebFOCUS StyleSheet Syntax
+General WebFOCUS StyleSheet Syntax
 
 General WebFOCUS StyleSheet Syntax
 
@@ -269,9 +254,6 @@ Sample WebFOCUS StyleSheet
 Following is a request that includes an inline StyleSheet. The StyleSheet begins with ON TABLE
 SET STYLE * and ends with ENDSTYLE.
 
-1202
-
-17. Creating and Managing a WebFOCUS StyleSheet
 
 TABLE FILE CENTORD
 HEADING
@@ -320,13 +302,8 @@ Use more than one declaration to format a single report component.
 Include blank spaces or tabs in between the attribute, equal sign (=), value, comma, and
 dollar sign ($).
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1203
-
-
-
-Reusing WebFOCUS StyleSheet Declarations With Macros
+Reusing WebFOCUS StyleSheet Declarations With Macros
 
 Split a single declaration across a line. The declaration will continue to be processed until
 the terminating dollar sign. For example, you can split a declaration like this:
@@ -373,9 +350,6 @@ definition must precede its use in the StyleSheet.
 
 To define a macro, use the DEFMACRO attribute followed by the desired styling attributes.
 
-1204
-
-17. Creating and Managing a WebFOCUS StyleSheet
 
 Syntax:
 
@@ -432,11 +406,8 @@ macroname
 Is the name of the macro to apply to the specified report component. The macro must be
 defined in the same StyleSheet.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1205
-
-Reusing WebFOCUS StyleSheet Declarations With Macros
+Reusing WebFOCUS StyleSheet Declarations With Macros
 
 condition
 
@@ -482,9 +453,6 @@ attribute value pair COLOR=BLACK.
 
 by TYPE=DATA, COLUMN=N1).
 
-1206
-
-17. Creating and Managing a WebFOCUS StyleSheet
 
 The output is:
 
@@ -509,11 +477,8 @@ Each column title will inherit this formatting, appearing in blue and bold by de
 you can choose to format one column differently, allowing it to inherit the blue color, but
 specifying that it override the bold style and that it add a yellow background color:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1207
-
-WebFOCUS StyleSheet Attribute Inheritance
+WebFOCUS StyleSheet Attribute Inheritance
 
 TYPE=TITLE, COLUMN=N2, STYLE=-BOLD, BACKCOLOR=YELLOW, $
 
@@ -564,9 +529,6 @@ Augmenting Inherited WebFOCUS StyleSheet Attributes
 The following illustrates how to augment inherited StyleSheet attributes. The StyleSheet
 declarations discussed in this example are highlighted in the report request.
 
-1208
-
-17. Creating and Managing a WebFOCUS StyleSheet
 
 The page heading in this report has two lines. The first StyleSheet declaration identifies the
 report component HEADING to be formatted in bold and have 12-point font size. This will
@@ -594,11 +556,8 @@ END
 
 The output is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1209
-
-WebFOCUS StyleSheet Attribute Inheritance
+WebFOCUS StyleSheet Attribute Inheritance
 
 Example:
 
@@ -645,9 +604,6 @@ inherited format for the page footing by specifying OBJECT=FIELD, ITEM=1, and re
 the italic style (STYLE=-ITALIC). Note that ITEM=1 needs to be specified since there are two
 embedded fields in the footing.
 
-1210
-
-17. Creating and Managing a WebFOCUS StyleSheet
 
 The output is:
 
@@ -665,11 +621,8 @@ different color scheme. It is recommend that you use this StyleSheet with active
 This section explains the specifications of the ENWarm StyleSheet and how it applies to report
 styling, and active reports.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1211
-
-Creating Reports With the ENWarm StyleSheet
+Creating Reports With the ENWarm StyleSheet
 
 Report Styling
 
@@ -708,9 +661,6 @@ Top gap: .05
 
 Bottom gap: .05
 
-1212
-
-17. Creating and Managing a WebFOCUS StyleSheet
 
 Headings and Footings Styling
 
@@ -749,11 +699,8 @@ Report Footing
 
 10 pt
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1213
-
-Creating Reports With the ENWarm StyleSheet
+Creating Reports With the ENWarm StyleSheet
 
 Font color: RGB (102, 102, 102)
 
@@ -771,9 +718,6 @@ Subheading Data
 
 Bold
 
-1214
-
-17. Creating and Managing a WebFOCUS StyleSheet
 
 Styling for the subfooting element is shown in the following image.
 
@@ -785,11 +729,8 @@ Across Styling
 
 Across styling for a report is shown in the following image.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1215
-
-Creating Reports With the ENWarm StyleSheet
+Creating Reports With the ENWarm StyleSheet
 
 Across Title
 
@@ -820,9 +761,6 @@ Active Reports
 The following topic explains the specifications of the ENWarm StyleSheet and how it apples to
 active reports.
 
-1216
-
-17. Creating and Managing a WebFOCUS StyleSheet
 
 Pagination, Menu, and Hover Text Styling in WebFOCUS Active Reports
 
@@ -841,11 +779,8 @@ Menu
 
 Text color: RGB (#6B6B6B)
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1217
-
-Creating Reports With the ENWarm StyleSheet
+Creating Reports With the ENWarm StyleSheet
 
 Background color: RGB (#F8F8F8)
 
@@ -884,4 +819,3 @@ FML bar will not show the bar line.
 Note: For scenarios involving these usage notes, use the endeflt StyleSheet as an alternative
 to the ENWarm StyleSheet.
 
-1218

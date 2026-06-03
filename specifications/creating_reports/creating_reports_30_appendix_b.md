@@ -37,10 +37,6 @@ displays the following:
 An alphabetic character has been found where all numerical digits are
 required.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1983
+Displaying Messages
 
-Displaying Messages
-
-1984

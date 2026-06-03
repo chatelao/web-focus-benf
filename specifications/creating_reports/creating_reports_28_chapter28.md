@@ -1,5 +1,3 @@
-Chapter28
-
 Improving Report Processing
 
 The following high-performance methods optimize data retrieval and report processing:
@@ -42,11 +40,8 @@ reporting from an alternate view, you can do the following:
 Change the access path. For example, you can access data in a lower segment more
 quickly by promoting that segment to a higher level.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1929
-
-Rotating a Data Structure for Enhanced Retrieval
+Rotating a Data Structure for Enhanced Retrieval
 
 Change the path structure of a data source. This option is especially helpful if you wish to
 create a report using several sort fields that are on different paths in the file. By changing
@@ -70,11 +65,9 @@ the file name in the TABLE command, separated by a period (.):
 
 TABLE FILE filename.fieldname
 
-1930
 
-Reference: Usage Notes for Restructuring Data
+Reference: Usage Notes for Restructuring Data
 
-28. Improving Report Processing
 
 If you use a non-indexed field, each segment instance is retrieved until the specified record
 is found. Therefore, this process is less efficient than using an indexed field.
@@ -101,11 +94,8 @@ Restructuring Data
 
 Consider the following data structure, in which PROD_CODE is an indexed field:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1931
-
-Optimizing Retrieval Speed for FOCUS Data Sources
+Optimizing Retrieval Speed for FOCUS Data Sources
 
 You could issue the following request to promote the segment containing PROD_CODE to the
 top of the hierarchy, thereby enabling quicker access to the data in that segment.
@@ -152,9 +142,6 @@ Request contains the code BY HIGHEST or BY LOWEST.
 
 For related information on AUTOINDEX, see the Developing Reporting Applications manual.
 
-1932
-
-28. Improving Report Processing
 
 Syntax:
 
@@ -192,11 +179,8 @@ AUTOINDEX is OFF and the request contains an equality test on the indexed field.
 AUTOINDEX is ON and the request contains either an equality or a range (FROM ... TO)
 test against the indexed field.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1933
-
-Automatic Indexed Retrieval
+Automatic Indexed Retrieval
 
 Example:
 
@@ -242,9 +226,6 @@ IF PROD_TYPE EQ 'STEREO'
 IF DEPT_CODE EQ 'H01'
 END
 
-1934
-
-28. Improving Report Processing
 
 Indexed retrieval is not invoked if the equality or range test is run against an indexed field that
 does not reside in the highest referenced segment. In the following example, indexed retrieval
@@ -290,11 +271,8 @@ BORDER styling is not supported with TABLEF.
 
 TABLEF is not supported with SQUEEZE.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1935
-
-Compiling Expressions
+Compiling Expressions
 
 Example:
 
@@ -340,4 +318,3 @@ If compilation is not possible because of environmental conditions, the processi
 without compilation. No message is generated indicating that compilation did not take place.
 To determine whether it did take place, issue the ? COMPILE command.
 
-1936

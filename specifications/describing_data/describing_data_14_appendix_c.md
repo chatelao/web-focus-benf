@@ -46,11 +46,8 @@ or, if the input value was -123.78,
 
 or, if the original value was negative,
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 519
-
-Data Storage and Display
+Data Storage and Display
 
 -123.8
 
@@ -202,9 +199,8 @@ Integer Fields: Format I
 
 An integer value entered with no decimal places is stored as entered.
 
-520
 
-C. Rounding in WebFOCUS
+C. Rounding in WebFOCUS
 
 When a value with decimal places is entered into an integer field using a transaction, that
 value is rounded, and the result is stored. If the fractional portion of the value is less than 0.5,
@@ -248,11 +244,8 @@ between formats M and X and formats F and D is the base to which the exponent is
 Formats M and X use base 10, eliminating the rounding issues seen in formats F and D, which
 use base 16.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 521
-
-Data Storage and Display
+Data Storage and Display
 
 When the number of decimal places input is greater than the number of decimal places stored
 in the format, M and X field values are stored as they are input, up to the limit of precision.
@@ -296,9 +289,8 @@ For floating-point fields (format F or D), the stored values of decimal numbers 
 hexadecimal and may convert to a value very slightly less than the actual decimal number.
 When the final digit is 5, these numbers may round down instead of up.
 
-522
 
-C. Rounding in WebFOCUS
+C. Rounding in WebFOCUS
 
 The following example shows an input value with two decimal places, which is stored as a
 packed field with two decimal places, a packed field with one decimal place, a D field with one
@@ -352,11 +344,8 @@ ON TABLE SUMMARIZE
 ON TABLE SET PAGE NOLEAD
 END
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 523
-
-Rounding in Calculations and Conversions
+Rounding in Calculations and Conversions
 
 The following report results:
 
@@ -409,10 +398,8 @@ take place, unless native arithmetic is being used:
 
 rounding algorithm described previously is applied.
 
-524
 
-
-Example:
+Example:
 
 Redefining Field Formats
 
@@ -464,11 +451,8 @@ MATH2, and XMATH2 with redefined formats containing four decimal places instead 
 These DEFINE fields illustrate the differences in the way packed fields, floating-point fields,
 and decimal precision fields are stored and displayed.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 525
-
-Rounding in Calculations and Conversions
+Rounding in Calculations and Conversions
 
 The request prints the values and a total for all six database fields, and for the five DEFINE
 fields.
@@ -494,9 +478,8 @@ The following image shows the resulting output on z/OS:
 
 The following image shows the resulting output on Windows:
 
-526
 
-C. Rounding in WebFOCUS
+C. Rounding in WebFOCUS
 
 In this example, the PACKED2 sum is an accurate sum of the displayed values, which are the
 same as the stored values. The PACKED4 values and total are the same as the PACKED2
@@ -531,11 +514,8 @@ PRINT DOUBLE20 MATH20
 ON TABLE SUMMARIZE
 END
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 527
-
-Rounding in Calculations and Conversions
+Rounding in Calculations and Conversions
 
 The output shows that the double precision floating-point number is not exactly the same as
 the input values in most cases. It has extra digits for those values that do not have an exact
@@ -587,14 +567,8 @@ PAGE     1
 TOTAL
  5683.07   1420.765   1420.767
 
-528
 
-
-
-
-
-
-C. Rounding in WebFOCUS
+C. Rounding in WebFOCUS
 
 The DEFP3 field is the result of a DEFINE. The values are treated like data source field values.
 The printed total, 1420.765, is the sum of the printed DEFP3 values, just as the PACKED2
@@ -603,15 +577,11 @@ total is the sum of the printed PACKED2 values.
 The COMPP3 field is the result of a COMPUTE. The printed total, 1420.767, is calculated from
 the total sum of PACKED2 (5683.07 / 4).
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 529
+Rounding in Calculations and Conversions
 
-Rounding in Calculations and Conversions
 
-530
-
-Legal and Third-Party Notices
+Legal and Third-Party Notices
 
 SOME TIBCO SOFTWARE EMBEDS OR BUNDLES OTHER TIBCO SOFTWARE. USE OF SUCH
 EMBEDDED OR BUNDLED TIBCO SOFTWARE IS SOLELY TO ENABLE THE FUNCTIONALITY (OR
@@ -657,9 +627,8 @@ BE INCORPORATED IN NEW EDITIONS OF THIS DOCUMENT. TIBCO SOFTWARE INC. MAY MAKE
 IMPROVEMENTS AND/OR CHANGES IN THE PRODUCT(S) AND/OR THE PROGRAM(S)
 DESCRIBED IN THIS DOCUMENT AT ANY TIME.
 
- 531
 
-THE CONTENTS OF THIS DOCUMENT MAY BE MODIFIED AND/OR QUALIFIED, DIRECTLY OR
+THE CONTENTS OF THIS DOCUMENT MAY BE MODIFIED AND/OR QUALIFIED, DIRECTLY OR
 INDIRECTLY, BY OTHER DOCUMENTATION WHICH ACCOMPANIES THIS SOFTWARE, INCLUDING
 BUT NOT LIMITED TO ANY RELEASE NOTES AND "READ ME" FILES.
 
@@ -668,9 +637,8 @@ refer to TIBCO's Virtual Patent Marking document (https://www.tibco.com/patents)
 
 Copyright © 2021. TIBCO Software Inc. All Rights Reserved.
 
-532
 
-Index
+Index
 
 ? FILE command 462
 
@@ -778,11 +746,8 @@ B
 
 base dates 150
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 533
-
-Index
+Index
 
 blank lines between declarations 27, 28
 
@@ -904,7 +869,7 @@ rounding 528
 
 COMPUTEs in Master File 204
 
-Index
+Index
 
 concatenated data sources 458
 
@@ -1024,11 +989,8 @@ data sources 17, 31, 471
 
 access control 405, 418
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 535
-
-Index
+Index
 
 data sources 17, 31, 471
 
@@ -1150,9 +1112,8 @@ decimal precision floating-point 119
 
 database rotation 96, 98
 
-536
 
-Index
+Index
 
 database structure 73
 
@@ -1274,11 +1235,8 @@ security privileges 409
 
 DBATABLE 422
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 537
-
-Index
+Index
 
 DBATABLE procedure 422
 
@@ -1400,9 +1358,8 @@ numeric display options 121, 125
 
 packed-decimal 120
 
-538
 
-display formats for fields 113, 114, 170, 173,
+display formats for fields 113, 114, 170, 173,
 
 dynamic keyed multiple (DKM) segments 362,
 
@@ -1520,11 +1477,8 @@ extract files 401
 
 CHECK FILE command and 395, 401–404
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 539
-
-Index
+Index
 
 extract files 401
 
@@ -1646,7 +1600,7 @@ filler fields 69, 232
 
 filter in a Master File 208
 
-Index
+Index
 
 filters 434
 
@@ -1766,11 +1720,8 @@ FYRTHRESH attribute 31
 
 CHECK FILE command and 395, 401, 403
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 541
-
-Index
+Index
 
 G
 
@@ -1888,7 +1839,7 @@ integer data type 115
 
 rounding of values 135
 
-integer fields 520
+integer fields 520
 
 rounding 519, 520
 
@@ -2004,11 +1955,8 @@ keyed through linkage unique (KLU) segments
 
 356–358, 360, 362, 363
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 543
-
-Index
+Index
 
 keyed unique (KU) segments 350, 352, 353
 
@@ -2126,9 +2074,8 @@ data sources 32, 33
 
 declarations 27
 
-544
 
-Master Files 18, 19, 26, 178, 181, 405, 416,
+Master Files 18, 19, 26, 178, 181, 405, 416,
 
 MDI (Multi-Dimensional Index) 333, 346
 
@@ -2250,11 +2197,8 @@ Multi-Dimensional Index (MDI) 333, 346, 470
 
 building 338
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 545
-
-Index
+Index
 
 Multi-Dimensional Index (MDI) 333, 346, 470
 
@@ -2372,9 +2316,8 @@ Nucleus data sources 35
 
 null values 176–178
 
-546
 
-Index
+Index
 
 numbers 519
 
@@ -2492,11 +2435,8 @@ Open M/SQL data sources 35
 
 399, 401
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 547
-
-Index
+Index
 
 pointer chains 460, 462
 
@@ -2616,7 +2556,7 @@ relating segments 71, 80, 95
 
 many-to-many relationships 86, 88
 
-Index
+Index
 
 relating segments 71, 80, 95
 
@@ -2736,11 +2676,8 @@ ITEMS 493, 494
 
 JOBFILE 474, 475
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 549
-
-Index
+Index
 
 sample data sources 471
 
@@ -2862,7 +2799,7 @@ free-format 236, 237
 
 generalized record types 267–269
 
-Index
+Index
 
 sequential data sources 33, 231, 232, 235, 236,
 
@@ -2984,11 +2921,8 @@ using with XFOCUS data source 295
 
 VSAM and ISAM 238
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 551
-
-Index
+Index
 
 SUFFIX DFIX 282, 285
 
@@ -3102,9 +3036,8 @@ validating Master Files 29, 395–397
 
 VALUE option to RESTRICT attribute 417, 422,
 
-423
 
-values 135, 422
+values 135, 422
 
 VSAM data sources 33, 231
 
@@ -3218,14 +3151,10 @@ Year 2000 attributes in Master Files 31, 103
 
 CHECK FILE command and 401, 403
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 553
-
-Index
+Index
 
 YRTHRESH attribute 31, 103
 
 CHECK FILE command and 395, 401, 403
 
-554

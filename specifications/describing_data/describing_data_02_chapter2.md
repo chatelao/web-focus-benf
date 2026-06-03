@@ -1,5 +1,3 @@
-Chapter2
-
 Identifying a Data Source
 
 In order to interpret data, your application needs to know the name you are using to
@@ -46,11 +44,8 @@ source. See Describing a FOCUS Data Source on page 293.
 DATASET, which identifies the physical file name if your data source has a non-standard
 name.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 31
-
-Specifying a Data Source Name: FILENAME
+Specifying a Data Source Name: FILENAME
 
 You can identify a Master File profile (MFD_PROFILE) procedure to run during Master File
 processing. For more information, see Creating and Using a Master File Profile on page 46.
@@ -104,9 +99,6 @@ The SUFFIX attribute identifies the type of data source you are using. For examp
 source or a FOCUS data source. Based on the value of SUFFIX, the appropriate data adapter is
 used to access the data source.
 
-32
-
-2. Identifying a Data Source
 
 The SUFFIX attribute is required for most types of data sources. It is optional for a fixed-format
 sequential data source. However, if you refer to a fixed-format sequential data source in a JOIN
@@ -166,11 +158,8 @@ DATACOM
 
 IDMSR
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 33
-
-Identifying a Data Source Type: SUFFIX
+Identifying a Data Source Type: SUFFIX
 
 Data Source Type
 
@@ -251,13 +240,11 @@ SQLIAX
 
 INFOMAN
 
-34
 
-Data Source Type
+Data Source Type
 
 SUFFIX Value
 
-2. Identifying a Data Source
 
 Informix
 
@@ -335,11 +322,8 @@ SQLRED
 
 RMS
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 35
-
-Specifying a Code Page in a Master File
+Specifying a Code Page in a Master File
 
 Data Source Type
 
@@ -411,9 +395,6 @@ How to Specify a Code Page for a Master File
 
 CODEPAGE = codepage
 
-36
-
-2. Identifying a Data Source
 
 where:
 
@@ -473,11 +454,8 @@ IOTYPE
 
 STREAM
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 37
-
-Providing Descriptive Information for a Data Source: REMARKS
+Providing Descriptive Information for a Data Source: REMARKS
 
 FORMAT
 
@@ -545,9 +523,6 @@ Providing Descriptive Information for an Oracle Table
 The following example shows the data source declaration for the Oracle table ORDERS. The
 data source declaration includes descriptive information about the table.
 
-38
-
-2. Identifying a Data Source
 
 FILENAME=ORDERS, SUFFIX=SQLORA,
 REMARKS='This Oracle table tracks daily, weekly, and monthly orders.' ,$
@@ -595,11 +570,8 @@ An explicit allocation of a user overrides the DATASET attribute if you first is
 allocation command and then issue a CHECK FILE command to clear the previous DATASET
 allocation.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 39
-
-Specifying a Physical File Name: DATASET
+Specifying a Physical File Name: DATASET
 
 The USE command for FOCUS data sources overrides DATASET attributes and explicit
 allocations.
@@ -648,16 +620,14 @@ sinkname
 Indicates that the data source is located on the FOCUS Database Server. This attribute is
 valid only for FOCUS or XFOCUS data sources.
 
-40
 
-Example:
+Example:
 
 Allocating a FOCUS Data Source Using the DATASET Attribute
 
 The following example illustrates how to allocate a FOCUS data source using the DATASET
 attribute.
 
-2. Identifying a Data Source
 
 For z/OS,
 
@@ -698,11 +668,8 @@ SEGNAME=CARREC,SEGTYPE=S1,PARENT=COMP
 .
 .
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 41
-
-Specifying a Physical File Name: DATASET
+Specifying a Physical File Name: DATASET
 
 For OpenVMS,
 
@@ -750,9 +717,6 @@ SEGNAME=CARREC,SEGTYPE=S1,PARENT=COMP
 .
 .
 
-42
-
-2. Identifying a Data Source
 
 For Windows,
 
@@ -798,11 +762,8 @@ text data. This parameter provides information on whether there are line break c
 the data source. This distinguishes a text data source from a binary data source. The default is
 binary.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 43
-
-Specifying a Physical File Name: DATASET
+Specifying a Physical File Name: DATASET
 
 Syntax:
 
@@ -861,9 +822,6 @@ FILE=XX,  SUFFIX=FIX,  DATASET='/u22/class/data/filename.ftm'
 
 For a binary data source:
 
-44
-
-2. Identifying a Data Source
 
 FILE=XX,  SUFFIX=FIX,  DATASET='/u22/class/data/filename.ftm   BINARY'
    .
@@ -911,12 +869,8 @@ Note: If a DATASET allocation is in effect, a CHECK FILE command must be issued 
 override it by an explicit allocation command. The CHECK FILE command deallocates the
 allocation created by DATASET.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 45
-
-
-Creating and Using a Master File Profile
+Creating and Using a Master File Profile
 
 Example:
 
@@ -973,9 +927,6 @@ useful for:
 
 Setting the values of global variables defined in the Master File.
 
-46
-
-2. Identifying a Data Source
 
 Creating a lookup file for Master File DEFINE commands or DBA attributes.
 
@@ -1028,11 +979,8 @@ specified in any of the Master Files involved in the request will be executed pr
 request. The profiles will execute in the reverse of their order in the request (the profile for
 the Master File mentioned last in the request executes first).
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 47
-
-Creating and Using a Master File Profile
+Creating and Using a Master File Profile
 
 The MFD_PROFILE is not executed as a result of the MODIFY, MAINTAIN, or -READFILE
 commands.
@@ -1080,9 +1028,6 @@ MFD_PROFILE request against same Master as original request END
 -SET &&COUNTER=2;
 -DONE
 
-48
-
-2. Identifying a Data Source
 
 The first time the MFD_PROFILE is invoked, &&COUNTER is set to 1, so the part of the
 MFD_PROFILE request that references the same Master File is executed, and &&COUNTER
@@ -1123,11 +1068,8 @@ based on the values in the JOBS lookup file.
 Has DBA restrictions. For user HR3, the VALUE clause does a lookup of values in the JOBS
 lookup file.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 49
-
-Creating and Using a Master File Profile
+Creating and Using a Master File Profile
 
 The edited EMPDATA Master File is
 
@@ -1179,9 +1121,6 @@ the JOBS file created by the MFD_PROFILE as a lookup table:
 
 FILEDEF JOBS DISK jobs.ftm
 
-50
-
-2. Identifying a Data Source
 
 -SET &PASS = 'HR3';
 SET PASS = &PASS
@@ -1205,11 +1144,8 @@ On the output, the column title for the PIN field is the value of the &&Emptitle
 the MFD_PROFILE procedure, and the JOBS file created by the profile was used in limiting the
 report output to Part Time employees, which are the only ones user HR3 is allowed to see:
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 51
-
-Creating and Using a Master File Profile
+Creating and Using a Master File Profile
 
 Example:
 
@@ -1259,9 +1195,6 @@ segment.
 
 HR2 can see everything in the EMPDATA segment.
 
-52
-
-2. Identifying a Data Source
 
 The DDEMP2 profile procedure:
 
@@ -1308,11 +1241,8 @@ DYNAM SECURITY DA USER1.SECURITY.DATA SHR REU
 -SET &NAME = ' ';
 -SET &VALUE = ' ';
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 53
-
-Creating and Using a Master File Profile
+Creating and Using a Master File Profile
 
 -* Establish the loop for each record of the security.data file
 -SET &DONE =  N ;
@@ -1364,9 +1294,6 @@ USER=HR1,   ACCESS=W, RESTRICT=SEGMENT, NAME=EMPDATA  ,$
 USER=HR2,   ACCESS=R, RESTRICT=VALUE, NAME=EMPDATA,
   VALUE = SALARY GT 0 ,$
 
-54
-
-2. Identifying a Data Source
 
 The following request prints the PIN, SALARY, TITLE, and DEPT fields from EMPDATA:
 
@@ -1389,11 +1316,8 @@ Running the request by first issuing the SET PASS=USER2 command produces the fol
 report in which only the SALES and MARKETING departments display because of the VALUE
 restriction for the DEPT field:
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 55
-
-Creating and Using a Master File Profile
+Creating and Using a Master File Profile
 
 Running the request by first issuing the SET PASS=HR1 command produces the following
 report in which only the salaries between 20000 and 35000 display because of the VALUE
@@ -1427,9 +1351,6 @@ correct values, it will insert the appropriate DBA rule into the Master File.
 
 Note: You can use the system variable &FOCSECUSER instead of the global variable &&UID.
 
-56
-
-2. Identifying a Data Source
 
 FILENAME=EMPLOYEE, SUFFIX=FOC, MFD_PROFILE=DBAEMP3,$
 VARIABLE NAME=&&UID, USAGE=A8 , $
@@ -1486,11 +1407,8 @@ BY DEPARTMENT
 ON TABLE SET PAGE NOPAGE
 END
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 57
-
-Storing Localized Metadata in Language Files
+Storing Localized Metadata in Language Files
 
 Running the request when SALLY is the connected user produces a report of employees whose
 salaries are less than $20,000:
@@ -1542,9 +1460,6 @@ application Master Files into specially formatted language translation files for
 you need. Once you have the contents of these language files translated, your users can run
 these applications in the language they select.
 
-58
-
-2. Identifying a Data Source
 
 LNGPREP does two things. It extracts attribute values from a Master File into language files,
 and it inserts or updates the TRANS_FILE attribute in the Master File with a value identifying
@@ -1586,11 +1501,8 @@ The base language file (prefixeng.lng) should never be hand edited. All other ln
 hand edited by translators, to translate the string values from the base language to the
 appropriate language.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 59
-
-Storing Localized Metadata in Language Files
+Storing Localized Metadata in Language Files
 
 Translating Applications into English
 
@@ -1636,9 +1548,6 @@ On each subsequent run, LNGPREP will check for updates to the list of related Ma
 and attribute values and update the files as needed. Translators will then have to translate any
 attribute values added to the language files.
 
-60
-
-2. Identifying a Data Source
 
 Reference: LNGPREP Best Practice
 
@@ -1667,11 +1576,8 @@ Prefix
 
 Is the prefix value for the translation files for the selected synonym.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 61
-
-Storing Localized Metadata in Language Files
+Storing Localized Metadata in Language Files
 
 Languages File
 
@@ -1731,9 +1637,6 @@ Issue the following LNGPREP command:
 
 LNGPREP FILE weather/forecast LNGAPP xlate LNGPREFIX tq_ LNGFILE  xlate/lnglist
 
-62
-
-2. Identifying a Data Source
 
 Alternately, you can right-click the forecast synonym, point to Metadata Management, and
 select Prepare Translation Files. The Set Translation File for weather/forecast.mas page opens,
@@ -1753,10 +1656,6 @@ TRANS_FILE= xlate/tq_
 
 Translators then have to translate the values in xlate/tq_fre.lng and xlate/tq_spa.lng.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 63
+Storing Localized Metadata in Language Files
 
-Storing Localized Metadata in Language Files
-
-64
