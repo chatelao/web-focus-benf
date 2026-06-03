@@ -78,7 +78,8 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
       - [x] 3.1.4.3.3 WHEN clause (Dialogue Manager filtering).
     - [ ] 3.1.4.4 Formatting:
       - [x] 3.1.4.4.1 HEADING and FOOTING.
-      - [ ] 3.1.4.4.2 ON ... SUBHEAD/SUBFOOT.
+      - [x] 3.1.4.4.2 ON ... SUBHEAD/SUBFOOT.
+      - [x] 3.1.4.4.3 ON TABLE SUBHEAD/SUBFOOT.
     - [ ] 3.1.4.5 Calculations:
       - [x] 3.1.4.5.1 COMPUTE command.
       - [ ] 3.1.4.5.2 RECAP command and assignments.

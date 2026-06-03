@@ -575,6 +575,54 @@ public class WebFocusReportASGBuilderTest {
         assertEquals("USA", ((Literal) op.right()).value());
     }
 
+    @Test
+    public void testOnTableCommands() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // ON TABLE SUBHEAD
+        WebFocusReportParser parser = createParser("ON TABLE SUBHEAD \"Report Header\"");
+        OnCommand onTable = (OnCommand) builder.visit(parser.on_command());
+        assertEquals("TABLE", onTable.target());
+        assertEquals(1, onTable.actions().size());
+        assertTrue(onTable.actions().get(0) instanceof Subhead);
+        Subhead subhead = (Subhead) onTable.actions().get(0);
+        assertEquals("Report Header", subhead.text());
+
+        // ON TABLE COLUMN-TOTAL
+        parser = createParser("ON TABLE COLUMN-TOTAL");
+        onTable = (OnCommand) builder.visit(parser.on_command());
+        assertTrue(onTable.actions().get(0) instanceof SetCommand);
+        SetCommand setCmd = (SetCommand) onTable.actions().get(0);
+        assertEquals("COLUMN-TOTAL", setCmd.parameter());
+
+        // ON TABLE HOLD
+        parser = createParser("ON TABLE HOLD AS MYFILE FORMAT FOCUS");
+        onTable = (OnCommand) builder.visit(parser.on_command());
+        assertTrue(onTable.actions().get(0) instanceof OutputCommand);
+        OutputCommand output = (OutputCommand) onTable.actions().get(0);
+        assertEquals("HOLD", output.outputType());
+        assertEquals("MYFILE", output.filename());
+        assertEquals("FOCUS", output.format());
+    }
+
+    @Test
+    public void testOnFieldCommands() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+
+        // ON COUNTRY SUBFOOT
+        WebFocusReportParser parser = createParser("ON COUNTRY SUBFOOT \"End of Country\"");
+        OnCommand onField = (OnCommand) builder.visit(parser.on_command());
+        assertEquals("COUNTRY", onField.target());
+        assertTrue(onField.actions().get(0) instanceof Subfoot);
+        Subfoot subfoot = (Subfoot) onField.actions().get(0);
+        assertEquals("End of Country", subfoot.text());
+
+        // ON COUNTRY PAGE-BREAK
+        parser = createParser("ON COUNTRY PAGE-BREAK");
+        onField = (OnCommand) builder.visit(parser.on_command());
+        assertTrue(onField.actions().get(0) instanceof PageBreak);
+    }
+
     private WebFocusReportParser createParser(String input) {
         WebFocusReportLexer lexer = new WebFocusReportLexer(CharStreams.fromString(input));
         return new WebFocusReportParser(new CommonTokenStream(lexer));

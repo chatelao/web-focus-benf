@@ -120,6 +120,104 @@ public class WebFocusReportASGBuilder extends WebFocusReportBaseVisitor<Object> 
     }
 
     @Override
+    public Object visitOn_command(WebFocusReportParser.On_commandContext ctx) {
+        String target;
+        List<Command> actions = new ArrayList<>();
+        if (ctx.TABLE() != null) {
+            target = "TABLE";
+            Object result = visit(ctx.on_table_options());
+            if (result instanceof List<?>) {
+                actions.addAll((List<Command>) result);
+            } else if (result instanceof Command) {
+                actions.add((Command) result);
+            }
+        } else {
+            target = ctx.qualified_name().getText();
+            Object result = visit(ctx.on_field_options());
+            if (result instanceof List<?>) {
+                actions.addAll((List<Command>) result);
+            } else if (result instanceof Command) {
+                actions.add((Command) result);
+            }
+        }
+        return new OnCommand(target, actions);
+    }
+
+    @Override
+    public Object visitOn_table_options(WebFocusReportParser.On_table_optionsContext ctx) {
+        if (ctx.SUBHEAD() != null || ctx.SUBFOOT() != null) {
+            boolean centered = ctx.CENTER() != null;
+            String text = ctx.STRING().stream()
+                    .map(s -> s.getText().substring(1, s.getText().length() - 1))
+                    .collect(Collectors.joining(" "));
+            return ctx.SUBHEAD() != null ? new Subhead(text, centered) : new Subfoot(text, centered);
+        }
+        if (ctx.COLUMN_TOTAL_KW() != null) {
+            return new SetCommand("COLUMN-TOTAL", "ON");
+        }
+        if (ctx.ROW_TOTAL_KW() != null) {
+            return new SetCommand("ROW-TOTAL", "ON");
+        }
+        if (ctx.ACROSS_TOTAL() != null) {
+            return new SetCommand("ACROSS-TOTAL", "ON");
+        }
+        if (ctx.output_command() != null) {
+            return visit(ctx.output_command());
+        }
+        if (ctx.summarize_command() != null) {
+            return visit(ctx.summarize_command());
+        }
+        // TODO: recap_command, merge_command
+        if (ctx.set_command() != null) {
+            return visit(ctx.set_command());
+        }
+        // TODO: STYLE blocks
+        return null;
+    }
+
+    @Override
+    public Object visitOn_field_options(WebFocusReportParser.On_field_optionsContext ctx) {
+        if (ctx.SUBHEAD() != null || ctx.SUBFOOT() != null) {
+            boolean centered = ctx.CENTER() != null;
+            String text = ctx.STRING().stream()
+                    .map(s -> s.getText().substring(1, s.getText().length() - 1))
+                    .collect(Collectors.joining(" "));
+            return ctx.SUBHEAD() != null ? new Subhead(text, centered) : new Subfoot(text, centered);
+        }
+        if (ctx.summarize_command() != null) {
+            return visit(ctx.summarize_command());
+        }
+        // TODO: recap_command
+        if (ctx.PAGE_BREAK() != null) {
+            return new PageBreak();
+        }
+        return null;
+    }
+
+    @Override
+    public Object visitOutput_command(WebFocusReportParser.Output_commandContext ctx) {
+        String outputType = ctx.getChild(0).getText().toUpperCase();
+        String filename = ctx.qualified_name() != null ? ctx.qualified_name().getText() : null;
+        String format = null;
+        if (ctx.FORMAT() != null) {
+            if (ctx.NAME() != null) format = ctx.NAME().getText();
+            else if (ctx.verb() != null) format = ctx.verb().getText().toUpperCase();
+        }
+        String openClose = null;
+        if (ctx.OPEN() != null) openClose = "OPEN";
+        else if (ctx.CLOSE() != null) openClose = "CLOSE";
+
+        return new OutputCommand(outputType, filename, format, openClose);
+    }
+
+    @Override
+    public Object visitSet_command(WebFocusReportParser.Set_commandContext ctx) {
+        String parameter = ctx.getChild(1).getText().toUpperCase();
+        String value = ctx.getChild(2).getText().toUpperCase();
+        return new SetCommand(parameter, value);
+    }
+
+    @Override
     public Object visitRequest(WebFocusReportParser.RequestContext ctx) {
         String filename = (String) visit(ctx.table_file());
         List<Command> components = new ArrayList<>();

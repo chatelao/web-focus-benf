@@ -7,9 +7,9 @@ import java.util.List;
  */
 public record OnCommand(
     String target,
-    List<String> actions
+    List<Command> actions
 ) implements Command {
-    public OnCommand(String target, List<String> actions) {
+    public OnCommand(String target, List<Command> actions) {
         this.target = target;
         this.actions = actions != null ? List.copyOf(actions) : List.of();
     }
