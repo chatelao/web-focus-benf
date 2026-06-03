@@ -75,7 +75,7 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
     - [ ] 3.1.4.3 Filter Commands:
       - [x] 3.1.4.3.1 WHERE clause and relational expressions.
       - [x] 3.1.4.3.2 WHERE TOTAL (HAVING) clause.
-      - [ ] 3.1.4.3.3 WHEN clause (Dialogue Manager filtering).
+      - [x] 3.1.4.3.3 WHEN clause (Dialogue Manager filtering).
     - [ ] 3.1.4.4 Formatting (HEADING, FOOTING, ON ... SUBHEAD/SUBFOOT).
     - [ ] 3.1.4.5 Calculations (COMPUTE, RECAP).
     - [ ] 3.1.4.6 Summarization (SUBTOTAL, SUMMARIZE).

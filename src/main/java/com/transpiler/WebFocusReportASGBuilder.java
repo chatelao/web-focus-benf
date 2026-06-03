@@ -37,6 +37,12 @@ public class WebFocusReportASGBuilder extends WebFocusReportBaseVisitor<Object> 
     }
 
     @Override
+    public Object visitWhen_command(WebFocusReportParser.When_commandContext ctx) {
+        Expression condition = (Expression) visit(ctx.dm_logical_expression());
+        return new WhenCommand(condition);
+    }
+
+    @Override
     public Object visitWhere_command(WebFocusReportParser.Where_commandContext ctx) {
         boolean isTotal = ctx.TOTAL() != null;
         Expression condition = (Expression) visit(ctx.dm_logical_expression());

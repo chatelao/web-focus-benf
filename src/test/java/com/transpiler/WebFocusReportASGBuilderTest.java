@@ -420,6 +420,18 @@ public class WebFocusReportASGBuilderTest {
     }
 
     @Test
+    public void testWhenCommand() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+        WebFocusReportParser parser = createParser("WHEN COUNTRY EQ 'USA';");
+        WhenCommand when = (WhenCommand) builder.visit(parser.when_command());
+        assertTrue(when.condition() instanceof BinaryOperation);
+        BinaryOperation op = (BinaryOperation) when.condition();
+        assertEquals("EQ", op.operator());
+        assertEquals("COUNTRY", ((Identifier) op.left()).name());
+        assertEquals("USA", ((Literal) op.right()).value());
+    }
+
+    @Test
     public void testWhereCommand() {
         WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
 
