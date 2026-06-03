@@ -163,9 +163,9 @@ class ASGParityTest {
         assertEquals("End of Report", footing.text());
         assertFalse(footing.centered());
 
-        OnCommand onTable = new OnCommand("TABLE", List.of("COLUMN-TOTAL"));
+        OnCommand onTable = new OnCommand("TABLE", List.of(new SetCommand("COLUMN-TOTAL", "ON")));
         assertEquals("TABLE", onTable.target());
-        assertEquals("COLUMN-TOTAL", onTable.actions().get(0));
+        assertEquals("COLUMN-TOTAL", ((SetCommand)onTable.actions().get(0)).parameter());
 
         ComputeCommand compute = new ComputeCommand("BONUS", new BinaryOperation(new Identifier("SALARY"), "*", new Literal(0.1)), "D12.2");
         assertEquals("BONUS", compute.name());
