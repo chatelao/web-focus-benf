@@ -49,7 +49,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1697
 
-Specifying Font Format in a Report
+Specifying Font Format in a Report
 
 pts
 
@@ -109,7 +109,7 @@ Corresponding HTML Font Size
 
 1698
 
-23. Formatting Report Data
+23. Formatting Report Data
 
 Size in Points
 
@@ -174,7 +174,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1699
 
-Specifying Font Format in a Report
+Specifying Font Format in a Report
 
 The output is:
 
@@ -202,7 +202,7 @@ The output is:
 
 1700
 
-23. Formatting Report Data
+23. Formatting Report Data
 
 Syntax:
 
@@ -263,7 +263,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1701
 
-Specifying Font Format in a Report
+Specifying Font Format in a Report
 
 AQUAMARINE
 
@@ -351,7 +351,7 @@ SILVER
 
 1702
 
-23. Formatting Report Data
+23. Formatting Report Data
 
 GREEN YELLOW
 
@@ -430,7 +430,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1703
 
-Specifying Font Format in a Report
+Specifying Font Format in a Report
 
 subtype
 
@@ -489,7 +489,7 @@ Specifies the default monospaced font of the web browser.
 
 1704
 
-23. Formatting Report Data
+23. Formatting Report Data
 
 Example:
 
@@ -527,7 +527,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1705
 
-Specifying Background Color in a Report
+Specifying Background Color in a Report
 
 Syntax:
 
@@ -578,7 +578,7 @@ pound sign (#).
 
 1706
 
-23. Formatting Report Data
+23. Formatting Report Data
 
 Example:
 
@@ -608,7 +608,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1707
 
-Specifying Background Color in a Report
+Specifying Background Color in a Report
 
 Syntax:
 
@@ -671,7 +671,7 @@ END
 
 1708
 
-The output is:
+The output is:
 
 23. Formatting Report Data
 
@@ -701,7 +701,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1709
 
-Alternating Background Color By Wrapped Line
+Alternating Background Color By Wrapped Line
 
 Example:
 
@@ -731,7 +731,7 @@ END
 
 1710
 
-The output is:
+The output is:
 
 23. Formatting Report Data
 
@@ -739,7 +739,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1711
 
-Specifying Data Format in a Report
+Specifying Data Format in a Report
 
 With the SET ALTBACKPERLINE=ON command added to the request, the alternating
 background color is applied by line, as shown in the following output.
@@ -757,7 +757,7 @@ data.
 
 1712
 
-23. Formatting Report Data
+23. Formatting Report Data
 
 Changing the Format of Values in a Report Column
 
@@ -809,7 +809,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1713
 
-Specifying Data Format in a Report
+Specifying Data Format in a Report
 
 The output is:
 
@@ -867,7 +867,7 @@ line.
 
 1714
 
-23. Formatting Report Data
+23. Formatting Report Data
 
 You may specify justification for display fields, BY fields, and ACROSS fields. For ACROSS
 fields, data values, not column titles, are justified as specified.
@@ -921,7 +921,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1715
 
-Specifying Data Format in a Report
+Specifying Data Format in a Report
 
 SET COMPMISS = OFF
 TABLE FILE SALES
@@ -974,7 +974,7 @@ STORE_CODE  RETURNS     RETURNS
 
 1716
 
-23. Formatting Report Data
+23. Formatting Report Data
 
 Reference: Usage Notes for SET COMPMISS
 
@@ -1033,7 +1033,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1717
 
-Specifying Data Format in a Report
+Specifying Data Format in a Report
 
 Example:
 
@@ -1165,7 +1165,7 @@ report.
 
 1718
 
-23. Formatting Report Data
+23. Formatting Report Data
 
 Example:
 
@@ -1201,7 +1201,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1719
 
-Positioning Data in a Report
+Positioning Data in a Report
 
 By default, WRAP is set to ON for HTML output, allowing each individual browser to define the
 width of each column in the report. For PDF, PS, DHTML, PPT, and PPTX output, WRAP is set
@@ -1247,7 +1247,7 @@ them. Each designated value will wrap within the defined ACROSS group.
 
 1720
 
-Syntax:
+Syntax:
 
 How to Control Wrapping of Report Data
 
@@ -1298,7 +1298,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1721
 
-Positioning Data in a Report
+Positioning Data in a Report
 
 Example:
 
@@ -1340,7 +1340,7 @@ END
 
 1722
 
-The output is:
+The output is:
 
 23. Formatting Report Data
 
@@ -1364,7 +1364,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1723
 
-Positioning Data in a Report
+Positioning Data in a Report
 
 The partial output is shown in the following image.
 
@@ -1383,7 +1383,7 @@ END
 
 1724
 
-The partial output shows that the VENDOR_NAME column now wraps. Notice that turning WRAP
+The partial output shows that the VENDOR_NAME column now wraps. Notice that turning WRAP
 ON causes the OVER value, not the OVER TITLE, to wrap:
 
 23. Formatting Report Data
@@ -1418,7 +1418,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1725
 
-Positioning Data in a Report
+Positioning Data in a Report
 
 An
 
@@ -1463,7 +1463,7 @@ price columns under them.
 
 1726
 
-The following version of the request wraps the ACROSS values (TYPE=ACROSSVALUE,
+The following version of the request wraps the ACROSS values (TYPE=ACROSSVALUE,
 WRAP=ON ,$):
 
 23. Formatting Report Data
@@ -1503,7 +1503,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1727
 
-Positioning Data in a Report
+Positioning Data in a Report
 
 Example:
 
@@ -1541,7 +1541,7 @@ END
 
 1728
 
-23. Formatting Report Data
+23. Formatting Report Data
 
 On the report output, the Package Type and Size have been placed over the vendor name. The
 page heading has the corresponding titles. In the heading, the titles Package and Size have
@@ -1563,7 +1563,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1729
 
-Positioning Data in a Report
+Positioning Data in a Report
 
 Example:
 
@@ -1598,7 +1598,7 @@ END
 
 1730
 
-The output shows that the titles and data align properly.
+The output shows that the titles and data align properly.
 
 23. Formatting Report Data
 
@@ -1625,7 +1625,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1731
 
-Positioning Data in a Report
+Positioning Data in a Report
 
 n
 
@@ -1656,7 +1656,7 @@ END
 
 1732
 
-With WRAPGAP=OFF, each wrapped line is placed on the next report line:
+With WRAPGAP=OFF, each wrapped line is placed on the next report line:
 
 23. Formatting Report Data
 
@@ -1664,7 +1664,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1733
 
-Positioning Data in a Report
+Positioning Data in a Report
 
 With WRAPGAP=ON, the wrapped lines are placed directly under each other:
 
@@ -1685,7 +1685,7 @@ using /R /L and /C, see Using Headings, Footings, Titles, and Labels on page 151
 
 1734
 
-Syntax:
+Syntax:
 
 How to Justify a Report Column
 
@@ -1748,7 +1748,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1735
 
-Positioning Data in a Report
+Positioning Data in a Report
 
 The output is:
 
@@ -1779,7 +1779,7 @@ column width may not be large enough to hold the value (indicated by asterisks i
 
 1736
 
-23. Formatting Report Data
+23. Formatting Report Data
 
 You can apply a field-based format to any type of field. However, the new format must be
 compatible with the original format:
@@ -1829,7 +1829,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1737
 
-Positioning Data in a Report
+Positioning Data in a Report
 
 After the format field is defined, you can apply it in a report request:
 
@@ -1886,7 +1886,7 @@ W GERMANY   88,190.00    54,563.00
 1738
 
 
-23. Formatting Report Data
+23. Formatting Report Data
 
 Displaying Multi-Line An and AnV Fields
 
@@ -1928,7 +1928,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1739
 
-Positioning Data in a Report
+Positioning Data in a Report
 
 Example:
 
@@ -1967,7 +1967,7 @@ The following report request is for an EBCDIC environment:
 
 1740
 
-23. Formatting Report Data
+23. Formatting Report Data
 
 DEFINE FILE EMPLOYEE
 ANLB/A40 ='THIS IS AN An FIELD;WITH A LINE BREAK.';
@@ -2011,6 +2011,6 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1741
 
-Positioning Data in a Report
+Positioning Data in a Report
 
 1742

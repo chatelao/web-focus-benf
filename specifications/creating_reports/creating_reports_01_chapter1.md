@@ -46,7 +46,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  29
 
-Report Types
+Report Types
 
 Indexed data sources, such as ISAM and VSAM.
 
@@ -91,7 +91,7 @@ these concepts. You can display these reports in formats such as HTML, Excel®, 
 
 30
 
-1. Creating Reports Overview
+1. Creating Reports Overview
 
 Financial reports. Specifically designed to handle the task of creating, calculating, and
 presenting financially oriented data, such as balance sheets, consolidations, and budgets.
@@ -137,7 +137,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  31
 
-Developing Your Report Request
+Developing Your Report Request
 
 Drill Through reports. Allow users to create a PDF document that contains a summary
 report plus a detail report, where the detail report contains all the detail data for
@@ -184,7 +184,7 @@ fundamentally tied to how you want to use those fields in your report.
 
 32
 
-1. Creating Reports Overview
+1. Creating Reports Overview
 
 Displaying data. You can display data in your report by listing all the records for a field
 (detailed presentation), or by totaling the records for a field (summary presentation). You
@@ -236,7 +236,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  33
 
-Developing Your Report Request
+Developing Your Report Request
 
 Joining data sources. You can join two or more data sources to create a larger integrated
 data structure from which you can report in a single request.
@@ -286,7 +286,7 @@ command.
 
 34
 
-1. Creating Reports Overview
+1. Creating Reports Overview
 
 If you plan to issue consecutive report requests against the same data source during one
 session, you have the option of using the RUN command. RUN keeps the TABLE facility and
@@ -334,7 +334,7 @@ Creating Reports With TIBCO® WebFOCUS Language
  35
 
 
-Developing Your Report Request
+Developing Your Report Request
 
 The output is:
 
@@ -376,7 +376,7 @@ columns, and recalculates the Percent column.
 
 36
 
-Customizing a Report
+Customizing a Report
 
 1. Creating Reports Overview
 
@@ -418,7 +418,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  37
 
-Selecting a Report Output Destination
+Selecting a Report Output Destination
 
 Selecting a Report Output Destination
 

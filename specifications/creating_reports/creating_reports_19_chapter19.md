@@ -48,7 +48,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1249
 
-Identifying an Entire Report, Column, or Row
+Identifying an Entire Report, Column, or Row
 
 The following illustrates where the REPORT component and the COLUMN and ACROSSCOLUMN
 attributes appear in a report, and which TYPE values you use to identify them. Although in this
@@ -80,7 +80,7 @@ TYPE=REPORT
 
 1250
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Example:
 
@@ -110,7 +110,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1251
 
-Identifying an Entire Report, Column, or Row
+Identifying an Entire Report, Column, or Row
 
 Syntax:
 
@@ -168,7 +168,7 @@ To select all display fields use C*.
 
 1252
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Identifier
 
@@ -232,7 +232,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1253
 
-Identifying an Entire Report, Column, or Row
+Identifying an Entire Report, Column, or Row
 
 The output is:
 
@@ -267,7 +267,7 @@ END
 
 1254
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 The output is:
 
@@ -310,7 +310,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1255
 
-Identifying an Entire Report, Column, or Row
+Identifying an Entire Report, Column, or Row
 
 The output is:
 
@@ -348,7 +348,7 @@ report commands. Use the field name to identify the sort column.
 
 1256
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Example:
 
@@ -373,7 +373,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1257
 
-Identifying Tags for SUBTOTAL and GRANDTOTAL Lines
+Identifying Tags for SUBTOTAL and GRANDTOTAL Lines
 
 Example:
 
@@ -405,7 +405,7 @@ SUBTOTAL syntax.
 
 1258
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 You can define styling for the subtotal and grand total tag separately from the rest of the row.
 Text attributes available for the tag, including font, color, size, and style, can be used to
@@ -462,7 +462,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1259
 
-Identifying Tags for SUBTOTAL and GRANDTOTAL Lines
+Identifying Tags for SUBTOTAL and GRANDTOTAL Lines
 
 drilltype
 
@@ -503,7 +503,7 @@ END
 
 1260
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 The output is:
 
@@ -526,7 +526,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1261
 
-Identifying Data
+Identifying Data
 
 The following illustrates where the DATA and ACROSSVALUE components appear in a report,
 and which TYPE values you use to identify them.
@@ -558,7 +558,7 @@ TYPE = DATA
 
 1262
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Example:
 
@@ -588,7 +588,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1263
 
-Identifying Data
+Identifying Data
 
 Syntax:
 
@@ -630,7 +630,7 @@ The output is:
 
 1264
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Syntax:
 
@@ -681,7 +681,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1265
 
-Identifying Data
+Identifying Data
 
 The output is:
 
@@ -712,7 +712,7 @@ END
 
 1266
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 The following image shows the output with the ACROSS-TOTAL value, Plant Totals, styled in red
 italics.
@@ -739,7 +739,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1267
 
-Identifying Data
+Identifying Data
 
 The following figure shows each component:
 
@@ -771,7 +771,7 @@ example.
 
 1268
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 BY
 
@@ -813,7 +813,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1269
 
-Identifying Data
+Identifying Data
 
 Example:
 
@@ -847,7 +847,7 @@ The output is:
 
 1270
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Example:
 
@@ -895,7 +895,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1271
 
-Identifying Data
+Identifying Data
 
 The output is:
 
@@ -925,7 +925,7 @@ END
 
 1272
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 The output is:
 
@@ -955,7 +955,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1273
 
-Identifying a Heading, Footing, Title, or FML Free Text
+Identifying a Heading, Footing, Title, or FML Free Text
 
 TABLE FILE EMPLOYEE
 SUM GROSS AND DED_AMT
@@ -997,7 +997,7 @@ Specifies a horizontal sort (ACROSS) title.
 
 1274
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 ACROSSVALUE
 
@@ -1054,7 +1054,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1275
 
-Identifying a Heading, Footing, Title, or FML Free Text
+Identifying a Heading, Footing, Title, or FML Free Text
 
 The following image shows the report output.
 
@@ -1077,7 +1077,7 @@ Is an explicit row label.
 
 1276
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Example:
 
@@ -1116,7 +1116,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1277
 
-Identifying a Heading, Footing, Title, or FML Free Text
+Identifying a Heading, Footing, Title, or FML Free Text
 
 A TABLE request can have more than one page heading or footing. For each heading or footing,
 a WHEN clause against the data being retrieved can determine whether the heading or footing
@@ -1151,7 +1151,7 @@ The following output goes with the previous code example:
 
 1278
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Note: Since this request simply illustrates how to identify different types of headings and
 footings, it omits a StyleSheet.
@@ -1205,7 +1205,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1279
 
-Identifying a Heading, Footing, Title, or FML Free Text
+Identifying a Heading, Footing, Title, or FML Free Text
 
 Example:
 
@@ -1235,7 +1235,7 @@ The output is:
 
 1280
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Syntax:
 
@@ -1285,7 +1285,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1281
 
-Identifying a Heading, Footing, Title, or FML Free Text
+Identifying a Heading, Footing, Title, or FML Free Text
 
 The output is:
 
@@ -1316,7 +1316,7 @@ strings and embedded fields in the same heading or footing.
 
 1282
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 item_#
 
@@ -1343,7 +1343,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1283
 
-Identifying a Heading, Footing, Title, or FML Free Text
+Identifying a Heading, Footing, Title, or FML Free Text
 
 Example:
 
@@ -1385,7 +1385,7 @@ page 1277.
 
 1284
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 line_#
 
@@ -1429,7 +1429,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1285
 
-Identifying a Heading, Footing, Title, or FML Free Text
+Identifying a Heading, Footing, Title, or FML Free Text
 
 The output is:
 
@@ -1458,7 +1458,7 @@ StyleSheet declarations include styling elements for the second and third condit
 
 1286
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 DEFINE FILE EMPLOYEE
 GENDER/A1 = DECODE FIRST_NAME(ALFRED 'M' RICHARD 'M' JOHN 'M'
@@ -1508,7 +1508,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1287
 
-Identifying a Page Number, Underline, or Skipped Line
+Identifying a Page Number, Underline, or Skipped Line
 
 The second page of output is for an employee in the MIS department, so the signature line is
 in boldface:
@@ -1537,7 +1537,7 @@ END
 
 1288
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 The following output goes with the previous code example.
 
@@ -1569,7 +1569,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1289
 
-Identifying a Page Number, Underline, or Skipped Line
+Identifying a Page Number, Underline, or Skipped Line
 
 Example:
 
@@ -1601,7 +1601,7 @@ The output is:
 
 1290
 
-19. Identifying a Report Component in a WebFOCUS StyleSheet
+19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Example:
 
@@ -1631,6 +1631,6 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1291
 
-Identifying a Page Number, Underline, or Skipped Line
+Identifying a Page Number, Underline, or Skipped Line
 
 1292

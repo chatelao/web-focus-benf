@@ -41,6 +41,6 @@ Describing Data With TIBCO WebFOCUS® Language
 
  517
 
-Displaying Messages
+Displaying Messages
 
 518

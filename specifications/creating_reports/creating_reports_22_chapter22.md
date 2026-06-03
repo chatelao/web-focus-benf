@@ -69,7 +69,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1517
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 Controlling the Vertical Positioning of a
 Heading or Footing
@@ -104,7 +104,7 @@ every page of the report.
 
 1518
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The following sample report contains sort headings and sort footings, as well as, a page
 heading and page footing for reference.
@@ -139,7 +139,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1519
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 Extending Heading and Footing Code to Multiple Lines in a Report Request
 
@@ -190,7 +190,7 @@ JOIN STORE_CODE IN CENTCOMP TO STORE_CODE IN CENTORD
 
 1520
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 TABLE FILE CENTCOMP
 HEADING
@@ -213,7 +213,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1521
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 The partial output is:
 
@@ -232,7 +232,7 @@ Replaces the default worksheet tab name with the name you specify in an EXL2K re
 
 1522
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The worksheet tab names for an Excel Table of Contents report are the BY field values that
 correspond to the data on the current worksheet. If the user specifies the TITLETEXT keyword
@@ -278,7 +278,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1523
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 Example:
 
@@ -301,7 +301,7 @@ The output is:
 
 1524
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Example:
 
@@ -339,7 +339,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1525
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 Syntax:
 
@@ -400,7 +400,7 @@ Dialogue Manager variables.
 
 1526
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Images. You can include images in a heading or footing.
 
@@ -458,14 +458,14 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1527
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 The output illustrates the placement of a report heading on a multi-page HTML report. The
 report heading is at the top of the first page.
 
 1528
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Subsequent pages do not contain a heading.
 
@@ -475,7 +475,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1529
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 Syntax:
 
@@ -536,7 +536,7 @@ Dialogue Manager variables.
 
 1530
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Images. You can include images in a heading or footing.
 
@@ -595,7 +595,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1531
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 The output illustrates the placement of a report footing on a multi-page HTML report. The
 report footing follows the data on the last page.
@@ -616,7 +616,7 @@ DEPARTMENT).
 
 1532
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Add a page footing to supply information that warrants repetition on each page, such as the
 date of the report, or a reminder that it is confidential. You can also use a page footing to
@@ -674,7 +674,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1533
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 content
 
@@ -731,7 +731,7 @@ must be considered when applying formatting.
 
 1534
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Blank lines
 
@@ -767,7 +767,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1535
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 The second page of data applies to the PRODUCTION department.
 
@@ -816,7 +816,7 @@ Is text for the page footing. You can include multiple lines of text.
 
 1536
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The text must start on a line by itself, following the FOOTING command.
 
@@ -871,7 +871,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1537
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 Example:
 
@@ -897,7 +897,7 @@ END
 
 1538
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The partial output illustrates the placement of page footings on a multi-page HTML report. The
 page footing appears on both pages of the report.
@@ -906,7 +906,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1539
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 Tip: If you do not see the navigation arrows, click the maximize button.
 
@@ -959,7 +959,7 @@ Matrix in the HTML Reporting Features section JavaScript components row.
 
 1540
 
-Reference: Usage Notes for HTMLARCHIVE With HFREEZE
+Reference: Usage Notes for HTMLARCHIVE With HFREEZE
 
 22. Using Headings, Footings, Titles, and Labels
 
@@ -1020,7 +1020,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1541
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 nn[.n]
 
@@ -1072,7 +1072,7 @@ Compound Reports
 
 1542
 
-Reference: Usage Notes for Freezing Areas of AHTML Report Output
+Reference: Usage Notes for Freezing Areas of AHTML Report Output
 
 22. Using Headings, Footings, Titles, and Labels
 
@@ -1124,7 +1124,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1543
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 By default, WebFOCUS generates a blank line before a subheading or subfooting. You can
 eliminate these automatic blank lines by issuing the SET DROPBLNKLINE=ON command.
@@ -1141,7 +1141,7 @@ other heading elements.
 
 1544
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Syntax:
 
@@ -1206,7 +1206,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1545
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 variable
 
@@ -1265,7 +1265,7 @@ Inserts a new page after the sort heading. Column titles appear on every page.
 
 1546
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 You can use NEWPAGE with PDF reports.In HTML reports, blank space is added instead of
 a new page.
@@ -1299,7 +1299,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1547
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 Example:
 
@@ -1327,7 +1327,7 @@ embedded field values.
 
 1548
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Syntax:
 
@@ -1388,7 +1388,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1549
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 content
 
@@ -1446,7 +1446,7 @@ must be considered when applying formatting.
 
 1550
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 WHEN expression
 
@@ -1470,7 +1470,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1551
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 Example:
 
@@ -1496,7 +1496,7 @@ embedded field values.
 
 1552
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Example:
 
@@ -1535,7 +1535,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1553
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 The following report appears.
 
@@ -1563,7 +1563,7 @@ END
 
 1554
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 In the output, the sort footing for Biscotti is suppressed.
 
@@ -1590,14 +1590,14 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1555
 
-Creating Headings and Footings
+Creating Headings and Footings
 
 The sort footing text (for example, "Balance of investments for FRANCE in Euros is
 87,336,971.") replaces the default label for the RECAP value (** EURO 87,336,971).
 
 1556
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Example:
 
@@ -1646,7 +1646,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1557
 
-Including an Element in a Heading or Footing
+Including an Element in a Heading or Footing
 
 A page number. See Including a Page Number in a Heading or Footing on page 1567.
 
@@ -1700,7 +1700,7 @@ alphanumeric field for all values of SET STYLEMODE.
 
 1558
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 <fieldname>
 
@@ -1745,14 +1745,14 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1559
 
-Including an Element in a Heading or Footing
+Including an Element in a Heading or Footing
 
 The output displays the output for a multi-page HTML report. On the first page of output, the
 value of DEPARTMENT in the page heading and footing is MIS.
 
 1560
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 On the second page of output, the value of DEPARTMENT is PRODUCTION.
 
@@ -1783,7 +1783,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1561
 
-Including an Element in a Heading or Footing
+Including an Element in a Heading or Footing
 
 The heading displays the text Difference < 100,000, as shown in the following image.
 
@@ -1815,7 +1815,7 @@ The resulting report displays in a fixed font without colors and other web capab
 
 1562
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Example:
 
@@ -1847,7 +1847,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1563
 
-Including an Element in a Heading or Footing
+Including an Element in a Heading or Footing
 
 The totals appear in the page heading.
 
@@ -1872,7 +1872,7 @@ END
 
 1564
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The prefix operators generate summary data in the page heading.
 
@@ -1922,7 +1922,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1565
 
-Including an Element in a Heading or Footing
+Including an Element in a Heading or Footing
 
 Syntax:
 
@@ -1977,7 +1977,7 @@ END
 
 1566
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The output is:
 
@@ -2031,7 +2031,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1567
 
-Including an Element in a Heading or Footing
+Including an Element in a Heading or Footing
 
 Because a new session is created on the WebFOCUS Reporting Server each time a
 request is submitted, values for global variables are not retained between report
@@ -2090,7 +2090,7 @@ END
 
 1568
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The output is:
 
@@ -2127,7 +2127,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1569
 
-Displaying Syntax Components in Heading and Footing Objects
+Displaying Syntax Components in Heading and Footing Objects
 
 Displaying Syntax Components in Heading and Footing Objects
 
@@ -2154,7 +2154,7 @@ beyond the width of the report or chart container.
 
 1570
 
-Example:
+Example:
 
 Displaying Report Syntax Components
 
@@ -2196,7 +2196,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1571
 
-Repeating Headings and Footings on Panels in PDF Report Output
+Repeating Headings and Footings on Panels in PDF Report Output
 
 The output is shown in the following image.
 
@@ -2222,7 +2222,7 @@ subheadings, or subfootings.
 
 1572
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 HEADPANEL causes borders from the initial page to be replicated on the paneled pages.
 Additional control of subheading and subfooting borders can be gained through the use of
@@ -2280,7 +2280,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1573
 
-Repeating Headings and Footings on Panels in PDF Report Output
+Repeating Headings and Footings on Panels in PDF Report Output
 
 sortcolumn
 
@@ -2335,7 +2335,7 @@ subfooting, but the second panel does not.
 
 1574
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The output for page 1 panel 1 has the heading and subfooting, as shown in the following
 image. Note that with HEADPANEL=OFF, TABPAGENO does not include the panel number.
@@ -2344,14 +2344,14 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1575
 
-Repeating Headings and Footings on Panels in PDF Report Output
+Repeating Headings and Footings on Panels in PDF Report Output
 
 The output for page 1 panel 2 does not have the heading or subfooting, as shown in the
 following image.
 
 1576
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The following output shows panels 1 and 2 if the StyleSheet declaration is changed to set
 HEADPANEL=ON for the entire report (TYPE=REPORT, HEADPANEL=ON ,$). The heading and
@@ -2362,11 +2362,11 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1577
 
-Repeating Headings and Footings on Panels in PDF Report Output
+Repeating Headings and Footings on Panels in PDF Report Output
 
 1578
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Example:
 
@@ -2403,13 +2403,13 @@ Creating Reports With TIBCO® WebFOCUS Language
  1579
 
 
-Repeating Headings and Footings on Panels in PDF Report Output
+Repeating Headings and Footings on Panels in PDF Report Output
 
 Panel 1 displays both the heading and the subfooting, as shown in the following image.
 
 1580
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Panel 2 displays only the subfooting, not the heading, as shown in the following image.
 
@@ -2417,7 +2417,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1581
 
-Repeating Headings and Footings on Panels in PDF Report Output
+Repeating Headings and Footings on Panels in PDF Report Output
 
 Since the page heading is not repeated, if you use the <TABPAGENO system variable to place
 the page number in the heading, it will not display the panel number and will not display on the
@@ -2447,7 +2447,7 @@ END
 1582
 
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The first panel displays the page number in the heading, without the panel number, as shown
 in the following image.
@@ -2456,14 +2456,14 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1583
 
-Repeating Headings and Footings on Panels in PDF Report Output
+Repeating Headings and Footings on Panels in PDF Report Output
 
 The second panel does not display the heading and therefore, does not display the embedded
 page number, as shown in the following image.
 
 1584
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Example:
 
@@ -2521,7 +2521,7 @@ Creating Reports With TIBCO® WebFOCUS Language
  1585
 
 
-Repeating Headings and Footings on Panels in PDF Report Output
+Repeating Headings and Footings on Panels in PDF Report Output
 
 TYPE=REPORT,
      FONT='ARIAL',
@@ -2580,7 +2580,7 @@ $
 
 1586
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 TYPE=SUBFOOT,
      SIZE=10,
@@ -2607,7 +2607,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1587
 
-Repeating Headings and Footings on Panels in PDF Report Output
+Repeating Headings and Footings on Panels in PDF Report Output
 
 Since HEADPANEL=ON for the entire report, both panels display all of the heading and footing
 elements.
@@ -2616,7 +2616,7 @@ The following image shows page 1 panel 1.
 
 1588
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The following image shows page 1 panel 2.
 
@@ -2637,7 +2637,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1589
 
-Customizing a Column Title
+Customizing a Column Title
 
 Example:
 
@@ -2666,7 +2666,7 @@ The output is:
 
 1590
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Reference: Limits for Column Titles
 
@@ -2720,7 +2720,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1591
 
-Customizing a Column Title
+Customizing a Column Title
 
 Example:
 
@@ -2745,7 +2745,7 @@ The output is:
 
 1592
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Example:
 
@@ -2771,7 +2771,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1593
 
-Customizing a Column Title
+Customizing a Column Title
 
 Example:
 
@@ -2811,7 +2811,7 @@ a MATCH command, or when duplicate field names exist in a HOLD file.
 
 1594
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Syntax:
 
@@ -2880,7 +2880,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1595
 
-Controlling Column Title Underlining Using a SET Command
+Controlling Column Title Underlining Using a SET Command
 
 With the default value (ON) for SET TITLELINE, the column titles are underlined.
 
@@ -2889,7 +2889,7 @@ underlines would have been is still there.
 
 1596
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 With SET TITLELINE=SKIP, both the underlines and the blank line are removed.
 
@@ -2922,7 +2922,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1597
 
-Controlling Column Title Underlining Using a StyleSheet Attribute
+Controlling Column Title Underlining Using a StyleSheet Attribute
 
 Example:
 
@@ -2944,7 +2944,7 @@ With the default value (ON) for TITLELINE, the column titles are underlined.
 
 1598
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 With TITLELINE=OFF, the column titles are not underlined, but the blank line where the
 underlines would have been is still there.
@@ -2955,7 +2955,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1599
 
-Creating Labels to Identify Data
+Creating Labels to Identify Data
 
 Creating Labels to Identify Data
 
@@ -3014,7 +3014,7 @@ summed, the format of the total is the same as the format of the fields. When fi
 
 1600
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 with different formats are summed, the default D12.2 is used for either the row or
 column total.
@@ -3060,7 +3060,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1601
 
-Creating Labels to Identify Data
+Creating Labels to Identify Data
 
 Example:
 
@@ -3112,7 +3112,7 @@ detail line. MULTI-LINES is a synonym for MULTILINES.
 
 1602
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 field1 field2
 
@@ -3155,7 +3155,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1603
 
-Creating Labels to Identify Data
+Creating Labels to Identify Data
 
 In the output, the department values MIS and PRODUCTION are included by default in the
 customized subtotal label.
@@ -3180,7 +3180,7 @@ END
 
 1604
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The output is:
 
@@ -3213,7 +3213,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1605
 
-Creating Labels to Identify Data
+Creating Labels to Identify Data
 
 AS 'label'
 
@@ -3251,7 +3251,7 @@ END
 
 1606
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 In the output, the department values MIS and PRODUCTION are included by default in the
 customized subtotal label. The default grand total label is TOTAL.
@@ -3281,7 +3281,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1607
 
-Formatting a Heading, Footing, Title, or Label
+Formatting a Heading, Footing, Title, or Label
 
 You can:
 
@@ -3331,7 +3331,7 @@ Controlling the Vertical Positioning of a Heading or Footing on page 1685.
 
 1608
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Position a report or sort heading or footing on a separate page. See Placing a Report
 Heading or Footing on Its Own Page on page 1692.
@@ -3371,7 +3371,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1609
 
-Applying Font Attributes to a Heading, Footing, Title, or Label
+Applying Font Attributes to a Heading, Footing, Title, or Label
 
 For an HTML report, the font name must be enclosed in single quotation marks. The
 StyleSheet attribute TYPE = TABHEADING identifies the report heading, and the attribute TYPE
@@ -3395,7 +3395,7 @@ The output is:
 
 1610
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Example:
 
@@ -3430,7 +3430,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1611
 
-Applying Font Attributes to a Heading, Footing, Title, or Label
+Applying Font Attributes to a Heading, Footing, Title, or Label
 
 Example:
 
@@ -3459,7 +3459,7 @@ The partial output is:
 
 1612
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Adding Borders and Grid Lines
 
@@ -3494,7 +3494,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1613
 
-Adding Borders and Grid Lines
+Adding Borders and Grid Lines
 
 Example:
 
@@ -3522,7 +3522,7 @@ The output is:
 
 1614
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Example:
 
@@ -3556,7 +3556,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1615
 
-Justifying a Heading, Footing, Title, or Label
+Justifying a Heading, Footing, Title, or Label
 
 Example:
 
@@ -3597,7 +3597,7 @@ A column title. See Justifying a Column Title on page 1624.
 
 1616
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 A label for a row or column total. See Justifying a Label for a Row or Column Total on page
 1629.
@@ -3652,7 +3652,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1617
 
-Justifying a Heading, Footing, Title, or Label
+Justifying a Heading, Footing, Title, or Label
 
 line_#
 
@@ -3697,7 +3697,7 @@ END
 
 1618
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The output is:
 
@@ -3734,7 +3734,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1619
 
-Justifying a Heading, Footing, Title, or Label
+Justifying a Heading, Footing, Title, or Label
 
 The output is:
 
@@ -3765,7 +3765,7 @@ END
 
 1620
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The output is:
 
@@ -3797,7 +3797,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1621
 
-Justifying a Heading, Footing, Title, or Label
+Justifying a Heading, Footing, Title, or Label
 
 Syntax:
 
@@ -3858,7 +3858,7 @@ For details, see Including an Element in a Heading or Footing on page 1557.
 
 1622
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 spot marker
 
@@ -3915,7 +3915,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1623
 
-Justifying a Heading, Footing, Title, or Label
+Justifying a Heading, Footing, Title, or Label
 
 The page heading is centered over the report data, as shown in the first page of output.
 
@@ -3941,7 +3941,7 @@ report content.
 
 1624
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 You can also justify a column title for a display or BY field using legacy formatting methods.
 However, when legacy formatting is applied to an ACROSS field, data values, not column titles,
@@ -3996,7 +3996,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1625
 
-Justifying a Heading, Footing, Title, or Label
+Justifying a Heading, Footing, Title, or Label
 
 LEFT which left justifies the column title. This value is the default for an alphanumeric
 field.
@@ -4037,7 +4037,7 @@ The output is:
 
 1626
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Example:
 
@@ -4087,7 +4087,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1627
 
-Justifying a Heading, Footing, Title, or Label
+Justifying a Heading, Footing, Title, or Label
 
 The output is:
 
@@ -4131,7 +4131,7 @@ will justify the title, see How to Justify a Column Title Using a StyleSheet on 
 
 1628
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Example:
 
@@ -4184,7 +4184,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1629
 
-Justifying a Heading, Footing, Title, or Label
+Justifying a Heading, Footing, Title, or Label
 
 R which right justifies the label.
 
@@ -4224,7 +4224,7 @@ The output is:
 
 1630
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Justifying a Label for a Subtotal or Grand Total
 
@@ -4264,13 +4264,13 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1631
 
-Justifying a Heading, Footing, Title, or Label
+Justifying a Heading, Footing, Title, or Label
 
 The output is:
 
 1632
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Choosing an Alignment Method for Heading and Footing Elements
 
@@ -4351,7 +4351,7 @@ Creating Reports With TIBCO® WebFOCUS Language
  1633
 
 
-Choosing an Alignment Method for Heading and Footing Elements
+Choosing an Alignment Method for Heading and Footing Elements
 
 Applies
 to ...
@@ -4430,7 +4430,7 @@ displayed to its right.
 
 1634
 
-Applies
+Applies
 to ...
 
 PDF
@@ -4521,7 +4521,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1635
 
-Aligning a Heading or Footing Element in an HTML, XLSX, EXL2K, PDF, PPTX, or DHTML Report
+Aligning a Heading or Footing Element in an HTML, XLSX, EXL2K, PDF, PPTX, or DHTML Report
 
 For HTML or Excel 2000 output, when HEADALIGN is set either to BODY or INTERNAL, output is
 laid out as an HTML table, which means that the browser determines the widths of the
@@ -4569,7 +4569,7 @@ element within each of them using this syntax.
 
 1636
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Tip: For a summary of other alignment methods, see Choosing an Alignment Method for
 Heading and Footing Elements on page 1633.
@@ -4623,7 +4623,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1637
 
-Aligning a Heading or Footing Element in an HTML, XLSX, EXL2K, PDF, PPTX, or DHTML Report
+Aligning a Heading or Footing Element in an HTML, XLSX, EXL2K, PDF, PPTX, or DHTML Report
 
 Example:
 
@@ -4655,7 +4655,7 @@ END
 
 1638
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The output shows that the text Total is aligned with the product names and the subtotal field
 object is right aligned with the Ordered Units column.
@@ -4674,7 +4674,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1639
 
-Aligning a Heading or Footing Element in an HTML, XLSX, EXL2K, PDF, PPTX, or DHTML Report
+Aligning a Heading or Footing Element in an HTML, XLSX, EXL2K, PDF, PPTX, or DHTML Report
 
 In the following example, the first row (the anchor data row) contains a single value. Items
 placed in headings to correspond with column two that appears on subsequent rows are not
@@ -4705,7 +4705,7 @@ END
 
 1640
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The output shows that the heading lines have one column each, while the data lines alternate
 between one column and two columns.
@@ -4722,7 +4722,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1641
 
-Aligning a Heading or Footing Element in an HTML, XLSX, EXL2K, PDF, PPTX, or DHTML Report
+Aligning a Heading or Footing Element in an HTML, XLSX, EXL2K, PDF, PPTX, or DHTML Report
 
 All HEADALIGN settings are compatible with COLSPAN syntax, which allows heading items to
 span multiple columns.
@@ -4750,7 +4750,7 @@ TYPE=SUBHEAD, HEADALIGN=NONE, $
 
 1642
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 HEADALIGN=NONE with COLSPAN
 
@@ -4770,7 +4770,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1643
 
-Aligning a Heading or Footing Element in an HTML, XLSX, EXL2K, PDF, PPTX, or DHTML Report
+Aligning a Heading or Footing Element in an HTML, XLSX, EXL2K, PDF, PPTX, or DHTML Report
 
 Country is aligned with Model in the first column of the internal table. The value of <COUNTRY
 is aligned with the value of <MODEL in the second column.
@@ -4785,7 +4785,7 @@ setting.
 
 1644
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 HEADALIGN=BODY places the heading lines within the cells of the main HTML table. As a
 result, the columns of the heading correspond to the columns of the main table.
@@ -4799,7 +4799,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1645
 
-Aligning a Heading or Footing Element in an HTML, XLSX, EXL2K, PDF, PPTX, or DHTML Report
+Aligning a Heading or Footing Element in an HTML, XLSX, EXL2K, PDF, PPTX, or DHTML Report
 
 HEADALIGN=BODY with COLSPAN
 
@@ -4835,7 +4835,7 @@ END
 
 1646
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The partial output is:
 
@@ -4843,7 +4843,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1647
 
-Aligning a Heading or Footing Element in an HTML, XLSX, EXL2K, PDF, PPTX, or DHTML Report
+Aligning a Heading or Footing Element in an HTML, XLSX, EXL2K, PDF, PPTX, or DHTML Report
 
 Example:
 
@@ -4886,7 +4886,7 @@ the main HTML table for the body of the report.
 
 1648
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The output is:
 
@@ -4894,13 +4894,13 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1649
 
-Aligning a Heading or Footing Element in an HTML, XLSX, EXL2K, PDF, PPTX, or DHTML Report
+Aligning a Heading or Footing Element in an HTML, XLSX, EXL2K, PDF, PPTX, or DHTML Report
 
 Notice that the positioning is maintained when the grid is hidden (off).
 
 1650
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Example:
 
@@ -4933,7 +4933,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1651
 
-Aligning a Heading or Footing Element in an HTML, XLSX, EXL2K, PDF, PPTX, or DHTML Report
+Aligning a Heading or Footing Element in an HTML, XLSX, EXL2K, PDF, PPTX, or DHTML Report
 
 Example:
 
@@ -4967,7 +4967,7 @@ TYPE = SUBFOOT, LINE = 2, OBJECT = FIELD, STYLE = BOLD, $
 
 1652
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 then only the text in TEXTFLD is bold.
 
@@ -5002,7 +5002,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1653
 
-Aligning a Heading or Footing Element Across Columns in an HTML or PDF Report
+Aligning a Heading or Footing Element Across Columns in an HTML or PDF Report
 
 subtype
 
@@ -5049,7 +5049,7 @@ Is the column with which the specified item is aligned.
 
 1654
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Example:
 
@@ -5082,13 +5082,13 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1655
 
-Aligning a Heading or Footing Element Across Columns in an HTML or PDF Report
+Aligning a Heading or Footing Element Across Columns in an HTML or PDF Report
 
 The output is:
 
 1656
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Example:
 
@@ -5125,7 +5125,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1657
 
-Aligning a Heading or Footing Element Across Columns in an HTML or PDF Report
+Aligning a Heading or Footing Element Across Columns in an HTML or PDF Report
 
 Example:
 
@@ -5159,7 +5159,7 @@ END
 
 1658
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The output shows that the first item in the sort footing (the text Total) is in the fifth column of
 the report output. The second item in the sort footing (the field <ST.QUANTITY) is positioned in
@@ -5186,7 +5186,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1659
 
-Aligning Content in a Multi-Line Heading or Footing
+Aligning Content in a Multi-Line Heading or Footing
 
 These techniques rely on internal cascading style sheets, which support WebFOCUS
 StyleSheet attributes that were not previously available for HTML reports. The syntax
@@ -5243,7 +5243,7 @@ You can use LINE in combination with ITEM.
 
 1660
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 ITEM
 
@@ -5300,7 +5300,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1661
 
-Aligning Content in a Multi-Line Heading or Footing
+Aligning Content in a Multi-Line Heading or Footing
 
 LEFT which left justifies the heading or footing. LEFT is the default value.
 
@@ -5366,7 +5366,7 @@ item: the first column of text is item 1, the next column of data is item 2, and
 
 1662
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Note especially the last column, in which decimal data with different numbers of decimal
 places is lined up on the decimal point to facilitate reading and comparison.
@@ -5418,7 +5418,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1663
 
-Aligning Content in a Multi-Line Heading or Footing
+Aligning Content in a Multi-Line Heading or Footing
 
 For each item, you specify the width of the column and the justification of its content, as
 illustrated in the following code.
@@ -5466,7 +5466,7 @@ but the number of digits of decimal precision varies.
 
 1664
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 By aligning the decimal points in a vertical stack, you can more easily read and compare these
 numbers, as illustrated in the following output:
@@ -5572,7 +5572,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1665
 
-Aligning Content in a Multi-Line Heading or Footing
+Aligning Content in a Multi-Line Heading or Footing
 
 Procedure: How to Measure for Decimal Alignment
 
@@ -5628,7 +5628,7 @@ StyleSheet on page 1249.
 
 1666
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Request and annotations:
 
@@ -5671,7 +5671,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1667
 
-Aligning Content in a Multi-Line Heading or Footing
+Aligning Content in a Multi-Line Heading or Footing
 
 The output highlights the key information and its relationship by aligning text and data,
 including decimal data in which decimal points are aligned for easy comparison.
@@ -5689,7 +5689,7 @@ contains data values related to the text.
 
 1668
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Line #
 
@@ -5713,7 +5713,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1669
 
-Aligning Content in a Multi-Line Heading or Footing
+Aligning Content in a Multi-Line Heading or Footing
 
 Line #
 
@@ -5759,7 +5759,7 @@ each item.
 
 1670
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Line #
 
@@ -5810,7 +5810,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1671
 
-Positioning Headings, Footings, or Items Within Them
+Positioning Headings, Footings, or Items Within Them
 
 In addition, for a PDF or PS report, you can use the POSITION attribute to specify an absolute
 or relative starting position for an element within a heading or footing or to align an item in a
@@ -5870,7 +5870,7 @@ END
 
 1672
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The output is:
 
@@ -5903,7 +5903,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1673
 
-Positioning Headings, Footings, or Items Within Them
+Positioning Headings, Footings, or Items Within Them
 
 The output is:
 
@@ -5934,7 +5934,7 @@ lines enables you to format each line differently.
 
 1674
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 If a heading or footing has multiple lines and you apply a StyleSheet declaration that
 does not specify LINE, the declaration is applied to all lines. Blank lines are counted
@@ -5984,7 +5984,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1675
 
-Positioning Headings, Footings, or Items Within Them
+Positioning Headings, Footings, or Items Within Them
 
 Example:
 
@@ -6013,7 +6013,7 @@ The output is:
 
 1676
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Example:
 
@@ -6045,7 +6045,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1677
 
-Positioning Headings, Footings, or Items Within Them
+Positioning Headings, Footings, or Items Within Them
 
 Example:
 
@@ -6082,7 +6082,7 @@ produce the exact report you desire.
 
 1678
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The PRINTPLUS parameter must be set to ON to use the following TABLE capabilities:
 
@@ -6127,7 +6127,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1679
 
-Positioning Headings, Footings, or Items Within Them
+Positioning Headings, Footings, or Items Within Them
 
 Example:
 
@@ -6239,7 +6239,7 @@ Choosing an Alignment Method for Heading and Footing Elements on page 1633.
 
 
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The following spot markers enable you to position items and to identify items to be formatted:
 
@@ -6287,7 +6287,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1681
 
-Positioning Headings, Footings, or Items Within Them
+Positioning Headings, Footings, or Items Within Them
 
 TABLE FILE CENTCOMP
 HEADING
@@ -6316,7 +6316,7 @@ immediately after a field in a PDF report.
 
 1682
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The first technique uses the POSITION attribute in a StyleSheet to position the closing
 parenthesis immediately after the STORE_CODE value. The second technique uses the <-1
@@ -6351,7 +6351,7 @@ Creating Reports With TIBCO® WebFOCUS Language
  1683
 
 
-Positioning Headings, Footings, or Items Within Them
+Positioning Headings, Footings, or Items Within Them
 
 Without the spot marker and position measurement, the output would have looked like this:
 
@@ -6390,7 +6390,7 @@ and the character that will follow it.
 1684
 
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The output is:
 
@@ -6417,7 +6417,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1685
 
-Controlling the Vertical Positioning of a Heading or Footing
+Controlling the Vertical Positioning of a Heading or Footing
 
 Syntax:
 
@@ -6467,7 +6467,7 @@ END
 
 1686
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 The output is:
 
@@ -6509,7 +6509,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1687
 
-Controlling the Vertical Positioning of a Heading or Footing
+Controlling the Vertical Positioning of a Heading or Footing
 
 In the absence of grids, the default value is 0.
 
@@ -6543,7 +6543,7 @@ The output is:
 
 1688
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Example:
 
@@ -6572,7 +6572,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1689
 
-Controlling the Vertical Positioning of a Heading or Footing
+Controlling the Vertical Positioning of a Heading or Footing
 
 Syntax:
 
@@ -6634,7 +6634,7 @@ For details, see Including an Element in a Heading or Footing on page 1557.
 
 1690
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 spot marker
 
@@ -6687,7 +6687,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1691
 
-Placing a Report Heading or Footing on Its Own Page
+Placing a Report Heading or Footing on Its Own Page
 
 The following output shows the end of the report, with the footing.
 
@@ -6725,7 +6725,7 @@ Generates a report heading.
 
 1692
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 SUBFOOT
 
@@ -6784,7 +6784,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1693
 
-Placing a Report Heading or Footing on Its Own Page
+Placing a Report Heading or Footing on Its Own Page
 
 Note: When a closing spot marker is immediately followed by an opening spot marker
 (><), a single space text item will be placed between the two spot markers (> <). This
@@ -6822,7 +6822,7 @@ The second page of output contains the column titles and data.
 
 1694
 
-22. Using Headings, Footings, Titles, and Labels
+22. Using Headings, Footings, Titles, and Labels
 
 Tip: To produce comparable results in HTML, include the following code in the request to turn
 on the WebFOCUS Viewer.
@@ -6864,7 +6864,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1695
 
-Placing a Report Heading or Footing on Its Own Page
+Placing a Report Heading or Footing on Its Own Page
 
 Note: To produce comparable results in HTML, include the following code in the request to turn
 on the WebFOCUS Viewer.

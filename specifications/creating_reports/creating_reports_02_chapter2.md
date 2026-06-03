@@ -39,7 +39,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  39
 
-Using Display Commands in a Request
+Using Display Commands in a Request
 
 Syntax:
 
@@ -97,7 +97,7 @@ virtual field name redefines a real field.
 
 40
 
-Displaying Individual Values
+Displaying Individual Values
 
 2. Displaying Report Data
 
@@ -147,7 +147,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  41
 
-Displaying Individual Values
+Displaying Individual Values
 
 LAST_NAME
 ---------
@@ -253,7 +253,7 @@ Data With WebFOCUS Language manual.
 
 
 
-Example:
+Example:
 
 Displaying All Fields
 
@@ -479,7 +479,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
 
 
-Displaying Individual Values
+Displaying Individual Values
 
   19
 
@@ -522,7 +522,7 @@ END
 
 44
 
-The following shows the report output.
+The following shows the report output.
 
 2. Displaying Report Data
 
@@ -543,7 +543,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  45
 
-Displaying Individual Values
+Displaying Individual Values
 
 Example:
 
@@ -556,7 +556,7 @@ CHECK FILE CENTORD PICTURE
 
 46
 
-2. Displaying Report Data
+2. Displaying Report Data
 
 The following shows the structure diagram output.
 
@@ -621,7 +621,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
 
 
-Displaying Individual Values
+Displaying Individual Values
 
 The following shows the command output that adds the numbers that display at the top left of
 each segment, indicating the retrieval order of the segments. A unique segment such as
@@ -630,7 +630,7 @@ SECSEG are unique segments, and are therefore treated as part of their parents.
 
 48
 
-The following shows the retrieval order:
+The following shows the retrieval order:
 
 2. Displaying Report Data
 
@@ -638,7 +638,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  49
 
-Adding Values
+Adding Values
 
 Example:
 
@@ -694,7 +694,7 @@ refers to WRITE and ADD.
 
 50
 
-2. Displaying Report Data
+2. Displaying Report Data
 
 When you use SUM, multiple records are read from the data source, but only one summary line
 is produced. If you use SUM with a non-numeric field—such as an alphanumeric, text, or date
@@ -757,7 +757,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  51
 
-Counting Values
+Counting Values
 
 Counting Values
 
@@ -811,7 +811,7 @@ END
 
 52
 
-The following shows the output of the request indicating that of the 12 EMP_IDs in the data
+The following shows the output of the request indicating that of the 12 EMP_IDs in the data
 source, six are from the MIS department and six are from the PRODUCTION department:
 
 2. Displaying Report Data
@@ -865,7 +865,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  53
 
-Expanding Byte Precision for COUNT and LIST
+Expanding Byte Precision for COUNT and LIST
 
 Example:
 
@@ -912,7 +912,7 @@ Note: You can change the overflow character by issuing the SET OVERFLOWCHAR comm
 
 54
 
-2. Displaying Report Data
+2. Displaying Report Data
 
 Syntax:
 
@@ -983,7 +983,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  55
 
-Manipulating Display Fields With Prefix Operators
+Manipulating Display Fields With Prefix Operators
 
 However, an error can occur under the following conditions:
 
@@ -1032,7 +1032,7 @@ END
 
 56
 
-The output is shown in the following image. The prefix operator names are converted to
+The output is shown in the following image. The prefix operator names are converted to
 descriptive text.
 
 2. Displaying Report Data
@@ -1084,7 +1084,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  57
 
-Manipulating Display Fields With Prefix Operators
+Manipulating Display Fields With Prefix Operators
 
 To sort by the results of a prefix command, use the phrase BY TOTAL to aggregate and sort
 numeric columns simultaneously. For details, see Sorting Tabular Reports on page 87.
@@ -1138,7 +1138,7 @@ Computes the average value of the field.
 
 58
 
-Prefix
+Prefix
 
 CNT.
 
@@ -1219,7 +1219,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  59
 
-Manipulating Display Fields With Prefix Operators
+Manipulating Display Fields With Prefix Operators
 
 Prefix
 
@@ -1285,7 +1285,7 @@ PRODUCTION   20.00
 
 60
 
-Averaging the Sum of Squared Fields
+Averaging the Sum of Squared Fields
 
 The ASQ. prefix computes the average sum of squares, which is a component of the standard
 deviation in statistical analysis (shown as a formula in the following image).
@@ -1338,7 +1338,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  61
 
-Manipulating Display Fields With Prefix Operators
+Manipulating Display Fields With Prefix Operators
 
 The following shows the output of the request.
 
@@ -1386,7 +1386,7 @@ lowest value ($9,500.00).
 
 62
 
-2. Displaying Report Data
+2. Displaying Report Data
 
 Calculating Column and Row Percentages
 
@@ -1419,7 +1419,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  63
 
-Manipulating Display Fields With Prefix Operators
+Manipulating Display Fields With Prefix Operators
 
 If you set PCFORMAT to OLD, PCT. and RPCT. WILL take the same format as the field, and the
 column may not always total exactly 100 because of the nature of floating-point arithmetic.
@@ -1452,7 +1452,7 @@ decimal places (D, F).
 
 64
 
-2. Displaying Report Data
+2. Displaying Report Data
 
 Producing a Direct Percent of a Count
 
@@ -1498,7 +1498,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  65
 
-Manipulating Display Fields With Prefix Operators
+Manipulating Display Fields With Prefix Operators
 
 Note that in a request using the PRINT command and multiple DST operators, you should issue
 the command SET PRINTDST=NEW. For more information, see the Developing Reporting
@@ -1558,7 +1558,7 @@ ED_HRS
 
 66
 
-2. Displaying Report Data
+2. Displaying Report Data
 
 Notice that the count includes records for both employees with the last name SMITH, but
 excludes the second records for values 50.00, 25.00, and .0, resulting in nine unique ED_HRS
@@ -1616,7 +1616,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  67
 
-Manipulating Display Fields With Prefix Operators
+Manipulating Display Fields With Prefix Operators
 
 The following error occurs if you use DST. in a MATCH command:
 
@@ -1663,7 +1663,7 @@ set of values.
 
 68
 
-2. Displaying Report Data
+2. Displaying Report Data
 
 For more information on segment types and file design, see the Describing Data With
 WebFOCUS Language manual. If you wish to reorganize the data in the data source or
@@ -1725,7 +1725,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  69
 
-Manipulating Display Fields With Prefix Operators
+Manipulating Display Fields With Prefix Operators
 
 If the record is in a segment with values organized from highest to lowest (segment type SH1),
 the first logical record that the FST. prefix operator retrieves is the highest value in the set of
@@ -1772,7 +1772,7 @@ footings, subheads, and subfoots).
 
 70
 
-Example:
+Example:
 
 Counting Values With CNT
 
@@ -1830,7 +1830,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  71
 
-Manipulating Display Fields With Prefix Operators
+Manipulating Display Fields With Prefix Operators
 
 The output is:
 
@@ -1882,7 +1882,7 @@ Is a vertical (BY) sort field in the request.
 
 72
 
-Example:
+Example:
 
 Ranking Within Sort Groups
 
@@ -1936,7 +1936,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  73
 
-Manipulating Display Fields With Prefix Operators
+Manipulating Display Fields With Prefix Operators
 
 Example:
 
@@ -1993,7 +1993,7 @@ END
 
 74
 
-2. Displaying Report Data
+2. Displaying Report Data
 
 The output is:
 
@@ -2051,7 +2051,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  75
 
-Manipulating Display Fields With Prefix Operators
+Manipulating Display Fields With Prefix Operators
 
 ROLL.prefix on a summary line indicates that the prefix operation will be performed on the
 summary values from the next lowest level of summary command.
@@ -2107,7 +2107,7 @@ columns you want to display.
 
 76
 
-Example:
+Example:
 
 Rolling Up an Average Calculation
 
@@ -2166,7 +2166,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  77
 
-Manipulating Display Fields With Prefix Operators
+Manipulating Display Fields With Prefix Operators
 
 On the output, the UNITS values for each state are averaged to calculate the subtotal for each
 region, and those region subtotal values are used to calculate the average for the grand total
@@ -2217,7 +2217,7 @@ END
 
 
 
-2. Displaying Report Data
+2. Displaying Report Data
 
 On the output, the detail rows for each date are used to calculate the average for each
 product. Because of the ROLL.AVE. at the region level, the averages for each product are used
@@ -2291,7 +2291,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
 
 
-Manipulating Display Fields With Prefix Operators
+Manipulating Display Fields With Prefix Operators
 
 Reference: Usage Notes for ROLL.
 
@@ -2334,7 +2334,7 @@ STDS.field
 
 80
 
-2. Displaying Report Data
+2. Displaying Report Data
 
 where:
 
@@ -2385,7 +2385,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  81
 
-Manipulating Display Fields With Prefix Operators
+Manipulating Display Fields With Prefix Operators
 
 where:
 
@@ -2434,7 +2434,7 @@ END
 
 82
 
-The output is shown in the following image.
+The output is shown in the following image.
 
 2. Displaying Report Data
 
@@ -2447,7 +2447,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  83
 
-Displaying Pop-up Field Descriptions for Column Titles
+Displaying Pop-up Field Descriptions for Column Titles
 
 They work in a heading or footing for real or virtual (DEFINE) fields. They work in a display
 command field list on real fields, virtual (DEFINE) fields, and calculated (COMPUTE) values
@@ -2499,7 +2499,7 @@ FIELD=UNITS, ALIAS=E10, FORMAT=I08, TITLE='Unit Sales',
 
 84
 
-2. Displaying Report Data
+2. Displaying Report Data
 
 The code used to create the report is:
 
@@ -2535,7 +2535,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  85
 
-Displaying Pop-up Field Descriptions for Column Titles
+Displaying Pop-up Field Descriptions for Column Titles
 
 ibi_apps/ibi_html
 

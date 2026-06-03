@@ -45,7 +45,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1907
 
-Supported and Unsupported SQL Statements
+Supported and Unsupported SQL Statements
 
 Reference: Supported SQL Statements
 
@@ -96,7 +96,7 @@ The following aggregate functions: COUNT, MIN, MAX, SUM, and AVG.
 
 1908
 
-27. Using SQL to Create Reports
+27. Using SQL to Create Reports
 
 The following expressions can appear in conditions: CASE, NULLIF, and COALESCE.
 
@@ -150,7 +150,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1909
 
-Using SQL Translator Commands
+Using SQL Translator Commands
 
 Correlated subqueries for DML Generation.
 
@@ -205,7 +205,7 @@ Is the SQL command identifier, which invokes the SQL Translator.
 
 1910
 
-27. Using SQL to Create Reports
+27. Using SQL to Create Reports
 
 Note: The SQL command components must appear in the order represented above.
 
@@ -265,7 +265,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1911
 
-Using SQL Translator Commands
+Using SQL Translator Commands
 
 You may specify headings and footings, describe actions with an ON phrase, or use the ON
 TABLE SET command. Additionally, you can use ON TABLE HOLD or ON TABLE PCHOLD to
@@ -311,7 +311,7 @@ using an equal (=) sign, are supported. For example: WHERE field = (SELECT ...).
 
 1912
 
-27. Using SQL to Create Reports
+27. Using SQL to Create Reports
 
 The SQL UNION operator translates to a TABLE request that creates a HOLD file for each data
 source specified, followed by a MATCH command with option HOLD OLD-OR-NEW, which
@@ -363,7 +363,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1913
 
-Using SQL Translator Commands
+Using SQL Translator Commands
 
 Variation 2
 
@@ -409,7 +409,7 @@ Is the join condition.
 
 1914
 
-27. Using SQL to Create Reports
+27. Using SQL to Create Reports
 
 Syntax:
 
@@ -470,7 +470,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1915
 
-Using SQL Translator Commands
+Using SQL Translator Commands
 
 nn
 
@@ -529,7 +529,7 @@ temporary HOLD files.
 
 1916
 
-Reference: SQL Join Considerations
+Reference: SQL Join Considerations
 
 27. Using SQL to Create Reports
 
@@ -580,7 +580,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1917
 
-Using SQL Translator Commands
+Using SQL Translator Commands
 
 When using the CREATE TABLE and INSERT INTO commands, the data type FLOAT should
 be declared with a precision and used in an INSERT INTO command without the 'E'
@@ -619,7 +619,7 @@ HOLD files, see Saving and Reusing Your Report Output on page 471.
 
 1918
 
-27. Using SQL to Create Reports
+27. Using SQL to Create Reports
 
 Syntax:
 
@@ -681,7 +681,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1919
 
-Using SQL Translator Commands
+Using SQL Translator Commands
 
 Cartesian Product Style Answer Sets
 
@@ -736,7 +736,7 @@ The following field identifier can be included in a request:
 
 1920
 
-27. Using SQL to Create Reports
+27. Using SQL to Create Reports
 
 Example:
 
@@ -789,7 +789,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1921
 
-SQL Translator Support for Date, Time, and Timestamp Fields
+SQL Translator Support for Date, Time, and Timestamp Fields
 
 All date formats for actual and virtual fields in the Master File are converted to the form
 YYYYMMDD. If you specify a format that lacks any component, the SQL Translator supplies a
@@ -883,7 +883,7 @@ Time information may be given to the hour, minute, second, or fraction of a seco
 
 1922
 
-27. Using SQL to Create Reports
+27. Using SQL to Create Reports
 
 The separator within date information may be either a hyphen or a slash.
 
@@ -946,7 +946,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1923
 
-SQL Translator Support for Date, Time, and Timestamp Fields
+SQL Translator Support for Date, Time, and Timestamp Fields
 
 Example:
 
@@ -999,7 +999,7 @@ END
 
 1924
 
-27. Using SQL to Create Reports
+27. Using SQL to Create Reports
 
 The output is:
 
@@ -1062,7 +1062,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1925
 
-Index Optimized Retrieval
+Index Optimized Retrieval
 
 Index Optimized Retrieval
 
@@ -1112,7 +1112,7 @@ relative sizes of the tables being joined.
 
 1926
 
-27. Using SQL to Create Reports
+27. Using SQL to Create Reports
 
 If the analysis results in joining to a table that cannot participate as a cross-referenced file
 according to FOCUS rules (because it lacks an index, for example), the Translator generates
@@ -1167,7 +1167,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1927
 
-SQL INSERT, UPDATE, and DELETE Commands
+SQL INSERT, UPDATE, and DELETE Commands
 
 If you are modifying every field in the row, you can omit the list of field names from the
 command.

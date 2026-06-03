@@ -40,7 +40,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1219
 
-Generating an Internal Cascading Style Sheet for HTML Reports
+Generating an Internal Cascading Style Sheet for HTML Reports
 
 Generating an Internal Cascading Style Sheet for HTML Reports
 
@@ -94,7 +94,7 @@ the report appearance. ON is the default value.
 
 1220
 
-18. Controlling Report Formatting
+18. Controlling Report Formatting
 
 OFF
 
@@ -148,7 +148,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1221
 
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 Within a report request, use
 
@@ -191,7 +191,7 @@ conditional styling (WHEN).
 
 1222
 
-Applying Sequential Conditional Formatting
+Applying Sequential Conditional Formatting
 
 18. Controlling Report Formatting
 
@@ -252,7 +252,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1223
 
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 field1, field2
 
@@ -307,7 +307,7 @@ value on the right.
 
 1224
 
-18. Controlling Report Formatting
+18. Controlling Report Formatting
 
 value
 
@@ -368,7 +368,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
 
 
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 3. The third conditional declaration formats any rows whose order total is greater than
 
@@ -400,7 +400,7 @@ applied to the entire row.
 
 1226
 
-18. Controlling Report Formatting
+18. Controlling Report Formatting
 
 TABLE FILE CENTORD
 HEADING
@@ -426,7 +426,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
 
 
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 Example:
 
@@ -460,7 +460,7 @@ END
 
 
 
-The output is:
+The output is:
 
 18. Controlling Report Formatting
 
@@ -475,7 +475,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1229
 
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 In this example, the ACROSS values are used in conditional styling to set a unique backcolor
 for all ACROSS columns in the Category Coffee, and additional font styling for the Espresso
@@ -510,7 +510,7 @@ The output is:
 
 1230
 
-18. Controlling Report Formatting
+18. Controlling Report Formatting
 
 Example:
 
@@ -548,7 +548,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
 
 
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 The output is:
 
@@ -567,7 +567,7 @@ shown in the following request.
 
 1232
 
-18. Controlling Report Formatting
+18. Controlling Report Formatting
 
 TABLE FILE CENTHR
 HEADING
@@ -601,7 +601,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
 
 
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 The output is:
 
@@ -617,7 +617,7 @@ accomplish this by evaluating the sort field (STATUS) in the WHEN attribute cond
 
 1234
 
-18. Controlling Report Formatting
+18. Controlling Report Formatting
 
 TABLE FILE CENTHR
 HEADING
@@ -647,7 +647,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
 
 
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 In order to apply the same conditional formatting to only two columns, instead of all the
 columns, this version of the report request uses two declarations, each specifying a different
@@ -679,7 +679,7 @@ END
 
 
 
-The output is:
+The output is:
 
 18. Controlling Report Formatting
 
@@ -694,7 +694,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1237
 
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 DEFINE FILE GGSALES
 SDATE/YYM = DATE;
@@ -720,7 +720,7 @@ The output is:
 1238
 
 
-Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
+Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
 
 18. Controlling Report Formatting
 
@@ -770,7 +770,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1239
 
-Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
+Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
 
 option
 
@@ -831,7 +831,7 @@ generated:
 
 1240
 
-Now change the value of the ONFIELD parameter to IGNORE and run the request again,
+Now change the value of the ONFIELD parameter to IGNORE and run the request again,
 supplying the value DEPT for the variable &F1. The partial output is:
 
 18. Controlling Report Formatting
@@ -882,7 +882,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
 
 
-Conditionally Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
+Conditionally Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
 
 Syntax:
 
@@ -941,7 +941,7 @@ performed for each value of the sort field.
 
 1242
 
-18. Controlling Report Formatting
+18. Controlling Report Formatting
 
 If the BY or ON phrase includes several options, the WHEN condition applies only to the
 option that immediately precedes it.
@@ -987,7 +987,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
 
 
-Conditionally Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
+Conditionally Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
 
 The output is:
 
@@ -1027,7 +1027,7 @@ END
 1244
 
 
-The output is:
+The output is:
 
 18. Controlling Report Formatting
 
@@ -1035,7 +1035,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1245
 
-Controlling the Display of Empty Reports
+Controlling the Display of Empty Reports
 
 Controlling the Display of Empty Reports
 
@@ -1087,7 +1087,7 @@ EMPTYREPORT.
 
 1246
 
-18. Controlling Report Formatting
+18. Controlling Report Formatting
 
 ON
 
@@ -1130,7 +1130,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1247
 
-Formatting a Report Using Only StyleSheet Defaults
+Formatting a Report Using Only StyleSheet Defaults
 
 Changing the EMPTYREPORT setting to ANSI produces the output shown in the following
 image.

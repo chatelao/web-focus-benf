@@ -20,7 +20,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1985
 
-TABLE Syntax Summary
+TABLE Syntax Summary
 
 TABLE Syntax Summary
 
@@ -74,7 +74,7 @@ ON   sfld  RECAP   fld1  [/fmt] = FORECAST (fld2, intvl, npredct,
 
 1986
 
-C. Table Syntax Summary and Limits
+C. Table Syntax Summary and Limits
 
 ON {sortfield|TABLE} RECAP y[/fmt] = REGRESS(n, x1, [x2, [x3,]] z);
 ON   sfld  RECAP   fld1  [/fmt] = FORECAST (infield, interval, npredict,
@@ -126,7 +126,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1987
 
-TABLEF Syntax Summary
+TABLEF Syntax Summary
 
 TABLEF Syntax Summary
 
@@ -182,7 +182,7 @@ Variables TABPAGENO, TABLASTPAGE, and BYLASTPAGE.
 
 
 
-C. Table Syntax Summary and Limits
+C. Table Syntax Summary and Limits
 
 SET SQUEEZE
 
@@ -240,7 +240,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1989
 
-FOR Syntax Summary
+FOR Syntax Summary
 
 OLD-AND-NEW
 
@@ -292,7 +292,7 @@ Can be any of the following:
 
 
 
-C. Table Syntax Summary and Limits
+C. Table Syntax Summary and Limits
 
 AS 'text'
 [INDENT m]
@@ -346,7 +346,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1991
 
-TABLE Limits
+TABLE Limits
 
 Maximum size of Alphanumeric fields: 4K characters ( in UTF, this means 12K bytes)
 

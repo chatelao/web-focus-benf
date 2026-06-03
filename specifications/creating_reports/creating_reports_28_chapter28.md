@@ -46,7 +46,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1929
 
-Rotating a Data Structure for Enhanced Retrieval
+Rotating a Data Structure for Enhanced Retrieval
 
 Change the path structure of a data source. This option is especially helpful if you wish to
 create a report using several sort fields that are on different paths in the file. By changing
@@ -72,7 +72,7 @@ TABLE FILE filename.fieldname
 
 1930
 
-Reference: Usage Notes for Restructuring Data
+Reference: Usage Notes for Restructuring Data
 
 28. Improving Report Processing
 
@@ -105,7 +105,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1931
 
-Optimizing Retrieval Speed for FOCUS Data Sources
+Optimizing Retrieval Speed for FOCUS Data Sources
 
 You could issue the following request to promote the segment containing PROD_CODE to the
 top of the hierarchy, thereby enabling quicker access to the data in that segment.
@@ -154,7 +154,7 @@ For related information on AUTOINDEX, see the Developing Reporting Applications 
 
 1932
 
-28. Improving Report Processing
+28. Improving Report Processing
 
 Syntax:
 
@@ -196,7 +196,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1933
 
-Automatic Indexed Retrieval
+Automatic Indexed Retrieval
 
 Example:
 
@@ -244,7 +244,7 @@ END
 
 1934
 
-28. Improving Report Processing
+28. Improving Report Processing
 
 Indexed retrieval is not invoked if the equality or range test is run against an indexed field that
 does not reside in the highest referenced segment. In the following example, indexed retrieval
@@ -294,7 +294,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1935
 
-Compiling Expressions
+Compiling Expressions
 
 Example:
 

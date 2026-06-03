@@ -46,7 +46,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  429
 
-Types of Expressions
+Types of Expressions
 
 The commands that support expressions, and their basic syntax, are summarized here. For
 complete syntax with an explanation, see the applicable documentation.
@@ -100,7 +100,7 @@ follows:
 
 430
 
-7. Using Expressions
+7. Using Expressions
 
 COMPUTE BONUS/D12.2 = CURR_SAL * 0.05 ;
 
@@ -148,7 +148,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  431
 
-Creating a Numeric Expression
+Creating a Numeric Expression
 
 Expressions and Field Formats
 
@@ -205,7 +205,7 @@ Two numeric constants or fields joined by an arithmetic operator. For example:
 
 432
 
-7. Using Expressions
+7. Using Expressions
 
 COMPUTE BONUS/D12.2 = CURR_SAL * 0.05 ;
 
@@ -259,7 +259,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  433
 
-Creating a Numeric Expression
+Creating a Numeric Expression
 
 In a DEFINE command, use the following:
 
@@ -319,7 +319,7 @@ WHERE RCOST LT EXPN(8E+03)
 
 434
 
-Reference: Arithmetic Operators
+Reference: Arithmetic Operators
 
 The following list shows the arithmetic operators you can use in an expression:
 
@@ -383,7 +383,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  435
 
-Creating a Numeric Expression
+Creating a Numeric Expression
 
 Example:
 
@@ -443,7 +443,7 @@ END
 
 436
 
-The output is shown in the following image. Where there are more than 10 copies, the
+The output is shown in the following image. Where there are more than 10 copies, the
 NEWPRICE equals LISTPR, otherwise NEWPRICE is $25.00 greater than LISTPR.
 
 7. Using Expressions
@@ -486,7 +486,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  437
 
-Creating a Numeric Expression
+Creating a Numeric Expression
 
 Operation
 
@@ -562,7 +562,7 @@ Character (alphanumeric and text)
 
 438
 
-7. Using Expressions
+7. Using Expressions
 
 For example, if a 16-byte packed-decimal operand is used in an expression, all other operands
 are converted to 16-byte packed-decimal format for evaluation. On the other hand, if an
@@ -617,7 +617,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  439
 
-Creating a Date Expression
+Creating a Date Expression
 
 COMPUTE DIFF/I4 = YMD (HIRE_DATE,FST.DAT_INC);
 
@@ -671,7 +671,7 @@ YM, YYM, MYY, and MY
 
 440
 
-7. Using Expressions
+7. Using Expressions
 
 Format
 
@@ -743,7 +743,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  441
 
-Creating a Date Expression
+Creating a Date Expression
 
 Example:
 
@@ -801,7 +801,7 @@ are simply accepted.
 
 442
 
-7. Using Expressions
+7. Using Expressions
 
 Returned Field Format Selection
 
@@ -852,7 +852,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  443
 
-Creating a Date Expression
+Creating a Date Expression
 
 Extracting a Date Component
 
@@ -904,7 +904,7 @@ COMPUTE DAYS_LATE/I4 = DATE_PAID - DUE_DATE;
 
 444
 
-7. Using Expressions
+7. Using Expressions
 
 Example:
 
@@ -959,7 +959,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  445
 
-Creating a Date-Time Expression
+Creating a Date-Time Expression
 
 Recognition and use of date or date-time constants.
 
@@ -1011,7 +1011,7 @@ END
 
 446
 
-The output is shown in the following image. The original date-time field has a non-zero time
+The output is shown in the following image. The original date-time field has a non-zero time
 component. When assigned to the date field, the time component is removed. When that date
 is assigned to the second date-time field, a zero time component is added.
 
@@ -1021,7 +1021,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  447
 
-Creating a Date-Time Expression
+Creating a Date-Time Expression
 
 Example:
 
@@ -1057,7 +1057,7 @@ END
 
 448
 
-7. Using Expressions
+7. Using Expressions
 
 The output is shown in the following image. When a date value is compared to a date-time
 value, the date is converted to a date-time value with the time component set to zero, and
@@ -1086,7 +1086,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  449
 
-Creating a Date-Time Expression
+Creating a Date-Time Expression
 
 Specifying a Date-Time Value
 
@@ -1140,7 +1140,7 @@ represented using nine decimal digits.
 
 450
 
-7. Using Expressions
+7. Using Expressions
 
 date_string
 
@@ -1192,7 +1192,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  451
 
-Creating a Date-Time Expression
+Creating a Date-Time Expression
 
 In each date format, two-digit years are interpreted using the [F]DEFCENT and [F]YRTHRESH
 settings.
@@ -1255,7 +1255,7 @@ contains both the date (as eight characters) and time (in the format hour:minute
 452
 
 
-7. Using Expressions
+7. Using Expressions
 
 Because the transaction file contains the dates in numeric string format, the DATEFORMAT
 setting is not used, and the dates are entered in YMD order.
@@ -1318,7 +1318,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  453
 
-Creating a Date-Time Expression
+Creating a Date-Time Expression
 
 Example:
 
@@ -1380,7 +1380,7 @@ Any two date-time values can be compared, even if their lengths do not match.
 
 454
 
-7. Using Expressions
+7. Using Expressions
 
 If a date-time field supports missing values, fields that contain the missing value have a
 greater value than any date-time field can have. Therefore, in order to exclude missing values
@@ -1435,7 +1435,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  455
 
-Creating a Character Expression
+Creating a Character Expression
 
 The missing value is not included in the report output:
 
@@ -1493,7 +1493,7 @@ END
 
 456
 
-7. Using Expressions
+7. Using Expressions
 
 A text field.
 
@@ -1538,7 +1538,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  457
 
-Creating a Character Expression
+Creating a Character Expression
 
 Example:
 
@@ -1602,7 +1602,7 @@ BANNING, J.
 
 458
 
-7. Using Expressions
+7. Using Expressions
 
 The request evaluates the expressions as follows:
 
@@ -1645,7 +1645,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  459
 
-Creating a Variable Length Character Expression
+Creating a Variable Length Character Expression
 
 The output is shown in the following image. If MOVIECODE contains the characters 'DIS',
 NEWCODE is generated by concatenating the characters 'NEY;', otherwise NEWCODE is
@@ -1666,7 +1666,7 @@ required to strip them, AnV format is not recommended for use in non-relational 
 
 460
 
-Using Concatenation With AnV Fields
+Using Concatenation With AnV Fields
 
 7. Using Expressions
 
@@ -1726,7 +1726,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  461
 
-Creating a Variable Length Character Expression
+Creating a Variable Length Character Expression
 
 Expression
 
@@ -1785,7 +1785,7 @@ Result
 
 TRUE
 
-7. Using Expressions
+7. Using Expressions
 
 Expression
 
@@ -1856,7 +1856,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  463
 
-Creating a Variable Length Character Expression
+Creating a Variable Length Character Expression
 
 Using the Assignment Operator With AnV Fields
 
@@ -1900,7 +1900,7 @@ error is generated if the result is longer than n.
 
 464
 
-7. Using Expressions
+7. Using Expressions
 
 Creating a Logical Expression
 
@@ -1965,7 +1965,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  465
 
-Creating a Logical Expression
+Creating a Logical Expression
 
 Operator
 
@@ -2034,7 +2034,7 @@ constants).
 
 466
 
-7. Using Expressions
+7. Using Expressions
 
 logical_expression
 
@@ -2093,7 +2093,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  467
 
-Creating a Conditional Expression
+Creating a Conditional Expression
 
 Example:
 
@@ -2152,7 +2152,7 @@ END
 
 
 
-7. Using Expressions
+7. Using Expressions
 
 The output is:
 
@@ -2177,6 +2177,6 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  469
 
-Creating a Conditional Expression
+Creating a Conditional Expression
 
 470

@@ -7,7 +7,7 @@ Release 8207
 March 2021
 DN4501688.0321
 
-Copyright© 2021.TIBCOSoftwareInc.AllRightsReserved. Contents
+Copyright© 2021.TIBCOSoftwareInc.AllRightsReserved. Contents
 
 1. Understanding a Data Source Description . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
 
@@ -77,7 +77,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  3
 
-Contents
+Contents
 
 LNGPREP Modes. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 60
 
@@ -145,7 +145,7 @@ Implementing a One-to-Many Relationship in a Relational Data Source. . . . . . .
 
 4
 
-Contents
+Contents
 
 Implementing a One-to-Many Relationship in a VSAM or Sequential Data Source. . . . . . . . . 85
 
@@ -215,7 +215,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  5
 
-Contents
+Contents
 
 String Format. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 139
 
@@ -285,7 +285,7 @@ Using a Virtual Field. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 6
 
-Contents
+Contents
 
 Describing a Calculated Value: COMPUTE . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .204
 
@@ -355,7 +355,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  7
 
-Contents
+Contents
 
 Describing Positionally Related Records. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 260
 
@@ -423,7 +423,7 @@ Limits on the Number of Segments, LOCATION Files, Indexes, and Text Fields. . . 
 
 8
 
-Contents
+Contents
 
 Specifying a Physical File Name for a Segment: DATASET. . . . . . . . . . . . . . . . . . . . . . . . . . . .308
 
@@ -493,7 +493,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  9
 
-Contents
+Contents
 
 Using Cross-Referenced Descendant Segments: SEGTYPE = KL and KLU . . . . . . . . . . . . . . . . . . .356
 
@@ -561,7 +561,7 @@ Non-Overridable User Passwords (SET PERMPASS). . . . . . . . . . . . . . . . . .
 
 10
 
-Contents
+Contents
 
 Controlling Case Sensitivity of Passwords. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 412
 
@@ -631,7 +631,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  11
 
-Contents
+Contents
 
 Checking Data Source Integrity: The CHECK Subcommand . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 460
 
@@ -699,7 +699,7 @@ REGION Data Source . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 12
 
-Contents
+Contents
 
 REGION Master File. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 484
 
@@ -771,7 +771,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  13
 
-Contents
+Contents
 
 VIDEOTR2 Data Source . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 494
 
@@ -841,7 +841,7 @@ CENTSTMT Structure Diagram. . . . . . . . . . . . . . . . . . . . . . . . . . . 
 
 14
 
-Contents
+Contents
 
 CENTGLL Master File. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 514
 
@@ -873,6 +873,6 @@ Describing Data With TIBCO WebFOCUS® Language
 
  15
 
-Contents
+Contents
 
 16

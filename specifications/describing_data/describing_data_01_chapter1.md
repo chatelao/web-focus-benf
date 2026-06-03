@@ -46,7 +46,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  17
 
-A Note About Data Source Terminology
+A Note About Data Source Terminology
 
 A Note About Data Source Terminology
 
@@ -85,7 +85,7 @@ data sources, one Access File to describe a data source.
 
 18
 
-How an Application Uses a Data Source Description
+How an Application Uses a Data Source Description
 
 1. Understanding a Data Source Description
 
@@ -142,7 +142,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  19
 
-What Does a Master File Describe?
+What Does a Master File Describe?
 
 Note:
 
@@ -194,7 +194,7 @@ For more information, see Describing an Individual Field on page 103.
 
 20
 
-1. Understanding a Data Source Description
+1. Understanding a Data Source Description
 
 Note: Master Files/data source descriptions must contain uppercase field and segment
 names if you are using them with Maintain Data.
@@ -237,7 +237,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  21
 
-Naming a Master File
+Naming a Master File
 
 Using Long Master File Names on z/OS
 
@@ -282,7 +282,7 @@ will be reused for the next new long name created with the same prefix.
 
 22
 
-1. Understanding a Data Source Description
+1. Understanding a Data Source Description
 
 Example:
 
@@ -356,7 +356,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  23
 
-Naming a Master File
+Naming a Master File
 
 where:
 
@@ -411,7 +411,7 @@ was specified in the DYNAM ALLOC command.
 
 24
 
-1. Understanding a Data Source Description
+1. Understanding a Data Source Description
 
 Example:
 
@@ -469,7 +469,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  25
 
-What Is in a Master File?
+What Is in a Master File?
 
 Reference: Usage Notes for Long Master File Names
 
@@ -513,7 +513,7 @@ Access File and, if so, what the Access File attributes are.
 
 26
 
-1. Understanding a Data Source Description
+1. Understanding a Data Source Description
 
 Syntax:
 
@@ -567,7 +567,7 @@ Describing Data With TIBCO WebFOCUS® Language
 
  27
 
-What Is in a Master File?
+What Is in a Master File?
 
 Example:
 
@@ -626,7 +626,7 @@ SEGNAME = EMPINFO, SEGTYPE = S1 ,$
 
 28
 
-1. Understanding a Data Source Description
+1. Understanding a Data Source Description
 
 Editing and Validating a Master File
 
@@ -645,6 +645,6 @@ Describing Data With TIBCO WebFOCUS® Language
 
  29
 
-What Is in a Master File?
+What Is in a Master File?
 
 30

@@ -59,7 +59,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1069
 
-The SET ALL command globally determines how all joins are implemented. If the SET ALL=ON
+The SET ALL command globally determines how all joins are implemented. If the SET ALL=ON
 command is issued, all joins are treated as outer joins. With SET ALL=OFF, the default, all
 joins are treated as inner joins.
 
@@ -105,7 +105,7 @@ Types of Joins
 
 1070
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 For more information on unique and non-unique joins, see Unique and Non-Unique Joined
 Structures on page 1072.
@@ -139,7 +139,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1071
 
-Types of Joins
+Types of Joins
 
 Reference: Notes on DBA Security for Joined Data Structures
 
@@ -177,7 +177,7 @@ file, regardless of whether the structure is unique.
 
 1072
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 Example:
 
@@ -212,7 +212,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1073
 
-Types of Joins
+Types of Joins
 
 To join these two data sources, issue the following JOIN command, using the ALL phrase:
 
@@ -245,7 +245,7 @@ values. OLD is the default value.
 
 1074
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 GNTINT
 
@@ -295,7 +295,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1075
 
-Types of Joins
+Types of Joins
 
 Issuing SET JOINOPT=NEW enables segments to be retrieved in the expected order (from left
 to right and from top to bottom), without missing data.
@@ -334,7 +334,7 @@ For example, the GENERIC data source shown below consists of Segments A and B.
 
 1076
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 The following request creates a recursive structure:
 
@@ -359,7 +359,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1077
 
-Types of Joins
+Types of Joins
 
 If you use tag names in a recursive joined structure, note the following guidelines:
 
@@ -410,7 +410,7 @@ Parts of divisions, such as instrument panels and seats.
 
 1078
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 Subparts, such as nuts and bolts.
 
@@ -439,7 +439,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1079
 
-Types of Joins
+Types of Joins
 
 For example, CABIN is a first-level division appearing in the top segment. It lists SEATS as a
 component in the bottom segment. SEATS also appears in the top segment. It lists BOLTS as
@@ -454,7 +454,7 @@ This creates the following recursive structure.
 
 1080
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 You can then produce a report on all three levels of data with this TABLE command (the field
 SUBDESCRIPT describes the contents of the field SUBPART):
@@ -504,7 +504,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1081
 
-Creating an Equijoin
+Creating an Equijoin
 
 The first record retrieved is a JOB file record for employee #071382660. Next, all records in
 the SALARY data source containing employee #071382660 are retrieved. This process
@@ -558,7 +558,7 @@ referenced file. This field is called the host field.
 
 1082
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 AND hfld2...
 
@@ -617,7 +617,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1083
 
-Creating an Equijoin
+Creating an Equijoin
 
 The tag name for the host file must be the same in all the JOIN commands of a joined
 structure.
@@ -674,7 +674,7 @@ assumed to be blank. A join without a name overwrites an existing join without a
 
 1084
 
-END
+END
 
 Required when the JOIN command is longer than one line. It terminates the command.
 It must be on a line by itself.
@@ -707,7 +707,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1085
 
-Creating an Equijoin
+Creating an Equijoin
 
 The procedure then adds an employee to EMPINFO named Fred Newman who has no matching
 record in the JOBINFO or EDINFO data sources.
@@ -754,7 +754,7 @@ END
 
 
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 The output is:
 
@@ -813,7 +813,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1087
 
-Creating an Equijoin
+Creating an Equijoin
 
 Example:
 
@@ -871,7 +871,7 @@ END
 
 1088
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 The following request generates the WF_PRODUCT table. The field ID_PRODUCT will be used in
 the right outer join command.
@@ -928,7 +928,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1089
 
-Creating an Equijoin
+Creating an Equijoin
 
 The output, shown in the following image, has a row for each ID_PRODUCT value that is in the
 WF_PRODUCT table. The columns from WF_SALES rows that do not have a matching
@@ -947,7 +947,7 @@ JOIN INNER EMP_ID IN EMPINFO TO MULTIPLE EMP_ID IN EDINFO AS J1
 
 1090
 
-The structure created by the two joins has two independent paths:
+The structure created by the two joins has two independent paths:
 
 14. Joining Data Sources
 
@@ -1006,7 +1006,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1091
 
-Creating an Equijoin
+Creating an Equijoin
 
 With MULTIPATH=COMPOUND, only employees with matching records in both of the cross-
 referenced files display on the report output:
@@ -1054,7 +1054,7 @@ segment, the host file must have a segment declaration.
 
 1092
 
-Reference: Restrictions on Group Fields
+Reference: Restrictions on Group Fields
 
 When group fields are used in a joined structure, the group in the host file and the group in the
 cross-referenced file must have the same number of elements:
@@ -1106,7 +1106,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1093
 
-Creating an Equijoin
+Creating an Equijoin
 
 (FOC32452) Use of ALL. with LEFT_OUTER/INNER not allowed
 
@@ -1147,7 +1147,7 @@ information, see Preserving Virtual Fields Using KEEPDEFINES on page 1144.
 
 1094
 
-Syntax:
+Syntax:
 
 How to Join From a Virtual Field to a Real Field
 
@@ -1210,7 +1210,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1095
 
-Creating an Equijoin
+Creating an Equijoin
 
 TAG tag1
 
@@ -1266,7 +1266,7 @@ assumed to be blank. A join without a name overwrites an existing join without a
 
 1096
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 END
 
@@ -1321,7 +1321,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1097
 
-Creating an Equijoin
+Creating an Equijoin
 
 The procedure is:
 
@@ -1374,7 +1374,7 @@ referenced values that are prefixed with the host value.
 
 1098
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 When joining a longer to a shorter field, the host value is unconditionally truncated to
 the cross referenced field length. If the truncation removes non-blank characters, the
@@ -1422,7 +1422,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1099
 
-Creating an Equijoin
+Creating an Equijoin
 
 The edit options may differ. The length may also differ, but with the following effect:
 
@@ -1472,7 +1472,7 @@ values are converted to hex C and all signs for negative values are converted to
 
 1100
 
-The JOINOPT parameter also corrects for lagging values in a unique join. For information,
+The JOINOPT parameter also corrects for lagging values in a unique join. For information,
 see How to Correct for Lagging Values With a Unique Join on page 1074.
 
 14. Joining Data Sources
@@ -1533,7 +1533,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1101
 
-Using a Conditional Join
+Using a Conditional Join
 
 The standard ? JOIN command lists every join currently in effect, and indicates any that are
 based on WHERE criteria.
@@ -1592,7 +1592,7 @@ and aliases in the host data source.
 
 1102
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 hfld2
 
@@ -1651,7 +1651,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1103
 
-Using a Conditional Join
+Using a Conditional Join
 
 Note: Single line JOIN syntax is not supported.
 
@@ -1689,7 +1689,7 @@ END
 
 1104
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 The output is:
 
@@ -1750,7 +1750,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1105
 
-Full Outer Joins
+Full Outer Joins
 
 JOIN FULL_OUTER hfld1 [AND hfld2 ...] IN table1 [TAG tag1] TO {UNIQUE|
 MULTIPLE} cfld [AND cfld2 ...] IN table2 [TAG tag2] [AS joinname]
@@ -1805,7 +1805,7 @@ field joins.
 
 1106
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 IN crfile
 
@@ -1864,7 +1864,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1107
 
-Full Outer Joins
+Full Outer Joins
 
 The WITH phrase is required unless the KEEPDEFINES parameter is set to ON and deffld
 was defined prior to issuing the JOIN command.
@@ -1919,7 +1919,7 @@ You want to ensure that a subsequent JOIN command does not overwrite it.
 
 1108
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 You want to clear it selectively later.
 
@@ -1976,7 +1976,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1109
 
-Full Outer Joins
+Full Outer Joins
 
 MULTIPLE
 
@@ -2033,7 +2033,7 @@ to 4000:
 
 1110
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 TABLE FILE WF_RETAIL_LITE
 SUM GROSS_PROFIT_US PRODUCT_CATEGORY PRODUCT_SUBCATEG
@@ -2080,7 +2080,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1111
 
-Full Outer Joins
+Full Outer Joins
 
 The trace shows that the full outer join was optimized (translated to SQL) so that SQL Server
 could process the join:
@@ -2100,7 +2100,7 @@ T1."ID_PRODUCT";
 
 1112
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 The output has a row for each ID_PRODUCT value that is in either table. Rows with
 ID_PRODUCT values from 2150 to 2167 are only in the WF_SALES table, so the columns from
@@ -2122,7 +2122,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1113
 
-Reporting Against a Multi-Fact Cluster Synonym
+Reporting Against a Multi-Fact Cluster Synonym
 
 A dimension table can be a child of multiple fact tables (called a shared dimension) or be a
 child of a single fact table (called a non-shared dimension). In most cases, the fact tables are
@@ -2151,7 +2151,7 @@ The MATCH FILE command is not supported for reporting against a multi-fact synon
 
 1114
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 Example:
 
@@ -2189,7 +2189,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1115
 
-Reporting Against a Multi-Fact Cluster Synonym
+Reporting Against a Multi-Fact Cluster Synonym
 
 Syntax:
 
@@ -2236,7 +2236,7 @@ WebFOCUS Retail data source to an Excel file named PROJECTED.
 
 1116
 
-To generate the WebFOCUS Retail data source in the Web Console, click Tutorials from the
+To generate the WebFOCUS Retail data source in the Web Console, click Tutorials from the
 Applications page.
 
 14. Joining Data Sources
@@ -2279,7 +2279,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1117
 
-Reporting Against a Multi-Fact Cluster Synonym
+Reporting Against a Multi-Fact Cluster Synonym
 
 The following image shows the data in the Excel file.
 
@@ -2298,7 +2298,7 @@ END
 
 1118
 
-The output is:
+The output is:
 
 14. Joining Data Sources
 
@@ -2306,7 +2306,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1119
 
-Reporting Against a Multi-Fact Cluster Synonym
+Reporting Against a Multi-Fact Cluster Synonym
 
 Generating Outer Joins of Cluster Synonym Contexts
 
@@ -2323,7 +2323,7 @@ and retrieve all values from both contexts.
 
 1120
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 Syntax:
 
@@ -2355,7 +2355,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1121
 
-Reporting Against a Multi-Fact Cluster Synonym
+Reporting Against a Multi-Fact Cluster Synonym
 
 Example:
 
@@ -2393,7 +2393,7 @@ ACTUAL=A11V,
 
 1122
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 The following request joins the Excel file as a root and generates a report that contains fields
 from both roots and the shared dimension. Using the default value for BLEND-MODE produces
@@ -2439,7 +2439,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1123
 
-Reporting Against a Multi-Fact Cluster Synonym
+Reporting Against a Multi-Fact Cluster Synonym
 
 For the Cost of Goods field in the row that corresponds to product category Displays, which
 is not represented in the WF_RETAIL data source.
@@ -2465,7 +2465,7 @@ synonym can be used in the join.
 
 1124
 
-Example:
+Example:
 
 Joining From a Multi-Fact Synonym
 
@@ -2499,7 +2499,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1125
 
-Reporting Against a Multi-Fact Cluster Synonym
+Reporting Against a Multi-Fact Cluster Synonym
 
 The following request joins the product segment to the dimension table wf_retail_vendor based
 on the vendor ID and issues a request against the joined structure:
@@ -2516,7 +2516,7 @@ END
 
 1126
 
-The output is:
+The output is:
 
 14. Joining Data Sources
 
@@ -2524,7 +2524,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1127
 
-Navigating Joins Between Cluster Synonyms
+Navigating Joins Between Cluster Synonyms
 
 Navigating Joins Between Cluster Synonyms
 
@@ -2572,7 +2572,7 @@ NESTED_CLUSTERS
 
 1128
 
-Example:
+Example:
 
 Navigating Joins Between Cluster Synonyms
 
@@ -2631,7 +2631,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1129
 
-Navigating Joins Between Cluster Synonyms
+Navigating Joins Between Cluster Synonyms
 
 The output is shown in the following image. The inner join was done last, reducing the number
 of stations in the host file to the same number as in the cluster.
@@ -2671,7 +2671,7 @@ SQL_SCRIPT
 
 1130
 
-14. Joining Data Sources
+14. Joining Data Sources
 
     SELECT
     SUM(T1."VB001_CNT_START_STATION_ID"),
@@ -2718,7 +2718,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1131
 
-Cross Database Join Optimization
+Cross Database Join Optimization
 
 One type of performance optimization results from extracting data from the cross-referenced
 table prior to performing the join, or issuing a sub-select. You can disable this optimization
@@ -2746,7 +2746,7 @@ You can view the generated query in either the Session Log or the trace file.
 
 1132
 
-The following SQL request joins a Microsoft SQL Server named citibike_mssql table to a
+The following SQL request joins a Microsoft SQL Server named citibike_mssql table to a
 MySQL table named station_zip_mysql.
 
 14. Joining Data Sources
@@ -2799,7 +2799,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1133
 
-Cross Database Join Optimization
+Cross Database Join Optimization
 
 Next, the citibike_mssql table is joined to the HOLD file.
 
@@ -2851,7 +2851,7 @@ temporary table created for the merge sub-select statement.
 
 1134
 
-For example, following flow creates three left outer joins between Microsoft SQL Server tables
+For example, following flow creates three left outer joins between Microsoft SQL Server tables
 and Oracle tables. The Oracle synonyms start with the characters o_.
 
 14. Joining Data Sources
@@ -2860,7 +2860,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1135
 
-Cross Database Join Optimization
+Cross Database Join Optimization
 
 The following SQL statement corresponds to the joins generated by the flow.
 
@@ -2907,7 +2907,7 @@ SELECT
 
 1136
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 FROM
    ((("ibisamp/facts".wf_retail_sales T1
@@ -2935,7 +2935,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1137
 
-Cross Database Join Optimization
+Cross Database Join Optimization
 
 The Session Log shows the joins that were generated. The left outer joins were converted to
 inner joins, as shown in the following partial listing.
@@ -2989,7 +2989,7 @@ END
 
 1138
 
-In addition, joins that use the same DBMS are passed to that DBMS, as shown in the following
+In addition, joins that use the same DBMS are passed to that DBMS, as shown in the following
 partial listing.
 
 14. Joining Data Sources
@@ -3045,7 +3045,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1139
 
-Adding DBA Restrictions to the Join Condition: SET DBAJOIN
+Adding DBA Restrictions to the Join Condition: SET DBAJOIN
 
 To activate the context analysis feature, click Change Common Adapter Settings on the
 Adapters page of the Web Console. Then select Yes for the FCA parameter in the
@@ -3068,7 +3068,7 @@ structure and the join is an outer or unique join.
 
 1140
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 When restrictions are treated as report filters, lower-level segment instances that do not
 satisfy them are omitted from the report output, along with their host segments. Since host
@@ -3130,7 +3130,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1141
 
-Adding DBA Restrictions to the Join Condition: SET DBAJOIN
+Adding DBA Restrictions to the Join Condition: SET DBAJOIN
 
 Issue the following request:
 
@@ -3165,7 +3165,7 @@ SELECT
 
 1142
 
-Rerun the request with SET DBAJOIN=ON. The output now displays all host rows, with missing
+Rerun the request with SET DBAJOIN=ON. The output now displays all host rows, with missing
 values substituted for lower-level segment instances that did not satisfy the DBA restriction, as
 shown on the following image:
 
@@ -3196,7 +3196,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1143
 
-Preserving Virtual Fields During Join Parsing
+Preserving Virtual Fields During Join Parsing
 
 Preserving Virtual Fields Using KEEPDEFINES
 
@@ -3249,7 +3249,7 @@ Clears the virtual field after a JOIN command is run. This value is the default.
 
 1144
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 Reference: Usage Notes for KEEPDEFINES
 
@@ -3305,7 +3305,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1145
 
-Preserving Virtual Fields During Join Parsing
+Preserving Virtual Fields During Join Parsing
 
 Next a new virtual field, YEARS, is defined for the join between VIDEOTRK and MOVIES:
 
@@ -3358,7 +3358,7 @@ VIDEOTRK DAYSKEPT                     I5            4
 
 1146
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 The report output shows that the original definition for DAYSKEPT is now in effect:
 
@@ -3418,7 +3418,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1147
 
-Preserving Virtual Fields During Join Parsing
+Preserving Virtual Fields During Join Parsing
 
 The following JOIN command creates a new context. Because KEEPDEFINES is set to ON,
 virtual field C is not cleared by the JOIN command:
@@ -3473,7 +3473,7 @@ Note: DEFINE FILE RETURN is only activated when a DEFINE FILE SAVE is in effect.
 
 1148
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 Screening Segments With Conditional JOIN Expressions
 
@@ -3522,7 +3522,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1149
 
-Displaying Joined Structures
+Displaying Joined Structures
 
 Example:
 
@@ -3573,7 +3573,7 @@ in an alternate file view.
 
 1150
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 The cross-referenced file segment types in the joined structure are the following:
 
@@ -3625,7 +3625,7 @@ Creating Reports With TIBCO® WebFOCUS Language
  1151
 
 
-Clearing Joined Structures
+Clearing Joined Structures
 
 Syntax:
 
@@ -3681,7 +3681,7 @@ JOIN MOVIECODE IN VIDEOTRK TO MOVIECODE IN MOVIES AS J1
 
 1152
 
-14. Joining Data Sources
+14. Joining Data Sources
 
 The next request creates a conditional join (JW3) using MOVIES as the host data source:
 
@@ -3732,6 +3732,6 @@ Creating Reports With TIBCO® WebFOCUS Language
 
 
 
-Clearing Joined Structures
+Clearing Joined Structures
 
 1154

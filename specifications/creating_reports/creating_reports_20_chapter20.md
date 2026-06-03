@@ -46,7 +46,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1293
 
-What Is a Cascading Style Sheet?
+What Is a Cascading Style Sheet?
 
 An external cascading style sheet, which is stored in a separate file that can be shared by
 multiple documents. The external CSS file can reside on any web server accessible to the
@@ -96,7 +96,7 @@ declaration has a property (background) and a value assigned to the property (ye
 
 1294
 
-20. Using an External Cascading Style Sheet
+20. Using an External Cascading Style Sheet
 
 A declaration defines formatting, and a selector determines to what the formatting will be
 applied. A selector can be any HTML element. A selector can also be a class. You can define a
@@ -147,7 +147,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1295
 
-Formatting a Report With an External Cascading Style Sheet
+Formatting a Report With an External Cascading Style Sheet
 
 Easier standards conformance. You can ensure that reports conform to your enterprise's
 formatting guidelines, because now formatting instructions for all your Web documents can
@@ -179,7 +179,7 @@ an External Cascading Style Sheet on page 1298.
 
 1296
 
-20. Using an External Cascading Style Sheet
+20. Using an External Cascading Style Sheet
 
 For an example that demonstrates how these items work together, see Linking to the
 ReportStyles External Cascading Style Sheet on page 1299 and the following diagram:
@@ -188,7 +188,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1297
 
-Formatting a Report With an External Cascading Style Sheet
+Formatting a Report With an External Cascading Style Sheet
 
 Procedure: How to Format a Report Using an External Cascading Style Sheet
 
@@ -241,7 +241,7 @@ CSSURL.
 
 1298
 
-20. Using an External Cascading Style Sheet
+20. Using an External Cascading Style Sheet
 
 For an example, see Linking to the ReportStyles External Cascading Style Sheet on page
 1299. For more information, see Linking to an External Cascading Style Sheet on page
@@ -291,7 +291,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1299
 
-Formatting a Report With an External Cascading Style Sheet
+Formatting a Report With an External Cascading Style Sheet
 
 You could accomplish the same thing using a SET command:
 
@@ -351,7 +351,7 @@ curprods.fex
 1300
 
 
-20. Using an External Cascading Style Sheet
+20. Using an External Cascading Style Sheet
 
 Note: To specify a path that points to a WebFOCUS repository that contains the report01.css
 file, use the following syntax for the CSSURL parameter on the TYPE=REPORT line in the
@@ -413,7 +413,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1301
 
-Working With an External Cascading Style Sheet
+Working With an External Cascading Style Sheet
 
 11.The CSS rule for the generic class headText specifies the font family Times New Roman
 and, if Times New Roman is unavailable, the generic font family serif. It also specifies a
@@ -443,7 +443,7 @@ Sheet on page 1304.
 
 1302
 
-20. Using an External Cascading Style Sheet
+20. Using an External Cascading Style Sheet
 
 Using CSS rules and classes to specify report formatting. For more information, see
 Choosing a Cascading Style Sheet Rule on page 1304.
@@ -493,7 +493,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1303
 
-Working With an External Cascading Style Sheet
+Working With an External Cascading Style Sheet
 
 Editing an External Cascading Style Sheet
 
@@ -538,7 +538,7 @@ graph appears, and its heading and footing, but not the graph itself.
 
 1304
 
-20. Using an External Cascading Style Sheet
+20. Using an External Cascading Style Sheet
 
 TD will specify default formatting only for the report, and for any other table cells that you
 may have on the page. TD is the table data (that is, table cell) element. WebFOCUS
@@ -584,7 +584,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1305
 
-Applying External Cascading Style Sheet Formatting
+Applying External Cascading Style Sheet Formatting
 
 Applying External Cascading Style Sheet Formatting
 
@@ -625,7 +625,7 @@ CSS With Other Formatting Methods on page 1308.
 
 1306
 
-20. Using an External Cascading Style Sheet
+20. Using an External Cascading Style Sheet
 
 Syntax:
 
@@ -682,7 +682,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1307
 
-Combining an External CSS With Other Formatting Methods
+Combining an External CSS With Other Formatting Methods
 
 link
 
@@ -728,7 +728,7 @@ Both of these will attempt to align the report page heading.
 
 1308
 
-Combining an External CSS With a WebFOCUS StyleSheet
+Combining an External CSS With a WebFOCUS StyleSheet
 
 20. Using an External Cascading Style Sheet
 
@@ -771,7 +771,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1309
 
-Linking to an External Cascading Style Sheet
+Linking to an External Cascading Style Sheet
 
 You can specify classes and WebFOCUS StyleSheet attributes that format different properties
 of the same report component, and that format different report components. For example, the
@@ -824,7 +824,7 @@ compared with 69 characters in the parameter.
 
 1310
 
-20. Using an External Cascading Style Sheet
+20. Using an External Cascading Style Sheet
 
 All formatting information in one place, since you can specify the link to the external
 CSS and the references to CSS classes within the WebFOCUS StyleSheet. This makes it
@@ -880,7 +880,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1311
 
-Linking to an External Cascading Style Sheet
+Linking to an External Cascading Style Sheet
 
 Example:
 
@@ -911,7 +911,7 @@ The request produces this report:
 1312
 
 
-20. Using an External Cascading Style Sheet
+20. Using an External Cascading Style Sheet
 
 Note: To specify a path that points to a WebFOCUS repository that contains the report01.css
 file, use the following syntax for the CSSURL parameter on the TYPE=REPORT line in the
@@ -967,7 +967,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1313
 
-Inheritance and External Cascading Style Sheets
+Inheritance and External Cascading Style Sheets
 
 Inheritance and External Cascading Style Sheets
 
@@ -1021,7 +1021,7 @@ prodvend.fex
 
 1314
 
-20. Using an External Cascading Style Sheet
+20. Using an External Cascading Style Sheet
 
     END
 
@@ -1064,7 +1064,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1315
 
-Using External Cascading Style Sheets With Non-HTML Reports
+Using External Cascading Style Sheets With Non-HTML Reports
 
 The procedure displays this report:
 
@@ -1095,7 +1095,7 @@ to Excel 2000, so you would place it with the macro definitions for HTML.)
 
 1316
 
-20. Using an External Cascading Style Sheet
+20. Using an External Cascading Style Sheet
 
 Branch between the HTML and non-HTML declarations using Dialogue Manager.
 
@@ -1106,7 +1106,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1317
 
-Using External Cascading Style Sheets With Non-HTML Reports
+Using External Cascading Style Sheets With Non-HTML Reports
 
 Syntax:
 
@@ -1167,7 +1167,7 @@ sets the display type for the report. Alternatively, you could use ON TABLE HOLD
 
 1318
 
-20. Using an External Cascading Style Sheet
+20. Using an External Cascading Style Sheet
 
 the report as a file and set its file type.
 
@@ -1218,7 +1218,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1319
 
-Using External Cascading Style Sheets With Non-HTML Reports
+Using External Cascading Style Sheets With Non-HTML Reports
 
 Example:
 
@@ -1282,7 +1282,7 @@ using external cascading style sheet classes.
 
 1320
 
-20. Using an External Cascading Style Sheet
+20. Using an External Cascading Style Sheet
 
 6. Branch to the WebFOCUS StyleSheet declarations that apply the macros to the components
 
@@ -1329,7 +1329,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1321
 
-Requirements for Using an External Cascading Style Sheet
+Requirements for Using an External Cascading Style Sheet
 
 Exceptions. Even when specifying external CSS classes, you should use native WebFOCUS
 StyleSheet attributes to:
@@ -1376,7 +1376,7 @@ the cascading style sheet of each document.
 
 1322
 
-20. Using an External Cascading Style Sheet
+20. Using an External Cascading Style Sheet
 
 For instructions about checking or changing a browser setting, see the browser Help. For
 information about how conflicts between CSS rules are resolved (for example, between a
@@ -1422,7 +1422,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1323
 
-FAQ About Using External Cascading Style Sheets
+FAQ About Using External Cascading Style Sheets
 
 Do I always need to use the CLASS attribute?
 
@@ -1455,7 +1455,7 @@ where mycss.css contains:
 
 1324
 
-The output is:
+The output is:
 
 20. Using an External Cascading Style Sheet
 
@@ -1476,7 +1476,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1325
 
-FAQ About Using External Cascading Style Sheets
+FAQ About Using External Cascading Style Sheets
 
 Which version of CSS does WebFOCUS support?
 
@@ -1508,7 +1508,7 @@ other than HTML, making CSS a rarely-used option for formatting free form.
 
 1326
 
-Troubleshooting External Cascading Style Sheets
+Troubleshooting External Cascading Style Sheets
 
 20. Using an External Cascading Style Sheet
 
@@ -1560,7 +1560,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1327
 
-Troubleshooting External Cascading Style Sheets
+Troubleshooting External Cascading Style Sheets
 
 Solution 4: Remove the unsupported property, or upgrade your browser to a version that
 supports the property.
@@ -1609,7 +1609,7 @@ supports the property.
 
 1328
 
-20. Using an External Cascading Style Sheet
+20. Using an External Cascading Style Sheet
 
 Reason 4: Each report component can be assigned only one cascading style sheet class. If
 you have specified more than one class, only the first one specified is assigned to the
@@ -1660,6 +1660,6 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1329
 
-Troubleshooting External Cascading Style Sheets
+Troubleshooting External Cascading Style Sheets
 
 1330

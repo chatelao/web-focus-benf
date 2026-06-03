@@ -49,7 +49,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1899
 
-Creating a Free-Form Report
+Creating a Free-Form Report
 
 BY phrases
 
@@ -91,7 +91,7 @@ employee in the Production department.
 
 1900
 
-The following diagram simulates the output you would see if you ran the procedure in the
+The following diagram simulates the output you would see if you ran the procedure in the
 example named Request for EMPLOYEE EDUCATION HOURS REPORT on page 1902.
 
 26. Creating a Free-Form Report
@@ -100,7 +100,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1901
 
-Creating a Free-Form Report
+Creating a Free-Form Report
 
 Example:
 
@@ -162,7 +162,7 @@ the EMPLOYEE data source.
 
 1902
 
-26. Creating a Free-Form Report
+26. Creating a Free-Form Report
 
 4. The heading section, initiated by the HEADING command, defines the body of the report.
 Most of the text and data fields that display in the report are specified in the heading
@@ -221,7 +221,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1903
 
-Designing a Free-Form Report
+Designing a Free-Form Report
 
 Use the HEADING command to define the body of a free-form report, and the FOOTING
 command to define what appears at the bottom of each page of a report. A footing is optional.
@@ -272,7 +272,7 @@ referenced as follows:
 
 1904
 
-26. Creating a Free-Form Report
+26. Creating a Free-Form Report
 
 "<10>| EDUCATION CREDITS EARNED <CR_EARNED>|"
 
@@ -320,7 +320,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1905
 
-Designing a Free-Form Report
+Designing a Free-Form Report
 
 The sample request (see the example named Request for EMPLOYEE EDUCATION HOURS
 REPORT on page 1902) illustrates this feature. The first two examples show how to position

@@ -41,6 +41,6 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  1983
 
-Displaying Messages
+Displaying Messages
 
 1984
