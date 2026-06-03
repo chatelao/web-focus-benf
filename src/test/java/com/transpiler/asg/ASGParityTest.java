@@ -167,9 +167,9 @@ class ASGParityTest {
         assertEquals("TABLE", onTable.target());
         assertEquals("COLUMN-TOTAL", onTable.actions().get(0));
 
-        ComputeCommand compute = new ComputeCommand("BONUS", "SALARY * 0.1", "D12.2");
+        ComputeCommand compute = new ComputeCommand("BONUS", new BinaryOperation(new Identifier("SALARY"), "*", new Literal(0.1)), "D12.2");
         assertEquals("BONUS", compute.name());
-        assertEquals("SALARY * 0.1", compute.expression());
+        assertTrue(compute.expression() instanceof BinaryOperation);
         assertEquals("D12.2", compute.format());
     }
 

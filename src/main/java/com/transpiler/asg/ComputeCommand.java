@@ -5,7 +5,11 @@ package com.transpiler.asg;
  */
 public record ComputeCommand(
     String name,
-    String expression,
-    String format
+    Expression expression,
+    String format,
+    String alias
 ) implements Command {
+    public ComputeCommand(String name, Expression expression, String format) {
+        this(name, expression, format, null);
+    }
 }

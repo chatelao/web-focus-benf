@@ -596,4 +596,16 @@ public class WebFocusReportASGBuilder extends WebFocusReportBaseVisitor<Object> 
                 .collect(Collectors.joining(" "));
         return new Footing(text, centered);
     }
+
+    @Override
+    public Object visitCompute_command(WebFocusReportParser.Compute_commandContext ctx) {
+        String name = ctx.qualified_name().getText();
+        String format = ctx.format_name() != null ? ctx.format_name().getText() : null;
+        Expression expression = (Expression) visit(ctx.dm_expression());
+        String alias = null;
+        if (ctx.as_phrase() != null) {
+            alias = (String) visit(ctx.as_phrase());
+        }
+        return new ComputeCommand(name, expression, format, alias);
+    }
 }
