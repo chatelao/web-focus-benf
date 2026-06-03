@@ -1,4 +1,5 @@
 import os
+import sys
 import re
 import ir
 import asg
@@ -16,8 +17,12 @@ class PostgresEmitter:
     """
     def __init__(self, template_dir=None, metadata_registry=None):
         if template_dir is None:
-            # Default to src/templates relative to this file
-            template_dir = os.path.join(os.path.dirname(__file__), 'templates')
+            # Handle PyInstaller path resolution
+            if hasattr(sys, '_MEIPASS'):
+                template_dir = os.path.join(sys._MEIPASS, 'templates')
+            else:
+                # Default to src/templates relative to this file
+                template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 
         self.env = Environment(
             loader=FileSystemLoader(template_dir),
