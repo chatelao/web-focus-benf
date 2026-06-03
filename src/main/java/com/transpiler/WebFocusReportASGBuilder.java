@@ -45,6 +45,12 @@ public class WebFocusReportASGBuilder extends WebFocusReportBaseVisitor<Object> 
     }
 
     @Override
+    public Object visitWhen_command(WebFocusReportParser.When_commandContext ctx) {
+        Expression condition = (Expression) visit(ctx.dm_logical_expression());
+        return new WhenCommand(condition);
+    }
+
+    @Override
     public Object visitRequest(WebFocusReportParser.RequestContext ctx) {
         String filename = (String) visit(ctx.table_file());
         List<Command> components = new ArrayList<>();
