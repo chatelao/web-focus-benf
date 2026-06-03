@@ -79,7 +79,9 @@ This document outlines the strategic porting of the WebFOCUS to PostgreSQL Trans
     - [ ] 3.1.4.4 Formatting:
       - [x] 3.1.4.4.1 HEADING and FOOTING.
       - [ ] 3.1.4.4.2 ON ... SUBHEAD/SUBFOOT.
-    - [ ] 3.1.4.5 Calculations (COMPUTE, RECAP).
+    - [ ] 3.1.4.5 Calculations:
+      - [x] 3.1.4.5.1 COMPUTE command.
+      - [ ] 3.1.4.5.2 RECAP command and assignments.
     - [ ] 3.1.4.6 Summarization (SUBTOTAL, SUMMARIZE).
   - [ ] 3.1.5 Advanced Features:
     - [ ] 3.1.5.1 Compound Layout.

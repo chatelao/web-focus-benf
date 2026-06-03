@@ -553,6 +553,17 @@ public class WebFocusReportASGBuilderTest {
     }
 
     @Test
+    public void testComputeCommand() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+        WebFocusReportParser parser = createParser("COMPUTE BONUS/D12.2 = SALARY * 0.1 AS 'Annual Bonus';");
+        ComputeCommand compute = (ComputeCommand) builder.visit(parser.compute_command());
+        assertEquals("BONUS", compute.name());
+        assertEquals("D12.2", compute.format());
+        assertTrue(compute.expression() instanceof BinaryOperation);
+        assertEquals("Annual Bonus", compute.alias());
+    }
+
+    @Test
     public void testWhenCommand() {
         WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
         WebFocusReportParser parser = createParser("WHEN COUNTRY EQ 'USA'");
