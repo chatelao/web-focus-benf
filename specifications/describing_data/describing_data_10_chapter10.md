@@ -31,7 +31,7 @@ Hiding Restriction Rules: The ENCRYPT Command
 
 FOCEXEC Security
 
-Introduction to Data Source Security
+## Introduction to Data Source Security
 
 The DBA facility provides a number of security options:
 
@@ -45,7 +45,7 @@ You can restrict a user access to certain fields or segments using the RESTRICT 
 discussed in Limiting Data Source Access: The RESTRICT Attribute on page 417.
 
 
-Implementing Data Source Security
+## Implementing Data Source Security
 
 You can ensure that only records that pass a validation test are retrieved using the
 RESTRICT attribute discussed in Limiting Data Source Access: The RESTRICT Attribute on
@@ -68,7 +68,7 @@ manual.
 
 You can place security on FOCEXECs, as discussed in FOCEXEC Security on page 438.
 
-Implementing Data Source Security
+## Implementing Data Source Security
 
 You provide WebFOCUS security on a file-by-file basis. Implementing DBA security features is a
 straightforward process in which you specify:
@@ -146,7 +146,7 @@ USER=MARY   ,ACCESS=W  ,RESTRICT=VALUE    ,NAME=SALTEST,
    VALUE=DIV NE ' ' AND DATE GT 0,$
 
 
-Implementing Data Source Security
+## Implementing Data Source Security
 
 Reference: Special Considerations for Data Source Security
 
@@ -247,7 +247,7 @@ inadequate for the type of access requested, the following message appears:
 filename
 
 
-Implementing Data Source Security
+## Implementing Data Source Security
 
 Syntax:
 
@@ -354,7 +354,7 @@ SET PASS = USERRW
 VALUE WAS NOT CHANGED
 
 
-Implementing Data Source Security
+## Implementing Data Source Security
 
 Controlling Case Sensitivity of Passwords
 
@@ -464,7 +464,7 @@ SET PASS=SALLY, DAVE IN SIX
 SET PASS=DAVE IN SEVEN
 
 
-Specifying an Access Type: The ACCESS Attribute
+## Specifying an Access Type: The ACCESS Attribute
 
 The password is MARY in file FIVE and FRANK in all other files:
 
@@ -497,7 +497,7 @@ Users must issue passwords using the SET PASS command during each session in whi
 use a secured data source. They may issue passwords at any time before using the data
 source and can issue a different password afterward to access another data source.
 
-Specifying an Access Type: The ACCESS Attribute
+## Specifying an Access Type: The ACCESS Attribute
 
 The ACCESS attribute specifies what sort of access a user is granted. Every security
 declaration, except the DBA declaration, must have a USER attribute and an ACCESS attribute.
@@ -596,7 +596,7 @@ X
 X
 
 
-Specifying an Access Type: The ACCESS Attribute
+## Specifying an Access Type: The ACCESS Attribute
 
 Command
 
@@ -715,12 +715,12 @@ VALUE
 
 This option has no effect on the picture.
 
-Limiting Data Source Access: The RESTRICT Attribute
+## Limiting Data Source Access: The RESTRICT Attribute
 
 The ACCESS attribute determines what a user can do with a data source.
 
 
-Limiting Data Source Access: The RESTRICT Attribute
+## Limiting Data Source Access: The RESTRICT Attribute
 
 The optional RESTRICT attribute further restricts a user access to certain fields, values, or
 segments.
@@ -820,7 +820,7 @@ USER = USER1, ACCESS = R, NAME = SALES01, RESTRICT = VALUE_WHERE,
        VALUE = REGION EQ 'West' AND PRODUCT LIKE 'C%'; ,$
 
 
-Limiting Data Source Access: The RESTRICT Attribute
+## Limiting Data Source Access: The RESTRICT Attribute
 
 The following request sets the password to USER1 and sums dollar sales and units by
 REGION, CATEGORY, and PRODUCT:
@@ -925,7 +925,7 @@ the same restrictions as the one named in the NAME attribute. You can then add a
 restrictions, as they are needed.
 
 
-Limiting Data Source Access: The RESTRICT Attribute
+## Limiting Data Source Access: The RESTRICT Attribute
 
 Example:
 
@@ -1020,7 +1020,7 @@ USER=SAM, ACCESS=R, RESTRICT=VALUE, NAME=IDSEG,
 Note: The second and subsequent lines of a value restriction must begin with the keyword OR.
 
 
-Controlling the Source of Access Restrictions in a Multi-file Structure
+## Controlling the Source of Access Restrictions in a Multi-file Structure
 
 You can apply the test conditions to the parent segments of the data segments on which the
 tests are applicable. Consider the following example:
@@ -1052,7 +1052,7 @@ use ACCESS=RW to do this.
 Note: Write restrictions apply to data maintenance facilities not discussed in this manual. For
 more information, see the Maintain Data documentation.
 
-Controlling the Source of Access Restrictions in a Multi-file Structure
+## Controlling the Source of Access Restrictions in a Multi-file Structure
 
 The DBASOURCE parameter determines which security attributes are used to grant access to
 multi-file structures. By default, access restrictions are based on the host file in a JOIN
@@ -1115,7 +1115,7 @@ All files in the JOIN or COMBINE structure must have the same DBA password. If t
 attributes are not the same, there will be no way to access the structure.
 
 
-Controlling the Source of Access Restrictions in a Multi-file Structure
+## Controlling the Source of Access Restrictions in a Multi-file Structure
 
 If the SET DBASOURCE command is issued more than once in a session, the following
 message displays and the value is not changed:
@@ -1221,9 +1221,8 @@ that it was not changed:
 VALUE WAS NOT CHANGED
 
 
-Adding DBA Restrictions to the Join Condition
+## Adding DBA Restrictions to the Join Condition
 
-Adding DBA Restrictions to the Join Condition
 
 When DBA restrictions are applied to a request on a multi-segment structure, by default, the
 restrictions are added as WHERE conditions in the report request. When the DBAJOIN
@@ -1243,7 +1242,7 @@ host rows.
 
 For more information, see the Creating Reports With WebFOCUS Language manual.
 
-Placing Security Information in a Central Master File
+## Placing Security Information in a Central Master File
 
 The DBAFILE attribute enables you to place all passwords and restrictions for multiple Master
 Files in one central file. Each individual Master File points to this central control file. Groups of
@@ -1311,7 +1310,7 @@ dbaname
 Is the same as the dbaname in the central file.
 
 
-Placing Security Information in a Central Master File
+## Placing Security Information in a Central Master File
 
 filename
 
@@ -1415,7 +1414,7 @@ With these DBA attributes, user EUSER will have read access to all files that us
 their DBAFILE. User CUSER2 will have read/write access to the COURSE data source.
 
 
-Placing Security Information in a Central Master File
+## Placing Security Information in a Central Master File
 
 Add the following security attributes to the bottom of the COURSE Master File. These attributes
 makes the EMPDATA Master File the central file that contains the security attributes to use for
@@ -1510,7 +1509,7 @@ only ones examined. For a COMBINE, only the last data source passwords take effe
 sources must have the same DBA password.
 
 
-Summary of Security Attributes
+## Summary of Security Attributes
 
 In the new system, the DBA sections of all data sources in a JOIN or COMBINE are examined.
 If DBAFILE is included in a Master File, then its passwords and restrictions are read. To make
@@ -1548,7 +1547,7 @@ You can assign screening conditions to a data source that are automatically appl
 report request that accesses the data source. See the Creating Reports With WebFOCUS
 Language manual for details.
 
-Summary of Security Attributes
+## Summary of Security Attributes
 
 The following is a list of all the security attributes used in WebFOCUS:
 
@@ -1655,9 +1654,8 @@ Names the Master File containing
 passwords and restrictions to use.
 
 
-Hiding Restriction Rules: The ENCRYPT Command
+## Hiding Restriction Rules: The ENCRYPT Command
 
-Hiding Restriction Rules: The ENCRYPT Command
 
 Since the restriction information for a FOCUS data source is stored in its Master File, you can
 encrypt the Master File in order to prevent users from examining the restriction rules. Only the
@@ -1729,7 +1727,7 @@ suppose the data items on a segment are:
 They should be grouped as:
 
 
-FOCEXEC Security
+## FOCEXEC Security
 
 Note: If you change the DBA password, you must issue the RESTRICT command, as described
 in How to Change a DBA Password on page 409.
@@ -1750,7 +1748,7 @@ PROFILE FOCEXEC or an encrypted FOCEXEC.
 Passwords set this way must match the passwords specified in the Master Files of the data
 sources being accessed.
 
-FOCEXEC Security
+## FOCEXEC Security
 
 Most data security issues are best handled by WebFOCUS DBA exit routines. For more
 information about WebFOCUS DBA exit routines see the WebFOCUS Security and Administration
@@ -1785,5 +1783,5 @@ SET PASS = DOHIDE
 DECRYPT FILE SALERPT FOCEXEC
 
 
-FOCEXEC Security
+## FOCEXEC Security
 

@@ -16,7 +16,7 @@ Specifying Data Format in a Report
 
 Positioning Data in a Report
 
-Specifying Font Format in a Report
+## Specifying Font Format in a Report
 
 Using StyleSheet attributes, you can enhance the appearance of a report by specifying the
 font, size, and color of the font. Font format can be designated for a report as a whole, or for
@@ -44,7 +44,7 @@ Component in a WebFOCUS StyleSheet on page 1249 for more information about how
 to specify different report components.
 
 
-Specifying Font Format in a Report
+## Specifying Font Format in a Report
 
 pts
 
@@ -163,7 +163,7 @@ ENDSTYLE
 END
 
 
-Specifying Font Format in a Report
+## Specifying Font Format in a Report
 
 The output is:
 
@@ -246,7 +246,7 @@ AQUA (CYAN)
 MEDIUM FOREST GREEN (OLIVE)
 
 
-Specifying Font Format in a Report
+## Specifying Font Format in a Report
 
 AQUAMARINE
 
@@ -407,7 +407,7 @@ type
 Is the report component you wish to affect, such as REPORT, HEADING, or TITLE.
 
 
-Specifying Font Format in a Report
+## Specifying Font Format in a Report
 
 subtype
 
@@ -487,7 +487,7 @@ END
 
 The output is:
 
-Specifying Background Color in a Report
+## Specifying Background Color in a Report
 
 Using StyleSheet attributes, you can enhance the appearance of a report by specifying a
 background color. You can designate background colors for a report as a whole, or for
@@ -498,7 +498,7 @@ lines in a report. These alternating colors are not supported for stacked column
 LINE).
 
 
-Specifying Background Color in a Report
+## Specifying Background Color in a Report
 
 Syntax:
 
@@ -573,7 +573,7 @@ END
 The output is:
 
 
-Specifying Background Color in a Report
+## Specifying Background Color in a Report
 
 Syntax:
 
@@ -638,7 +638,7 @@ END
 The output is:
 
 
-Alternating Background Color By Wrapped Line
+## Alternating Background Color By Wrapped Line
 
 The ALTBACKPERLINE attribute alternates the background color by line for reports that use
 positioned drivers, for example PDF, DHTML, PPT, and PPTX. This enables you to wrap a long
@@ -661,11 +661,11 @@ OFF
 Alternates background color by row. This is the default value.
 
 
-Alternating Background Color By Wrapped Line
+## Alternating Background Color By Wrapped Line
 
 Example:
 
-Alternating Background Color By Wrapped Line
+## Alternating Background Color By Wrapped Line
 
 The following report request prints a COMPUTE field with a long line of text, using WRAP and
 without using the SET ALTBACKPERLINE command. The default alternating background color is
@@ -693,12 +693,12 @@ END
 The output is:
 
 
-Specifying Data Format in a Report
+## Specifying Data Format in a Report
 
 With the SET ALTBACKPERLINE=ON command added to the request, the alternating
 background color is applied by line, as shown in the following output.
 
-Specifying Data Format in a Report
+## Specifying Data Format in a Report
 
 You can affect how data is represented in a report in several ways:
 
@@ -757,7 +757,7 @@ PRINT UNIT_PRICE/D7.2M
 END
 
 
-Specifying Data Format in a Report
+## Specifying Data Format in a Report
 
 The output is:
 
@@ -863,7 +863,7 @@ Note: Before trying this example, you must make sure that the SALEMISS procedure
 adds missing values to the SALES data source, has been run.
 
 
-Specifying Data Format in a Report
+## Specifying Data Format in a Report
 
 SET COMPMISS = OFF
 TABLE FILE SALES
@@ -969,7 +969,7 @@ Is the character or characters that you want to appear when no data is available
 field. The maximum number of characters is 11. The default value is a period (.).
 
 
-Specifying Data Format in a Report
+## Specifying Data Format in a Report
 
 Example:
 
@@ -1114,7 +1114,7 @@ END
 
 The output is:
 
-Positioning Data in a Report
+## Positioning Data in a Report
 
 You can position data within a report by selecting a justification (right, left or center) of a
 column or by specifying whether or not you wish to have data wrap within a cell. For information
@@ -1131,7 +1131,7 @@ its algorithmic settings. Use the WRAP attribute if you wish to suppress a web b
 wrapping.
 
 
-Positioning Data in a Report
+## Positioning Data in a Report
 
 By default, WRAP is set to ON for HTML output, allowing each individual browser to define the
 width of each column in the report. For PDF, PS, DHTML, PPT, and PPTX output, WRAP is set
@@ -1223,7 +1223,7 @@ supported for wrapping data in PDF reports that use the OVER phrase.
 Note: WRAP=ON and WRAP=n are not supported with JUSTIFY.
 
 
-Positioning Data in a Report
+## Positioning Data in a Report
 
 Example:
 
@@ -1284,7 +1284,7 @@ ENDSTYLE
 END
 
 
-Positioning Data in a Report
+## Positioning Data in a Report
 
 The partial output is shown in the following image.
 
@@ -1333,7 +1333,7 @@ sort (BY) fields, display fields, and ROW-TOTAL fields, from left to right, incl
 NOPRINT fields.
 
 
-Positioning Data in a Report
+## Positioning Data in a Report
 
 An
 
@@ -1413,7 +1413,7 @@ new alignment features, you can place the column titles in independent fields an
 them as fields within the given request.
 
 
-Positioning Data in a Report
+## Positioning Data in a Report
 
 Example:
 
@@ -1467,7 +1467,7 @@ The following examples demonstrate how to build a report with OVER and WRAP that
 column titles longer than the designated WRAP size.
 
 
-Positioning Data in a Report
+## Positioning Data in a Report
 
 Example:
 
@@ -1524,7 +1524,7 @@ OFF
 Places wrapped data on the next line. OFF is the default value.
 
 
-Positioning Data in a Report
+## Positioning Data in a Report
 
 n
 
@@ -1557,7 +1557,7 @@ END
 With WRAPGAP=OFF, each wrapped line is placed on the next report line:
 
 
-Positioning Data in a Report
+## Positioning Data in a Report
 
 With WRAPGAP=ON, the wrapped lines are placed directly under each other:
 
@@ -1636,7 +1636,7 @@ ENDSTYLE
 END
 
 
-Positioning Data in a Report
+## Positioning Data in a Report
 
 The output is:
 
@@ -1711,7 +1711,7 @@ expression
 Is the expression that assigns the format values to the format field.
 
 
-Positioning Data in a Report
+## Positioning Data in a Report
 
 After the format field is defined, you can apply it in a report request:
 
@@ -1803,7 +1803,7 @@ a line-feed character found in all An and AnV fields.
 Note: This feature is supported in PDF, PPTX, or PS formats.
 
 
-Positioning Data in a Report
+## Positioning Data in a Report
 
 Example:
 
@@ -1880,5 +1880,5 @@ END
 The output is:
 
 
-Positioning Data in a Report
+## Positioning Data in a Report
 

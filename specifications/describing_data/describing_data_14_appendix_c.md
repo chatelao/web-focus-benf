@@ -12,7 +12,7 @@ Data Storage and Display
 
 Rounding in Calculations and Conversions
 
-Data Storage and Display
+## Data Storage and Display
 
 Values are rounded before storage or before display, depending on the format. Integer fields
 (format I) and packed decimal fields (format P) are rounded or truncated before being stored.
@@ -47,7 +47,7 @@ or, if the input value was -123.78,
 or, if the original value was negative,
 
 
-Data Storage and Display
+## Data Storage and Display
 
 -123.8
 
@@ -245,7 +245,7 @@ Formats M and X use base 10, eliminating the rounding issues seen in formats F a
 use base 16.
 
 
-Data Storage and Display
+## Data Storage and Display
 
 When the number of decimal places input is greater than the number of decimal places stored
 in the format, M and X field values are stored as they are input, up to the limit of precision.
@@ -345,7 +345,7 @@ ON TABLE SET PAGE NOLEAD
 END
 
 
-Rounding in Calculations and Conversions
+## Rounding in Calculations and Conversions
 
 The following report results:
 
@@ -379,7 +379,7 @@ than the PACK2 total.
 The D field total is the same as the PACK2 total because the D field values are stored as
 input, and then rounded for display.
 
-Rounding in Calculations and Conversions
+## Rounding in Calculations and Conversions
 
 Most computations are done in floating-point arithmetic. Packed fields are converted to D
 internally, then back to P. Where the operating system supports it, native arithmetic is used for
@@ -452,7 +452,7 @@ These DEFINE fields illustrate the differences in the way packed fields, floatin
 and decimal precision fields are stored and displayed.
 
 
-Rounding in Calculations and Conversions
+## Rounding in Calculations and Conversions
 
 The request prints the values and a total for all six database fields, and for the five DEFINE
 fields.
@@ -515,7 +515,7 @@ ON TABLE SUMMARIZE
 END
 
 
-Rounding in Calculations and Conversions
+## Rounding in Calculations and Conversions
 
 The output shows that the double precision floating-point number is not exactly the same as
 the input values in most cases. It has extra digits for those values that do not have an exact
@@ -578,7 +578,7 @@ The COMPP3 field is the result of a COMPUTE. The printed total, 1420.767, is cal
 the total sum of PACKED2 (5683.07 / 4).
 
 
-Rounding in Calculations and Conversions
+## Rounding in Calculations and Conversions
 
 
 Legal and Third-Party Notices

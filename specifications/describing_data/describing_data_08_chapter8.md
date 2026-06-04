@@ -13,7 +13,7 @@ Grouping Business Logic In a Business View
 
 Business View DV Roles
 
-Grouping Business Logic In a Business View
+## Grouping Business Logic In a Business View
 
 A Business View is a limited set of fields accessible by users and stored as part of a real
 Master File. Defining a Business View provides users with a limited view of the data, simplifies
@@ -41,7 +41,7 @@ A Business View can include real fields, calculated values (COMPUTEs), virtual f
 (DEFINEs), and filters from the original Master File.
 
 
-Grouping Business Logic In a Business View
+## Grouping Business Logic In a Business View
 
 Business Views are most useful as views of relational and FOCUS data sources.
 
@@ -153,7 +153,7 @@ ARB
 BAL
 
 
-Grouping Business Logic In a Business View
+## Grouping Business Logic In a Business View
 
 Language Name
 
@@ -366,7 +366,7 @@ Master File profiles (MFD_PROFILE attribute) are run for each Master File access
 SORTOBJ and STYLEOBJ declarations are not supported in the original master
 
 
-Grouping Business Logic In a Business View
+## Grouping Business Logic In a Business View
 
 You can issue an SQL SELECT command against a Business View. However, a Direct SQL
 Passthru request is not supported against a Business View.
@@ -445,7 +445,7 @@ SEGNAME=ATTNDSEG,SEGTYPE=KM, PARENT=EMPINFO, CRFILE=EDUCFILE,CRKEY=EMP_ID,$
 SEGNAME=COURSEG, SEGTYPE=KLU,PARENT=ATTNDSEG,CRFILE=EDUCFILE,$
 
 
-Grouping Business Logic In a Business View
+## Grouping Business Logic In a Business View
 
 FOLDER=FOLDER1, $
  FIELDNAME=EMPID, ALIAS=EMP_ID,
@@ -550,9 +550,8 @@ MCCOY            JOHN        B02      PROGRAMMER
 SMITH            MARY        B14      FILE QUALITY
 
 
-Business View DV Roles
+## Business View DV Roles
 
-Business View DV Roles
 
 A traditional Business View offered users a customized logical view of a data source by
 grouping related items into folders that reflect business logic for an application, rather than the
@@ -643,7 +642,7 @@ in the WebFOCUS tools, will automatically be added to the request as an aggregat
 folder or field can be assigned the role Measure.
 
 
-Business View DV Roles
+## Business View DV Roles
 
 For a folder or field assigned the DV role Measure, the following attribute is added to the
 folder or field declaration in the synonym.

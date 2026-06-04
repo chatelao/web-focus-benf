@@ -33,7 +33,9 @@ Based on initial analysis, the following issues are prevalent:
 ### Phase 2: Structural Reform (Establishing Hierarchy)
 *   - [ ] **Task 2.1**: Standardize Headers.
     *   - [x] **Task 2.1.1**: Standardize Chapter Headings (Convert "Chapter X" to `# Chapter X: [Title]`).
-    *   - [ ] **Task 2.1.2**: Standardize Section Headings (Convert major section titles to `##`).
+    *   - [x] **Task 2.1.2**: Standardize Section Headings.
+        *   - [x] **Task 2.1.2.1**: Extract section titles from "In this chapter/appendix" lists.
+        *   - [x] **Task 2.1.2.2**: Convert identified section titles to `##` headers.
 *   - [ ] **Task 2.2**: Reconstruct the Table of Contents (TOC) using standard Markdown list syntax with working anchors.
 *   - [ ] **Task 2.3**: Repair Paragraph Wrapping.
     *   - [ ] **Task 2.3.1**: Identify lines ending in hyphens or lacking terminal punctuation for rejoining.

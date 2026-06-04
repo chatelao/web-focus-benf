@@ -39,7 +39,7 @@ Assigning Screening Conditions to a File
 
 VSAM Record Selection Efficiencies
 
-Selecting Records Overview
+## Selecting Records Overview
 
 When developing a report request, you can define criteria that select records based on a
 variety of factors:
@@ -57,7 +57,7 @@ The number of records that exist for a field (for example, the first 50 records)
 on the field values. See Setting Limits on the Number of Records Read on page 258.
 
 
-Choosing a Filtering Method
+## Choosing a Filtering Method
 
 For non-FOCUS data sources that have group keys, you can select records based on group
 key values. See Selections Based on Group Key Values on page 257.
@@ -65,7 +65,7 @@ key values. See Selections Based on Group Key Values on page 257.
 In addition, you can take advantage of a variety of record selection efficiencies, including
 assigning filtering criteria to a data source and reading selection values from a file.
 
-Choosing a Filtering Method
+## Choosing a Filtering Method
 
 There are two phrases for selecting records: WHERE and IF. It is recommended that you use
 WHERE to select records. IF offers a subset of the functionality of WHERE. Everything that you
@@ -78,7 +78,7 @@ phrases, and may require different syntax to achieve the same result.
 WHERE syntax is described and illustrated throughout this topic. For details on IF syntax, see
 Selecting Records Using IF Phrases on page 259.
 
-Selections Based on Individual Values
+## Selections Based on Individual Values
 
 The WHERE phrase selects records from the data source to be included in a report. The data is
 evaluated according to the selection criteria before it is retrieved from the data source.
@@ -153,7 +153,7 @@ of a separate DEFINE command. For details, see Using Compound Expressions for Re
 Selection on page 235.
 
 
-Selections Based on Individual Values
+## Selections Based on Individual Values
 
 Example:
 
@@ -243,7 +243,7 @@ Note: A unique segment is considered a part of its parent segment, and therefore
 not invoke independent path processing.
 
 
-Selections Based on Individual Values
+## Selections Based on Individual Values
 
 It lacks any referenced child on a path, but the child is optional.
 
@@ -303,7 +303,7 @@ Although several employees have not taken any courses, they are included in the 
 since they have instances on one of the two paths.
 
 
-Selections Based on Individual Values
+## Selections Based on Individual Values
 
 The output is:
 
@@ -449,7 +449,7 @@ For related information about the ALL parameter, see Handling Records With Missi
 Values on page 1035.
 
 
-Selection Based on Aggregate Values
+## Selection Based on Aggregate Values
 
 Reference: Rules for Determining If a Segment Is Required
 
@@ -478,7 +478,7 @@ slightly differently. Check your specific data adapter documentation for detaile
 For related information about the ALL parameter, see Handling Records With Missing Field
 Values on page 1035, and the Describing Data With WebFOCUS Language manual.
 
-Selection Based on Aggregate Values
+## Selection Based on Aggregate Values
 
 You can select records based on the aggregate value of a field. For example, on the sum of
 field values, or on the average of field values, by using the WHERE TOTAL phrase. WHERE
@@ -1104,7 +1104,7 @@ The output is:
 Select a region from the drop-down list and click Submit. The output for the NE region is:
 
 
-Types of Record Selection Tests
+## Types of Record Selection Tests
 
 
 You can select records for your reports using a variety of tests that are implemented using the
@@ -1157,7 +1157,7 @@ Are numeric or alphanumeric values or expressions that indicate lower boundaries
 You may add parentheses around expressions for readability.
 
 
-Types of Record Selection Tests
+## Types of Record Selection Tests
 
 upper
 
@@ -1267,7 +1267,7 @@ WHERE UNITS GE 10000
 WHERE UNITS LE 14000
 
 
-Types of Record Selection Tests
+## Types of Record Selection Tests
 
 Example:
 
@@ -1381,7 +1381,7 @@ WHERE LAST_NAME CONTAINS 'ING'
 END
 
 
-Types of Record Selection Tests
+## Types of Record Selection Tests
 
 The output is:
 
@@ -1484,7 +1484,7 @@ To search for records with the IS operator, use
 {WHERE|IF} field {IS|EQ} 'mask'
 
 
-Types of Record Selection Tests
+## Types of Record Selection Tests
 
 To reject records based on the mask value, use
 
@@ -1575,7 +1575,7 @@ JONES            DIANE       FOCUS INTERNALS                 203
                              ADVANCED TECHNIQUES             201
 
 
-Types of Record Selection Tests
+## Types of Record Selection Tests
 
 Example:
 
@@ -1679,7 +1679,7 @@ search for these characters in the data. For related information, see Screening 
 Fields on page 248.
 
 
-Types of Record Selection Tests
+## Types of Record Selection Tests
 
 Syntax:
 
@@ -1791,7 +1791,7 @@ CUSTID  LASTNAME         FIRSTNAME   EMAIL
 0944    HANDLER          EVAN        handy_man@usa.com
 
 
-Types of Record Selection Tests
+## Types of Record Selection Tests
 
 Example:
 
@@ -1889,7 +1889,7 @@ COUNTRY
 -------
 ENGLAND
 
-Selections Based on Group Key Values
+## Selections Based on Group Key Values
 
 Some data sources use group keys. A group key is a single key composed of several fields.
 You can use a group name to refer to group key fields.
@@ -1983,7 +1983,7 @@ SMITH            MARY        112847612
 JONES            DIANE       117593129
 SMITH            RICHARD     119265415
 
-Selecting Records Using IF Phrases
+## Selecting Records Using IF Phrases
 
 The IF phrase selects records to be included in a report, and offers a subset of the
 functionality of WHERE. For a list of supported IF operators, see Operators Supported for
@@ -2016,7 +2016,7 @@ alphanumeric or numeric values that are in your data source, with the word OR
 between values.
 
 
-Reading Selection Values From a File
+## Reading Selection Values From a File
 
 Note that all literals that contain blanks (for example, New York City) and all date and date-
 time literals must be enclosed within single quotation marks.
@@ -2048,7 +2048,7 @@ EMP_ID     LAST_NAME
 ------     ---------
 818692173  CROSS
 
-Reading Selection Values From a File
+## Reading Selection Values From a File
 
 Instead of typing literal test values in a WHERE or IF phrase, you can store them in a file and
 refer to the file in the report request. You can then select records based on equality or
@@ -2116,7 +2116,7 @@ operator1, operator2
 Can be the EQ, IS, NE, or IS-NOT operator.
 
 
-Reading Selection Values From a File
+## Reading Selection Values From a File
 
 file1, file1
 
@@ -2224,7 +2224,7 @@ The following request against the GGPRODS data source creates a HOLD file named 
 that contains product IDs B141, B142, B143, and B144.
 
 
-Reading Selection Values From a File
+## Reading Selection Values From a File
 
 TABLE FILE GGPRODS
 BY PRODUCT_ID BY PRODUCT_DESCRIPTION
@@ -2286,7 +2286,7 @@ Product              Price
 French Roast         81.00
 Hazelnut             58.00
 
-Assigning Screening Conditions to a File
+## Assigning Screening Conditions to a File
 
 You can assign screening conditions to a data source, independent of a request, and activate
 these screening conditions for use in report requests against the data source.
@@ -2316,7 +2316,7 @@ activated with a SET command. For details, see How to Activate or Deactivate Fil
 268.
 
 
-Assigning Screening Conditions to a File
+## Assigning Screening Conditions to a File
 
 Syntax:
 
@@ -2428,7 +2428,7 @@ IF RETAIL_COST GT 50000
 END
 
 
-Assigning Screening Conditions to a File
+## Assigning Screening Conditions to a File
 
 Syntax:
 
@@ -2532,7 +2532,7 @@ Displays all information about the filter, including its description and the exa
 WHERE/IF definition.
 
 
-Assigning Screening Conditions to a File
+## Assigning Screening Conditions to a File
 
 Example:
 
@@ -2632,7 +2632,7 @@ Note: When an error occurs because of a reference to field that does not exist i
 FILTER FILE, the filter is disabled even though KEEPFILTERs is set to ON.
 
 
-Assigning Screening Conditions to a File
+## Assigning Screening Conditions to a File
 
 Syntax:
 
@@ -2740,7 +2740,7 @@ SET FILE     FILTER NAME DESCRIPTION
 *   VIDEOTRK YEARS1
 
 
-VSAM Record Selection Efficiencies
+## VSAM Record Selection Efficiencies
 
 Now, J1 is cleared. The output of the ? FILTER command shows that the YEARS1 filter that
 was created after the JOIN command was issued no longer exists. The UNITPR filter created
@@ -2753,7 +2753,7 @@ SET FILE     FILTER NAME DESCRIPTION
 --- -------- ----------- ---------------------------------
 *   VIDEOTRK UNITPR
 
-VSAM Record Selection Efficiencies
+## VSAM Record Selection Efficiencies
 
 The most efficient way to retrieve selected records from a VSAM KSDS data source is by
 applying an IF screening test against the primary key. This results in a direct reading of the
@@ -2796,5 +2796,5 @@ to screening on the alternate index or partial alternate index.
 Note: It is not necessary to take an explicit indexed view to use the index.
 
 
-VSAM Record Selection Efficiencies
+## VSAM Record Selection Efficiencies
 

@@ -34,7 +34,7 @@ Techniques for Quick and Easy Formatting
 
 Navigating From a Report to Other Resources
 
-What Kinds of Formatting Can I Do?
+## What Kinds of Formatting Can I Do?
 
 There are many kinds of formatting that you can apply to a report:
 
@@ -44,7 +44,7 @@ boxes or lines around data. You can use these properties to emphasize critical v
 to draw attention to important data relationships.
 
 
-What Kinds of Formatting Can I Do?
+## What Kinds of Formatting Can I Do?
 
 You can also select which character to use to mark decimal position, using either a period
 (.) or a comma (,), to match the convention of the country in which the report will be read.
@@ -103,7 +103,7 @@ Century Corporation in the third quarter of 2000. Compare the formatted version 
 with the unformatted version (on the right):
 
 
-How to Specify Formatting in a Report
+## How to Specify Formatting in a Report
 
 Consider how the formatting applied to the version on the left:
 
@@ -119,7 +119,7 @@ Draws the attention of the reader to important data. In this case, to orders exc
 $500,000, by conditionally formatting these rows with background color, font color, and (for
 the order total) bold font style.
 
-How to Specify Formatting in a Report
+## How to Specify Formatting in a Report
 
 You can specify your report formatting using a style sheet. A style sheet is a set of
 declarations that defines the appearance of a report. For some types of formatting, you may
@@ -166,7 +166,7 @@ OrderRev.sty:
 Revenue.fex
 
 
-How to Specify Formatting in a Report
+## How to Specify Formatting in a Report
 
    TABLE FILE CENTORD
 1.HEADING
@@ -269,9 +269,8 @@ You want to apply the same formatting to other kinds of HTML documents in your
 enterprise.
 
 
-Standard and Legacy Formatting
+## Standard and Legacy Formatting
 
-Standard and Legacy Formatting
 
 New releases of WebFOCUS often introduce improved ways of formatting reports. Some of
 these new features are advances over earlier features that performed similar formatting, but
@@ -302,7 +301,7 @@ measured in character lines; the left and right margins will each be half the di
 the page width and the report width, measured in characters. This legacy method limits you
 to using a monospace font, such as Courier.
 
-Techniques for Quick and Easy Formatting
+## Techniques for Quick and Easy Formatting
 
 You can apply several formatting techniques to save yourself time and effort. Most of these
 techniques enable you to use code provided for you by WebFOCUS, or to leverage code that
@@ -340,7 +339,7 @@ specifying every StyleSheet attribute, you can omit some and accept their defaul
 example, you can accept the default font instead of specifying a font. You can find each
 default value of an attribute documented where its syntax is described.
 
-Navigating From a Report to Other Resources
+## Navigating From a Report to Other Resources
 
 You can enable someone reading a report to navigate to other reports and Internet resources,
 and even to navigate within the report itself. Although navigation is not considered formatting,
@@ -358,7 +357,7 @@ Execute JavaScript functions to perform additional analysis of report data. For 
 information, see Linking to a JavaScript Function on page 833.
 
 
-Navigating From a Report to Other Resources
+## Navigating From a Report to Other Resources
 
 Use a table of contents to jump directly to the data that interests that reader. The report
 generates the table of contents dynamically based on sort values, and enables the reader

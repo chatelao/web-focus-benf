@@ -32,7 +32,7 @@ Referring to All of the Fields in a Segment
 
 Displaying a List of Field Names
 
-Referring to an Individual Field
+## Referring to an Individual Field
 
 You can refer to an individual field in any one of the following ways:
 
@@ -44,13 +44,13 @@ Using the shortest unique truncation of the field name or the alias. When a trun
 used, it must be unique. If it is not unique, an error message is displayed.
 
 
-Referring to Fields Using Qualified Field Names
+## Referring to Fields Using Qualified Field Names
 
 Adding the letter S to the end of a field name defined in the Master File.
 
 Example:
 
-Referring to an Individual Field
+## Referring to an Individual Field
 
 In the following requests, DEPARTMENT is the complete field name, DPT is the alias, and DEP
 is a unique truncation of DEPARTMENT. All these examples produce the same output.
@@ -71,7 +71,7 @@ Note: If you use a truncation that is not unique, the following message will app
 
 (FOC016) THE TRUNCATED FIELDNAME IS NOT UNIQUE : D
 
-Referring to Fields Using Qualified Field Names
+## Referring to Fields Using Qualified Field Names
 
 Field names and aliases have a maximum length of 512 characters. They can also be qualified
 by prepending up to two qualifiers and qualification characters. However, text fields and
@@ -125,7 +125,7 @@ Reference: Usage Notes for Long and Qualified Field Names
 For additional information about using qualified field names in report requests, see the
 Describing Data With WebFOCUS Language manual.
 
-Referring to All of the Fields in a Segment
+## Referring to All of the Fields in a Segment
 
 If you want to generate a report that displays all of a segment fields, you can refer to the
 complete segment without specifying every field. You only need to specify one field in the
@@ -149,7 +149,7 @@ FIELDNAME = SIZE
 FIELDNAME = UNIT_PRICE
 
 
-Displaying a List of Field Names
+## Displaying a List of Field Names
 
 To write a report that includes data from every field in the segment, you can issue either of the
 following requests:
@@ -163,7 +163,7 @@ following requests:
    PRINT SEG.PRODUCT_ID
    END
 
-Displaying a List of Field Names
+## Displaying a List of Field Names
 
 If you want to see a list of all the fields that are included in the currently active data source,
 you can issue the ?F field name query.

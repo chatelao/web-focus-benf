@@ -7,7 +7,7 @@ In this chapter:
 
 Bursting Reports Overview
 
-Bursting Reports Overview
+## Bursting Reports Overview
 
 When bursting separates a single report into multiple HTML files, each file contains all the
 requested information for one specific value of the sort field. By providing direct access to
@@ -43,7 +43,7 @@ a report only if the number of individual values of the first sort field does no
 10,000.
 
 
-Bursting Reports Overview
+## Bursting Reports Overview
 
 PCSEND
 
@@ -125,7 +125,7 @@ For details on including heading and footings in reports, see Using Headings, Fo
 and Labels on page 1517.
 
 
-Bursting Reports Overview
+## Bursting Reports Overview
 
 Example:
 
@@ -242,5 +242,5 @@ HTML index page. See Rules for Headings and Footings on Index Pages and Bursted 
 page 1030.
 
 
-Bursting Reports Overview
+## Bursting Reports Overview
 
