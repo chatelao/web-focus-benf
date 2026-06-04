@@ -25,9 +25,9 @@ Based on initial analysis, the following issues are prevalent:
 
 ### Phase 1: Automated Cleanup (Cleaning the Noise)
 *   - [x] **Task 1.1**: Develop regex-based scripts to identify and remove recurring PDF headers and footers.
-*   - [ ] **Task 1.2**: Remove page numbers and form-feed characters.
+*   - [x] **Task 1.2**: Remove page numbers and form-feed characters.
     *   - [x] **Task 1.2.1**: Remove form-feed (`\f`) characters.
-    *   - [ ] **Task 1.2.2**: Remove isolated page numbers.
+    *   - [x] **Task 1.2.2**: Remove isolated page numbers.
 *   - [x] **Task 1.3**: Normalize line endings and remove excessive blank lines caused by page breaks.
 
 ### Phase 2: Structural Reform (Establishing Hierarchy)

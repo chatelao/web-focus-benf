@@ -2417,4 +2417,3 @@ JavaScript files that are required to be accessible.
 For more information about coding reports for use with ReportCaster, see the Tips and
 Techniques for Coding a ReportCaster Report appendix in the ReportCaster manual.
 
-86
