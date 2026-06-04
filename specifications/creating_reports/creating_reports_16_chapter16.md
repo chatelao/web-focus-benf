@@ -168,6 +168,7 @@ Revenue.fex
 
 ## How to Specify Formatting in a Report
 
+```fex
    TABLE FILE CENTORD
 1.HEADING
 1. " "
@@ -184,6 +185,7 @@ Revenue.fex
 3. ON TABLE SET SQUEEZE ON
 4. ON TABLE SET STYLESHEET OrderRev
    END
+```
 
 OrderRev.sty
 

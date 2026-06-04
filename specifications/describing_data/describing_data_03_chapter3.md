@@ -1028,6 +1028,7 @@ All three segments have the same fields. The SEG_TITLE_PREFIX displays on the re
 and indicates which segment the field came from. The following request sums DAYSDELAYED
 by TIME_QTR:
 
+```fex
 TABLE FILE wf_retail_lite
 SUM DAYSDELAYED
 BY TIME_QTR
@@ -1035,6 +1036,7 @@ ON TABLE SET PAGE NOLEAD
 ON TABLE SET STYLE *
 GRID=OFF,$
 END
+```
 
 The column heading on the output shows that the TIME_QTR value is coming from the
 WF_RETAIL_TIME_SALES segment, as that is the topmost segment with that field name in the
@@ -1043,6 +1045,7 @@ WF_RETAIL_LITE Master File.
 To specify a different segment, such as WF_RETAIL_TIME_DELIVERED, use a qualified field
 name in the request.
 
+```fex
 TABLE FILE wf_retail_lite
 SUM DAYSDELAYED
 BY WF_RETAIL_TIME_DELIVERED.TIME_QTR
@@ -1050,6 +1053,7 @@ ON TABLE SET PAGE NOLEAD
 ON TABLE SET STYLE *
 GRID=OFF,$
 END
+```
 
 
 The column heading on the output shows that the TIME_QTR value is coming from the
@@ -1066,12 +1070,15 @@ Master File is 'Delivery,'. The following request generated a HOLD file named SE
 the HOLDATTRS parameter set ON:
 
 APP HOLD baseapp
+
+```fex
 TABLE FILE wf_retail_lite
 SUM DAYSDELAYED
 BY WF_RETAIL_TIME_DELIVERED.TIME_QTR
 ON TABLE SET HOLDATTRS ON
 ON TABLE HOLD AS SEGPREFIX
 END
+```
 
 The SEGPREFIX Master File generated when you run this request has the title 'Delivery,Quarter'
 for the TIME_QTR field. This title was created by concatenating the SEG_TITLE_PREFIX value

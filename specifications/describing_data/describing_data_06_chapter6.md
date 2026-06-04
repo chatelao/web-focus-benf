@@ -949,10 +949,14 @@ SEGNAME=EMPINFO,  SEGTYPE=S1
 To add the timestamp information to EMPDATE, run the following procedure:
 
 SET TESTDATE = 20010715
+
+```fex
 TABLE FILE EMPLOYEE
 PRINT EMP_ID CURR_SAL
 ON TABLE HOLD
 END
+```
+
 MODIFY FILE EMPDATE
 FIXFORM FROM HOLD
 MATCH EMP_ID
@@ -970,10 +974,13 @@ DEFINE FILE EMPLOYEE
 DATE_NOW/HYYMD = DT(20010731);
 DIFF_DAYS/D12.2 =  HDIFF(DATE_NOW, DATECHK, 'DAY', 'D12.2');
 END
+
+```fex
 TABLE FILE EMPDATE
 PRINT DATECHK DIFF_DAYS
 WHERE LAST_NAME EQ 'BANNING'
 END
+```
 
 The output is:
 
@@ -1163,11 +1170,13 @@ FIELDNAME=LAST_NAME,    ALIAS=LN,      FORMAT=A15,     $
 The WHERE test on the group field does not need slashes between the component values,
 because both component fields are alphanumeric:
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT EMP_ID HIRE_DATE
 BY FULL_NAME
 WHERE FULL_NAME GT 'CROSSBARBARA'
 END
+```
 
 The output is:
 
@@ -1204,11 +1213,13 @@ In the following request, the component field values must be separated by slashe
 WHERE test. The request does not display the group field, because the integer component
 would not appear correctly:
 
+```fex
 TABLE FILE EMPGROUP
 PRINT EMP_ID LAST_NAME FIRST_NAME HIRE_DATE
 BY FULL_NAME NOPRINT
 WHERE FULL_NAME GT 'CROSS/BARBARA/811102'
 END
+```
 
 The output is:
 
@@ -1671,10 +1682,12 @@ The following illustrates how to use an intelligently partitioned data source. T
 the VIDEOTR2 data source describes three partitions based on DATE:
 
 
+```fex
 TABLE FILE VIDEOTR2
 PRINT LASTNAME FIRSTNAME DATE
 WHERE DATE FROM 1996 TO 1997
 END
+```
 
 The output is:
 
@@ -1959,12 +1972,14 @@ For example, suppose that the CENTORD data source has an MDI with dimensions STA
 REGION, and PRODCAT. The MDI is used to retrieve the facts (LINEPRICE and QUANTITY data)
 that lie at the intersection of the dimension values specified in the following request:
 
+```fex
 TABLE FILE CENTORD
 SUM QUANTITY LINEPRICE
 WHERE REGION EQ 'EAST'
 WHERE STATE EQ 'DC'
 WHERE PRODCAT EQ 'Cameras'
 END
+```
 
 The MDI also provides the following other retrieval enhancing features: MDI JOIN, Dimensional
 JOIN, MDI WITHIN, MAXVALUES, MDI Encoding, and AUTOINDEX for MDI.
@@ -2540,9 +2555,11 @@ Syntax:
 
 How to Encode a Multi-Dimensional Index
 
+```fex
 TABLE FILE mastername.mdiname request
 ON TABLE SET MDIENCODING ON
 END
+```
 
 where:
 
@@ -2567,30 +2584,38 @@ Encoding a Multi-Dimensional Index
 
 The following examples show correct MDI encoding:
 
+```fex
 TABLE FILE COMPANY.I DATA1
 PRINT CITY BY STATE
 ON TABLE SET MDIENCODING ON
 END
+```
 
+```fex
 TABLE FILE COMPANY.I DATA1
 COUNT CITY
 IF STATE EQ NY
 ON TABLE SET MDIENCODING ON
 END
+```
 
+```fex
 TABLE FILE COMPANY.I DATA1
 PRINT CATEGORY
 ON TABLE SET MDIENCODING ON
 END
+```
 
 The following example is incorrect because CATEGORY is not part of the CITY-STATE hierarchy.
 
+```fex
 TABLE FILE COMPANY.I DATA1
 PRINT CITY BY STATE
 IF STATE EQ NY
 IF CATEGORY EQ RESTAURANT
 ON TABLE SET MDIENCODING ON
 END
+```
 
 Example:
 
@@ -2599,6 +2624,7 @@ Using a Multi-Dimensional Index in a Request
 The following TABLE request accesses the CAR data source. It will use the CARMDI index for
 retrieval because CARMDI is the only MDI described in the Master File:
 
+```fex
 TABLE FILE CAR
 SUM RETAIL_COST DEALER_COST
 BY BODYTYPE
@@ -2608,6 +2634,7 @@ AND (CAR EQ 'TOYOTA' OR 'JENSEN' OR 'TRIUMPH')
 AND (MODEL EQ 'COROLLA 4 DOOR DIX AUTO'
 OR 'INTERCEPTOR III' OR 'TR7')
 END
+```
 
 
 Partitioning a Multi-Dimensional Index

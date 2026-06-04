@@ -107,10 +107,12 @@ Example:
 The following request illustrates the use of ROW-TOTAL and COLUMN-TOTAL. The column and
 row total labels are "TOTAL" by default. You can change them using an AS phrase.
 
+```fex
 TABLE FILE SALES
 SUM RETURNS DAMAGED AND ROW-TOTAL AND COLUMN-TOTAL
 BY PROD_CODE
 END
+```
 
 The output is:
 
@@ -136,11 +138,13 @@ Specifying Column Totals With ON TABLE
 
 The following request illustrates the use of COLUMN-TOTAL with the ON TABLE command.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT CURR_SAL
 BY LAST_NAME
 ON TABLE COLUMN-TOTAL
 END
+```
 
 
 ## Calculating Row and Column Totals
@@ -171,11 +175,13 @@ Using Row and Column Totals in a Matrix Report
 The following request illustrates the use of ROW-TOTAL and COLUMN-TOTAL in a matrix report
 (created by using the BY and ACROSS phrases together).
 
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL AND ROW-TOTAL AND COLUMN-TOTAL
 BY BANK_NAME
 ACROSS DEPARTMENT
 END
+```
 
 The output is:
 
@@ -200,6 +206,7 @@ The following request illustrates the inclusion of the calculated value, PROFIT,
 column totals.
 
 
+```fex
 TABLE FILE CAR
 SUM DCOST RCOST
 COMPUTE PROFIT/D12=RCOST-DCOST;
@@ -207,6 +214,7 @@ ROW-TOTAL/L/D12 AS 'TOTAL_COST'
 BY COUNTRY
 ON TABLE COLUMN-TOTAL/L AS 'FINAL_TOTAL'
 END
+```
 
 The output is:
 
@@ -227,12 +235,14 @@ When a request has an ACROSS sort field, each ACROSS value displays a column for
 field displayed on the report output. For example, the following request, each state has a
 column for units and a column for dollars:
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS AS 'U' DOLLARS AS 'D' BY CITY
 ACROSS ST
 IF ST EQ 'CA'
 IF BUDUNITS NE MISSING
 END
+```
 
 The output is:
 
@@ -250,6 +260,7 @@ When you specify a row total with ACROSS, the row total is calculated separately
 column in each ACROSS group. For example, in the following request the row total has a
 column for units and a column for dollars:
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS AS 'U' DOLLARS AS 'D' BY CITY
 ACROSS ST
@@ -257,6 +268,7 @@ IF ST EQ 'CA'
 IF BUDUNITS NE MISSING
   ON TABLE ROW-TOTAL
 END
+```
 
 The output is:
 
@@ -279,6 +291,7 @@ SUM command for budgeted units and budgeted dollars. The row total has a column 
 sum of units and budgeted units and another column for the sum of dollars and budgeted
 dollars:
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS AS 'U' DOLLARS AS 'D'         BY CITY
 SUM BUDUNITS AS 'BU' BUDDOLLARS AS 'BD' BY CITY
@@ -287,6 +300,7 @@ IF ST EQ 'CA'
 IF BUDUNITS NE MISSING
 ON TABLE ROW-TOTAL
 END
+```
 
 The output is:
 
@@ -304,6 +318,7 @@ will not be represented in the row total. For example, in the following request,
 command has a column for budgeted units but not for budgeted dollars. Therefore, the row
 total group has no column for dollars:
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS AS 'U' DOLLARS AS 'D' BY CITY
 SUM BUDUNITS AS 'BU'            BY CITY
@@ -312,6 +327,7 @@ IF ST EQ 'CA'
 IF BUDUNITS NE MISSING
 ON TABLE ROW-TOTAL
 END
+```
 
 The output is:
 
@@ -326,6 +342,7 @@ In this case, you can use column notation to calculate the row total properly. F
 following request calculates the row total column by adding the units, dollars, and budgeted
 units columns together:
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS AS 'U' DOLLARS AS 'D' BY CITY
 SUM BUDUNITS AS 'BU'            BY CITY
@@ -334,6 +351,7 @@ COMPUTE TOTAL/I10 = C1 + C2 +C3; AS 'ROW-TOTAL'
 IF ST EQ 'CA'
 IF BUDUNITS NE MISSING
 END
+```
 
 The output is:
 
@@ -384,12 +402,14 @@ Notice that the summed values in the TOTAL TITLE COUNT column only reflect the v
 (RATING) PG and R columns. The values in the COPIES column are not included since they are
 not horizontal (ACROSS) sort field values.
 
+```fex
 TABLE FILE MOVIES
 SUM COPIES BY CATEGORY
 COUNT TITLE BY CATEGORY
 ACROSS RATING ACROSS-TOTAL
 COLUMNS PG AND R
 END
+```
 
 The output is:
 
@@ -469,6 +489,7 @@ Using Section Totals and Grand Totals
 The following request illustrates how to create a subtotal every time the department value
 changes. The grand total is automatically produced when you use the SUBTOTAL command.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM DED_AMT BY DED_CODE BY DEPARTMENT
 BY BANK_ACCT
@@ -476,6 +497,7 @@ WHERE BANK_ACCT NE 0
 WHERE DED_CODE EQ 'CITY' OR 'FED'
 ON DEPARTMENT SUBTOTAL
 END
+```
 
 The first and last portions of the output are:
 
@@ -610,6 +632,7 @@ salaries by department, deduction code, and last name. It then subtotals the ded
 amounts and gross salaries for each department. The following request places the subtotals
 below the detail lines (the default):
 
+```fex
 TABLE FILE EMPLOYEE
 SUM DED_AMT GROSS
 BY DEPARTMENT
@@ -621,6 +644,7 @@ WHERE DED_CODE EQ 'FICA' OR 'CITY'
   ON TABLE SET SUBTOTALS BELOW
   ON TABLE SET PAGE NOPAGE
 END
+```
 
 
 The output is:
@@ -649,6 +673,7 @@ TOTAL                                       $15,220.88      $131,774.52
 
 The following is the same request, but with the subtotals placed above the detail lines:
 
+```fex
 TABLE FILE EMPLOYEE
 SUM DED_AMT GROSS
 BY DEPARTMENT
@@ -660,6 +685,7 @@ WHERE DED_CODE EQ 'FICA' OR 'CITY'
   ON TABLE SET SUBTOTALS ABOVE
   ON TABLE SET PAGE NOPAGE
 END
+```
 
 
 ## Including Subtotals
@@ -728,11 +754,13 @@ Generating Subtotals
 The following request illustrates how to create a subtotal for SALES every time the country
 value changes.
 
+```fex
 TABLE FILE CAR
 SUM AVE.MPG AND SALES AND AVE.RETAIL_COST
 BY COUNTRY SUB-TOTAL SALES
 BY BODYTYPE
 END
+```
 
 The output is:
 
@@ -775,12 +803,14 @@ The following request illustrates how to create a subtotal for the numeric field
 GROSS when the department value changes, and for the higher-level sort field (DED_CODE)
 when its value changes.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM DED_AMT GROSS BY DED_CODE BY DEPARTMENT
 BY BANK_ACCT
 WHERE BANK_ACCT NE 0
 ON DEPARTMENT SUB-TOTAL
 END
+```
 
 If you use SUBTOTAL instead of SUB-TOTAL, the totals for DED_AMT and GROSS display only
 when the DEPARTMENT value changes.
@@ -903,6 +933,7 @@ Using SUMMARIZE
 The following request illustrates the use of SUMMARIZE to recalculate DG_RATIO at the
 specified sort break, DEPARTMENT, and for the higher-level sort break, PAY_DATE:
 
+```fex
 TABLE FILE EMPLOYEE
 SUM GROSS DED_AMT AND COMPUTE
 DG_RATIO/F4.2=DED_AMT/GROSS;
@@ -911,6 +942,7 @@ BY BANK_ACCT
 WHERE BANK_ACCT NE 0
 ON DEPARTMENT SUMMARIZE
 END
+```
 
 The first portion of the output is:
 
@@ -961,6 +993,7 @@ Using RECOMPUTE
 The following request illustrates the use of RECOMPUTE to recalculate DG_RATIO only at the
 specified sort break, DEPARTMENT.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM GROSS DED_AMT AND COMPUTE
 DG_RATIO/F4.2=DED_AMT/GROSS;
@@ -969,6 +1002,7 @@ BY BANK_ACCT
 WHERE BANK_ACCT NE 0
 ON DEPARTMENT RECOMPUTE
 END
+```
 
 
 ## Summarizing Alphanumeric Columns
@@ -1061,6 +1095,8 @@ and UNITS. The RECOMPUTE * command recomputes all values on a change of value fo
 state sort field:
 
 SET SUMPREFIX=FST
+
+```fex
 TABLE FILE GGSALES
 SUM PRODUCT DOLLARS/I8M AS 'Dollars' IN 22 UNITS AS 'Units'
 COMPUTE Formula/A19 = EDIT(DOLLARS)|'/'|EDIT(UNITS)|'=';
@@ -1071,6 +1107,7 @@ WHERE ST EQ 'CA' OR 'IL'
 ON ST RECOMPUTE *
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 
 ## Manipulating Summary Values With Prefix Operators
@@ -1291,6 +1328,7 @@ the subtotal row for each category contains a value only in the COPIES column. T
 line contains values only for the columns that were subtotaled. Note the blank space between
 each prefix operator and the field name that follows it:
 
+```fex
 TABLE FILE MOVIES
 PRINT COPIES LISTPR WHOLESALEPR TITLE/A23
   BY RATING
@@ -1300,6 +1338,7 @@ PRINT COPIES LISTPR WHOLESALEPR TITLE/A23
   ON RATING    SUBTOTAL AVE. LISTPR AS '*Ave:  '
   ON CATEGORY  SUBTOTAL SUM. COPIES AS '*Sum:  '
 END
+```
 
 The output is:
 
@@ -1350,6 +1389,7 @@ example (Using Prefix Operators With SUBTOTAL on page 391) at the sort break lev
 calculate the minimum number of copies and maximum list price on the grand total line for the
 entire report:
 
+```fex
 TABLE FILE MOVIES
 PRINT COPIES LISTPR WHOLESALEPR TITLE/A23
   BY RATING
@@ -1360,6 +1400,7 @@ PRINT COPIES LISTPR WHOLESALEPR TITLE/A23
   ON CATEGORY  SUBTOTAL SUM. COPIES AS '*Sum:  '
   ON TABLE SUBTOTAL MIN. COPIES MAX. LISTPR
 END
+```
 
 
 ## Manipulating Summary Values With Prefix Operators
@@ -1411,6 +1452,7 @@ The following request uses both the MAX. and MIN. prefix operators with the UNIT
 the summary commands, these are differentiated by referencing them as MAX.UNITS and
 MIN.UNITS.
 
+```fex
 TABLE FILE GGSALES
    SUM MAX.UNITS MIN.UNITS
      BY REGION
@@ -1421,6 +1463,7 @@ TABLE FILE GGSALES
    ON TABLE RECOMPUTE MIN. MAX.UNITS MAX. MIN.UNITS
    ON TABLE SET PAGE NOPAGE
    END
+```
 
 
 On the report output, the summary for each region displays the maximum of the state
@@ -1435,6 +1478,7 @@ Displaying an Alphanumeric Field on a Summary Line
 The following request displays the sum of the list price field and the minimum value of the
 director field by rating:
 
+```fex
 TABLE FILE MOVIES
 PRINT COPIES LISTPR WHOLESALEPR DIRECTOR
 BY RATING
@@ -1444,6 +1488,7 @@ WHERE RATING   EQ 'G' OR 'NR'
 WHERE DIRECTOR NE ' '
 ON RATING SUBTOTAL SUM. LISTPR MIN. DIRECTOR AS '*A/N:'
 END
+```
 
 
 ## Manipulating Summary Values With Prefix Operators
@@ -1482,6 +1527,7 @@ Displaying All Fields on a Summary Line
 The following request displays the sum of every display field on the subtotal line. The director
 field is alphanumeric, so the last value displays:
 
+```fex
 TABLE FILE MOVIES
 PRINT COPIES LISTPR WHOLESALEPR DIRECTOR
 BY RATING
@@ -1491,6 +1537,7 @@ WHERE RATING   EQ 'G' OR 'NR'
 WHERE DIRECTOR NE ' '
 ON RATING SUBTOTAL SUM. * AS '*All:  '
 END
+```
 
 
 The output is:
@@ -1603,6 +1650,7 @@ associated summary line.
 
 For example:
 
+```fex
 TABLE FILE MOVIES
 PRINT COPIES LISTPR WHOLESALEPR
  BY RATING
@@ -1612,6 +1660,7 @@ PRINT COPIES LISTPR WHOLESALEPR
  ON RATING    SUBTOTAL LISTPR AS '*LIST'
  ON CATEGORY  SUBTOTAL  COPIES AS '*COPY'
 END
+```
 
 The output has subtotals for COPIES on the CATEGORY sort break and for LISTPR on the
 RATING sort break. Both columns are populated on the grand total line. WHOLESALEPR is not
@@ -1635,6 +1684,7 @@ Using SET SUMMARYLINES With SUBTOTAL
 The following request using the MOVIES data source has a sort break for CATEGORY that
 subtotals the COPIES field and a sort break for RATING that subtotals the LISTPR field:
 
+```fex
 TABLE FILE MOVIES
 SUM COPIES LISTPR WHOLESALEPR
 BY RATING
@@ -1644,6 +1694,7 @@ WHERE RATING   EQ 'G'
 ON RATING SUBTOTAL COPIES
 ON CATEGORY SUBTOTAL LISTPR
 END
+```
 
 
 ## Manipulating Summary Values With Prefix Operators
@@ -1694,6 +1745,8 @@ subtotals the COPIES field and a sort break for RATING that subtotals the LISTPR
 has an ON TABLE COLUMN-TOTAL phrase:
 
 SET SUMMARYLINES=EXPLICIT
+
+```fex
 TABLE FILE MOVIES
 SUM COPIES LISTPR WHOLESALEPR
 BY RATING
@@ -1704,6 +1757,7 @@ ON RATING SUBTOTAL COPIES
 ON CATEGORY SUBTOTAL LISTPR
 ON TABLE COLUMN-TOTAL
 END
+```
 
 The grand total line displays a column total for all numeric columns because of the ON TABLE
 COLUMN-TOTAL phrase:
@@ -1721,6 +1775,8 @@ The following request has an ON TABLE SUBTOTAL WHOLESALEPR command. It also has 
 ON TABLE COLUMN-TOTAL phrase:
 
 SET SUMMARYLINES=EXPLICIT
+
+```fex
 TABLE FILE MOVIES
 SUM COPIES LISTPR WHOLESALEPR
 BY RATING
@@ -1732,6 +1788,7 @@ ON CATEGORY SUBTOTAL LISTPR
 ON TABLE SUBTOTAL WHOLESALEPR
 ON TABLE COLUMN-TOTAL
 END
+```
 
 
 ## Manipulating Summary Values With Prefix Operators
@@ -1753,6 +1810,8 @@ grand total line. WHOLESALEPR is totaled because it is listed in the COLUMN-TOTA
 The subtotal for LISTPR propagates to the RATING sort break as well as to the grand total:
 
 SET SUMMARYLINES=EXPLICIT
+
+```fex
 TABLE FILE MOVIES
 SUM COPIES LISTPR WHOLESALEPR
 BY RATING
@@ -1763,6 +1822,7 @@ ON RATING SUB-TOTAL COPIES
 ON CATEGORY SUB-TOTAL LISTPR
 ON TABLE COLUMN-TOTAL WHOLESALEPR
 END
+```
 
 The output is:
 
@@ -1797,6 +1857,7 @@ The first request creates a calculated field named DIFF, which is the difference
 DOLLARS and BUDDOLLARS. This value is then recomputed for each region, without using
 prefix operators.
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS BUDDOLLARS
 AND COMPUTE DIFF/I10 = DOLLARS-BUDDOLLARS;
@@ -1806,6 +1867,7 @@ AND COMPUTE DIFF/I10 = DOLLARS-BUDDOLLARS;
   WHERE REGION EQ 'West' OR 'Midwest'
   ON REGION  RECOMPUTE
 END
+```
 
 The recomputed value is the difference between the totals for DOLLARS and BUDDOLLARS.
 
@@ -1833,6 +1895,7 @@ in the DOLLARS and BUDDOLLARS columns. If any of the fields used in the calculat
 (DOLLARS, BUDDOLLARS, and DIFF) do not display on the summary row, the calculation cannot
 be performed.
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS BUDDOLLARS
 AND COMPUTE DIFF/I10 = DOLLARS-BUDDOLLARS;
@@ -1842,6 +1905,7 @@ AND COMPUTE DIFF/I10 = DOLLARS-BUDDOLLARS;
   WHERE REGION EQ 'West' OR 'Midwest'
   ON REGION RECOMPUTE MAX. DOLLARS MIN. BUDDOLLARS AVE. DIFF
 END
+```
 
 The output is:
 
@@ -1866,6 +1930,7 @@ The following example adds the ON TABLE RECOMPUTE command to the previous reques
 each column. Notice that the value of DIFF is calculated as the difference between the values
 in the Dollar Sales and the Budget Dollars columns on the grand total line:
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS BUDDOLLARS
 AND COMPUTE DIFF/I10 = DOLLARS-BUDDOLLARS;
@@ -1876,6 +1941,7 @@ AND COMPUTE DIFF/I10 = DOLLARS-BUDDOLLARS;
   ON REGION  RECOMPUTE MAX. DOLLARS MIN. BUDDOLLARS DIFF
  ON TABLE RECOMPUTE AVE.
 END
+```
 
 
 The output is:
@@ -1918,6 +1984,7 @@ DEFINE FILE GGSALES
 YEAR/YY = DATE;
 END
 
+```fex
 TABLE FILE GGSALES
 SUM   UNITS DOLLARS/D10.2 BUDDOLLARS
   BY YEAR
@@ -1931,6 +1998,7 @@ WHERE YEAR EQ '1996' OR '1997'
   ON ST SUB-TOTAL AVE. DOLLARS AS '*AVE. $:'
   ON REGION SUB-TOTAL MIN. AS '*MIN.:'
 END
+```
 
 
 ## Manipulating Summary Values With Prefix Operators
@@ -2013,6 +2081,7 @@ RECOMPUTE command. Therefore, on the grand total line, the value of RATIO is cor
 recomputed and the values of LISTPR and WHOLESALEPR are summed (because this is the
 default operation when the field is not calculated by a COMPUTE command).
 
+```fex
 TABLE FILE MOVIES
 PRINT DIRECTOR LISTPR WHOLESALEPR
 COMPUTE RATIO = LISTPR/WHOLESALEPR;
@@ -2023,6 +2092,7 @@ WHERE DIRECTOR EQ 'DISNEY W.' OR 'HITCHCOCK A.'
 ON COPIES RECOMPUTE AS '*REC: '
 ON RATING SUBTOTAL AS '*SUB:  '
 END
+```
 
 The output is:
 
@@ -2081,6 +2151,7 @@ SUB-TOTAL is not propagated to the RATING sort field which has its own RECOMPUTE
 command, and for this sort field the RATIO value is recomputed. The grand total line is
 recomputed because RECOMPUTE is performed on a higher level sort field than SUB-TOTAL.
 
+```fex
 TABLE FILE MOVIES
 PRINT LISTPR WHOLESALEPR
 COMPUTE RATIO = LISTPR/WHOLESALEPR;
@@ -2092,6 +2163,7 @@ WHERE DIRECTOR EQ 'HITCHCOCK A.'
 ON COPIES SUB-TOTAL AS '*SUB: '
 ON RATING RECOMPUTE AS '*REC:  '
 END
+```
 
 
 The output is:
@@ -2131,6 +2203,7 @@ field COPIES is propagated to all fields on the DIRECTOR sort field lines and to
 WHOLESALEPR and RATIO1 columns associated with the RATING sort field. The grand total line
 is suppressed for this request.
 
+```fex
 TABLE FILE MOVIES
 PRINT LISTPR WHOLESALEPR
 COMPUTE RATIO/D6.2 = LISTPR/WHOLESALEPR;
@@ -2144,6 +2217,7 @@ WHERE COPIES LT 3
   ON COPIES  SUB-TOTAL                     AS '*SUB:  '
   ON TABLE NOTOTAL
 END
+```
 
 
 ## Combinations of Summary Commands
@@ -2180,6 +2254,7 @@ Propagation of Summary Commands With Field Lists
 
 In the following request, the RECOMPUTE command has a field list.
 
+```fex
 TABLE FILE MOVIES
 PRINT LISTPR WHOLESALEPR
 COMPUTE RATIO/D6.2 = LISTPR/WHOLESALEPR;
@@ -2192,6 +2267,7 @@ WHERE COPIES LT 3
   ON RATING RECOMPUTE LISTPR RATIO AS '*REC:  '
   ON COPIES SUB-TOTAL AS '*SUB:  '
 END
+```
 
 
 SUB-TOTAL propagates to all of the columns that would otherwise be unpopulated. The grand
@@ -2364,6 +2440,8 @@ TABLE SUMMARIZE command creates summary rows. It has no effect on columns:
 DEFINE FILE GGSALES
 MNTH/MTr   = DATE;
 END
+
+```fex
 TABLE FILE GGSALES
 SUM
  UNITS/I5 AS 'UNITS'                   OVER
@@ -2377,6 +2455,7 @@ WHERE PRODUCT EQ 'Capuccino' OR 'Espresso';
 ON TABLE SUMMARIZE AS 'Grand Total'
 
 END
+```
 
 
 The output is:
@@ -2389,6 +2468,7 @@ Subtotaling One Field Within an ACROSS Group
 The following request against the GGSALES data source sums the DOLLARS and UNITS fields
 by CATEGORY and across REGION, but subtotals only the UNITS field.
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS AS 'Dollars' OVER
 UNITS AS 'Units'
@@ -2397,6 +2477,7 @@ UNITS AS 'Units'
 WHERE REGION EQ 'Midwest' OR 'West'
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 
 ## Producing Summary Columns for Horizontal Sort Fields
@@ -2423,6 +2504,8 @@ and calculates DOLLARS PER UNIT across REGION. The request also has a higher-lev
 ACROSS field, CATEGORY, so the SUMMARIZE command propagates to both ACROSS fields.
 
 SET BYPANEL = ON
+
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS AS 'Dollars' OVER
 UNITS AS 'Units'         OVER
@@ -2434,6 +2517,7 @@ AND COMPUTE DPERU/D9.2 = DOLLARS/UNITS;
   WHERE CATEGORY EQ 'Food' OR 'Gifts'
   ON TABLE PCHOLD FORMAT PDF
 END
+```
 
 The first panel of output shows:
 
@@ -2484,6 +2568,8 @@ propagates to both ACROSS fields. The SUMMARIZE command specifies the AVE. prefi
 operator for the DOLLARS field.
 
 SET BYPANEL = ON
+
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS AS 'Dollars' OVER
 UNITS AS 'Units'
@@ -2494,6 +2580,7 @@ UNITS AS 'Units'
   WHERE CATEGORY EQ 'Food' OR 'Gifts'
   ON TABLE PCHOLD FORMAT PDF
 END
+```
 
 The first panel of output shows:
 
@@ -2545,6 +2632,8 @@ DOLLARS.
 
 
 SET BYPANEL = ON
+
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS AS 'Dollars' OVER
 UNITS AS 'Units'
@@ -2556,6 +2645,7 @@ UNITS AS 'Units'
   WHERE CATEGORY EQ 'Food' OR 'Gifts'
   ON TABLE PCHOLD FORMAT PDF
 END
+```
 
 On the output, all of the TOTAL columns have the minimum UNITS. The TOTAL columns
 associated with the REGION sort field have the average DOLLARS, but the TOTAL column
@@ -2666,12 +2756,14 @@ Using RECAP
 The following request illustrates the use of RECAP (DEPT_NET) to determine net earnings for
 each department:
 
+```fex
 TABLE FILE EMPLOYEE
 SUM DED_AMT AND GROSS
 BY DEPARTMENT BY PAY_DATE
 ON DEPARTMENT RECAP DEPT_NET/D8.2M = GROSS-DED_AMT;
 WHEN PAY_DATE GT 820101
 END
+```
 
 
 ## Performing Calculations at Sort Field Breaks
@@ -2715,6 +2807,7 @@ to perform different calculations at different control breaks.
 
 The following request illustrates the use of multiple RECAP commands.
 
+```fex
 TABLE FILE SALES
 SUM UNIT_SOLD AND RETURNS
 WHERE AREA EQ 'U'
@@ -2724,6 +2817,7 @@ DATE_RATIO=RETURNS/UNIT_SOLD;
 ON AREA UNDER-LINE RECAP
 AREA_RATIO=RETURNS/UNIT_SOLD;
 END
+```
 
 
 The output is:
@@ -2786,6 +2880,7 @@ Example:
 The following request includes the NOTOTAL phrase to suppress grand totals for CURR_SAL,
 GROSS, and DED_AMT.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL AND GROSS AND DED_AMT
 BY EMP_ID
@@ -2794,6 +2889,7 @@ WHERE BANK_ACCT NE 0
 ON BANK_ACCT SUB-TOTAL
 ON TABLE NOTOTAL
 END
+```
 
 
 The output is:
@@ -2819,6 +2915,7 @@ following request accomplishes this by including criteria that trigger the displ
 when dollar sales exceed $11,500,000 and subfooting text when dollar sales are less than
 $11,500,000.
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS
 BY REGION
@@ -2829,6 +2926,7 @@ SUBFOOT
 "The total for the <REGION region is less than 11500000."
 WHEN DOLLARS LT 11500000
 END
+```
 
 The output is:
 

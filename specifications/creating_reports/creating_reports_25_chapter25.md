@@ -99,6 +99,7 @@ many key features of the Financial Modeling Language (FML). Numbers to the left 
 procedure lines correspond to explanations that follow the request.
 
 
+```fex
    TABLE FILE FINANCE
    HEADING CENTER
    "COMPARATIVE ASSET SHEET </2"
@@ -129,6 +130,7 @@ procedure lines correspond to explanations that follow the request.
     FOOTING
     "</2 *** PRELIMINARY ASSET SHEET BASED ON UNAUDITED FIGURES ***"
    END
+```
 
 1. FOR and OVER are FML phrases that enable you to structure the report on a row-by-row
 
@@ -277,6 +279,7 @@ Using the FOR phrase in FML, you can issue the following TABLE request in which 
 of ACCOUNT is represented by a tag (1010, 1020, and so on), and displays as a separate row:
 
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT
 FOR ACCOUNT
@@ -286,6 +289,7 @@ FOR ACCOUNT
 1100 OVER
 1200
 END
+```
 
 The output is shown as follows.
 
@@ -364,12 +368,14 @@ Summing Values in Rows
 
 The following model sums the values of three tags (1010, 1020, 1030) as CASH.
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 1010 OR 1020 OR 1030  AS 'CASH'                   OVER
 1100                  AS 'ACCOUNTS RECEIVABLE'    OVER
 1200                  AS 'INVENTORY'
 END
+```
 
 The output is shown as follows.
 
@@ -428,10 +434,12 @@ Identifying a Range of Values
 Since CASH accounts in the LEDGER system are identified by the tags 1010, 1020, and 1030,
 you can specify the range 1010 to 1030:
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 1010 TO 1030 AS 'CASH'
 END
+```
 
 
 ## Creating Rows From Data
@@ -456,12 +464,14 @@ Using Masking Characters to Match a Group of Tags
 In this example, the amounts associated with all four-character accounts that begin with 10,
 expressed with a mask as 10$$, are used to produce the CASH row of the report.
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 10$$ AS 'CASH'                 OVER
 1100 AS 'ACCOUNTS RECEIVABLE'  OVER
 1200 AS 'INVENTORY'
 END
+```
 
 The output is shown as follows.
 
@@ -518,6 +528,8 @@ TOTAL CASH. Similarly, the tag values for accounts 1100 and 1200 displays as det
 and then summarized as TOTAL NON-CASH ASSETS.
 
 SET FORMULTIPLE=ON
+
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT
 FOR ACCOUNT
@@ -532,6 +544,7 @@ BAR                                   OVER
 BAR                                   OVER
 1100 TO 1200 AS 'TOTAL NON-CASH ASSETS'
 END
+```
 
 The output is shown as follows.
 
@@ -565,11 +578,13 @@ CASHSTUF, which contains the following tags.
 The following TABLE request uses the tag values from the external file, summing the amounts
 in accounts 1010, 1020, and 1030 into the CASH row of the FML report.
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 (CASHSTUF)  AS 'CASH'                 OVER
 1100        AS 'ACCOUNTS RECEIVABLE'
 END
+```
 
 Notice that the file name must be enclosed in parentheses.
 
@@ -593,6 +608,7 @@ LAST_YR=.831*CUR_YR;
 REGION/A4=IF E_ACTUAL NE 0 OR E_BUDGET NE 0 THEN 'EAST' ELSE 'WEST';
 END
 
+```fex
 TABLE FILE REGION
 HEADING CENTER
 "CURRENT ASSETS FOR REGION <REGION"
@@ -606,6 +622,7 @@ FOR ACCOUNT
 BAR                                 OVER
 RECAP CUR_ASSET/I5C = R1 + R2 + R3;
 END
+```
 
 The output is shown as follows.
 
@@ -674,6 +691,7 @@ EUROS/I5C=AMOUNT;
 POUNDS/I5C=3.2*AMOUNT;
 END
 
+```fex
 TABLE FILE LEDGER
 SUM EUROS AS 'EUROPE,DIVISION'
 POUNDS AS 'ENGLISH,DIVISION'
@@ -682,6 +700,7 @@ FOR ACCOUNT
 DATA .87, 1.67 ,$ AS 'EXCHANGE RATE' LABEL EXCH    OVER
 RECAP US_DOLLARS/I5C = CASH * EXCH;
 END
+```
 
 The values supplied are taken one column at a time for as many columns as the report
 originally specified.
@@ -843,6 +862,7 @@ In this example, FML assigns account 1010 the implicit label R1, account 1020, t
 label R2, and account 1030, the implicit label R3. Since no label is assigned to a BAR row, the
 RECAP row is assigned the implicit label R4.
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 1010 AS 'CASH ON HAND'      OVER
@@ -851,6 +871,7 @@ SUM AMOUNT FOR ACCOUNT
 BAR                         OVER
 RECAP TOTCASH = R1 + R2 + R3; AS 'TOTAL CASH'
 END
+```
 
 The output is shown as follows.
 
@@ -867,6 +888,7 @@ Referring to Explicit Row Labels in RECAP Expressions
 The following request assigns the labels CA, AR, and INV to three tag rows, which are
 referenced in the RECAP expression.
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 10$$ AS 'CASH'                   LABEL CA    OVER
@@ -875,6 +897,7 @@ SUM AMOUNT FOR ACCOUNT
 BAR                                          OVER
 RECAP CURASST/I5C = CA + AR + INV;
 END
+```
 
 The output is shown as follows.
 
@@ -896,6 +919,7 @@ In certain cases, you may wish to repeat an entire row later in your report. For
 CASH account can appear in the Asset statement and Cash Flow statement of a financial
 analysis, as shown below.
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 "ASSETS"                          OVER
@@ -905,6 +929,7 @@ SUM AMOUNT FOR ACCOUNT
 "CASH FLOW"                       OVER
 RECAP SAMECASH/I5C = TOTCASH; AS 'CASH'
 END
+```
 
 When you refer to the CASH row the second time, you can use a RECAP calculation (with a new
 name) and refer to the label, either explicitly (TOTCASH) or implicitly (R1), in the row where
@@ -945,6 +970,7 @@ CUR_YR/I5C=AMOUNT;
 LAST_YR/I5C=.87*CUR_YR - 142;
 END
 
+```fex
 TABLE FILE LEDGER
 SUM CUR_YR AS 'CURRENT,YEAR'
    LAST_YR AS 'LAST,YEAR'
@@ -956,6 +982,7 @@ FOR ACCOUNT
 BAR                                     OVER
 RECAP TOTCASH/I5C = R1 + R2 + R3; AS 'TOTAL CASH'
 END
+```
 
 Both the columns of the report, as well as the cells of the matrix, can be referenced in another
 FML report.
@@ -980,6 +1007,7 @@ CUR_YR/I5C=AMOUNT;
 LAST_YR/I5C=.87*CUR_YR - 142;
 END
 
+```fex
 TABLE FILE LEDGER
 SUM CUR_YR AS 'CURRENT,YEAR'
 LAST_YR AS 'LAST,YEAR'
@@ -993,6 +1021,7 @@ RECAP TOTCASH/I5C = R1 + R2 + R3; AS 'TOTAL CASH'  OVER
 RECAP GROCASH(2)/F5.2 = 100*TOTCASH(1)/TOTCASH(2) - 100;
 AS 'CASH GROWTH(%)'
 END
+```
 
 In the second RECAP expression, note that:
 
@@ -1031,6 +1060,7 @@ LAST_YR/I5C=.87*CUR_YR - 142;
 NEXT_YR/I5C=1.13*CUR_YR + 222;
 END
 
+```fex
 TABLE FILE LEDGER
 SUM NEXT_YR CUR_YR LAST_YR
 FOR ACCOUNT
@@ -1041,6 +1071,7 @@ BAR                                 OVER
 RECAP ATOT(2,3)/I5C = R1 + R2 + R3;
 AS 'ASSETS--ACTUAL'
 END
+```
 
 The output is shown in the following image.
 
@@ -1126,6 +1157,7 @@ LAST_YR/I5C=.87*CUR_YR - 142;
 NEXT_YR/I5C=1.13*CUR_YR + 222;
 END
 
+```fex
 TABLE FILE LEDGER
 SUM NEXT_YR CUR_YR LAST_YR
 FOR ACCOUNT
@@ -1133,6 +1165,7 @@ FOR ACCOUNT
 " "                                          OVER
 RECAP CHGCASH(1,2)/I5SC = TOTCASH(*) - TOTCASH(*+1); AS 'CHANGE IN CASH'
 END
+```
 
 The output is shown in the following image.
 
@@ -1196,6 +1229,7 @@ The following request uses a factor that depends on the value of the ACROSS fiel
 calculate the inventory cost for each year. It then calculates the profit by summing the assets
 and subtracting the inventory cost for each year.
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT ACROSS YEAR
 FOR ACCOUNT
@@ -1210,6 +1244,7 @@ RECAP INVENTORY_COST = INVENTORY_FACTOR * INVENT;
 BAR                                               OVER
 RECAP PROFIT = CASH + RECEIVE - INVENTORY_COST;
 END
+```
 
 
 Referring to Rows and Columns in Calculations
@@ -1226,6 +1261,7 @@ Example:
 
 Styling Multiple RECAP Statements in a Matrix
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS
 BY PRODUCT
@@ -1239,6 +1275,7 @@ TYPE=DATA, COLUMN=TTL1 (*), COLOR=BLUE, BACKCOLOR=SILVER, STYLE=BOLD, $
 TYPE=DATA, COLUMN=TTL2 (*), COLOR=RED, BACKCOLOR=AQUA, STYLE=BOLD, $
 ENDSTYLE
 END
+```
 
 The output is shown in the following image.
 
@@ -1280,6 +1317,7 @@ In this request, two RECAP expressions derive VARIANCEs (EVAR and WVAR) by subtr
 values in four columns (1, 2, 3, 4) in row three (PROFIT). These values are identified using cell
 notation (r,c).
 
+```fex
 TABLE FILE REGION
 SUM E_ACTUAL E_BUDGET W_ACTUAL W_BUDGET
 FOR ACCOUNT
@@ -1293,6 +1331,7 @@ AS 'EAST--VARIANCE'                     OVER
 RECAP WVAR(3)/I5C = E(3,3) - E(3,4);
 AS 'WEST--VARIANCE'
 END
+```
 
 The output is shown as follows.
 
@@ -1387,6 +1426,7 @@ RECAP statement.
 
 The request is:
 
+```fex
 TABLE FILE LEDGER
 HEADING CENTER
 "ASSETS AND MONEY AVAILABLE FOR INVESTMENT </2"
@@ -1406,6 +1446,7 @@ RECAP INVAIL = INVEST(CASH,TOTCAS,THISDATE,'D12.2'); AS
           'AVAIL. FOR INVESTMENT'                              OVER
 BAR AS '='
 END
+```
 
 The output is shown in the following image.
 
@@ -1427,6 +1468,7 @@ Inserting Free Text
 
 In this example, three rows of free text are inserted, one blank and two text rows.
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 " --- CASH ACCOUNTS ---"             OVER
@@ -1438,6 +1480,7 @@ SUM AMOUNT FOR ACCOUNT
 1100 AS 'ACCOUNTS RECEIVABLE'        OVER
 1200 AS 'INVENTORY'
 END
+```
 
 The output is shown as follows.
 
@@ -1491,6 +1534,8 @@ In this example, the RECAP value CURASST is suppressed by the NOPRINT command, a
 inserted instead as a data variable in the text row.
 
 SET PAGE-NUM=OFF
+
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 10$$ AS 'Cash'                   LABEL CA    OVER
@@ -1499,6 +1544,7 @@ SUM AMOUNT FOR ACCOUNT
 RECAP CURASST/I5C = CA + AR + INV; NOPRINT   OVER
 "Current Assets: <CURASST"
 END
+```
 
 The output is shown in the following image.
 
@@ -1534,6 +1580,7 @@ CUR_YR/I5C=AMOUNT;
 LAST_YR/I5C=.87*CUR_YR - 142;
 END
 
+```fex
 TABLE FILE LEDGER
 SUM CUR_YR AS 'CURRENT,YEAR'
    LAST_YR AS 'LAST,YEAR'
@@ -1545,6 +1592,7 @@ FOR ACCOUNT
 BAR                                     OVER
 RECAP TOTCASH/I5C = R1 + R2 + R3; AS 'TOTAL CASH'
 END
+```
 
 The output is shown in the following image.
 
@@ -1560,6 +1608,7 @@ CUR_YR/P5C=AMOUNT;
 LAST_YR/P5C=.87*AMOUNT - 142;
 END
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT
 ACROSS YEAR AND COMPUTE 1999/P5C = 2.5*AMOUNT;
@@ -1571,6 +1620,7 @@ BAR                                      OVER
 RECAP TOTCASH/P5C = R1 + R2 + R3; AS 'TOTAL CASH' OVER
 RECAP CHANGE(2,*) = TOTCASH(*) - TOTCASH(*-1);
 END
+```
 
 
 The output is shown as follows.
@@ -1611,6 +1661,7 @@ LAST_YR=.831*CUR_YR;
 NEXT_YR=1.2297*CUR_YR;
 END
 
+```fex
 TABLE FILE REGION
 SUM LAST_YR CUR_YR NEXT_YR
 FOR ACCOUNT
@@ -1624,6 +1675,7 @@ RECAP PROFIT/I5C = SLS - COST;              OVER
 " "                                         OVER
 RECAP ENDCASH/I5C = STCASH + PROFIT;
 END
+```
 
 The output is shown as follows.
 
@@ -1765,6 +1817,7 @@ Syntax:
 
 How to Display an FML Hierarchy
 
+```fex
 TABLE FILE filename{PRINT|SUM} ...
 FOR hierarchyfld
 parentvalue {GET|WITH} CHILD[REN] [n|ALL]
@@ -1773,6 +1826,7 @@ parentvalue {GET|WITH} CHILD[REN] [n|ALL]
 .
 .
 END
+```
 
 where:
 
@@ -1849,11 +1903,14 @@ Displaying an FML Hierarchy
 The following request displays two levels of account numbers, starting from account 3000:
 
 SET SHOWBLANKS=ON
+
+```fex
 TABLE FILE CENTGL
 PRINT GL_ACCOUNT_PARENT
 FOR GL_ACCOUNT
 3000 WITH CHILDREN 2
 END
+```
 
 The output is shown as follows.
 
@@ -1890,11 +1947,14 @@ The following request displays two levels of a chart of accounts hierarchy, star
 numbers.
 
 SET SHOWBLANKS=ON
+
+```fex
 TABLE FILE CENTGL
 PRINT GL_ACCOUNT_PARENT
 FOR GL_ACCOUNT
 1000 WITH CHILDREN 2 AS CAPTION
 END
+```
 
 The output is shown as follows.
 
@@ -1949,6 +2009,7 @@ Syntax:
 
 How to Create One Summary Row for an FML Hierarchy
 
+```fex
 TABLE FILE filenameSUM ...
 FOR hierarchyfld
 parentvalue ADD [n|ALL]
@@ -1957,6 +2018,7 @@ parentvalue ADD [n|ALL]
 .
 .
 END
+```
 
 where:
 
@@ -2040,6 +2102,8 @@ and all of its children.
 SET SHOWBLANKS=ON
 SET FORMULTIPLE=ON
 JOIN SYS_ACCOUNT IN CENTGL TO ALL SYS_ACCOUNT IN CENTSYSF
+
+```fex
 TABLE FILE CENTGL
 SUM NAT_AMOUNT/D10.0 NAT_YTDAMT/D10.0
 FOR GL_ACCOUNT
@@ -2048,6 +2112,7 @@ BAR                               OVER
 3100 ADD AS CAPTION
 IF PERIOD EQ '2002/03'
 END
+```
 
 The output is shown as follows.
 
@@ -2056,6 +2121,7 @@ Syntax:
 
 How to Consolidate FML Hierarchy Data to Any Level and Depth
 
+```fex
 TABLE FILE filename
 SUM ...
 FOR hierarchyfld
@@ -2065,6 +2131,7 @@ parentvalue {GET|WITH} CHILD[REN] [n|ALL] ADD [m|ALL]
 .
 .
 END
+```
 
 where:
 
@@ -2143,6 +2210,8 @@ line for the parent account (3100) and each direct child.
 SET SHOWBLANKS=ON
 SET FORMULTIPLE=ON
 JOIN SYS_ACCOUNT IN CENTGL TO ALL SYS_ACCOUNT IN CENTSYSF
+
+```fex
 TABLE FILE CENTGL
 SUM NAT_AMOUNT/D10.0 NAT_YTDAMT/D10.0
 FOR GL_ACCOUNT
@@ -2153,6 +2222,7 @@ BAR AS =                               OVER
 3100 WITH CHILDREN ADD AS CAPTION
 IF PERIOD EQ '2002/03'
 END
+```
 
 Note that the join is not required to be unique, because the hierarchy is defined in the host
 segment.
@@ -2184,12 +2254,15 @@ children and grandchildren.
 SET SHOWBLANKS=ON
 SET FORMULTIPLE=ON
 JOIN SYS_ACCOUNT IN CENTGL TO ALL SYS_ACCOUNT IN CENTSYSF
+
+```fex
 TABLE FILE CENTGL
 SUM NAT_AMOUNT/D10.0 NAT_YTDAMT/D10.0
 FOR GL_ACCOUNT
 2000 WITH CHILDREN 2 ADD AS CAPTION
 IF PERIOD EQ '2002/03'
 END
+```
 
 The output is shown as follows.
 
@@ -2206,10 +2279,12 @@ when the session ends.
 The chart loads by running a TABLE request that produces a list of parent values and their
 associated children.
 
+```fex
 TABLE FILE chartfile
 BY parentfield BY hierarchyfield
 [SUM captionfield]
 END
+```
 
 
 ## Reporting Dynamically From a Hierarchy
@@ -2370,11 +2445,13 @@ In the following example, the row titles CASH ON HAND and DEMAND DEPOSITS provid
 meaningful identifications for the corresponding tags.
 
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 1010 AS 'CASH ON HAND' OVER
 1020 AS 'DEMAND DEPOSITS'
 END
+```
 
 Note that single quotation marks are necessary since the row title being assigned has
 embedded blanks.
@@ -2392,6 +2469,7 @@ Customizing a Row Title for a RECAP Value
 
 This request creates the title TOTAL CASH for the RECAP value TOTCASH.
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 1010 AS 'CASH ON HAND'      OVER
@@ -2399,6 +2477,7 @@ SUM AMOUNT FOR ACCOUNT
 1030 AS 'TIME DEPOSITS'     OVER
 RECAP TOTCASH = R1 + R2 + R3; AS 'TOTAL CASH'
 END
+```
 
 The output is shown as follows.
 
@@ -2460,6 +2539,7 @@ Underlining Columns
 
 This example uses the default underscore character (_).
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 1010 AS 'CASH ON HAND'       OVER
@@ -2468,6 +2548,7 @@ SUM AMOUNT FOR ACCOUNT
 BAR                          OVER
 RECAP TOTCASH = R1 + R2 + R3;
 END
+```
 
 The output is shown as follows.
 
@@ -2497,6 +2578,7 @@ Specifying a Page Break in an FML Report
 In this example, a page break is inserted after the first two RECAP commands to highlight each
 calculation.
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 1010 AS 'CASH ON HAND'                                    OVER
@@ -2512,6 +2594,7 @@ RECAP TOTASSET = RECEIVE + INVENT; AS 'TOTAL ASSETS'      OVER
 PAGE-BREAK                                                OVER
 RECAP TOTAL = TOTCASH + TOTASSET;
 END
+```
 
 
 ## Formatting an FML Report
@@ -2572,6 +2655,8 @@ label and the row data. The LABEL attribute in the StyleSheet identifies the thr
 which are styled here as italic.
 
 SET PAGE-NUM=OFF
+
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 1010 AS 'CASH ON HAND' LABEL COH OVER
@@ -2586,6 +2671,7 @@ TYPE = REPORT, LABEL = DD,  STYLE = ITALIC, $
 TYPE = REPORT, LABEL = TD,  STYLE = ITALIC, $
 ENDSTYLE
 END
+```
 
 
 ## Formatting an FML Report
@@ -2599,6 +2685,8 @@ AMOUNT column. The StyleSheet uses the explicit label CA to identify the compone
 format.
 
 SET PAGE-NUM=OFF
+
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 10$$ AS 'CASH'                LABEL CA   OVER
@@ -2610,6 +2698,7 @@ TYPE = REPORT, GRID = OFF, $
 TYPE = REPORT, LABEL = CA, STYLE = BOLD, $
 ENDSTYLE
 END
+```
 
 The output is shown in the following image.
 
@@ -2621,6 +2710,8 @@ the StyleSheet declaration. In this case, the column (N2) within the row (CA).
 
 
 SET PAGE-NUM=OFF
+
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 10$$ AS 'CASH'                LABEL CA   OVER
@@ -2632,6 +2723,7 @@ TYPE = REPORT, GRID = OFF, $
 TYPE = REPORT, COLUMN = N2, LABEL = CA, STYLE = BOLD, $
 ENDSTYLE
 END
+```
 
 The output is shown in the following image.
 
@@ -2641,6 +2733,8 @@ This request identifies the AMOUNT column by name and formats its title and data
 same result is achieved if the column is identified as N2.
 
 SET PAGE-NUM=OFF
+
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 "---CASH ACCOUNTS---"                   OVER
@@ -2656,6 +2750,7 @@ TYPE = REPORT, GRID = OFF, $
 TYPE = REPORT, COLUMN = AMOUNT, STYLE = BOLD, $
 ENDSTYLE
 END
+```
 
 
 ## Formatting an FML Report
@@ -2668,6 +2763,8 @@ This request styles the free text as bold. Since in this example the same stylin
 both free text rows, labels are not required to distinguish between them.
 
 SET PAGE-NUM=OFF
+
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 "---CASH ACCOUNTS---"  LABEL CA         OVER
@@ -2683,6 +2780,7 @@ TYPE = REPORT, GRID = OFF, $
 TYPE = FREETEXT, STYLE = BOLD, $
 ENDSTYLE
 END
+```
 
 
 The output is shown in the following image.
@@ -2694,6 +2792,8 @@ OTHER CURRENT ASSETS. The labels CA and OCA are used to identify and format each
 separately.
 
 SET PAGE-NUM=OFF
+
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 " --- CASH ACCOUNTS ---" LABEL CA            OVER
@@ -2710,6 +2810,7 @@ TYPE = FREETEXT, LABEL = CA, STYLE = BOLD, SIZE = 12, $
 TYPE = FREETEXT, LABEL = OCA, STYLE = BOLD, SIZE = 10, $
 ENDSTYLE
 END
+```
 
 
 ## Formatting an FML Report
@@ -2722,6 +2823,8 @@ In this example, the text and variable components of the free text row are style
 The text, Current Assets, is italic and the value derived from the RECAP calculation is bold.
 
 SET PAGE-NUM=OFF
+
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT AS 'Amount' FOR ACCOUNT
 10$$ AS 'Cash'                   LABEL CA    OVER
@@ -2735,6 +2838,7 @@ TYPE = FREETEXT, OBJECT = TEXT, ITEM = 1, SIZE = 12, STYLE = ITALIC, $
 TYPE = FREETEXT, OBJECT = FIELD, ITEM = 1, STYLE = BOLD, $
 ENDSTYLE
 END
+```
 
 The output is shown in the following image.
 
@@ -2746,6 +2850,8 @@ the RECAP label in the StyleSheet is TOTCASH. In a RECAP, the name assigned to t
 calculated value serves as the explicit label.
 
 SET PAGE-NUM=OFF
+
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 1010 AS 'CASH ON HAND'    LABEL CASH    OVER
@@ -2760,6 +2866,7 @@ TYPE = REPORT, LABEL = DD, COLUMN = N1, STYLE = ITALIC, $
 TYPE = REPORT, LABEL = TD, COLUMN = N1, STYLE = ITALIC, $
 ENDSTYLE
 END
+```
 
 The output is shown in the following image.
 
@@ -2879,6 +2986,8 @@ sheets be turned ON.
 ## Formatting an FML Report
 
 SET PAGE-NUM=OFF
+
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 1010 AS 'CASH ON HAND'    LABEL CASH    OVER
@@ -2893,6 +3002,7 @@ TYPE = REPORT, LABEL = TOTCASH, BORDER = MEDIUM,
   BORDER-STYLE = DASHED, $
 ENDSTYLE
 END
+```
 
 The output is shown in the following image.
 
@@ -2907,6 +3017,8 @@ the label TOTCASH, and a thin silver dotted line to the left and right of each c
 For HTML reports, the BORDERS feature requires that cascading style sheets be turned ON.
 
 SET PAGE-NUM=OFF
+
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 1010 AS 'CASH ON HAND'    LABEL CASH    OVER
@@ -2930,6 +3042,7 @@ TYPE = REPORT, LABEL = TOTCASH,
      BORDER-RIGHT-COLOR = 'SILVER', $
 ENDSTYLE
 END
+```
 
 The output is shown in the following image.
 
@@ -2945,6 +3058,8 @@ identified in the cell. The BORDERS feature requires that cascading style sheets
 ## Formatting an FML Report
 
 SET PAGE-NUM=OFF
+
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 1010 AS 'CASH ON HAND'    LABEL CASH    OVER
@@ -2958,6 +3073,7 @@ TYPE = REPORT, GRID = OFF,$
 TYPE = REPORT, LABEL = TOTCASH, COLUMN = N2, BORDER = MEDIUM, $
 ENDSTYLE
 END
+```
 
 The output is shown in the following image.
 
@@ -3044,6 +3160,8 @@ spaces. Because the GET CHILDREN phrase is used, the first line of the FML hiera
 third row for tag value 3000, is indented seven spaces (five + two).
 
 SET FORMULTIPLE=ON
+
+```fex
 TABLE FILE CENTGL
 PRINT GL_ACCOUNT_PARENT
 FOR GL_ACCOUNT
@@ -3051,6 +3169,7 @@ FOR GL_ACCOUNT
 3000                 INDENT 5  AS 'Indented 5'          OVER
 3000 GET  CHILDREN 2 INDENT 5  AS 'Hierarchy Indented 5'
 END
+```
 
 The output is shown as follows.
 
@@ -3080,6 +3199,8 @@ five spaces. The second RECAP command calculates the profit, and indents the lab
 spaces.
 
 SET FORMULTIPLE=ON
+
+```fex
 TABLE FILE CENTINV
 SUM PRICE COST QTY_IN_STOCK
 FOR PRODTYPE
@@ -3090,6 +3211,7 @@ RECAP TOTAL = R1 + R2; INDENT 5  AS 'Total:'     OVER
 BAR                                              OVER
 RECAP PROFIT(2) = TOTAL(1) - TOTAL(2); AS 'Profit:' INDENT 10
 END
+```
 
 
 The output is shown as follows.
@@ -3163,6 +3285,8 @@ The following request creates an HTML report with the default indentation:
 SET PAGE-NUM=NOPAGE
 SET BLANKINDENT=ON
 SET FORMULTIPLE=ON
+
+```fex
 TABLE FILE CENTGL
 PRINT GL_ACCOUNT_PARENT
 FOR GL_ACCOUNT
@@ -3175,6 +3299,7 @@ ON TABLE SET STYLE *
 TYPE = REPORT, GRID = OFF, $
 ENDSTYLE
 END
+```
 
 
 The output is shown in the following image.
@@ -3189,6 +3314,8 @@ number is expressed in the default unit of measurement, which is inches:
 SET PAGE-NUM=NOPAGE
 SET BLANKINDENT=.25
 SET FORMULTIPLE=ON
+
+```fex
 TABLE FILE CENTGL
 PRINT GL_ACCOUNT_PARENT
 FOR GL_ACCOUNT
@@ -3199,6 +3326,7 @@ ON TABLE SET STYLE *
 TYPE = REPORT, GRID = OFF, $
 ENDSTYLE
 END
+```
 
 
 ## Suppressing the Display of Rows
@@ -3230,6 +3358,7 @@ DEFINE FILE REGION
 AMOUNT/I5C=E_ACTUAL;
 END
 
+```fex
 TABLE FILE REGION
 SUM AMOUNT FOR ACCOUNT
 3000 AS 'SALES' LABEL SLS           OVER
@@ -3239,6 +3368,7 @@ RECAP PROFIT/I5C = SLS - COST;      OVER
 RECAP ROS/F6.2 = 100*PROFIT/SLS;
 AS 'RETURN ON SALES'
 END
+```
 
 The output is shown in the following image.
 
@@ -3341,12 +3471,14 @@ CUR_YR/I5C=AMOUNT;
 LAST_YR/I5C=.87*CUR_YR - 142;
 END
 
+```fex
 TABLE FILE LEDGER
 SUM CUR_YR LAST_YR
 FOR ACCOUNT
 1100 LABEL AR POST TO LEDGEOUT OVER
 1200 LABEL INV POST TO LEDGEOUT
 END
+```
 
 The output is shown in the following image.
 
@@ -3405,6 +3537,7 @@ CUR_YR/I5C=AMOUNT;
 LAST_YR/I5C=.87*CUR_YR - 142;
 END
 
+```fex
 TABLE FILE LEDGER
 SUM CUR_YR LAST_YR
 FOR ACCOUNT
@@ -3414,6 +3547,7 @@ DATA PICKUP FROM LEDGEOUT INV AS 'INVENTORY' LABEL INV            OVER
 BAR                                 OVER
 RECAP CUR_ASSET/I5C = CASH + AR + INV;
 END
+```
 
 
 The output is shown in the following image.
@@ -3452,6 +3586,7 @@ Creating a Hold File From an FML Report
 The following request creates a HOLD file that contains records for CASH, ACCOUNTS
 RECEIVABLE, INVENTORY, and the RECAP row CURRENT ASSETS.
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 1010 TO 1030 AS 'CASH'                            OVER
@@ -3460,6 +3595,7 @@ SUM AMOUNT FOR ACCOUNT
 RECAP CA = R1 + R2 + R3; AS 'CURRENT ASSETS'
 ON TABLE HOLD
 END
+```
 
 
 ## Creating HOLD Files From FML Reports
@@ -3478,9 +3614,11 @@ AMOUNT             EO2            I5C
 
 Then report from the HOLD file as:
 
+```fex
 TABLE FILE HOLD
 PRINT E01 E02
 END
+```
 
 The output is shown in the following image.
 

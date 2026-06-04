@@ -398,6 +398,8 @@ source, the segment types, and the attributes of the fields: field names, aliase
 
 
 CHECK FILE EMPLOYEE HOLD
+
+```fex
 TABLE FILE HOLD
 HEADING
 "FIELDNAMES, ALIASES, AND FORMATS"
@@ -406,6 +408,7 @@ HEADING
 PRINT FIELDNAME/A12 ALIAS/A12 USAGE BY SEGNAME BY SEGTYPE
 WHERE SEGTYPE CONTAINS 'K'
 END
+```
 
 The output is:
 
@@ -437,9 +440,12 @@ FILENAME = EMPLOYEE, SUFFIX = FOC, FDEFCENT = 19, FYRTHRESH = 50
 The following request:
 
 CHECK FILE EMPLOYEE HOLD ALL
+
+```fex
 TABLE FILE HOLD
 PRINT FDEFCENT FYRTHRESH
 END
+```
 
 produces the following output:
 

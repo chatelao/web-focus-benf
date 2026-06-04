@@ -254,11 +254,13 @@ The following request prints the city of origin (OR_CITY) and the destination ci
 Note that missing data is generated, causing the data for stations and corresponding cities to
 lag, or be off by one line.
 
+```fex
 TABLE FILE ROUTES
 PRINT TRAIN_NUM
 OR_STATION OR_CITY
 DE_STATION DE_CITY
 END
+```
 
 The output is:
 
@@ -278,11 +280,14 @@ Issuing SET JOINOPT=NEW enables segments to be retrieved in the expected order (
 to right and from top to bottom), without missing data.
 
 SET JOINOPT=NEW
+
+```fex
 TABLE FILE ROUTES
 PRINT TRAIN_NUM
 OR_STATION OR_CITY
 DE_STATION DE_CITY
 END
+```
 
 The correct report has only 5 lines instead of 6, and the station and city data is properly
 aligned. The output is:
@@ -421,9 +426,11 @@ This creates the following recursive structure.
 You can then produce a report on all three levels of data with this TABLE command (the field
 SUBDESCRIPT describes the contents of the field SUBPART):
 
+```fex
 TABLE FILE AIRCRAFT
 PRINT SUBPART BY PART BY SUBPART BY SUBDESCRIPT
 END
+```
 
 ## How the JOIN Command Works
 
@@ -458,9 +465,11 @@ This command joins the field EMP_ID in the JOB file to the field EMP_ID in the S
 JOB is the host file and SALARY is the cross-referenced file. You then execute this report
 request:
 
+```fex
 TABLE FILE JOB
 PRINT SALARY AND JOB_TITLE BY EMP_ID
 END
+```
 
 
 ## Creating an Equijoin
@@ -660,25 +669,34 @@ EDUCFILE data source.
 The procedure then adds an employee to EMPINFO named Fred Newman who has no matching
 record in the JOBINFO or EDINFO data sources.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM LAST_NAME FIRST_NAME CURR_JOBCODE
 BY EMP_ID
 ON TABLE HOLD AS EMPINFO FORMAT FOCUS INDEX EMP_ID CURR_JOBCODE
 END
+```
+
 -RUN
 
+```fex
 TABLE FILE JOBFILE
 SUM JOB_DESC
 BY JOBCODE
 ON TABLE HOLD AS JOBINFO FORMAT FOCUS INDEX JOBCODE
 END
+```
+
 -RUN
 
+```fex
 TABLE FILE EDUCFILE
 SUM COURSE_CODE COURSE_NAME
 BY EMP_ID
 ON TABLE HOLD AS EDINFO FORMAT FOCUS INDEX EMP_ID
 END
+```
+
 -RUN
 
 MODIFY FILE EMPINFO
@@ -693,9 +711,11 @@ END
 The following request prints the contents of EMPINFO. Note that Fred Newman has been added
 to the data source:
 
+```fex
 TABLE FILE EMPINFO
 PRINT *
 END
+```
 
 
 The output is:
@@ -729,9 +749,11 @@ actual data exists.
 
 The following request displays fields from the joined structure:
 
+```fex
 TABLE FILE EMPINFO
 PRINT LAST_NAME FIRST_NAME JOB_DESC
 END
+```
 
 Fred Newman is omitted from the report output because his job code does not have a match in
 the JOBINFO data source:
@@ -766,9 +788,11 @@ JOIN LEFT_OUTER EMP_ID IN EMPINFO TO MULTIPLE EMP_ID IN EDINFO AS J1
 
 The following request displays fields from the joined structure:
 
+```fex
 TABLE FILE EMPINFO
 PRINT LAST_NAME FIRST_NAME COURSE_NAME
 END
+```
 
 All employee records display on the report output. The records for those employees with no
 matching records in the EDINFO data source display the missing data character (.) in the
@@ -801,23 +825,27 @@ request against the join.
 The following request generates the WF_SALES table. The field ID_PRODUCT will be used in
 the right outer join command.
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM GROSS_PROFIT_US PRODUCT_CATEGORY PRODUCT_SUBCATEG
 BY ID_PRODUCT
 WHERE ID_PRODUCT FROM 2150 TO 4000
 ON TABLE HOLD AS WF_SALES FORMAT SQLMSS
 END
+```
 
 
 The following request generates the WF_PRODUCT table. The field ID_PRODUCT will be used in
 the right outer join command.
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM PRICE_DOLLARS PRODUCT_CATEGORY PRODUCT_SUBCATEG PRODUCT_NAME
 BY ID_PRODUCT
 WHERE ID_PRODUCT FROM 3000 TO 5000
 ON TABLE HOLD AS WF_PRODUCT FORMAT SQLMSS
 END
+```
 
 The following request issues the SET SHORTPATH=SQL and JOIN commands and displays
 values from the joined tables:
@@ -826,6 +854,8 @@ SET SHORTPATH = SQL
 JOIN RIGHT_OUTER ID_PRODUCT IN WF_PRODUCT TAG T1 TO ALL ID_PRODUCT IN
 WF_SALES TAG T2
 END
+
+```fex
 TABLE FILE WF_PRODUCT
 PRINT T1.ID_PRODUCT AS 'Product ID'
 PRICE_DOLLARS AS Price
@@ -837,6 +867,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 You can generate a trace that shows the resulting SQL by adding the following commands.
 
@@ -910,9 +941,12 @@ The structure created by the two joins has two independent paths:
 The following request displays fields from the joined structure:
 
 SET MULTIPATH=SIMPLE
+
+```fex
 TABLE FILE EMPINFO
 PRINT LAST_NAME FIRST_NAME IN 12 COURSE_NAME JOB_DESC
 END
+```
 
 With MULTIPATH=SIMPLE, the independent paths create independent joins. All employee
 records accepted by either join display on the report output. Only Fred Newman (who has no
@@ -1244,9 +1278,11 @@ ID_NUM/A9 = DECODE CITY ('NEW YORK' 451123478 'NEWARK' 119265415
                          'STAMFORD' 818692173 'UNIONDALE' 112847612);
 END
 
+```fex
 TABLE FILE SALES
 PRINT DATE_ATTEND BY CITY BY COURSE_NAME
 END
+```
 
 The output is:
 
@@ -1573,6 +1609,8 @@ JOIN FILE VIDEOTRK AT MOVIECODE TAG V1 TO ALL
   WHERE DATEDIF(RELDATE, TRANSDATE,'Y') GT 10;
   WHERE V1.MOVIECODE EQ M1.MOVIECODE;
 END
+
+```fex
 TABLE FILE VIDEOTRK
  SUM TITLE/A25 AS 'Title'
      TRANSDATE AS 'Last,Transaction'
@@ -1581,6 +1619,7 @@ TABLE FILE VIDEOTRK
  BY TITLE NOPRINT
  BY HIGHEST 1 TRANSDATE NOPRINT
 END
+```
 
 
 The output is:
@@ -1909,23 +1948,27 @@ the full outer join command. The generated table will contain ID_PRODUCT values 
 to 4000:
 
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM GROSS_PROFIT_US PRODUCT_CATEGORY PRODUCT_SUBCATEG
 BY ID_PRODUCT
 WHERE ID_PRODUCT FROM 2150 TO 4000
 ON TABLE HOLD AS WF_SALES FORMAT SQLMSS
 END
+```
 
 The following request generates the WF_PRODUCT table. The field ID_PRODUCT will be used in
 the full outer join command. The generated table will contain ID_PRODUCT values from 3000
 to 5000:
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM PRICE_DOLLARS PRODUCT_CATEGORY PRODUCT_SUBCATEG PRODUCT_NAME
 BY ID_PRODUCT
 WHERE ID_PRODUCT FROM 3000 TO 5000
 ON TABLE HOLD AS WF_PRODUCT FORMAT SQLMSS
 END
+```
 
 The following request issues the SET SHORTPATH = SQL and JOIN commands and displays
 values from the joined tables:
@@ -1938,6 +1981,8 @@ SET TRACEON = STMTRACE//CLIENT
 JOIN FULL_OUTER ID_PRODUCT IN WF_PRODUCT TAG T1
  TO ALL ID_PRODUCT IN WF_SALES TAG T2
 END
+
+```fex
 TABLE FILE WF_PRODUCT
 PRINT T1.ID_PRODUCT AS 'Product ID'
 PRICE_DOLLARS AS Price
@@ -1949,6 +1994,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 ## Full Outer Joins
@@ -2025,6 +2071,7 @@ from the WF_RETAIL_SHIPMENTS segment. The first BY field, BRAND, is in the share
 dimension WF_RETAIL_PRODUCT. The second BY field, TIME_QTR, is from the non-shared
 dimension WF_RETAIL_TIME_DELIVERED.
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM COGS_US DAYSDELAYED
 BY BRAND
@@ -2035,6 +2082,7 @@ ON TABLE SET PAGE NOLEAD
 ON TABLE SET STYLE *
 INCLUDE=IBFS:/FILE/IBI_HTML_DIR/ibi_themes/Warm.sty,$
 END
+```
 
 The output is shown in the following image. The sum of DAYSDELAYED is totaled for each
 value of the shared dimension and, within each value of the shared dimension, for each value
@@ -2144,11 +2192,14 @@ JOIN AS_ROOT PRODUCT_CATEGORY AND PRODUCT_SUBCATEG IN WF_RETAIL
   TO UNIQUE PRODUCT_CATEGORY AND PRODUCT_SUBCATEGORY IN PROJECTED
   AS J1
 END
+
+```fex
 TABLE FILE WF_RETAIL
 SUM PROJECTED_SALE_UNITS REVENUE_US
 BY PRODUCT_CATEGORY
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 
 The output is:
@@ -2242,6 +2293,8 @@ JOIN AS_ROOT PRODUCT_CATEGORY AND PRODUCT_SUBCATEG IN ibisamp/WF_RETAIL
   TO PRODUCT_CATEGORY AND PRODUCT_SUBCATEGORY IN ibisamp/EXCELROOT
   AS J1
   END
+
+```fex
 TABLE FILE ibisamp/WF_RETAIL
 SUM COGS_US PROJECTED_SALE_UNITS
 BY PRODUCT_CATEGORY
@@ -2249,6 +2302,7 @@ ON TABLE SET PAGE NOPAGE
 ON TABLE SET STYLE *
 GRID=OFF,$
 END
+```
 
 The output is shown in the following image.
 
@@ -2260,6 +2314,8 @@ JOIN AS_ROOT PRODUCT_CATEGORY AND PRODUCT_SUBCATEG IN ibisamp/WF_RETAIL
   TO PRODUCT_CATEGORY AND PRODUCT_SUBCATEGORY IN ibisamp/EXCELROOT
   AS J1
   END
+
+```fex
 TABLE FILE ibisamp/WF_RETAIL
 SUM COGS_US PROJECTED_SALE_UNITS
 BY PRODUCT_CATEGORY
@@ -2267,6 +2323,7 @@ ON TABLE SET PAGE NOPAGE
 ON TABLE SET STYLE *
 GRID=OFF,$
 END
+```
 
 The output is shown in the following image. Note the missing value indicators:
 
@@ -2337,6 +2394,8 @@ on the vendor ID and issues a request against the joined structure:
 
 JOIN ID_VENDOR IN WF_RETAIL_MULTI_PARENT TO ID_VENDOR IN WF_RETAIL_VENDOR
 AS J1
+
+```fex
 TABLE FILE WF_RETAIL_MULTI_PARENT
 SUM COGS_US DAYSDELAYED
 BY PRODUCT_CATEGORY
@@ -2344,6 +2403,7 @@ BY VENDOR_NAME
 WHERE PRODUCT_CATEGORY LT 'S'
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 
 The output is:
@@ -2424,6 +2484,8 @@ SET FOCTRANSFORM = NESTED_CLUSTERS/&VALUE
 SET SHORTPATH = SQL
 JOIN LEFT_OUTER START_STATION_ID IN CITIBIKE_TRIPDATA TAG T1 TO ALL
 STATION_ID IN STATION_TRIP_CLS TAG T2 AS J1
+
+```fex
 TABLE FILE CITIBIKE_TRIPDATA
 " NESTED_CLUSTERS/&VALUE"
 " "
@@ -2434,6 +2496,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 Running the request with &VALUE set to OFF generates the following trace:
 
@@ -2888,17 +2951,23 @@ Using the DBAJOIN Setting With Relational Tables
 
 The following request creates two tables, EMPINFOSQL and EDINFOSQL:
 
+```fex
 TABLE FILE EMPLOYEE
 SUM LAST_NAME FIRST_NAME CURR_JOBCODE
 BY EMP_ID
 ON TABLE HOLD AS EMPINFOSQL FORMAT SQLMSS
 END
+```
+
 -RUN
+
+```fex
 TABLE FILE EDUCFILE
 SUM COURSE_CODE COURSE_NAME
 BY EMP_ID
 ON TABLE HOLD AS EDINFOSQL FORMAT SQLMSS
 END
+```
 
 Add the following DBA attributes to the end of the generated EMPINFOSQL Master File. With
 the restrictions listed, USER2 cannot retrieve course codes of 300 or above:
@@ -2923,12 +2992,15 @@ Issue the following request:
 SET USER=USER2
 SET DBAJOIN=OFF
 JOIN LEFT_OUTER EMP_ID IN EMPINFOSQL TO MULTIPLE EMP_ID IN EDINFOSQL AS J1
+
+```fex
 TABLE FILE EMPINFOSQL
 PRINT LAST_NAME FIRST_NAME COURSE_CODE COURSE_NAME
 ON TABLE SET PAGE NOPAGE
 ON TABLE SET STYLE *
 GRID=OFF,$
 END
+```
 
 On the report output, all host and child rows with course codes 300 or above have been
 omitted, as shown in the following image:
@@ -3056,11 +3128,13 @@ VIDEOTRK DAYSKEPT                    I5            4
 
 The following request prints all transactions in which the number of days kept is two:
 
+```fex
 TABLE FILE VIDEOTRK
 PRINT MOVIECODE TRANSDATE RETURNDATE DAYSKEPT
 COMPUTE ACTUAL_DAYS/I2 = RETURNDATE-TRANSDATE;
 WHERE DAYSKEPT EQ 2
 END
+```
 
 The first few lines of output show that each return date is two days after the transaction date:
 
