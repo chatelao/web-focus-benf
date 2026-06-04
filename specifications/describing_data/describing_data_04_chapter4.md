@@ -1,4 +1,4 @@
-Describing an Individual Field
+# Chapter 4: Describing an Individual Field
 
 A field is the smallest meaningful element of data in a data source, but it can exhibit a
 number of complex characteristics. Master File attributes are used to describe these

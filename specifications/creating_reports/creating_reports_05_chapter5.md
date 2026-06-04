@@ -1,4 +1,4 @@
-Creating Temporary Fields
+# Chapter 5: Creating Temporary Fields
 
 When you create a report, you are not restricted to the fields that exist in your data
 source. If you can generate the information you want from the existing data, you can

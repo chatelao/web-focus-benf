@@ -1,4 +1,4 @@
-Providing Data Source Security: DBA
+# Chapter 10: Providing Data Source Security: DBA
 
 As Database Administrator, you can use DBA security features to provide security for any
 FOCUS data source. You can use these security features to limit the number of records

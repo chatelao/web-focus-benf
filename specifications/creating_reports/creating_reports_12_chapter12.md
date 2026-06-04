@@ -1,4 +1,4 @@
-Bursting Reports Into Multiple HTML Files
+# Chapter 12: Bursting Reports Into Multiple HTML Files
 
 Bursting separates a single report into multiple HTML files based on the value of the first
 sort field in your report.

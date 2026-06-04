@@ -1,4 +1,4 @@
-Including Totals and Subtotals
+# Chapter 6: Including Totals and Subtotals
 
 To help interpret detailed information in a report, you can summarize the information
 using row and column totals, grand totals, and subtotals. You can use these summary

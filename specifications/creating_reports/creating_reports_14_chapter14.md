@@ -1,4 +1,4 @@
-Joining Data Sources
+# Chapter 14: Joining Data Sources
 
 You can join two or more related data sources to create a larger integrated data structure
 from which you can report in a single request. The joined structure is virtual. It is a way of

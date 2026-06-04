@@ -1,4 +1,4 @@
-Creating Reports Overview
+# Chapter 1: Creating Reports Overview
 
 WebFOCUS is a complete information control system with comprehensive features for
 retrieving and analyzing data that enables you to create reports quickly and easily. It

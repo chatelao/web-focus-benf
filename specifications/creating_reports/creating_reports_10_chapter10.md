@@ -1,4 +1,4 @@
-Linking a Report to Other Resources
+# Chapter 10: Linking a Report to Other Resources
 
 You can use StyleSheet declarations to define links from any report component. You can
 use links to:

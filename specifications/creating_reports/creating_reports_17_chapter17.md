@@ -1,4 +1,4 @@
-Chapter17 Creating and Managing a WebFOCUS
+# Chapter 17: Creating and Managing a WebFOCUS StyleSheet
 
 StyleSheet
 

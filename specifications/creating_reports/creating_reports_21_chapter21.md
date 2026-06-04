@@ -1,4 +1,4 @@
-Laying Out the Report Page
+# Chapter 21: Laying Out the Report Page
 
 You can customize page layout using StyleSheet attributes. The page layout attributes
 available to you, like all other attributes, depend on the display format. For instance,

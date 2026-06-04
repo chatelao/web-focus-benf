@@ -1,4 +1,4 @@
-Using SQL to Create Reports
+# Chapter 27: Using SQL to Create Reports
 
 SQL users can issue report requests that combine SQL statements with TABLE
 formatting phrases to take advantage of a wide range of report preparation options.

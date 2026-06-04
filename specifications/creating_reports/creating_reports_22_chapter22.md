@@ -1,3 +1,5 @@
+# Chapter 22: Using Headings, Footings, Titles, and Labels
+
 Using Headings, Footings, Titles, and
 Labels
 
