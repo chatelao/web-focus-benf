@@ -2,7 +2,7 @@
 - [ ] 0.60 Implement a next, modest, very small, feasible and reasonable JAVA_PORT_ROADMAP.md step (#513)
 - [x] 0.59 Implement a next, modest, very small, feasible and reasonable JAVA_PORT_ROADMAP.md step (#511) (completed at 2026-06-03 21:16:51)
 - [x] 0.58 Implement a next, modest, very small, feasible and reasonable JAVA_PORT_ROADMAP.md step (#509) (completed at 2026-06-03 19:18:16)
-- [ ] 0.57 Implement a next, modest, very small, feasible and reasonable `specifications/ROADMAP.md` step (#508)
+- [x] 0.57 Implement a next, modest, very small, feasible and reasonable `specifications/ROADMAP.md` step (#508) (completed at 2026-06-04 07:58:39)
 - [x] 0.56 Implement a next, modest, very small, feasible and reasonable `specifications/ROADMAP.md` step (#504) (completed at 2026-06-03 18:46:36)
 - [x] 0.55 Create roadmap to improve the formating of all markdown files in `specifications` (#500)
 - [ ] 0.54 Überprüfe ob alle Dateiformate unterstützt werden, wenn nein erstelle die Datei `FILE_FORMAT_SUPPORT_GAP.md` (#498)
