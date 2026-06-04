@@ -1,4 +1,4 @@
-Navigating Within an HTML Report
+# Navigating Within an HTML Report
 
 You can include the following navigation features within a report to control the report
 display:

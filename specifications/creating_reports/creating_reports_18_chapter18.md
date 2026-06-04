@@ -1,4 +1,4 @@
-Controlling Report Formatting
+# Controlling Report Formatting
 
 When you format a report, you can control how the formatting is applied. You can:
 

@@ -32,6 +32,8 @@ Based on initial analysis, the following issues are prevalent:
 
 ### Phase 2: Structural Reform (Establishing Hierarchy)
 *   - [ ] **Task 2.1**: Convert "Chapter X" and major section titles into `#` and `##` headers.
+    *   - [x] **Task 2.1.1**: Convert the first line of each chapter/appendix file into an H1 header.
+    *   - [ ] **Task 2.1.2**: Convert major section titles into H2 headers.
 *   - [ ] **Task 2.2**: Reconstruct the Table of Contents (TOC) using standard Markdown list syntax with working anchors.
 *   - [ ] **Task 2.3**: Fix multi-line paragraph wrapping that was broken by PDF line breaks.
 

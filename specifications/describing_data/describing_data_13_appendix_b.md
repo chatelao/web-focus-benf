@@ -1,4 +1,4 @@
-Appendix B
+# Appendix B
 
 Error Messages
 

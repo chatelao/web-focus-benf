@@ -1,4 +1,4 @@
-Identifying a Data Source
+# Identifying a Data Source
 
 In order to interpret data, your application needs to know the name you are using to
 identify the data source and what type of data source it is. For example, is it a DB2 data

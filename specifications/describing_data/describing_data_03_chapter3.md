@@ -1,4 +1,4 @@
-Describing a Group of Fields
+# Describing a Group of Fields
 
 Certain fields in a data source may have a one-to-one correspondence. The different
 groups formed can be related to one another. For some types of data sources you can

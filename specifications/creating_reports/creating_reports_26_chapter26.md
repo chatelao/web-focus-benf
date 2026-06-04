@@ -1,4 +1,4 @@
-Creating a Free-Form Report
+# Creating a Free-Form Report
 
 You can present data in an unrestricted or free-form format using a layout of your own
 design.

@@ -1,4 +1,5 @@
-Describing a Sequential, VSAM, or ISAM
+# Describing a Sequential, VSAM, or ISAM
+
 Data Source
 
 You can describe and report from sequential, VSAM, and ISAM data sources.

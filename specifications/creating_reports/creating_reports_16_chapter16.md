@@ -1,4 +1,4 @@
-Formatting Reports: An Overview
+# Formatting Reports: An Overview
 
 To create an effective report, you need to account for:
 
