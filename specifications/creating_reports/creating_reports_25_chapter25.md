@@ -61,11 +61,8 @@ complete decision support systems. These systems can take advantage of business
 intelligence features, such as statistical analysis and graphics, in addition to standard
 financial statements.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1817
-
-Reporting With FML
+Reporting With FML
 
 Procedures using FML are not hard-wired to the data. As in any other report request, they can
 easily be changed. FML includes the following facilities:
@@ -101,9 +98,6 @@ This example produces a simple asset sheet, contrasting the results of two years
 many key features of the Financial Modeling Language (FML). Numbers to the left of the
 procedure lines correspond to explanations that follow the request.
 
-1818
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
    TABLE FILE FINANCE
    HEADING CENTER
@@ -161,11 +155,8 @@ TOTAL PLANT-NET with an AS phrase to provide it with greater meaning in the repo
 directly from the data source, and from values derived from previous RECAP computations
 (UTPNET and TOTCAS).
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1819
-
-Creating Rows From Data
+Creating Rows From Data
 
 The output is shown as follows.
 
@@ -179,9 +170,6 @@ They appear in a sort order.
 
 Rows appear only for values that are retrieved from the file.
 
-1820
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 You can only insert free text between rows when a sort field changes value, such as:
 
@@ -235,11 +223,8 @@ coltitle
 
 Is the column title for the FOR field on the report output.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1821
-
-Creating Rows From Data
+Creating Rows From Data
 
 value
 
@@ -291,11 +276,6 @@ ACCOUNT          DESCRIPTION
 Using the FOR phrase in FML, you can issue the following TABLE request in which each value
 of ACCOUNT is represented by a tag (1010, 1020, and so on), and displays as a separate row:
 
-1822
-
-
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 TABLE FILE LEDGER
 SUM AMOUNT
@@ -339,11 +319,8 @@ information, see How to Use the Same FOR Field Value in Multiple Rows on page 18
 
 In addition to these methods, you can extract multiple tags for a row from an external file.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1823
-
-Creating Rows From Data
+Creating Rows From Data
 
 Syntax:
 
@@ -402,9 +379,6 @@ CASH                 21,239
 ACCOUNTS RECEIVABLE  18,829
 INVENTORY            27,307
 
-1824
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 Syntax:
 
@@ -459,11 +433,8 @@ SUM AMOUNT FOR ACCOUNT
 1010 TO 1030 AS 'CASH'
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1825
-
-Creating Rows From Data
+Creating Rows From Data
 
 Syntax:
 
@@ -523,9 +494,6 @@ request.
 With FORMULTIPLE set to ON, a value retrieved from the data source is included on every
 line in the report output for which it matches the tag references.
 
-1826
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 OFF
 
@@ -580,12 +548,8 @@ INVENTORY              27,307
                        ------
 TOTAL NON-CASH ASSETS  46,136
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1827
-
-
-Creating Rows From Data
+Creating Rows From Data
 
 Example:
 
@@ -617,9 +581,6 @@ In general, BY phrases specify the major (outer) sort fields in FML reports, and
 specifies the minor (inner) sort field. Note that the BY ROWS OVER phrase is not supported in
 a request that uses the FOR phrase.
 
-1828
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 Combining BY and FOR Phrases in an FML Request
 
@@ -673,13 +634,8 @@ In certain cases, you may need to include additional constants (such as exchange
 inflation rates) in your model. Not all data values for the model have to be retrieved from the
 data source. Using FML, you can supply data directly in the request.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1829
-
-
-
-Supplying Data Directly in a Request
+Supplying Data Directly in a Request
 
 Syntax:
 
@@ -730,10 +686,6 @@ END
 The values supplied are taken one column at a time for as many columns as the report
 originally specified.
 
-1830
-
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 The output is shown in the following image.
 
@@ -778,11 +730,8 @@ may extend to as many lines as it requires. A semicolon is required at the end o
 expression. For more information, see Using Functions in RECAP Calculations on page
 1845 and the Using Functions manual.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1831
-
-Referring to Rows in Calculations
+Referring to Rows in Calculations
 
 The expression can include references to specific rows using the default FML positional
 labels (R1, R2, and so on), or it can refer to rows, columns, and cells using a variety of
@@ -829,9 +778,6 @@ positional labels are automatically prefixed with the letter R, so that the firs
 model is R1, the second is R2, and so on. You can use these labels to refer to rows in RECAP
 expressions.
 
-1832
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 Note: Default labels are not assigned to rows that contain underlines, blank lines, or free text,
 since these row types need not be referenced in expressions.
@@ -883,11 +829,8 @@ Note: You should not create an explicit label with a name of the form Rn, as tha
 name is used for default positional row labels assigned by FML and may cause problems
 with subsequent RECAPs.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1833
-
-Referring to Rows in Calculations
+Referring to Rows in Calculations
 
 Even if you assign an explicit label, the positional label (R1, R2, and so on) is retained
 internally.
@@ -946,9 +889,6 @@ CURASST              67,375
 Note that the RECAP value could subsequently be referred to by the name CURASST, which
 functions as an explicit label.
 
-1834
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 Using Labels to Repeat Rows
 
@@ -997,11 +937,8 @@ Applying Column Declarations in RECAP Expressions
 
 The following request generates an FML matrix with four rows and three columns of data.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1835
-
-Referring to Columns in Calculations
+Referring to Columns in Calculations
 
 DEFINE FILE LEDGER
 CUR_YR/I5C=AMOUNT;
@@ -1033,10 +970,6 @@ Referring to Column Numbers in Calculations
 You can perform a calculation for one column or for a specific set of columns. To identify the
 columns, place the column number in parentheses after the label name.
 
-1836
-
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 Example:
 
@@ -1082,12 +1015,8 @@ When a set of contiguous columns is needed within a RECAP, you can separate the 
 last column numbers with commas. For example, DIFFERENCE (2,5) indicates that you want to
 compute the results for columns 2 through 5.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1837
-
-
-Referring to Columns in Calculations
+Referring to Columns in Calculations
 
 Example:
 
@@ -1139,10 +1068,6 @@ s
 
 Is the starting column.
 
-1838
-
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 e
 
@@ -1188,11 +1113,8 @@ COMP=FIX(*) is equivalent to COMP=FIX.
 When referring to a prior column, the column must already have been retrieved, or its value is
 zero.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1839
-
-Referring to Columns in Calculations
+Referring to Columns in Calculations
 
 Applying Relative Column Addressing in a RECAP Expression
 
@@ -1235,10 +1157,6 @@ CNOTATION=PRINTONLY command which assigns column numbers only to columns that
 display in the report output. You can use column notation in COMPUTE and RECAP commands
 to refer to these columns in your request.
 
-1840
-
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 Syntax:
 
@@ -1293,11 +1211,8 @@ BAR                                               OVER
 RECAP PROFIT = CASH + RECEIVE - INVENTORY_COST;
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1841
-
-Referring to Rows and Columns in Calculations
+Referring to Rows and Columns in Calculations
 
 The output is shown in the following image.
 
@@ -1306,9 +1221,6 @@ Referring to Rows and Columns in Calculations
 You can style multiple RECAP commands in a matrix when the RECAP statements are placed
 after the last ACROSS value.
 
-1842
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 Example:
 
@@ -1335,11 +1247,8 @@ Referring to Cells in Calculations
 You can refer to columns and rows using a form of cell notation that identifies the intersection
 of a row and a column as (r, c).
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1843
-
-Referring to Cells in Calculations
+Referring to Cells in Calculations
 
 Syntax:
 
@@ -1397,10 +1306,6 @@ PROFIT             1,350     1,174     1,525     1,646
 EAST--VARIANCE       176
 WEST--VARIANCE                          -121
 
-1844
-
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 Note: In addition to illustrating cell notation, this example demonstrates the use of column
 numbering. Notice that the display of the EAST and WEST VARIANCEs in columns 1 and 3,
@@ -1449,11 +1354,8 @@ label and cannot contain any of the following special characters:
 
 = -, / ()
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1845
-
-Using Functions in RECAP Calculations
+Using Functions in RECAP Calculations
 
 input1, inputn
 
@@ -1482,9 +1384,6 @@ The current date is obtained from the &YMD system variable. The NOPRINT option b
 prevents the date from appearing in the report. The date is solely used as input for the next
 RECAP statement.
 
-1846
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 The request is:
 
@@ -1519,11 +1418,8 @@ appearance of the report.
 In addition, you can include data developed in your FML report in a row of free text by including
 the label for the data variable in the text row.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1847
-
-Inserting Rows of Free Text
+Inserting Rows of Free Text
 
 Example:
 
@@ -1582,10 +1478,6 @@ enclose it in parentheses.
 
 c
 
-1848
-
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 >
 
@@ -1634,11 +1526,8 @@ This example uses a COMPUTE command to generate the calculated value CHANGE and
 display it as a new column in the FML report. The following request generates an FML matrix
 with four rows and three columns of data.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1849
-
-Adding a Column to an FML Report
+Adding a Column to an FML Report
 
 DEFINE FILE LEDGER
 CUR_YR/I5C=AMOUNT;
@@ -1683,19 +1572,11 @@ RECAP TOTCASH/P5C = R1 + R2 + R3; AS 'TOTAL CASH' OVER
 RECAP CHANGE(2,*) = TOTCASH(*) - TOTCASH(*-1);
 END
 
-1850
-
-
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 The output is shown as follows.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1851
-
-Creating a Recursive Model
+Creating a Recursive Model
 
 Creating a Recursive Model
 
@@ -1724,9 +1605,6 @@ Creating a Recursive Model
 The following example illustrates recursive models. Note that one year of ENDCASH becomes
 the next year of STARTING CASH.
 
-1852
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 DEFINE FILE REGION
 CUR_YR=E_ACTUAL;
@@ -1766,12 +1644,8 @@ or
 A general ledger data source contains both an account number field and an account parent
 field.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1853
-
-
-Reporting Dynamically From a Hierarchy
+Reporting Dynamically From a Hierarchy
 
 By examining these fields, it is possible to construct the entire organization chart or chart of
 accounts structure. However, to print the chart in a traditional FML report, you need to list the
@@ -1809,9 +1683,6 @@ issue the LOAD CHART command before issuing the FML request.
 The number of charts that can be loaded is 16. Charts are automatically unloaded when
 the session ends.
 
-1854
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 2. In the FOR phrase of the FML request. Use the GET/WITH CHILDREN or ADD phrase to
 
@@ -1867,11 +1738,8 @@ FIELDNAME=GL_ACCOUNT_CAPTION,   ALIAS=GLCAP,   FORMAT=A30,
 FIELDNAME=SYS_ACCOUNT,          ALIAS=ALINE,   FORMAT=A6,
           TITLE='System,Account,Line', MISSING=ON, $
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1855
-
-Reporting Dynamically From a Hierarchy
+Reporting Dynamically From a Hierarchy
 
 The CENTSYSF data source contains detail-level financial data. This is unconsolidated financial
 data for a fictional corporation, CenturyCorp. It is designed to be separate from the CENTGL
@@ -1924,9 +1792,6 @@ parentvalue
 
 Is the parent value for which the children are to be retrieved.
 
-1856
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 GET CHILDREN
 
@@ -1975,11 +1840,8 @@ hierarchy field.
 For information about the FMLFOR, FMLLIST, FMLCAP, and FMLINFO functions that return the
 tag values and captions used in an FML request, see the Using Functions manual.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1857
-
-Reporting Dynamically From a Hierarchy
+Reporting Dynamically From a Hierarchy
 
 Example:
 
@@ -2021,9 +1883,6 @@ value (3000) does not display on the report output.
 In order to retain the indentations in HTML output, the SET SHOWBLANKS=ON command
 must be in effect.
 
-1858
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 Displaying an FML Hierarchy With Captions
 
@@ -2074,11 +1933,8 @@ generated on the report output) and the depth of summation under each child. By 
 direct children have a line in the report output, and the summary for each child includes all of
 its children.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1859
-
-Reporting Dynamically From a Hierarchy
+Reporting Dynamically From a Hierarchy
 
 When used in conjunction with WITH CHILDREN, ADD first displays a line in the report output
 that consists of the summation of the parent value and all of its children. Then it displays
@@ -2126,9 +1982,6 @@ Displays the parent and n levels of its children on one row, summing the numeric
 values displayed on the row. This corresponds to the FML syntax parentvalue or CHILD1
 OR CHILD2 OR CHILD3 and more, if applicable.
 
-1860
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 To display the sum of just the children, you must display the parent row, display the
 summary row, and use a RECAP to subtract the parent row from the sum. For example:
@@ -2164,11 +2017,8 @@ label
 
 Is an explicit row label. Each generated row is labeled with the specified label text.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1861
-
-Reporting Dynamically From a Hierarchy
+Reporting Dynamically From a Hierarchy
 
 Example:
 
@@ -2202,9 +2052,6 @@ END
 
 The output is shown as follows.
 
-1862
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 Syntax:
 
@@ -2256,11 +2103,8 @@ ADD
 Sums the hierarchy to the depth specified by m for each line generated by the GET or WITH
 CHILDREN command.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1863
-
-Reporting Dynamically From a Hierarchy
+Reporting Dynamically From a Hierarchy
 
 m|ALL
 
@@ -2314,9 +2158,6 @@ END
 Note that the join is not required to be unique, because the hierarchy is defined in the host
 segment.
 
-1864
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 In the following output, the top portion shows the detail-level data. The bottom portion shows
 the consolidated data. In the consolidated portion of the report:
@@ -2331,18 +2172,12 @@ children, they are all added into the sum. The other direct children of 3100 do 
 themselves have children, so the sum on each of those lines consists of only the parent
 value.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1865
-
-Reporting Dynamically From a Hierarchy
+Reporting Dynamically From a Hierarchy
 
 Using GET CHILDREN instead of WITH CHILDREN eliminates the top line from each portion of
 the output. The remaining lines are the same.
 
-1866
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 The following request displays a consolidated line for account 2000 and each of its direct
 children and grandchildren.
@@ -2377,11 +2212,8 @@ BY parentfield BY hierarchyfield
 [SUM captionfield]
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1867
-
-Reporting Dynamically From a Hierarchy
+Reporting Dynamically From a Hierarchy
 
 The resulting chart contains the following information. It may also contain the associated
 captions, depending on whether the AS CAPTION phrase was used in the request.
@@ -2435,9 +2267,6 @@ command prior to the FML request:
 LOAD CHART B.FLDB FOR A.FLDA
 TABLE FILE A ...
 
-1868
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 requestfile
 
@@ -2484,11 +2313,8 @@ double aggregation, use the FST operator in the SUM command for the shared field
 When the report output is in HTML format, the setting SHOWBLANKS=ON must be in effect
 in order to retain the hierarchical indentations.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1869
-
-Customizing a Row Title
+Customizing a Row Title
 
 Customizing a Row Title
 
@@ -2545,9 +2371,6 @@ Changing the Titles of Tag Rows
 In the following example, the row titles CASH ON HAND and DEMAND DEPOSITS provide
 meaningful identifications for the corresponding tags.
 
-1870
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
@@ -2601,11 +2424,8 @@ introduced by the word BAR, in place of the tag value.
 Adding page breaks. You can request a new page at any point in a report by placing the
 word PAGE-BREAK in place of the tag value.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1871
-
-Formatting an FML Report
+Formatting an FML Report
 
 Formatting rows, columns, and cells. You can apply StyleSheet attributes, such as FONT,
 SIZE, STYLE, and COLOR, to individual rows and columns, or to cells within those rows.
@@ -2661,9 +2481,6 @@ TIME DEPOSITS     7,961
                  ------
 TOTCASH          21,239
 
-1872
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 Notice that the BAR ... OVER phrase underlines only the column containing the display field.
 
@@ -2698,11 +2515,8 @@ PAGE-BREAK                                                OVER
 RECAP TOTAL = TOTCASH + TOTASSET;
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1873
-
-Formatting an FML Report
+Formatting an FML Report
 
 The output is shown as follows.
 
@@ -2724,9 +2538,6 @@ DATA denotes a row with the specified label, which contains user-supplied data v
 
 FREETEXT denotes a free text or a blank row with the specified label.
 
-1874
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 UNDERLINE denotes underlines generated by BAR. Formatting of an underline is supported
 for PDF and PS, but not for HTML reports.
@@ -2778,11 +2589,8 @@ TYPE = REPORT, LABEL = TD,  STYLE = ITALIC, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1875
-
-Formatting an FML Report
+Formatting an FML Report
 
 The output is shown in the following image.
 
@@ -2813,9 +2621,6 @@ This request generates a report in which the data value for AMOUNT is bold in th
 CASH. However, the row title CASH is not bold. This is accomplished by pinpointing the cell in
 the StyleSheet declaration. In this case, the column (N2) within the row (CA).
 
-1876
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 SET PAGE-NUM=OFF
 TABLE FILE LEDGER
@@ -2854,11 +2659,8 @@ TYPE = REPORT, COLUMN = AMOUNT, STYLE = BOLD, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1877
-
-Formatting an FML Report
+Formatting an FML Report
 
 The output is shown in the following image.
 
@@ -2884,9 +2686,6 @@ TYPE = FREETEXT, STYLE = BOLD, $
 ENDSTYLE
 END
 
-1878
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 The output is shown in the following image.
 
@@ -2914,11 +2713,8 @@ TYPE = FREETEXT, LABEL = OCA, STYLE = BOLD, SIZE = 10, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1879
-
-Formatting an FML Report
+Formatting an FML Report
 
 The output is shown in the following image.
 
@@ -2944,9 +2740,6 @@ END
 
 The output is shown in the following image.
 
-1880
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 Applying Boldface to an FML RECAP Row
 
@@ -2991,11 +2784,8 @@ TYPE=REPORT, LABEL=row_label, [COLUMN=column,] BORDER-position=option,
 To specify different characteristics for the top, bottom, left, and/or right borders, use this
 syntax:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1881
-
-Formatting an FML Report
+Formatting an FML Report
 
 TYPE=REPORT, LABEL=row_label, [COLUMN=column,] BORDER-position=option,
 [BORDER-[position-]STYLE=line_style,]
@@ -3043,9 +2833,6 @@ Specifies which border line to format. Valid values are TOP, BOTTOM, LEFT, RIGHT
 You can specify a position qualifier for any of the BORDER keywords. This enables you to
 format line width, line style, and line color individually, for any side of the border.
 
-1882
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 line_style
 
@@ -3090,11 +2877,8 @@ This example places a dashed border of medium thickness around the RECAP row ide
 the label TOTCASH. For HTML reports, the BORDERS feature requires that cascading style
 sheets be turned ON.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1883
-
-Formatting an FML Report
+Formatting an FML Report
 
 SET PAGE-NUM=OFF
 TABLE FILE LEDGER
@@ -3114,9 +2898,6 @@ END
 
 The output is shown in the following image.
 
-1884
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 Example:
 
@@ -3162,11 +2943,8 @@ This example places a border of medium thickness around the cell in the second c
 row identified by the label TOTCASH. The combined LABEL and COLUMN specifications are
 identified in the cell. The BORDERS feature requires that cascading style sheets be turned ON.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1885
-
-Formatting an FML Report
+Formatting an FML Report
 
 SET PAGE-NUM=OFF
 TABLE FILE LEDGER
@@ -3211,9 +2989,6 @@ tag
 
 Is a value of forfield to be displayed on a row of the FML report.
 
-1886
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 n
 
@@ -3259,11 +3034,8 @@ expression
 
 Is the expression that describes how to calculate the field value for RECAP.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1887
-
-Formatting an FML Report
+Formatting an FML Report
 
 Example:
 
@@ -3321,9 +3093,6 @@ BAR                                              OVER
 RECAP PROFIT(2) = TOTAL(1) - TOTAL(2); AS 'Profit:' INDENT 10
 END
 
-1888
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 The output is shown as follows.
 
@@ -3376,11 +3145,8 @@ OFF
 Turns off indentations for FML hierarchy captions in an HTML report. OFF is the default
 value. For other formats, uses the default indentation of two spaces.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1889
-
-Formatting an FML Report
+Formatting an FML Report
 
 n
 
@@ -3412,9 +3178,6 @@ TYPE = REPORT, GRID = OFF, $
 ENDSTYLE
 END
 
-1890
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 The output is shown in the following image.
 
@@ -3439,11 +3202,8 @@ TYPE = REPORT, GRID = OFF, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1891
-
-Suppressing the Display of Rows
+Suppressing the Display of Rows
 
 The output is shown in the following image.
 
@@ -3467,9 +3227,6 @@ Suppressing the Display of a TAG Row
 This example uses the value of COST in its computation, but does not display COST as a row
 in the report.
 
-1892
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 DEFINE FILE REGION
 AMOUNT/I5C=E_ACTUAL;
@@ -3517,12 +3274,8 @@ FOR ACCOUNT
    .
    .
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1893
-
-
-Saving and Retrieving Intermediate Report Results
+Saving and Retrieving Intermediate Report Results
 
 Saving and Retrieving Intermediate Report Results
 
@@ -3560,9 +3313,6 @@ posted.
 
 Posting Data
 
-1894
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 Syntax:
 
@@ -3616,11 +3366,8 @@ ddname
 
 Is the logical name of the work file from which you are retrieving data.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1895
-
-Saving and Retrieving Intermediate Report Results
+Saving and Retrieving Intermediate Report Results
 
 id
 
@@ -3670,9 +3417,6 @@ BAR                                 OVER
 RECAP CUR_ASSET/I5C = CASH + AR + INV;
 END
 
-1896
-
-25. Creating Financial Reports With Financial Modeling Language (FML)
 
 The output is shown in the following image.
 
@@ -3719,11 +3463,8 @@ RECAP CA = R1 + R2 + R3; AS 'CURRENT ASSETS'
 ON TABLE HOLD
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1897
-
-Creating HOLD Files From FML Reports
+Creating HOLD Files From FML Reports
 
 Query the HOLD file:
 
@@ -3752,4 +3493,3 @@ ACCOUNTS RECEIVABLE  18,829
 INVENTORY            27,307
 CURRENT ASSETS       67,375
 
-1898

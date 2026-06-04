@@ -1,5 +1,3 @@
-Chapter18
-
 Controlling Report Formatting
 
 When you format a report, you can control how the formatting is applied. You can:
@@ -36,11 +34,8 @@ Controlling the Display of Empty Reports
 
 Formatting a Report Using Only StyleSheet Defaults
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1219
-
-Generating an Internal Cascading Style Sheet for HTML Reports
+Generating an Internal Cascading Style Sheet for HTML Reports
 
 Generating an Internal Cascading Style Sheet for HTML Reports
 
@@ -92,9 +87,6 @@ ON
 Generates an internal cascading style sheet in the HTML output to control most aspects of
 the report appearance. ON is the default value.
 
-1220
-
-18. Controlling Report Formatting
 
 OFF
 
@@ -144,11 +136,8 @@ Outside of a report request, use
 
 SET UNITS = units
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1221
-
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 Within a report request, use
 
@@ -189,11 +178,9 @@ You can also apply sequential conditional formatting.
 Note: The variables TABPAGENO and TABLASTPAGE cannot be used to define styling with
 conditional styling (WHEN).
 
-1222
 
-Applying Sequential Conditional Formatting
+Applying Sequential Conditional Formatting
 
-18. Controlling Report Formatting
 
 You can apply sequential conditional logic to a report component by creating a series of
 declarations, each with a different condition. This is the StyleSheet equivalent of a sequence
@@ -248,11 +235,8 @@ attributes
 Are the attributes in the StyleSheet declaration that are made conditional by the WHEN
 attribute. They can include most formatting, graphic images, and hyperlink attributes.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1223
-
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 field1, field2
 
@@ -305,9 +289,6 @@ right.
 GE where the condition is satisfied if the value on the left is greater than or equal to the
 value on the right.
 
-1224
-
-18. Controlling Report Formatting
 
 value
 
@@ -362,13 +343,8 @@ Notice that:
 greater than 500,000 would have already been formatted by the first conditional
 declaration.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1225
-
-
-
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 3. The third conditional declaration formats any rows whose order total is greater than
 
@@ -398,9 +374,6 @@ formatting draws attention to orders that total more than 200,000.
 Notice that because a particular column is not specified in the declaration, the formatting is
 applied to the entire row.
 
-1226
-
-18. Controlling Report Formatting
 
 TABLE FILE CENTORD
 HEADING
@@ -420,13 +393,8 @@ END
 
 The output is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1227
-
-
-
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 Example:
 
@@ -456,13 +424,9 @@ ENDSTYLE
 
 END
 
-1228
 
+The output is:
 
-
-The output is:
-
-18. Controlling Report Formatting
 
 Example:
 
@@ -471,11 +435,8 @@ Conditionally Styling an ACROSS Value
 The example below demonstrates how an ACROSS value can be referenced using either the
 ACROSS field name or the ACROSS column designator (A1, A2).
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1229
-
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 In this example, the ACROSS values are used in conditional styling to set a unique backcolor
 for all ACROSS columns in the Category Coffee, and additional font styling for the Espresso
@@ -508,9 +469,6 @@ END
 
 The output is:
 
-1230
-
-18. Controlling Report Formatting
 
 Example:
 
@@ -542,13 +500,8 @@ ENDSTYLE
 
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1231
-
-
-
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 The output is:
 
@@ -565,9 +518,6 @@ report. Although the field that is evaluated in the condition must be included i
 request, you can prevent it from displaying in the report by using the NOPRINT option, as
 shown in the following request.
 
-1232
-
-18. Controlling Report Formatting
 
 TABLE FILE CENTHR
 HEADING
@@ -595,13 +545,8 @@ ENDSTYLE
 
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1233
-
-
-
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 The output is:
 
@@ -615,9 +560,6 @@ conditional formatting to draw attention to those employees who have resigned.
 Notice that one conditional declaration can apply formatting to all the sort group rows. You can
 accomplish this by evaluating the sort field (STATUS) in the WHEN attribute condition.
 
-1234
-
-18. Controlling Report Formatting
 
 TABLE FILE CENTHR
 HEADING
@@ -641,13 +583,8 @@ END
 
 The output is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1235
-
-
-
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 In order to apply the same conditional formatting to only two columns, instead of all the
 columns, this version of the report request uses two declarations, each specifying a different
@@ -675,13 +612,9 @@ ENDSTYLE
 
 END
 
-1236
 
+The output is:
 
-
-The output is:
-
-18. Controlling Report Formatting
 
 Example:
 
@@ -690,11 +623,8 @@ Applying Conditional Formatting to Forecasted Values
 The following illustrates how you can apply conditional formatting to forecasted values in a
 report.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1237
-
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 DEFINE FILE GGSALES
 SDATE/YYM = DATE;
@@ -717,12 +647,9 @@ END
 
 The output is:
 
-1238
 
+Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
 
-Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
-
-18. Controlling Report Formatting
 
 You can include sort-based options such as subtotals and other summary lines, sort headings
 and footings, underlines, skipped lines, and page breaks, as well as restart page numbering,
@@ -766,11 +693,8 @@ sortfield
 
 Is the name of a vertical sort (BY) field.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1239
-
-Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
+Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
 
 option
 
@@ -829,12 +753,10 @@ generated:
  BYPASSING TO END OF COMMAND
 (FOC009) INCOMPLETE REQUEST STATEMENT
 
-1240
 
-Now change the value of the ONFIELD parameter to IGNORE and run the request again,
+Now change the value of the ONFIELD parameter to IGNORE and run the request again,
 supplying the value DEPT for the variable &F1. The partial output is:
 
-18. Controlling Report Formatting
 
 DEPT                  PIN                 SALARY
 ----                  ---                 ------
@@ -873,16 +795,8 @@ phrase for each option. For example:
 
 ON ORDER_NUM SKIP-LINE WHEN QUANTITY GT 5; UNDER-LINE WHEN QUANTITY GT 10
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1241
-
-
-
-
-
-
-Conditionally Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
+Conditionally Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
 
 Syntax:
 
@@ -939,9 +853,6 @@ You can apply a prefix operator to a field in the condition (for example, WHEN A
 GT 300) even if the operator and the field are not used in the report. The aggregation is
 performed for each value of the sort field.
 
-1242
-
-18. Controlling Report Formatting
 
 If the BY or ON phrase includes several options, the WHEN condition applies only to the
 option that immediately precedes it.
@@ -981,13 +892,8 @@ TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1243
-
-
-
-Conditionally Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
+Conditionally Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
 
 The output is:
 
@@ -1024,18 +930,11 @@ TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
 
-1244
+
+The output is:
 
 
-The output is:
-
-18. Controlling Report Formatting
-
-Creating Reports With TIBCO® WebFOCUS Language
-
- 1245
-
-Controlling the Display of Empty Reports
+Controlling the Display of Empty Reports
 
 Controlling the Display of Empty Reports
 
@@ -1085,9 +984,6 @@ is requested. In each case, &RECORDS will be 0, and &LINES will be 1.
 If the SQL Translator is invoked, ANSI automatically replaces OFF as the default setting for
 EMPTYREPORT.
 
-1246
-
-18. Controlling Report Formatting
 
 ON
 
@@ -1126,11 +1022,8 @@ The following output is produced.
 
 Changing the EMPTYREPORT setting to ON produces the output shown in the following image.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1247
-
-Formatting a Report Using Only StyleSheet Defaults
+Formatting a Report Using Only StyleSheet Defaults
 
 Changing the EMPTYREPORT setting to ANSI produces the output shown in the following
 image.
@@ -1165,4 +1058,3 @@ SHEET
 
 Can be omitted to make the command shorter, and has no effect on its behavior.
 
-1248

@@ -1,5 +1,3 @@
-Chapter4
-
 Describing an Individual Field
 
 A field is the smallest meaningful element of data in a data source, but it can exhibit a
@@ -63,11 +61,8 @@ The Master File describes the following field characteristics:
 
 The name of the field, as identified in the FIELDNAME attribute.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 103
-
-The Field Name: FIELDNAME
+The Field Name: FIELDNAME
 
 Another name for the field, either its original name, as defined to its native data
 management system, or (for some types of data sources) a synonym of your own choosing,
@@ -111,9 +106,6 @@ Master File. You can assign any name to a field, regardless of its name in its n
 source. Likewise, for FOCUS data sources, you can assign any name to a field in a new data
 source.
 
-104
-
-4. Describing an Individual Field
 
 When you generate a report, each column title in the report has the name of the field displayed
 in that column as its default, so assigning meaningful field names helps readers of the report.
@@ -159,11 +151,8 @@ Changes. In a FOCUS data source, if the INDEX attribute has been set to I (that 
 index has been created for the field), you cannot change the field name without rebuilding
 the data source. You may change the name in all other situations.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 105
-
-The Field Name: FIELDNAME
+The Field Name: FIELDNAME
 
 Reference: Restrictions for Field Names
 
@@ -215,9 +204,6 @@ filename
 Is the name of the Master File or tag name. Tag names are used with the JOIN and
 COMBINE commands.
 
-106
-
-4. Describing an Individual Field
 
 segname
 
@@ -246,11 +232,8 @@ The period (.) is the default qualifying character. For further information abou
 QUALCHAR command and valid qualifying characters (. : ! % | \ ), see the Developing Reporting
 Applications manual.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 107
-
-The Field Name: FIELDNAME
+The Field Name: FIELDNAME
 
 Using a Duplicate Field Name
 
@@ -299,9 +282,6 @@ The following rules are used to evaluate qualified field names:
 
 The maximum field name qualification is filename.segname.fieldname. For example:
 
-108
-
-4. Describing an Individual Field
 
 TABLE FILE EMPLOYEE
 PRINT EMPLOYEE.EMPINFO.EMP_ID
@@ -347,11 +327,8 @@ When there is a single qualifier, segment name takes precedence over file name.
 Therefore, if the file name and segment name are the same, the field qualified by the
 segment name is retrieved.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 109
-
-The Field Name: FIELDNAME
+The Field Name: FIELDNAME
 
 If a field name begins with characters that are the same as the name of a prefix operator, it
 may be unclear whether a request is referencing that field name or a second field name
@@ -394,9 +371,6 @@ END
 This request sums the field with alias CARS first, and then the percent of CARS by
 COUNTRY.
 
-110
-
-4. Describing an Individual Field
 
 When a qualified field name can be evaluated as a choice between two levels of
 qualification, the field name with the higher level of qualification takes precedence.
@@ -444,11 +418,8 @@ Since the field with alias CAR2 has the shortest basic field name length, CAR2 i
 This is different from the prior example, where the choice is between two levels of
 qualification. To retrieve the CAR1 field, you must specify its alias.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 111
-
-The Field Synonym: ALIAS
+The Field Synonym: ALIAS
 
 The Field Synonym: ALIAS
 
@@ -497,10 +468,6 @@ choose a shorter version of the primary name of the field. For example, if the f
 LAST_NAME, the alias might be LN. The ALIAS attribute is required in the Master File, but it
 can have the value blank.
 
-112
-
-
-4. Describing an Individual Field
 
 Note that ALIAS is used in a different way for sequenced repeating fields, where its value is
 ORDER, as well as for RECTYPE and MAPVALUE fields when the data source includes
@@ -549,11 +516,8 @@ Is the data type. Valid values are A (alphanumeric), F (floating-point single-pr
 (floating-point double-precision), X extended decimal precision floating-point), I (integer), P
 (packed decimal), D, W, M, Q, or Y used in a valid combination (date), and TX (text).
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 113
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 l
 
@@ -602,9 +566,6 @@ floating-point double-precision, extended decimal precision floating-point (XMAT
 precision floating-point (MATH), and packed decimal. See Numeric Display Options on page
 121 for additional information.
 
-114
-
-4. Describing an Individual Field
 
 Alphanumeric. You can use alphanumeric format for any value to be interpreted as a
 sequence of characters and composed of any combination of digits, letters, and other
@@ -650,11 +611,8 @@ Options on page 153.
 The integer USAGE type is I. See Numeric Display Options on page 121. The format of the
 length specification is:
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 115
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 n
 
@@ -708,9 +666,6 @@ Is the number of characters to display up to a maximum of 33, including the nume
 digits, an optional decimal point, and a leading minus sign if the field contains a negative
 value. The number of significant digits supported varies with the operating environment.
 
-116
-
-4. Describing an Individual Field
 
 s
 
@@ -760,11 +715,8 @@ s
 Is the number of digits that follow the decimal point. It can be up to 31 digits and must be
 less than t.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 117
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 For example:
 
@@ -820,7 +772,6 @@ Display
 
 614.2
 
-4. Describing an Individual Field
 
 Format
 
@@ -871,13 +822,8 @@ Display
 
 614.2
 
-318
 
-Describing Data With TIBCO WebFOCUS® Language
-
- 119
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 Packed-Decimal Format
 
@@ -930,9 +876,6 @@ asterisks display instead of a number. This does not necessarily indicate an ove
 field, just that you did not account for displaying the number of digits that are stored in the
 field.
 
-120
-
-4. Describing an Individual Field
 
 Overflow occurs if you attempt to store a number with more digits than can actually fit in the
 internal storage assigned. Overflow such as this is indicated by storing a number consisting of
@@ -986,11 +929,8 @@ multiplying it by 100, and displays it
 followed by a percent sign (%). Not
 supported with formats I and P.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 121
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 Edit Option
 
@@ -1055,13 +995,12 @@ Displays numeric values in terms of
 billions. For example, 1234567890
 displays as 1.23B.
 
-Edit Option
+Edit Option
 
 Meaning
 
 Effect
 
-4. Describing an Individual Field
 
 Bracket negative
 
@@ -1128,11 +1067,8 @@ L
 
 m
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 123
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 Edit Option
 
@@ -1203,9 +1139,6 @@ R
 Credit (CR)
 negative
 
-124
-
-4. Describing an Individual Field
 
 Edit Option
 
@@ -1285,11 +1218,8 @@ Display
 6148-
 8878.00-
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 125
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 Option
 
@@ -1430,10 +1360,6 @@ I2MT
 
 JUL
 
-126
-
-
-4. Describing an Individual Field
 
 Several display options can be combined, as shown:
 
@@ -1568,11 +1494,8 @@ thousand
 
 thousandth
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 127
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 Prefix
 
@@ -1673,11 +1596,9 @@ END
 
 The output is shown in the following image.
 
-128
 
-Extended Currency Symbol Display Options
+Extended Currency Symbol Display Options
 
-4. Describing an Individual Field
 
 You can select a currency symbol for display in report output regardless of the default currency
 symbol configured for National Language Support (NLS). Use the extended currency symbol
@@ -1709,11 +1630,8 @@ SET CURSYM_F = ' €'
 
 For more information, see the Developing Reporting Applications manual.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 129
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 The following table lists the supported extended currency display options:
 
@@ -1806,13 +1724,11 @@ I9:y
 
 I9:Y
 
-130
 
-Reference: Extended Currency Symbol Formats
+Reference: Extended Currency Symbol Formats
 
 The following guidelines apply:
 
-4. Describing an Individual Field
 
 A format specification cannot be longer than eight characters.
 
@@ -1860,11 +1776,8 @@ C. Displays the currency symbol determined by the locale settings.
 
 d. Displays a non-floating dollar sign.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 131
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 D. Displays a floating dollar sign.
 
@@ -1900,11 +1813,9 @@ TYPE = REPORT, GRID = OFF,$
 ENDSTYLE
 END
 
-132
 
-The output is:
+The output is:
 
-4. Describing an Individual Field
 
 Reference: Locale Display Options for Currency Values
 
@@ -1929,11 +1840,8 @@ fmt
 
 Is a numeric format that supports a currency value.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 133
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 pos
 
@@ -1976,13 +1884,11 @@ Note: If currency parameters are specified at multiple levels, the order of prec
 
 4. Parameters set in a profile, using the precedence for profile processing.
 
-134
 
-Example:
+Example:
 
 Specifying Currency Parameters in a DEFINE
 
-4. Describing an Individual Field
 
 The following request creates a virtual field named Currency_parms that displays the currency
 symbol on the right using the ISO code for Japanese yen, 'JPY'.
@@ -2022,11 +1928,8 @@ Since 8 is greater than or equal to five, the value is rounded up, and PRESSURE 
 
 746.13
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 135
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 The details of rounding are handled in the following ways for the following numeric formats:
 
@@ -2074,11 +1977,9 @@ stored:    1.149999
 rounded:   1.1
 displayed: 1.1
 
-136
 
-Alphanumeric Format
+Alphanumeric Format
 
-4. Describing an Individual Field
 
 You can use alphanumeric format for any value to be interpreted as a sequence of characters
 and composed of any combination of digits, letters, and other characters.
@@ -2127,11 +2028,8 @@ Is the existing field name, not the newly defined field name.
 If the value is 716431014, the PRODCODE appears as 716-431-014. See the Creating
 Reports With WebFOCUS Language manual for more information.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 137
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 Reference: Usage Notes for 4K Alphanumeric Fields
 
@@ -2180,11 +2078,9 @@ GRID=OFF,$
 ENDSTYLE
 END
 
-138
 
-The output is shown in the following image.
+The output is shown in the following image.
 
-4. Describing an Individual Field
 
 The following version of the request creates the hexadecimal field in a DEFINE command and
 adds a HOLD command:
@@ -2224,11 +2120,8 @@ determined on retrieval. For example:
 
 FIELD1/STRING
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 139
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 The STRING data type has all of the functionality of alphanumeric data types in WebFOCUS.
 The limit to a STRING field value length is 2 GB. It can be propagated to relational data
@@ -2298,15 +2191,13 @@ in uppercase, if M is included in the USAGE
 specification. Otherwise, it prints day of
 week.
 
-140
 
-Display Option
+Display Option
 
 Meaning
 
 Effect
 
-4. Describing an Individual Field
 
 t
 
@@ -2386,11 +2277,8 @@ Julian format
 
 Prints date in Julian format.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 141
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 Display Option
 
@@ -2466,9 +2354,6 @@ CC00/mm/dd
 
      *
 
-142
-
-4. Describing an Individual Field
 
 Date Format
 
@@ -2670,11 +2555,8 @@ yyyy
 
      *
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 143
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 Date Format
 
@@ -2876,9 +2758,6 @@ yy/ddd
 
       *
 
-144
-
-4. Describing an Individual Field
 
 Date Format
 
@@ -2978,11 +2857,8 @@ Y-M
 
 93-12
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 145
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 Format
 
@@ -3048,7 +2924,6 @@ MONDAY
 
 Monday
 
-4. Describing an Individual Field
 
 Example:
 
@@ -3133,11 +3008,8 @@ In computational date comparisons    IF MYDATE GT '25 APR 1999'
 
 In comma-delimited data          ...,MYDATE = APR 25 1999, ...
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 147
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 The following chart describes the format of natural date literals.
 
@@ -3194,9 +3066,6 @@ the USAGE specification is DMY, then April 25 1999 must be represented as:
 Numeric date literals can be used in all date computations and all methods of data source
 updating.
 
-148
-
-4. Describing an Individual Field
 
 Date Fields in Arithmetic Expressions
 
@@ -3246,11 +3115,8 @@ field1
 Is a date format field, or an alphanumeric or integer format field using date display
 options.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 149
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 format
 
@@ -3295,9 +3161,6 @@ that all dates set to the base date appear as blanks, and all date fields that a
 or as all zeroes are accepted during validation and interpreted as the base date. They appear
 as blanks, but are interpreted as the base date in date computations and expressions.
 
-150
-
-4. Describing an Individual Field
 
 There are several types of formats you can use to represent date components, and the
 different types do not represent the same values or offsets.
@@ -3350,11 +3213,8 @@ GRID=OFF,$
 ENDSTYLE
 END
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 151
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 The output is shown in the following image. Note that when the partial and component dates
 are assigned to FULLDATE2 and FULLDATE3, the day assigned is 01 in both cases.
@@ -3409,10 +3269,6 @@ Displays Blanks
 
 .
 
-152
-
-
-4. Describing an Individual Field
 
 DATEDISPLAY affects only how the base date appears. See the Developing Reporting
 Applications manual for a description of DATEDISPLAY.
@@ -3463,11 +3319,8 @@ Display
 
 04/21/98
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 153
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 Format
 
@@ -3531,9 +3384,6 @@ numeric, date to date, and date-time to date-time. All other operations are acco
 through a set of date-time functions. See the Using Functions manual for information on
 subroutines for manipulating date-time fields.
 
-154
-
-4. Describing an Individual Field
 
 Date-time formats can also produce output values and accept input values that are compatible
 with the ISO 8601:2000 date-time notation standard. A SET parameter and specific formatting
@@ -3573,11 +3423,8 @@ The following request displays date-time values input in ISO 8601:2000 date-time
 formats. With SET DTSTANDARD=OFF, the request terminates with a (FOC177): INVALID DATE
 CONSTANT:
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 155
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 SET DTSTANDARD = &STAND
 DEFINE FILE EMPLOYEE
@@ -3629,11 +3476,6 @@ Format type H describes date-time fields. The USAGE attribute for a date-time fi
 the H format code and can identify either the length of the field or the relevant date-time
 display options.
 
-156
-
-
-
-4. Describing an Individual Field
 
 The MISSING attribute for date-time fields can be ON or OFF. If it is OFF, and the date-time field
 has no value, it defaults to blank.
@@ -3679,11 +3521,8 @@ points, and no spaces or separator characters within either component. The time 
 entered using the 24-hour system. For example, the value 19991231225725333444
 represents 1999/12/31 10:57:25.333444PM.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 157
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 Syntax:
 
@@ -3754,15 +3593,13 @@ h
 
 I
 
-158
 
-Option
+Option
 
 Meaning
 
 Effect
 
-4. Describing an Individual Field
 
 i
 
@@ -3848,11 +3685,8 @@ AM or PM. For example:
 
 USAGE = HHISA prints 02:05:27AM
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 159
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 Option
 
@@ -3930,9 +3764,6 @@ datefmt
 Is the USAGE format for displaying the date portion of the date-time field. For information,
 see Display Options for the Date Component of a Date-Time Field on page 161.
 
-160
-
-4. Describing an Individual Field
 
 separator
 
@@ -4006,13 +3837,8 @@ Feb
 
 05
 
- 5
 
-Describing Data With TIBCO WebFOCUS® Language
-
- 161
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 Option
 
@@ -4069,9 +3895,6 @@ Month removal and day removal, format HoeYY.
 
 Month removal without day removal (which forces day removal), format HodYY.
 
-162
-
-4. Describing an Individual Field
 
 Day removal without month removal, format HMeYY. Note that month removal is not forced
 by day removal.
@@ -4110,11 +3933,8 @@ With all zeros displayed, format HDMYY.
 
 With zero suppression for the day component, format HdMYY.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 163
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 With zero removal for the day component, format HeMYY.
 
@@ -4178,15 +3998,13 @@ USAGE = HYYMDI prints
 USAGE = HYYMDS prints
 1999/02/05 02:05:25
 
-164
 
-Option
+Option
 
 Meaning
 
 Example
 
-4. Describing an Individual Field
 
 s
 
@@ -4270,11 +4088,8 @@ USAGE = HYYMDSb prints
 USAGE = HHISZ prints 14:30[:
 20.99]Z
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 165
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 The date components can be in any of the following combinations and order:
 
@@ -4324,9 +4139,6 @@ the additional two bytes used to store the length, an A4093V field is actually 4
 long. A size of zero (A0V) is not supported. The length of an instance of the field can be
 zero.
 
-166
-
-4. Describing an Individual Field
 
 Note: HOLD FORMAT ALPHA creates an ACTUAL format of AnW in the Master File. See
 Propagating an AnV Field to a HOLD File on page 168.
@@ -4380,11 +4192,8 @@ Reference: Usage Notes for AnV Format
 AnV can be used anywhere that An can be used, except for the restrictions listed in these
 notes.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 167
-
-The Displayed Data Type: USAGE
+The Displayed Data Type: USAGE
 
 Full FOCUS and SQL operations are supported with this data type, including CREATE FILE
 for relational data sources.
@@ -4434,9 +4243,6 @@ For example, the A39V field named TITLEV, is propagated to a HOLD FORMAT DB2 fil
 
 FIELDNAME = 'TITLEV', 'TITLEV', A39V, A39V ,$
 
-168
-
-4. Describing an Individual Field
 
 Text Field Format
 
@@ -4491,11 +4297,8 @@ commands.
 
 Multiple text fields are supported, and they and be anywhere in the segment.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 169
-
-The Stored Data Type: ACTUAL
+The Stored Data Type: ACTUAL
 
 The Stored Data Type: ACTUAL
 
@@ -4539,9 +4342,6 @@ DATE
 Four-byte integer internal format, representing the difference
 between the date to be entered and the date format base date.
 
-170
-
-4. Describing an Individual Field
 
 ACTUAL Type
 
@@ -4604,11 +4404,8 @@ of bytes, each of which contains two digits, except for the last
 byte which contains a digit and the sign (+ or -). For example, P6
 means 11 digits plus a sign.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 171
-
-The Stored Data Type: ACTUAL
+The Stored Data Type: ACTUAL
 
 ACTUAL Type
 
@@ -4652,9 +4449,6 @@ If you create a binary HOLD file from a data source with a date-time field, the 
 format for that field is of the form Hn. If you create an alphanumeric HOLD file from a data
 source with a date-time field, the ACTUAL format for that field is of the form An.
 
-172
-
-4. Describing an Individual Field
 
 Reference: ACTUAL to USAGE Conversion
 
@@ -4750,11 +4544,8 @@ P3
 P8.1
 A2
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 173
-
-The Stored Data Type: ACTUAL
+The Stored Data Type: ACTUAL
 
 COBOL USAGE
 FORMAT
@@ -4872,9 +4663,6 @@ sources, see your adapter documentation. Note that FOCUS data sources do not use
 ACTUAL attribute, and instead rely upon the USAGE attribute to specify both how a field is
 stored and formatted.
 
-174
-
-4. Describing an Individual Field
 
 Adding a Geographic Role for a Field
 
@@ -4928,11 +4716,8 @@ LATITUDE. Latitude.
 
 LONGITUDE. Longitude.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 175
-
-Null or MISSING Values: MISSING
+Null or MISSING Values: MISSING
 
 NUTS0. Country name (NUTS level 0).
 
@@ -4984,9 +4769,6 @@ zero (0), but others explicitly indicate an absence of data with a null indicato
 null value. Null values (sometimes known as missing data) are significant in reporting
 applications, especially those that perform aggregating functions, such as averaging.
 
-176
-
-4. Describing an Individual Field
 
 If your type of data source supports missing data, as do FOCUS data sources and most
 relational data sources, then you can use the optional MISSING attribute to enable null values
@@ -5036,11 +4818,8 @@ that its null values are correctly interpreted.
 FOCUS data sources also support MISSING=ON, which assigns sets an internal flag for
 missing values.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 177
-
-Describing an FML Hierarchy
+Describing an FML Hierarchy
 
 Changes. You can change the MISSING attribute at any time. Note that changing MISSING
 does not affect the actual stored data values that were entered using the old setting.
@@ -5085,11 +4864,6 @@ You can define the hierarchical relationships between fields in a Master File an
 display these fields using FML. You can also provide descriptive captions to appear in reports
 in place of the specified hierarchy field values.
 
-178
-
-
-
-4. Describing an Individual Field
 
 In the Master File, use the PROPERTY=PARENT_OF and REFERENCE=hierarchyfld attributes to
 define the hierarchical relationship between two fields.
@@ -5132,11 +4906,8 @@ PARENT_OF is also allowed on a virtual field in the Master File:
 
 DEFINE name/fmt=expression;,PROPERTY=PARENT_OF,REFERENCE=hierarchyfld,$
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 179
-
-Describing an FML Hierarchy
+Describing an FML Hierarchy
 
 Syntax:
 
@@ -5176,9 +4947,6 @@ CAPTION is also allowed on a virtual field in the Master File:
 
 DEFINE name/format=expression;,PROPERTY=CAPTION,REFERENCE=hierarchyfld,$
 
-180
-
-4. Describing an Individual Field
 
 Example:
 
@@ -5225,11 +4993,8 @@ the Regions within the GEOGRAPHY dimension. State, the second highest element in
 hierarchy, would contain a list of all available States within Region, and so on. Dimensions can
 be defined in the Master File for any supported data source.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 181
-
-Defining a Dimension: WITHIN
+Defining a Dimension: WITHIN
 
 The combination, or matrix, of two or more dimensional hierarchies in an OLAP-enabled data
 source is called multi-dimensional. For example, although products are sold within states they
@@ -5269,16 +5034,14 @@ hierarchy. The WITHIN attribute can refer to a field either by its field name or
 that a given field may participate in only one dimension, and two fields cannot reference
 the same higher level field.
 
-182
 
-Example:
+Example:
 
 Defining a Dimension
 
 The following example shows how to define the PRODUCT dimension in the OSALES Master
 File.
 
-4. Describing an Individual Field
 
 PRODUCT Dimension
            ===> Product Category
@@ -5311,11 +5074,8 @@ TIME Dimension
                    ===> Month
                        ===> Date
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 183
-
-Defining a Dimension: WITHIN
+Defining a Dimension: WITHIN
 
 OSALES Master File
 
@@ -5360,9 +5120,6 @@ OSALES Master File
     FIELD=BUDDOLLARS, ALIAS=BDOLLARS,FORMAT=I8,   TITLE='Budget Dollars',
      DESC='Total sales quota in dollars',$
 
-184
-
-4. Describing an Individual Field
 
 6. DEFINE ADATE/A8 = EDIT(DATE);$
    DEFINE YR/I4 = EDIT (EDIT(ADATE,'9999$$$$')); WITHIN='*TIME',$
@@ -5401,11 +5158,8 @@ For example, Units, Dollars, Budget Units, and Budget Dollars are measures that 
 how many units were sold, the total dollar amount of reported sales, how many units were
 budgeted, and total sales quota in dollars, respectively.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 185
-
-Validating Data: ACCEPT
+Validating Data: ACCEPT
 
 6. Shows the following:
 
@@ -5456,9 +5210,6 @@ Validating Data: ACCEPT
 ACCEPT is an optional attribute that you can use to validate data as it is entered into a
 parameter prompt screen.
 
-186
-
-4. Describing an Individual Field
 
 Note: Suffix VSAM and FIX data sources may use the ACCEPT attribute to specify multiple
 RECTYPE values, which are discussed in Describing a Sequential, VSAM, or ISAM Data Source
@@ -5501,11 +5252,8 @@ display value. The lookup field values must exist in both data sources, although
 need to have matching field names. You supply the name of the synonym, the lookup field
 name, and the display field name.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 187
-
-Validating Data: ACCEPT
+Validating Data: ACCEPT
 
 Syntax:
 
@@ -5557,9 +5305,6 @@ return a lookup field value and its corresponding display field value anywhere i
 any order. You supply the name of the FOCEXEC, the lookup field name, and the display
 field name.
 
-188
-
-4. Describing an Individual Field
 
 lookup_field
 
@@ -5610,11 +5355,8 @@ HOLD files. If you wish to propagate the ACCEPT attribute into the Master File o
 file, use the SET HOLDATTR command. HOLD files are discussed in the Creating Reports
 With WebFOCUS Language manual.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 189
-
-Specifying Acceptable Values for a Dimension
+Specifying Acceptable Values for a Dimension
 
 ACCEPT=FIND is used only in MODIFY procedures. It is useful for providing one central
 validation list to be used by several procedures. The FIND function is useful when the list of
@@ -5666,13 +5408,11 @@ Coffee Grinder, and Coffee Pot.
 ACCEPT='Espresso' OR 'Latte' OR 'Cappuccino' OR 'Scone' OR 'Biscotti' OR
    'Croissant' OR 'Mug' OR 'Thermos' OR 'Coffee Grinder' OR 'Coffee Pot'
 
-190
 
-Syntax:
+Syntax:
 
 How to Specify a Range of Acceptable Values for a Dimension
 
-4. Describing an Individual Field
 
 ACCEPT=value1 TO value2
 
@@ -5726,11 +5466,8 @@ When you generate a report, each column title in the report defaults to the name
 that appears in that column. However, you can change the default column title by specifying
 the optional TITLE attribute for that field.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 191
-
-Alternative Report Column Titles: TITLE
+Alternative Report Column Titles: TITLE
 
 You can also specify a different column title within an individual report by using the AS phrase
 in that report request, as described in the Creating Reports With WebFOCUS Language manual.
@@ -5783,9 +5520,6 @@ Alias. TITLE does not have an alias.
 Changes. You can change the information in TITLE at any time. You can also override the
 TITLE with an AS name in a request, or turn it off with the SET TITLES=OFF command.
 
-192
-
-4. Describing an Individual Field
 
 Virtual fields. If you use the TITLE attribute for a virtual field created with the DEFINE
 attribute, the semicolon (;) terminating the DEFINE expression must be on the same line as
@@ -5838,11 +5572,8 @@ The following FIELD declaration provides a DESCRIPTION:
 
 FIELD=UNITS,ALIAS=QTY,USAGE=I6, DESC='QUANTITY SOLD, NOT RETURNED',$
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 193
-
-Multilingual Metadata
+Multilingual Metadata
 
 Reference: Usage Notes for DESCRIPTION
 
@@ -5898,12 +5629,10 @@ ln
 
 Is the two-letter ISO language code.
 
-194
 
-Note: If SET LANG is used in a procedure, its value will override the values set in nlscfg.err or
+Note: If SET LANG is used in a procedure, its value will override the values set in nlscfg.err or
 in any profile.
 
-4. Describing an Individual Field
 
 Reference: Activating a Language in the NLS Configuration File
 
@@ -6017,11 +5746,8 @@ GRE
 
 HEW
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 195
-
-Multilingual Metadata
+Multilingual Metadata
 
 Language Name
 
@@ -6120,9 +5846,6 @@ Note: You can also create a set of language translation files and include the tr
 attribute at the file level of the Master File. For information on this technique, see Storing
 Localized Metadata in Language Files on page 58.
 
-196
-
-4. Describing an Individual Field
 
 Syntax:
 
@@ -6170,11 +5893,8 @@ by the LANG parameter Valid values for ln are the two-letter ISO 639 language co
 abbreviations. For information, see Languages and Language Code Abbreviations on page
 195.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 197
-
-Multilingual Metadata
+Multilingual Metadata
 
 DESC_ln = desc_for_ln
 
@@ -6224,9 +5944,6 @@ FILE=CENTINV, SUFFIX=FOC, FDFC=19, FYRT=00
    TITLE='Price:',
    DESCRIPTION=Price, $
 
-198
-
-4. Describing an Individual Field
 
 Example:
 
@@ -6281,11 +5998,8 @@ Now, issue the following command to set the language to Spanish and run the same
 
 SET LANG = SPA
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 199
-
-Describing a Virtual Field: DEFINE
+Describing a Virtual Field: DEFINE
 
 The output now displays column headings from the TITLE_ES attributes where they exist
 (Product Number and Product Name). Where no Spanish title is specified (the Price field), the
@@ -6336,9 +6050,6 @@ Is the name of the virtual field. The name is subject to the same conventions as
 assigned using the FIELDNAME attribute. FIELDNAME is described in The Field Name:
 FIELDNAME on page 104.
 
-200
-
-4. Describing an Individual Field
 
 format
 
@@ -6391,11 +6102,8 @@ NUTS1_CC. Region code (NUTS level1).
 
 NUTS2. Province name (NUTS level 2).
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 201
-
-Describing a Virtual Field: DEFINE
+Describing a Virtual Field: DEFINE
 
 NUTS2_CC. Province code (NUTS level 2).
 
@@ -6450,9 +6158,6 @@ TITLE_ln='titleln'
 
 Is a column title for the virtual field in the language specified by the language code ln.
 
-202
-
-4. Describing an Individual Field
 
 DESC[CRIPTION]='desc'
 
@@ -6506,11 +6211,8 @@ the Creating Reports With WebFOCUS Language manual. The DEFINE FILE command is a
 helpful when you wish to create a virtual field that is only used once, and you do not want to
 add a declaration for it to the Master File.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 203
-
-Describing a Calculated Value: COMPUTE
+Describing a Calculated Value: COMPUTE
 
 Virtual fields defined in the Master File are available whenever the data source is used, and
 are treated like other stored fields. Thus, a field defined in the Master File cannot be cleared in
@@ -6563,9 +6265,6 @@ ADDRESS_LINE. Number and street name.
 
 CITY. City name.
 
-204
-
-4. Describing an Individual Field
 
 CONTINENT. Continent name.
 
@@ -6617,11 +6316,8 @@ USSCITY. US city name.
 
 USCITY_FIPS. US city FIPS code.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 205
-
-Describing a Calculated Value: COMPUTE
+Describing a Calculated Value: COMPUTE
 
 USCOUNTY. US county name.
 
@@ -6673,9 +6369,6 @@ HEADING or FOOTING command.
 
 Note: Maintain Data does not currently support using COMPUTEs in Master Files.
 
-206
-
-4. Describing an Individual Field
 
 Example:
 
@@ -6721,14 +6414,8 @@ BY PROD_CODE AS 'PROD,CODE'
 WHERE CITY EQ 'NEW YORK'
 END
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 207
-
-
-
-
-Describing a Filter: FILTER
+Describing a Filter: FILTER
 
 The output is:
 
@@ -6777,10 +6464,6 @@ filtername
 Is the name assigned to the filter. The filter is internally assigned a format of I1, which
 cannot be changed.
 
-208
-
-
-4. Describing an Individual Field
 
 expression
 
@@ -6832,11 +6515,8 @@ The filter field name is internally assigned a format of I1 which cannot be chan
 A filter can be used as a standard numeric virtual field anywhere in a report request, except
 that they are not supported in WHERE TOTAL tests.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 209
-
-Describing a Filter: FILTER
+Describing a Filter: FILTER
 
 A mandatory filter can be used to force access to a segment (for example, a table in a
 cluster synonym) that is not referenced in a request.
@@ -6865,11 +6545,9 @@ type=data, backcolor=aqua, $
 ENDSTYLE
 END
 
-210
 
-The output is shown in the following image:
+The output is shown in the following image:
 
-4. Describing an Individual Field
 
 Example:
 
@@ -6879,11 +6557,8 @@ Consider the following filter declaration added to the MOVIES Master File:
 
 FILTER G_RATING = RATING EQ 'G' OR 'PG'; MANDATORY=YES ,$
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 211
-
-Describing a Filter: FILTER
+Describing a Filter: FILTER
 
 The following request does not reference the G_RATING filter:
 
@@ -6900,12 +6575,10 @@ type=data, backcolor=aqua, $
 ENDSTYLE
 END
 
-212
 
-The output is shown in the following image. Note that the G_RATING filter is applied even
+The output is shown in the following image. Note that the G_RATING filter is applied even
 though it is not referenced in the request:
 
-4. Describing an Individual Field
 
 Describing a Sort Object: SORTOBJ
 
@@ -6915,11 +6588,8 @@ the TABLE where the sort object is referenced. The sort phrases in the sort obje
 verified prior to this substitution. The only verification is that there is a sort object name and
 an equal sign in the Master File SORTOBJ record.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 213
-
-Describing a Sort Object: SORTOBJ
+Describing a Sort Object: SORTOBJ
 
 Reference: Usage Notes for Sort Objects in a Master File
 
@@ -6973,9 +6643,6 @@ DESC[CRIPTION]='desc'
 
 Is a description for the sort object in the default language.
 
-214
-
-4. Describing an Individual Field
 
 DESC_ln='descln'
 
@@ -7031,11 +6698,8 @@ Northeast    4201057       4445197       2848289
 Southeast    4435134       4308731       3037420
 West         4493483       4204333       2977092
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 215
-
-Calling a DEFINE FUNCTION in a Master File
+Calling a DEFINE FUNCTION in a Master File
 
 Calling a DEFINE FUNCTION in a Master File
 
@@ -7091,9 +6755,6 @@ Master File that calls the DEFINE FUNCTION:
 DEFINE WHOLENAME/A40 = DF.DMFUNCS.DMPROPER(LASTNAME, FIRSTNAME);
      DESCRIPTION = 'Calls DMPROPER to create full name',$
 
-216
-
-4. Describing an Individual Field
 
 The following request uses the DEFINE field WHOLENAME:
 
@@ -7147,11 +6808,8 @@ The variables supported for use in Master File DEFINEs are:
 
 &DATE
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 217
-
-Using Date System Amper Variables in Master File DEFINEs
+Using Date System Amper Variables in Master File DEFINEs
 
 &TOD
 
@@ -7204,9 +6862,6 @@ DEFINE TDATE/A12   ='&DATE';, $
    .
    .
 
-218
-
-4. Describing an Individual Field
 
 The following request displays the value of TDATE:
 
@@ -7248,11 +6903,8 @@ END
 
 The output is:
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 219
-
-Parameterizing Master and Access File Values Using Variables
+Parameterizing Master and Access File Values Using Variables
 
 Reference: Messages for Date System Amper Variables in Master File DEFINEs
 
@@ -7303,9 +6955,6 @@ Reference: Support for Variables in Master and Access File Attributes
 In the Master File, the following attributes can be parameterized with variables: POSITION,
 OCCURS, REMARKS, DESCRIPTION, TITLE, HELPMESSAGE.
 
-220
-
-4. Describing an Individual Field
 
 In the DBA section of a Master File, the following attributes can be parameterized: USER,
 VALUE. For information about using these variables in a Master File profile to create dynamic
@@ -7359,11 +7008,8 @@ Now, in the Master File, add the TITLE attribute to the FIELD declaration for EM
 FIELDNAME=EMP_ID, ALIAS=EID, USAGE=A9, ACTUAL=A9,
       TITLE='&&emptitle', $
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 221
-
-Parameterizing Master and Access File Values Using Variables
+Parameterizing Master and Access File Values Using Variables
 
 In the Access File, replace the value for the TABLENAME attribute with the variable name:
 
@@ -7417,9 +7063,6 @@ VARIABLE NAME=usr,USAGE=A8,DEFAULT=myusrid,$
 VARIABLE NAME=tprf,USAGE=A4,DEFAULT=test_,$
 VARIABLE NAME=tsuf,USAGE=YYM,$
 
-222
-
-4. Describing an Individual Field
 
 In the Access File, concatenate the variables to create the TABLENAME attribute. Note that the
 separator for between each part is a period, but to concatenate a variable name and retain the
@@ -7465,11 +7108,8 @@ original alphanumeric format and display that field in the request.
 DATEPATTERN requires an ACTUAL format to USAGE format conversion. Therefore, it is not
 supported for SUFFIX=FOC and SUFFIX=XFOC data sources.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 223
-
-Converting Alphanumeric Dates to WebFOCUS Dates
+Converting Alphanumeric Dates to WebFOCUS Dates
 
 Specifying Variables in a Date Pattern
 
@@ -7531,9 +7171,6 @@ Specifies a three-character month name in upper case.
 
 Specifies a three-character month name in lower case.
 
-224
-
-4. Describing an Individual Field
 
 [Mon]
 
@@ -7595,11 +7232,8 @@ Specifies a one-digit day of the week.
 
 Specifies a three-character day name in upper case.
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 225
-
-Converting Alphanumeric Dates to WebFOCUS Dates
+Converting Alphanumeric Dates to WebFOCUS Dates
 
 [day]
 
@@ -7656,9 +7290,6 @@ If the date in the data source is of the form Jan 31, 01, the DATEPATTERN attrib
 
 DATEPATTERN = '[Mon] [DD], [YY]'
 
-226
-
-4. Describing an Individual Field
 
 If the date in the data source is of the form APR-06, the DATEPATTERN attribute is:
 
@@ -7713,11 +7344,8 @@ June 20, '04
 June 21, '04
 June 22, '04
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 227
-
-Converting Alphanumeric Dates to WebFOCUS Dates
+Converting Alphanumeric Dates to WebFOCUS Dates
 
 In the DATE1 Master File, the DATE1 field has alphanumeric USAGE and ACTUAL formats, each
 A18:
@@ -7768,9 +7396,6 @@ June 3, '03
 June 3, '04
 June 4, '04
 
-228
-
-4. Describing an Individual Field
 
 In order to sort the data correctly, you can add a DATEPATTERN attribute to the Master File
 that enables WebFOCUS to convert the date to a WebFOCUS date field. You must also edit the
@@ -7799,11 +7424,8 @@ FILENAME=DATE1   , SUFFIX=FIX ,
       DEFCENT=20,
       DATEPATTERN = '[Month] [dd], ''[YY]', $
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 229
-
-Converting Alphanumeric Dates to WebFOCUS Dates
+Converting Alphanumeric Dates to WebFOCUS Dates
 
 Now, issuing the same request produces the following output. Note that DATE1 has been
 converted to a WebFOCUS date in MtrDYY format (as specified in the USAGE format):
@@ -7839,4 +7461,3 @@ June 20, 2004
 June 21, 2004
 June 22, 2004
 
-230

@@ -1,5 +1,3 @@
-Chapter11
-
 Navigating Within an HTML Report
 
 You can include the following navigation features within a report to control the report
@@ -44,11 +42,8 @@ The TOC also enhances the display of groups of data. You can view one section (o
 the report at a time, or you can view all sections at once. You can control this with a page
 break. For more information, see Grouping Sort Fields for Display on page 976.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 969
-
-Navigating Sort Groups From a Table of Contents
+Navigating Sort Groups From a Table of Contents
 
 The TOC displays all values of the first (highest-level) vertical sort field, as well as the values of
 any lower level BY fields that you designate for inclusion. These values are displayed as an
@@ -95,9 +90,6 @@ Reference: Usage Notes for HTMLARCHIVE With HTML Table of Contents
 WebFOCUS interactive reporting features must have a connection to the WebFOCUS client in
 order to access the components required to operate successfully.
 
-970
-
-11. Navigating Within an HTML Report
 
 HTMLARCHVE can be used to create self-contained HTML pages with user-defined images
 when client access is not available.
@@ -150,11 +142,8 @@ otherwise specified in the request.
 Note: Single quotation marks (') should be used when BYTOC is specified with a number in a
 SET command.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 971
-
-Adding the HTML Table of Contents Tree Control to Reports
+Adding the HTML Table of Contents Tree Control to Reports
 
 Syntax:
 
@@ -215,9 +204,6 @@ You can add an HTML TOC as an icon to the upper-left corner of a report by prece
 request with a SET command, as illustrated in the following request. The TOC will list values of
 the first (highest level) vertical sort field, PLANT:
 
-972
-
-11. Navigating Within an HTML Report
 
 SET COMPOUND='BYTOC 2'
 
@@ -266,11 +252,8 @@ TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 973
-
-Adding the HTML Table of Contents Tree Control to Reports
+Adding the HTML Table of Contents Tree Control to Reports
 
 In the following request, the TOC Tree control is enabled in the Report StyleSheet:
 
@@ -293,9 +276,6 @@ Note: Single quotation marks (') should be used when TOC is specified in the Sty
 
 Run the report. The TOC object displays in the upper-left corner.
 
-974
-
-11. Navigating Within an HTML Report
 
 Double-click the TOC icon to open the Table of Contents Tree control. This displays the values
 of the sort fields in the report in the order in which they have been specified.
@@ -306,11 +286,8 @@ dragging it to another area of the report, or double-click on a desired location
 If you wish to display all available fields (the whole report), click the View Entire Report (On/Off)
 option.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 975
-
-Adding the HTML Table of Contents Tree Control to Reports
+Adding the HTML Table of Contents Tree Control to Reports
 
 Tip: You can also customize the look and feel of the TOC object by editing a .css file. It is
 recommended that you make a backup copy prior to editing.
@@ -363,9 +340,6 @@ $
 ENDSTYLE
 END
 
-976
-
-11. Navigating Within an HTML Report
 
 One section of the report is displayed at a time.
 
@@ -390,11 +364,8 @@ the top of the window: you can then scroll quickly to the related details.
 If the selected lower level value is already viewable on the screen, and the remaining report
 will fit on the screen, the value flashes, but the report does not scroll.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 977
-
-Adding the HTML Table of Contents Tree Control to Reports
+Adding the HTML Table of Contents Tree Control to Reports
 
 Example:
 
@@ -426,22 +397,17 @@ $
 ENDSTYLE
 END
 
-978
 
-The output is displayed with the TOC object in the upper-left corner.
+The output is displayed with the TOC object in the upper-left corner.
 
-11. Navigating Within an HTML Report
 
 Double-click the object to expand the Table of Contents.
 
 Select View Entire Report. Scroll down to see that the report contains data for all of the
 continents.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 979
-
-Adding the HTML Table of Contents Tree Control to Reports
+Adding the HTML Table of Contents Tree Control to Reports
 
 Scroll back to the top of the report window and reopen the TOC. This time select Americas.
 Your selection flashes to highlight it on the screen. Although the report display does not
@@ -455,11 +421,9 @@ The field values (Argentina and Brazil) are listed in the TOC. These are values 
 COUNTRY. If you wish to see the field name of a value in the TOC, hover over that value with
 your cursor.
 
-980
 
-Select Brazil. Your selection flashes and moves to the top of the window, as shown next.
+Select Brazil. Your selection flashes and moves to the top of the window, as shown next.
 
-11. Navigating Within an HTML Report
 
 Scroll down to see the data for Brazil.
 
@@ -489,11 +453,8 @@ heading
 Is the type of heading or footing that contains the TOC.
 Valid values are:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 981
-
-Adding the HTML Table of Contents Tree Control to Reports
+Adding the HTML Table of Contents Tree Control to Reports
 
 TABHEADING
 
@@ -552,9 +513,6 @@ If you apply a StyleSheet declaration that specifies ITEM_#, the number is count
 the beginning of each line in the heading or footing, not just from the beginning of the first
 line.
 
-982
-
-11. Navigating Within an HTML Report
 
 sort_column
 
@@ -602,11 +560,8 @@ TYPE=HEADING, LINE=1, OBJECT=FIELD, ITEM=1, TOC=CONTINENT, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 983
-
-Adding the HTML Table of Contents Tree Control to Reports
+Adding the HTML Table of Contents Tree Control to Reports
 
 When you run the report. The TOC appears as a drop-down menu in the heading, in place of
 the field CONTINENT:
@@ -616,9 +571,6 @@ Click the TOC to see the list of sort values: AMERICAS, ASIA, EUROPE.
 Click each continent to see the related information. The selected value flashes gray to
 highlight it in the window.
 
-984
-
-11. Navigating Within an HTML Report
 
 You can display all available fields (the whole report) by clicking the View Entire Report option.
 To remove the TOC, click the Remove Table of Contents option. To restore the TOC, double-click
@@ -655,17 +607,11 @@ TYPE=HEADING, LINE=3, OBJECT=FIELD, ITEM=2, TOC=REGION,$
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 985
-
-Adding the HTML Table of Contents Tree Control to Reports
+Adding the HTML Table of Contents Tree Control to Reports
 
 The output is:
 
-986
-
-11. Navigating Within an HTML Report
 
 Click the arrow in the second TOC drop-down list and select North America. Keep in mind that
 the values in this drop-down list are related to those in the higher level drop-down list. They are
@@ -676,11 +622,8 @@ there, you can scroll to see the related data, as shown in the image below.
 Note that if you select information already in your field of view, the value will be highlighted in
 gray and will flash, to draw your attention to it.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 987
-
-Adding the HTML Table of Contents Tree Control to Reports
+Adding the HTML Table of Contents Tree Control to Reports
 
 Next, scroll up and choose ASIA from the first TOC list. This selection changes your highest-
 level sort group, and affects all of the lists below it. ASIA flashes and moves to the top of the
@@ -700,9 +643,6 @@ Resources on page 819.
 
 Define frames and populate them with reports. See Specifying a Target Frame on page 873.
 
-988
-
-11. Navigating Within an HTML Report
 
 Reference: HTML Table of Contents Limits
 
@@ -743,11 +683,8 @@ Accordion Reports provide a way to control the amount of sorted data that appear
 HTML report page. You can produce reports with expandable views for each vertical sort field in
 a request with multiple BY fields.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 989
-
-Controlling the Display of Sorted Data With Accordion Reports
+Controlling the Display of Sorted Data With Accordion Reports
 
 You can create two types of Accordion Reports:
 
@@ -793,11 +730,9 @@ generated, and a standard HTML report is created.
 
 Note: Accordion Reports are only supported for HTML report output.
 
-990
 
-Requirements for Accordion Reports
+Requirements for Accordion Reports
 
-11. Navigating Within an HTML Report
 
 The following requirements must be taken into consideration when creating Accordion Reports:
 
@@ -844,11 +779,8 @@ images from a report distributed by ReportCaster, the scheduled procedure must c
 SET FOCHTMLURL command, which must be set to an absolute URL instead of the default
 value. For example,
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 991
-
-Controlling the Display of Sorted Data With Accordion Reports
+Controlling the Display of Sorted Data With Accordion Reports
 
 SET FOCHTMLURL = http://hostname[:port]/ibi_apps/ibi_html
 
@@ -895,9 +827,6 @@ level of the tree, is actually a subtotal row and is completely described by the
 BY fields in the request. Each level will be presented at the aggregated level, and the data
 values will represent the aggregation of the lowest level BY.
 
-992
-
-11. Navigating Within an HTML Report
 
 Styling an Accordion By Row report can be done using standard HTML report techniques, but it
 is important to keep the report structure in mind. All rows, except the lowest level, are actually
@@ -945,11 +874,8 @@ rows on lower levels, click the plus sign (+) next to one of the displayed sort 
 Creates an Accordion report in which all sort field levels are initially expanded. To roll up a
 sort field level, click the minus sign (-) next to one of the sort field values on that level.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 993
-
-Controlling the Display of Sorted Data With Accordion Reports
+Controlling the Display of Sorted Data With Accordion Reports
 
 n
 
@@ -998,9 +924,6 @@ TYPE=REPORT,
     COLOR=RGB(52 85 64),
 $
 
-994
-
-11. Navigating Within an HTML Report
 
 TYPE=TITLE,
     COLOR='WHITE',
@@ -1042,11 +965,8 @@ END
 
 The initial output shows only the top level BY field (REGION), as shown in the following image.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 995
-
-Controlling the Display of Sorted Data With Accordion Reports
+Controlling the Display of Sorted Data With Accordion Reports
 
 Clicking the plus sign (+) next to the Midwest region opens the rows that show the states
 associated with that region, as shown in the following image.
@@ -1054,9 +974,6 @@ associated with that region, as shown in the following image.
 Clicking the plus sign (+) next to the state IL opens the rows that show the categories
 associated with that state, as shown in the following image.
 
-996
-
-11. Navigating Within an HTML Report
 
 Clicking the plus sign (+) next to the Coffee category shows the products associated with that
 category, as shown in the following image. This is the lowest level of the Accordion By Row
@@ -1089,11 +1006,8 @@ TYPE=REPORT,
     GRID=OFF,
 $
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 997
-
-Controlling the Display of Sorted Data With Accordion Reports
+Controlling the Display of Sorted Data With Accordion Reports
 
 TYPE=TITLE,
     BACKCOLOR=RGB(102 102 102),
@@ -1145,11 +1059,9 @@ Including the fields LAST_NAME and FIRST_NAME in the report output distinguishes
 line. However, those fields do not apply to the summary lines, so they are blank on the
 summary lines.
 
-998
 
-The output is:
+The output is:
 
-11. Navigating Within an HTML Report
 
 Syntax:
 
@@ -1158,11 +1070,8 @@ How to Create an Accordion Report With the Enhanced Interface
 SET EXPANDBYROWTREE = {OFF|ON|ALL|n}
 ON TABLE SET EXPANDBYROWTREE {OFF|ON|ALL|n}
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 999
-
-Controlling the Display of Sorted Data With Accordion Reports
+Controlling the Display of Sorted Data With Accordion Reports
 
 where:
 
@@ -1216,11 +1125,9 @@ INCLUDE=IBFS:/FILE/IBI_HTML_DIR/ibi_themes/Warm.sty,$
 ENDSTYLE
 END
 
-1000
 
-The initial output shows only the top level BY field (REGION), as shown in the following image.
+The initial output shows only the top level BY field (REGION), as shown in the following image.
 
-11. Navigating Within an HTML Report
 
 Clicking the plus sign (+) next to the Midwest region opens the rows that show the states
 associated with that region, as shown in the following image.
@@ -1228,11 +1135,8 @@ associated with that region, as shown in the following image.
 Clicking the plus sign (+) next to the state IL opens the rows that show the categories
 associated with that state, as shown in the following image.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1001
-
-Controlling the Display of Sorted Data With Accordion Reports
+Controlling the Display of Sorted Data With Accordion Reports
 
 Clicking the plus sign (+) next to the Coffee category shows the products associated with that
 category, as shown in the following image. This is the lowest level of the Accordion By Row
@@ -1246,9 +1150,6 @@ and the background color to different shades of purple.
 
 Note: The color of the arrows match the color of the SUBTOTAL line, in this case, white.
 
-1002
-
-11. Navigating Within an HTML Report
 
 TABLE FILE GGSALES
 SUM DOLLARS/D8MC
@@ -1281,11 +1182,8 @@ The initial output shows only the top level BY field (REGION), as shown in the f
 Clicking the arrow next to the Midwest region opens the rows that show the states associated
 with that region, as shown in the following image.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1003
-
-Controlling the Display of Sorted Data With Accordion Reports
+Controlling the Display of Sorted Data With Accordion Reports
 
 Clicking the right arrow next to the state IL opens the rows that show the categories
 associated with that state, as shown in the following image.
@@ -1298,9 +1196,6 @@ You can use the CONTROLCOLOR StyleSheet attribute on the SUBTOTAL line to specif
 color of the arrows. The following syntax shows how to change the color of the arrows to
 purple.
 
-1004
-
-11. Navigating Within an HTML Report
 
 TABLE FILE GGSALES
 SUM DOLLARS/D8MC
@@ -1336,11 +1231,8 @@ As of Release 8.2 Version 04, grids are supported with EXPANDBYROWTREE.
 
 The maximum length of a BY field value is 245 bytes.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1005
-
-Controlling the Display of Sorted Data With Accordion Reports
+Controlling the Display of Sorted Data With Accordion Reports
 
 EXPANDBYROWTREE is not supported with OLAP. When both OLAP and
 EXPANDBYROWTREE are enabled, EXPANDBYROWTREE will be ignored. As a workaround,
@@ -1395,10 +1287,6 @@ AS Name
 
 2
 
-1006
-
-
-11. Navigating Within an HTML Report
 
 Existing Field Information
 
@@ -1428,11 +1316,8 @@ Creating an Accordion By Row Report Without Pop-Up Field Descriptions
 The following example demonstrates how pop-up text will display for the standard Accordion
 report in the default presentation, which means pop-up descriptions are not turned on.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1007
-
-Controlling the Display of Sorted Data With Accordion Reports
+Controlling the Display of Sorted Data With Accordion Reports
 
 DEFINE FILE GGSALES.
 UNITS/D12C DESCRIPTION ''=UNITS;
@@ -1484,9 +1369,6 @@ FIELD=PRODUCT, ALIAS=E04, FORMAT=A16, TITLE='Product', DESC='Product name',$
 FIELD=UNITS, ALIAS=E10, FORMAT=I08, TITLE='Unit Sales',
    DESC='Number of units sold',$
 
-1008
-
-11. Navigating Within an HTML Report
 
 The following image shows the pop-up description for the tree control, located at the top-left
 corner of the table, displaying the list of column titles or AS name for the given BY column
@@ -1506,11 +1388,8 @@ Creating an Accordion By Row Report With Pop-Up Field Descriptions
 The following example demonstrates how pop-up text displays with pop-up descriptions turned
 on.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1009
-
-Controlling the Display of Sorted Data With Accordion Reports
+Controlling the Display of Sorted Data With Accordion Reports
 
 SET POPUPDESC = ON
 DEFINE FILE GGSALES.
@@ -1543,9 +1422,6 @@ following image.
 The image that shows the description for the BY value appears in the pop-up text even though
 an AS name has been given to this field.
 
-1010
-
-11. Navigating Within an HTML Report
 
 For additional information on pop-up field descriptions with HTML reports, see Displaying
 Report Data on page 39.
@@ -1576,11 +1452,8 @@ concatenates the LAST_NAME and FIRST_NAME fields. The NAME_SORT field is hidden 
 NOPRINT on the sort phrase. To display employee names, the NAME_DISPLAY virtual field is
 created, which concatenates the FIRST_NAME field and the LAST_NAME field.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1011
-
-Controlling the Display of Sorted Data With Accordion Reports
+Controlling the Display of Sorted Data With Accordion Reports
 
 DEFINE FILE EMPLOYEE
 NAME_SORT/A50=EMPLOYEE.EMPINFO.LAST_NAME || ( ', ' |
@@ -1610,9 +1483,6 @@ TYPE=REPORT,
     GRID=OFF,
 $
 
-1012
-
-11. Navigating Within an HTML Report
 
 TYPE=TITLE,
     BACKCOLOR=RGB(102 102 102),
@@ -1645,11 +1515,8 @@ $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1013
-
-Controlling the Display of Sorted Data With Accordion Reports
+Controlling the Display of Sorted Data With Accordion Reports
 
 If you hover the mouse over any value in the NAME_DISPLAY column, the tooltip will display the
 AS name, Employee Name, as shown in the following image.
@@ -1670,9 +1537,6 @@ The following request against the EMPLOYEE data source shows employees and salar
 year of hire. The display fields, HIRE_DATE and CURR_SAL, are sorted by HIRE_DATE
 reformatted with the format, YY, and by the virtual field NAME_DISPLAY (employee name).
 
-1014
-
-11. Navigating Within an HTML Report
 
 DEFINE FILE EMPLOYEE
 NAME_SORT/A50=EMPLOYEE.EMPINFO.LAST_NAME || ( ', ' |
@@ -1712,11 +1576,8 @@ To sort your data on the reformatted field values instead of the original field 
 virtual field containing the BY value with the new format applied. This will allow you to display,
 sort, and aggregate on the new redefined BY value.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1015
-
-Controlling the Display of Sorted Data With Accordion Reports
+Controlling the Display of Sorted Data With Accordion Reports
 
 DEFINE FILE EMPLOYEE
 NAME_SORT/A50=EMPLOYEE.EMPINFO.LAST_NAME || ( ', ' |
@@ -1756,9 +1617,6 @@ HTML Table of Contents
 
 On Demand Paging
 
-1016
-
-11. Navigating Within an HTML Report
 
 TABLEF
 
@@ -1809,11 +1667,8 @@ The following commands are not supported when using Accordion Reports:
 
 BORDER, COLUMN, FOR, IN, OVER, PAGE-NUM, ROW-TOTAL, TOTAL
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1017
-
-Controlling the Display of Sorted Data With Accordion Reports
+Controlling the Display of Sorted Data With Accordion Reports
 
 Data Visualization, HTML BYTOC, OLAP, On Demand Paging (WebFOCUS Viewer), column
 freezing, and the ReportCaster burst feature are also not supported with Accordion Reports.
@@ -1849,9 +1704,6 @@ BY REGION BY ST BY CITY BY CATEGORY
 ON TABLE SET EXPANDABLE ON
 END
 
-1018
-
-11. Navigating Within an HTML Report
 
 The following image shows an Accordion by Column Report which displays all data associated
 with the first-level sort field, Region, by default. The expanded data values you see are the
@@ -1876,11 +1728,8 @@ reports are also not supported with the WebFOCUS Viewer.
 Note that you can use the HFREEZE StyleSheet option to display column titles on every page of
 output returned by the WebFOCUS Viewer.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1019
-
-Navigating a Multi-Page Report With the WebFOCUS Viewer
+Navigating a Multi-Page Report With the WebFOCUS Viewer
 
 The following is page 1 of a 31-page report displayed in the WebFOCUS Viewer.
 
@@ -1904,9 +1753,6 @@ order to access the components required to operate successfully.
 HTMLARCHVE can be used to create self-contained HTML pages with user-defined images
 when client access is not available.
 
-1020
-
-11. Navigating Within an HTML Report
 
 To generate HTML pages containing user-defined images that can operate interactively, use
 one of the following commands:
@@ -1956,11 +1802,8 @@ can further customize your search by matching capitalization of words exactly (a
 search) or by controlling the direction of your search (either forward or backward from your
 starting point in the report).
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1021
-
-Linking Report Pages
+Linking Report Pages
 
 When using the Search option:
 
@@ -2015,9 +1858,6 @@ This request displays two images in the page heading of a long report. It create
 between BULLET.GIF and the next page of the report, and GOBACK.GIF and the previous page
 of the report.
 
-1022
-
-11. Navigating Within an HTML Report
 
 TABLE FILE GGORDER
 ON TABLE SUBHEAD
@@ -2041,19 +1881,14 @@ END
 
 The images display in each page heading.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1023
-
-Linking Report Pages
+Linking Report Pages
 
 Click the image on the left of page 1 to display page 2.
 
-1024
 
-Click the "go back" image on page 2 to redisplay page 1.
+Click the "go back" image on page 2 to redisplay page 1.
 
-11. Navigating Within an HTML Report
 
 For details on including and positioning images in a report, see Laying Out the Report Page on
 page 1331.
@@ -2071,11 +1906,8 @@ This request creates hyperlinks from the page number to the next page in the rep
 the text of the page heading, which appears at the top of every report page, back to the
 previous page or to the first page.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1025
-
-Linking Report Pages
+Linking Report Pages
 
 TABLE FILE GGORDER
 ON TABLE SUBHEAD
@@ -2099,11 +1931,9 @@ END
 
 The first page looks as follows:
 
-1026
 
-Click the page number three times to move to PAGE 4.
+Click the page number three times to move to PAGE 4.
 
-11. Navigating Within an HTML Report
 
 Click previous page to return to PAGE 3. Click return to beginning to go directly to PAGE 1.
 
@@ -2112,10 +1942,6 @@ issued at the start of the procedure:
 
 SET BASEURL = ''
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1027
+Linking Report Pages
 
-Linking Report Pages
-
-1028

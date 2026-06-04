@@ -7,7 +7,7 @@ Release 8207
 March 2021
 DN4501688.0321
 
-Copyright© 2021.TIBCOSoftwareInc.AllRightsReserved. Contents
+Copyright© 2021.TIBCOSoftwareInc.AllRightsReserved. Contents
 
 1. Understanding a Data Source Description . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
 
@@ -73,11 +73,8 @@ Storing Localized Metadata in Language Files . . . . . . . . . . . . . . . . . .
 
 LNGPREP Utility: Preparing Metadata Language Files. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .58
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 3
-
-Contents
+Contents
 
 LNGPREP Modes. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 60
 
@@ -143,9 +140,8 @@ One-to-Many Relationship . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 Implementing a One-to-Many Relationship in a Relational Data Source. . . . . . . . . . . . . . . . . .85
 
-4
 
-Contents
+Contents
 
 Implementing a One-to-Many Relationship in a VSAM or Sequential Data Source. . . . . . . . . 85
 
@@ -211,11 +207,8 @@ Alphanumeric Format. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 Hexadecimal Format. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 138
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 5
-
-Contents
+Contents
 
 String Format. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 139
 
@@ -283,9 +276,8 @@ Describing a Virtual Field: DEFINE . . . . . . . . . . . . . . . . . . . . . . .
 
 Using a Virtual Field. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 203
 
-6
 
-Contents
+Contents
 
 Describing a Calculated Value: COMPUTE . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .204
 
@@ -351,11 +343,8 @@ SEGTYPE Attributes With RECTYPE Fields. . . . . . . . . . . . . . . . . . . . . 
 
 Describing a RECTYPE Field. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 258
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 7
-
-Contents
+Contents
 
 Describing Positionally Related Records. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 260
 
@@ -421,9 +410,8 @@ Separating Large Text Fields. . . . . . . . . . . . . . . . . . . . . . . . . . 
 
 Limits on the Number of Segments, LOCATION Files, Indexes, and Text Fields. . . . . . . . . .307
 
-8
 
-Contents
+Contents
 
 Specifying a Physical File Name for a Segment: DATASET. . . . . . . . . . . . . . . . . . . . . . . . . . . .308
 
@@ -489,11 +477,8 @@ Using a Unique Join for Decoding. . . . . . . . . . . . . . . . . . . . . . . . 
 
 Describing a Non-Unique Join: SEGTYPE = KM. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 354
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 9
-
-Contents
+Contents
 
 Using Cross-Referenced Descendant Segments: SEGTYPE = KL and KLU . . . . . . . . . . . . . . . . . . .356
 
@@ -559,9 +544,8 @@ Identifying Users With Access Rights: The USER Attribute. . . . . . . . . . . . 
 
 Non-Overridable User Passwords (SET PERMPASS). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 410
 
-10
 
-Contents
+Contents
 
 Controlling Case Sensitivity of Passwords. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 412
 
@@ -627,11 +611,8 @@ Positioning Indexed Fields. . . . . . . . . . . . . . . . . . . . . . . . . . . 
 
 Activating an External Index. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 459
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 11
-
-Contents
+Contents
 
 Checking Data Source Integrity: The CHECK Subcommand . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 460
 
@@ -697,9 +678,8 @@ FINANCE Structure Diagram. . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 REGION Data Source . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 484
 
-12
 
-Contents
+Contents
 
 REGION Master File. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 484
 
@@ -767,11 +747,8 @@ ITEMS Master File. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 ITEMS Structure Diagram. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 494
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 13
-
-Contents
+Contents
 
 VIDEOTR2 Data Source . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 494
 
@@ -839,9 +816,8 @@ CENTSTMT Master File. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 
 CENTSTMT Structure Diagram. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 514
 
-14
 
-Contents
+Contents
 
 CENTGLL Master File. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 514
 
@@ -869,10 +845,6 @@ DEFINE and COMPUTE. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 
 Legal and Third-Party Notices . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 531
 
-Describing Data With TIBCO WebFOCUS® Language
 
- 15
+Contents
 
-Contents
-
-16

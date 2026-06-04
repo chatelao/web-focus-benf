@@ -60,14 +60,8 @@ FUNDTRAN
 
 Specifies employee direct deposit accounts. This segment is unique.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1937
-
-
-
-
-EMPLOYEE Data Source
+EMPLOYEE Data Source
 
 PAYINFO
 
@@ -104,18 +98,8 @@ ATTNDSEG (from EDUCFILE)
 
 Lists the dates that employees attended in-house courses.
 
-1938
 
-
-
-
-
-
-
-
-
-
-COURSEG (from EDUCFILE)
+COURSEG (from EDUCFILE)
 
 Lists the courses that the employees attended.
 
@@ -163,11 +147,8 @@ FILENAME=EMPLOYEE, SUFFIX=FOC
   CRKEY=EMP_ID,$
  SEGNAME=COURSEG,   SEGTYPE=KLU, PARENT=ATTNDSEG, CRFILE=EDUCFILE,$
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1939
-
-JOBFILE Data Source
+JOBFILE Data Source
 
 EMPLOYEE Structure Diagram
 
@@ -181,11 +162,8 @@ JOBSEG
 
 Describes what each position is. The field JOBCODE in this segment is indexed.
 
-1940
 
-
-
-A. Master Files and Diagrams
+A. Master Files and Diagrams
 
 SKILLSEG
 
@@ -236,14 +214,8 @@ SECTION 01
  **************    **************
                     *************
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1941
-
-
-
-
-EDUCFILE Data Source
+EDUCFILE Data Source
 
 EDUCFILE Data Source
 
@@ -268,12 +240,8 @@ FILENAME=EDUCFILE, SUFFIX=FOC
   FIELDNAME=DATE_ATTEND,  ALIAS=DA,   FORMAT=I6YMD,        $
   FIELDNAME=EMP_ID,       ALIAS=EID,  FORMAT=A9, INDEX=I,  $
 
-1942
 
-
-
-
-EDUCFILE Structure Diagram
+EDUCFILE Structure Diagram
 
 SECTION 01
               STRUCTURE OF FOCUS    FILE EDUCFILE ON 05/15/03 AT 14.45.44
@@ -322,16 +290,8 @@ PRODUCT
 Contains sales data for each product on each date. The PROD_CODE field is indexed. The
 RETURNS and DAMAGED fields have the MISSING=ON attribute.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1943
-
-
-
-
-
-
-SALES Data Source
+SALES Data Source
 
 SALES Master File
 
@@ -351,9 +311,8 @@ FILENAME=KSALES,   SUFFIX=FOC
   FIELDNAME=RETURNS,     ALIAS=RTN,   FORMAT=I3,   MISSING=ON,$
   FIELDNAME=DAMAGED,     ALIAS=BAD,   FORMAT=I3,   MISSING=ON,$
 
-1944
 
-SALES Structure Diagram
+SALES Structure Diagram
 
 SECTION 01
              STRUCTURE OF FOCUS    FILE SALES ON 05/15/03 AT 14.50.28
@@ -406,14 +365,8 @@ ORIGIN
 
 Lists the country that manufactures the car. The field COUNTRY is indexed.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1945
-
-
-
-
-CAR Data Source
+CAR Data Source
 
 COMP
 
@@ -441,15 +394,8 @@ Lists standard equipment.
 
 The aliases in the CAR Master File are specified without the ALIAS keyword.
 
-1946
 
-
-
-
-
-
-
-CAR Master File
+CAR Master File
 
 A. Master Files and Diagrams
 
@@ -482,11 +428,8 @@ FILENAME=CAR,SUFFIX=FOC
  SEGNAME=EQUIP,SEGTYPE=S1,PARENT=COMP
   FIELDNAME=STANDARD,EQUIP,A40,$
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1947
-
-LEDGER Data Source
+LEDGER Data Source
 
 CAR Structure Diagram
 
@@ -496,9 +439,8 @@ LEDGER contains sample accounting data. It consists of one segment, TOP. This da
 is specified primarily for FML examples. Aliases do not exist for the fields in this Master File,
 and the commas act as placeholders.
 
-1948
 
-A. Master Files and Diagrams
+A. Master Files and Diagrams
 
 LEDGER Master File
 
@@ -538,12 +480,8 @@ FILENAME=FINANCE, SUFFIX=FOC,$
   FIELDNAME=ACCOUNT,  , FORMAT=A4,  $
   FIELDNAME=AMOUNT ,  , FORMAT=D12C,$
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1949
-
-
-REGION Data Source
+REGION Data Source
 
 FINANCE Structure Diagram
 
@@ -593,11 +531,8 @@ SECTION 01
  ***************
   **************
 
-1950
 
-
-
-A. Master Files and Diagrams
+A. Master Files and Diagrams
 
 EMPDATA Data Source
 
@@ -644,12 +579,8 @@ TRAINING contains sample data about training courses for employees. It consists 
 segment, TRAINING. The PIN field is indexed. The EXPENSES, GRADE, and LOCATION fields
 have the MISSING=ON attribute.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1951
-
-
-COURSE Data Source
+COURSE Data Source
 
 TRAINING Master File
 
@@ -697,10 +628,8 @@ FILENAME=COURSE,   SUFFIX=FOC
   FIELDNAME=DESCRIPTN2,  ALIAS=DESC2,  FORMAT=A40,              $
   FIELDNAME=DESCRIPTN2,  ALIAS=DESC3,  FORMAT=A40,              $
 
-1952
 
-
-COURSE Structure Diagram
+COURSE Structure Diagram
 
 SECTION 01
              STRUCTURE OF FOCUS    FILE COURSE   ON 05/15/03 AT 12.26.05
@@ -751,12 +680,8 @@ JOBLIST Data Source
 
 JOBLIST contains information about jobs. The JOBCLASS field is indexed.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1953
-
-
-LOCATOR Data Source
+LOCATOR Data Source
 
 JOBLIST Master File
 
@@ -801,9 +726,8 @@ SEGNAME=LOCATOR,   SEGTYPE=S1,
  FIELDNAME=ZONE,          ALIAS=ZONE,     FORMAT=A2,            $
  FIELDNAME=BUS_PHONE,     ALIAS=BTEL,     FORMAT=A5,            $
 
-1954
 
-A. Master Files and Diagrams
+A. Master Files and Diagrams
 
 LOCATOR Structure Diagram
 
@@ -857,11 +781,8 @@ SECTION 01
  ***************
   **************
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1955
-
-SALHIST Data Source
+SALHIST Data Source
 
 SALHIST Data Source
 
@@ -897,9 +818,8 @@ VIDEOTRK contains sample data about customer, rental, and purchase information f
 rental business. It can be joined to the MOVIES or ITEMS data source. VIDEOTRK and MOVIES
 are used in examples that illustrate the use of the Maintain Data facility.
 
-1956
 
-VIDEOTRK Master File
+VIDEOTRK Master File
 
 A. Master Files and Diagrams
 
@@ -927,11 +847,8 @@ SEGNAME=RENTALS,   SEGTYPE=S2,   PARENT=TRANSDAT
   FIELDNAME=RETURNDATE, ALIAS=INDATE,       FORMAT=YMD,   $
   FIELDNAME=FEE,        ALIAS=FEE,          FORMAT=F5.2S, $
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1957
-
-VIDEOTRK, MOVIES, and ITEMS Data Sources
+VIDEOTRK, MOVIES, and ITEMS Data Sources
 
 VIDEOTRK Structure Diagram
 
@@ -975,10 +892,8 @@ SECTION 01
 ***************   ***************
  **************    **************
 
-1958
 
-
-A. Master Files and Diagrams
+A. Master Files and Diagrams
 
 MOVIES Master File
 
@@ -1020,12 +935,8 @@ FILENAME=ITEMS,   SUFFIX=FOC
   FIELDNAME=RETAILPR,  ALIAS=PRICE, FORMAT=F6.2,         $
   FIELDNAME=ON_HAND,   ALIAS=NUM,   FORMAT=I5,           $
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1959
-
-
-VIDEOTR2 Data Source
+VIDEOTR2 Data Source
 
 ITEMS Structure Diagram
 
@@ -1074,10 +985,8 @@ FILENAME=VIDEOTR2, SUFFIX=FOC
   FIELDNAME=RETURNDATE,   ALIAS=INDATE,       FORMAT=YMD,         $
   FIELDNAME=FEE,          ALIAS=FEE,          FORMAT=F5.2S,       $
 
-1960
 
-
-VIDEOTR2 Structure Diagram
+VIDEOTR2 Structure Diagram
 
 SECTION 01
      STRUCTURE OF FOCUS    FILE VIDEOTR2 ON 05/15/03 AT 16.45.48
@@ -1133,12 +1042,8 @@ segment, DEMOG01.
 GGORDER contains order information for Gotham Grinds. It consists of two segments,
 ORDER01 and ORDER02.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1961
-
-
-Gotham Grinds Data Sources
+Gotham Grinds Data Sources
 
 GGPRODS contains product information for Gotham Grinds. It consists of one segment,
 PRODS01.
@@ -1178,9 +1083,8 @@ FILENAME=GGDEMOG, SUFFIX=FOC
   FIELD=P65OVR98, ALIAS=E13, FORMAT=I09, TITLE='65 and over',
    DESC='Population 65 and over',$
 
-1962
 
-GGDEMOG Structure Diagram
+GGDEMOG Structure Diagram
 
 SECTION 01
      STRUCTURE OF FOCUS    FILE GGDEMOG  ON 05/15/03 AT 12.26.05
@@ -1215,12 +1119,8 @@ FILENAME=GGORDER, SUFFIX=FOC,$
 SEGNAME=ORDER02, SEGTYPE=KU, PARENT=ORDER01, CRFILE=GGPRODS, CRKEY=PCD,
 CRSEG=PRODS01  ,$
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1963
-
-
-Gotham Grinds Data Sources
+Gotham Grinds Data Sources
 
 GGORDER Structure Diagram
 
@@ -1269,10 +1169,8 @@ FILENAME=GGPRODS, SUFFIX=FOC
   FIELD=UNIT_PRICE, ALIAS=UNITPR, FORMAT=D7.2, TITLE='Unit,Price',
    DESC='Price for one unit',$
 
-1964
 
-
-GGPRODS Structure Diagram
+GGPRODS Structure Diagram
 
 SECTION 01
      STRUCTURE OF FOCUS    FILE GGPRODS  ON 05/15/03 AT 12.26.05
@@ -1321,12 +1219,8 @@ FILENAME=GGSALES, SUFFIX=FOC
   FIELD=BUDDOLLARS, ALIAS=E13, FORMAT=I08, TITLE='Budget Dollars',
    DESC='Total sales quota in dollars',$
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1965
-
-
-Gotham Grinds Data Sources
+Gotham Grinds Data Sources
 
 GGSALES Structure Diagram
 
@@ -1379,11 +1273,8 @@ SECTION 01
 ***************
  **************
 
-1966
 
-
-
-Century Corp Data Sources
+Century Corp Data Sources
 
 A. Master Files and Diagrams
 
@@ -1428,11 +1319,8 @@ GL_ACCOUNT_PARENT is the parent field in the hierarchy. The field GL_ACCOUNT is 
 hierarchy field. The field GL_ACCOUNT_CAPTION can be used as the descriptive caption for
 the hierarchy field.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1967
-
-Century Corp Data Sources
+Century Corp Data Sources
 
 CENTCOMP Master File
 
@@ -1480,10 +1368,8 @@ SECTION 01
  ***************
   **************
 
-1968
 
-
-CENTFIN Master File
+CENTFIN Master File
 
 A. Master Files and Diagrams
 
@@ -1527,12 +1413,8 @@ SECTION 01
  ***************
   **************
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1969
-
-
-Century Corp Data Sources
+Century Corp Data Sources
 
 CENTHR Master File
 
@@ -1580,9 +1462,8 @@ FILE=CENTHR, SUFFIX=FOC
    DESCRIPTION='Beginning Year',
    WITHIN='*Starting Time Period',$
 
-1970
 
-A. Master Files and Diagrams
+A. Master Files and Diagrams
 
   DEFINE BQUARTER/Q=START_DATE;
    TITLE='Beginning,Quarter',
@@ -1632,11 +1513,8 @@ FILE=CENTHR, SUFFIX=FOC
    TITLE='Full Name',
    DESCRIPTION='Full Name: Last, First', WITHIN='POSITION_DESC',$
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1971
-
-Century Corp Data Sources
+Century Corp Data Sources
 
   DEFINE SALARY/D12.2=IF BMONTH LT 4 THEN PAYLEVEL * 12321
    ELSE IF BMONTH GE 4 AND BMONTH LT 8 THEN PAYLEVEL * 13827
@@ -1663,10 +1541,8 @@ SECTION 01
  ***************
   **************
 
-1972
 
-
-CENTINV Master File
+CENTINV Master File
 
 A. Master Files and Diagrams
 
@@ -1717,12 +1593,8 @@ SECTION 01
  ***************
   **************
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1973
-
-
-Century Corp Data Sources
+Century Corp Data Sources
 
 CENTORD Master File
 
@@ -1768,9 +1640,8 @@ FILE=CENTORD, SUFFIX=FOC
  SEGNAME=STOSEG, SEGTYPE=DKU, PARENT=OINFO, CRFILE=CENTCOMP,
   CRKEY=STORE_CODE, CRSEG=COMPINFO,$
 
-1974
 
-CENTORD Structure Diagram
+CENTORD Structure Diagram
 
 SECTION 01
       STRUCTURE OF FOCUS    FILE CENTORD  ON 05/15/03 AT 10.17.52
@@ -1814,12 +1685,8 @@ A. Master Files and Diagrams
                    :............:
                     JOINED  CENTINV
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1975
-
-
-Century Corp Data Sources
+Century Corp Data Sources
 
 CENTQA Master File
 
@@ -1869,9 +1736,8 @@ FILE=CENTQA, SUFFIX=FOC, FDFC=19, FYRT=00
  SEGNAME=INVSEG, SEGTYPE=DKU, PARENT=PROD_SEG, CRFILE=CENTINV,
   CRKEY=PROD_NUM, CRSEG=INVINFO,$
 
-1976
 
-CENTQA Structure Diagram
+CENTQA Structure Diagram
 
 SECTION 01
        STRUCTURE OF FOCUS    FILE CENTQA   ON 05/15/03 AT 10.46.43
@@ -1923,12 +1789,8 @@ FILE=CENTGL ,SUFFIX=FOC
   FIELDNAME=SYS_ACCOUNT, ALIAS=ALINE, FORMAT=A6,
    TITLE='System,Account,Line', MISSING=ON, $
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1977
-
-
-Century Corp Data Sources
+Century Corp Data Sources
 
 CENTGL Structure Diagram
 
@@ -1974,11 +1836,8 @@ SECTION 01
  ***************
   **************
 
-1978
 
-
-
-CENTSTMT Master File
+CENTSTMT Master File
 
 A. Master Files and Diagrams
 
@@ -2009,11 +1868,8 @@ FILE=CENTSTMT, SUFFIX=FOC
   FIELD=BUDGET_YTD, ALIAS=BYTD, FORMAT=D12.0, MISSING=ON,
    TITLE='YTD,Budget', $
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1979
-
-Century Corp Data Sources
+Century Corp Data Sources
 
 CENTSTMT Structure Diagram
 
@@ -2065,10 +1921,8 @@ FIELDNAME=GL_ACCOUNT_CAPTION,   ALIAS=GLCAP,   FORMAT=A30,
 FIELDNAME=SYS_ACCOUNT,          ALIAS=ALINE,   FORMAT=A6,
             TITLE='System,Account,Line', MISSING=ON, $
 
-1980
 
-
-CENTGLL Structure Diagram
+CENTGLL Structure Diagram
 
 SECTION 01
        STRUCTURE OF FOCUS    FILE CENTGLL ON 05/15/03 AT 14.45.44
@@ -2086,11 +1940,6 @@ A. Master Files and Diagrams
  ***************
   **************
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1981
+Century Corp Data Sources
 
-
-Century Corp Data Sources
-
-1982

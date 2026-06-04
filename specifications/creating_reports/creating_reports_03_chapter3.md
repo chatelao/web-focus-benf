@@ -1,5 +1,3 @@
-Chapter3
-
 Sorting Tabular Reports
 
 Sorting enables you to group or organize report information vertically and horizontally, in
@@ -64,11 +62,8 @@ grid or matrix.
 A request can include up to 128 sort phrases consisting of any combination of BY and
 ACROSS phrases.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 87
-
-Sorting Rows
+Sorting Rows
 
 Additional sorting options include:
 
@@ -115,9 +110,6 @@ Sort fields appear when their value changes. However, you can display every sort
 the BYDISPLAY parameter. For an example, see Controlling Display of Sort Field Values on page
 133.
 
-88
-
-3. Sorting Tabular Reports
 
 Syntax:
 
@@ -170,11 +162,8 @@ fields must be in the same path.
 
 Sort phrases cannot contain format information for fields.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 89
-
-Sorting Rows
+Sorting Rows
 
 Each sort field value appears only once in the report. For example, if there are six
 employees in the MIS department, a request that declares
@@ -205,9 +194,6 @@ several sort fields, the sequence of the BY phrases determines the sort order. T
 phrase sets the major sort break, the second BY phrase sets the second sort break, and so
 on. Each successive sort is nested within the previous one.
 
-90
-
-3. Sorting Tabular Reports
 
 Example:
 
@@ -266,11 +252,8 @@ srtfield
 
 Is the name of the sort field.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 91
-
-Sorting Rows
+Sorting Rows
 
 text
 
@@ -316,16 +299,14 @@ request is supported.
 
 HOLD is supported for formats PDF, PS, HTML, DOC, and WP.
 
-92
 
-Example:
+Example:
 
 Displaying a Row Representing Sort Field Values Excluded by a Sort Phrase
 
 The following request displays the top two ED_HRS values and aggregates the values not
 included in a row labeled Others:
 
-3. Sorting Tabular Reports
 
 TABLE FILE EMPLOYEE
 PRINT CURR_SAL LAST_NAME
@@ -371,11 +352,8 @@ ED_HRS         CURR_SAL  LAST_NAME
              $27,062.00  CROSS
 Others       $78,800.00
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 93
-
-Sorting Columns
+Sorting Columns
 
 If the BY HIGHEST phrase is changed to BY LOWEST, all values above the top grouping (50
 ED_HRS and above) are included in the Others category:
@@ -420,9 +398,6 @@ You can produce column totals or summaries for ACROSS sort field values using AC
 TOTAL, SUBTOTAL, SUB-TOTAL, RECOMPUTE, and SUMMARIZE. For details, see Including
 Totals and Subtotals on page 367.
 
-94
-
-3. Sorting Tabular Reports
 
 Syntax:
 
@@ -468,11 +443,8 @@ PRINT LAST_NAME ACROSS DEPARTMENT
 
 prints MIS once, followed by six employee names.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 95
-
-Sorting Columns
+Sorting Columns
 
 Example:
 
@@ -528,9 +500,6 @@ Always displays the title even if there is only one display field.
 
 ON
 
-96
-
-3. Sorting Tabular Reports
 
 OFF
 
@@ -575,11 +544,8 @@ If you change the SUM command to the following:
 
 SUM DOLLARS/D12CM
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 97
-
-Sorting Columns
+Sorting Columns
 
 the field in the heading and the reformatted dollar sales values add report columns to the
 internal matrix, but the ACROSS title Sales is still suppressed.
@@ -601,9 +567,6 @@ internal matrix, so the ACROSS title Sales is not suppressed.
 
 The report output is shown in the following image:
 
-98
-
-3. Sorting Tabular Reports
 
 With the setting ACRSVRBTITL=OFF, the field in the heading adds a report column to the
 internal matrix, and the ACROSS title Sales is not suppressed.
@@ -627,11 +590,8 @@ displays the name of the sort field (ACROSS title), and the second line displays
 that sort field (ACROSS value). The ACROSS field name is left justified above the first ACROSS
 value.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 99
-
-Sorting Columns
+Sorting Columns
 
 If you want to display both the ACROSS title and the ACROSS values on one line in the PDF,
 HTML, EXL2K, or XLSX report output, you can issue the SET ACROSSTITLE = SIDE command.
@@ -681,9 +641,6 @@ If the request does not have any BY fields, the ACROSS title is not moved.
 
 With BYPANEL=OFF, the ACROSS title is not displayed on subsequent panels.
 
-100
-
-3. Sorting Tabular Reports
 
 WRAP is not supported for ACROSSTITLE with SET ACROSSTITLE=SIDE.
 
@@ -727,11 +684,8 @@ $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 101
-
-Sorting Columns
+Sorting Columns
 
 The ACROSS title Category displays to the left of the ACROSS values Coffee, Food, and Gifts.
 The ACROSS title Product displays to the left of the ACROSS values Espresso, Latte, Biscotti,
@@ -739,17 +693,11 @@ and so on. The ACROSS titles are right-justified above the space occupied by the
 names Region, State, and City. Notice that the ACROSS value Croissant wraps onto a second
 line, and the ACROSS title is aligned with the top line. The following shows panel 1:
 
-102
 
-The following shows panel 2:
+The following shows panel 2:
 
-3. Sorting Tabular Reports
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 103
-
-Sorting Columns
+Sorting Columns
 
 Example:
 
@@ -788,21 +736,16 @@ TYPE=REPORT,
 ENDSTYLE
 END
 
-104
 
-The first panel follows:
+The first panel follows:
 
-3. Sorting Tabular Reports
 
 Because of the SET BYPANEL=1 command, the space available above the BY fields on the
 second panel is smaller than the space on the initial panel. The AS name State Code adds
 space for the ACROSS titles, so the titles are not truncated on the second panel:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 105
-
-Sorting Columns
+Sorting Columns
 
 Example:
 
@@ -837,9 +780,6 @@ END
 The output has a grey background color and white text for the ACROSS titles, ACROSS values,
 and column titles.
 
-106
-
-3. Sorting Tabular Reports
 
 Using Multiple Horizontal (ACROSS) Sort Fields
 
@@ -894,11 +834,8 @@ How to Compress Report Lines
 
 SET ACROSSPRT = {NORMAL|COMPRESS}
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 107
-
-Sorting Columns
+Sorting Columns
 
 ON TABLE SET ACROSSPRT{NORMAL|COMPRESS}
 
@@ -939,12 +876,10 @@ ON TABLE SET ACROSSPRT NORMAL
 ON TABLE SET PAGE NOPAGE
 END
 
-108
 
-Each line of the report represents one sale in one region, so at most one column in each row
+Each line of the report represents one sale in one region, so at most one column in each row
 has a non-missing value when ACROSSPRT is set to NORMAL.
 
-3. Sorting Tabular Reports
 
                   Region
                   Midwest     Northeast   Southeast   West
@@ -985,11 +920,8 @@ ON TABLE SET ACROSSPRT COMPRESS
 ON TABLE SET PAGE NOPAGE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 109
-
-Sorting Columns
+Sorting Columns
 
 The output is:
 
@@ -1040,9 +972,6 @@ Reference: Usage Notes for Hiding Null Columns Within ACROSS Groups
 Aligning items in headings with the associated data columns (HEADALIGN) is not supported
 for ACROSS reports.
 
-110
-
-3. Sorting Tabular Reports
 
 Hiding ACROSS columns will not affect items placed in heading elements with spot markers
 or explicit positioning. This means that after ACROSS group columns are hidden, items may
@@ -1085,11 +1014,8 @@ groups within that BY field value are hidden.
 When columns are removed from a page or a panel, the existing columns are resituated to fill
 the missing space.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 111
-
-Sorting Columns
+Sorting Columns
 
 Example:
 
@@ -1115,19 +1041,13 @@ END
 
 With SET HIDENULLACRS=OFF, all columns display:
 
-112
-
-3. Sorting Tabular Reports
 
 Running the request with SET HIDENULLACRS=ON eliminates the ACROSS groups for cities
 with missing data within each region. For example, the Midwest region has no columns for
 Atlanta or Boston:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 113
-
-Sorting Columns
+Sorting Columns
 
 Example:
 
@@ -1172,26 +1092,17 @@ $
 ENDSTYLE
 END
 
-114
 
-Running the request with SET HIDENULLACRS=OFF displays the Espresso column and any
+Running the request with SET HIDENULLACRS=OFF displays the Espresso column and any
 other column containing missing values within the Coffee group:
 
-3. Sorting Tabular Reports
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 115
-
-Sorting Columns
+Sorting Columns
 
 Running the request with SET HIDENULLACRS=ON hides columns with missing data within
 each region. On page 1 (Midwest), both the Capuccino and Espresso columns are hidden,
 while on page 2 (Northeast), only the Espresso column is hidden:
 
-116
-
-3. Sorting Tabular Reports
 
 Example:
 
@@ -1238,17 +1149,11 @@ $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 117
-
-Sorting Columns
+Sorting Columns
 
 Running the request with SET HIDENULLACRS=OFF displays all of the columns:
 
-118
-
-3. Sorting Tabular Reports
 
 Running the request with SET HIDENULLACRS=ON hides the Espresso product and the entire
 Gifts category within each region. On page 1 (Midwest), the Gifts group and the Espresso and
@@ -1270,11 +1175,8 @@ field value. All ACROSS groups that contain any non-null data within the entire 
 they were hidden on some pages within the BY value) will display on the summary lines so that
 associated summary values can be displayed.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 119
-
-Sorting Columns
+Sorting Columns
 
 Grand totals can contain ACROSS columns that have been hidden on some pages within a BY
 field value. Therefore, they are always placed on a new page and presented for all ACROSS
@@ -1289,13 +1191,11 @@ on a new page.
 All totals calculated in columns (ACROSSTOTAL, ROWTOTAL) will be hidden if all of the column
 totals are missing.
 
-120
 
-Example:
+Example:
 
 Generating Column Totals and Hiding Null ACROSS Columns
 
-3. Sorting Tabular Reports
 
 In the following request against the GGSALES data source, REGION is a BY field with a PAGE-
 BREAK, and PRODUCT is the ACROSS field. The DEFINE command creates a field named
@@ -1340,18 +1240,12 @@ END
 Running the request hides the null columns within each REGION page break and generates a
 separate page for the column totals.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 121
-
-Sorting Columns
+Sorting Columns
 
 The following shows pages one through three. On page 1, the Espresso and Capuccino
 columns are hidden. On pages 2 and 3, the Espresso column is hidden:
 
-122
-
-3. Sorting Tabular Reports
 
 The following shows pages four and five. On page 4, the Espresso column is hidden. Page 5 is
 the totals page. The Espresso column is hidden since it was hidden on every detail page.
@@ -1374,11 +1268,8 @@ column on the output.
 For information about styling columns, see Identifying a Report Component in a WebFOCUS
 StyleSheet on page 1249.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 123
-
-Sorting Columns
+Sorting Columns
 
 Example:
 
@@ -1413,9 +1304,6 @@ group.
 
 The request follows:
 
-124
-
-3. Sorting Tabular Reports
 
 SET HIDENULLACRS=OFF
 DEFINE FILE GGSALES
@@ -1463,24 +1351,14 @@ TYPE=DATA, COLUMN = SHOWDOLLARS(6), BACKCOLOR=silver,$
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 125
-
-Sorting Columns
+Sorting Columns
 
 Running the report with SET HIDENULLACRS=OFF shows all columns. A page is generated for
 the West region and subtotals are calculated, even though all of the values are missing:
 
-126
 
-3. Sorting Tabular Reports
-
-Creating Reports With TIBCO® WebFOCUS Language
-
- 127
-
-Sorting Columns
+Sorting Columns
 
 Running the report with SET HIDENULLACRS=ON, shows:
 
@@ -1497,9 +1375,6 @@ Every column is represented on the page with the grand totals.
 
 The output is:
 
-128
-
-3. Sorting Tabular Reports
 
 Hiding Null ACROSS Columns in an FML Request
 
@@ -1507,11 +1382,8 @@ An FML request always has a FOR field that defines the order of specific rows. T
 cannot be used to trigger hiding of null ACROSS columns. However, the request can also have
 a BY field with a PAGE-BREAK option and this can be used to hide null ACROSS columns.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 129
-
-Sorting Columns
+Sorting Columns
 
 Example:
 
@@ -1564,25 +1436,16 @@ TYPE=ACROSSTITLE,
 ENDSTYLE
 END
 
-130
 
-Running the request with SET HIDENULLACRS=OFF generates all columns and a page for all
+Running the request with SET HIDENULLACRS=OFF generates all columns and a page for all
 regions, including the Southeast regions where all values are missing:
 
-3. Sorting Tabular Reports
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 131
-
-Sorting Columns
+Sorting Columns
 
 Running the request with SET HIDENULLACRS=ON hides column Q4 for the Midwest region, Q2
 for the Northeast region, and the entire page for the Southeast region:
 
-132
-
-3. Sorting Tabular Reports
 
 Controlling Display of Sort Field Values
 
@@ -1626,11 +1489,8 @@ ALL
 Displays the relevant BY field value on every line of report output and the relevant ACROSS
 field value on every column of report output.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 133
-
-Controlling Display of Sort Field Values
+Controlling Display of Sort Field Values
 
 Example:
 
@@ -1657,21 +1517,16 @@ END
 
 The output is shown in the following image.
 
-134
 
-Changing BYDISPLAY to ON or BY displays BY field values on every row, as shown in the
+Changing BYDISPLAY to ON or BY displays BY field values on every row, as shown in the
 following image.
 
-3. Sorting Tabular Reports
 
 Changing BYDISPLAY to ACROSS displays ACROSS field values over every column, as shown in
 the following image.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 135
-
-Reformatting Sort Fields
+Reformatting Sort Fields
 
 Changing BYDISPLAY to ALL displays BY field values on every row and ACROSS field values
 over every column, as shown in the following image.
@@ -1707,9 +1562,6 @@ Reformatting is not supported in an ON phrase.
 Reformatting is only applied to the row or column generated by the sort phrase, not to
 subheading, subfooting, or summary rows that reference the sort field.
 
-136
-
-3. Sorting Tabular Reports
 
 Field-based reformatting (the format is stored in a field) is not supported for sort fields. For
 information on field-based reformatting, see Field-Based Reformatting on page 1736.
@@ -1758,11 +1610,8 @@ ON CATEGORY SUBHEAD
 ON TABLE SET PAGE NOPAGE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 137
-
-Manipulating Display Field Values in a Sort Group
+Manipulating Display Field Values in a Sort Group
 
 On the output, the reformatting displays on the BY and ACROSS rows but is not propagated to
 the subheading and subtotal rows:
@@ -1811,9 +1660,6 @@ WITHIN phrases can be used per display field. If one WITHIN phrase is used, it m
 BY phrase. If two WITHIN phrases are used, the first must act on a BY phrase and the second
 on an ACROSS phrase.
 
-138
-
-3. Sorting Tabular Reports
 
 You can also use WITHIN TABLE, which allows you to return the original value within a request
 command. The WITHIN TABLE command can also be used when an ACROSS phrase is needed
@@ -1854,11 +1700,8 @@ AND PCT.UNIT_SOLD WITHIN STORE_CODE AS 'PCT,SOLD,WITHIN,STORE'
 BY STORE_CODE SKIP-LINE BY PROD_CODE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 139
-
-Creating a Matrix Report
+Creating a Matrix Report
 
 The output is:
 
@@ -1882,9 +1725,6 @@ ACROSS DEPARTMENT
 BY CURR_JOBCODE
 END
 
-140
-
-3. Sorting Tabular Reports
 
 The output is:
 
@@ -1939,11 +1779,8 @@ supported in an ON TABLE phrase and should be set in the edasprof server profile
 
 The collation setting applies only to alphanumeric values.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 141
-
-Controlling Collation Sequence
+Controlling Collation Sequence
 
 Syntax:
 
@@ -1993,9 +1830,6 @@ from the first such record.
 In a detail level report, the sort value is the same for each output record. That value will be
 the one for the input record that had the lowest value (collated first).
 
-142
-
-3. Sorting Tabular Reports
 
 When the MIN (or the MAX) value for two or more alphanumeric display fields having a given
 instance of the sort field values is the same by case-insensitive collation, but the two
@@ -2047,11 +1881,8 @@ TABLE FILE COLLATE
 PRINT PROD_NUM PRODNAME
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 143
-
-Controlling Collation Sequence
+Controlling Collation Sequence
 
 On the output, the rows with product numbers 1004 and 1005 differ only in the case of the
 letter d in HD. The record with the lowercase d is before the record with the uppercase D. The
@@ -2092,9 +1923,6 @@ PRINT PROD_NUM
 BY PRODNAME
 END
 
-144
-
-3. Sorting Tabular Reports
 
 In an EBCDIC environment, the records with the lowercase letters sort in front of the records
 with the uppercase letters, so the row with product number 1007 sorts in front of the row with
@@ -2126,11 +1954,8 @@ ZT Digital PDA - Commercial     1034
 650DL Digital Camcorder 150 X   1012
 750SL Digital Camcorder 300 X   1010
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 145
-
-Controlling Collation Sequence
+Controlling Collation Sequence
 
 In an ASCII environment, the records with the uppercase letters sort in front of the records with
 the lowercase letters, so the row with product number 1005 sorts in front of the row with
@@ -2167,9 +1992,6 @@ lowercase letters have the same value, so the row displays only once for multipl
 numbers. For example, the rows with product numbers 1004 and 1005 display with the same
 PRODNAME value and the sort field value for the display is the first one in the input stream.
 
-146
-
-3. Sorting Tabular Reports
 
 The following shows the output in an EBCDIC environment:
 
@@ -2199,11 +2021,8 @@ ZT Digital PDA - Commercial     1034
 650DL Digital Camcorder 150 X   1012
 750SL Digital Camcorder 300 X   1010
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 147
-
-Controlling Collation Sequence
+Controlling Collation Sequence
 
 The following shows the output in an ASCII environment:
 
@@ -2258,9 +2077,6 @@ Running the same request but changing the COLLATION parameter to SRV_CI selects 
 records with any combination of uppercase and lowercase values for H and D. The rows are
 displayed in the order in which they appeared in the data source:
 
-148
-
-3. Sorting Tabular Reports
 
 Product  Product
 Number:  Name:
@@ -2315,11 +2131,8 @@ PRINT LAST_NAME
 BY CURR_SAL
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 149
-
-Specifying the Sort Order
+Specifying the Sort Order
 
 You can specify this same ascending order explicitly by including LOWEST in the sort phrase.
 
@@ -2341,11 +2154,9 @@ PRINT LAST_NAME
 BY HIGHEST CURR_SAL
 END
 
-150
 
-The output is:
+The output is:
 
-3. Sorting Tabular Reports
 
 Specifying Your Own Sort Order
 
@@ -2379,11 +2190,8 @@ OVER value2 [AS 'text2']
 [... OVER valuen [ AS 'textn']]
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 151
-
-Specifying the Sort Order
+Specifying the Sort Order
 
 where:
 
@@ -2438,9 +2246,6 @@ the sorting sequence, and does not appear in the report.
 Sort field values that contain embedded blank spaces should be enclosed in single
 quotation marks (').
 
-152
-
-3. Sorting Tabular Reports
 
 Any sort field value that you do specify in the BY ROWS OVER phrase is included in the
 report, whether or not there is data.
@@ -2485,11 +2290,8 @@ value1
 
 Is the sort field value that is first in the sorting sequence.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 153
-
-Specifying the Sort Order
+Specifying the Sort Order
 
 value2
 
@@ -2539,10 +2341,6 @@ BEST BANK          STATE              ASSOCIATED         BANK ASSOCIATION
 -------------------------------------------------------------------------
      $29,700.00         $18,480.00         $64,742.00         $27,062.00
 
-154
-
-
-3. Sorting Tabular Reports
 
 Selecting and Assigning Column Titles to ACROSS Values
 
@@ -2594,11 +2392,8 @@ Column titles for ACROSS fields appear on a single line of the report output.
 
 Support for AS names for ACROSS values is limited to the TABLE FILE command.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 155
-
-Ranking Sort Field Values
+Ranking Sort Field Values
 
 When you create a HOLD file with SET ASNAMES = ON, the original field name is
 propagated to the output Master File, not the AS name.
@@ -2648,15 +2443,13 @@ digits. For more information, see Using Headings, Footings, Titles, and Labels o
 You can rank aggregated values using the syntax RANKED BY TOTAL. For details, see Sorting
 and Aggregating Report Columns on page 173.
 
-156
 
-Syntax:
+Syntax:
 
 How to Rank Sort Field Values
 
 RANKED [AS 'name'] BY  {HIGHEST|LOWEST} [n]  sortfield [AS 'text']
 
-3. Sorting Tabular Reports
 
 where:
 
@@ -2689,11 +2482,8 @@ PRINT LAST_NAME
 RANKED AS 'Sequence' BY CURR_SAL
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 157
-
-Ranking Sort Field Values
+Ranking Sort Field Values
 
 The output is:
 
@@ -2727,9 +2517,6 @@ by default WebFOCUS does not skip rank numbers. This means that even when multip
 values are assigned the same rank, the rank number for the next group of values is the next
 sequential integer. This method of assigning rank numbers is called dense.
 
-158
-
-3. Sorting Tabular Reports
 
 Some of the relational engines assign rank numbers using a method called sparse. With
 sparse ranking, if multiple data values are assigned the same rank number, the next rank
@@ -2780,11 +2567,8 @@ or
 
 BY {HIGHEST|LOWEST} n sortfield [AS 'text']
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 159
-
-Ranking Sort Field Values
+Ranking Sort Field Values
 
 where:
 
@@ -2824,12 +2608,10 @@ BY DIV
 ON TABLE SET PAGE NOPAGE
 END
 
-160
 
-On the output, six employees are included in rank number 6. With dense ranking, the next rank
+On the output, six employees are included in rank number 6. With dense ranking, the next rank
 number is the next highest integer, 7.
 
-3. Sorting Tabular Reports
 
 RANK           SALARY  DIV   LASTNAME         FIRSTNAME
 ----           ------  ---   --------         ---------
@@ -2872,11 +2654,8 @@ RANK           SALARY  DIV   LASTNAME         FIRSTNAME
                              HIRSCHMAN        ROSE
   12       $58,800.00  WE    GOTLIEB          CHRIS
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 161
-
-Ranking Sort Field Values
+Ranking Sort Field Values
 
 Example:
 
@@ -2919,9 +2698,6 @@ $115,000.00  CE    LASTRA           KAREN
  $49,500.00  CE    ROSENTHAL        KATRINA
              SE    WANG             KATE
 
-162
-
-3. Sorting Tabular Reports
 
 Running the same request with SET RANK=SPARSE produces the following output. Since six
 employees have salary $62,500, that value is counted 6 times so that only 12 lines (seven
@@ -2970,11 +2746,8 @@ Unequal range using the FOR phrase.
 Tiles. These include percentiles, quartiles, or deciles. For details, see Grouping Numeric
 Data Into Tiles on page 167.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 163
-
-Grouping Numeric Data Into Ranges
+Grouping Numeric Data Into Ranges
 
 The FOR phrase is usually used to produce matrix reports and is part of the Financial Modeling
 Language (FML). However, you can also use it to create columnar reports that group sort field
@@ -3020,9 +2793,6 @@ PRINT LAST_NAME
 BY CURR_SAL IN-GROUPS-OF 5000
 END
 
-164
-
-3. Sorting Tabular Reports
 
 The output is:
 
@@ -3075,11 +2845,8 @@ PRINT LAST_NAME
 BY CURR_SAL IN-RANGES-OF 5000
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 165
-
-Grouping Numeric Data Into Ranges
+Grouping Numeric Data Into Ranges
 
 The output is:
 
@@ -3104,16 +2871,14 @@ end
 
 Is a value that identifies the end of a range.
 
-166
 
-Example:
+Example:
 
 Defining Custom Groups of Data Values
 
 The following request displays employee salaries, but it groups them in an arbitrary way. Notice
 that the starting value of each range prints in the report.
 
-3. Sorting Tabular Reports
 
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME
@@ -3142,11 +2907,8 @@ number assigned to each instance of the tile field. You can change the column he
 with an AS phrase. For details on the AS phrase, see Using Headings, Footings, Titles, and
 Labels on page 1517.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 167
-
-Grouping Numeric Data Into Ranges
+Grouping Numeric Data Into Ranges
 
 Tiling is calculated within all of the higher-level sort fields in the request, and restarts
 whenever a sort field at a higher level than the tile field value changes.
@@ -3209,9 +2971,6 @@ HIGHEST
 
 Sorts the data in descending order so that the highest data values are placed in tile 1.
 
-168
-
-3. Sorting Tabular Reports
 
 LOWEST
 
@@ -3256,11 +3015,8 @@ Both k and m limit the number of rows displayed within each sort break in the re
 specify both, the more restrictive value controls the display. If k and m are both greater
 than n (the number of tiles), n is used.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 169
-
-Grouping Numeric Data Into Ranges
+Grouping Numeric Data Into Ranges
 
 Example:
 
@@ -3292,11 +3048,9 @@ BY DEPARTMENT
 BY LOWEST 3 CURR_SAL IN-GROUPS-OF 5 TILES
 END
 
-170
 
-The output is:
+The output is:
 
-3. Sorting Tabular Reports
 
 Note that the request displays three tile groups in each category. Because no data was
 assigned to tile 3 in the MIS category, tiles 1, 2, and 4 display for that category.
@@ -3320,11 +3074,8 @@ The output is:
 Because no data was assigned to tile 3 in the MIS category, only tiles 1 and 2 display for that
 category.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 171
-
-Restricting Sort Field Values by Highest/Lowest Rank
+Restricting Sort Field Values by Highest/Lowest Rank
 
 Reference: Usage Notes for Tiles
 
@@ -3369,9 +3120,6 @@ using BY HIGHEST (or LOWEST).
 
 You can have up to five sort fields with BY HIGHEST or BY LOWEST.
 
-172
-
-3. Sorting Tabular Reports
 
 Syntax:
 
@@ -3419,11 +3167,8 @@ an aggregating display command such as SUM. A non-aggregating display command, s
 PRINT, simply retrieves the data without aggregating it. Records are sorted in either ascending
 or descending sequence, based on your query. Ascending order is the default.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 173
-
-Sorting and Aggregating Report Columns
+Sorting and Aggregating Report Columns
 
 You can also use the BY TOTAL phrase to sort based on temporary values calculated by the
 COMPUTE command.
@@ -3480,11 +3225,9 @@ BY HIGHEST 2 TOTAL AVE.SALARY AS 'HIGHEST,AVERAGE,SALARIES'
 BY CURR_JOBCODE
 END
 
-174
 
-The output is:
+The output is:
 
-3. Sorting Tabular Reports
 
 Example:
 
@@ -3517,11 +3260,8 @@ AS 'HIGHEST,MONTHLY,SALARIES'
 BY CURR_JOBCODE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 175
-
-Sorting and Aggregating Report Columns
+Sorting and Aggregating Report Columns
 
 The output is:
 
@@ -3553,9 +3293,6 @@ When you use BY HIGHEST/LOWEST n with BY TOTAL HIGHEST/LOWEST n, the BY TOTAL
 phrase works on the result of the BY phrase (that is, on the n rows that result from the BY
 phrase).
 
-176
-
-3. Sorting Tabular Reports
 
 Hiding Sort Values
 
@@ -3592,11 +3329,8 @@ END
 
 The output is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 177
-
-Sort Performance Considerations
+Sort Performance Considerations
 
 To list the employees in the order in which they were hired, you would sort the report by the
 HIRE_DATE field and hide the sort field occurrence using the NOPRINT phrase.
@@ -3621,9 +3355,6 @@ of external memory. The syntax is
 
 SET SORTMATRIX = {SMALL|LARGE}
 
-178
-
-3. Sorting Tabular Reports
 
 where:
 
@@ -3664,11 +3395,8 @@ n
 Is the positive number of megabytes of memory available for sorting. The default value is
 512.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 179
-
-Sorting With Multiple Display Commands
+Sorting With Multiple Display Commands
 
 Sorting With Multiple Display Commands
 
@@ -3719,11 +3447,9 @@ CURR_SAL BY DEPARTMENT calculates the total amounts of current salaries in each
 department; SUM CURR_SAL BY DEPARTMENT BY LAST_NAME calculates the total amounts of
 current salaries for each employee name.
 
-180
 
-The output is:
+The output is:
 
-3. Sorting Tabular Reports
 
 Controlling Formatting of Reports With Multiple Display Commands
 
@@ -3763,11 +3489,8 @@ SUM CURR_SAL ED_HRS
 SUM CURR_SAL ED_HRS BY DEPARTMENT
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 181
-
-Sorting With Multiple Display Commands
+Sorting With Multiple Display Commands
 
 With DUPLICATECOL=ON, the output has separate columns for the grand totals and for the
 departmental totals:
@@ -3800,9 +3523,6 @@ END
 With DUPLICATECOL=ON, the output has separate columns for the grand totals, for the
 departmental totals, and for each last name:
 
-182
-
-3. Sorting Tabular Reports
 
 With DUPLICATECOL=OFF, the output has one column for each field. The grand totals are on
 the top row of the report, the departmental totals are on additional rows below the grand
@@ -3854,11 +3574,8 @@ The following request has two display commands:
 
 employee by department).
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 183
-
-Sorting With Multiple Display Commands
+Sorting With Multiple Display Commands
 
 SET DUPLICATECOL = OFF
 TABLE FILE EMPLOYEE
@@ -3885,11 +3602,9 @@ FIRST_NAME column, P4 is the displayed version of the CURR_SAL column (the inter
 has multiple CURR_SAL columns), and P5 is the displayed ED_HRS column (the internal matrix
 has multiple ED_HRS columns).
 
-184
 
-The output is:
+The output is:
 
-3. Sorting Tabular Reports
 
 Reference: Stacking Duplicate Columns in Multi-Verb Requests Based on AS Names
 
@@ -3905,11 +3620,8 @@ In prior releases, the duplicate columns were matched based on field names. Now,
 also be matched based on AS names. An AS name will not be matched to a field name. When
 a field has an AS name, it will only be matched to other fields that have the same AS name.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 185
-
-Sorting With Multiple Display Commands
+Sorting With Multiple Display Commands
 
 Example:
 
@@ -3933,17 +3645,11 @@ VERBSET=3,COLOR=BLACK,$
 ENDSTYLE
 END
 
-186
 
-The partial output is shown in the following image.
+The partial output is shown in the following image.
 
-3. Sorting Tabular Reports
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 187
-
-Improving Efficiency With External Sorts
+Improving Efficiency With External Sorts
 
 Improving Efficiency With External Sorts
 
@@ -3989,9 +3695,6 @@ and external sort on. If the report statistics are printed after the TABLE outpu
 performed as TABLEF; if the statistics are printed before the first screen of TABLE output, it
 went through TABLE processing because it was not convertible to TABLEF.
 
-188
-
-3. Sorting Tabular Reports
 
 Your input is sorted or almost sorted.
 
@@ -4046,11 +3749,8 @@ FOCUS
 
 The internal sorting procedure was used to sort the entire report.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 189
-
-Improving Efficiency With External Sorts
+Improving Efficiency With External Sorts
 
 SQL
 
@@ -4101,9 +3801,6 @@ While internal sorting uses only one work file, FOCSORT (allocated in the EDATEM
 external sort allows up to 31 work files, allocated on one or more disk drives (spindles) or
 directories.
 
-190
-
-3. Sorting Tabular Reports
 
 Warning: Any one or more of these work files may become very large. Count on using many
 times the total disk space required by FOCSORT.
@@ -4148,11 +3845,8 @@ a detectable error (typically, disk space overflow), all of the allocated work f
 There is no explicit way to save them. If there is another type of abnormal termination, srtwk
 files may be left on the disk. You can and should erase them.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 191
-
-Improving Efficiency With External Sorts
+Improving Efficiency With External Sorts
 
 Reference: Sort Work Files on IBM i
 
@@ -4204,9 +3898,6 @@ MVSMSGDF for DFSORT with messages.
 
 SYNCSORT for SyncSort without messages.
 
-192
-
-3. Sorting Tabular Reports
 
 MVSMSGSS for SyncSort with standard messages.
 
@@ -4262,11 +3953,8 @@ When you receive a FOC909 message, it includes a return code:
 
 (FOC909)  CRITICAL ERROR IN EXTERNAL SORT.  RETURN CODE IS: xxxx
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 193
-
-Improving Efficiency With External Sorts
+Improving Efficiency With External Sorts
 
 You may also receive one of the following messages:
 
@@ -4315,9 +4003,6 @@ ERROR OCCURRED IN THE SORT yyyyyyyyzzzzzzzz
 In this case, the return code is yyyyyyyy and it is expressed in hex. The final eight digits
 (zzzzzzzz) should be ignored.
 
-194
-
-3. Sorting Tabular Reports
 
 Translate the return code into decimal and follow the instructions for return codes in a TABLE
 request.
@@ -4369,11 +4054,8 @@ aggropt
 
 Can be one of the following:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 195
-
-Improving Efficiency With External Sorts
+Improving Efficiency With External Sorts
 
 OFF disallows aggregation by an external sort.
 
@@ -4428,11 +4110,9 @@ ITALY       MASERATI
 JAPAN       TOYOTA
 W GERMANY   BMW
 
-196
 
-Note: SUMPREFIX is described in Changing Retrieval Order With Aggregation on page 197.
+Note: SUMPREFIX is described in Changing Retrieval Order With Aggregation on page 197.
 
-3. Sorting Tabular Reports
 
 With SUMPREFIX = FST, the output is:
 
@@ -4481,11 +4161,8 @@ configuration when alphanumeric or smart date data types are aggregated.
 Displays the maximum value in the sort order set by your server code page and
 configuration when alphanumeric or smart date data types are aggregated.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 197
-
-Improving Efficiency With External Sorts
+Improving Efficiency With External Sorts
 
 Example:
 
@@ -4517,9 +4194,6 @@ You can use Mainframe external sort packages to create HOLD files, producing sub
 savings in processing time. The gains are most notable with relatively simple requests against
 large data sources.
 
-198
-
-3. Sorting Tabular Reports
 
 Syntax:
 
@@ -4569,11 +4243,8 @@ attributes that describe the dimension hierarchies, and WebFOCUS has hierarchica
 syntax that can automatically report against these hierarchies and display the results indented
 to show the hierarchical relationships.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 199
-
-Hierarchical Reporting: BY HIERARCHY
+Hierarchical Reporting: BY HIERARCHY
 
 WebFOCUS also supports defining dimension hierarchies in synonyms for non-cube data
 sources that have hierarchical data. Once hierarchical dimensions are defined in a synonym,
@@ -4619,9 +4290,6 @@ hierarchy fields, not dimension properties or measures.
 
 Phase 2, screening the retrieved dimension data.
 
-200
-
-3. Sorting Tabular Reports
 
 WHERE criteria are applied to the leaf nodes of the members selected during phase 1.
 Therefore, dimension properties can be used in WHERE tests. These tests can also
@@ -4675,11 +4343,8 @@ dimname
 
 Is the name of the dimension for which this hierarchy is defined.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 201
-
-Hierarchical Reporting: BY HIERARCHY
+Hierarchical Reporting: BY HIERARCHY
 
 Several fields are used to define a parent/child hierarchy. Each has a PROPERTY attribute that
 describes which hierarchy property it represents. Each hierarchy must have a unique identifier
@@ -4730,9 +4395,6 @@ hfield
 
 Is the hierarchy field.
 
-202
-
-3. Sorting Tabular Reports
 
 parentalias
 
@@ -4776,11 +4438,8 @@ captitle
 
 Is a column title for the caption field.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 203
-
-Hierarchical Reporting: BY HIERARCHY
+Hierarchical Reporting: BY HIERARCHY
 
 Example:
 
@@ -4830,10 +4489,6 @@ MATCH GL_ACCOUNT
    ON MATCH REJECT
    ON NOMATCH INCLUDE
 
-204
-
-
-3. Sorting Tabular Reports
 
 DATA
 1000          R.   +  1Profit Before Tax
@@ -4878,11 +4533,8 @@ DATA
 3200   3000   E.   +  3General + Admin Expenses
 3300   3200   E.   +  4Salaries-Corporate
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 205
-
-Hierarchical Reporting: BY HIERARCHY
+Hierarchical Reporting: BY HIERARCHY
 
 3310   3300   E7301+  5Salaries-Corp Mgmt                   505.00
 3320   3300   E7302+  5Salaries-Administration              505.00
@@ -4940,9 +4592,6 @@ measure_field
 
 Is the field name of a measure.
 
-206
-
-3. Sorting Tabular Reports
 
 BY hierarchy_field HIERARCHY
 
@@ -4994,11 +4643,8 @@ m
 Is the number of descendants of each selected level that will display. The default for m is
 BOTTOM, which displays all descendants.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 207
-
-Hierarchical Reporting: BY HIERARCHY
+Hierarchical Reporting: BY HIERARCHY
 
 byoption
 
@@ -5037,18 +4683,12 @@ TYPE=REPORT,GRID=OFF,$
 ENDSTYLE
 END
 
-208
 
-Partial output is shown in the following image. The accounts are indented to show the
+Partial output is shown in the following image. The accounts are indented to show the
 hierarchical relationships:
 
-3. Sorting Tabular Reports
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 209
-
-Hierarchical Reporting: BY HIERARCHY
+Hierarchical Reporting: BY HIERARCHY
 
 The following is the same request using the GL_ACCOUNT_CAPTION field:
 
@@ -5061,17 +4701,11 @@ TYPE=REPORT,GRID=OFF,$
 ENDSTYLE
 END
 
-210
 
-Partial output is shown in the following image:
+Partial output is shown in the following image:
 
-3. Sorting Tabular Reports
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 211
-
-Hierarchical Reporting: BY HIERARCHY
+Hierarchical Reporting: BY HIERARCHY
 
 Example:
 
@@ -5093,17 +4727,11 @@ TYPE=REPORT,GRID=OFF,$
 ENDSTYLE
 END
 
-212
 
-The output is shown in the following image:
+The output is shown in the following image:
 
-3. Sorting Tabular Reports
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 213
-
-Hierarchical Reporting: BY HIERARCHY
+Hierarchical Reporting: BY HIERARCHY
 
 Example:
 
@@ -5124,16 +4752,9 @@ TYPE=REPORT, GRID=OFF,$
 ENDSTYLE
 END
 
-214
 
-The output is shown in the following image:
+The output is shown in the following image:
 
-3. Sorting Tabular Reports
 
-Creating Reports With TIBCO® WebFOCUS Language
+Hierarchical Reporting: BY HIERARCHY
 
- 215
-
-Hierarchical Reporting: BY HIERARCHY
-
-216

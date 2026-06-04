@@ -1,5 +1,3 @@
-Chapter24
-
 Creating a Graph
 
 Graphs often convey meaning more clearly than data listed in tabular format. Using the
@@ -55,11 +53,8 @@ information to your users. By selecting a tool that is well suited to your parti
 can design the information you deliver to users. One effective option with almost any type of
 data is a graphic presentation.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1743
-
-The GRAPH Command
+The GRAPH Command
 
 Graphs allow you to display multivariate or complex data efficiently, precisely, and in a way that
 a viewer can intuitively grasp. A graph is an effective presentation tool because it presents a
@@ -108,11 +103,9 @@ request take on special meanings that determine the format and layout of the gra
 of graph produced by a GRAPH request depends on the display command used (SUM or
 PRINT), and the sort phrase(s) used (ACROSS or BY).
 
-1744
 
-Similarities Between GRAPH and TABLE
+Similarities Between GRAPH and TABLE
 
-24. Creating a Graph
 
 The GRAPH request elements generally follow the same rules as their TABLE counterparts:
 
@@ -158,11 +151,8 @@ The number of ACROSS values cannot exceed 64.
 
 The RUN option is not available as an alternative to END.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1745
-
-The GRAPH Command
+The GRAPH Command
 
 Example:
 
@@ -198,11 +188,9 @@ BY PRODUCT_DESC AS 'Coffee Types'
 WHERE PRODUCT_DESC EQ 'French Roast' OR 'Hazelnut' OR 'Kona'
 END
 
-1746
 
-The output is:
+The output is:
 
-24. Creating a Graph
 
 Creating an HTML5 Graph
 
@@ -231,11 +219,8 @@ Creating an HTML5 Vertical Bar Graph
 
 The following request against the GGSALES data source creates an HTML5 vertical bar graph:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1747
-
-Creating an HTML5 Graph
+Creating an HTML5 Graph
 
 GRAPH FILE GGSALES
 SUM DOLLARS BUDDOLLARS
@@ -267,9 +252,6 @@ RESIZE
 Respects the dimensions specified by the HAXIS and VAXIS parameters initially, but
 resizes the graph output if the container is resized.
 
-1748
-
-24. Creating a Graph
 
 Selecting a Graph Type
 
@@ -314,11 +296,8 @@ is plotted using a basic line pattern. Use a scatter graph to visualize the dens
 individual data values around particular points or to demonstrate patterns in your data. A
 numeric X-axis, or sort field, will always yield a scatter graph by default.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1749
-
-Selecting a Graph Type
+Selecting a Graph Type
 
 It is important to note that scatter graphs and line graphs are distinguishable from one
 another only by virtue of their X-axis format. Line graphs can appear without connecting
@@ -362,9 +341,6 @@ A linear scale is a scale in which the values increase arithmetically. Each meas
 scale is one unit higher than the one that precedes it. Linear scales are useful when the data
 you are plotting are relatively small in range.
 
-1750
-
-24. Creating a Graph
 
 A logarithmic scale is a scale in which the values increase logarithmically. Each measure along
 the scale represents an exponential increase in the data value. Logarithmic scales are useful
@@ -418,11 +394,8 @@ PRINT A {ACROSS|BY} B
 
 (where B is alphanumeric)
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1751
-
-Selecting a Graph Type
+Selecting a Graph Type
 
 Graph Type
 
@@ -487,9 +460,6 @@ names and does not affect the graph.
 
 AND
 
-1752
-
-24. Creating a Graph
 
 sortfield
 
@@ -516,11 +486,8 @@ END
 
 The output is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1753
-
-Selecting a Graph Type
+Selecting a Graph Type
 
 Syntax:
 
@@ -576,9 +543,6 @@ sortfield
 
 Is the name of an alphanumeric field to be displayed on the X-axis of the graph.
 
-1754
-
-24. Creating a Graph
 
 Example:
 
@@ -610,11 +574,8 @@ ACROSS PRODUCT_DESC
 WHERE PRODUCT_DESC EQ 'French Roast' OR 'Hazelnut' OR 'Kona'
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1755
-
-Selecting a Graph Type
+Selecting a Graph Type
 
 The output is:
 
@@ -641,9 +602,6 @@ AND
 Is an optional phrase used to enhance readability. It can be used between any two field
 names and does not affect the graph.
 
-1756
-
-24. Creating a Graph
 
 sortfield
 
@@ -668,11 +626,8 @@ END
 
 The output is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1757
-
-Selecting a Graph Type
+Selecting a Graph Type
 
 Syntax:
 
@@ -716,11 +671,9 @@ WHERE PRODUCT_CODE EQ 'B144'
 WHERE QUANTITY LT 51
 END
 
-1758
 
-The output is:
+The output is:
 
-24. Creating a Graph
 
 Determining Graph Styles Using LOOKGRAPH
 
@@ -752,11 +705,8 @@ Style Options for Pie Graphs on page 1762.
 
 Style Options for Scatter Graphs on page 1763.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1759
-
-Selecting a Graph Type
+Selecting a Graph Type
 
 Style Options for Three-Dimensional Graphs on page 1763.
 
@@ -822,9 +772,6 @@ VLINE
 
 A vertical connected point plot graph.
 
-1760
-
-24. Creating a Graph
 
 SET LOOKGRAPH=
 
@@ -900,11 +847,8 @@ A stacked vertical bar graph with two separate axes.
 
 A stacked vertical bar graph that shows percentages.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1761
-
-Selecting a Graph Type
+Selecting a Graph Type
 
 SET LOOKGRAPH=
 
@@ -974,13 +918,11 @@ Multiple pie graphs of proportional size.
 
 Multiple, ring-shaped pie graphs.
 
-1762
 
-Reference: Style Options for Scatter Graphs
+Reference: Style Options for Scatter Graphs
 
 Choose one of the following LOOKGRAPH values to change the style of scatter graphs:
 
-24. Creating a Graph
 
 SET LOOKGRAPH=
 
@@ -1045,11 +987,8 @@ A three-dimensional chart with bars.
 A three-dimensional bar graph with octagon-shaped bars that have
 no roots.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1763
-
-Selecting a Graph Type
+Selecting a Graph Type
 
 SET LOOKGRAPH=
 
@@ -1124,9 +1063,6 @@ A stacked vertical area graph that shows percentages.
 
 A horizontal area graph.
 
-1764
-
-24. Creating a Graph
 
 SET LOOKGRAPH=
 
@@ -1188,11 +1124,8 @@ type of graph is to represent stock prices. Each bar represents
 the highest, lowest, and closing prices for a given stock on a
 given day.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1765
-
-Selecting a Graph Type
+Selecting a Graph Type
 
 SET LOOKGRAPH=
 
@@ -1254,9 +1187,6 @@ STOCKHCV
 
 A high-low-volume candle stock chart.
 
-1766
-
-24. Creating a Graph
 
 Reference: Style Options for Polar Charts
 
@@ -1320,11 +1250,8 @@ A bubble chart with a dual axis and labels.
 
 A bubble chart with labels.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1767
-
-Selecting a Graph Type
+Selecting a Graph Type
 
 Reference: Style Options for Spectral Charts
 
@@ -1379,9 +1306,8 @@ only one display field.
 Stacks charts in order to make it easier to read, analyze and
 manage them.
 
-1768
 
-Reference: Options for HTML5-Only Chart Types
+Reference: Options for HTML5-Only Chart Types
 
 The following LOOKGRAPH values are valid only when generating an HTML5 chart:
 
@@ -1389,7 +1315,6 @@ SET LOOKGRAPH
 
 Description
 
-24. Creating a Graph
 
 BUBBLEMAP
 
@@ -1439,11 +1364,8 @@ Selecting Values for the X and Y Axes
 The values you select for the X- and Y-axes determine what data is included in the graph you
 are creating, and how it appears.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1769
-
-Selecting Values for the X and Y Axes
+Selecting Values for the X and Y Axes
 
 The X-axis value is determined by the sort phrase (BY or ACROSS) used in your GRAPH
 request. At least one sort phrase is required in every GRAPH request. When there are multiple
@@ -1477,11 +1399,9 @@ SUM QUANTITY AS 'Ordered Units'
 ACROSS PRODUCT_DESC
 END
 
-1770
 
-The output is:
+The output is:
 
-24. Creating a Graph
 
 Hiding the Display of a Y-Axis Field
 
@@ -1501,11 +1421,8 @@ basic linear regression in your graph.
 
 GTREND is only available for use with scatter charts.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1771
-
-Creating Multiple Graphs
+Creating Multiple Graphs
 
 Example:
 
@@ -1540,9 +1457,6 @@ values in the BY field. The ACROSS field will determine the X-axis. You can sele
 second horizontal category by including multiple BY phrases or an ACROSS and BY phrase
 in the same request.
 
-1772
-
-24. Creating a Graph
 
 With GRMERGE ON, WebFOCUS creates one merged graph.
 
@@ -1597,11 +1511,8 @@ be at least 1 in order to plot the graph. A value greater than one creates neste
 Note: The sum of the sort fields used by GRMULTIGRAPH, GRLEGEND, and GRXAXIS must
 equal the number of sort fields in the graph request.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1773
-
-Creating Multiple Graphs
+Creating Multiple Graphs
 
 The syntax for the GRMULTIGRAPH, GRLEGEND, and GRXAXIS parameters is:
 
@@ -1634,11 +1545,9 @@ ACROSS PRODUCT_ID
 BY PACKAGE_TYPE
 END
 
-1774
 
-The output is:
+The output is:
 
-24. Creating a Graph
 
 Example: Merging Multiple Graphs With GRMERGE ADVANCED
 
@@ -1658,11 +1567,8 @@ ON GRAPH SET GRXAXIS 1
 ON GRAPH SET LOOKGRAPH VBAR
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1775
-
-Creating Multiple Graphs
+Creating Multiple Graphs
 
 The first graph is for region Midwest. The legend distinguishes State-Category combinations by
 color, and the PRODUCT sort field is repeated on the X-axis for each State-Category
@@ -1692,14 +1598,12 @@ ON
 
 OFF
 
-1776
 
-Example: Merging OLAP-Enabled Graphs
+Example: Merging OLAP-Enabled Graphs
 
 The following OLAP request against the EMPLOYEE data source has two BY fields. To merge
 the graphs, the SET OLAPGRMERGE=ON command is issued:
 
-24. Creating a Graph
 
 -OLAP ON
 SET GRAPHEDIT=SERVER
@@ -1733,11 +1637,8 @@ END
 
 The output is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1777
-
-Creating Multiple Graphs
+Creating Multiple Graphs
 
 Displaying Multiple Graphs in Columns
 
@@ -1780,11 +1681,9 @@ END
 
 The output is:
 
-1778
 
-Plotting Dates in Graphs
+Plotting Dates in Graphs
 
-24. Creating a Graph
 
 Numeric fields containing dates are recognized by the field formats specified in the Master
 File. Such fields can be used in ACROSS or BY phrases in GRAPH requests. To review the
@@ -1828,11 +1727,8 @@ WHERE PRODUCT_DESC EQ 'French Roast' OR 'Hazelnut' OR 'Kona' AND
 ORDER_DATE GE '010197'
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1779
-
-Plotting Dates in Graphs
+Plotting Dates in Graphs
 
 The output is:
 
@@ -1862,9 +1758,6 @@ setTextFormatPreset(getX1Label(),xx); // for X Axis
 
 setTextFormatPreset(getY1Label(),xx); // for Y Axis
 
-1780
-
-24. Creating a Graph
 
 The default date format for Data Text is LONG. This only applies to graphs with dates on
 the Y axis. Currently this format is not supported on the X axis. You can overwrite the
@@ -1924,11 +1817,8 @@ After selecting field values for the X and Y axes, you may wish to limit the dat
 your graph. You can do this by creating WHERE statements. A WHERE statement limits data by
 creating parameters the data must satisfy before it is included in the data set.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1781
-
-Displaying Missing Data Values in a Graph
+Displaying Missing Data Values in a Graph
 
 For details on WHERE, WHERE TOTAL, and IF phrases, see Selecting Records for Your Report
 on page 217.
@@ -1963,9 +1853,6 @@ the zero line.
 Graph as gap. In all graph types (bar, line, or area), missing values appear as a gap in the
 graph.
 
-1782
-
-24. Creating a Graph
 
 Dotted line to zero. In line graphs, a dotted line connects the missing value with the
 succeeding value. In 3D bar graphs, solid lines outline the flat bar corresponding to the
@@ -2018,11 +1905,8 @@ setFillMissingData(0); displays missing values as a gap.
 
 setFillMissingData(1); displays missing values as a dotted line to zero.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1783
-
-Displaying Missing Data Values in a Graph
+Displaying Missing Data Values in a Graph
 
 setFillMissingData(2); displays missing values as an interpolated dotted line.
 
@@ -2051,9 +1935,8 @@ END
 
 The output is:
 
-1784
 
-Example:
+Example:
 
 Displaying Missing Values as a Gap
 
@@ -2061,7 +1944,6 @@ The following illustrates how missing values are represented in a bar graph when
 appear as a gap. The CURR_SAL value for Seay is missing, as well as the RAISE value for
 Bryant and Huntley.
 
-24. Creating a Graph
 
 SET LOOKGRAPH=BAR
 SET GRAPHEDIT=SERVER
@@ -2081,11 +1963,8 @@ END
 
 The output is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1785
-
-Displaying Missing Data Values in a Graph
+Displaying Missing Data Values in a Graph
 
 Example:
 
@@ -2113,9 +1992,8 @@ END
 
 The output is:
 
-1786
 
-Example:
+Example:
 
 Displaying Missing Values as an Interpolated Dotted Line
 
@@ -2123,7 +2001,6 @@ The following illustrates how missing values are represented in a line graph whe
 to appear as an interpolated dotted line. The CURR_SAL value for Seay is missing, as well as
 the RAISE value for Bryant and Huntley.
 
-24. Creating a Graph
 
 SET LOOKGRAPH=LINE
 SET GRAPHEDIT=SERVER
@@ -2148,11 +2025,8 @@ Applying Conditional Styling to a Graph
 You can add further value to your graph by using conditional styling to highlight certain defined
 data with specific styles and colors.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1787
-
-Applying Conditional Styling to a Graph
+Applying Conditional Styling to a Graph
 
 For example, you can apply the color red to all departments that did not reach their sales
 quotas and apply the color black to all departments that did reach their sales quotas. In this
@@ -2203,9 +2077,6 @@ color
 Identifies the color that you want to apply to the graph component or subcomponent. For a
 list of valid colors, see Formatting Report Data on page 1697.
 
-1788
-
-24. Creating a Graph
 
 expression
 
@@ -2246,11 +2117,8 @@ is greater than five million.
 
 two hundred thousand.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1789
-
-Linking Graphs to Other Resources
+Linking Graphs to Other Resources
 
 The output is:
 
@@ -2278,9 +2146,6 @@ The syntax is:
 
 SET JSURLS='/file1 [/file2] [/file3]...'
 
-1790
-
-24. Creating a Graph
 
 where:
 
@@ -2335,11 +2200,8 @@ combination of the following methods:
 
 You can specify a constant value, enclosed in single quotation marks.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1791
-
-Linking Graphs to Other Resources
+Linking Graphs to Other Resources
 
 You can specify the name or the position of a graph column.
 
@@ -2382,11 +2244,9 @@ TYPE=DATA,ACROSSCOLUMN=N1,COLOR=LIME,WHEN=N1 LT 400000,FOCEXEC=GRAPH2,$
 ENDSTYLE
 END
 
-1792
 
-The output is:
+The output is:
 
-24. Creating a Graph
 
 Syntax:
 
@@ -2417,11 +2277,8 @@ Are any additional attributes, such as COLUMN, LINE, or ITEM, that are needed to
 the report component that you are formatting. For information on identifying components,
 see Identifying a Report Component in a WebFOCUS StyleSheet on page 1249.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1793
-
-Linking Graphs to Other Resources
+Linking Graphs to Other Resources
 
 url
 
@@ -2474,9 +2331,6 @@ allow values of a component to be passed to the JavaScript function. The functio
 passed value to dynamically determine the results that are returned to the browser. For
 details, see Creating Parameters on page 854.
 
-1794
-
-24. Creating a Graph
 
 Note:
 
@@ -2526,11 +2380,8 @@ command to embed the chart into an HTML document in which the function is define
 When you have an HTML document called by -HTMLFORM, ensure that the file
 extension is .HTM (not .HTML).
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1795
-
-Linking Graphs to Other Resources
+Linking Graphs to Other Resources
 
 For more information about the -HTMLFORM command, see the Developing Reporting
 Applications manual.
@@ -2583,9 +2434,6 @@ This feature does not apply to headings or footings,
 When you create multiple drill-down links, you cannot specify a single drill-down action (for
 example, FOCEXEC or URL) before the first DRILLMENUITEM.
 
-1796
-
-24. Creating a Graph
 
 The menu created by the DRILLMENUITEM keyword is styled using a Cascading Stylesheet file.
 The file is /ibi/WebFOCUSxx/ibi_apps/ibi_html/javaassist/ibi/html/js/multidrill.css, where xx
@@ -2631,11 +2479,8 @@ A WebFOCUS compiled Maintain procedure. The StyleSheet attribute is URL with the
 keyword MNTCON RUN. For details on the syntax, see Linking to a Maintain Data Procedure
 on page 836.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1797
-
-Adding Labels to a Graph
+Adding Labels to a Graph
 
 Creating Parameters
 
@@ -2679,11 +2524,9 @@ FOOTING CENTER
 "For year-end orders"
 END
 
-1798
 
-The output is:
+The output is:
 
-24. Creating a Graph
 
 Adding Vertical (Y-axis) and Horizontal (X-axis) Labels to a Graph
 
@@ -2705,11 +2548,8 @@ You can customize your graph using StyleSheets and SET commands. You can set the
 width and height, set fixed scales for the X and Y axes, enable the Graph Editor, and use
 Graph API calls to further customize your graph.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1799
-
-Applying Custom Styling to a Graph
+Applying Custom Styling to a Graph
 
 For details on customizing graph headings and footings, see Using Headings, Footings, Titles,
 and Labels on page 1517.
@@ -2764,16 +2604,14 @@ Customizing Graphs Using SET Parameters
 The GRAPH environment includes a set of parameters that control the appearance of the graph
 and offer some additional control when you run the request.
 
-1800
 
-For example, the BSTACK parameter enables you to specify that the bars on a bar graph are to
+For example, the BSTACK parameter enables you to specify that the bars on a bar graph are to
 be stacked rather than placed side by side.
 
 Syntax:
 
 How to Use SET Parameters With GRAPH Requests
 
-24. Creating a Graph
 
 To set the parameters that control the GRAPH environment, use the appropriate variation of
 the SET parameter.
@@ -2822,11 +2660,8 @@ chart is produced. When OFF, a
 two-dimensional chart is
 produced. ON is the default.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1801
-
-Applying Custom Styling to a Graph
+Applying Custom Styling to a Graph
 
 Graph SET Parameter
 
@@ -2892,15 +2727,13 @@ OFF, user must supply values for
 HMAX and HMIN. ON is the
 default.
 
-1802
 
-Graph SET Parameter
+Graph SET Parameter
 
 Values
 
 Parameter Function
 
-24. Creating a Graph
 
 HAXIS
 
@@ -2965,11 +2798,8 @@ Specifies the horizontal axis tick
 mark interval when AUTOTICK is
 OFF (see also HCLASS).
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1803
-
-Applying Custom Styling to a Graph
+Applying Custom Styling to a Graph
 
 Graph SET Parameter
 
@@ -3042,15 +2872,13 @@ the vertical axis when the
 automatic scaling is not used
 (VAUTO=OFF).
 
-1804
 
-Graph SET Parameter
+Graph SET Parameter
 
 Values
 
 Parameter Function
 
-24. Creating a Graph
 
 VMIN
 
@@ -3106,11 +2934,8 @@ HAUTO
 Is the automatic scaling facility. If HAUTO is ON, any values for HMAX and HMIN are
 overridden.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1805
-
-Applying Custom Styling to a Graph
+Applying Custom Styling to a Graph
 
 HMAX=nn
 
@@ -3161,9 +2986,6 @@ When entering several SET parameters on one line, separate them with commas.
 If you define limits that do not incorporate all of the data values, OVER or UNDER will be
 displayed to indicate that some of the data extracted is not reflected on the graph.
 
-1806
-
-24. Creating a Graph
 
 Customizing Graphs Using the Graph API and HTML5 JSON Properties
 
@@ -3212,11 +3034,8 @@ Are API calls. They must be included in a GRAPH_SCRIPT block within *GRAPH_SCRIP
 the style section. For reference information about the Graph API, see the WebFOCUS
 Graphics manual.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1807
-
-Applying Custom Styling to a Graph
+Applying Custom Styling to a Graph
 
 JSON
 
@@ -3264,11 +3083,9 @@ where:
 
 4. Centers the title.
 
-1808
 
-The output is:
+The output is:
 
-24. Creating a Graph
 
 Saving a Graph as an Image File
 
@@ -3292,11 +3109,8 @@ sent back to a temporary location on the WebFOCUS Reporting Server (if an Alloca
 been specified), or to the location specified in a FILEDEF command. You may use the
 Allocation Wizard to create a FILEDEF command.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1809
-
-Saving a Graph as an Image File
+Saving a Graph as an Image File
 
 Procedure: How to Save a Graph as an Image File Using GRAPHSERVURL
 
@@ -3354,9 +3168,6 @@ graph_servlet_URL
 Is the URL to invoke the WebFOCUS Graph Servlet. The maximum number of characters is
 256.
 
-1810
-
-24. Creating a Graph
 
 file
 
@@ -3410,11 +3221,8 @@ the procedure.
 
 example,
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1811
-
-Saving a Graph as an Image File
+Saving a Graph as an Image File
 
 <HTML>
 <HEAD>
@@ -3437,11 +3245,6 @@ The resulting launch page looks like this:
 You can now run the report from a browser. To distribute the report using ReportCaster, you
 would schedule the actual procedure, in this case HOLDGIF, to distribute the report.
 
-1812
-
-4. Click the link to run the report. The report looks like this:
-
-24. Creating a Graph
 
 Note: To run this procedure as a Managed Reporting Standard Report, add the -MRNOEDIT
 command to the beginning of the StyleSheet declaration containing the IMAGE attribute. This
@@ -3466,11 +3269,8 @@ Multiple lines
 TYPE=REPORT, IMAGE=PLANT.gif, POSITION=(4 0), SIZE=(5 3), $
 -MRNOEDIT END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1813
-
-Printing a Graph
+Printing a Graph
 
 Reference: Usage Notes for Saving a Graph
 
@@ -3516,9 +3316,6 @@ Procedure: How to Print Your Graph
 
 From the browser, select Print from the File menu.
 
-1814
-
-24. Creating a Graph
 
 Syntax:
 
@@ -3548,10 +3345,6 @@ color count.
 If you use different color settings from this recommended value, your graphs may appear in
 grayscale format.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1815
+Printing a Graph
 
-Printing a Graph
-
-1816

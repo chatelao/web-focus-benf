@@ -1,5 +1,3 @@
-Chapter6
-
 Including Totals and Subtotals
 
 To help interpret detailed information in a report, you can summarize the information
@@ -43,11 +41,8 @@ You can use row totals and column totals in matrix reports (created by using a B
 ACROSS in your report request), rename row and column total titles, and include calculated
 values in your row or column totals. You can also create row totals using ACROSS-TOTAL.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 367
-
-Calculating Row and Column Totals
+Calculating Row and Column Totals
 
 Note that when producing totals in a report, if one field is summed, the format of the row total
 is the same as the format of the field. For example, if the format of the CURR_SAL field is
@@ -104,9 +99,6 @@ optional with COLUMN-TOTAL, and cannot be listed with ROW-TOTAL. Use the followi
 ON TABLE COLUMN-TOTAL [alignment][AS 'name'][field field field]
 ON TABLE ROW-TOTAL [alignment][/format] [AS 'name']
 
-368
-
-6. Including Totals and Subtotals
 
 Example:
 
@@ -150,12 +142,8 @@ BY LAST_NAME
 ON TABLE COLUMN-TOTAL
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 369
-
-
-Calculating Row and Column Totals
+Calculating Row and Column Totals
 
 The output is:
 
@@ -203,18 +191,14 @@ STATE                      $18,480.00                .       $18,480.00
 
 TOTAL                     $108,002.00      $114,282.00      $222,284.00
 
-370
 
-
-
-Example:
+Example:
 
 Including Calculated Values in Row and Column Totals
 
 The following request illustrates the inclusion of the calculated value, PROFIT, in row and
 column totals.
 
-6. Including Totals and Subtotals
 
 TABLE FILE CAR
 SUM DCOST RCOST
@@ -259,12 +243,8 @@ City                         U        D
 Los Angeles             298070  3772014
 San Francisco           312500  3870258
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 371
-
-
-Calculating Row and Column Totals
+Calculating Row and Column Totals
 
 When you specify a row total with ACROSS, the row total is calculated separately for each
 column in each ACROSS group. For example, in the following request the row total has a
@@ -318,9 +298,6 @@ City                    U         D        BU       BD       BU       BD
 Los Angeles        298070   3772014    295637  3669484   593707  7441498
 San Francisco      312500   3870258    314725  3916863   627225  7787121
 
-372
-
-6. Including Totals and Subtotals
 
 If the different display commands do not all specify the same number of fields, some columns
 will not be represented in the row total. For example, in the following request, the second SUM
@@ -367,11 +344,8 @@ City                         U         D        BU
 Los Angeles             298070   3772014    295637      4365721
 San Francisco           312500   3870258    314725      4497483
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 373
-
-Calculating Row and Column Totals
+Calculating Row and Column Totals
 
 Producing Row Totals for Horizontal (ACROSS) Sort Field Values
 
@@ -431,13 +405,11 @@ The output is:
   MYSTERY       17      2      5      7
   SCI/FI         3      0      3      3
 
-374
 
-Reference: Usage Notes for ACROSS-TOTAL
+Reference: Usage Notes for ACROSS-TOTAL
 
 Stacking headings in ACROSS-TOTAL is not supported.
 
-6. Including Totals and Subtotals
 
 Attempting to use ACROSS-TOTAL with other types of fields (alphanumeric, text, and dates)
 produces blank columns.
@@ -482,11 +454,8 @@ these automatic blank lines by issuing the SET DROPBLNKLINE=ON command.
 
 Note: When the request has a PAGE-BREAK command, the GRANDTOTAL is on a page by itself.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 375
-
-Including Section Totals and a Grand Total
+Including Section Totals and a Grand Total
 
 You can use prefix operators with SUBTOTAL, SUB-TOTAL, SUMMARIZE, and RECOMPUTE. For
 details, see Manipulating Summary Values With Prefix Operators on page 388. In addition, you
@@ -538,20 +507,9 @@ FED       MIS          40950036        $1,190.77
 
 TOTAL                                 $18,436.45
 
-376
 
+Including Subtotals
 
-
-
-
-
-
-
-
-
-Including Subtotals
-
-6. Including Totals and Subtotals
 
 You can use the SUBTOTAL and SUB-TOTAL commands to sum individual values, such as
 columns of numbers, each time a named sort field changes value.
@@ -607,11 +565,8 @@ Denotes a list of specific fields to subtotal. This list overrides the default, 
 includes all numeric display fields. The list can included numeric and alphanumeric
 fields.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 377
-
-Including Subtotals
+Including Subtotals
 
 You can use the asterisk (*) wildcard character instead of a field list to indicate that all
 fields, numeric and alphanumeric, should be included on the summary lines.
@@ -667,9 +622,6 @@ WHERE DED_CODE EQ 'FICA' OR 'CITY'
   ON TABLE SET PAGE NOPAGE
 END
 
-378
-
-6. Including Totals and Subtotals
 
 The output is:
 
@@ -709,11 +661,8 @@ WHERE DED_CODE EQ 'FICA' OR 'CITY'
   ON TABLE SET PAGE NOPAGE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 379
-
-Including Subtotals
+Including Subtotals
 
 On the output, the grand total line comes first, then the subtotal for the MIS department
 followed by the detail lines for the MIS department, followed by the subtotal for the
@@ -765,9 +714,6 @@ WebFOCUS, see Using PRINTPLUS on page 1678.
 Subtotals display on the next line if the subtotal text does not fit on the line prior to the
 displayed field columns.
 
-380
-
-6. Including Totals and Subtotals
 
 If a report request has multiple BY phrases, with SUBTOTAL/SUMMARIZE/RECOMPUTE/
 SUB-TOTAL at several levels, and MULTILINES or MULTI-LINES is specified at any one of
@@ -818,11 +764,8 @@ W GERMANY   SEDAN              20   88190        9,247
 
 TOTAL                              208420
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 381
-
-Including Subtotals
+Including Subtotals
 
 Example:
 
@@ -878,9 +821,6 @@ STAT      MIS          40950036          $196.13        $6,099.50
 
 TOTAL                                 $41,521.18      $461,210.75
 
-382
-
-6. Including Totals and Subtotals
 
 Recalculating Values for Subtotal Rows
 
@@ -938,11 +878,8 @@ field1, field2, ...
 Denotes a list of specific fields to be subtotaled after the RECOMPUTE or
 SUMMARIZE. This list overrides the default, which includes all numeric display fields.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 383
-
-Recalculating Values for Subtotal Rows
+Recalculating Values for Subtotal Rows
 
 You can use the asterisk (*) wildcard character instead of a field list to indicate that all
 fields, numeric and alphanumeric, should be included on the summary lines. You can
@@ -992,9 +929,6 @@ PAY_DATE  DEPARTMENT  BANK_ACCT          GROSS          DED_AMT  DG_RATIO
 *TOTAL DEPARTMENT PRODUCTION         $6,055.50        $3,695.55       .61
 *TOTAL PAY_DATE 82/08/31            $11,665.50        $7,350.98       .63
 
-384
-
-6. Including Totals and Subtotals
 
 The last portion of the output is:
 
@@ -1036,11 +970,8 @@ WHERE BANK_ACCT NE 0
 ON DEPARTMENT RECOMPUTE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 385
-
-Summarizing Alphanumeric Columns
+Summarizing Alphanumeric Columns
 
 The first portion of the output is:
 
@@ -1091,9 +1022,6 @@ columns. However, you can include alphanumeric columns on these summary lines by
 specifying the columns you want to display on the summary lines or by using the asterisk
 wildcard character to display all fields on the summary lines.
 
-386
-
-6. Including Totals and Subtotals
 
 The alphanumeric value displayed on a SUBTOTAL or SUB-TOTAL line is either the first,
 minimum, maximum, or last alphanumeric value within the sort group, depending on the value
@@ -1144,11 +1072,8 @@ ON ST RECOMPUTE *
 ON TABLE SET PAGE NOPAGE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 387
-
-Manipulating Summary Values With Prefix Operators
+Manipulating Summary Values With Prefix Operators
 
 On the output, the alphanumeric formula is recomputed using the summed numeric fields.
 However, the product value is taken from the first product within each sort value, as that field
@@ -1197,9 +1122,6 @@ was aggregated using multiple prefix operators in the SUM command, you can use t
 operator along with the field name to differentiate between the fields with multiple operators in
 the summary command.
 
-388
-
-6. Including Totals and Subtotals
 
 Prefix operations on summary lines are performed on the retrieved, selected, and summed
 values that become the detail lines in the report. Unlike field-based prefix operations, they are
@@ -1249,11 +1171,8 @@ MAX.
 
 MIN.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 389
-
-Manipulating Summary Values With Prefix Operators
+Manipulating Summary Values With Prefix Operators
 
 SUM. (means LST. if SUMPREFIX=LST or FST. if SUMPREFIX=FST)
 
@@ -1315,12 +1234,10 @@ pref. field1 [field2 ... fieldn] [pref2. fieldm ...]
 The first prefix operator is applied to field1 through fieldn. The second prefix operator
 is applied to fieldm. Only the fields specified are populated with values on the
 
-390
 
-summary row. Each prefix operator must be separated by a blank space from the
+summary row. Each prefix operator must be separated by a blank space from the
 following field name. For example:
 
-6. Including Totals and Subtotals
 
 'text2'
 
@@ -1366,11 +1283,8 @@ Average list price by rating.
 
 Sum copies by category within the rating field.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 391
-
-Manipulating Summary Values With Prefix Operators
+Manipulating Summary Values With Prefix Operators
 
 Notice that the subtotal row for each rating contains a value only in the LISTPR column, and
 the subtotal row for each category contains a value only in the COPIES column. The grand total
@@ -1426,9 +1340,6 @@ NR      CHILDREN       1   19.95        10.00  SMURFS, THE
 
 TOTAL                 33   31.91
 
-392
-
-6. Including Totals and Subtotals
 
 Example:
 
@@ -1450,11 +1361,8 @@ PRINT COPIES LISTPR WHOLESALEPR TITLE/A23
   ON TABLE SUBTOTAL MIN. COPIES MAX. LISTPR
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 393
-
-Manipulating Summary Values With Prefix Operators
+Manipulating Summary Values With Prefix Operators
 
 The output is exactly the same as in the previous request, except for the grand total line:
 
@@ -1514,9 +1422,6 @@ TABLE FILE GGSALES
    ON TABLE SET PAGE NOPAGE
    END
 
-394
-
-6. Including Totals and Subtotals
 
 On the report output, the summary for each region displays the maximum of the state
 maximum values and the minimum of the state minimum values. The summary for the entire
@@ -1540,11 +1445,8 @@ WHERE DIRECTOR NE ' '
 ON RATING SUBTOTAL SUM. LISTPR MIN. DIRECTOR AS '*A/N:'
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 395
-
-Manipulating Summary Values With Prefix Operators
+Manipulating Summary Values With Prefix Operators
 
 The output is:
 
@@ -1590,9 +1492,6 @@ WHERE DIRECTOR NE ' '
 ON RATING SUBTOTAL SUM. * AS '*All:  '
 END
 
-396
-
-6. Including Totals and Subtotals
 
 The output is:
 
@@ -1645,11 +1544,8 @@ The SET SUMMARYLINES=EXPLICIT command prevents the propagation of SUBTOTAL and
 RECOMPUTE to the grand total. In addition, if all summary commands in the request specify
 field lists, only the specified fields are aggregated and displayed on the grand total line.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 397
-
-Manipulating Summary Values With Prefix Operators
+Manipulating Summary Values With Prefix Operators
 
 When SUBTOTAL and RECOMPUTE are the only summary commands used in the request, a
 grand total line is produced only if it is explicitly specified in the request using the ON TABLE
@@ -1701,9 +1597,6 @@ total line unless the COLUMN-TOTAL phrase lists specific fields. If the COLUMN-T
 phrase lists specific fields, those fields and any fields propagated by SUB-TOTAL or
 SUMMARIZE commands are totaled.
 
-398
-
-6. Including Totals and Subtotals
 
 A summary command with a list of field names populates only those columns on the
 associated summary line.
@@ -1752,11 +1645,8 @@ ON RATING SUBTOTAL COPIES
 ON CATEGORY SUBTOTAL LISTPR
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 399
-
-Manipulating Summary Values With Prefix Operators
+Manipulating Summary Values With Prefix Operators
 
 Running the request with SUMMARYLINES=NEW subtotals COPIES only for the RATING sort
 break and subtotals LISTPR only for the CATEGORY sort break but propagates both to the
@@ -1794,9 +1684,6 @@ G       CHILDREN       7  101.89        54.49
 
 TOTAL                                   54.49
 
-400
-
-6. Including Totals and Subtotals
 
 Example:
 
@@ -1846,11 +1733,8 @@ ON TABLE SUBTOTAL WHOLESALEPR
 ON TABLE COLUMN-TOTAL
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 401
-
-Manipulating Summary Values With Prefix Operators
+Manipulating Summary Values With Prefix Operators
 
 The grand total line displays a column total only for the WHOLESALEPR column because of the
 ON TABLE SUBTOTAL command:
@@ -1900,9 +1784,6 @@ column, regardless of the prefix operator specified for it, applies these input 
 expression specified in the COMPUTE command. Therefore, any supported prefix operator can
 be specified for the recomputed report column without affecting the calculated value.
 
-402
-
-6. Including Totals and Subtotals
 
 All fields used in the COMPUTE command must be displayed by the RECOMPUTE or
 SUMMARIZE command in order to be populated. If any field used in the expression is not
@@ -1942,11 +1823,8 @@ West        Coffee          356763      4473517        4523963     -50446
 
 TOTAL                      1371188     17192638       17013960     178678
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 403
-
-Manipulating Summary Values With Prefix Operators
+Manipulating Summary Values With Prefix Operators
 
 The following request uses prefix operators in the RECOMPUTE command to calculate the
 maximum DOLLARS and the minimum BUDDOLLARS and then recompute DIFF. No matter
@@ -1999,9 +1877,6 @@ AND COMPUTE DIFF/I10 = DOLLARS-BUDDOLLARS;
  ON TABLE RECOMPUTE AVE.
 END
 
-404
-
-6. Including Totals and Subtotals
 
 The output is:
 
@@ -2057,12 +1932,8 @@ WHERE YEAR EQ '1996' OR '1997'
   ON REGION SUB-TOTAL MIN. AS '*MIN.:'
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 405
-
-
-Manipulating Summary Values With Prefix Operators
+Manipulating Summary Values With Prefix Operators
 
 In the following report output, some of the values have been manually italicized or bolded for
 clarity:
@@ -2077,9 +1948,6 @@ Subtotal values in italic are average dollar sales generated by the command ON S
 TOTAL AVE. DOLLARS. This is the second summary command, and therefore propagates to
 the DOLLARS column of summary lines for the YEAR sort field.
 
-406
-
-6. Including Totals and Subtotals
 
 Subtotal values in boldface are minimums within their sort groups generated by the
 command ON REGION SUB-TOTAL MIN. This is the last summary command, and therefore
@@ -2090,11 +1958,8 @@ Combinations of Summary Commands
 
 You can specify a different summary operation for each sort break (BY or ACROSS field).
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 407
-
-Combinations of Summary Commands
+Combinations of Summary Commands
 
 If you have multiple summary commands for the same sort field, the following message
 displays and the last summary command specified in the request is used:
@@ -2138,9 +2003,6 @@ the grand total and are not propagated to any other line on the report. On the g
 SUMMARIZE operates as a RECOMPUTE command, and SUB-TOTAL operates as a SUBTOTAL
 command.
 
-408
-
-6. Including Totals and Subtotals
 
 Example:
 
@@ -2195,11 +2057,8 @@ and WHOLESALEPR values because the SUBTOTAL command controls the grand total lin
 
 TOTAL                              129.85        60.99           12.97
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 409
-
-Combinations of Summary Commands
+Combinations of Summary Commands
 
 You can change the operation performed at the grand total level by adding the following
 command to the request:
@@ -2234,9 +2093,6 @@ ON COPIES SUB-TOTAL AS '*SUB: '
 ON RATING RECOMPUTE AS '*REC:  '
 END
 
-410
-
-6. Including Totals and Subtotals
 
 The output is:
 
@@ -2289,11 +2145,8 @@ WHERE COPIES LT 3
   ON TABLE NOTOTAL
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 411
-
-Combinations of Summary Commands
+Combinations of Summary Commands
 
 On the output:
 
@@ -2340,9 +2193,6 @@ WHERE COPIES LT 3
   ON COPIES SUB-TOTAL AS '*SUB:  '
 END
 
-412
-
-6. Including Totals and Subtotals
 
 SUB-TOTAL propagates to all of the columns that would otherwise be unpopulated. The grand
 total line inherits the RECOMPUTE command for the fields listed in its field list, and the SUB-
@@ -2393,11 +2243,8 @@ ACROSS acrossfieldsumoption [field1field2 ... fieldn]
 
 or
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 413
-
-Producing Summary Columns for Horizontal Sort Fields
+Producing Summary Columns for Horizontal Sort Fields
 
 ACROSS acrossfield
 
@@ -2452,9 +2299,6 @@ Summary commands specified in an ON TABLE phrase operate on columns, not rows.
 With ACROSS, summary columns only display at the end of the ACROSS group (when the
 higher-level ACROSS field changes value).
 
-414
-
-6. Including Totals and Subtotals
 
 Different operations from two ON phrases for the same sort break display in the same
 summary column, and allow a mixture of operations on summary columns.
@@ -2501,11 +2345,8 @@ RECOMPUTE/SUMMARIZE or SUBTOTAL/SUB-TOTAL. For a computed field, the prefix
 operator is not applied, and the value is recalculated using the expression in the
 COMPUTE command and the values from the summary line.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 415
-
-Producing Summary Columns for Horizontal Sort Fields
+Producing Summary Columns for Horizontal Sort Fields
 
 If an ACROSS field has an ACROSS-TOTAL phrase and a summary command with a
 prefix operator, the prefix operator is applied, not the ACROSS-TOTAL.
@@ -2537,11 +2378,9 @@ ON TABLE SUMMARIZE AS 'Grand Total'
 
 END
 
-416
 
-The output is:
+The output is:
 
-6. Including Totals and Subtotals
 
 Example:
 
@@ -2559,11 +2398,8 @@ WHERE REGION EQ 'Midwest' OR 'West'
 ON TABLE SET PAGE NOPAGE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 417
-
-Producing Summary Columns for Horizontal Sort Fields
+Producing Summary Columns for Horizontal Sort Fields
 
 The output shows that only the rows with the UNITS values are subtotaled.
 
@@ -2611,9 +2447,6 @@ changes value.
 The values of DOLLARS, UNITS, and DPERU for the Midwest and West regions under the
 Gifts category.
 
-418
-
-6. Including Totals and Subtotals
 
 PAGE   1.1
 
@@ -2667,11 +2500,8 @@ The first panel of output shows:
 The values of DOLLARS and UNITS for the Midwest and West regions under the Food
 category.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 419
-
-Producing Summary Columns for Horizontal Sort Fields
+Producing Summary Columns for Horizontal Sort Fields
 
 The summary column, which has a value just for the DOLLARS row. Note that for ACROSS,
 the summary column for REGION appears only after the higher-level ACROSS field,
@@ -2713,9 +2543,6 @@ and a SUBTOTAL command on the CATEGORY field. The SUMMARIZE command specifies
 average DOLLARS and minimum UNITS. The SUBTOTAL command specifies minimum
 DOLLARS.
 
-420
-
-6. Including Totals and Subtotals
 
 SET BYPANEL = ON
 TABLE FILE GGSALES
@@ -2760,11 +2587,8 @@ Performing Calculations at Sort Field Breaks
 You can use the RECAP and COMPUTE commands to create subtotal values in a calculation.
 The subtotal values are not displayed. Only the result of the calculation is shown on the report.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 421
-
-Performing Calculations at Sort Field Breaks
+Performing Calculations at Sort Field Breaks
 
 Syntax:
 
@@ -2814,9 +2638,6 @@ technique is used for subtotals and grand totals, but not for subfootings or COM
 The field names in the expression must be fields that appear on the report. That is, they
 must be display fields or sort control fields.
 
-422
-
-6. Including Totals and Subtotals
 
 Each RECAP value displays on a separate line. However, if the request contains a RECAP
 command and SUBFOOT text, the RECAP value displays only in the SUBFOOT text and must
@@ -2852,11 +2673,8 @@ ON DEPARTMENT RECAP DEPT_NET/D8.2M = GROSS-DED_AMT;
 WHEN PAY_DATE GT 820101
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 423
-
-Performing Calculations at Sort Field Breaks
+Performing Calculations at Sort Field Breaks
 
 The output is:
 
@@ -2907,9 +2725,6 @@ ON AREA UNDER-LINE RECAP
 AREA_RATIO=RETURNS/UNIT_SOLD;
 END
 
-424
-
-6. Including Totals and Subtotals
 
 The output is:
 
@@ -2961,11 +2776,8 @@ To suppress grand totals, add the following syntax to your request:
 
 ON TABLE NOTOTAL
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 425
-
-Suppressing Grand Totals
+Suppressing Grand Totals
 
 Example:
 
@@ -2983,11 +2795,9 @@ ON BANK_ACCT SUB-TOTAL
 ON TABLE NOTOTAL
 END
 
-426
 
-The output is:
+The output is:
 
-6. Including Totals and Subtotals
 
 Conditionally Displaying Summary Lines and Text
 
@@ -2996,11 +2806,8 @@ specify WHEN criteria to control the conditions under which summary lines appear
 vertical (BY) sort field value. WHEN is supported with SUBFOOT, SUBHEAD, SUBTOTAL, SUB-
 TOTAL, SUMMARIZE, RECOMPUTE, and RECAP.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 427
-
-Conditionally Displaying Summary Lines and Text
+Conditionally Displaying Summary Lines and Text
 
 Example:
 
@@ -3051,4 +2858,3 @@ West         Coffee           356763       4473517
 
 TOTAL                        3688991      46156290
 
-428

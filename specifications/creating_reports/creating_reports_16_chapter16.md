@@ -1,5 +1,3 @@
-Chapter16
-
 Formatting Reports: An Overview
 
 To create an effective report, you need to account for:
@@ -45,11 +43,8 @@ color (of the foreground and the background), position, and justification. You c
 boxes or lines around data. You can use these properties to emphasize critical values and
 to draw attention to important data relationships.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1187
-
-What Kinds of Formatting Can I Do?
+What Kinds of Formatting Can I Do?
 
 You can also select which character to use to mark decimal position, using either a period
 (.) or a comma (,), to match the convention of the country in which the report will be read.
@@ -90,9 +85,6 @@ Document Format), Excel 2000, or PostScript, to suit the viewing and processing 
 the readers. For more information and a list of all the display formats available to you, see
 Choosing a Display Format on page 575.
 
-1188
-
-16. Formatting Reports: An Overview
 
 Making a report accessible to all users regardless of their physical abilities, their browser
 type, or their screen settings. For example, you can design a report fonts, colors, layout,
@@ -110,11 +102,8 @@ The following pair of reports shows order number, order date, and total order re
 Century Corporation in the third quarter of 2000. Compare the formatted version (on the left)
 with the unformatted version (on the right):
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1189
-
-How to Specify Formatting in a Report
+How to Specify Formatting in a Report
 
 Consider how the formatting applied to the version on the left:
 
@@ -161,16 +150,14 @@ There are different kinds of style sheets that you can use to format a report. Y
 about them and how to choose between them in How to Choose a Type of Style Sheet on page
 1193.
 
-1190
 
-Example:
+Example:
 
 Specifying Formatting for the Order Revenue Report
 
 This report displays the order number, order date, and total order revenue for Century
 Corporation for the third quarter of 2000:
 
-16. Formatting Reports: An Overview
 
 The report is formatted by a WebFOCUS StyleSheet and by formatting commands in the report
 procedure itself. The procedure, Revenue.fex, is shown below, followed by the StyleSheet file,
@@ -178,11 +165,8 @@ OrderRev.sty:
 
 Revenue.fex
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1191
-
-How to Specify Formatting in a Report
+How to Specify Formatting in a Report
 
    TABLE FILE CENTORD
 1.HEADING
@@ -241,9 +225,6 @@ to the page number (the sixth line of the heading).
 This is only a summary of what these formatting instructions do. You can find complete
 explanations in the topics that describe each formatting feature.
 
-1192
-
-16. Formatting Reports: An Overview
 
 The formatting logic that you apply to your own reports may be briefer or more extensive than
 this example, depending on the report and on what formatting you choose to apply.
@@ -287,11 +268,8 @@ wants reports to conform to these same presentation guidelines.
 You want to apply the same formatting to other kinds of HTML documents in your
 enterprise.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1193
-
-Standard and Legacy Formatting
+Standard and Legacy Formatting
 
 Standard and Legacy Formatting
 
@@ -337,9 +315,6 @@ inherit the formatting, while enabling you to override the inherited values when
 designing your StyleSheet to take advantage of inheritance, you can write less code and
 can quickly update formatting for multiple report components.
 
-1194
-
-16. Formatting Reports: An Overview
 
 For example, if you declare all the report data to be blue, all data in all columns will be
 displayed as blue. If you also declare all vertical sort (BY) columns to be orange, this will
@@ -382,11 +357,8 @@ Internet resources. For more information, see Linking to a URL on page 825.
 Execute JavaScript functions to perform additional analysis of report data. For more
 information, see Linking to a JavaScript Function on page 833.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1195
-
-Navigating From a Report to Other Resources
+Navigating From a Report to Other Resources
 
 Use a table of contents to jump directly to the data that interests that reader. The report
 generates the table of contents dynamically based on sort values, and enables the reader
@@ -398,4 +370,3 @@ Jump from one report page to the next, to the top of the current report page, or
 beginning or end of the report. For more information, see Linking Report Pages on page
 1022.
 
-1196

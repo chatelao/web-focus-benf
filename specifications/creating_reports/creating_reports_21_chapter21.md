@@ -1,5 +1,3 @@
-Chapter21
-
 Laying Out the Report Page
 
 You can customize page layout using StyleSheet attributes. The page layout attributes
@@ -58,11 +56,8 @@ You can select the page size, page orientation (portrait or landscape), and page
 report. The default page size is letter (8.5 x 11 inches), but you can select from many other
 sizes, including legal and envelopes.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1331
-
-Selecting Page Size, Orientation, and Color
+Selecting Page Size, Orientation, and Color
 
 Reference: Page Size, Orientation, and Color Attributes
 
@@ -123,9 +118,6 @@ How to Set Page Size
 
 This syntax applies to a PDF, PS, PPT, or PPTX report.
 
-1332
-
-21. Laying Out the Report Page
 
 [TYPE=REPORT,] PAGESIZE={size|LETTER}, $
 
@@ -187,11 +179,8 @@ WIDESCREEN
 
 13.333 x 7.5 inches.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1333
-
-Selecting Page Size, Orientation, and Color
+Selecting Page Size, Orientation, and Color
 
 Value
 
@@ -273,9 +262,6 @@ ENVELOPE-MONARCH
 
 3.875 x 7.5 inches.
 
-1334
-
-21. Laying Out the Report Page
 
 Value
 
@@ -351,11 +337,8 @@ TYPE=REPORT
 
 Applies the page orientation to the entire report. Not required, as it is the default.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1335
-
-Selecting Page Size, Orientation, and Color
+Selecting Page Size, Orientation, and Color
 
 PORTRAIT
 
@@ -407,16 +390,14 @@ color
 
 Is a supported color. For a list of values, see Formatting Report Data on page 1697.
 
-1336
 
-Example:
+Example:
 
 Setting Page Color
 
 This request sets the page color of an HTML report with internal cascading style sheet to
 silver.
 
-21. Laying Out the Report Page
 
 SET HTMLCSS = ON
 TABLE FILE CENTORD
@@ -443,11 +424,8 @@ position.
 
 Reference: Page Margin Attributes
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1337
-
-Setting Page Margins
+Setting Page Margins
 
 Attribute
 
@@ -519,9 +497,6 @@ CM, which specifies the unit of measure as centimeters.
 PTS, which specifies the unit of measure as points. Points is a common measurement
 scale for typefaces.
 
-1338
-
-21. Laying Out the Report Page
 
 Syntax:
 
@@ -562,11 +537,8 @@ the print area has 0.25 inch margins all around, set the margins to 0.25 inches,
 
 The default value for all margins is 0.25 inches.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1339
-
-Positioning a Report Component
+Positioning a Report Component
 
 Example:
 
@@ -598,14 +570,12 @@ report component.
 This topic addresses column positioning using the StyleSheet attribute POSITION. For details
 on the column positioning command IN, see Positioning a Column on page 1367.
 
-1340
 
-For details on positioning a heading or footing, or an element in a heading or footing, see Using
+For details on positioning a heading or footing, or an element in a heading or footing, see Using
 Headings, Footings, Titles, and Labels on page 1517.
 
 Reference: Positioning Attributes
 
-21. Laying Out the Report Page
 
 Attribute
 
@@ -670,11 +640,8 @@ Starts the column at the specified distance to the right of the default starting
 By default, text items and alphanumeric fields are left-justified in a column, and numeric
 fields are right-justified in a column.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1341
-
-Positioning a Report Component
+Positioning a Report Component
 
 -
 
@@ -708,16 +675,14 @@ END
 
 The output is:
 
-1342
 
-Example:
+Example:
 
 Specifying a Relative Starting Position for a Column
 
 This request positions the column title and data for the QUANTITY field two inches from the
 default position, in this case, two inches from the end of the preceding column.
 
-21. Laying Out the Report Page
 
 SET ONLINE-FMT = PDF
 TABLE FILE GGORDER
@@ -743,11 +708,8 @@ TYPE=REPORT, {TOPGAP|BOTTOMGAP}=gap, $
 TYPE=type, [COLUMN=identifier,|ACROSSCOLUMN=acrosscolumn,]
  {LEFTGAP|RIGHTGAP}=gap, $
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1343
-
-Positioning a Report Component
+Positioning a Report Component
 
 TYPE=type, [COLUMN=identifier,|ACROSSCOLUMN=acrosscolumn,]
  {LEFTGAP|RIGHTGAP}=gap, $
@@ -801,9 +763,6 @@ RIGHTGAP
 
 Indicates how much space to add to the right of a report column.
 
-1344
-
-21. Laying Out the Report Page
 
 Note: For TOPGAP, BOTTOMGAP, LEFTGAP, and RIGHT GAP, you must specify a value of at
 least 0.013889 (the decimal size of a point in inches). If you specify a value less than this,
@@ -830,11 +789,8 @@ END
 
 The data is spaced for readability:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1345
-
-Arranging Columns on a Page
+Arranging Columns on a Page
 
 Example:
 
@@ -877,11 +833,9 @@ matrix.
 
 Specify the absolute or relative starting position for a column.
 
-1346
 
-Reference: Column Arrangement Features
+Reference: Column Arrangement Features
 
-21. Laying Out the Report Page
 
 Feature
 
@@ -958,11 +912,8 @@ can use a SET parameter instead of a StyleSheet to set the value of SQUEEZE. If 
 conflicting StyleSheet and SET values, the StyleSheet overrides the SET. For details on SET,
 see the Developing Reporting Applications manual.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1347
-
-Arranging Columns on a Page
+Arranging Columns on a Page
 
 When SQUEEZE is set to ON (the default), StyleSheet column width is ignored. Column width is
 determined using your browser's default settings.
@@ -1016,9 +967,6 @@ Note:
 In an HTML report that sets SQUEEZE and uses conditional styling for some columns, use
 TYPE=DATA, COLUMN=n, not TYPE=REPORT, COLUMN=n.
 
-1348
-
-21. Laying Out the Report Page
 
 SQUEEZE is not supported for columns created with the OVER phrase.
 
@@ -1057,11 +1005,8 @@ TYPE=REPORT, GRID=OFF, SQUEEZE=OFF, FONT=COURIER, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1349
-
-Arranging Columns on a Page
+Arranging Columns on a Page
 
 Blank spaces pad the column width up to the length of the field format for Category (A11) and
 Product (A16). The HTML report is:
@@ -1093,9 +1038,6 @@ ON
 Determines column width based on the widest data value or column title, whichever is
 greater.
 
-1350
-
-21. Laying Out the Report Page
 
 OFF
 
@@ -1124,11 +1066,8 @@ Asterisks (*) in place of the field value.
 
 Note: SQUEEZE is not supported for columns created with the OVER phrase.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1351
-
-Arranging Columns on a Page
+Arranging Columns on a Page
 
 Example:
 
@@ -1163,9 +1102,6 @@ cannot be changed.
 This feature applies to an HTML report. It requires you to set the STYLEMODE parameter to
 FIXED.
 
-1352
-
-21. Laying Out the Report Page
 
 Syntax:
 
@@ -1214,11 +1150,8 @@ Changing Column Order
 You can change the order in which vertical sort (BY) columns are displayed in a report. This
 feature does not apply to horizontal sort (ACROSS) rows or stacked (OVER) columns.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1353
-
-Arranging Columns on a Page
+Arranging Columns on a Page
 
 Syntax:
 
@@ -1267,12 +1200,10 @@ TYPE=REPORT, COLUMN=LINEPRICE, SEQUENCE=1, $
 ENDSTYLE
 END
 
-1354
 
-LINEPRICE (Sales) is now the first column, PRODCAT (Product) is the second column (as it was
+LINEPRICE (Sales) is now the first column, PRODCAT (Product) is the second column (as it was
 by default), and SNAME (Store Name) is the third column. The PDF report is:
 
-21. Laying Out the Report Page
 
 Stacking Columns
 
@@ -1300,11 +1231,8 @@ Modeling Language (FML) on page 1817.
 
 Alternating back colors are not supported for stacked columns.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1355
-
-Arranging Columns on a Page
+Arranging Columns on a Page
 
 The difference between FOLD-LINE and OVER is that FOLD-LINE begins the second line (not the
 second column) just underneath the first line, but slightly indented. OVER literally stacks the
@@ -1352,11 +1280,9 @@ ON TABLE SET ONLINE-FMT PDF
 ON TABLE SET PAGE-NUM OFF
 END
 
-1356
 
-The report is:
+The report is:
 
-21. Laying Out the Report Page
 
 Without FOLD-LINE, the report looks like this:
 
@@ -1393,11 +1319,8 @@ TYPE=REPORT, GRID=OFF,$
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1357
-
-Arranging Columns on a Page
+Arranging Columns on a Page
 
 With the use of OVER, the columns GROSS, DED_AMT, and NET are stacked for readability:
 
@@ -1408,9 +1331,6 @@ Alignment of Fields in Reports Using OVER in PDF Report Output
 When columns are placed on report output, they are separated by gaps. You can control the
 size of the gaps between columns with the LEFTGAP and RIGHTGAP StyleSheet attributes.
 
-1358
-
-21. Laying Out the Report Page
 
 By default, the gaps between columns are placed outside of the boundaries reserved for the
 fields on the report output. Therefore, the width or squeeze value defined for a field defines
@@ -1429,11 +1349,8 @@ By default, column titles are placed to the left of the field values in a report
 OVER Title and the OVER Value each are measured by the combination of three parameters,
 LEFTGAP, WIDTH, and RIGHTGAP:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1359
-
-Arranging Columns on a Page
+Arranging Columns on a Page
 
 With OVER and blank AS names, each data value becomes a data cell that can be used to
 construct rows and columns within the data lines of the report. In order to align data values on
@@ -1468,33 +1385,25 @@ ON
 
 Places the left and right gaps internal to the defined field width.
 
-1360
 
-Example:
+Example:
 
 Comparing External Gaps With Internal Gaps
 
 With GAPINTERNAL=OFF, you must account for the accumulation of left and right gaps as well
 as the field widths when defining widths of stacked columns.
 
-21. Laying Out the Report Page
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 1361
-
-Arranging Columns on a Page
+Arranging Columns on a Page
 
 With GAPINTERNAL=ON, the defined WIDTH represents the entire space used by the given data
 cell or column. This takes the cumulative effect out as the OVER values proceed across a row.
 
-1362
 
-Example:
+Example:
 
 Using GAPINTERNAL in a Report
 
-21. Laying Out the Report Page
 
 The following request against the GGSALES data source places the PRODUCT field over the
 UNITS and DOLLARS fields and sets GAPINTERNAL to OFF:
@@ -1523,41 +1432,30 @@ TYPE=REPORT, COLUMN=DOLLARS, SQUEEZE=1, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1363
-
-Arranging Columns on a Page
+Arranging Columns on a Page
 
 The widths specified for UNITS and DOLLARS are one inch each, while the PRODUCT field is
 specified to be two inches. With GAPINTERNAL=OFF, the LAYOUTGRID shows that the widths
 used to place the columns are greater than the widths specified in the request. The additional
 space presented by the external leftgap and rightgap accounts for this effect:
 
-1364
-
-21. Laying Out the Report Page
 
 The heading borders are aligned on the right of the report because of the SQUEEZE=ON
 attribute in the StyleSheet. Extra space was added to the report to align the headings. If you
 change the StyleSheet declaration for the PRODUCTS field to JUSTIFY=RIGHT, you can see that
 the extra space prevents the product value from aligning with the dollar value:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1365
-
-Arranging Columns on a Page
+Arranging Columns on a Page
 
 Changing the StyleSheet declaration to GAPINTERNAL=ON causes the specified widths to be
 used because the gaps are internal and are included in the specified values:
 
-1366
 
-The following report output demonstrates that the values align properly even if the PRODUCT
+The following report output demonstrates that the values align properly even if the PRODUCT
 values are defined with JUSTIFY=RIGHT:
 
-21. Laying Out the Report Page
 
 Positioning a Column
 
@@ -1566,11 +1464,8 @@ starting position is the number of characters to the right of the last column.
 
 When using this feature with an HTML report, set the STYLEMODE parameter to FIXED.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1367
-
-Arranging Columns on a Page
+Arranging Columns on a Page
 
 Syntax:
 
@@ -1614,11 +1509,9 @@ ON TABLE SET PAGE-NUM OFF
 ON TABLE SET STYLEMODE FIXED
 END
 
-1368
 
-The columns are spaced for readability:
+The columns are spaced for readability:
 
-21. Laying Out the Report Page
 
 Example:
 
@@ -1637,11 +1530,8 @@ ON TABLE SET PAGE-NUM OFF
 ON TABLE SET STYLEMODE FIXED
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1369
-
-Arranging Columns on a Page
+Arranging Columns on a Page
 
 The ACROSS set starts in column 35, and there are eight extra spaces between the data
 columns in the ACROSS:
@@ -1660,12 +1550,10 @@ ON TABLE SET PAGE-NUM OFF
 ON TABLE SET STYLEMODE FIXED
 END
 
-1370
 
-In the report, GROSS and DED_AMT are stacked, starting in column 40. LAST_NAME starts in
+In the report, GROSS and DED_AMT are stacked, starting in column 40. LAST_NAME starts in
 column 20.
 
-21. Laying Out the Report Page
 
 Suppressing Column Display
 
@@ -1674,11 +1562,8 @@ field by which to arrange data. However, you may not want to display the title o
 field if they appear elsewhere in the report. The phrase NOPRINT (synonym SUP-PRINT)
 suppresses column display.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1371
-
-Suppressing Column Display
+Suppressing Column Display
 
 Reference: Column Suppression Commands
 
@@ -1736,9 +1621,6 @@ Suppressing the Display of a Sort Field
 This request sorts data by city. Since the page heading contains the name of the city, the sort
 field occurrence is suppressed.
 
-1372
-
-21. Laying Out the Report Page
 
 TABLE FILE SALES
 HEADING
@@ -1754,24 +1636,19 @@ END
 
 The page heading identifies the city to which the data applies:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1373
-
-Suppressing Column Display
+Suppressing Column Display
 
 Without NOPRINT, the report would unnecessarily repeat the city:
 
-1374
 
-Example:
+Example:
 
 Suppressing Display of a Sort Field With Subtotal
 
 This request generates a subtotal for each value of the sort field CATEGORY but suppresses
 the display of the sort field occurrence.
 
-21. Laying Out the Report Page
 
 TABLE FILE GGSALES
 SUM UNITS BY CATEGORY
@@ -1785,24 +1662,19 @@ END
 
 The default subtotal line identifies each category (for example, *TOTAL Coffee):
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1375
-
-Suppressing Column Display
+Suppressing Column Display
 
 Without SUP-PRINT, the report would unnecessarily repeat the category:
 
-1376
 
-Example:
+Example:
 
 Sorting Alphabetically
 
 This request sorts last names alphabetically but avoids duplication of data by suppressing the
 sort field occurrence of LAST_NAME.
 
-21. Laying Out the Report Page
 
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME
@@ -1825,11 +1697,8 @@ page by itself.
 
 PAGE-BREAK does not apply when report output is stored in a HOLD, SAVE, or SAVB file.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1377
-
-Inserting a Page Break
+Inserting a Page Break
 
 In an HTML report, PAGE-BREAK creates a new section of the report, with column titles and an
 incremented page number, on the same webpage. It does not, by itself, create a new
@@ -1891,9 +1760,6 @@ When a report is broken into multiple HTML tables, the browser displays each tab
 according to its own algorithm. Set SQUEEZE to OFF and/or WRAP to OFF to ensure that
 HTML tables are aligned consistently across pages.
 
-1378
-
-21. Laying Out the Report Page
 
 Syntax:
 
@@ -1938,26 +1804,21 @@ ON TABLE SET ONLINE-FMT PDF
 ON TABLE SET PAGE-NUM OFF
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1379
-
-Inserting a Page Break
+Inserting a Page Break
 
 The first two pages of the report are displayed to illustrate where the page breaks occur:
 
 The second page is:
 
-1380
 
-Example:
+Example:
 
 Displaying a Multiple-Table HTML Report
 
 In this request, each page is returned to the browser as a separate HTML table. SQUEEZE is
 set to OFF for consistent alignment of tables across pages.
 
-21. Laying Out the Report Page
 
 SET STYLEMODE = PAGED
 SET LINES = 12
@@ -1972,19 +1833,14 @@ TYPE=REPORT, GRID=OFF, SQUEEZE=OFF, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1381
-
-Inserting a Page Break
+Inserting a Page Break
 
 Two pages of the report follow, showing consistent alignment:
 
-1382
 
-The same two pages illustrate inconsistent alignment with SQUEEZE set to ON:
+The same two pages illustrate inconsistent alignment with SQUEEZE set to ON:
 
-21. Laying Out the Report Page
 
 Preventing an Undesirable Split
 
@@ -1996,11 +1852,8 @@ sort headings, sort footings, and subtotals if applicable.
 
 This feature applies to a PDF or PS report.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1383
-
-Inserting a Page Break
+Inserting a Page Break
 
 If you use NOSPLIT with PAGE-BREAK, the PAGE-BREAK must apply to a higher-level sort field.
 Otherwise, NOSPLIT is ignored. NOSPLIT is also ignored when report output is stored in a
@@ -2038,30 +1891,18 @@ BY PAY_DATE BY LAST_NAME
 ON LAST_NAME NOSPLIT
 END
 
-1384
 
-When the value of LAST_NAME changes from STEVENS to CROSS, the lines related to CROSS
+When the value of LAST_NAME changes from STEVENS to CROSS, the lines related to CROSS
 do not fit on the current page. With NOSPLIT, they appear on the next page:
 
-21. Laying Out the Report Page
 
-Creating Reports With TIBCO® WebFOCUS Language
+Inserting a Page Break
 
- 1385
 
-Inserting a Page Break
+Without NOSPLIT, the information for CROSS falls on the first and second pages:
 
-1386
 
-Without NOSPLIT, the information for CROSS falls on the first and second pages:
-
-21. Laying Out the Report Page
-
-Creating Reports With TIBCO® WebFOCUS Language
-
- 1387
-
-Inserting Page Numbers
+Inserting Page Numbers
 
 Inserting Page Numbers
 
@@ -2084,9 +1925,6 @@ Suppress the display of the default page number.
 Note: The variables TABPAGENO and TABLASTPAGE cannot be used to define styling with
 conditional styling (WHEN).
 
-1388
-
-21. Laying Out the Report Page
 
 If you enable Section 508 accessibility, a default page number is not included in the HTML
 table.
@@ -2164,11 +2002,8 @@ PS
 
 PPTX
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1389
-
-Inserting Page Numbers
+Inserting Page Numbers
 
 Command
 
@@ -2219,9 +2054,6 @@ For example, if you wanted to add a footing in your report that said "Page 1 of 
 use the <TABLASTPAGE system variable in conjunction with the <TABPAGENO system variable
 to do so.
 
-1390
-
-21. Laying Out the Report Page
 
 Syntax:
 
@@ -2274,11 +2106,8 @@ FOOTING
 "Page <TABPAGENO of <TABLASTPAGE"
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1391
-
-Inserting Page Numbers
+Inserting Page Numbers
 
 The first two pages of output are:
 
@@ -2301,9 +2130,6 @@ BY sortfield REPAGE
 
 The heading or footing can use the following syntax to display “Page x of y”
 
-1392
-
-21. Laying Out the Report Page
 
 {HEADING|FOOTING}
 "Page <TABPAGENO of <BYLASTPAGE"
@@ -2353,18 +2179,12 @@ HEADING CENTER
 ON TABLE PCHOLD FORMAT PDF
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1393
-
-Inserting Page Numbers
+Inserting Page Numbers
 
 The following partial output shows that the page number resets to 1 when the product changes
 and that the BYLASTPAGE variable displays the total number of pages for each product:
 
-1394
-
-21. Laying Out the Report Page
 
 Assigning Any Page Number to the First Page
 
@@ -2422,11 +2242,8 @@ TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1395
-
-Inserting Page Numbers
+Inserting Page Numbers
 
 The report is:
 
@@ -2462,12 +2279,10 @@ TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
 
-1396
 
-The first page of the second report is numbered 4, which is one more than the last page of the
+The first page of the second report is numbered 4, which is one more than the last page of the
 previous report:
 
-21. Laying Out the Report Page
 
 Controlling the Display of Page Numbers
 
@@ -2502,11 +2317,8 @@ the default value.
 
 OFF suppresses default page numbers.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1397
-
-Inserting Page Numbers
+Inserting Page Numbers
 
 You can use the system variable TABPAGENO.
 
@@ -2542,11 +2354,9 @@ ON PRODUCT_DESCRIPTION PAGE-BREAK SUBFOOT
 ON TABLE SET ONLINE-FMT PDF
 END
 
-1398
 
-TABPAGENO inserts the page number in the sort footing. The first page of the report is:
+TABPAGENO inserts the page number in the sort footing. The first page of the report is:
 
-21. Laying Out the Report Page
 
 Setting the Number of Data Rows For Each Page in an AHTML Report Request
 
@@ -2579,11 +2389,8 @@ number of data rows as the LINES-PER-PAGE StyleSheet option:
 
 ON TABLE SET LINES {n|UNLIMITED}
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1399
-
-Inserting Page Numbers
+Inserting Page Numbers
 
 In an HTML report request, using either the LINES-PER-PAGE StyleSheet option or the SET
 LINES command, you will see the number of lines, as opposed to the number of data rows.
@@ -2608,17 +2415,11 @@ TYPE=REPORT, GRID=OFF, LINES-PER-PAGE = 20, $
 ENDSTYLE
 END
 
-1400
 
-The following image shows the output for the first page.
+The following image shows the output for the first page.
 
-21. Laying Out the Report Page
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 1401
-
-Adding Grids and Borders
+Adding Grids and Borders
 
 The following image shows the output for the second page.
 
@@ -2631,9 +2432,6 @@ HTML report, not to individual components of a report.
 You can emphasize headings, footings, and column titles in a report by adding borders and
 grid lines around them.
 
-1402
-
-21. Laying Out the Report Page
 
 Borders: In a PDF, HTML, DHTML, XLSX, EXL2K, PPTX, PPT, or PS report, you can use BORDER
 attributes in a StyleSheet to specify the weight, style, and color of border lines. If you wish, you
@@ -2686,11 +2484,8 @@ PPTX
 
 PPT
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1403
-
-Adding Grids and Borders
+Adding Grids and Borders
 
 Attribute
 
@@ -2755,15 +2550,13 @@ read.
 
 FILL applies grid lines to all cells of a report. Column titles are not underlined.
 
-1404
 
-Syntax:
+Syntax:
 
 How to Add and Format Borders
 
 To request a uniform border, use this syntax:
 
-21. Laying Out the Report Page
 
 TYPE=type, BORDER=option, [BORDER-STYLE=line_style,]
     [BORDER-COLOR={color|RGB(r g b)},] $
@@ -2813,11 +2606,8 @@ Specifies which border line to format. Valid values are: TOP, BOTTOM, LEFT, RIGH
 You can specify a position qualifier for any of the BORDER attributes. This enables you to
 format line width, line style, and line color individually, for any side of the border.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1405
-
-Adding Grids and Borders
+Adding Grids and Borders
 
 line_style
 
@@ -2884,9 +2674,6 @@ Is the desired intensity of red, green, and blue, respectively. The values are o
 to 255, where 0 is the least intense and 255 is the most intense. Using the three color
 components in equal intensities results in shades of gray.
 
-1406
-
-21. Laying Out the Report Page
 
 Note: Format EXL2K does not support the GRID=ON parameter.
 
@@ -2918,11 +2705,8 @@ The output is:
 
 Tip: You can use the same BORDER syntax to generate this output in a PDF or PS report.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1407
-
-Adding Grids and Borders
+Adding Grids and Borders
 
 Example:
 
@@ -2955,11 +2739,9 @@ TYPE=REPORT, GRID=FILL, $
 ENDSTYLE
 END
 
-1408
 
-All cells have grid lines:
+All cells have grid lines:
 
-21. Laying Out the Report Page
 
 Example:
 
@@ -2976,11 +2758,8 @@ TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1409
-
-Adding Grids and Borders
+Adding Grids and Borders
 
 Column titles are underlined:
 
@@ -3011,17 +2790,11 @@ TYPE=REPORT,BORDER=ON,$
 ENDSTYLE
 END
 
-1410
 
-The output is shown in the following image. A blank row has been added after the heading.
+The output is shown in the following image. A blank row has been added after the heading.
 
-21. Laying Out the Report Page
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 1411
-
-Adding Grids and Borders
+Adding Grids and Borders
 
 The following version of the request has no border attributes.
 
@@ -3035,18 +2808,12 @@ ON TABLE PCHOLD FORMAT XLSX
 ON TABLE NOTOTAL
 END
 
-1412
 
-The output is shown in the following image. There is no blank row between the report heading
+The output is shown in the following image. There is no blank row between the report heading
 and report body.
 
-21. Laying Out the Report Page
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 1413
-
-Adding Grids and Borders
+Adding Grids and Borders
 
 Syntax:
 
@@ -3102,9 +2869,6 @@ ON turns borders on. ON generates the same line as MEDIUM.
 Note: The MEDIUM line setting ensures consistency with lines created with GRID
 attributes.
 
-1414
-
-21. Laying Out the Report Page
 
 OFF turns borders off. OFF is the default value.
 
@@ -3158,11 +2922,8 @@ OFF turns borders off. OFF is the default value.
 
 LIGHT specifies a thin line.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1415
-
-Adding Grids and Borders
+Adding Grids and Borders
 
 MEDIUM identifies a medium line. ON sets the line to MEDIUM.
 
@@ -3226,9 +2987,6 @@ OUTSET*
 Note: All line types supported for PDF, DHTML, and PPTX can be used for individual
 internal borders with HEADALIGN=BODY.
 
-1416
-
-21. Laying Out the Report Page
 
 color
 
@@ -3286,12 +3044,8 @@ TYPE = TABFOOTING, ITEM=2, JUSTIFY=RIGHT,$
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1417
-
-
-Adding Grids and Borders
+Adding Grids and Borders
 
 The REPORT component has BORDER=ON, so the page heading has an external border.
 
@@ -3317,9 +3071,6 @@ defined based on the maximum width of all heading, footing, subheading, and subf
 The length of subheading and subfooting lines is tied to the lengths of the page heading and
 page footing, not to the size of the data columns in the body of the report.
 
-1418
-
-21. Laying Out the Report Page
 
 You can use the ALIGN-BORDERS=BODY attribute in a StyleSheet to align the subheadings and
 subfootings with the report body on PDF report output instead of the other heading elements.
@@ -3352,35 +3103,23 @@ Without the ALIGN-BORDERS=BODY attribute, the width of the subheading and subfoo
 is determined by the largest width of all of the headings and footings (report, page,
 subheadings, and subfootings).
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1419
-
-Adding Grids and Borders
+Adding Grids and Borders
 
 The following image illustrates report output without the ALIGN-BORDERS=BODY attribute.
 
-1420
-
-21. Laying Out the Report Page
 
 When the body lines are wider than the subheading and subfooting lines, the border and
 backcolor of the subheading and subfooting lines are expanded to match the width of the data
 lines, as shown on the following report output.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1421
-
-Adding Grids and Borders
+Adding Grids and Borders
 
 If the subheading and subfooting lines are longer than the body lines, an additional filler cell is
 added to each data line to allow the defined borders and backcolor to fill the width defined by
 the subheading and subfooting lines, as shown on the following report output.
 
-1422
-
-21. Laying Out the Report Page
 
 ALIGN-BORDERS=BODY has been designed to work on:
 
@@ -3400,11 +3139,8 @@ subheadings and subfootings, ALIGN-BORDERS=BODY will align the borders of all
 subheadings and subfootings to the data. Otherwise, the borders will continue to exhibit
 the default behavior of aligning with the page headings and footings.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1423
-
-Adding Grids and Borders
+Adding Grids and Borders
 
 Example:
 
@@ -3446,10 +3182,6 @@ ON TABLE SUBFOOT
 " "
 "Report Footing"
 
-1424
-
-
-21. Laying Out the Report Page
 
 WHERE CATEGORY EQ 'Coffee';
 ON TABLE SET PAGE-NUM OFF
@@ -3503,11 +3235,8 @@ TYPE=FOOTING,
      SIZE=12,
      STYLE=BOLD,
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1425
-
-Adding Grids and Borders
+Adding Grids and Borders
 
 $
 TYPE=SUBHEAD,
@@ -3541,32 +3270,24 @@ $
 ENDSTYLE
 END
 
-1426
 
-The output shows that the subheading margins align with the heading, not with the report
+The output shows that the subheading margins align with the heading, not with the report
 body.
 
-21. Laying Out the Report Page
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 1427
-
-Adding Grids and Borders
+Adding Grids and Borders
 
 Now change the ALIGN-BORDERS attribute to ALIGN-BORDERS=BODY and rerun the request.
 The subheadings now align with the report body, as shown in the following image.
 
-1428
 
-Example:
+Example:
 
 Aligning Subheading and Subfooting Margins in a Multi-Panel Report
 
 The following request has HEADPANEL=ON for all headings and footings. It also has the ALIGN-
 BORDERS=BODY attribute:
 
-21. Laying Out the Report Page
 
 SET BYPANEL=ON
 DEFINE FILE GGSALES
@@ -3601,12 +3322,8 @@ ON TABLE SUBFOOT
 " "
 "Report Footing"
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1429
-
-
-Adding Grids and Borders
+Adding Grids and Borders
 
 WHERE CATEGORY NE 'Coffee';
 ON TABLE SET PAGE-NUM OFF
@@ -3652,9 +3369,6 @@ TYPE=HEADING,
      POSITION=(+4.6000000 +0.03000000),
      JUSTIFY=RIGHT,
 
-1430
-
-21. Laying Out the Report Page
 
 $
 TYPE=FOOTING,
@@ -3700,11 +3414,8 @@ $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1431
-
-Adding Grids and Borders
+Adding Grids and Borders
 
 The output shows that the subheadings are aligned with the data on each panel.
 
@@ -3739,9 +3450,6 @@ Applies light grid lines.
 
 Suppresses grid lines. OFF is the default value.
 
-1432
-
-21. Laying Out the Report Page
 
 HEAVY
 
@@ -3780,11 +3488,8 @@ Borders Without Backcolor
 When the border color is defined and there is no backcolor, only the border or outline of the
 box is displayed in the border color specified, as shown in the example below.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1433
-
-Defining Borders Around Boxes With PPTX and PDF Formats
+Defining Borders Around Boxes With PPTX and PDF Formats
 
 TABLE FILE GGSALES
 BY REGION NOPRINT
@@ -3820,9 +3525,6 @@ Border Styles Supported
 Border styles, except 3D border styles such as ridged, groove, inset, and outset, are supported
 in PPTX and PDF formats.
 
-1434
-
-21. Laying Out the Report Page
 
 TABLE FILE GGSALES
 BY REGION NOPRINT
@@ -3865,11 +3567,8 @@ a superscript.
 
 For a DEFINE FILE command, the syntax is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1435
-
-Displaying Superscripts On Data, Heading, and Footing Lines
+Displaying Superscripts On Data, Heading, and Footing Lines
 
 DEFINE FILE ...
 field/An = <sup>text</sup>;
@@ -3921,9 +3620,6 @@ The footing concatenates the superscript fields in front of their explanations.
 In the StyleSheet, every component that will display a superscript has the attribute
 MARKUP=ON.
 
-1436
-
-21. Laying Out the Report Page
 
 DEFINE FILE GGSALES
 SUP1/A12= '<SUP>1</SUP>';
@@ -3965,21 +3661,16 @@ TYPE=FOOTING, LINE=3,JUSTIFY=LEFT, COLOR=GREEN,$
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1437
-
-Displaying Superscripts On Data, Heading, and Footing Lines
+Displaying Superscripts On Data, Heading, and Footing Lines
 
 The output is:
 
-1438
 
-Example:
+Example:
 
 Displaying Superscripts in Heading and Footing Lines in XLSX Output
 
-21. Laying Out the Report Page
 
 The following request against the GGSALES data source defines superscripts for trademark
 and copyright symbols in the heading and footing. COPYRIGHT consists of a copyright symbol.
@@ -4014,11 +3705,8 @@ COLOR=GREEN, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1439
-
-Adding Underlines and Skipped Lines
+Adding Underlines and Skipped Lines
 
 The output is shown in the following image.
 
@@ -4038,9 +3726,6 @@ A Financial Modeling Language (FML) report with columns of numbers includes, by 
 underline before a RECAP calculation for readability. In these types of reports, you can change
 the default underline from light to heavy (or single to double in a PDF report).
 
-1440
-
-21. Laying Out the Report Page
 
 Reference: Section Separation Features
 
@@ -4118,11 +3803,8 @@ XLSX
 
 EXL2K
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1441
-
-Adding Underlines and Skipped Lines
+Adding Underlines and Skipped Lines
 
 Feature
 
@@ -4197,9 +3879,6 @@ SKIP-LINE used with a display field adds a blank line after every displayed line
 double-spacing a report. Double-spacing is helpful when a report is reviewed, making it
 easy for the reader to write comments next to individual lines.
 
-1442
-
-21. Laying Out the Report Page
 
 SKIP-LINE used with a sort field adds a blank line before every change in the value of that
 field. This is one of the only ON conditions that does not have to refer solely to a sort (BY)
@@ -4234,12 +3913,8 @@ ON TABLE SET PAGE-NUM OFF
 ON TABLE SET ONLINE-FMT PDF
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1443
-
-
-Adding Underlines and Skipped Lines
+Adding Underlines and Skipped Lines
 
 The data for each employee stands out and is easy to read:
 
@@ -4262,16 +3937,14 @@ Is the value of the attribute.
 Note: This option is supported for PDF, PS, and HTML reports (when used in conjunction with
 internal cascading style sheets).
 
-1444
 
-Example:
+Example:
 
 Adding Color to Blank Lines
 
 In this request, blank lines are formatted to display as silver in the output. The relevant
 StyleSheet declaration is highlighted in the request.
 
-21. Laying Out the Report Page
 
 SET ONLINE-FMT=PDF
 TABLE FILE CENTINV
@@ -4290,11 +3963,8 @@ END
 
 The report is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1445
-
-Adding Underlines and Skipped Lines
+Adding Underlines and Skipped Lines
 
 Syntax:
 
@@ -4336,11 +4006,9 @@ TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
 
-1446
 
-The data for each bank stands out and is easy to read:
+The data for each bank stands out and is easy to read:
 
-21. Laying Out the Report Page
 
 Syntax:
 
@@ -4364,11 +4032,8 @@ color
 Is one of the supported color values. For a list of supported values, see Color Values in a
 Report on page 1701.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1447
-
-Adding Underlines and Skipped Lines
+Adding Underlines and Skipped Lines
 
 RGB
 
@@ -4406,9 +4071,6 @@ END
 
 The result is an eye-catching separation between sort group values. The online PDF report is:
 
-1448
-
-21. Laying Out the Report Page
 
 Syntax:
 
@@ -4453,11 +4115,8 @@ COLUMN=column
 Specifies a column. For valid values, see Identifying a Report Component in a WebFOCUS
 StyleSheet on page 1249.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1449
-
-Adding Underlines and Skipped Lines
+Adding Underlines and Skipped Lines
 
 Example:
 
@@ -4480,9 +4139,6 @@ END
 
 The partial report is:
 
-1450
-
-21. Laying Out the Report Page
 
 Syntax:
 
@@ -4540,11 +4196,8 @@ ON TABLE SET PAGE NOPAGE
 ON TABLE PCHOLD FORMAT DHTML
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1451
-
-Adding Underlines and Skipped Lines
+Adding Underlines and Skipped Lines
 
 The output shows that only the column titles are underlined:
 
@@ -4571,11 +4224,9 @@ TYPE=TITLE, STYLE= BOLD +EXTUNDERLINE, JUSTIFY=LEFT, $
 ENDSTYLE
 END
 
-1452
 
-The output is:
+The output is:
 
-21. Laying Out the Report Page
 
 The following version of the request makes the EXTUNDERLINE and JUSTIFY=LEFT options the
 default for the TITLE component, then makes the Date column title bold and removes the
@@ -4600,11 +4251,8 @@ TYPE=TITLE,COLUMN= DATE, STYLE= -EXTUNDERLINE +BOLD ,$
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1453
-
-Adding Underlines and Skipped Lines
+Adding Underlines and Skipped Lines
 
 The output is:
 
@@ -4628,16 +4276,14 @@ default value.
 
 Generates a heavy underline. Enclose the equal sign in single quotation marks.
 
-1454
 
-Example:
+Example:
 
 Changing the Default Underline in a Financial Modeling Language (FML) Report
 (HTML)
 
 This request changes the default light underline to a heavy underline in an FML report.
 
-21. Laying Out the Report Page
 
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
@@ -4674,11 +4320,8 @@ TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1455
-
-Removing Blank Lines From a Report
+Removing Blank Lines From a Report
 
 The output is:
 
@@ -4720,9 +4363,6 @@ Removes the blank lines between headings and titles and between the report body 
 footing. Works in positioned formats (PDF, PS, DHTML, PPT, and PPTX) when a request has
 a border or backcolor StyleSheet attribute anywhere in the report.
 
-1456
-
-21. Laying Out the Report Page
 
 ALL
 
@@ -4764,11 +4404,8 @@ between the sections. In these instances, the top of the FOOTING BOTTOM may slig
 overlap the bottom of the data grid. You can resolve this by adding a blank line to the
 top of your footing.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1457
-
-Removing Blank Lines From a Report
+Removing Blank Lines From a Report
 
 Applying borders for the entire report (TYPE=REPORT) is recommended to avoid certain
 known issues that arise when bordering report elements individually. In some reports
@@ -4807,36 +4444,24 @@ $
 ENDSTYLE
 END
 
-1458
 
-The output has a blank line below the heading, above the footing, and above and below the
+The output has a blank line below the heading, above the footing, and above and below the
 subtotal lines and the grand total line.
 
-21. Laying Out the Report Page
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 1459
-
-Removing Blank Lines From a Report
+Removing Blank Lines From a Report
 
 Changing the DROPBLNKLINE setting to HEADING produces the following output. The blank line
 below the heading and the blank line above the footing have been removed. The blank lines
 above and below the subtotal and grand total lines are still inserted.
 
-1460
-
-21. Laying Out the Report Page
 
 Changing the DROPBLNKLINE setting to ON (or BODY) produces the following output in which
 the blank lines above and below the subtotal and grand total lines have been removed, but the
 blank lines below the heading and above the footing are still inserted.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1461
-
-Adding an Image to a Report
+Adding an Image to a Report
 
 Changing the DROPBLNKLINE setting to ALL produces the following output in which the blank
 lines around the subtotal and grandtotal lines as well as the blank lines below the heading and
@@ -4855,9 +4480,6 @@ report, or an image in a heading or footing, can appear with a background image.
 Images must exist in a file format your browser supports, such as GIF (Graphic Interchange
 Format) or JPEG (Joint Photographic Experts Group, .jpg extension).
 
-1462
-
-21. Laying Out the Report Page
 
 Image support with WebFOCUS standard reporting formats
 
@@ -4905,11 +4527,8 @@ BYTEA data type), an image can be stored in a BLOB field in the data source.
 The image must reside on the WebFOCUS Reporting Server in a directory named on EDAPATH
 or APPPATH. If the file is not on the search path, supply the full path name.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1463
-
-Adding an Image to a Report
+Adding an Image to a Report
 
 Note: For JPEG files, currently only the .jpg extension is supported. The .jpeg extension is not
 supported.
@@ -4960,9 +4579,6 @@ contain the encoded image.
 When HTMLEMBEDIMG and HTMLARCHIVE are set to OFF, an .html file is generated, but
 the image is not embedded.
 
-1464
-
-21. Laying Out the Report Page
 
 The encoding algorithm that uses 64-bit encoding supported for images less than 32K in
 size is supported by Internet Explorer 8. For Internet Explorer 8, Information Builders
@@ -5018,11 +4634,8 @@ BACKIMAGE
 
 Adds a background image.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1465
-
-Adding an Image to a Report
+Adding an Image to a Report
 
 Syntax:
 
@@ -5075,9 +4688,6 @@ position relative to the upper-left corner of the heading or footing. For more i
 about the POSITION attribute, see How to Add an Image to a PDF, PS, or HTML Report With
 an Internal Cascading Style Sheet on page 1476.
 
-1466
-
-21. Laying Out the Report Page
 
 Valid values are:
 
@@ -5127,11 +4737,8 @@ Using the SET BASEURL parameter to establish a URL that is logically prefixed to
 relative URLs in the request. With this feature, you can add an image by specifying just its
 file name in the IMAGE attribute. For example:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1467
-
-Adding an Image to a Report
+Adding an Image to a Report
 
 SET BASEURL=http://host:port/
 .
@@ -5169,11 +4776,9 @@ $
 ENDSTYLE
 END
 
-1468
 
-IMAGEBREAK, set to ON, generates a line break between the logo and the heading text:
+IMAGEBREAK, set to ON, generates a line break between the logo and the heading text:
 
-21. Laying Out the Report Page
 
 Example:
 
@@ -5202,24 +4807,19 @@ END
 
 Note: The image used in this request is not distributed with WebFOCUS.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1469
-
-Adding an Image to a Report
+Adding an Image to a Report
 
 The output is:
 
-1470
 
-Example:
+Example:
 
 Using a File Name in a Data Source Field in an HTML Report
 
 The following illustrates how to embed an image in a SUBHEAD, and use a different image for
 each value of the BY field on which the SUBHEAD occurs.
 
-21. Laying Out the Report Page
 
 DEFINE FILE CAR
 FLAG/A12=
@@ -5244,21 +4844,16 @@ TYPE=SUBHEAD, STYLE=BOLD, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1471
-
-Adding an Image to a Report
+Adding an Image to a Report
 
 The output is:
 
-1472
 
-Example:
+Example:
 
 Supplying an Image Description Using the ALT Attribute
 
-21. Laying Out the Report Page
 
 This request adds the Information Builders logo to a report footing. It uses the WebFOCUS
 StyleSheet ALT attribute to add descriptive text (Information Builders logo) that identifies the
@@ -5296,11 +4891,8 @@ manual.
 The -MRNOEDIT command instructs the WebFOCUS Client to not process the line of code. For
 more information on the -MRNOEDIT command, see the Business Intelligence Portal manual.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1473
-
-Adding an Image to a Report
+Adding an Image to a Report
 
 When you run the request, the image displays below the report data, as shown in the following
 image.
@@ -5327,9 +4919,6 @@ TYPE=REPORT
 
 Applies the image to the entire report. Not required, as it is the default.
 
-1474
-
-21. Laying Out the Report Page
 
 url
 
@@ -5359,11 +4948,8 @@ END
 
 The background is tiled across the report area:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1475
-
-Adding an Image to a Report
+Adding an Image to a Report
 
 Syntax:
 
@@ -5414,9 +5000,6 @@ full path name.
 
 When specifying a GIF file, you can omit the file extension.
 
-1476
-
-21. Laying Out the Report Page
 
 column
 
@@ -5464,11 +5047,8 @@ SIZE
 
 Is the size of the image. By default, an image is added at its original size.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1477
-
-Adding an Image to a Report
+Adding an Image to a Report
 
 w
 
@@ -5509,11 +5089,9 @@ TYPE=TABHEADING, IMAGE=HTTP://WEBSRVR1/IBI_APPS/IBI_HTML/GGDEMO/GOTHAM.GIF,
 ENDSTYLE
 END
 
-1478
 
-The company logo is positioned and sized in the report heading:
+The company logo is positioned and sized in the report heading:
 
-21. Laying Out the Report Page
 
 Example:
 
@@ -5539,11 +5117,8 @@ TYPE=TABHEADING, IMAGE=GOTHAM.GIF, POSITION=(.25 .25), SIZE=(.5 .5), $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1479
-
-Adding an Image to a Report
+Adding an Image to a Report
 
 The report is:
 
@@ -5573,11 +5148,9 @@ TYPE=TABHEADING, IMAGE=Ibi_logo.png, POSITION=(0 .30), SIZE=(1 0.5), $
 ENDSTYLE
 END
 
-1480
 
-The report is:
+The report is:
 
-21. Laying Out the Report Page
 
 Syntax:
 
@@ -5608,11 +5181,8 @@ SET HTMLARCHIVE=ON (required to support Internet Explorer with images larger tha
 SET BASEURL='' (required to make embedded images work as it overrides the default
 setting sent from the WebFOCUS Client).
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1481
-
-Adding an Image to a Report
+Adding an Image to a Report
 
 SET HTMLCSS=ON (required for image positioning in subheads in HTML reports). Setting
 HTMLCSS=ON creates an HTML report with an Internal cascading style sheet. A report with
@@ -5656,9 +5226,6 @@ full path name.
 
 When specifying a GIF file, you can omit the file extension.
 
-1482
-
-21. Laying Out the Report Page
 
 column
 
@@ -5711,11 +5278,8 @@ SIZE
 Is the size of the image. By default, an image is added at its original size. Note that
 images stored in BLOB fields are supported only for PDF, HTML, and DHTML output.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1483
-
-Adding an Image to a Report
+Adding an Image to a Report
 
 w
 
@@ -5754,9 +5318,6 @@ sports clothing and shoe retailer. The Microsoft SQL Server data source named re
 has the same product ID field as retaildetail and has an image of each product stored in a
 field named prodimage whose data type is BLOB.
 
-1484
-
-21. Laying Out the Report Page
 
 The following Master File describes the Microsoft SQL Server data source named retaildetail.
 
@@ -5796,11 +5357,8 @@ FILENAME=RETAILIMAGE, SUFFIX=SQLMSS  , $
     FIELDNAME=PRODIMAGE, ALIAS=F02BLOB50000, USAGE=BLOB, ACTUAL=BLOB,
       MISSING=ON, $
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1485
-
-Adding an Image to a Report
+Adding an Image to a Report
 
 The following request joins the two data sources and prints product names and prices with the
 corresponding image. The output is generated in DHTML format.
@@ -5841,17 +5399,11 @@ names the image field, and establishes the size and position in the column for t
 
 TYPE=DATA,COLUMN=PRODIMAGE,IMAGE=(PRODIMAGE),SIZE=(1 1),$
 
-1486
 
-The partial output shows that DHTML format preserves the specified spacing.
+The partial output shows that DHTML format preserves the specified spacing.
 
-21. Laying Out the Report Page
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 1487
-
-Adding an Image to a Report
+Adding an Image to a Report
 
 The following request generates the output in HTML format.
 
@@ -5886,18 +5438,12 @@ TYPE=DATA,COLUMN=PRODIMAGE,IMAGE=(PRODIMAGE),SIZE=(1 1),$
 ENDSTYLE
 END
 
-1488
 
-The partial output shows that the spacing is different because the browser removes blank
+The partial output shows that the spacing is different because the browser removes blank
 spaces for HTML report output.
 
-21. Laying Out the Report Page
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 1489
-
-Adding an Image to a Report
+Adding an Image to a Report
 
 The following request generates the report output in PDF format.
 
@@ -5932,17 +5478,11 @@ TYPE=DATA,COLUMN=PRODIMAGE,IMAGE=(PRODIMAGE),SIZE=(1 1),$
 ENDSTYLE
 END
 
-1490
 
-The PDF partial output preserves specified spacing providing results similar to DHTML output.
+The PDF partial output preserves specified spacing providing results similar to DHTML output.
 
-21. Laying Out the Report Page
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 1491
-
-Adding an Image to a Report
+Adding an Image to a Report
 
 Example:
 
@@ -6000,17 +5540,11 @@ TYPE=SUBHEAD,BY=PRODUCTID,IMAGE=(PRODIMAGE),SIZE=(1 1), POSITION=(+2 +1),$
 ENDSTYLE
 END
 
-1492
 
-The partial output is.
+The partial output is.
 
-21. Laying Out the Report Page
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 1493
-
-Adding an Image to a Report
+Adding an Image to a Report
 
 Example:
 
@@ -6063,11 +5597,9 @@ third column, so for that column the image height to width ratio is not preserve
 rendered as specified by the styling SIZE height and width values specified in the request
 (FEX).
 
-1494
 
-The partial output follows.
+The partial output follows.
 
-21. Laying Out the Report Page
 
 Example:
 
@@ -6077,11 +5609,8 @@ In order to insert an image from a BLOB field in a report that displays summary 
 include two display commands in the request, a SUM command for the summary information
 and a PRINT or LIST command for displaying the image and any other detail data.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1495
-
-Adding an Image to a Report
+Adding an Image to a Report
 
 The Microsoft SQL Server data source named retaildetail contains product information for a
 sports clothing and shoe retailer. The Microsoft SQL Server data source named retailimage
@@ -6113,9 +5642,6 @@ ON CATEGORY SUBHEAD
 " Total Price: <PRICE "
 " "
 
-1496
-
-21. Laying Out the Report Page
 
 PRINT PRICE NOPRINT PRODIMAGE NOPRINT
 BY CATEGORY NOPRINT
@@ -6150,17 +5676,11 @@ TYPE=SUBFOOT,BY=PRODUCTID,OBJECT=FIELD, ITEM=1, WRAP=5,$
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1497
-
-Adding an Image to a Report
+Adding an Image to a Report
 
 The output for the first category is:
 
-1498
-
-21. Laying Out the Report Page
 
 Reference: File Size and Compression Considerations For Images in BLOB Fields
 
@@ -6189,11 +5709,8 @@ that emanate below the zero line represent negative values.
 To see how each of these types of reports is generated, see the example following How to
 Associate Data Visualization Bar Graphs With Report Columns on page 1504.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1499
-
-Associating Bar Graphs With Report Data
+Associating Bar Graphs With Report Data
 
 Horizontal Bar Graph. You can apply a horizontal bar graph to report columns. The report
 output displays a horizontal bar graph in a new column to the right of the associated data
@@ -6215,9 +5732,6 @@ floating point single-precision, floating point double-precision, and packed). B
 to alphanumeric, date, or text field formats are ignored. For details about assigning field
 formats, see the Describing Data With WebFOCUS Language manual.
 
-1500
-
-21. Laying Out the Report Page
 
 You apply data visualization bar graphs to columns by adding a declaration to your WebFOCUS
 StyleSheet that begins with the GRAPHTYPE attribute. This attribute adds either a vertical or
@@ -6273,11 +5787,8 @@ Sets the width of the bar graphs. The width value is expressed
 in the current units. See GRAPHLENGTH, above, for more
 information about units.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1501
-
-Associating Bar Graphs With Report Data
+Associating Bar Graphs With Report Data
 
 Syntax:
 
@@ -6329,9 +5840,6 @@ intensity of red, green, and blue, respectively. The values are on a scale of 0 
 where 0 is the least intense and 255 is the most intense. Note that using the three color
 components in equal intensities results in shades of gray.
 
-1502
-
-21. Laying Out the Report Page
 
 RGB(#hexcolor)
 
@@ -6385,11 +5893,8 @@ positive number.
 This value is initially expressed in the current units (defined by the UNITS attribute). This
 value is then converted into the corresponding number of pixels.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1503
-
-Associating Bar Graphs With Report Data
+Associating Bar Graphs With Report Data
 
 Syntax:
 
@@ -6424,9 +5929,6 @@ StyleSheet on page 1249.
 You can define WHEN conditions and bar graph features associated with those conditions
 using StyleSheet syntax. For details, see Formatting Report Data on page 1697.
 
-1504
-
-21. Laying Out the Report Page
 
 Example:
 
@@ -6455,12 +5957,8 @@ END
 
 The output is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1505
-
-
-Associating Bar Graphs With Report Data
+Associating Bar Graphs With Report Data
 
 Controlling Bar Graph Scaling in Horizontal (ACROSS) Sort Fields
 
@@ -6504,13 +6002,11 @@ H
 
 V
 
-1506
 
-Example:
+Example:
 
 Setting Orientation for Visualization Bars
 
-21. Laying Out the Report Page
 
 The following report creates vertical bars for the ACROSS column values (DOLLARS,
 BUDDOLLARS, UNITS, BUDUNITS).
@@ -6537,11 +6033,8 @@ The output is:
 The following report creates horizontal bars for the ACROSS column values ( DOLLARS and
 BUDDOLLARS.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1507
-
-Associating Bar Graphs With Report Data
+Associating Bar Graphs With Report Data
 
 SET VISBARORIENT=H
 TABLE FILE GGSALES
@@ -6585,9 +6078,6 @@ Specifies the relative bar graph scaling for multiple report columns under a com
 ACROSS sort field in which you have applied data visualization graphics. GRAPHSCALE is a
 report-lever setting (TYPE=REPORT).
 
-1508
-
-21. Laying Out the Report Page
 
 UNIFORM
 
@@ -6627,12 +6117,8 @@ Since the GRAPHSCALE attribute is not specified, the default setting UNIFORM is 
 the report. This setting uses the entire set of values (values from Dollar Sales and Difference)
 to plot the bar graphs for both columns.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1509
-
-
-Working With Mailing Labels and Multi-Pane Pages
+Working With Mailing Labels and Multi-Pane Pages
 
 The following request is the same as the above request, except it has the
 GRAPHSCALE=DISTINCT attribute included in the StyleSheet.
@@ -6667,10 +6153,6 @@ same page rather than on the next page.
 
 These features apply to a PDF or PS report.
 
-1510
-
-
-21. Laying Out the Report Page
 
 Reference: Attributes for Mailing Labels and Multi-Pane Printing
 
@@ -6746,11 +6228,8 @@ Insert a page break on a sort field to place each new field value on a separate 
 
 page (SET PAGE-NUM=NOPAGE).
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1511
-
-Working With Mailing Labels and Multi-Pane Pages
+Working With Mailing Labels and Multi-Pane Pages
 
 Syntax:
 
@@ -6811,9 +6290,6 @@ HORIZONTAL
 
 Prints the labels across the page.
 
-1512
-
-21. Laying Out the Report Page
 
 LABELPROMPT
 
@@ -6853,17 +6329,11 @@ The labels have the following dimensions, defined in the StyleSheet LABEMP:
 UNITS=IN, PAGESIZE=LETTER, LEFTMARGIN=0.256, TOPMARGIN=0.5,
 PAGEMATRIX=(2 5), ELEMENT=(4 1), GUTTER=(0.188 0), $
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1513
-
-Working With Mailing Labels and Multi-Pane Pages
+Working With Mailing Labels and Multi-Pane Pages
 
 The first page of labels prints as follows:
 
-1514
-
-21. Laying Out the Report Page
 
 Example:
 
@@ -6890,10 +6360,6 @@ END
 
 The report prints as:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1515
+Working With Mailing Labels and Multi-Pane Pages
 
-Working With Mailing Labels and Multi-Pane Pages
-
-1516

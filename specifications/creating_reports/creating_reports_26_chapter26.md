@@ -1,5 +1,3 @@
-Chapter26
-
 Creating a Free-Form Report
 
 You can present data in an unrestricted or free-form format using a layout of your own
@@ -45,11 +43,8 @@ Temporary fields
 
 Derives new values from existing fields in a data source.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1899
-
-Creating a Free-Form Report
+Creating a Free-Form Report
 
 BY phrases
 
@@ -89,18 +84,12 @@ displays a separate page for each employee. Notice that pages 1 and 2 of the rep
 information about employees in the MIS department, while page 6 provides information for an
 employee in the Production department.
 
-1900
 
-The following diagram simulates the output you would see if you ran the procedure in the
+The following diagram simulates the output you would see if you ran the procedure in the
 example named Request for EMPLOYEE EDUCATION HOURS REPORT on page 1902.
 
-26. Creating a Free-Form Report
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 1901
-
-Creating a Free-Form Report
+Creating a Free-Form Report
 
 Example:
 
@@ -160,9 +149,6 @@ and appears later in the report.
 
 the EMPLOYEE data source.
 
-1902
-
-26. Creating a Free-Form Report
 
 4. The heading section, initiated by the HEADING command, defines the body of the report.
 Most of the text and data fields that display in the report are specified in the heading
@@ -217,11 +203,8 @@ Incorporate text, data fields, and graphic characters in your report.
 Lay out your report by positioning text and data in exact column locations and skipping
 lines for readability.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1903
-
-Designing a Free-Form Report
+Designing a Free-Form Report
 
 Use the HEADING command to define the body of a free-form report, and the FOOTING
 command to define what appears at the bottom of each page of a report. A footing is optional.
@@ -270,9 +253,6 @@ EMPLOYEE Master File:
 CR_EARNED is created with the DEFINE command before the TABLE FILE command, and is
 referenced as follows:
 
-1904
-
-26. Creating a Free-Form Report
 
 "<10>| EDUCATION CREDITS EARNED <CR_EARNED>|"
 
@@ -316,11 +296,8 @@ the HEADING and FOOTING commands.
 Note: To take advantage of this feature in an HTML report, include the SET STYLEMODE=FIXED
 command in your request.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1905
-
-Designing a Free-Form Report
+Designing a Free-Form Report
 
 The sample request (see the example named Request for EMPLOYEE EDUCATION HOURS
 REPORT on page 1902) illustrates this feature. The first two examples show how to position
@@ -351,4 +328,3 @@ As with tabular and matrix reports, you can both sort a report and conditionally
 for it. Use the same commands as for tabular and matrix reports. For example, use the BY
 phrase to sort a report and define WHERE criteria to select records from the data source.
 
-1906

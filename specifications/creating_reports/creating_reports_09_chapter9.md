@@ -1,5 +1,3 @@
-Chapter9
-
 Choosing a Display Format
 
 You can choose from several different display formats when you display a report on the
@@ -42,11 +40,8 @@ Using PowerPoint PPT Display Format
 
 Saving Report Output in PPTX Format
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 575
-
-Report Display Formats
+Report Display Formats
 
 Report Display Formats
 
@@ -96,9 +91,8 @@ formatname
 
 Can be one of the following:
 
-576
 
-DOC
+DOC
 
 EXCEL
 
@@ -108,7 +102,6 @@ EXL2K
 
 EXL2K FORMULA
 
-9. Choosing a Display Format
 
 Specifies that the report will be displayed as a plain-text word
 processing document, with page breaks, in Microsoft Word within
@@ -163,11 +156,8 @@ document. You must have installed a third party tool capable of
 displaying PS. See Using PostScript (PS) Display Format on page
 620.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 577
-
-Report Display Formats
+Report Display Formats
 
 WP
 
@@ -224,9 +214,6 @@ Specifies that the report will be displayed as an Excel
 Specifies that the report will be displayed as an Excel 97
 worksheet.
 
-578
-
-9. Choosing a Display Format
 
 PostScript (PS)
 
@@ -265,11 +252,8 @@ issue the SET SHOWBLANKS=ON command.
 Even if you issue this command, trailing blanks will not be preserved except in heading,
 subheading, footing, and subfooting lines that use the default heading or footing alignment.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 579
-
-Preserving Leading and Internal Blanks in Report Output
+Preserving Leading and Internal Blanks in Report Output
 
 Syntax:
 
@@ -322,11 +306,9 @@ TYPE=REPORT, FONT=COURIER NEW,$
 ENDSTYLE
 END
 
-580
 
-With SHOWBLANKS OFF, these additional blanks are removed:
+With SHOWBLANKS OFF, these additional blanks are removed:
 
-9. Choosing a Display Format
 
 With SHOWBLANKS ON, the additional leading and internal blanks are preserved. Note that
 trailing blanks are not preserved:
@@ -354,11 +336,8 @@ PCHOLD on page 576.
 ONLINE-FMT parameter of the SET command. For more information, see How to Choose a
 Display Format Using SET ONLINE-FMT on page 578.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 581
-
-Using Web Display Format: HTML
+Using Web Display Format: HTML
 
 HTML display format requires that the SET command's STYLESHEET parameter be set to any
 value except OFF. Appropriate values include ON (the default), the name of a StyleSheet file, or
@@ -415,9 +394,6 @@ server.
 
 3. Run the report.
 
-582
-
-9. Choosing a Display Format
 
 SET JSURL=/ibi_apps/ibi_html/killmenu.js
 TABLE FILE CENTORD
@@ -464,11 +440,8 @@ SUM QUANTITY
 BY PLANTLNG
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 583
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 The output looks like this:
 
@@ -496,9 +469,6 @@ electronic documents through the web. It is especially useful if you want a repo
 its presentation and layout regardless of a browser or printer type. For details, see Using PDF
 Display Format on page 585.
 
-584
-
-9. Choosing a Display Format
 
 PS (PostScript format), a print-oriented page description language, is most often used to send
 a report directly to a printer. While used less frequently as an online display format, you can
@@ -543,11 +513,8 @@ format, see Saving and Reusing Your Report Output on page 471.
 Other print-oriented display formats. You can also display a report as a PostScript document.
 For more information, see Using PostScript (PS) Display Format on page 620.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 585
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 Syntax:
 
@@ -600,13 +567,11 @@ will be displayed as standard WebFOCUS images.
 Watermark images are designated by defining the following attributes in the style sheet for the
 transparent GIF.
 
-586
 
-Z-INDEX=TOP
+Z-INDEX=TOP
 
 OPACITY=n
 
-9. Choosing a Display Format
 
 Designates that the image is to be handled as a watermark
 image and should always be placed on top of all other objects on
@@ -647,11 +612,8 @@ The following request against the GGSALES data source places the coffee image (c
 the page and layers the watermark image (internalonlyport.gif) on top. These images are
 displayed on every page of the report.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 587
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 TABLE FILE GGSALES
 SUM
@@ -691,17 +653,11 @@ TYPE=REPORT,
 $ENDSTYLE
 END
 
-588
 
-The output is:
+The output is:
 
-9. Choosing a Display Format
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 589
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 Features Supported
 
@@ -750,9 +706,6 @@ panels of the same page for the columns that do not fit. The page numbers specif
 and panel numbers. For example, page numbers 1.1 and 1.2 represent page 1/panel 1 and
 page 1/panel 2.
 
-590
-
-9. Choosing a Display Format
 
 You can scale the output to fit across the width of the page using the PAGE-SCALE StyleSheet
 attribute or the PAGE-SCALE SET parameter.
@@ -806,34 +759,22 @@ TYPE=TABHEADING, SIZE=12, STYLE=BOLD, JUSTIFY=CENTER, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 591
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 Note: The image displayed in the subheading is distributed with WebFOCUS. The path to the
 image is dependent on your platform and installation options. The path in the request uses the
 default installation directory on Windows.
 
-592
 
-The output is too wide for the page and is paneled. Page 1.1 has the columns that fit across
+The output is too wide for the page and is paneled. Page 1.1 has the columns that fit across
 the width of the page, as shown in the following image.
 
-9. Choosing a Display Format
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 593
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 Page 1.2 has the remaining columns, as shown in the following image.
 
-594
-
-9. Choosing a Display Format
 
 The following version of the request uses page scaling.
 
@@ -874,18 +815,12 @@ TYPE=TABHEADING, SIZE=12, STYLE=BOLD, JUSTIFY=CENTER, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 595
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 The output is shown in the following image. All of the columns fit across the width of the page,
 with no paneling.
 
-596
-
-9. Choosing a Display Format
 
 Aligning a PDF Report Within a Page
 
@@ -924,11 +859,8 @@ ENDSTYLE
 
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 597
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 The output is:
 
@@ -960,11 +892,9 @@ ENDSTYLE
 
 END
 
-598
 
-The output is:
+The output is:
 
-9. Choosing a Display Format
 
 Example:
 
@@ -994,11 +924,8 @@ ENDSTYLE
 
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 599
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 The output is:
 
@@ -1029,9 +956,6 @@ fixed-positioned component will be tagged as <H1> and represent the main documen
 heading, which will be displayed once on the first physical page of the document. Other
 page headings and footings, as many as there are available, are tagged as <H2>.
 
-600
-
-9. Choosing a Display Format
 
 A USEASTITLES StyleSheet attribute that places and aligns custom column titles in a
 heading.
@@ -1085,11 +1009,8 @@ Controlling PDF Code for Accessibility
 The following request generates accessible PDF report output. The SET and SUBHEAD
 commands that enable accessibility appear in boldface.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 601
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 TABLE FILE GGSALES
 SUM
@@ -1124,30 +1045,22 @@ Page Heading
 
 Heading tags <H1> and <H2> and are automatically generated by WebFOCUS.
 
-602
-
-9. Choosing a Display Format
 
 Column Titles
 
 Row tags <TR> and header cell tags <TH> are generated by WebFOCUS. The column title is
 aligned with the appropriate data columns.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 603
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 Data Cells
 
 Row tags <TR> and header cell tags <TH> are generated by WebFOCUS.
 
-604
 
-The output is:
+The output is:
 
-9. Choosing a Display Format
 
 Aligning Elements in a Page Heading With Column Data
 
@@ -1162,11 +1075,8 @@ How to Align Elements in a Page Heading With Column Data
 
 TYPE=HEADING, USEASTITLES=ON, HEADALIGN=BODY,$
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 605
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 USEASTITLES=ON can only be set for the entire HEADING. HEADALIGN=BODY must also be set
 for the HEADING.
@@ -1193,9 +1103,6 @@ Aligning Elements in a Page Heading to Column Data
 The USEASTITLES attribute that enables the alignment of the heading elements is in bold.
 Note that the HEADALIGN=BODY attribute is also in bold.
 
-606
-
-9. Choosing a Display Format
 
 TABLE FILE GGSALES
 SUM
@@ -1239,11 +1146,8 @@ TYPE=GRANDTOTAL, FONT='ARIAL', STYLE=BOLD,$
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 607
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 WebFOCUS generates the following tags when the USEASTITLES attribute is used.
 
@@ -1252,11 +1156,9 @@ Page Heading and Column Titles
 Row tags <TR> and header cell tags <TH> are generated by WebFOCUS. Along with the Page
 Heading, the column titles are also tagged as header cells <TH>.
 
-608
 
-The output is:
+The output is:
 
-9. Choosing a Display Format
 
 Adding Bookmarks
 
@@ -1267,11 +1169,8 @@ conjunction with a screen reader is that you will be able to navigate a defined 
 having to listen to the reading of the entire document. For more information about navigating
 PDF Bookmarks, see the Adobe documentation on the Adobe Web site, www.adobe.com.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 609
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 Note:
 
@@ -1312,9 +1211,6 @@ compound report. The report0 component uses the DisplayOn=DOC-HEADING attribute 
 indicate that the ON TABLE SUBHEAD string from the report0 component should be tagged as
 the main document heading in the PDF output.
 
-610
-
-9. Choosing a Display Format
 
 SET ACCESSPDF = 508
 COMPOUND LAYOUT PCHOLD FORMAT PDF
@@ -1372,11 +1268,8 @@ TYPE=SUBTOTAL, SIZE=10, STYLE=BOLD,$
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 611
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 SET COMPONENT=report2
 TABLE FILE GGSALES
@@ -1404,9 +1297,6 @@ COMPOUND END
 
 The report output, with bookmarks, is shown below.
 
-612
-
-9. Choosing a Display Format
 
 Notice that the hierarchy tree in the Bookmarks pane has two levels for each report and is
 determined with the BYTOC attribute. The title for each report in the Bookmarks tree is
@@ -1416,27 +1306,18 @@ The first three pages of the PDF output, with the Tags panel, are shown in the f
 images. Note that only the first page of output contains the <H1> heading, DOLLAR SALES
 REPORT. The other headings are tagged as <H2>.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 613
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 Page 1
 
-614
-
-9. Choosing a Display Format
 
 Page 2
 
 Page 3
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 615
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 Adding Descriptive Text to an Image
 
@@ -1468,9 +1349,6 @@ This request adds the Information Builders logo to a report heading. It uses the
 StyleSheet ALT attribute to add descriptive text (Information Builders logo) that identifies the
 image.
 
-616
-
-9. Choosing a Display Format
 
 TABLE FILE GGSALES
 SUM
@@ -1508,11 +1386,8 @@ The report is:
 When the request is run, hovering the mouse over the image displays the descriptive text. This
 text is read by accessibility tools, such as JAWS.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 617
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 Describing Drill Down Information
 
@@ -1569,13 +1444,11 @@ TYPE=SUBTOTAL, BACKCOLOR=RGB(210 210 210), STYLE=BOLD,$
 ENDSTYLE
 END
 
-618
 
-Note the ALT attribute and associated text in BOLD.
+Note the ALT attribute and associated text in BOLD.
 
 The report is:
 
-9. Choosing a Display Format
 
 When you hover the mouse over Coffee for the Midwest region, the URL information for the
 Drill Down appears in the box. Screen readers, such as JAWS, will not read hover text. With
@@ -1583,11 +1456,8 @@ ACCESSPDF enabled, the ALT text or 'Drill Down to detail report' is appended to 
 the Drill Down or 'Coffee' in this example. When you navigate to Coffee, the screen reader will
 respond with Coffee Drill Down to detail report.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 619
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 Note:
 
@@ -1636,9 +1506,6 @@ You can display a report as a PostScript document. PostScript (format PS) is a p
 page description language. As a display format, it may be helpful if you wish to see the report
 output on your monitor before printing it using PostScript.
 
-620
-
-9. Choosing a Display Format
 
 To display a PostScript report, a computer must have a third-party PostScript application
 installed, such as GSview (a graphical interface for Ghostscript).
@@ -1692,11 +1559,8 @@ option
 
 Can be any paper size supported for your printer. LETTER is the default setting.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 621
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 Note: If you send a job to a printer that does not have the requested paper size loaded, the
 printer may stop and instruct its operator to load the specified paper. To ensure control over
@@ -1738,9 +1602,6 @@ orientation specifications in the StyleSheet declaration. The referenced printer
 Level 2 or higher printer, which will automatically select legal paper and print the document in
 landscape mode.
 
-622
-
-9. Choosing a Display Format
 
 SET PSPAGESETUP=ON
 TABLE FILE CAR
@@ -1792,11 +1653,8 @@ Some versions of Firefox 3 do not support the Symbol font and will substitute it
 another font. For information about Firefox support for the Symbol font, refer to Firefox
 sources.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 623
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 The Euro character displays in PDF output because the Adobe Symbol character set
 includes the Euro character.
@@ -1844,9 +1702,6 @@ Note: A Printer Font Metrics (PFM) file is also available. This file is used by 
 such as Adobe Reader for laying out text, however it is not supported by WebFOCUS. You
 must use the AFM file.
 
-624
-
-9. Choosing a Display Format
 
 WebFOCUS Font Map files. These configuration files map the name of a font to the
 appropriate font metrics and font files (AFM, PFB (or PFA), or OTF). The mapping determines
@@ -1891,11 +1746,8 @@ Locate the necessary font files (AFM, PFB (or PFA), or OTF). These files should 
 the location where the fonts were originally installed. You will be copying these files to a
 location from which they can be accessed by the WebFOCUS Reporting Server.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 625
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 Tip:
 
@@ -1945,11 +1797,9 @@ After you copy these files, you can rename them to any descriptive name.
 a text editor, add your font definitions to this file using the syntax described in the
 following section, How to Add Fonts to the Font Map on page 628.
 
-626
 
-Procedure: How to Configure Type 1 PostScript Fonts on z/OS Under PDS Deployment
+Procedure: How to Configure Type 1 PostScript Fonts on z/OS Under PDS Deployment
 
-9. Choosing a Display Format
 
 After you have located the font files you wish to add, you can configure WebFOCUS to use one
 or more Type 1 fonts.
@@ -1997,11 +1847,8 @@ member name.
 EDACCFG. Using a text editor, add your font definition to the user font map using the
 syntax described in How to Add Fonts to the Font Map on page 628.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 627
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 Syntax:
 
@@ -2057,9 +1904,6 @@ Line breaks may be placed between attribute-value pairs.
 
 A more complete description of XML syntax can be found here:
 
-628
-
-9. Choosing a Display Format
 
 http://en.wikipedia.org/wiki/Xml
 
@@ -2108,11 +1952,8 @@ Although most fonts have a font file for each of the four styles, some specializ
 such as bar code fonts might only have a single style (usually "normal"). Only the styles
 that exist for a particular font need to be specified in the font map file.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 629
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 The actual names of the fonts may vary. Some fonts may be called "oblique" rather than
 "italic", or "heavy" rather than "bold". However, the font map and StyleSheet always use
@@ -2148,9 +1989,6 @@ allows the same font mappings to be used for both PDF and PostScript reports acr
 formats. These can include PDF, PS, and DHTML. PPT and PPTX formats will use fonts
 specified for DHTML. If no <when> is specified, the font will be available for all formats.
 
-630
-
-9. Choosing a Display Format
 
 The following is a complete example of a user font map:
 
@@ -2200,11 +2038,8 @@ in the Save-As dialog. In most other editors, such as vi on UNIX or the ISPF edi
 the BOM will display as three or four strange-looking characters at the beginning of the file. As
 long as you do not delete or modify these characters, the BOM will be preserved.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 631
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 Reference: The WebFOCUS Default Font Map
 
@@ -2255,9 +2090,6 @@ a. Within fontmap.xml, find the entry for the font family within the desired out
 
 to be designated as the default.
 
-632
-
-9. Choosing a Display Format
 
 b. Copy the entire entry into the appropriate format area within fontuser.xml.
 
@@ -2307,11 +2139,8 @@ A default font set in the PDF section of the font map does not affect a default 
 DHTML section, and a default for one specific language does not override the default for
 other languages.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 633
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 Embedding TrueType Fonts Into WebFOCUS PDF Reports Generated in Windows
 
@@ -2361,12 +2190,10 @@ Is your WebFOCUS configuration directory (it may have a different name depending
 installation options, but should always be a directory directly under drive:\ibi\srv82).
 Note that home is the other directory directly under drive:\ibi\srv82.
 
-634
 
-For each of the supported fonts, you will need to copy the following font files. You will also
+For each of the supported fonts, you will need to copy the following font files. You will also
 need to know the metrics file name associated with each font file:
 
-9. Choosing a Display Format
 
 Arial Unicode MS
 
@@ -2464,11 +2291,8 @@ pdlusubi.afm
 
 l_10646.ttf
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 635
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 Tahoma
 
@@ -2575,9 +2399,6 @@ format="PDF PS"> and </when>, then edit it for the font you are adding. For more
 information on editing font map syntax, see How to Add Fonts to the Font Map on page
 628.
 
-636
-
-9. Choosing a Display Format
 
 The following shows a user font map file with the Arial Unicode MS font added:
 
@@ -2635,11 +2456,8 @@ fonts defined. You can select only the ones you need for your environment:
           metricsfile="pdtrbubi" fontfile="trebucbi" fonttype="TTF" />
   </family>
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 637
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 <family name="Times New Roman">
     <font style="normal"
@@ -2687,9 +2505,6 @@ Creating Reports With TIBCO® WebFOCUS Language
   </when>
 </fontmap>
 
-638
-
-9. Choosing a Display Format
 
 Example:
 
@@ -2734,17 +2549,11 @@ TYPE = TITLE, FONT='Trebuchet MS',$
 TYPE = DATA, FONT='Tahoma', style=bold, size=10, color=blue, $
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 639
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 The output is:
 
-640
-
-9. Choosing a Display Format
 
 Note: Except for OpenType fonts, in order to reduce the size of a generated PDF document,
 only the subset of used characters of a font are included into the PDF document.
@@ -2760,11 +2569,8 @@ PDF files created with HOLD FORMAT PDF present a challenge if you work in a z/OS
 environment and use UNIX-based systems as the server for Adobe or as an intermediate
 transfer point.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 641
-
-Using Print Display Formats: PDF, PS
+Using Print Display Formats: PDF, PS
 
 The end of each PDF file has a table containing the byte offset, including line termination
 characters, of each PDF object in the file. The offsets indicate that each line is terminated by
@@ -2809,9 +2615,6 @@ transferred in text mode to a Windows machine, but not to a UNIX machine. If
 subsequently transferred from a UNIX machine to a Windows machine in text mode, it will
 be a valid PDF file on the Windows machine.
 
-642
-
-9. Choosing a Display Format
 
 SPACE
 
@@ -2866,11 +2669,8 @@ DOC format does not support StyleSheets.
 
 WP format. The report opens as plain text within your web browser.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 643
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 If you issue the SET PAGE = OFF command, or include TABPAGENO in a heading or footing,
 WP will indicate page breaks by including the character "1" in the first column at each
@@ -2918,9 +2718,6 @@ XSLX report on the screen using the PCHOLD command, and then save the report to
 OneDrive® for Business. Once the file is in the cloud, you can access the file using Office
 Online.
 
-644
-
-9. Choosing a Display Format
 
 For information on the differences in features available in Excel Online and in Microsoft
 Office 2013, see Office Online Service Description.
@@ -2964,11 +2761,8 @@ clearer distinction between headings and data.
 Using the TITLETEXT StyleSheet attribute, tab names within the workbook can be
 customized to provide better descriptions of the worksheet content.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 645
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Unlike the HTML-based (EXL2K) format, which removes all blanks, XLSX, by default, retains
 leading, internal, and trailing blanks in cells within the worksheet. For more information on
@@ -3015,9 +2809,6 @@ specific procedure or for the entire environment:
 
 For a procedure. Issue the SET EXCELSERVURL command within the procedure.
 
-646
-
-9. Choosing a Display Format
 
 For the entire environment. Edit the IBIF_excelservurl variable in the WebFOCUS
 Administration Console by selecting:
@@ -3056,11 +2847,8 @@ By default, each WebFOCUS Client contains the following URL definition that poin
 
 &URL_PROTOCOL://&servername:&server_port&IBIF_webapp
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 647
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Syntax:
 
@@ -3096,11 +2884,9 @@ Opening XLSX Report Output
 
 To open XLSX workbooks, Excel 2013, 2010, or 2007 must be installed on the desktop.
 
-648
 
-Reference: Opening XLSX Report Output in Excel 2000/2003
+Reference: Opening XLSX Report Output in Excel 2000/2003
 
-9. Choosing a Display Format
 
 Excel 2000 and Excel 2003 can be updated to read Excel XLSX workbooks using the Microsoft
 Office Compatibility Pack available from the Microsoft download site (http://
@@ -3128,11 +2914,8 @@ The Excel 2000/2003 user can select Save and provide a file name with the .xlsx
 extension to save the report output to their machine. The user can then open the .xlsx file
 directly from Excel 2000/2003.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 649
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Save As Option enabled (YES). When the WebFOCUS Redirection Save As option is
 enabled, the WebFOCUS Client sends the report output to the user as a file with the
@@ -3172,9 +2955,6 @@ Windows Explorer by selecting Tools/Folder Options, clicking the File Types tab,
 the extension (.xls or .xlsx), clicking the Advanced button, and checking the Browse in same
 window box.
 
-650
-
-9. Choosing a Display Format
 
 In Windows 7, Microsoft removed the desktop settings that support opening worksheets in
 the browser. This means that to change this behavior, you can no longer simply navigate to
@@ -3221,11 +3001,8 @@ data).
 Note: This behavior is a change from EXL2K format, where cells containing dates and more
 complex numeric formats were passed as formatted text.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 651
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Displaying Formatted Numeric Values in XLSX Report Output
 
@@ -3278,9 +3055,6 @@ ON TABLE PCHOLD FORMAT XLSX
 ON TABLE SET BYDISPLAY ON
 END
 
-652
-
-9. Choosing a Display Format
 
 In the resulting worksheet, notice that cell C2 containing the DOLLAR value for Midwest Coffee
 presents the value with the WebFOCUS format D12.2, which presents the comma (,) and two
@@ -3307,11 +3081,8 @@ ON TABLE PCHOLD FORMAT XLSX
 ON TABLE SET BYDISPLAY ON
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 653
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Notice the fixed numeric format defined for the BUDDOLLARS column (Column C) presents the
 local currency symbol in a fixed position within each cell, regardless of the size of the data
@@ -3336,9 +3107,6 @@ Using Numeric Format Punctuation in Headings and Footings
 For data columns, all currency formats are translated using the Excel XLSX format masks that
 use the punctuation rules defined by the regional settings of the desktop.
 
-654
-
-9. Choosing a Display Format
 
 In languages that use Continental Decimal Notation, the currency definitions designate that a
 comma (,) is used as the decimal separator, and a period (.) is used as the thousands
@@ -3371,11 +3139,8 @@ ON TABLE SET STYLE *
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 655
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 The output is:
 
@@ -3397,11 +3162,9 @@ TYPE=TITLE, IN-RANGES=DATA, $
 ENDSTYLE
 END
 
-656
 
-The report footer is not part of the data table, as shown in the following image:
+The report footer is not part of the data table, as shown in the following image:
 
-9. Choosing a Display Format
 
 Passing Dates to XLSX Report Output
 
@@ -3417,11 +3180,8 @@ In HTML, the date format displays as:
 
 In XLSX, the date format displays as:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 657
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Example:
 
@@ -3494,9 +3254,6 @@ first day of the month. Therefore, the value placed in the cell may be different
 component value in the source data field and may produce unexpected results when used for
 sorting or date calculations in an Excel formula.
 
-658
-
-9. Choosing a Display Format
 
 The following table shows how WebFOCUS date formats are represented in XLSX. The table
 shows how the value is preserved in the cell and how the display is generated using the format
@@ -3561,11 +3318,8 @@ Dates formatted as individual components (for example, D, Y, M, W) are passed to
 numeric values that can be used as parameters to Excel date functions. The values are
 passed as General format that are recognized by Excel as numbers.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 659
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Example:
 
@@ -3618,11 +3372,9 @@ END
 In XLSX, the cells containing dates with Quarter components have General format. To see this,
 open the Format Cells dialog box.
 
-660
 
-The output is:
+The output is:
 
-9. Choosing a Display Format
 
 Passing Date Components Defined as Translated Text
 
@@ -3665,11 +3417,8 @@ END
 In Excel 2007 or 2010, the cells containing the days have General format. To see this, open
 the Format Cells dialog box.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 661
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 The output is:
 
@@ -3714,11 +3463,9 @@ IF RECORDLIMIT EQ 1
 ON TABLE PCHOLD FORMAT XLSX
 END
 
-662
 
-The output is:
+The output is:
 
-9. Choosing a Display Format
 
 Note: Minutes by themselves are not supported in Excel and will be sent as an integer to XLSX
 with a Custom format.
@@ -3777,11 +3524,8 @@ SUMMARIZE, as well as for calculations performed by functions.
 
 A DEFINE field will always generate a constant value and not a formula.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 663
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 COMPUTE will generate the formula, except when the COMPUTE is equal to a single
 variable. In that case, the constant is placed and not the formula.
@@ -3830,11 +3574,9 @@ Be cautious when using functions that use decimal values as an argument (BYTVAL,
 CTRAN, HEXBYT). Based on whether the operating environment is EBCDIC or ASCII, the
 results may be different.
 
-664
 
-XLSX FORMULA is not supported with the following WebFOCUS commands and phrases:
+XLSX FORMULA is not supported with the following WebFOCUS commands and phrases:
 
-9. Choosing a Display Format
 
 DEFINE
 
@@ -3885,11 +3627,8 @@ HOLD
 Saves the output for reuse in an Excel worksheet. For details, see Saving and Reusing Your
 Report Output on page 471.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 665
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Example:
 
@@ -3918,16 +3657,14 @@ END
 
 The output is:
 
-666
 
-WebFOCUS can translate any total (subtotal, row total, or column total) to an Excel formula.
+WebFOCUS can translate any total (subtotal, row total, or column total) to an Excel formula.
 For related information, see Translation Support for FORMAT XLSX FORMULA on page 664.
 
 Example:
 
 Generating Native Excel Formulas for Row Totals
 
-9. Choosing a Display Format
 
 The following request calculates totals for returns and balances across continents. The row
 totals are represented as sums of cell ranges.
@@ -3960,11 +3697,8 @@ Generating Native Excel Formulas for Calculated Values
 The following request totals the columns for retail cost and dealer cost, and calculates the
 value of a field called PROFIT by subtracting the DOLLARS from the BUDDOLLARS.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 667
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 The formula for the calculated values is generated by translating the internal form of the
 WebFOCUS expression (PROFIT/D12.2MC = BUDDOLLARS - DOLLARS;) into an Excel formula.
@@ -3995,13 +3729,11 @@ END
 The following output highlights the formula that calculates for the column total of PROFIT:
 D8=SUM(D4:D7).
 
-668
 
-Example:
+Example:
 
 Generating a Native Excel Formula for a Function
 
-9. Choosing a Display Format
 
 The following example illustrates how functions are translated to Excel reports. The function
 IMOD divides ACCTNUMBER by 1000 and returns the remainder to LAST3_ACCT. The Excel
@@ -4032,11 +3764,8 @@ not displayed in the workbook, the data value will be placed in the formula, rat
 cell reference. In the case of RECOMPUTE, the value used may be an incorrect value from
 the last detail record of the sort break.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 669
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Example:
 
@@ -4064,9 +3793,6 @@ TYPE=SUBTOTAL, BACKCOLOR=RGB(210 210 210),$
 TYPE=GRANDTOTAL, BACKCOLOR=RGB(166 166 166), STYLE=BOLD,$
 END
 
-670
-
-9. Choosing a Display Format
 
 The output shows that the formula is subtracting a data value that is not displayed on the
 worksheet. It is actually the BUDDOLLARS value from the current hardcoded value, since there
@@ -4076,11 +3802,8 @@ If you add the BUDDOLLARS column to the request, the formula can be recomputed c
 
 SUM DOLLARS/I8MC BUDDOLLARS/I8MC
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 671
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 The formula generated with the new SUM command contains cell references for both fields
 used in the calculation.
@@ -4104,9 +3827,6 @@ SUM.
 
 =SUM()
 
-672
-
-9. Choosing a Display Format
 
 Prefix Operator
 
@@ -4164,11 +3884,8 @@ In the following request against the GGSALES data source, the RECOMPUTE command 
 REGION sort field calculates the maximum of the aggregated DOLLARS field and the minimum
 of the aggregated BUDDOLLARS field.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 673
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 TABLE FILE GGSALES
 SUM UNITS DOLLARS/I8MC BUDDOLLARS/I8MC
@@ -4208,12 +3925,10 @@ BY ST
 ON TABLE PCHOLD FORMAT XLSX FORMULA
 END
 
-674
 
-The output shows that the prefix operators were not passed to Excel as formulas. They were
+The output shows that the prefix operators were not passed to Excel as formulas. They were
 passed as data values.
 
-9. Choosing a Display Format
 
 NODATA With Formulas
 
@@ -4225,11 +3940,8 @@ NODATA symbol (.) are used in a formula, they will cause a formula error.
 
 For example:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 675
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 SET NODATA=''
 TABLE FILE GGSALES
@@ -4280,9 +3992,6 @@ specify the exact width of a column using WRAP=ON.
 
 WRAP is not supported for Date format fields.
 
-676
-
-9. Choosing a Display Format
 
 Syntax:
 
@@ -4338,11 +4047,8 @@ column
 Designates a particular column to apply wrapping behavior to. If COLUMN is not included in
 the declaration, wrapping will be applied to the entire report.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 677
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 value
 
@@ -4398,9 +4104,6 @@ TYPE=REPORT, COLUMN=DESCRIPTION(3), WRAP=OFF,$
 TYPE=REPORT, COLUMN=DESCRIPTION(4), SQUEEZE=1.5,$
 END
 
-678
-
-9. Choosing a Display Format
 
 where:
 
@@ -4422,11 +4125,8 @@ columns.
 The following XLSX output displays the output for the "WRAP=OFF" and "SQUEEZE=1.5"
 columns.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 679
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Synchronizing WebFOCUS Page Breaks With Excel Page Breaks
 
@@ -4459,9 +4159,6 @@ TYPE=HEADING, STYLE=BOLD, SIZE=12, $
 ENDSTYLE
 END
 
-680
-
-9. Choosing a Display Format
 
 Using Print Preview in Excel, output for pages 1 and 2 for the Midwest Region are shown in the
 following images. The default Excel page breaks are synchronized with the page breaks
@@ -4470,17 +4167,11 @@ when the BY value changes.
 
 Page 1 Output
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 681
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Page 2 Output
 
-682
-
-9. Choosing a Display Format
 
 To repeat the page heading and column titles on each printed page, use the BY_field PAGE-
 BREAK phrase in combination with the XLSXPAGETITLES=ON StyleSheet attribute, as shown in
@@ -4507,11 +4198,8 @@ TYPE=HEADING, STYLE=BOLD, SIZE=12, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 683
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Using Print Preview in Excel, output for pages 1 and 2 for the Midwest Region are shown in the
 following images. Notice that the page heading and column titles are repeated on each printed
@@ -4519,20 +4207,15 @@ page.
 
 Page 1 Output
 
-684
 
-Page 2 Output
+Page 2 Output
 
-9. Choosing a Display Format
 
 Note: If your report contains OVER or ACROSS phrases, use the BY_field PAGE-BREAK phrase
 in combination with the XLSXPAGETITLES=ALL StyleSheet or SET command.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 685
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Preserving Leading and Internal Blanks in Report Output
 
@@ -4593,9 +4276,6 @@ In a request, use the following syntax
 
 ON TABLE SET SHOWBLANKS {OFF|ON}
 
-686
-
-9. Choosing a Display Format
 
 where:
 
@@ -4647,31 +4327,23 @@ END
 The following outputs show the differences in XLSX generated using SET SHOWBLANKS = OFF
 and SET SHOWBLANKS = ON.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 687
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 SET SHOWBLANKS = OFF with HEADALIGN=BODY (no leading blanks or trailing blanks)
 
 SET SHOWBLANKS = OFF without HEADALIGN=BODY (preserved blanks and concatenated
 heading items)
 
-688
 
-SET SHOWBLANKS = ON with HEADALIGN=BODY (leading blanks and trailing blanks)
+SET SHOWBLANKS = ON with HEADALIGN=BODY (leading blanks and trailing blanks)
 
-9. Choosing a Display Format
 
 SET SHOWBLANKS = ON without HEADALIGN=BODY (preserved blanks and concatenated
 heading items)
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 689
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Support for Drill Downs With XLSX Report Output
 
@@ -4717,9 +4389,6 @@ workbook will not open and you will receive a message stating You are not allowe
 access this viewer file. The drill-down feature in Microsoft Office products functioned in
 WebFOCUS Release 7.7.x because anonymous drill-down access was permitted.
 
-690
-
-9. Choosing a Display Format
 
 The following options are available to allow the feature in WebFOCUS Release 8.x:
 
@@ -4771,11 +4440,8 @@ How to Define Excel Page Settings
 [TYPE=REPORT,] XLSXPAGESETS={ON|OFF} [,PAGESIZE={pagesize|LETTER}]
  [,ORIENTATION={PORTRAIT|LANDSCAPE}] [,TOPMARGIN=n] [,BOTTOMMARGIN=m],$
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 691
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 where:
 
@@ -4823,9 +4489,6 @@ Inserting Images Into Excel XLSX Reports
 Images can be placed in any available WebFOCUS reporting node or element of a worksheet.
 Supported image formats include .gif and .jpg.
 
-692
-
-9. Choosing a Display Format
 
 Usage Considerations
 
@@ -4873,11 +4536,8 @@ url
 
 Is the URL of the image file.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 693
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 file
 
@@ -4931,9 +4591,6 @@ BY PRODUCT
 ACROSS REGION
 WHERE CATEGORY NE 'Gifts'
 
-694
-
-9. Choosing a Display Format
 
 ON CATEGORY SUBHEAD
 " "
@@ -4974,11 +4631,8 @@ TYPE=TABFOOTING, SIZE=12, STYLE=BOLD, JUSTIFY=RIGHT,$
 TYPE=TABFOOTING, IMAGE=logo.gif, SIZE=(1.67 .6),$
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 695
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 In the following request, since the referenced images are not part of the existing GGSALES
 table, the image files (.gif) are being built in the DEFINE and then referenced in the TABLE
@@ -4998,9 +4652,6 @@ copy the code into a text editor and delete any line feed characters within the 
 Layout syntax by going to the end of each line and pressing Delete. In some instances, you
 may need to add a space to maintain the structure of the string.
 
-696
-
-9. Choosing a Display Format
 
 APP PATH IBISAMP
 SET HTMLARCHIVE=ON
@@ -5033,11 +4684,8 @@ SHOWDATEY/YY=DATE;
 SHOWDATEQY/YYQ=DATE;
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 697
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 TABLE FILE GGSALES
 SUM DOLLARS/D12CM AS 'Dollars'
@@ -5080,9 +4728,6 @@ TYPE=ACROSSTITLE, STYLE=-UNDERLINE+BOLD,$
 TYPE=ACROSSVALUE, BACKCOLOR=RGB(218 225 232), STYLE=-UNDERLINE+BOLD,$
 END
 
-698
-
-9. Choosing a Display Format
 
 SET COMPONENT='chart1'
 ENGINE INT CACHE SET ON
@@ -5136,17 +4781,11 @@ ENDSTYLE
 END
 COMPOUND END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 699
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 The output is shown in the following images.
 
-700
-
-9. Choosing a Display Format
 
 Example:
 
@@ -5181,11 +4820,8 @@ ON TABLE PCHOLD FORMAT XLSX
 ON TABLE SET COMPOUND BYTOC
 ON TABLE SET STYLE *
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 701
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 The output is:
 
@@ -5213,9 +4849,6 @@ TYPE={PAGEHEADER|PAGEFOOTER},OBJECT=IMAGE,
  IMAGE=imagename, JUSTIFY={LEFT|CENTER|RIGHT}
  [,DISPLAYON={FIRST|NOT-FIRST}] [,SIZE=(w h)],$
 
-702
-
-9. Choosing a Display Format
 
 To place text in XLSX Workbook headers and footers, the syntax is:
 
@@ -5269,11 +4902,8 @@ parameter.
 h is the height of the image, expressed in the unit of measurement specified by the UNITS
 parameter.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 703
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Example:
 
@@ -5304,18 +4934,12 @@ DISPLAYON=NOT-FIRST,$
 TYPE=PAGEFOOTER, OBJECT=IMAGE, JUSTIFY=CENTER, IMAGE=WEBFOCUS1.GIF,$
 END
 
-704
 
-The first page of output has the image ibilogo.gif in the left area of the header and the image
+The first page of output has the image ibilogo.gif in the left area of the header and the image
 webfocus1.gif in the center area of the footer.
 
-9. Choosing a Display Format
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 705
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 The second page of output has the image ibilogo.gif in the right area of the header and the
 image webfocus1.gif in the center area of the footer.
@@ -5336,11 +4960,9 @@ cause image distortion.
 
 BLOB image fields are not supported in this release.
 
-706
 
-Reference: Displaying Watermarks on XLSX Report Output
+Reference: Displaying Watermarks on XLSX Report Output
 
-9. Choosing a Display Format
 
 Watermark images can be placed into the Excel headers to display on every printed page of the
 generated worksheet.
@@ -5384,11 +5006,8 @@ TYPE=PAGEHEADER, OBJECT=IMAGE, JUSTIFY=CENTER, IMAGE=WFINTERNALUSEONLY.GIF,$
 TYPE=PAGEFOOTER, OBJECT=IMAGE, JUSTIFY=RIGHT, IMAGE=WEBFOCUS1.GIF,$
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 707
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 The first page of the generated worksheet shows the watermark image beneath the data. This
 image is displayed on every page of the worksheet.
@@ -5409,9 +5028,6 @@ Template (.xltx)
 
 Workbook (.xlsx)
 
-708
-
-9. Choosing a Display Format
 
 Template File Type
 
@@ -5463,11 +5079,8 @@ converted to Excel 2013/2010/2007 templates by opening the .mht file in Excel
 Use .xltms to retain active content, including macros. This new XLTX template can be used
 with XLSX procedures.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 709
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Syntax:
 
@@ -5515,9 +5128,6 @@ Creating Excel Table of Contents Reports
 Excel Table of Contents (BYTOC) enables you to generate a separate worksheet within an
 instance of the report for each value of the first BY field in the WebFOCUS report.
 
-710
-
-9. Choosing a Display Format
 
 Syntax:
 
@@ -5561,11 +5171,8 @@ TYPE=TITLE, BACKCOLOR=GREY, COLOR=WHITE,$
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 711
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 The output is:
 
@@ -5590,9 +5197,6 @@ casing. For example, Excel evaluates the values WEST and West to be the same val
 WebFOCUS XLSX format identifies duplicate names and adds a unique number to the name to
 allow Excel to maintain both sheets.
 
-712
-
-9. Choosing a Display Format
 
 By default, WebFOCUS sort processing is case-sensitive, so the same field value with different
 casing is considered to be two different values when used as a sort (BY) field. In an Excel
@@ -5620,11 +5224,8 @@ the default value for the LINES parameter (57).
 Note: By default, when generating XLSX output, the WebFOCUS page heading and page footing
 commands generate only worksheet headings and worksheet footings.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 713
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Syntax:
 
@@ -5677,9 +5278,6 @@ final page and table footings.
 Subheadings, subfootings, and subtotal lines display within the data flow as normal. No
 special consideration is made to retain groupings within a given sheet.
 
-714
-
-9. Choosing a Display Format
 
 If ROWOVERFLOW=PBON, the page headings and footings and column titles display within
 the worksheet when a WebFOCUS command causes a page break.
@@ -5732,11 +5330,8 @@ BY CATEGORY
 BY PRODUCT
 BY DATE
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 715
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 -* ****Subfoot****
 ON REGION SUBFOOT
@@ -5763,9 +5358,6 @@ display on each worksheet, and the subhead and subfoot display whenever the asso
 field changes value. The following image shows the top of the first worksheet, displaying the
 report heading, page heading, column titles, and first subhead.
 
-716
-
-9. Choosing a Display Format
 
 Note that the TITLETEXT attribute in the StyleSheet specified the name EXLOVER, so the three
 worksheets were generated with the names EXLOVER1, EXLOVER2, and EXLOVER3. If there
@@ -5776,11 +5368,8 @@ The worksheet footing displays at the bottom of each worksheet and the report fo
 displays at the bottom of the last worksheet. The following image shows the bottom of the last
 worksheet, displaying the last subfoot, the page footing, and the report footing.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 717
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Example:
 
@@ -5823,9 +5412,6 @@ $
 ENDSTYLE
 END
 
-718
-
-9. Choosing a Display Format
 
 The report heading displays on the first worksheet only, the page heading, footing, and column
 titles display on each worksheet and at each WebFOCUS page break (each time the product
@@ -5837,11 +5423,8 @@ Excel Compound Reports Using XLSX
 Excel compound reports generate compound workbooks that can contain multiple worksheet
 reports using the XLSX output format.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 719
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 You can use standard Compound Layout syntax to generate XLSX compound workbooks. By
 default, each of the component reports from the compound report is placed in a new Excel
@@ -5867,13 +5450,11 @@ each unique primary key are not available in XLSX.
 Note: Since multiple tables are generated, WebFOCUS will ensure that each tab name is
 unique.
 
-720
 
-Example:
+Example:
 
 Compound Excel Report including Table of Contents (BYTOC)
 
-9. Choosing a Display Format
 
 SET PAGE-NUM=OFF
 COMPOUND LAYOUT PCHOLD FORMAT XLSX
@@ -5911,11 +5492,8 @@ $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 721
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 SET COMPONENT=R2
 TABLE FILE GGSALES
@@ -5962,9 +5540,6 @@ TYPE=HEADING,LINE=4,OBJECT=TEXT,COLOR=PURPLE, JUSTIFY=CENTER, STYLE=BOLD,$
 ENDSTYLE
 END
 
-722
-
-9. Choosing a Display Format
 
 SET COMPONENT=R4
 TABLE FILE GGSALES
@@ -5993,27 +5568,18 @@ The output is:
 
 Report 1: Summary Report by Region
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 723
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Report 2: BYTOC Reports by Region
 
 The following image is tiled to show multiple worksheet reports, one for each region.
 
-724
 
-Report 3: Sales Summary Report by Category
+Report 3: Sales Summary Report by Category
 
-9. Choosing a Display Format
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 725
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Report 4: Sales Detail Report by Category
 
@@ -6034,9 +5600,6 @@ NOBREAK specifies that the next report be placed on the same worksheet as the cu
 report. If it is not present, the default behavior is to place the next report on a separate
 worksheet.
 
-726
-
-9. Choosing a Display Format
 
 When used with the HOLD or PCHOLD syntax, the compound report keywords OPEN,
 CLOSE, and NOBREAK must appear immediately after FORMAT XLSX. For example, you can
@@ -6082,11 +5645,8 @@ report with the NOBREAK, or a HEADING or an ON TABLE SUBHEAD can be placed on th
 following report. This allows the most flexibility, since if blank rows were added by default,
 there would be no way to remove them.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 727
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 Example:
 
@@ -6130,11 +5690,9 @@ ENDSTYLE
 ON TABLE PCHOLD FORMAT XLSX CLOSE
 END
 
-728
 
-The output is:
+The output is:
 
-9. Choosing a Display Format
 
 Example:
 
@@ -6171,11 +5729,8 @@ TYPE=GRANDTOTAL, STYLE=BOLD,$
 TYPE=HEADING, SIZE=12, STYLE=BOLD, COLOR=BLUE,$
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 729
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 TABLE FILE GGSALES
 HEADING
@@ -6206,11 +5761,9 @@ TYPE=HEADING, SIZE=12, STYLE=BOLD, COLOR=BLUE,$
 TYPE=GRANDTOTAL, STYLE=BOLD,$
 END
 
-730
 
-Report output is displayed in two separate tabs.
+Report output is displayed in two separate tabs.
 
-9. Choosing a Display Format
 
 Using XLSX FORMULA With Compound Reports
 
@@ -6222,11 +5775,8 @@ workbook with all of the component reports in FORMULA mode.
 
 syntax:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 731
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 COMPOUND LAYOUT PCHOLD FORMAT XLSX FORMULA
 UNITS=IN, $
@@ -6281,9 +5831,6 @@ ON TABLE SET STYLE *
 $
 ENDSTYLE
 
-732
-
-9. Choosing a Display Format
 
 Note:
 
@@ -6336,21 +5883,16 @@ The wf2pivot.xltx template file must be in the Reporting Server path. The follow
 show the default of the first and second worksheets in the wf2pivot.xltx template, before
 executing the sample procedure.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 733
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 The first worksheet, PivotTablewithChart, contains an empty pivot table and pivot chart. It also
 contains an empty PivotTableFieldList. The first worksheet is shown in the following image.
 
-734
 
-The second worksheet, Source Data, contains one column called FieldsToBeAdded, for which
+The second worksheet, Source Data, contains one column called FieldsToBeAdded, for which
 there is initially no data. The second worksheet is shown in the following image.
 
-9. Choosing a Display Format
 
 When you run the sample procedure, a pivotwithchart.xlsx workbook is generated, with the
 WebFOCUS report data stored in the second worksheet.
@@ -6358,19 +5900,14 @@ WebFOCUS report data stored in the second worksheet.
 The following images show the first and second worksheets in the pivotwithchart.xlsx workbook
 after you run the sample procedure.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 735
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 First Worksheet
 
-736
 
-Second Worksheet
+Second Worksheet
 
-9. Choosing a Display Format
 
 In the PivotTablewithChart worksheet, note that the PivotTableFieldList is populated with the
 fields from the WebFOCUS report. There is one check box for each field in the report
@@ -6379,11 +5916,8 @@ procedure. All the check boxes are not selected, by default.
 The data used to populate the check boxes is obtained from the Source Data worksheet,
 where the data from the WebFOCUS report was saved upon executing the sample procedure.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 737
-
-Saving Report Output in Excel XLSX Format
+Saving Report Output in Excel XLSX Format
 
 To start building a pivot report and pivot chart, you can select the check boxes for the desired
 fields in the PivotTableFieldList. For example, selecting the check boxes for Product, Unit
@@ -6414,9 +5948,6 @@ PDS server or on a z/OS USS server with the setting DYNAM TEMP ALLOC MVS.
 For additional support on the implementation of features supported by the XLSX format, see
 WebFOCUS XLSX Format Supported Features Roadmap, located at the following link:
 
-738
-
-9. Choosing a Display Format
 
 https://techsupport.informationbuilders.com/tech/wbf/wbf_rln_formatXLSX_support.html
 
@@ -6466,11 +5997,8 @@ n
 Is the number of the slide on which to place the report output. This number is optional if
 the template has only one slide.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 739
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 Example:
 
@@ -6512,9 +6040,6 @@ The PPTX format in WebFOCUS supports the following Microsoft Office software pro
 
 Microsoft Office 2013/2010/2007.
 
-740
-
-9. Choosing a Display Format
 
 Microsoft Office 2000/2003 with the Microsoft Office Compatibility Pack.
 
@@ -6551,11 +6076,8 @@ Microsoft Office 2013, see Office Online Service Description.
 For more information on working with Office Online and OneDrive for Business, see Using
 Office Online in OneDrive.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 741
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 Building the .pptx Presentation File
 
@@ -6606,9 +6128,6 @@ SET EXCELSERVURL = http://servername:8080/ibi_apps
 
 In the WebFOCUS Administration Console:
 
-742
-
-9. Choosing a Display Format
 
 IBIF_excelservurl = http://servername:8080/ibi_apps
 
@@ -6659,11 +6178,8 @@ in the PowerPoint application, the generated presentation will retain the design
 name. For more information on the Redirection Settings, see the WebFOCUS Security and
 Administration manual.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 743
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 Opening PPTX Report Output
 
@@ -6705,9 +6221,6 @@ PowerPoint 2000/2003 user can select Save and provide a file name with the .pptx
 extension to save the report output to their machine. The user can then open the .pptx file
 directly from PowerPoint 2000/2003.
 
-744
-
-9. Choosing a Display Format
 
 Save As Option enabled (YES). When the WebFOCUS Redirection Save As option is
 enabled, the WebFOCUS Client sends the report output to the user as a file with the
@@ -6752,11 +6265,8 @@ version of Office to get continuing support and updates. If your organization us
 2003, go to the end of support page for Windows XP SP3 and Office 2003 for more
 information.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 745
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 In Windows 7, Microsoft removed the desktop settings that support opening worksheets in
 the browser. This means that to change this behavior, you can no longer simply navigate to
@@ -6806,9 +6316,6 @@ ON
 
 Enables you to group elements together in a PPTX report.
 
-746
-
-9. Choosing a Display Format
 
 OFF
 
@@ -6848,11 +6355,8 @@ TYPE=DATA,COLUMN=SHOWCAT, IMAGE=(SHOWCAT), PRESERVERATIO=ON,
 SIZE=(.5 .5), $
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 747
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 The output is:
 
@@ -6864,9 +6368,6 @@ In the following compound report, the grouping is defined for the component repo
 objects on the page, including the chart image, logo image, lines, and text box are not included
 in the grouping.
 
-748
-
-9. Choosing a Display Format
 
 SET HTMLARCHIVE=ON
 SET PPTXGRAPHTYPE=PNG
@@ -6913,11 +6414,8 @@ $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 749
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 SET COMPONENT='chart2'
 SET PAGE-NUM=NOLEAD
@@ -6966,11 +6464,9 @@ END
 
 COMPOUND END
 
-750
 
-The output is:
+The output is:
 
-9. Choosing a Display Format
 
 Date and Page/Slide Number
 
@@ -6988,11 +6484,8 @@ each open caret that is part of the text, for example, “< 250”. If you do no
 following the open caret will be interpreted as the start of a markup tag and will not display as
 text.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 751
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 Font Properties
 
@@ -7046,9 +6539,6 @@ Center Justification:
 
  <center>text</center>
 
-752
-
-9. Choosing a Display Format
 
 Full Justification:
 
@@ -7090,11 +6580,8 @@ By default, the bullet type is disc. You can also specify circle or square:
 
 <ul type=square>
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 753
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 Ordered (Number or Letter) List
 
@@ -7147,9 +6634,6 @@ For example:
 
 No other attributes are supported in the anchor markup tag.
 
-754
-
-9. Choosing a Display Format
 
 Page Numbering
 
@@ -7189,11 +6673,8 @@ Dates
 To display a date in the report output, insert a WebFOCUS date variable in a text object on a
 Page Master (such as &DATEtrMDYY) in the text object.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 755
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 Example:
 
@@ -7250,9 +6731,6 @@ The following text is displayed in boldface, in the Arial font face, and with a 
 
 The markup for this formatting is:
 
-756
-
-9. Choosing a Display Format
 
 <b><font face="Arial" size=12>This paragraph is triple-spaced
 (LINESPACING=MULTIPLE(3)):</font></b>
@@ -7270,11 +6748,8 @@ The following markup displays the text ‘primary’ in italics:
 
 The output is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 757
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 Example:
 
@@ -7303,9 +6778,6 @@ PAGELAYOUT=2, $
 COMPONENT=R3, TYPE=REPORT, POSITION=(4 3), DIMENSION=(4 4), $
 END
 
-758
-
-9. Choosing a Display Format
 
 SET COMPONENT=HEADER
 TABLE FILE GGSALES
@@ -7349,25 +6821,20 @@ TYPE=REPORT, FONT=HELVETICA, COLOR=GREEN, $
 END
 COMPOUND END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 759
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 The first page of output is:
 
 The second page of output has the same drawing objects:
 
-760
 
-Example:
+Example:
 
 Vertically Aligning Text Markup in PPTX Report Output
 
 The following request creates three boxes and places a text string object within each of them:
 
-9. Choosing a Display Format
 
 In the left box, the text is aligned vertically at the top.
 
@@ -7406,11 +6873,8 @@ END
 
 The output is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 761
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 Display Unordered Lists With Bullets, Discs, Squares, and Circles
 
@@ -7464,11 +6928,9 @@ ON TABLE SET STYLE *
 END
 COMPOUND END
 
-762
 
-The output is:
+The output is:
 
-9. Choosing a Display Format
 
 The default bullet type is disc. You may also specify circle or square, as shown in the following
 request.
@@ -7503,11 +6965,8 @@ ON TABLE SET STYLE *
 END
 COMPOUND END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 763
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 The output is:
 
@@ -7530,16 +6989,14 @@ respectively. Justification of images is not supported.
 Note: The highest quality image format for charts is PNG, which allows for transparency, as
 well as better integration with the styling within slide backgrounds.
 
-764
 
-Syntax:
+Syntax:
 
 How to Insert Images Into WebFOCUS PPTX Reports
 
 TYPE={REPORT|HEADING|data}, IMAGE={file|(column)}
 [,BY=byfield] [,SIZE=(w h)] ,$
 
-9. Choosing a Display Format
 
 where:
 
@@ -7572,11 +7029,8 @@ Inserting Images in the Headers and Footers of a Report
 
 The following request inserts images in the headers and footers of a report.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 765
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 TABLE FILE EMPDATA
 SUM
@@ -7610,9 +7064,6 @@ TYPE=REPORT,
   PAGE-LOCATION=BOTTOM,
 $
 
-766
-
-9. Choosing a Display Format
 
 TYPE=REPORT,
   GRID=OFF,
@@ -7652,11 +7103,8 @@ TYPE=TABFOOTING,
   SIZE=10,
 $
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 767
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 TYPE=SUBHEAD,
   BACKCOLOR=RGB(246 246 246),
@@ -7709,11 +7157,9 @@ $
 ENDSTYLE
 END
 
-768
 
-The output is:
+The output is:
 
-9. Choosing a Display Format
 
 Example:
 
@@ -7721,11 +7167,8 @@ Inserting Images in the Data Cells of a Report
 
 The following request inserts images in the data cells of a report.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 769
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 APP PATH IBISAMP IBIDEMO
 TABLE FILE GGSALES
@@ -7764,9 +7207,6 @@ TYPE=DATA,
      BORDER-TOP-COLOR=RGB(219 219 219),
 $
 
-770
-
-9. Choosing a Display Format
 
 TYPE=TITLE,
      COLOR=RGB(51 51 51),
@@ -7804,11 +7244,8 @@ TYPE=SUBFOOT,
 $
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 771
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 The report output is as follows:
 
@@ -7827,9 +7264,6 @@ How to Display PPTX Charts in PNG Image Format
 
 SET PPTXGRAPHTYPE={PNG|PNG_NOSCALE|JPEG}
 
-772
-
-9. Choosing a Display Format
 
 where:
 
@@ -7885,11 +7319,8 @@ POSITION=(0.500 0.979), MARKUP=ON, WRAP=ON, DIMENSION=(4.635 0.729),
 font='TREBUCHET MS', color=RGB(0 0 0), size=10, $
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 773
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 SET COMPONENT='report1'
 TABLE FILE GGSALES
@@ -7927,9 +7358,6 @@ ON GRAPH SET GRXAXIS 1
 ON GRAPH SET LOOKGRAPH HBAR
 ON GRAPH SET STYLE *
 
-774
-
-9. Choosing a Display Format
 
 *GRAPH_SCRIPT
 setPieDepth(0);
@@ -7966,11 +7394,8 @@ Displaying a PNG Image With Transparency in a Designated Template
 The following compound report places a chart defined with transparency on a slide from the
 designated template that contains background colors and patterns.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 775
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 SET PPTXGRAPHTYPE=PNG
 
@@ -8011,9 +7436,6 @@ ON GRAPH SET GRXAXIS 2
 ON GRAPH SET LOOKGRAPH VBAR
 ON GRAPH SET STYLE *
 
-776
-
-9. Choosing a Display Format
 
 *GRAPH_SCRIPT
 setPieDepth(0);
@@ -8037,11 +7459,8 @@ COMPOUND END
 
 The output is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 777
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 Drill Down From Microsoft PowerPoint
 
@@ -8087,9 +7506,6 @@ Drilling Down to an External URL
 
 The following request places a reference to an external URL on the grand total line tag.
 
-778
-
-9. Choosing a Display Format
 
 TABLE FILE GGSALES
 SUM
@@ -8110,11 +7526,8 @@ PAGESIZE='PPT Slide',
   ORIENTATION=LANDSCAPE,
 $
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 779
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 TYPE=REPORT,
   OBJECT=STATUS-AREA,
@@ -8170,11 +7583,9 @@ $
 ENDSTYLE
 END
 
-780
 
-The output is:
+The output is:
 
-9. Choosing a Display Format
 
 PowerPoint PPTX Presentations Using Templates
 
@@ -8206,11 +7617,8 @@ Macro-Enabled presentation (.pptm)
 
 Macro-Enabled presentation (.pptm)
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 781
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 Note: For more information on working with active content in macro-enabled templates, see the
 Microsoft webpage: https://support.office.com/en-nz/article/Enable-or-disable-macros-in-Office-
@@ -8262,9 +7670,6 @@ TYPE=REPORT,
   LEFTMARGIN=1.5,
 $
 
-782
-
-9. Choosing a Display Format
 
 TYPE=TITLE,
   COLOR=RGB(51 51 51),
@@ -8294,11 +7699,8 @@ Using a Multi-Report Request to Populate Designated Slides in a Template
 
 The following request is a technique for inserting different components across multiple slides.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 783
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 -* Replace Slide #2
 TABLE FILE GGSALES
@@ -8336,9 +7738,6 @@ TYPE=TITLE,
   STYLE=-UNDERLINE +BOLD,
 $
 
-784
-
-9. Choosing a Display Format
 
 TYPE=DATA,
   BORDER-TOP=LIGHT,
@@ -8384,11 +7783,8 @@ TYPE=REPORT,
   PAGE-LOCATION=BOTTOM,
 $
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 785
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 TYPE=REPORT,
   GRID=OFF,
@@ -8436,9 +7832,6 @@ TYPE=GRANDTOTAL,
 $
 END
 
-786
-
-9. Choosing a Display Format
 
 -* Replace Slide #4
 TABLE FILE GGSALES
@@ -8484,11 +7877,8 @@ TYPE=HEADING,
   JUSTIFY=LEFT,
   SIZE=16,
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 787
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 $
 TYPE=DATA,
@@ -8519,16 +7909,14 @@ PowerPoint Compound Documents generate presentations that may contain multiple s
 The components of a PowerPoint Compound Document can include standard tables and
 charts.
 
-788
 
-Example:
+Example:
 
 Generating a Compound Document
 
 The following request creates a slide deck, which presents the selected information in
 standard tables and charts.
 
-9. Choosing a Display Format
 
 SET HTMLARCHIVE=ON
 COMPOUND LAYOUT PCHOLD FORMAT PPTX
@@ -8561,11 +7949,8 @@ ON GRAPH SET EMBEDHEADING ON
 ON GRAPH SET VZERO OFF
 ON GRAPH SET GRWIDTH 1
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 789
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 ON GRAPH SET UNITS &WF_STYLE_UNITS
 ON GRAPH SET HAXIS &WF_STYLE_WIDTH
@@ -8617,9 +8002,6 @@ ENDSTYLE
 END
 -RUN
 
-790
-
-9. Choosing a Display Format
 
 SET COMPONENT='report1'
 TABLE FILE IBISAMP/GGSALES
@@ -8663,11 +8045,8 @@ TYPE=DATA,
   BORDER-TOP-COLOR=RGB(219 219 219),
 $
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 791
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 TYPE=TITLE,
   COLOR=RGB(51 51 51),
@@ -8693,11 +8072,9 @@ COMPOUND END
 
 The resulting Compound Document output is:
 
-792
 
-Coordinated Compound Layout Reports
+Coordinated Compound Layout Reports
 
-9. Choosing a Display Format
 
 A Coordinated Compound Layout report is coordinated so that all reports and graphs that
 contain a common sort field are burst into separate page layouts. Pages are generated for
@@ -8734,11 +8111,8 @@ The following request generates a Coordinated Compound Layout report. This Compo
 Report is coordinated by Region, so that individual slides are generated for each value of the
 primary Key, Region.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 793
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 SET HTMLARCHIVE=ON
 *-HOLD_SOURCE
@@ -8768,9 +8142,6 @@ ON TABLE NOTOTAL
 ON TABLE PCHOLD FORMAT PPTX
 ON TABLE SET STYLE *
 
-794
-
-9. Choosing a Display Format
 
 TYPE=REPORT,
   GRID=OFF,
@@ -8814,11 +8185,8 @@ TYPE=REPORT,
   PAGE-LOCATION=BOTTOM,
 $
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 795
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 TYPE=REPORT,
   GRID=OFF,
@@ -8867,9 +8235,6 @@ BY WF_RETAIL.WF_RETAIL_PRODUCT.PRODUCT_CATEGORY
 ON WF_RETAIL.WF_RETAIL_GEOGRAPHY_CUSTOMER.BUSINESS_REGION SUBTOTAL
 AS 'TOTAL FOR'
 
-796
-
-9. Choosing a Display Format
 
 ON TABLE SET ASNAMES ON
 ON TABLE NOTOTAL
@@ -8922,11 +8287,8 @@ ENDSTYLE
 END
 COMPOUND END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 797
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 The output is:
 
@@ -8955,9 +8317,6 @@ IF READLIMIT EQ 1
 ON TABLE PCHOLD FORMAT PPTX TEMPLATE 'template_plus.potx' SLIDENUMBER 1
 END
 
-798
-
-9. Choosing a Display Format
 
 Adding Images to a Compound Request
 
@@ -9004,11 +8363,8 @@ OBJECT=IMAGE, NAME='image2', IMAGE=analyst_logo.gif, ALT='',
 POSITION=(0.499 0.509), DIMENSION=(2.081 0.477), $
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 799
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 SET COMPONENT='ppt_template'
 TABLE FILE SYSCOLUM
@@ -9053,9 +8409,6 @@ TYPE=REPORT,
   PAGE-LOCATION=BOTTOM,
 $
 
-800
-
-9. Choosing a Display Format
 
 TYPE=REPORT,
   GRID=OFF,
@@ -9102,11 +8455,8 @@ TYPE=FOOTING,
   POSITION=(+4.500000 +0.000000),
 $
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 801
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 TYPE=SUBFOOT,
   SIZE=9,
@@ -9124,11 +8474,9 @@ COMPOUND END
 
 The output is:
 
-802
 
-Template Masters and Slide Layouts
+Template Masters and Slide Layouts
 
-9. Choosing a Display Format
 
 A Microsoft PPTX 2007 and higher template can contain one or more Slide Masters, defining a
 variety of different Slide Layouts.
@@ -9159,29 +8507,20 @@ Identifying Slide Master Attributes in PowerPoint
 To identify Slide Masters and Slide Layouts in a template, open the file in the PowerPoint
 application, select the Home tab, and click the Layout button on the ribbon.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 803
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 A context menu displays all Slide Layouts with labels, as shown in the following image.
 
 To view the Slide Master, select the View tab, and in the Master Views group on the ribbon,
 click the Slide Master button, as shown in the following image.
 
-804
 
-The Master View opens to show the Slide Master and its associated Slide Layouts, as shown
+The Master View opens to show the Slide Master and its associated Slide Layouts, as shown
 in the following image.
 
-9. Choosing a Display Format
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 805
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 The following image shows the Slide Master view of the template used in this example. It
 contains two Slide Masters: (1) Trek and (2) Oriel. Within each Master, the image displays the
@@ -9189,9 +8528,6 @@ layouts selected for the report generation. Notice that the Slide Master and Lay
 be identified by hovering over the slide image. Use the name without the Slide Master or Slide
 Layout suffixes.
 
-806
-
-9. Choosing a Display Format
 
 Syntax:
 
@@ -9240,11 +8576,8 @@ font='TREBUCHET MS', color=RGB(0 0 0), size=18, $
 PAGELAYOUT=2, NAME='Page layout 2', text='Page layout 2',
 BOTTOMMARGIN=0.025, TOPMARGIN=4.8, $
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 807
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 OBJECT=STRING, NAME='pl2_text2', TEXT='Sales By Region',
 POSITION=(0.5 0.325), MARKUP=ON, WRAP=ON, DIMENSION=(4.146 0.609),
@@ -9291,9 +8624,6 @@ IF READLIMIT EQ 1
 ON TABLE PCHOLD FORMAT PPTX TEMPLATE 'template_plus.potx' SLIDENUMBER 1
 END
 
-808
-
-9. Choosing a Display Format
 
 SET COMPONENT='report1'
 -INCLUDE GG_RPT1
@@ -9342,11 +8672,8 @@ $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 809
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 -*gg_rpt2.fex
 TABLE FILE GGSALES
@@ -9394,9 +8721,6 @@ setCurveFitEquationDisplay(false);
 setPlace(true);
 *END
 
-810
-
-9. Choosing a Display Format
 
 INCLUDE = warm,$
 TYPE=REPORT, TITLETEXT=&WF_TITLE.QUOTEDSTRING, $
@@ -9448,11 +8772,8 @@ ON GRAPH SET GRXAXIS 0
 ON GRAPH SET LOOKGRAPH VBAR
 ON GRAPH SET STYLE *
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 811
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 *GRAPH_SCRIPT
 setPieDepth(0);
@@ -9501,17 +8822,11 @@ $
 ENDSTYLE
 END
 
-812
 
-The output is:
+The output is:
 
-9. Choosing a Display Format
 
-Creating Reports With TIBCO® WebFOCUS Language
-
- 813
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 Merging WebFOCUS Content With PowerPoint Template Content
 
@@ -9536,9 +8851,6 @@ Example: Merging WebFOCUS Content With PowerPoint Template Content
 The following example shows how to merge WebFOCUS content with the PowerPoint template
 content shown in the image below. The name of the PowerPoint template is my_template.potx.
 
-814
-
-9. Choosing a Display Format
 
 Merge Procedure
 
@@ -9567,11 +8879,8 @@ END
 
 The output is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 815
-
-Saving Report Output in PPTX Format
+Saving Report Output in PPTX Format
 
 Example:
 
@@ -9601,9 +8910,6 @@ END
 
 The output is:
 
-816
-
-9. Choosing a Display Format
 
 ReportCaster Distribution and ReportCaster Bursting
 
@@ -9640,10 +8946,6 @@ Using Functions
 
 ReportCaster
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 817
+Saving Report Output in PPTX Format
 
-Saving Report Output in PPTX Format
-
-818

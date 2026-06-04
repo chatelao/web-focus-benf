@@ -44,11 +44,8 @@ You can also identify an entire horizontal sort (ACROSS) title or value row in a
 although each of these rows contains only a single kind of information. For details, see
 How to Identify a Column Title on page 1274.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1249
-
-Identifying an Entire Report, Column, or Row
+Identifying an Entire Report, Column, or Row
 
 The following illustrates where the REPORT component and the COLUMN and ACROSSCOLUMN
 attributes appear in a report, and which TYPE values you use to identify them. Although in this
@@ -78,9 +75,6 @@ To identify an entire report in a StyleSheet, use this attribute and value:
 
 TYPE=REPORT
 
-1250
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Example:
 
@@ -106,11 +100,8 @@ END
 
 The output is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1251
-
-Identifying an Entire Report, Column, or Row
+Identifying an Entire Report, Column, or Row
 
 Syntax:
 
@@ -166,9 +157,6 @@ fields.
 
 To select all display fields use C*.
 
-1252
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Identifier
 
@@ -228,11 +216,8 @@ TYPE=REPORT, COLUMN=N1, STYLE=ITALIC,$
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1253
-
-Identifying an Entire Report, Column, or Row
+Identifying an Entire Report, Column, or Row
 
 The output is:
 
@@ -265,9 +250,6 @@ TYPE=REPORT, ACROSSCOLUMN=N2, STYLE=BOLD,$
 ENDSTYLE
 END
 
-1254
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 The output is:
 
@@ -306,11 +288,8 @@ TYPE=REPORT, LABEL=TD, STYLE=ITALIC, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1255
-
-Identifying an Entire Report, Column, or Row
+Identifying an Entire Report, Column, or Row
 
 The output is:
 
@@ -346,9 +325,6 @@ sortcolumn
 Specifies the vertical sort (BY) column associated with one of the several subtotal in the
 report commands. Use the field name to identify the sort column.
 
-1256
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Example:
 
@@ -369,11 +345,8 @@ END
 
 The output is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1257
-
-Identifying Tags for SUBTOTAL and GRANDTOTAL Lines
+Identifying Tags for SUBTOTAL and GRANDTOTAL Lines
 
 Example:
 
@@ -403,9 +376,6 @@ GRANDTOTAL row in a report. The tag is used to identify the type of data represe
 this row. The text used to generate this tag can be customized by adding an AS name to the
 SUBTOTAL syntax.
 
-1258
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 You can define styling for the subtotal and grand total tag separately from the rest of the row.
 Text attributes available for the tag, including font, color, size, and style, can be used to
@@ -458,11 +428,8 @@ Is the hexadecimal value for the color. For example, FF0000 is the hexadecimal v
 red. The hexadecimal digits can be in uppercase or lowercase and must be preceded by a
 pound sign (#).
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1259
-
-Identifying Tags for SUBTOTAL and GRANDTOTAL Lines
+Identifying Tags for SUBTOTAL and GRANDTOTAL Lines
 
 drilltype
 
@@ -501,9 +468,6 @@ TYPE=GRANDTOTAL, OBJECT=TAG,URL='http://www.informationbuilders.com',$
 ENDSTYLE
 END
 
-1260
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 The output is:
 
@@ -522,11 +486,8 @@ Horizontal Sort (ACROSS) Data on page 1265.
 Totals and subtotals. For more information, see Identifying Totals and Subtotals on page
 1267.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1261
-
-Identifying Data
+Identifying Data
 
 The following illustrates where the DATA and ACROSSVALUE components appear in a report,
 and which TYPE values you use to identify them.
@@ -556,9 +517,6 @@ sort (ACROSS) values, which need to be identified separately) use this attribute
 
 TYPE = DATA
 
-1262
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Example:
 
@@ -584,11 +542,8 @@ END
 
 The output is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1263
-
-Identifying Data
+Identifying Data
 
 Syntax:
 
@@ -628,9 +583,6 @@ END
 
 The output is:
 
-1264
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Syntax:
 
@@ -677,11 +629,8 @@ TYPE=ACROSSVALUE, ACROSS=PLANT, STYLE=BOLD, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1265
-
-Identifying Data
+Identifying Data
 
 The output is:
 
@@ -710,9 +659,6 @@ TYPE=ACROSSVALUE, COLUMN=N8, STYLE=ITALIC, COLOR='RED', $
 ENDSTYLE
 END
 
-1266
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 The following image shows the output with the ACROSS-TOTAL value, Plant Totals, styled in red
 italics.
@@ -735,11 +681,8 @@ WHEN PAY_DATE GT 820101
 ON DEPARTMENT SUBTOTAL
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1267
-
-Identifying Data
+Identifying Data
 
 The following figure shows each component:
 
@@ -769,9 +712,6 @@ RECAP which is a subtotal calculation (generated by ON sortfield RECAP or ON sor
 COMPUTE). See Identifying a Subtotal Calculation (RECAP/COMPUTE) on page 1272 for an
 example.
 
-1268
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 BY
 
@@ -809,11 +749,8 @@ column
 Specifies the column whose totals or subtotals you wish to format. For a list of values, see
 How to Identify an Entire Column on page 1252.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1269
-
-Identifying Data
+Identifying Data
 
 Example:
 
@@ -845,9 +782,6 @@ END
 
 The output is:
 
-1270
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Example:
 
@@ -891,11 +825,8 @@ TYPE=SUBTOTAL, BY=ORDER_NUM, COLUMN=QUANTITY, STYLE=BOLD, SIZE=11,$
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1271
-
-Identifying Data
+Identifying Data
 
 The output is:
 
@@ -923,9 +854,6 @@ TYPE=RECAP, STYLE=BOLD+ITALIC, $
 ENDSTYLE
 END
 
-1272
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 The output is:
 
@@ -951,11 +879,8 @@ Within a StyleSheet you can identify column titles and horizontal sort (ACROSS) 
 report in order to format them. The following example illustrates where column titles and
 horizontal sort values are in a report, and which TYPE values you use to identify them.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1273
-
-Identifying a Heading, Footing, Title, or FML Free Text
+Identifying a Heading, Footing, Title, or FML Free Text
 
 TABLE FILE EMPLOYEE
 SUM GROSS AND DED_AMT
@@ -995,9 +920,6 @@ ACROSSTITLE
 
 Specifies a horizontal sort (ACROSS) title.
 
-1274
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 ACROSSVALUE
 
@@ -1050,11 +972,8 @@ TYPE=ACROSSVALUE, COLUMN=ROWTOTAL(1), COLOR='BLACK',FOCEXEC=NONE, $
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1275
-
-Identifying a Heading, Footing, Title, or FML Free Text
+Identifying a Heading, Footing, Title, or FML Free Text
 
 The following image shows the report output.
 
@@ -1075,9 +994,6 @@ label
 
 Is an explicit row label.
 
-1276
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Example:
 
@@ -1112,11 +1028,8 @@ Identifying a Heading or Footing
 Within a StyleSheet you can identify a report headings and footings, and the individual lines,
 text strings, and fields within them, in order to format them.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1277
-
-Identifying a Heading, Footing, Title, or FML Free Text
+Identifying a Heading, Footing, Title, or FML Free Text
 
 A TABLE request can have more than one page heading or footing. For each heading or footing,
 a WHEN clause against the data being retrieved can determine whether the heading or footing
@@ -1149,9 +1062,6 @@ END
 
 The following output goes with the previous code example:
 
-1278
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Note: Since this request simply illustrates how to identify different types of headings and
 footings, it omits a StyleSheet.
@@ -1201,11 +1111,8 @@ sortcolumn
 Specifies the vertical sort (BY) column associated with one of the report sort headings or
 sort footings.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1279
-
-Identifying a Heading, Footing, Title, or FML Free Text
+Identifying a Heading, Footing, Title, or FML Free Text
 
 Example:
 
@@ -1233,9 +1140,6 @@ END
 
 The output is:
 
-1280
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Syntax:
 
@@ -1281,11 +1185,8 @@ TYPE=HEADING, JUSTIFY=CENTER,$
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1281
-
-Identifying a Heading, Footing, Title, or FML Free Text
+Identifying a Heading, Footing, Title, or FML Free Text
 
 The output is:
 
@@ -1314,9 +1215,6 @@ Formats only text strings and Dialogue Manager variables (also known as &variabl
 not necessary to use OBJECT=TEXT in your declaration unless you are styling both text
 strings and embedded fields in the same heading or footing.
 
-1282
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 item_#
 
@@ -1339,11 +1237,8 @@ OBJECT=TEXT, count only text strings from left to right.
 
 No OBJECT, count text strings and embedded field values from left to right.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1283
-
-Identifying a Heading, Footing, Title, or FML Free Text
+Identifying a Heading, Footing, Title, or FML Free Text
 
 Example:
 
@@ -1383,9 +1278,6 @@ Identifies a type of heading or footing. Select from HEADING, FOOTING, TABHEADIN
 TABFOOTING, SUBHEAD, or SUBFOOT. For details, see Identifying a Heading or Footing on
 page 1277.
 
-1284
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 line_#
 
@@ -1425,11 +1317,8 @@ TYPE=HEADING, OBJECT=FIELD, COLOR=RED, STYLE=BOLD,$
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1285
-
-Identifying a Heading, Footing, Title, or FML Free Text
+Identifying a Heading, Footing, Title, or FML Free Text
 
 The output is:
 
@@ -1456,9 +1345,6 @@ WHEN condition applies if the employee is male. The third WHEN condition applies
 department is MIS. The fourth WHEN condition applies if the department is PRODUCTION. The
 StyleSheet declarations include styling elements for the second and third conditions:
 
-1286
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 DEFINE FILE EMPLOYEE
 GENDER/A1 = DECODE FIRST_NAME(ALFRED 'M' RICHARD 'M' JOHN 'M'
@@ -1504,11 +1390,8 @@ italics and heading lines displayed because of the third condition are in boldfa
 
 The first page of output is for a male employee, so the greeting line is in italics:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1287
-
-Identifying a Page Number, Underline, or Skipped Line
+Identifying a Page Number, Underline, or Skipped Line
 
 The second page of output is for an employee in the MIS department, so the signature line is
 in boldface:
@@ -1535,9 +1418,6 @@ ON YEAR UNDER-LINE
 ON PLANT SKIP-LINE
 END
 
-1288
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 The following output goes with the previous code example.
 
@@ -1565,11 +1445,8 @@ UNDERLINE which identifies underlines generated by ON field UNDER-LINE, or by BA
 Financial Modeling Language (FML) report. This is not supported for reports in HTML
 format.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1289
-
-Identifying a Page Number, Underline, or Skipped Line
+Identifying a Page Number, Underline, or Skipped Line
 
 Example:
 
@@ -1599,9 +1476,6 @@ END
 
 The output is:
 
-1290
-
-19. Identifying a Report Component in a WebFOCUS StyleSheet
 
 Example:
 
@@ -1627,10 +1501,6 @@ END
 
 The output is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 1291
+Identifying a Page Number, Underline, or Skipped Line
 
-Identifying a Page Number, Underline, or Skipped Line
-
-1292
