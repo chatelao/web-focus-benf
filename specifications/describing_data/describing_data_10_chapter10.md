@@ -11,7 +11,7 @@ Note: All references to FOCUS data sources also apply to XFOCUS data sources.
 
 In this chapter:
 
-Introduction to Data Source Security
+## Introduction to Data Source Security
 
 Implementing Data Source Security
 

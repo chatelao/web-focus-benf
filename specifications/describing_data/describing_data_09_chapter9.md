@@ -9,7 +9,7 @@ not be reloaded into memory if a parsed copy already exists.
 
 In this chapter:
 
-Checking a Data Source Description
+## Checking a Data Source Description
 
 CHECK Command Display
 
@@ -17,7 +17,7 @@ PICTURE Option
 
 HOLD Option
 
-Checking a Data Source Description
+## ## Checking a Data Source Description
 
 The CHECK output highlights any errors in your Master File and allows you to correct each
 before reading the data source. After making any necessary corrections, use CHECK again to
@@ -47,7 +47,7 @@ keyword PICTURE can be abbreviated to PICT. This option is explained in PICTURE 
 on page 399.
 
 
-CHECK Command Display
+## CHECK Command Display
 
 RETRIEVE
 
@@ -76,7 +76,7 @@ ALL
 Adds the values of FDEFCENT and FYRTHRESH at the file level and the values of DEFCENT
 and YRTHRESH at the field level to the HOLD file.
 
-CHECK Command Display
+## CHECK Command Display
 
 If your Master File contains syntactical errors, the CHECK command displays appropriate
 messages.
@@ -153,7 +153,7 @@ NUMBER OF FIELDS=    34     INDEXES=  0 FILES=    3
 TOTAL LENGTH OF ALL FIELDS = 365
 
 
-CHECK Command Display
+## CHECK Command Display
 
 Determining Common Errors
 
@@ -188,7 +188,7 @@ WARNING: FOLLOWING FIELDS APPEAR MORE THAN ONCE
 AA IN SEGMENT SEGB        (VS SEGA)
 
 
-PICTURE Option
+## PICTURE Option
 
 The PICTURE option displays a diagram of the structure defined by the Master File. Each
 segment is represented by a box. There are four types of boxes, which indicate whether a
@@ -252,7 +252,7 @@ segname
            crfile
 
 
-PICTURE Option
+## PICTURE Option
 
 where:
 
@@ -331,7 +331,7 @@ SECTION 01
 :............:
 JOINED  SALARY
 
-HOLD Option
+## HOLD Option
 
 The HOLD option generates a temporary HOLD file. HOLD files are explained in the Creating
 Reports With WebFOCUS Language manual. This HOLD file contains detailed information
@@ -344,7 +344,7 @@ named attribute. The fields can be grouped into file attributes, segment attribu
 attributes.
 
 
-HOLD Option
+## HOLD Option
 
 File Attributes:
 
@@ -448,7 +448,7 @@ FDEFCENT    FYRTHRESH
       19           50
 
 
-HOLD Option
+## HOLD Option
 
 Specifying an Alternate File Name With the HOLD Option
 

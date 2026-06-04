@@ -16,7 +16,7 @@ Static joins (SEGTYPE KU) are supported.
 
 In this chapter:
 
-Defining a Single Group of Fields
+## Defining a Single Group of Fields
 
 One-to-One Relationship
 
@@ -47,7 +47,7 @@ View
 
 Defining a Prefix for Field Titles
 
-Defining a Single Group of Fields
+## ## Defining a Single Group of Fields
 
 Certain fields in a data source may have a one-to-one correspondence. For each value of a
 field, the other fields may have exactly one corresponding value. For example, consider the
@@ -56,7 +56,7 @@ EMPLOYEE data source:
 Each employee has one ID number which is unique to that employee.
 
 
-Defining a Single Group of Fields
+## Defining a Single Group of Fields
 
 For each ID number there is one first and last name, one date hired, one department, and
 one current salary.
@@ -98,7 +98,7 @@ Describe a segment using the SEGNAME and SEGTYPE attributes in the Master File. 
 SEGNAME attribute is described in Identifying a Segment: SEGNAME on page 68.
 
 
-Defining a Single Group of Fields
+## Defining a Single Group of Fields
 
 Identifying a Key Field
 
@@ -264,7 +264,7 @@ The filler field is defined as an alphanumeric field of 29 bytes, which is the c
 length of the fields it replaces: HIRE_DATE (4 bytes), DEPARTMENT (10 bytes), CURR_SAL (8
 bytes), CURR_JOBCODE (3 bytes), and ED_HRS (4 bytes).
 
-Relating Multiple Groups of Fields
+## Relating Multiple Groups of Fields
 
 After you have described a segment, you can relate segments to each other to build more
 sophisticated data structures. You can:
@@ -297,7 +297,7 @@ which joins segments into a structure from which you can report, is described in
 Reports With WebFOCUS Language manual.
 
 
-Relating Multiple Groups of Fields
+## Relating Multiple Groups of Fields
 
 A related facility, the MATCH FILE command, enables many types of relationships by first
 describing a relationship as a series of extraction and merging conditions, then merging the
@@ -466,9 +466,9 @@ Direct and indirect parents of a segment are its ancestral segments. In the foll
 SALINFO and EMPINFO are ancestors of DEDUCT.
 
 
-Logical Independence: Multiple Paths
+## Logical Independence: Multiple Paths
 
-Logical Independence: Multiple Paths
+## Logical Independence: Multiple Paths
 
 A group of segments that are related to each other as a sequence of parent-child
 relationships, beginning with the root segment and continuing down to a leaf, is called a path.
@@ -551,7 +551,7 @@ If you are using a network data source, you can also rotate the data source afte
 defined it, creating an alternate view that reverses some of the data relationships and
 enables you to access the segments in a different order.
 
-One-to-One Relationship
+## One-to-One Relationship
 
 Fields in a segment have a one-to-one relationship with each other. Segments can also exhibit
 a one-to-one relationship. Each instance of a parent segment can be related to one instance of
@@ -564,7 +564,7 @@ never be more than a single child instance. The following diagram illustrates th
 one-to-one relationship.
 
 
-One-to-One Relationship
+## One-to-One Relationship
 
 Example:
 
@@ -629,14 +629,14 @@ Master File or by using the JOIN command. This technique gives you greater flexi
 not enforce the one-to-one relationship when reporting or entering data and does not use
 resources as efficiently.
 
-One-to-Many Relationship
+## One-to-Many Relationship
 
 The most common relationship between two segments is the one-to-many relationship. Each
 instance of a parent segment can be related to one or more instances of a child segment.
 However, not every parent instance needs to have matching child instances.
 
 
-One-to-Many Relationship
+## One-to-Many Relationship
 
 The following diagram illustrates the concept of a one-to-many relationship.
 
@@ -684,7 +684,7 @@ the different records. RECTYPE fields are described in Describing a Sequential, 
 Data Source on page 231.
 
 
-Many-to-Many Relationship
+## Many-to-Many Relationship
 
 You can also specify a one-to-many relationship between two records in different data sources
 by issuing the JOIN command with the ALL or MULTIPLE option, or defining the join in the
@@ -700,7 +700,7 @@ MULTIPLE option or by specifying a join in the Master File with a SEGTYPE of KM 
 join) or DKM (for a dynamic join). All of these SEGTYPE values are described in Describing a
 FOCUS Data Source on page 293.
 
-Many-to-Many Relationship
+## Many-to-Many Relationship
 
 A less commonly used relationship is a many-to-many relationship. Each instance of one
 segment can be related to one or more instances of a second segment, and each instance of
@@ -743,7 +743,7 @@ You can describe the relationship from the perspective of the CLASSES table as f
 JOIN COURSE_CODE IN CLASSES TO ALL COURSE_CODE IN STUDENT
 
 
-Many-to-Many Relationship
+## Many-to-Many Relationship
 
 Implementing a Many-to-Many Relationship Indirectly
 
@@ -776,7 +776,7 @@ SCHOOL data source, CLASS_CODE is implied by the parent-child relationship with 
 and it can be removed from ENROLLED. You can then join EMPINFO and ENROLLED together.
 
 
-Many-to-Many Relationship
+## Many-to-Many Relationship
 
 This type of join is illustrated in the following diagram.
 
@@ -805,7 +805,7 @@ Another example that uses a join defined in the Master File is illustrated by th
 data sources EMPLOYEE and EDUCFILE. Here, ATTNDSEG is the mediating segment between
 EMPINFO and COURSEG.
 
-Recursive Relationships
+## Recursive Relationships
 
 Generally, you use one-to-one and one-to-many relationships to join two different segments,
 usually in two different data sources. However, you can also join the same data source, or
@@ -815,7 +815,7 @@ See the Creating Reports With WebFOCUS Language manual for more information on r
 joins.
 
 
-Recursive Relationships
+## Recursive Relationships
 
 Example:
 
@@ -866,7 +866,7 @@ design shown previously and then join the data source to itself:
 JOIN SUBPART IN AIRCRAFT TO PART IN AIRCRAFT AS SUB_PART
 
 
-Recursive Relationships
+## Recursive Relationships
 
 This produces the following data structure.
 
@@ -925,7 +925,7 @@ This type of alternate view is illustrated in the following diagram.
 The following diagram further illustrates this type of alternate view.
 
 
-Defining a Prefix for Field Titles
+## Defining a Prefix for Field Titles
 
 Syntax:
 
@@ -960,7 +960,7 @@ segment an alternate root, issue the following TABLE FILE command:
 
 TABLE FILE EMPLOYEE.DED_CODE
 
-Defining a Prefix for Field Titles
+## Defining a Prefix for Field Titles
 
 If a field in a Master File has a TITLE attribute defined, this title will be used as the column
 heading for the file on report output, unless the report request specifies an AS name to be
@@ -996,7 +996,7 @@ the original TITLE value to generate the TITLE value in the HOLD file.
 
 Example:
 
-Defining a Prefix for Field Titles
+## Defining a Prefix for Field Titles
 
 The following sample shows three segments from the WF_RETAIL_LITE Cluster Master File that
 all reference the WF_RETAIL_TIME_LITE table. The SEG_TITLE_PREFIX in the
@@ -1023,7 +1023,7 @@ CRINCLUDE=ALL, CRJOINTYPE=LEFT_OUTER,
     DESCRIPTION='Shipping Time Shipped Dimension', SEG_TITLE_PREFIX='Shipped,', $
 
 
-Defining a Prefix for Field Titles
+## Defining a Prefix for Field Titles
 
 All three segments have the same fields. The SEG_TITLE_PREFIX displays on the report output
 and indicates which segment the field came from. The following request sums DAYSDELAYED
@@ -1084,5 +1084,5 @@ Master File:
       TITLE='Delivery,Quarter', DESCRIPTION='Quarter', $
 
 
-Defining a Prefix for Field Titles
+## Defining a Prefix for Field Titles
 

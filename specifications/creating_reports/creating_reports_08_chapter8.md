@@ -60,9 +60,9 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  471
 
-Saving Your Report Output
+## Saving Your Report Output
 
-Saving Your Report Output
+## Saving Your Report Output
 
 The following commands extract and save report output in a variety of file formats:
 
@@ -129,7 +129,7 @@ a file starting with a number.
 May be problematic to a third party application that does not work with numeric file names
 or with file names that begin with numbers.
 
-Creating a HOLD File
+## Creating a HOLD File
 
 You can use the HOLD command to create report output files for a range of purposes:
 
@@ -160,7 +160,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  473
 
-Creating a HOLD File
+## Creating a HOLD File
 
 Syntax:
 
@@ -275,7 +275,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  475
 
-Creating a HOLD File
+## Creating a HOLD File
 
 PERSISTENCE
 
@@ -391,7 +391,7 @@ Creating Reports With TIBCO® WebFOCUS Language
  477
 
 
-Creating a HOLD File
+## Creating a HOLD File
 
 The output is:
 
@@ -2142,7 +2142,7 @@ A description of the BINARY file is appears after the records are retrieved.
 
 8. Saving and Reusing Your Report Output
 
-Creating a PCHOLD File
+## Creating a PCHOLD File
 
 The PCHOLD command enables you to extract data from the WebFOCUS Reporting Server by
 way of the WebFOCUS client, and automatically display the data in HTML format in your
@@ -2182,7 +2182,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  509
 
-Creating a PCHOLD File
+## Creating a PCHOLD File
 
 default format. You must specify a format when using PCHOLD. The output is saved
 with a Master File. For details about the behavior of PCHOLD, see Creating a HOLD
@@ -2245,7 +2245,7 @@ the specified extension. If the extension is defined in the WebFOCUS Administrat
 Console, and the Save Report value is yes, the report output will be saved in your
 Downloads directory with the specified file name and extension.
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 You can select from a wide range of output formats to preserve your report output for use in
 any of the following ways:
@@ -2377,7 +2377,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  511
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 Reference: FORMAT AHTML
 
@@ -2484,7 +2484,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  513
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 Use: For further reporting in FOCUS, WebFOCUS, or App Studio. As a transaction file for
 modifying a data source.
@@ -2585,7 +2585,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  515
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 Note:
 
@@ -2689,7 +2689,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  517
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 Note:
 
@@ -2797,7 +2797,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  519
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 For Internet Explorer, the PCHOLD variation launches Excel 2000 in the browser. For details,
 and for information about working with EXL2K files, see Choosing a Display Format on page
@@ -2901,7 +2901,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  521
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 For details see Creating a Graph on page 1743.
 
@@ -3008,7 +3008,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  523
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 Supported with the commands: ON GRAPH PCHOLD, ON GRAPH HOLD.
 
@@ -3119,7 +3119,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  525
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 Use: For combining multiple reports into a single PDF file, also known as a compound report.
 For complete details, see Laying Out the Report Page on page 1331.
@@ -4124,7 +4124,7 @@ ON TABLE MERGE INTO FILE ibisamp/dmrpts
   PROFIT=SRC.E04 - SRC.E05;
 END
 
-Using Text Fields in Output Files
+## Using Text Fields in Output Files
 
 Text fields can be propagated to HOLD and SAVE files that have the following formats: ALPHA,
 WP, and FOCUS or XFOCUS. However, although a Master File is generated for format ALPHA,
@@ -4156,7 +4156,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  547
 
-Using Text Fields in Output Files
+## Using Text Fields in Output Files
 
 In environments that support FIXFORM, due to limitations in the use of text fields with
 FIXFORM, the following restriction applies:
@@ -4286,7 +4286,7 @@ FOR GENERAL MANAGERS. TO EXPLORE
 
 FOR MANAGERS AND SECRETARIES. HELP
 
-Creating a Delimited Sequential File
+## Creating a Delimited Sequential File
 
 You can use the HOLD FORMAT DFIX command to create an alphanumeric sequential file
 delimited by any character or combination of characters. You can also specify whether to
@@ -4322,7 +4322,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  549
 
-Creating a Delimited Sequential File
+## Creating a Delimited Sequential File
 
 delimiter
 
@@ -4413,7 +4413,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  551
 
-Creating a Delimited Sequential File
+## Creating a Delimited Sequential File
 
 Example:
 
@@ -4523,7 +4523,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  553
 
-Creating a Delimited Sequential File
+## Creating a Delimited Sequential File
 
 As the tab character is not printable, the TAB1 Access File specifies the delimiter using its
 hexadecimal value.
@@ -4619,7 +4619,7 @@ Creating Reports With TIBCO® WebFOCUS Language
 
  555
 
-Creating a Delimited Sequential File
+## Creating a Delimited Sequential File
 
 Creating the same file with PRESERVESPACE NO removes the trailing blank spaces:
 
@@ -5041,16 +5041,16 @@ FILENAME=EMPVALUES, SUFFIX=DATREC  , IOTYPE=BINARY, $
     FIELDNAME=NULLFLAG, ALIAS=__NULLFLAG__, USAGE=A2, ACTUAL=A2B,
 ACCESS_PROPERTY=(INTERNAL), $
 
-Creating a Structured HOLD File
+## Creating a Structured HOLD File
 
 Structured HOLD Files facilitate migration of data sources and reports between operating
 environments.
 
-Creating Reports With TIBCO® WebFOCUS Language
+## Creating Reports With TIBCO® WebFOCUS Language
 
  563
 
-Creating a Structured HOLD File
+## Creating a Structured HOLD File
 
 Other HOLD formats capture data from the original sources and may retain some implicit
 structural elements from the request itself. However, they do not propagate most of the
@@ -5163,11 +5163,11 @@ Excludes the specified fields from the HOLD file.
 
 Is required syntax for delimiting elements in the extract block.
 
-Creating Reports With TIBCO® WebFOCUS Language
+## Creating Reports With TIBCO® WebFOCUS Language
 
  565
 
-Creating a Structured HOLD File
+## Creating a Structured HOLD File
 
 ALL
 
@@ -5271,11 +5271,11 @@ ON TABLE SET EXTRACT ON
 ON TABLE HOLD AS RECONST FORMAT FOCUS
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
+## Creating Reports With TIBCO® WebFOCUS Language
 
  567
 
-Creating a Structured HOLD File
+## Creating a Structured HOLD File
 
 This request produces the following Master File:
 
@@ -5374,11 +5374,11 @@ and does not imply a calculation).
 Field based reformatting (FIELD1/FIELD2=) causes the original field and the format field to
 be included.
 
-Creating Reports With TIBCO® WebFOCUS Language
+## Creating Reports With TIBCO® WebFOCUS Language
 
  569
 
-Creating a Structured HOLD File
+## Creating a Structured HOLD File
 
 A GROUP field if referenced explicitly or when all of its members are referenced in the
 request.
@@ -5472,11 +5472,11 @@ BY and ACROSS sort fields become additional display objects.
 BY. . .ROWS and ACROSS . . .COLUMNS function only as implicit WHEREs to limit field
 values included.
 
-Creating Reports With TIBCO® WebFOCUS Language
+## Creating Reports With TIBCO® WebFOCUS Language
 
  571
 
-Creating a Structured HOLD File
+## Creating a Structured HOLD File
 
 FOR fields are included.
 
@@ -5530,7 +5530,7 @@ used to preserve multipath structures.
 All reconstituted FOCUS segments are SEGTYPE=S0, as neither KEY nor INDEX information
 is retained. An INDEX can be reinserted using REBUILD INDEX.
 
-Creating Reports With TIBCO® WebFOCUS Language
+## Creating Reports With TIBCO® WebFOCUS Language
 
  573
 

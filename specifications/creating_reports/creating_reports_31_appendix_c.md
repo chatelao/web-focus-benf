@@ -6,7 +6,7 @@ This appendix summarizes WebFOCUS reporting commands and options.
 
 In this appendix:
 
-TABLE Syntax Summary
+## TABLE Syntax Summary
 
 TABLEF Syntax Summary
 
@@ -17,9 +17,9 @@ FOR Syntax Summary
 TABLE Limits
 
 
-TABLE Syntax Summary
+## ## TABLE Syntax Summary
 
-TABLE Syntax Summary
+## TABLE Syntax Summary
 
 The syntax of a TABLE request is:
 
@@ -119,9 +119,9 @@ BY hierarchy_field [HIERARCHY [WHEN expression_using_hierarchy_fields;]
   [SHOW [TOP|UP n] [TO BOTTOM|DOWN m] [byoption [WHEN condition] ...]]
 
 
-TABLEF Syntax Summary
+## TABLEF Syntax Summary
 
-TABLEF Syntax Summary
+## TABLEF Syntax Summary
 
 The syntax of a TABLEF request is:
 
@@ -188,7 +188,7 @@ NOSPLIT.
 
 Requests with multiple display commands (multi-verb requests).
 
-MATCH Syntax Summary
+## MATCH Syntax Summary
 
 The syntax of a MATCH request is:
 
@@ -227,7 +227,7 @@ OLD-NOT-NEW
 NEW-NOT-OLD
 
 
-FOR Syntax Summary
+## FOR Syntax Summary
 
 OLD-AND-NEW
 
@@ -235,7 +235,7 @@ OLD-OR-NEW
 
 OLD-NOR-NEW
 
-FOR Syntax Summary
+## FOR Syntax Summary
 
 The formal syntax of the FOR statement is:
 
@@ -284,7 +284,7 @@ NOPRINT
 WHEN EXISTS
 [POST [TO filename]]
 
-TABLE Limits
+## TABLE Limits
 
 The following limits apply to TABLE requests:
 
@@ -326,7 +326,7 @@ Note: FOCUS data sources are limited to 64 segments.
 The maximum number of field pairs in a join is 128.
 
 
-TABLE Limits
+## TABLE Limits
 
 Maximum size of Alphanumeric fields: 4K characters ( in UTF, this means 12K bytes)
 

@@ -11,9 +11,9 @@ For z/OS, the ddname is ERRORS.
 
 In this appendix:
 
-Displaying Messages
+## Displaying Messages
 
-Displaying Messages
+## ## Displaying Messages
 
 To display the text and explanation for any message, issue the following query command in a
 stored procedure
@@ -38,5 +38,5 @@ An alphabetic character has been found where all numerical digits are
 required.
 
 
-Displaying Messages
+## Displaying Messages
 

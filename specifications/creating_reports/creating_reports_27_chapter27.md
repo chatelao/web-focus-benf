@@ -10,7 +10,7 @@ You can use the SQL Translator to retrieve and analyze FOCUS and DBMS data.
 
 In this chapter:
 
-Supported and Unsupported SQL Statements
+## Supported and Unsupported SQL Statements
 
 Using SQL Translator Commands
 
@@ -22,7 +22,7 @@ TABLEF Optimization
 
 SQL INSERT, UPDATE, and DELETE Commands
 
-Supported and Unsupported SQL Statements
+## ## Supported and Unsupported SQL Statements
 
 SQL Translation Services is compliant with ANSI Level 2. This facility supports many, but not
 all, SQL statements. The Reporting Server and specific RDBMS engines may also support the
@@ -40,7 +40,7 @@ Note: Because the SQL Translator is ANSI Level 2 compliant, some requests that w
 prior releases may no longer work.
 
 
-Supported and Unsupported SQL Statements
+## Supported and Unsupported SQL Statements
 
 Reference: Supported SQL Statements
 
@@ -139,7 +139,7 @@ Temporary defined columns. Permanent defined columns, defined in the Reporting S
 Dynamic Catalog or in the Master File, are supported.
 
 
-Using SQL Translator Commands
+## Using SQL Translator Commands
 
 Correlated subqueries for DML Generation.
 
@@ -166,7 +166,7 @@ DISTINCT
 
 USER
 
-Using SQL Translator Commands
+## Using SQL Translator Commands
 
 The SQL command may be used to report from any supported data source or set of data
 sources. Standard TABLE phrases for formatting reports can be appended to the SQL
@@ -226,7 +226,7 @@ Is required to terminate the procedure.
 
 Example:
 
-Using SQL Translator Commands
+## Using SQL Translator Commands
 
 The following request contains an SQL statement and TABLE formatting commands:
 
@@ -248,7 +248,7 @@ Use TABLE formatting phrases with SELECT and UNION only.
 Introduce the formatting phrases with the word TABLE.
 
 
-Using SQL Translator Commands
+## Using SQL Translator Commands
 
 You may specify headings and footings, describe actions with an ON phrase, or use the ON
 TABLE SET command. Additionally, you can use ON TABLE HOLD or ON TABLE PCHOLD to
@@ -340,7 +340,7 @@ SELECT fieldlist FROM file1 [alias1], file2 [alias2]
 END
 
 
-Using SQL Translator Commands
+## Using SQL Translator Commands
 
 Variation 2
 
@@ -441,7 +441,7 @@ SQLJNM
 Is the SQL Translator join prefix.
 
 
-Using SQL Translator Commands
+## Using SQL Translator Commands
 
 nn
 
@@ -546,7 +546,7 @@ DATE, TIME, TIMESTAMP, DECIMAL, DOUBLE PRECISION and REAL data types. Decimals
 are rounded in the DOUBLE PRECISION and REAL data types.
 
 
-Using SQL Translator Commands
+## Using SQL Translator Commands
 
 When using the CREATE TABLE and INSERT INTO commands, the data type FLOAT should
 be declared with a precision and used in an INSERT INTO command without the 'E'
@@ -641,7 +641,7 @@ SQL
 END
 
 
-Using SQL Translator Commands
+## Using SQL Translator Commands
 
 Cartesian Product Style Answer Sets
 
@@ -727,7 +727,7 @@ literals enclosed in single quotation marks, expressions, and any scalar functio
 virtual field is created for each of these in the SELECT list. The value of the virtual field is
 provided in the answer set.
 
-SQL Translator Support for Date, Time, and Timestamp Fields
+## SQL Translator Support for Date, Time, and Timestamp Fields
 
 Several new data types have been defined for the SQL Translator to support date-time fields in
 the WHERE predicate or field list of a SELECT statement.
@@ -743,7 +743,7 @@ YEARS are allowed. These expressions are translated to calls to the date-time fu
 described in the Using Functions manual.
 
 
-SQL Translator Support for Date, Time, and Timestamp Fields
+## SQL Translator Support for Date, Time, and Timestamp Fields
 
 All date formats for actual and virtual fields in the Master File are converted to the form
 YYYYMMDD. If you specify a format that lacks any component, the SQL Translator supplies a
@@ -894,7 +894,7 @@ millisecond
 microsecond
 
 
-SQL Translator Support for Date, Time, and Timestamp Fields
+## SQL Translator Support for Date, Time, and Timestamp Fields
 
 Example:
 
@@ -1004,9 +1004,9 @@ This request produces rows similar to the following:
 2000-03-03     2000      3       3
 
 
-Index Optimized Retrieval
+## Index Optimized Retrieval
 
-Index Optimized Retrieval
+## Index Optimized Retrieval
 
 The SQL Translator improves query performance by generating optimized code that enables the
 underlying retrieval engine to access the selected records directly, without scanning all
@@ -1058,7 +1058,7 @@ according to FOCUS rules (because it lacks an index, for example), the Translato
 code to build an indexed HOLD file, and implements the join with this file. However, the HOLD
 file does not participate in the analysis of join order.
 
-TABLEF Optimization
+## TABLEF Optimization
 
 To improve performance, the SQL Translator can be set to generate FOCUS TABLEF commands
 instead of TABLE commands. Take advantage of this optimization using the SET SQLTOPTTF
@@ -1082,7 +1082,7 @@ OFF
 
 Causes TABLE commands to be generated.
 
-SQL INSERT, UPDATE, and DELETE Commands
+## SQL INSERT, UPDATE, and DELETE Commands
 
 The SQL INSERT, UPDATE, and DELETE commands enable SQL users to manipulate and modify
 data:
@@ -1103,7 +1103,7 @@ to the target segment instance, and this combination of key values must uniquely
 one segment instance (row) to be affected by the command.
 
 
-SQL INSERT, UPDATE, and DELETE Commands
+## SQL INSERT, UPDATE, and DELETE Commands
 
 If you are modifying every field in the row, you can omit the list of field names from the
 command.

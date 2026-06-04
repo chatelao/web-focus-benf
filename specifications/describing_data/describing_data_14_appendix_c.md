@@ -8,7 +8,7 @@ another.
 
 In this appendix:
 
-Data Storage and Display
+## Data Storage and Display
 
 Rounding in Calculations and Conversions
 

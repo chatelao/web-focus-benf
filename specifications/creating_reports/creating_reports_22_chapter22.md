@@ -16,7 +16,7 @@ Language (FML) on page 1817, and Creating a Free-Form Report on page 1899.
 
 In this chapter:
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 Including an Element in a Heading or
 Footing

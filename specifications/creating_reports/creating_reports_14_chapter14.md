@@ -43,7 +43,7 @@ Displaying Joined Structures
 
 Clearing Joined Structures
 
-Types of Joins
+## Types of Joins
 
 When you join two data sources, some records in one of the files may lack corresponding
 records in the other file. When a report omits records that are not in both files, the join is
@@ -96,7 +96,7 @@ that company results in a listing of all courses taken by each employee, or a jo
 instance of each ID in the host file to the multiple instances of that ID in the cross-referenced
 file.
 
-Types of Joins
+## Types of Joins
 
 
 For more information on unique and non-unique joins, see Unique and Non-Unique Joined
@@ -128,7 +128,7 @@ Conditional joins are supported only for FOCUS, VSAM, ADABAS, IMS, and all relat
 data sources.
 
 
-Types of Joins
+## Types of Joins
 
 Reference: Notes on DBA Security for Joined Data Structures
 
@@ -195,7 +195,7 @@ but can attend several courses, the employee has one segment instance in the JOB
 source but can have as many instances in the EDUCFILE data source as courses attended.
 
 
-Types of Joins
+## Types of Joins
 
 To join these two data sources, issue the following JOIN command, using the ALL phrase:
 
@@ -272,7 +272,7 @@ TRAIN_NUM   OR_STATION   OR_CITY    DE_STATION   DE_CITY
 505         BOS          .          STL          ST. LOUIS
 
 
-Types of Joins
+## Types of Joins
 
 Issuing SET JOINOPT=NEW enables segments to be retrieved in the expected order (from left
 to right and from top to bottom), without missing data.
@@ -330,7 +330,7 @@ Otherwise, you will not be able to refer to the fields in the repeated segments 
 of the join structure.
 
 
-Types of Joins
+## Types of Joins
 
 If you use tag names in a recursive joined structure, note the following guidelines:
 
@@ -404,7 +404,7 @@ structure behaves as a three-level data source, although it is actually a more e
 source.
 
 
-Types of Joins
+## Types of Joins
 
 For example, CABIN is a first-level division appearing in the top segment. It lists SEATS as a
 component in the bottom segment. SEATS also appears in the top segment. It lists BOLTS as
@@ -425,7 +425,7 @@ TABLE FILE AIRCRAFT
 PRINT SUBPART BY PART BY SUBPART BY SUBDESCRIPT
 END
 
-How the JOIN Command Works
+## How the JOIN Command Works
 
 The JOIN command enables you to report from two or more related data sources with a single
 request. Joined data sources remain physically separate, but are treated as one. Up to 1022
@@ -463,7 +463,7 @@ PRINT SALARY AND JOB_TITLE BY EMP_ID
 END
 
 
-Creating an Equijoin
+## Creating an Equijoin
 
 The first record retrieved is a JOB file record for employee #071382660. Next, all records in
 the SALARY data source containing employee #071382660 are retrieved. This process
@@ -488,7 +488,7 @@ You can increase retrieval speed in joined structures by using an external index
 target segment for the index cannot be a cross-referenced segment. For related information,
 see Improving Report Processing on page 1929.
 
-Creating an Equijoin
+## Creating an Equijoin
 
 The most common joined structures are based on real fields that have been declared in the
 Master Files of the host and cross-referenced data sources, respectively.
@@ -570,7 +570,7 @@ Is a tag name of up to 66 characters (usually the name of the Master File), whic
 used as a unique qualifier for fields and aliases in the host file.
 
 
-Creating an Equijoin
+## Creating an Equijoin
 
 The tag name for the host file must be the same in all the JOIN commands of a joined
 structure.
@@ -655,7 +655,7 @@ EDINFO, which contains the EMP_ID, COURSE_CODE, and COURSE_NAME fields from the
 EDUCFILE data source.
 
 
-Creating an Equijoin
+## Creating an Equijoin
 
 The procedure then adds an employee to EMPINFO named Fred Newman who has no matching
 record in the JOBINFO or EDINFO data sources.
@@ -752,7 +752,7 @@ GREENSPAN  MARY        SECRETARY
 CROSS      BARBARA     DEPARTMENT MANAGER
 
 
-Creating an Equijoin
+## Creating an Equijoin
 
 Example:
 
@@ -861,7 +861,7 @@ ORDER BY
 T1."ID_PRODUCT";
 
 
-Creating an Equijoin
+## Creating an Equijoin
 
 The output, shown in the following image, has a row for each ID_PRODUCT value that is in the
 WF_PRODUCT table. The columns from WF_SALES rows that do not have a matching
@@ -934,7 +934,7 @@ GREENSPAN  MARY        .                               SECRETARY
 CROSS      BARBARA     HOST LANGUAGE INTERFACE         DEPARTMENT MANAGER
 
 
-Creating an Equijoin
+## Creating an Equijoin
 
 With MULTIPATH=COMPOUND, only employees with matching records in both of the cross-
 referenced files display on the report output:
@@ -1029,7 +1029,7 @@ The ALL. parameter is not supported. If the ALL. parameter is used, the followin
 displays:
 
 
-Creating an Equijoin
+## Creating an Equijoin
 
 (FOC32452) Use of ALL. with LEFT_OUTER/INNER not allowed
 
@@ -1128,7 +1128,7 @@ IN hostfile
 Is the name of the host file.
 
 
-Creating an Equijoin
+## Creating an Equijoin
 
 TAG tag1
 
@@ -1422,7 +1422,7 @@ When joining packed fields, the preferred sign format of X'C' for positive value
 negative values is still required. All other non-preferred signs are converted to either X'C' or
 X'D'.
 
-Using a Conditional Join
+## Using a Conditional Join
 
 Using conditional JOIN syntax, you can establish joins based on conditions other than equality
 between fields. In addition, the host and cross-referenced join fields do not have to contain
@@ -1434,7 +1434,7 @@ WHERE criteria, the optimization of the conditional JOIN syntax differs dependin
 specific data sources involved in the join and the complexity of the WHERE criteria.
 
 
-Using a Conditional Join
+## Using a Conditional Join
 
 The standard ? JOIN command lists every join currently in effect, and indicates any that are
 based on WHERE criteria.
@@ -1546,13 +1546,13 @@ END
 The END command is required to terminate the command and must be on a line by itself.
 
 
-Using a Conditional Join
+## Using a Conditional Join
 
 Note: Single line JOIN syntax is not supported.
 
 Example:
 
-Using a Conditional Join
+## Using a Conditional Join
 
 The following example joins the VIDEOTRK and MOVIES data sources on the conditions that:
 
@@ -1615,7 +1615,7 @@ SLEEPING BEAUTY            91/06/24     75/08/30          15
 TIN DRUM, THE              91/06/17     80/03/01          11
 VERTIGO                    91/06/27     58/11/25          32
 
-Full Outer Joins
+## Full Outer Joins
 
 The WebFOCUS join command and conditional join command have a FULL OUTER join option.
 
@@ -1639,7 +1639,7 @@ How to Specify a Full Outer Join
 The following syntax generates a full outer equijoin based on real fields:
 
 
-Full Outer Joins
+## Full Outer Joins
 
 JOIN FULL_OUTER hfld1 [AND hfld2 ...] IN table1 [TAG tag1] TO {UNIQUE|
 MULTIPLE} cfld [AND cfld2 ...] IN table2 [TAG tag2] [AS joinname]
@@ -1747,7 +1747,7 @@ Is the name of any real field in the host segment with which you want to associa
 virtual field. This association is required to locate the virtual field.
 
 
-Full Outer Joins
+## Full Outer Joins
 
 The WITH phrase is required unless the KEEPDEFINES parameter is set to ON and deffld
 was defined prior to issuing the JOIN command.
@@ -1853,7 +1853,7 @@ based conditional join, the KEEPDEFINES setting must be ON, and you must create 
 virtual fields before issuing the JOIN command.
 
 
-Full Outer Joins
+## Full Outer Joins
 
 MULTIPLE
 
@@ -1951,7 +1951,7 @@ ENDSTYLE
 END
 
 
-Full Outer Joins
+## Full Outer Joins
 
 The trace shows that the full outer join was optimized (translated to SQL) so that SQL Server
 could process the join:
@@ -2526,13 +2526,13 @@ SQL_SCRIPT
 The output is shown in the following image. The left outer join was done last, maintaining the
 original number of stations in the host file.
 
-Cross Database Join Optimization
+## Cross Database Join Optimization
 
 Retrieval performance has been optimized under certain conditions when you join tables from
 different Relational database systems.
 
 
-Cross Database Join Optimization
+## Cross Database Join Optimization
 
 One type of performance optimization results from extracting data from the cross-referenced
 table prior to performing the join, or issuing a sub-select. You can disable this optimization
@@ -2608,7 +2608,7 @@ ON TABLE SET HOLDLIST PRINTONLY
 END
 
 
-Cross Database Join Optimization
+## Cross Database Join Optimization
 
 Next, the citibike_mssql table is joined to the HOLD file.
 
@@ -2663,7 +2663,7 @@ For example, following flow creates three left outer joins between Microsoft SQL
 and Oracle tables. The Oracle synonyms start with the characters o_.
 
 
-Cross Database Join Optimization
+## Cross Database Join Optimization
 
 The following SQL statement corresponds to the joins generated by the flow.
 
@@ -2732,7 +2732,7 @@ FROM
 END
 
 
-Cross Database Join Optimization
+## Cross Database Join Optimization
 
 The Session Log shows the joins that were generated. The left outer joins were converted to
 inner joins, as shown in the following partial listing.
@@ -3263,7 +3263,7 @@ They are used simply as segment references.
 
 Note: If no WHERE criteria are in effect, you receive a Cartesian product.
 
-Displaying Joined Structures
+## Displaying Joined Structures
 
 When you join two data sources together, they are subsequently treated as one logical
 structure. This structure results from appending the structure of the cross-referenced file to the
@@ -3285,7 +3285,7 @@ hostfile
 Is the name of the host file.
 
 
-Displaying Joined Structures
+## Displaying Joined Structures
 
 Example:
 
@@ -3370,7 +3370,7 @@ joined by multiple JOIN commands, only the first command you issued is displayed
 the WH column indicates that the join is not conditional. A Y indicates that the join is
 conditional.
 
-Clearing Joined Structures
+## Clearing Joined Structures
 
 You can clear specific join structures, or all existing structures. Clearing deactivates the
 designated joins. If you clear a conditional join, all joins issued subsequently to that join using
@@ -3381,7 +3381,7 @@ structures, issue the query command ? JOIN. For details and illustrations, see H
 Joined Structures on page 1151.
 
 
-Clearing Joined Structures
+## Clearing Joined Structures
 
 Syntax:
 
@@ -3480,5 +3480,5 @@ PRODCODE     VIDEOTRK       PCD          GGSALES           JW1   Y   Y
 MOVIECODE    MOVIES         TRANSDATE    VIDEOTRK          JW3   N   Y
 
 
-Clearing Joined Structures
+## Clearing Joined Structures
 

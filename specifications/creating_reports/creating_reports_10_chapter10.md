@@ -45,14 +45,14 @@ Creating a Compound Report
 Creating a PDF Compound Report With
 Drill Through Links
 
-Linking Using StyleSheets
+## Linking Using StyleSheets
 
 You can use StyleSheets to define a link from any report component. You can create links from
 report data (including headings and footings) as well as graphic images (such as a company
 logo or product image), to other reports, procedures, URLs, or JavaScript functions.
 
 
-Linking to Another Report
+## Linking to Another Report
 
 The links you create can be dynamic. With a dynamic link, your selection passes the value of
 the selected report component to the linked report (procedure, URL, or JavaScript function).
@@ -73,7 +73,7 @@ Identify the report component that the user selects in the web browser to execut
 
 Identify the parameters that define the specifics of your link, if necessary.
 
-Linking to Another Report
+## Linking to Another Report
 
 A link allows you to drill down to a report for more details or execute a procedure by selecting a
 designated hot spot (the link) in the report. By linking reports you provide easy access to more
@@ -281,7 +281,7 @@ Thermos
      14651
 
 
-Linking to a URL
+## Linking to a URL
 
 You can define a link from any report component to any URL including webpages, websites,
 Servlet programs, or non-World Wide Web resources, such as an email application. After you
@@ -332,7 +332,7 @@ allowed by the browser. For information about this limit for your browser, searc
 browser vendor’s support site.
 
 
-Linking to a URL
+## Linking to a URL
 
 If the URL refers to a WebFOCUS Servlet program that takes parameters, the URL must
 end with a question mark (?).
@@ -545,7 +545,7 @@ Master).
 For PPTX, the hyperlink color is stored as part of the PPTX Slide Master theme. Only one
 HYPERLINK-COLOR attribute can be defined for each request (report/compound report).
 
-Linking to a JavaScript Function
+## Linking to a JavaScript Function
 
 You can use a StyleSheet to define a link to a JavaScript function from any report component.
 After you have defined the link, you can select the report component to execute the JavaScript
@@ -587,7 +587,7 @@ function
 Identifies the JavaScript function to run when you select the report component.
 
 
-Linking to a JavaScript Function
+## Linking to a JavaScript Function
 
 The maximum length of a JAVASCRIPT=function argument, including any associated
 parameters, is 2400 characters and can span more than one line. If you split a single
@@ -667,7 +667,7 @@ document.form1.text1.value = string;
 </HTML>
 
 
-Linking to a Maintain Data Procedure
+## Linking to a Maintain Data Procedure
 
 When you execute the report procedure, the following report displays in the web browser. If you
 select a Product Code link, the JavaScript function ShowItem executes, and displays the value
@@ -675,7 +675,7 @@ of the PRODUCT_DESCRIPTION field (a NOPRINT field) in the text box in the form b
 report. For example, if you select the Product Code G104, "Thermos" displays in the Product
 Description field.
 
-Linking to a Maintain Data Procedure
+## Linking to a Maintain Data Procedure
 
 You can provide update capabilities directly from your report by linking it to a Maintain Data
 procedure.
@@ -1292,7 +1292,7 @@ dollars is greater than dollar sales, and the pop-up menu of drill-down options 
 Budget Report instead of DrillDown 1 and DrillDown 2.
 
 
-Creating Parameters
+## Creating Parameters
 
 .
 .
@@ -1318,7 +1318,7 @@ TYPE=DATA,
 
 Sample output is:
 
-Creating Parameters
+## Creating Parameters
 
 If your drill-down report depends on a specific data value in the base report, you must create a
 parameter (or parameters) that can pass one or more values to the report you are drilling down
@@ -1378,7 +1378,7 @@ The name of the amper variable must be enclosed in single quotation marks. You c
 amper variables only in inline StyleSheets.
 
 
-Creating Parameters
+## Creating Parameters
 
 Note: The usual use of an amper variable is to pass a constant value. If the amper
 variable corresponds to an alphanumeric field, the amper variable would have to be
@@ -1492,7 +1492,7 @@ Return
      2.350
 
 
-Creating Parameters
+## Creating Parameters
 
 FAR EAST
 
@@ -1599,7 +1599,7 @@ The following request illustrates how to create a parameter by specifying an amp
 The relevant StyleSheet declarations are highlighted in the request.
 
 
-Creating Parameters
+## Creating Parameters
 
 Main report:
 
@@ -1673,7 +1673,7 @@ BARBARA
   CROSS
 
 
-Creating Parameters
+## Creating Parameters
 
 Example:
 
@@ -1756,7 +1756,7 @@ ENDSTYLE
 END
 
 
-Creating Parameters
+## Creating Parameters
 
 Drill-down report (REPORT2):
 
@@ -1797,7 +1797,7 @@ SMITH
 
 $13,200.00
 
-Linking With Conditions
+## Linking With Conditions
 
 You can create conditions when linking to a report, URL, or JavaScript function from a report or
 graph. For example, you may only be interested in displaying current salaries for a particular
@@ -1817,7 +1817,7 @@ TYPE=type, [subtype], FOCEXEC=fex[(parameters...)],
    WHEN=expression,[TARGET=frame,] $
 
 
-Linking With Conditions
+## Linking With Conditions
 
 To specify a conditional link to a URL use:
 
@@ -1883,7 +1883,7 @@ is displayed. For details, see Specifying a Target Frame on page 873.
 
 Example:
 
-Linking With Conditions
+## Linking With Conditions
 
 In this example, we only want to link the MIS value of the DEPARTMENT field to REPORT3. To
 do this we include the phrase WHEN=DEPARTMENT EQ 'MIS' in the StyleSheet declaration.
@@ -1920,7 +1920,7 @@ In the following output, note that only the MIS department is linked:
 When you click MIS, the following output displays:
 
 
-Linking From a Graphic Image
+## Linking From a Graphic Image
 
 DEPARTMENT
 
@@ -1960,7 +1960,7 @@ $18,480.00
 
 $13,200.00
 
-Linking From a Graphic Image
+## Linking From a Graphic Image
 
 You can link to a report or procedure from an image in an HTML report. The image can be
 attached to the entire report or to the report heading or footing (this includes table headings/
@@ -2045,7 +2045,7 @@ component. For details about linking to another procedure, see Linking to Anothe
 Report on page 820.
 
 
-Linking From a Graphic Image
+## Linking From a Graphic Image
 
 url
 
@@ -2122,7 +2122,7 @@ DIV
 SALARY
 
 
-Specifying a Base URL
+## Specifying a Base URL
 
 CE
 
@@ -2164,7 +2164,7 @@ $115,000.00
 
  $26,400.00
 
-Specifying a Base URL
+## Specifying a Base URL
 
 If you want to link to files, images, and Java files, but do not know their full, physical URLs, you
 can specify a default location where the browser searches for relative URLs.
@@ -2194,7 +2194,7 @@ The URL must begin with http:// and end with a closing delimiter (/).
 
 Example:
 
-Specifying a Base URL
+## Specifying a Base URL
 
 The following illustrates how to specify a base URL:
 
@@ -2219,7 +2219,7 @@ TYPE=HEADING, IMAGE=ib_logo.gif, ..., $
 Note: If the URL is at a remote website, it may take longer to retrieve. Whenever possible,
 store graphic image files on your WebFOCUS system.
 
-Specifying a Target Frame
+## Specifying a Target Frame
 
 You can use frames to subdivide application HTML pages into separate scrollable sections.
 Frames enable users to explore various information items on a page by scrolling through a
@@ -2228,7 +2228,7 @@ a report procedure or URL, you can specify that the results of the drill-down li
 a target frame on a webpage.
 
 
-Specifying a Target Frame
+## Specifying a Target Frame
 
 There are two ways to specify a target frame. You can specify:
 
@@ -2329,11 +2329,11 @@ Identifies the target frame in the webpage in which the output from the drill-do
 (either a FOCEXEC or URL) is displayed.
 
 
-Creating a Compound Report
+## Creating a Compound Report
 
 Example:
 
-Specifying a Target Frame
+## Specifying a Target Frame
 
 The following illustrates how to specify a default target frame:
 
@@ -2351,7 +2351,7 @@ TYPE=DATA, COLUMN=N1, URL=http:\\www.informationbuilders.com,
 ENDSTYLE
 END
 
-Creating a Compound Report
+## Creating a Compound Report
 
 Compound reports combine multiple reports into a single file. This enables you to concatenate
 reports with styled formats (such as PDF, DHTML, PS, EXL2K, or XLSX). You can also embed
@@ -2425,7 +2425,7 @@ Tip: For details about StyleSheet syntax, see Creating and Managing a WebFOCUS S
 on page 1197.
 
 
-Creating a Compound Report
+## Creating a Compound Report
 
 The compound layout block consists of SECTION, PAGELAYOUT, and COMPONENT
 declarations. The general structure of the compound layout block of syntax is:
@@ -2529,7 +2529,7 @@ Note: Syntax is required even if the report only contains a single page.
 PAGELAYOUT=1, $
 
 
-Creating a Compound Report
+## Creating a Compound Report
 
 The PAGELAYOUT=ALL syntax specifies a component that appears on every page. This
 is useful for components that generate page headers or footers.
@@ -2618,7 +2618,7 @@ bounding box. However, for a flowing component the DIMENSION parameter specifies
 (* *) for the dimensions.
 
 
-Creating a Compound Report
+## Creating a Compound Report
 
 The COMPONENT syntax appears as:
 
@@ -2721,7 +2721,7 @@ space left from where the relative component ends, the current component will st
 next page.
 
 
-Creating a Compound Report
+## Creating a Compound Report
 
 Can be one of the following:
 
@@ -2805,7 +2805,7 @@ EX REPORT2
 COMPOUND END
 
 
-Creating a Compound Report
+## Creating a Compound Report
 
 The first page of output is:
 
@@ -2877,7 +2877,7 @@ ENDSTYLE
 END
 
 
-Creating a Compound Report
+## Creating a Compound Report
 
 TABLE FILE GGSALES
 "Percent of Sales by Product in <REGION"
@@ -2943,7 +2943,7 @@ ENDSTYLE
 END
 
 
-Creating a Compound Report
+## Creating a Compound Report
 
 We will use components R1 and R2 from the previous example. If you did not already do so,
 save them as REPORT1.FEX and REPORT2.FEX. Enter the following syntax as the R3 report

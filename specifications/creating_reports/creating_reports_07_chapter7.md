@@ -34,14 +34,14 @@ Creating a Logical Expression
 
 Creating a Conditional Expression
 
-Using Expressions in Commands and Phrases
+## Using Expressions in Commands and Phrases
 
 You can use an expression in various commands and phrases. An expression may not exceed
 40 lines and must end with a semicolon, except in WHERE and WHEN phrases, in which the
 semicolon is optional.
 
 
-Types of Expressions
+## Types of Expressions
 
 The commands that support expressions, and their basic syntax, are summarized here. For
 complete syntax with an explanation, see the applicable documentation.
@@ -84,7 +84,7 @@ Perform a calculation with the RECAP command in the Financial Modeling Language 
 
 RECAP name [(n)] [/format] = expression;
 
-Types of Expressions
+## Types of Expressions
 
 An expression can be one of the following:
 
@@ -137,7 +137,7 @@ expressions. A conditional expression (IF ... THEN ... ELSE) returns a numeric o
 alphanumeric value. For details, see Creating a Conditional Expression on page 467.
 
 
-Creating a Numeric Expression
+## Creating a Numeric Expression
 
 Expressions and Field Formats
 
@@ -168,7 +168,7 @@ FULL_NAME
 ---------
 ROSEMARIE BLACKWOOD
 
-Creating a Numeric Expression
+## Creating a Numeric Expression
 
 A numeric expression performs a calculation that uses numeric constants, fields, operators,
 and functions to return a numeric value. When you use a numeric expression to assign a value
@@ -242,7 +242,7 @@ In a COMPUTE command, use the following:
 COMPUTE field[/format] = EXPN(n[.nn]{{E|D|e|d}[+|-]p);
 
 
-Creating a Numeric Expression
+## Creating a Numeric Expression
 
 In a DEFINE command, use the following:
 
@@ -361,7 +361,7 @@ To make it valid, you must add parentheses:
 a* (-1)
 
 
-Creating a Numeric Expression
+## Creating a Numeric Expression
 
 Example:
 
@@ -459,7 +459,7 @@ Native
 Native
 
 
-Creating a Numeric Expression
+## Creating a Numeric Expression
 
 Operation
 
@@ -546,7 +546,7 @@ double-precision. If the conversion is not possible, an error message is generat
 
 If you assign a decimal value to an integer, the fractional value is truncated.
 
-Creating a Date Expression
+## Creating a Date Expression
 
 A date expression performs a numeric calculation that involves dates.
 
@@ -584,7 +584,7 @@ following example uses the date function YMD to calculate the difference (number
 between an employee hire date and the date of his first salary increase:
 
 
-Creating a Date Expression
+## Creating a Date Expression
 
 COMPUTE DIFF/I4 = YMD (HIRE_DATE,FST.DAT_INC);
 
@@ -704,7 +704,7 @@ integer, packed decimal, and alphanumeric format. For details on date functions,
 Functions manual.
 
 
-Creating a Date Expression
+## Creating a Date Expression
 
 Example:
 
@@ -807,7 +807,7 @@ The following command calculates the number of days elapsed since January 1, 199
 COMPUTE YEAR_TO_DATE/I4 = CURR_DATE - 'JAN 1 1999' ;
 
 
-Creating a Date Expression
+## Creating a Date Expression
 
 Extracting a Date Component
 
@@ -868,7 +868,7 @@ which the item can be returned. It then assigns the result to a field with DMY f
 
 COMPUTE RETURN_BY/DMY = DATE_SOLD + 7;
 
-Creating a Date-Time Expression
+## Creating a Date-Time Expression
 
 A date-time expression returns date and time components. You can create these expressions
 using a variety of supplied date-time functions. For details about date-time functions, see the
@@ -908,7 +908,7 @@ functions) use date-time parameters and the new date functions use new dates, wh
 stored as offsets from a base date.
 
 
-Creating a Date-Time Expression
+## Creating a Date-Time Expression
 
 Recognition and use of date or date-time constants.
 
@@ -964,7 +964,7 @@ component. When assigned to the date field, the time component is removed. When 
 is assigned to the second date-time field, a zero time component is added.
 
 
-Creating a Date-Time Expression
+## Creating a Date-Time Expression
 
 Example:
 
@@ -1023,7 +1023,7 @@ Can be one of the following: MDY, DMY, YMD, or MYD. MDY is the default value for
 the U.S. English format.
 
 
-Creating a Date-Time Expression
+## Creating a Date-Time Expression
 
 Specifying a Date-Time Value
 
@@ -1123,7 +1123,7 @@ are also permitted at the beginning and end of the date-time string or immediate
 an am/pm indicator.
 
 
-Creating a Date-Time Expression
+## Creating a Date-Time Expression
 
 In each date format, two-digit years are interpreted using the [F]DEFCENT and [F]YRTHRESH
 settings.
@@ -1242,7 +1242,7 @@ CUSTID  TRANSDATE
 1237    2000/02/05 03:30
 
 
-Creating a Date-Time Expression
+## Creating a Date-Time Expression
 
 Example:
 
@@ -1353,7 +1353,7 @@ PRINT ID DT1
 END
 
 
-Creating a Character Expression
+## Creating a Character Expression
 
 The missing value is not included in the report output:
 
@@ -1381,7 +1381,7 @@ CUSTID  TRANSDATE         DT2            T1
 1118    2000/06/26 05:45  2000/06/26 05  05:45:00
 1237    2000/02/05 03:30  2000/02/05 03  03:30:00
 
-Creating a Character Expression
+## Creating a Character Expression
 
 A character expression uses alphanumeric constants, fields, concatenation operators, IF-THEN-
 ELSE logic, or functions to derive an alphanumeric value.
@@ -1450,7 +1450,7 @@ AS.
 DECODE.
 
 
-Creating a Character Expression
+## Creating a Character Expression
 
 Example:
 
@@ -1551,13 +1551,13 @@ ENDSTYLE
 END
 
 
-Creating a Variable Length Character Expression
+## Creating a Variable Length Character Expression
 
 The output is shown in the following image. If MOVIECODE contains the characters 'DIS',
 NEWCODE is generated by concatenating the characters 'NEY;', otherwise NEWCODE is
 generated by concatenating the character ';'.
 
-Creating a Variable Length Character Expression
+## Creating a Variable Length Character Expression
 
 As an alphanumeric type, an AnV field can be used in arithmetic and logical expressions in the
 same way that the An type is used.
@@ -1627,7 +1627,7 @@ TRUE
 TRUE
 
 
-Creating a Variable Length Character Expression
+## Creating a Variable Length Character Expression
 
 Expression
 
@@ -1753,7 +1753,7 @@ The use of either an An or AnV field with DECODE causes a result of type An as l
 result part of the value-result pairs is provided as a constant. (Constants are type An.)
 
 
-Creating a Variable Length Character Expression
+## Creating a Variable Length Character Expression
 
 Using the Assignment Operator With AnV Fields
 
@@ -1796,7 +1796,7 @@ The actual length of the result is verified against the size n declared for the 
 error is generated if the result is longer than n.
 
 
-Creating a Logical Expression
+## Creating a Logical Expression
 
 A logical expression determines whether a particular condition is true. There are two kinds of
 logical expressions: relational and Boolean. The entities to be compared determine the kind of
@@ -1856,7 +1856,7 @@ AND
 Returns the value TRUE if both operands are true.
 
 
-Creating a Logical Expression
+## Creating a Logical Expression
 
 Operator
 
@@ -1930,7 +1930,7 @@ Is an expression that evaluates to the value TRUE or FALSE. If the expression is
 the field receives the value 1. If the expression is false, the field receives the value 0.
 The expression must be enclosed in parentheses.
 
-Creating a Conditional Expression
+## Creating a Conditional Expression
 
 A conditional expression assigns a value based on the result of a logical expression. The
 assigned value can be numeric or alphanumeric.
@@ -1978,7 +1978,7 @@ However, the expression following IF may not be an IF ... THEN ... ELSE expressi
 example, IF ... IF ...).
 
 
-Creating a Conditional Expression
+## Creating a Conditional Expression
 
 Example:
 
@@ -2054,5 +2054,5 @@ Note: Testing for a TRUE or FALSE condition is valid only with the IF command. I
 with WHERE.
 
 
-Creating a Conditional Expression
+## Creating a Conditional Expression
 

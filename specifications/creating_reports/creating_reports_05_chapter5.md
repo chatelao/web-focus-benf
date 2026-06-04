@@ -25,7 +25,7 @@ Using Text Fields in DEFINE and COMPUTE
 
 Creating Temporary Fields Independent of a Master File
 
-What Is a Temporary Field?
+## What Is a Temporary Field?
 
 A temporary field is a field whose value is not stored in the data source, but can be calculated
 from the data that is there, or assigned an absolute value. A temporary field takes up no
@@ -39,7 +39,7 @@ deductions to salaries using the following expression:
 deduction / salary
 
 
-What Is a Temporary Field?
+## What Is a Temporary Field?
 
 You can specify the expression yourself, or you can use one of the many supplied functions
 that perform specific calculations or manipulations. In addition, you can use expressions and
@@ -84,7 +84,7 @@ COMPUTE CRATIO = DELIVER_AMT/OPENING_AMT;
 END
 
 
-Defining a Virtual Field
+## Defining a Virtual Field
 
 The output is:
 
@@ -109,7 +109,7 @@ Evaluate the temporary field using fields from different paths in the data struc
 cannot use a virtual field, since it is evaluated before the relationship between data in the
 different paths is established.
 
-Defining a Virtual Field
+## Defining a Virtual Field
 
 A virtual field can be used in a request as though it is a real data source field. The calculation
 that determines the value of a virtual field is performed on each retrieved record that passes
@@ -174,7 +174,7 @@ A DEFINE FILE command overwrites a DEFINE in the Master File with same name as l
 you do not redefine the format (which is not allowed).
 
 
-Defining a Virtual Field
+## Defining a Virtual Field
 
 Syntax:
 
@@ -290,7 +290,7 @@ Is the description to be associated with the virtual field, enclosed in single q
 marks. The description displays in the tools that browse Master Files.
 
 
-Defining a Virtual Field
+## Defining a Virtual Field
 
 REDEFINES qualifier.fieldname
 
@@ -319,7 +319,7 @@ DEFINE or COMPUTE Command on page 1039.
 
 Example:
 
-Defining a Virtual Field
+## Defining a Virtual Field
 
 In the following request, the value of RATIO is calculated by dividing the value of DELIVER_AMT
 by OPENING_AMT. The DEFINE command creates RATIO as a virtual field, which is used in the
@@ -378,7 +378,7 @@ SALES SPECIALIST           $82,000.00
 SENIOR SALES EXEC.         $43,400.00
 
 
-Defining a Virtual Field
+## Defining a Virtual Field
 
 Example:
 
@@ -484,7 +484,7 @@ Procedure: How to Display Virtual Fields
 Click the Defined Fields tab in the Define tool.
 
 
-Defining a Virtual Field
+## Defining a Virtual Field
 
 Clearing a Virtual Field
 
@@ -560,7 +560,7 @@ with a specific segment, use the WITH phrase. The field name following WITH may 
 field in the Master File.
 
 
-Defining a Virtual Field
+## Defining a Virtual Field
 
 For FOCUS data sources, you may be able to increase the retrieval speed with an external
 index on the virtual field. In this case, you can associate the index with a target segment
@@ -654,7 +654,7 @@ Clears the current context if it was created by DEFINE FILE SAVE, and restores t
 previous context.
 
 
-Defining a Virtual Field
+## Defining a Virtual Field
 
 Applying Dynamically Formatted Virtual Fields to Report Columns
 
@@ -900,7 +900,7 @@ T2."PRODUCT_CATEGORY"
 FOR FETCH ONLY;
 
 
-Creating a Calculated Value
+## Creating a Calculated Value
 
 A calculated value is a temporary field that is evaluated after all the data that meets the
 selection criteria is retrieved, sorted, and summed. Calculated values are available only for the
@@ -939,7 +939,7 @@ specified last:
 ACROSS acrossfield [AND] COMPUTE compute_expression; COLUMNS values
 
 
-Creating a Calculated Value
+## Creating a Calculated Value
 
 Syntax:
 
@@ -1040,7 +1040,7 @@ Is the format of the field. The default is D12.2. For information on formats, se
 Describing Data With WebFOCUS Language manual.
 
 
-Creating a Calculated Value
+## Creating a Calculated Value
 
 Example:
 
@@ -1148,7 +1148,7 @@ UNIT_SOLD    NEWVAL UNIT_SOLD    NEWVAL UNIT_SOLD    NEWVAL UNIT_SOLD    NEWVAL
       162  1,764.18        42    104.16       376  4,805.28        65    297.70
 
 
-Assigning Column Reference Numbers
+## Assigning Column Reference Numbers
 
 Example:
 
@@ -1192,7 +1192,7 @@ WHERE_GROUPED test, as described in Selecting Records for Your Report on page 21
 If you use a WHERE test, it will automatically be changed to WHERE_GROUPED, if the test is
 eligible for WHERE_GROUPED processing, or to WHERE TOTAL, if it is not.
 
-Assigning Column Reference Numbers
+## Assigning Column Reference Numbers
 
 Column notation assigns a sequential column number to each column in the internal matrix
 created for a report request. If you want to control the creation of column reference numbers
@@ -1250,7 +1250,7 @@ Refer to a particular cell in an FML request using the notation E(r,c), where r 
 number and c is a column number.
 
 
-Assigning Column Reference Numbers
+## Assigning Column Reference Numbers
 
 Example:
 
@@ -1362,7 +1362,7 @@ The output is:
     YEAR
 
 
-Assigning Column Reference Numbers
+## Assigning Column Reference Numbers
 
 CASH ON HAND
 
@@ -1510,7 +1510,7 @@ CHANGE IN CASH
    4,044
 
 
-Assigning Column Reference Numbers
+## Assigning Column Reference Numbers
 
 Example:
 
@@ -1584,7 +1584,7 @@ UNIT_COST1, which is calculated by dividing column1 by column2.
 UNIT_COST2, which is calculated by dividing column1 by QUANTITY.
 
 
-Assigning Column Reference Numbers
+## Assigning Column Reference Numbers
 
 SET CNOTATION = ALL
 TABLE FILE VIDEOTRK
@@ -1685,7 +1685,7 @@ TRANSDATE  QUANTITY  TRANSCODE     TTOT2  UNIT_COST1  UNIT_COST2
  91/06/28      3.00          3     31.00       10.33       10.33
 
 
-Assigning Column Reference Numbers
+## Assigning Column Reference Numbers
 
 Example:
 
@@ -1761,7 +1761,7 @@ the following message:
 
 (FOC258) FIELDNAME OR COMPUTATIONAL ELEMENT NOT RECOGNIZED: column
 
-Using FORECAST in a COMPUTE Command
+## Using FORECAST in a COMPUTE Command
 
 A version of the FORECAST feature was implemented for use in a RECAP command. However,
 the use of RECAP imposes limitations on placement of the FORECAST field in the output and
@@ -1771,7 +1771,7 @@ Using FORECAST in a COMPUTE command eliminates these limitations and enables you
 place the FORECAST calculation in a Master File. For the COMPUTE version of FORECAST, each
 type of calculation has its own version of the FORECAST function.
 
-Calculating Trends and Predicting Values With FORECAST
+## Calculating Trends and Predicting Values With FORECAST
 
 You can calculate trends in numeric data and predict values beyond the range of those stored
 in the data source by using the FORECAST feature. FORECAST can be used in a report or graph
@@ -1792,7 +1792,7 @@ you to choose weights to apply to newer and older values. For details, see
 FORECAST_EXPAVE: Using Single Exponential Smoothing on page 320.
 
 
-Using FORECAST in a COMPUTE Command
+## Using FORECAST in a COMPUTE Command
 
 Double exponential smoothing (FORECAST_DOUBLEXP). Accounts for the tendency of
 data to either increase or decrease over time without repeating. For details, see
@@ -1885,7 +1885,7 @@ Predicted values beyond the range of the data values are calculated using a movi
 that treats the calculated trend values as new data points.
 
 
-Using FORECAST in a COMPUTE Command
+## Using FORECAST in a COMPUTE Command
 
 The first complete moving average occurs at the nth data point because the calculation
 requires n values. This is called the lag. The moving average values for the lag rows are
@@ -1973,7 +1973,7 @@ ENDSTYLE
 END
 
 
-Using FORECAST in a COMPUTE Command
+## Using FORECAST in a COMPUTE Command
 
 The output is:
 
@@ -2029,7 +2029,7 @@ ENDSTYLE
 END
 
 
-Using FORECAST in a COMPUTE Command
+## Using FORECAST in a COMPUTE Command
 
 The output is shown in the following image:
 
@@ -2103,7 +2103,7 @@ HIGHEST phrase. The result of adding this number to the sort field values is con
 to the same format as the sort field.
 
 
-Using FORECAST in a COMPUTE Command
+## Using FORECAST in a COMPUTE Command
 
 For date fields, the minimal component in the format determines how the number is
 interpreted. For example, if the format is YMD, MDY, or DMY, an interval value of 2 is
@@ -2204,7 +2204,7 @@ EXPAVE = (EXPAVE*(1-k))+(new-DOLLARS*k) = (801123*0.5) + (682340*0.50) =
 400561.5 + 341170 = 741731.5
 
 
-Using FORECAST in a COMPUTE Command
+## Using FORECAST in a COMPUTE Command
 
 The third EXPAVE value (753,404.8) is calculated as follows:
 
@@ -2308,7 +2308,7 @@ For DOUBLEXP, this positive whole number is used to calculate the weights for ea
 term in the trend. The weight, g, is calculated by the following formula:
 
 
-Using FORECAST in a COMPUTE Command
+## Using FORECAST in a COMPUTE Command
 
 g=2/(1+npoint2)
 
@@ -2388,7 +2388,7 @@ within the period (1<= n <= L):
 I(n) = ( y(n)/A(1) + y(L+n)/A(2) + ... + y((N-1)L+n)/A(N) ) / N
 
 
-Using FORECAST in a COMPUTE Command
+## Using FORECAST in a COMPUTE Command
 
 The three constants must be chosen carefully. The best results are usually obtained by
 choosing the constants to minimize the mean-squared error (MSE) between the data values
@@ -2696,9 +2696,9 @@ END
 The output is shown in the following image:
 
 
-Calculating Trends and Predicting Values With FORECAST
+## Calculating Trends and Predicting Values With FORECAST
 
-Calculating Trends and Predicting Values With FORECAST
+## Calculating Trends and Predicting Values With FORECAST
 
 You can calculate trends in numeric data and predict values beyond the range of those stored
 in the data source by using the FORECAST feature. FORECAST can be used in a report or graph
@@ -2787,7 +2787,7 @@ ON sortfield RECAP result_field[/fmt] = FORECAST(infield, interval,
  npredict, 'EXPAVE',npoint1);
 
 
-Calculating Trends and Predicting Values With FORECAST
+## Calculating Trends and Predicting Values With FORECAST
 
 DOUBLEXP calculation
 
@@ -2898,7 +2898,7 @@ In a non-recursive FORECAST request, use an empty COMPUTE command prior to the
 RECAP.
 
 
-Calculating Trends and Predicting Values With FORECAST
+## Calculating Trends and Predicting Values With FORECAST
 
 In a recursive FORECAST request, specify the options when the field is first referenced
 in the report request.
@@ -2989,7 +2989,7 @@ TABLE FILE GGSALES
 END
 
 
-Calculating Trends and Predicting Values With FORECAST
+## Calculating Trends and Predicting Values With FORECAST
 
 The output is:
 
@@ -3042,7 +3042,7 @@ TABLE FILE GGSALES
 END
 
 
-Calculating Trends and Predicting Values With FORECAST
+## Calculating Trends and Predicting Values With FORECAST
 
 The output is:
 
@@ -3100,7 +3100,7 @@ TABLE FILE GGSALES
 END
 
 
-Calculating Trends and Predicting Values With FORECAST
+## Calculating Trends and Predicting Values With FORECAST
 
 The output is:
 
@@ -3160,7 +3160,7 @@ period. b(t) represents the average trend. The weight constant is g:
 b(t) = g * (DOUBLEXP(t)-DOUBLEXP(t-1)) + (1 - g) * (b(t-1))
 
 
-Calculating Trends and Predicting Values With FORECAST
+## Calculating Trends and Predicting Values With FORECAST
 
 These two equations are solved to derive the smoothed average. The first smoothed average is
 set to the first data value. The first trend component is set to zero. For choosing the two
@@ -3561,7 +3561,7 @@ DEALER_COST  DATA_ROW  PREDICT             MPG          FORMPG
       9,000         0  YES               18.08           18.08
 
 
-Calculating Trends and Predicting Values With Multivariate REGRESS
+## Calculating Trends and Predicting Values With Multivariate REGRESS
 
 
 The REGRESS method derives a linear equation that best fits a set of numeric data points, and
@@ -3611,7 +3611,7 @@ n
 Is a whole number from 1 to 3 indicating the number of independent variables.
 
 
-Calculating Trends and Predicting Values With Multivariate REGRESS
+## Calculating Trends and Predicting Values With Multivariate REGRESS
 
 x1, x2, x3
 
@@ -3688,11 +3688,11 @@ WHERE UNITS GT 1600 AND UNITS LT 1700
 END
 
 
-Using Text Fields in DEFINE and COMPUTE
+## Using Text Fields in DEFINE and COMPUTE
 
 The output is:
 
-Using Text Fields in DEFINE and COMPUTE
+## Using Text Fields in DEFINE and COMPUTE
 
 Text fields can be assigned to alphanumeric fields and receive assignment from alphanumeric
 fields. If an alphanumeric field is assigned the value of a text field that is too long for the
@@ -3726,7 +3726,7 @@ This course provides the DP professi  This course provides the DP professi
 Anyone responsible for designing FOC  Anyone responsible for designing FOC
 This is a course in FOCUS efficienci  This is a course in FOCUS efficienci
 
-Creating Temporary Fields Independent of a Master File
+## Creating Temporary Fields Independent of a Master File
 
 The temporary fields you create with the DEFINE and COMPUTE commands are tied to a
 specific Master File, and in the case of values calculated with the COMPUTE command, to a
@@ -3746,7 +3746,7 @@ All calculations within the function are done in double precision. Format conver
 across equal signs (=) in the assignments that define temporary fields.
 
 
-Creating Temporary Fields Independent of a Master File
+## Creating Temporary Fields Independent of a Master File
 
 Syntax:
 
@@ -3851,7 +3851,7 @@ DEFINE FUNCTION SUBTRACT (VAL1/D8, VAL2/D8)
 END
 
 
-Creating Temporary Fields Independent of a Master File
+## Creating Temporary Fields Independent of a Master File
 
 TABLE FILE MOVIES
  PRINT TITLE LISTPR IN 35 WHOLESALEPR AND
@@ -4049,7 +4049,7 @@ If you issue the ? FUNCTION command when no functions are defined, the following
 NO FUNCTIONS CURRENTLY IN EFFECT
 
 
-Creating Temporary Fields Independent of a Master File
+## Creating Temporary Fields Independent of a Master File
 
 Syntax:
 

@@ -20,7 +20,7 @@ Merging Concatenated Data Sources
 
 Cartesian Product
 
-Merging Data
+## Merging Data
 
 You can merge two or more data sources, and specify which records to merge and which to
 sort out, using the MATCH command. The command creates a new data source (a HOLD file),
@@ -41,7 +41,7 @@ values are not matched in the other data source. Yet another type of merge combi
 records from the first data source with any matching records from the second data source.
 
 
-Merging Data
+## Merging Data
 
 You can merge up to 16 sets of data in one Match request. For example, you can merge
 different data sources, or data from the same data source.
@@ -95,7 +95,7 @@ MATCH generates a HOLD file. You can print the contents of the HOLD file using t
 command with the wildcard character (*).
 
 
-Types of MATCH Processing
+## Types of MATCH Processing
 
 
 There are two types of MATCH processing, grouped and ungrouped. Grouped processing is the
@@ -139,7 +139,7 @@ of aggregations based on differing sorts, MATCHCOLUMNORDER=UNGROUPED will ensure
 the sequence of the column output will remain what it was in the past.
 
 
-Types of MATCH Processing
+## Types of MATCH Processing
 
 The way MATCH merges data depends on the order in which you name data sources in the
 request, the BY fields, display commands, the type of processing, and the merge phrases you
@@ -228,7 +228,7 @@ The following prefix operators are not supported in MATCH requests: DST., DST.CN
 ST., and CT.
 
 
-Types of MATCH Processing
+## Types of MATCH Processing
 
 Example: Merging Data Sources
 
@@ -324,7 +324,7 @@ FILENAME=HOLD, SUFFIX=FIX     , IOTYPE=BINARY, $
     FIELDNAME=BUDUNITS, ALIAS=E09, USAGE=I08, ACTUAL=I04, $
 
 
-Types of MATCH Processing
+## Types of MATCH Processing
 
 The partial output is shown in the following image.
 
@@ -389,7 +389,7 @@ source named in the request, and new refers to the second data source. The resul
 merge creates a HOLD file until the END command is encountered.
 
 
-Types of MATCH Processing
+## Types of MATCH Processing
 
 The following diagram illustrates the general merge process:
 
@@ -425,7 +425,7 @@ OLD-NOT-NEW specifies that records that appear only in the old data source appea
 HOLD file.
 
 
-MATCH Processing With Common High-Order Sort Fields
+## MATCH Processing With Common High-Order Sort Fields
 
 NEW-NOT-OLD specifies that records that appear only in the new data source appear in the
 HOLD file.
@@ -440,7 +440,7 @@ new data source, are merged into the HOLD file.
 NEW specifies that all records from the new data source, and any matching records from
 the old data source, are merged into the HOLD file.
 
-MATCH Processing With Common High-Order Sort Fields
+## MATCH Processing With Common High-Order Sort Fields
 
 When you construct your MATCH so that the first sort (BY) field (called the common high-order
 sort field) used for both data sources is the same, the match compares the values of the
@@ -517,7 +517,7 @@ There are records from both files with an EMP_ID value of 112847612. Since there
 match, this record is written to the HOLD file:
 
 
-MATCH Processing With Common High-Order Sort Fields
+## MATCH Processing With Common High-Order Sort Fields
 
 Record n: 112847612 SMITH 103
 
@@ -720,7 +720,7 @@ RICHARD
 MICHAEL
 
 
-Fine-Tuning MATCH Processing
+## Fine-Tuning MATCH Processing
 
 
 BANNING
@@ -877,7 +877,7 @@ A
 .
 .
 
-Fine-Tuning MATCH Processing
+## Fine-Tuning MATCH Processing
 
 You can fine-tune the MATCH process using the PRINT and SUM commands. To understand
 their difference, you should have an understanding of the one-to-many relationship: SUM
@@ -943,7 +943,7 @@ F1   F2   F3   F4   F5
 2    y    200  d    40
 
 
-Fine-Tuning MATCH Processing
+## Fine-Tuning MATCH Processing
 
 Note that the records from file A are duplicated for each record from file B.
 
@@ -1013,7 +1013,7 @@ F1   F2   F3   F4   F5
 
 Note that the records for file A are printed for every occurrence of the record in file B.
 
-Universal Concatenation
+## Universal Concatenation
 
 With universal concatenation, you can retrieve data from unlike data sources in a single
 request; all data, regardless of source, appears to come from a single file. The MORE phrase
@@ -1035,7 +1035,7 @@ During retrieval, data is gathered from each data source in turn, then all data 
 output formatted as specified in the main request.
 
 
-Universal Concatenation
+## Universal Concatenation
 
 Syntax:
 
@@ -1132,7 +1132,7 @@ EXPERSON. No display commands are allowed in the subrequest. IF and WHERE criter
 the only report components permitted in a subrequest.
 
 
-Universal Concatenation
+## Universal Concatenation
 
 Field Name and Format Matching
 
@@ -1237,7 +1237,7 @@ SALARY
  $70,000.00
 
 
-Merging Concatenated Data Sources
+## Merging Concatenated Data Sources
 
 000-00-0070
 
@@ -1282,7 +1282,7 @@ $102,500.00
 When you concatenate data, record sets are simply appended, not grouped or aggregated
 across files. Therefore, if duplicate sort fields exist, they show up twice in the report output.
 
-Merging Concatenated Data Sources
+## Merging Concatenated Data Sources
 
 You can use the MORE phrase in a MATCH request to merge up to 16 sets of concatenated
 data sources.
@@ -1359,7 +1359,7 @@ second answer set using the AFTER MATCH merge_phrase in the second answer set.
 set.
 
 
-Merging Concatenated Data Sources
+## Merging Concatenated Data Sources
 
 9. All merged data from the first and second answer sets, now a HOLD file, is merged with the
 data concatenated in the third answer set using the AFTER MATCH merge_phrase in the
@@ -1440,7 +1440,7 @@ included in the final HOLD file.
 7. Prints the values from the merged file.
 
 
-Merging Concatenated Data Sources
+## Merging Concatenated Data Sources
 
 The first page of output is:
 
@@ -1507,7 +1507,7 @@ The AS phrase changes the answer set. Since the sort fields no longer have the s
 the fields are merged with no regard to matching records.
 
 
-Cartesian Product
+## Cartesian Product
 
 The first page of output is:
 
@@ -1531,7 +1531,7 @@ SSN                CURRENT  FIRST       EID         EXPENSES
 000000160       $62,500.00  ROSE        000000180   1,250.00
 000000170       $30,800.00  WILLIAM     000000190   3,150.00
 
-Cartesian Product
+## Cartesian Product
 
 Cartesian product enables you to generate a report containing all combinations of non-related
 records or data instances in a multi-path request. This means that if a parent segment has
@@ -1640,7 +1640,7 @@ WRAP AROUND BUMPERS
 POWER STEERING
 
 
-Cartesian Product
+## Cartesian Product
 
 XJ12L AUTO
 

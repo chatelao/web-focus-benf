@@ -16,8 +16,8 @@ characteristics. For details on SET, see the Developing Reporting Applications m
 
 In this chapter:
 
-Selecting Page Size, Orientation, and
-Color
+## Selecting Page Size, Orientation, and
+## Color
 
 Setting Page Margins
 

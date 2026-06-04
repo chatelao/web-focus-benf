@@ -14,8 +14,8 @@ Displaying Report Data on page 39.
 
 In this chapter:
 
-Content Analysis: Determining Graphing
-Objectives
+## Content Analysis: Determining Graphing
+## Objectives
 
 The GRAPH Command
 
@@ -54,7 +54,7 @@ can design the information you deliver to users. One effective option with almos
 data is a graphic presentation.
 
 
-The GRAPH Command
+## The GRAPH Command
 
 Graphs allow you to display multivariate or complex data efficiently, precisely, and in a way that
 a viewer can intuitively grasp. A graph is an effective presentation tool because it presents a
@@ -90,7 +90,7 @@ Are the labels meaningful or useful?
 How can the data be organized in a meaningful way? Consider customizing the scales you
 use with your graph.
 
-The GRAPH Command
+## The GRAPH Command
 
 GRAPH request syntax is similar to TABLE request syntax. To produce a graph instead of a
 tabular report, you need only substitute the command GRAPH for TABLE in the request. Thus,
@@ -152,7 +152,7 @@ The number of ACROSS values cannot exceed 64.
 The RUN option is not available as an alternative to END.
 
 
-The GRAPH Command
+## The GRAPH Command
 
 Example:
 
@@ -192,7 +192,7 @@ END
 The output is:
 
 
-Creating an HTML5 Graph
+## Creating an HTML5 Graph
 
 WebFOCUS supports a graph output format that takes advantage of the HTML5 standard. The
 charts are rendered in the browser as high quality interactive vector graphics using a built-in
@@ -220,7 +220,7 @@ Creating an HTML5 Vertical Bar Graph
 The following request against the GGSALES data source creates an HTML5 vertical bar graph:
 
 
-Creating an HTML5 Graph
+## Creating an HTML5 Graph
 
 GRAPH FILE GGSALES
 SUM DOLLARS BUDDOLLARS
@@ -253,7 +253,7 @@ Respects the dimensions specified by the HAXIS and VAXIS parameters initially, b
 resizes the graph output if the container is resized.
 
 
-Selecting a Graph Type
+## Selecting a Graph Type
 
 When creating a graph, it is important to select the appropriate graph type with which to
 display your data. You may select from a number of basic graph types, as well as refinements
@@ -297,7 +297,7 @@ individual data values around particular points or to demonstrate patterns in yo
 numeric X-axis, or sort field, will always yield a scatter graph by default.
 
 
-Selecting a Graph Type
+## Selecting a Graph Type
 
 It is important to note that scatter graphs and line graphs are distinguishable from one
 another only by virtue of their X-axis format. Line graphs can appear without connecting
@@ -395,7 +395,7 @@ PRINT A {ACROSS|BY} B
 (where B is alphanumeric)
 
 
-Selecting a Graph Type
+## Selecting a Graph Type
 
 Graph Type
 
@@ -487,7 +487,7 @@ END
 The output is:
 
 
-Selecting a Graph Type
+## Selecting a Graph Type
 
 Syntax:
 
@@ -575,7 +575,7 @@ WHERE PRODUCT_DESC EQ 'French Roast' OR 'Hazelnut' OR 'Kona'
 END
 
 
-Selecting a Graph Type
+## Selecting a Graph Type
 
 The output is:
 
@@ -627,7 +627,7 @@ END
 The output is:
 
 
-Selecting a Graph Type
+## Selecting a Graph Type
 
 Syntax:
 
@@ -706,7 +706,7 @@ Style Options for Pie Graphs on page 1762.
 Style Options for Scatter Graphs on page 1763.
 
 
-Selecting a Graph Type
+## Selecting a Graph Type
 
 Style Options for Three-Dimensional Graphs on page 1763.
 
@@ -848,7 +848,7 @@ A stacked vertical bar graph with two separate axes.
 A stacked vertical bar graph that shows percentages.
 
 
-Selecting a Graph Type
+## Selecting a Graph Type
 
 SET LOOKGRAPH=
 
@@ -988,7 +988,7 @@ A three-dimensional bar graph with octagon-shaped bars that have
 no roots.
 
 
-Selecting a Graph Type
+## Selecting a Graph Type
 
 SET LOOKGRAPH=
 
@@ -1125,7 +1125,7 @@ the highest, lowest, and closing prices for a given stock on a
 given day.
 
 
-Selecting a Graph Type
+## Selecting a Graph Type
 
 SET LOOKGRAPH=
 
@@ -1251,7 +1251,7 @@ A bubble chart with a dual axis and labels.
 A bubble chart with labels.
 
 
-Selecting a Graph Type
+## Selecting a Graph Type
 
 Reference: Style Options for Spectral Charts
 
@@ -1359,13 +1359,13 @@ value.
 A treemap chart displays hierarchical data as a set of nested
 rectangles.
 
-Selecting Values for the X and Y Axes
+## Selecting Values for the X and Y Axes
 
 The values you select for the X- and Y-axes determine what data is included in the graph you
 are creating, and how it appears.
 
 
-Selecting Values for the X and Y Axes
+## Selecting Values for the X and Y Axes
 
 The X-axis value is determined by the sort phrase (BY or ACROSS) used in your GRAPH
 request. At least one sort phrase is required in every GRAPH request. When there are multiple
@@ -1389,7 +1389,7 @@ Y Axis Values Using Linear Regression on page 1771.
 
 Example:
 
-Selecting Values for the X and Y Axes
+## Selecting Values for the X and Y Axes
 
 The following illustrates how to set the X-axis (PRODUCT_DESC) using an ACROSS phrase and
 the Y-axis (QUANTITY) with the display command SUM:
@@ -1422,7 +1422,7 @@ basic linear regression in your graph.
 GTREND is only available for use with scatter charts.
 
 
-Creating Multiple Graphs
+## Creating Multiple Graphs
 
 Example:
 
@@ -1440,7 +1440,7 @@ END
 
 The output is:
 
-Creating Multiple Graphs
+## Creating Multiple Graphs
 
 You can create multiple graphs by including secondary sort dimensions (fields).
 
@@ -1512,7 +1512,7 @@ Note: The sum of the sort fields used by GRMULTIGRAPH, GRLEGEND, and GRXAXIS mus
 equal the number of sort fields in the graph request.
 
 
-Creating Multiple Graphs
+## Creating Multiple Graphs
 
 The syntax for the GRMULTIGRAPH, GRLEGEND, and GRXAXIS parameters is:
 
@@ -1568,7 +1568,7 @@ ON GRAPH SET LOOKGRAPH VBAR
 END
 
 
-Creating Multiple Graphs
+## Creating Multiple Graphs
 
 The first graph is for region Midwest. The legend distinguishes State-Category combinations by
 color, and the PRODUCT sort field is repeated on the X-axis for each State-Category
@@ -1638,7 +1638,7 @@ END
 The output is:
 
 
-Creating Multiple Graphs
+## Creating Multiple Graphs
 
 Displaying Multiple Graphs in Columns
 
@@ -1682,7 +1682,7 @@ END
 The output is:
 
 
-Plotting Dates in Graphs
+## Plotting Dates in Graphs
 
 
 Numeric fields containing dates are recognized by the field formats specified in the Master
@@ -1728,7 +1728,7 @@ ORDER_DATE GE '010197'
 END
 
 
-Plotting Dates in Graphs
+## Plotting Dates in Graphs
 
 The output is:
 
@@ -1811,7 +1811,7 @@ MD
 For complete details on date formats, see the Describing Data With WebFOCUS Language
 manual.
 
-Refining the Data Set For Your Graph
+## Refining the Data Set For Your Graph
 
 After selecting field values for the X and Y axes, you may wish to limit the data that displays in
 your graph. You can do this by creating WHERE statements. A WHERE statement limits data by
@@ -2020,13 +2020,13 @@ END
 
 The output is:
 
-Applying Conditional Styling to a Graph
+## Applying Conditional Styling to a Graph
 
 You can add further value to your graph by using conditional styling to highlight certain defined
 data with specific styles and colors.
 
 
-Applying Conditional Styling to a Graph
+## Applying Conditional Styling to a Graph
 
 For example, you can apply the color red to all departments that did not reach their sales
 quotas and apply the color black to all departments that did reach their sales quotas. In this
@@ -2091,7 +2091,7 @@ marks.
 
 Example:
 
-Applying Conditional Styling to a Graph
+## Applying Conditional Styling to a Graph
 
 The following illustrates how you can apply conditional styling to a graph.
 
@@ -2118,11 +2118,11 @@ is greater than five million.
 two hundred thousand.
 
 
-Linking Graphs to Other Resources
+## Linking Graphs to Other Resources
 
 The output is:
 
-Linking Graphs to Other Resources
+## Linking Graphs to Other Resources
 
 To drill down to a more detailed level of information in a graph, you can link a procedure
 (FOCEXEC) or a URL to one or more values in your graph. When you run your graph, the
@@ -2201,7 +2201,7 @@ combination of the following methods:
 You can specify a constant value, enclosed in single quotation marks.
 
 
-Linking Graphs to Other Resources
+## Linking Graphs to Other Resources
 
 You can specify the name or the position of a graph column.
 
@@ -2278,7 +2278,7 @@ the report component that you are formatting. For information on identifying com
 see Identifying a Report Component in a WebFOCUS StyleSheet on page 1249.
 
 
-Linking Graphs to Other Resources
+## Linking Graphs to Other Resources
 
 url
 
@@ -2381,7 +2381,7 @@ When you have an HTML document called by -HTMLFORM, ensure that the file
 extension is .HTM (not .HTML).
 
 
-Linking Graphs to Other Resources
+## Linking Graphs to Other Resources
 
 For more information about the -HTMLFORM command, see the Developing Reporting
 Applications manual.
@@ -2480,7 +2480,7 @@ keyword MNTCON RUN. For details on the syntax, see Linking to a Maintain Data Pr
 on page 836.
 
 
-Adding Labels to a Graph
+## Adding Labels to a Graph
 
 Creating Parameters
 
@@ -2490,7 +2490,7 @@ click on a hot spot.
 
 For complete details, see Linking a Report to Other Resources on page 819.
 
-Adding Labels to a Graph
+## Adding Labels to a Graph
 
 Adding labels to your graph helps provide important information about what the data in your
 graph represents. You may choose to add headings and/or footings to your graph, as well as
@@ -2542,14 +2542,14 @@ The horizontal (X-axis) title of the graph is determined by the sort field.
 
 You can replace a title by using an AS phrase in the GRAPH request.
 
-Applying Custom Styling to a Graph
+## Applying Custom Styling to a Graph
 
 You can customize your graph using StyleSheets and SET commands. You can set the graph
 width and height, set fixed scales for the X and Y axes, enable the Graph Editor, and use
 Graph API calls to further customize your graph.
 
 
-Applying Custom Styling to a Graph
+## Applying Custom Styling to a Graph
 
 For details on customizing graph headings and footings, see Using Headings, Footings, Titles,
 and Labels on page 1517.
@@ -2661,7 +2661,7 @@ two-dimensional chart is
 produced. ON is the default.
 
 
-Applying Custom Styling to a Graph
+## Applying Custom Styling to a Graph
 
 Graph SET Parameter
 
@@ -2799,7 +2799,7 @@ mark interval when AUTOTICK is
 OFF (see also HCLASS).
 
 
-Applying Custom Styling to a Graph
+## Applying Custom Styling to a Graph
 
 Graph SET Parameter
 
@@ -2935,7 +2935,7 @@ Is the automatic scaling facility. If HAUTO is ON, any values for HMAX and HMIN 
 overridden.
 
 
-Applying Custom Styling to a Graph
+## Applying Custom Styling to a Graph
 
 HMAX=nn
 
@@ -3035,7 +3035,7 @@ the style section. For reference information about the Graph API, see the WebFOC
 Graphics manual.
 
 
-Applying Custom Styling to a Graph
+## Applying Custom Styling to a Graph
 
 JSON
 
@@ -3087,7 +3087,7 @@ where:
 The output is:
 
 
-Saving a Graph as an Image File
+## Saving a Graph as an Image File
 
 You can save graph output to an image file using the GRAPHSERVURL parameter or the
 JSCOM3 configuration on the WebFOCUS Reporting Server. Saving graph output as an image
@@ -3110,7 +3110,7 @@ been specified), or to the location specified in a FILEDEF command. You may use 
 Allocation Wizard to create a FILEDEF command.
 
 
-Saving a Graph as an Image File
+## Saving a Graph as an Image File
 
 Procedure: How to Save a Graph as an Image File Using GRAPHSERVURL
 
@@ -3222,7 +3222,7 @@ the procedure.
 example,
 
 
-Saving a Graph as an Image File
+## Saving a Graph as an Image File
 
 <HTML>
 <HEAD>
@@ -3270,7 +3270,7 @@ TYPE=REPORT, IMAGE=PLANT.gif, POSITION=(4 0), SIZE=(5 3), $
 -MRNOEDIT END
 
 
-Printing a Graph
+## Printing a Graph
 
 Reference: Usage Notes for Saving a Graph
 
@@ -3301,7 +3301,7 @@ an absolute reference to the saved image file in the returned HTM output file.
 
 Click Save to save your changes in the Redirection Settings panel.
 
-Printing a Graph
+## Printing a Graph
 
 When you run your graph, you may print the output directly from the browser.
 
@@ -3346,5 +3346,5 @@ If you use different color settings from this recommended value, your graphs may
 grayscale format.
 
 
-Printing a Graph
+## Printing a Graph
 

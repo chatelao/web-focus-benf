@@ -21,7 +21,7 @@ appendix in the Adapter Administration manual.
 
 In this chapter:
 
-Sequential Data Source Formats
+## Sequential Data Source Formats
 
 Standard Master File Attributes for a Sequential Data Source
 

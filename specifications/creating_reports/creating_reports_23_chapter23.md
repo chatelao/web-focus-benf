@@ -6,7 +6,7 @@ to adjust the position of text within a report.
 
 In this chapter:
 
-Specifying Font Format in a Report
+## Specifying Font Format in a Report
 
 Specifying Background Color in a Report
 
