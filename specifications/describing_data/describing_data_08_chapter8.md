@@ -9,7 +9,7 @@ database design.
 
 In this chapter:
 
-Grouping Business Logic In a Business View
+## Grouping Business Logic In a Business View
 
 Business View DV Roles
 

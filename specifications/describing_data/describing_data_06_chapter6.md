@@ -21,7 +21,7 @@ Access File declarations for intelligently partitioned FOCUS data sources.
 
 In this chapter:
 
-Types of FOCUS Data Sources
+## Types of FOCUS Data Sources
 
 Designing a FOCUS Data Source
 

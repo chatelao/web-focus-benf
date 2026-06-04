@@ -17,7 +17,7 @@ and XFOCUS data sources.
 
 In this chapter:
 
-Creating a New Data Source: The CREATE Command
+## Creating a New Data Source: The CREATE Command
 
 Rebuilding a Data Source: The REBUILD Command
 
@@ -38,9 +38,9 @@ Converting Legacy Dates: The DATE NEW Subcommand
 Creating a Multi-Dimensional Index: The MDINDEX Subcommand
 
 
-Creating a New Data Source: The CREATE Command
+## ## Creating a New Data Source: The CREATE Command
 
-Creating a New Data Source: The CREATE Command
+## Creating a New Data Source: The CREATE Command
 
 You can create a new, empty FOCUS data source for a Master File using the CREATE
 command. You can also use the CREATE command to erase the data in an existing FOCUS
@@ -137,7 +137,7 @@ To recreate the EMPLOYEE data source, issue the following command:
 CREATE FILE EMPLOYEE
 
 
-Rebuilding a Data Source: The REBUILD Command
+## Rebuilding a Data Source: The REBUILD Command
 
 The following message appears:
 
@@ -154,7 +154,7 @@ NEW FILE C:EMPLOYEE.FOC     ON 01/03/2003 AT 15.48.57
 
 The EMPLOYEE data source still exists on disk, but it contains no records.
 
-Rebuilding a Data Source: The REBUILD Command
+## Rebuilding a Data Source: The REBUILD Command
 
 You can make a structural change to a FOCUS data source after it has been created using the
 REBUILD command. Using REBUILD and one of its subcommands REBUILD, REORG, INDEX,
@@ -238,7 +238,7 @@ Your subsequent responses depend on the subcommand you select. Generally, you wi
 need to give the name of the data source and possibly one or two other items of information.
 
 
-Rebuilding a Data Source: The REBUILD Command
+## Rebuilding a Data Source: The REBUILD Command
 
 Controlling the Frequency of REBUILD Messages
 
@@ -287,7 +287,7 @@ NUMBER OF SEGMENTS RETRIEVED=   19753
 CHECK COMPLETED...
 
 
-Optimizing File Size: The REBUILD Subcommand
+## Optimizing File Size: The REBUILD Subcommand
 
 
 You use the REBUILD subcommand for one of two reasons. Primarily, you use it to improve
@@ -341,7 +341,7 @@ The following options are available:
 8. MDINDEX        (Build/modify a multidimensional index)
 
 
-Optimizing File Size: The REBUILD Subcommand
+## Optimizing File Size: The REBUILD Subcommand
 
 2. Select the REBUILD subcommand by entering:
 
@@ -404,7 +404,7 @@ The following procedure:
 
 The data source will be rebuilt and the appropriate statistics will be generated.
 
-Changing Data Source Structure: The REORG Subcommand
+## Changing Data Source Structure: The REORG Subcommand
 
 The REORG subcommand enables you to make a variety of changes to the Master File after
 data has been entered in the FOCUS data source. REBUILD REORG is a two-step procedure
@@ -445,7 +445,7 @@ Change the value for SEGTYPE attributes.
 Change field names that are indexed.
 
 
-Changing Data Source Structure: The REORG Subcommand
+## Changing Data Source Structure: The REORG Subcommand
 
 Procedure: How to Use the REORG Subcommand
 
@@ -558,7 +558,7 @@ If duplicate field names occur in a Master File, REBUILD REORG is not supported.
 In z/OS, you must issue either an allocation or a CREATE for a new data source being loaded.
 
 
-Changing Data Source Structure: The REORG Subcommand
+## Changing Data Source Structure: The REORG Subcommand
 
 Example:
 
@@ -605,7 +605,7 @@ The data source will be dumped and the appropriate statistics will be generated.
 The data source will be loaded and the appropriate statistics will be generated.
 
 
-Indexing Fields: The INDEX Subcommand
+## Indexing Fields: The INDEX Subcommand
 
 To index a field after you have entered data into the data source, use the INDEX subcommand.
 You can index fields in addition to those previously specified in the Master File or since the
@@ -634,7 +634,7 @@ in z/OS, if you have not already. DDNAMEs SORTIN and SORTOUT must be allocated p
 issuing a REBUILD INDEX.
 
 
-Indexing Fields: The INDEX Subcommand
+## Indexing Fields: The INDEX Subcommand
 
 Procedure: How to Use the INDEX Subcommand
 
@@ -696,7 +696,7 @@ The following procedure:
 The field will be indexed and the appropriate statistics will be generated.
 
 
-Creating an External Index: The EXTERNAL INDEX Subcommand
+## Creating an External Index: The EXTERNAL INDEX Subcommand
 
 
 Users with READ access to a local FOCUS data source can create an index database that
@@ -735,7 +735,7 @@ space in z/OS, if you have not already. DDNAMEs SORTIN and SORTOUT must be alloc
 prior to issuing a REBUILD.
 
 
-Creating an External Index: The EXTERNAL INDEX Subcommand
+## Creating an External Index: The EXTERNAL INDEX Subcommand
 
 Procedure: How to Use the EXTERNAL INDEX Subcommand
 
@@ -838,7 +838,7 @@ Up to 256 concatenated files may be indexed. However, only eight indexes may be
 activated at one time.
 
 
-Creating an External Index: The EXTERNAL INDEX Subcommand
+## Creating an External Index: The EXTERNAL INDEX Subcommand
 
 Verification of the component files is now done for both the date and time stamp of file
 creation. Files with the same date and time stamp that are copied display the following
@@ -935,7 +935,7 @@ Appends one or more new databases to the present USE list. Without the ADD optio
 existing USE list is cleared and replaced by the current list of USE databases.
 
 
-Checking Data Source Integrity: The CHECK Subcommand
+## Checking Data Source Integrity: The CHECK Subcommand
 
 REPLACE
 
@@ -977,7 +977,7 @@ WITH|INDEX
 Is a keyword that creates the relationship between the component data sources and the
 index database. INDEX is a synonym for WITH.
 
-Checking Data Source Integrity: The CHECK Subcommand
+## Checking Data Source Integrity: The CHECK Subcommand
 
 It is rare for the structural integrity of a FOCUS data source to be damaged. Structural damage
 will occasionally occur, however, during a drive failure or if an incorrect Master File is used. In
@@ -1039,7 +1039,7 @@ If no errors are found, the statistics indicate the number of segments retrieved
 If errors are found, the statistics indicate the type and location of each error:
 
 
-Checking Data Source Integrity: The CHECK Subcommand
+## Checking Data Source Integrity: The CHECK Subcommand
 
 DELETE indicates that the data has been deleted and should not have been retrieved.
 
@@ -1153,13 +1153,13 @@ PAGE     1
 NUMBER OF RECORDS IN TABLE=      488 LINES= 1
 
 
-Changing the Data Source Creation Date and Time: The TIMESTAMP Subcommand
+## Changing the Data Source Creation Date and Time: The TIMESTAMP Subcommand
 
 Note that the BANK_NAME count in the TABLEF report is different than the number of
 FUNDTRAN instances reported by the ? FILE query. This is because FUNDTRAN is a unique
 segment and is always considered present as an extension of its parent.
 
-Changing the Data Source Creation Date and Time: The TIMESTAMP Subcommand
+## Changing the Data Source Creation Date and Time: The TIMESTAMP Subcommand
 
 A FOCUS data source date and time stamp are updated each time the data source is changed
 by CREATE, REBUILD, Maintain, or MODIFY. You can update a data source date and time
@@ -1222,7 +1222,7 @@ If you supply an invalid date or time, the following message appears:
 
 (FOC961) INVALID DATE INPUT IN REBUILD TIME:
 
-Converting Legacy Dates: The DATE NEW Subcommand
+## Converting Legacy Dates: The DATE NEW Subcommand
 
 The REBUILD subcommand DATE NEW converts legacy dates (alphanumeric, integer, and
 packed-decimal fields with date display options) to smart dates (fields in date format) in your
@@ -1245,7 +1245,7 @@ Formats A6YMD, A6MDY, and A6DMY are changed to formats YMD, MDY, and DMY,
 respectively, and have a 2-byte pad field added to the Master File.
 
 
-Converting Legacy Dates: The DATE NEW Subcommand
+## Converting Legacy Dates: The DATE NEW Subcommand
 
 The storage size of integer dates (I6YMD, I6MDY, for example) is 4 bytes, so no pad field is
 added.
@@ -1347,7 +1347,7 @@ each date.
 5. Indicates that the data source has been backed up.
 
 
-Converting Legacy Dates: The DATE NEW Subcommand
+## Converting Legacy Dates: The DATE NEW Subcommand
 
 The dates will be converted and the appropriate statistics will be generated, including the
 number of segments changed.
@@ -1451,7 +1451,7 @@ Format A8YYMD changes to smart date format YYMD.
 A 4-byte pad field with a blank field name and alias is added to the Master File.
 
 
-Creating a Multi-Dimensional Index: The MDINDEX Subcommand
+## Creating a Multi-Dimensional Index: The MDINDEX Subcommand
 
 Action Taken on a Date Field During REBUILD/DATE NEW
 
@@ -1492,7 +1492,7 @@ REBUILD/REBUILD is performed.
 
 REBUILD/INDEX is performed for the indexed fields.
 
-Creating a Multi-Dimensional Index: The MDINDEX Subcommand
+## Creating a Multi-Dimensional Index: The MDINDEX Subcommand
 
 The MDINDEX subcommand is used to create or maintain a multi-dimensional index. For more
 information, see Building and Maintaining a Multi-Dimensional Index on page 338.

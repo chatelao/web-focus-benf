@@ -20,7 +20,7 @@ documentation to determine if a technique is valid for your data source.
 
 In this chapter:
 
-Rotating a Data Structure for Enhanced Retrieval
+## Rotating a Data Structure for Enhanced Retrieval
 
 Optimizing Retrieval Speed for FOCUS Data Sources
 
@@ -30,7 +30,7 @@ Data Retrieval Using TABLEF
 
 Compiling Expressions
 
-Rotating a Data Structure for Enhanced Retrieval
+## ## Rotating a Data Structure for Enhanced Retrieval
 
 If you are using certain network or hierarchical data sources such as IMS, CA-IDMS/DB, or
 FOCUS, you can rotate the data source, creating an alternate view which changes some of the
@@ -41,7 +41,7 @@ Change the access path. For example, you can access data in a lower segment more
 quickly by promoting that segment to a higher level.
 
 
-Rotating a Data Structure for Enhanced Retrieval
+## Rotating a Data Structure for Enhanced Retrieval
 
 Change the path structure of a data source. This option is especially helpful if you wish to
 create a report using several sort fields that are on different paths in the file. By changing
@@ -95,7 +95,7 @@ Restructuring Data
 Consider the following data structure, in which PROD_CODE is an indexed field:
 
 
-Optimizing Retrieval Speed for FOCUS Data Sources
+## Optimizing Retrieval Speed for FOCUS Data Sources
 
 You could issue the following request to promote the segment containing PROD_CODE to the
 top of the hierarchy, thereby enabling quicker access to the data in that segment.
@@ -108,7 +108,7 @@ WHERE PROD_CODE EQ 'B10'
 ON TABLE COLUMN-TOTAL
 END
 
-Optimizing Retrieval Speed for FOCUS Data Sources
+## Optimizing Retrieval Speed for FOCUS Data Sources
 
 When the AUTOPATH parameter in set ON, an optimized retrieval path—that is, one in which
 the lowest retrieved segment is the entry point—is selected dynamically. It is equivalent to the
@@ -126,7 +126,7 @@ The system determines whether optimized retrieval is appropriate by analyzing th
 referenced in a request and the data source structure. For more information on the AUTOPATH
 parameter, see the Developing Reporting Applications manual.
 
-Automatic Indexed Retrieval
+## Automatic Indexed Retrieval
 
 Automatic indexed retrieval (AUTOINDEX) optimizes the speed of data retrieval in FOCUS data
 sources. To take advantage of automatic indexed retrieval, a TABLE request must contain an
@@ -180,7 +180,7 @@ AUTOINDEX is ON and the request contains either an equality or a range (FROM ...
 test against the indexed field.
 
 
-Automatic Indexed Retrieval
+## Automatic Indexed Retrieval
 
 Example:
 
@@ -240,7 +240,7 @@ IF PROD_CODE EQ 'B10'
 IF PROD_TYPE EQ 'STEREO'
 END
 
-Data Retrieval Using TABLEF
+## Data Retrieval Using TABLEF
 
 TABLEF is a variation of the TABLE command that provides a fast method of retrieving data
 that is already stored in the order required for printing and requires no additional sorting.
@@ -272,7 +272,7 @@ BORDER styling is not supported with TABLEF.
 TABLEF is not supported with SQUEEZE.
 
 
-Compiling Expressions
+## Compiling Expressions
 
 Example:
 
@@ -285,7 +285,7 @@ TABLEF FILE HOLD
 PRINT CURR_SAL AND LAST_NAME AND FIRST_NAME
 END
 
-Compiling Expressions
+## Compiling Expressions
 
 Compiling expressions into machine code provides faster processing.
 

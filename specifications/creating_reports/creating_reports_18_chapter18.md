@@ -20,7 +20,7 @@ output.
 
 In this chapter:
 
-Generating an Internal Cascading Style Sheet for HTML Reports
+## Generating an Internal Cascading Style Sheet for HTML Reports
 
 Selecting a Unit of Measurement
 
@@ -35,9 +35,9 @@ Controlling the Display of Empty Reports
 Formatting a Report Using Only StyleSheet Defaults
 
 
-Generating an Internal Cascading Style Sheet for HTML Reports
+## ## Generating an Internal Cascading Style Sheet for HTML Reports
 
-Generating an Internal Cascading Style Sheet for HTML Reports
+## Generating an Internal Cascading Style Sheet for HTML Reports
 
 When you create a report in HTML format, code is generated that specifies how the report is
 formatted. You can set up your report to generate an internal cascading style sheet as part of
@@ -104,7 +104,7 @@ your web browser support and implementation of cascading style sheets, not by We
 Some web browsers may not fully support the latest CSS version, or may implement a CSS
 feature in a different way.
 
-Selecting a Unit of Measurement
+## Selecting a Unit of Measurement
 
 You can select the unit of measurement for page margins and column width for HTML reports
 that generate an internal cascading style sheet, as well as PDF and PostScript reports. In
@@ -137,7 +137,7 @@ Outside of a report request, use
 SET UNITS = units
 
 
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+## Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 Within a report request, use
 
@@ -156,7 +156,7 @@ CM, that specifies the unit of measure as centimeters.
 PTS, that specifies the unit of measure as points. Points is a common measurement
 scale for typefaces.
 
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+## Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 You can conditionally format report components, display a graphic, and include links in your
 report based on the values in your report. Using conditional styling, you can:
@@ -236,7 +236,7 @@ Are the attributes in the StyleSheet declaration that are made conditional by th
 attribute. They can include most formatting, graphic images, and hyperlink attributes.
 
 
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+## Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 field1, field2
 
@@ -344,7 +344,7 @@ greater than 500,000 would have already been formatted by the first conditional
 declaration.
 
 
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+## Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 3. The third conditional declaration formats any rows whose order total is greater than
 
@@ -394,7 +394,7 @@ END
 The output is:
 
 
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+## Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 Example:
 
@@ -436,7 +436,7 @@ The example below demonstrates how an ACROSS value can be referenced using eithe
 ACROSS field name or the ACROSS column designator (A1, A2).
 
 
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+## Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 In this example, the ACROSS values are used in conditional styling to set a unique backcolor
 for all ACROSS columns in the Category Coffee, and additional font styling for the Espresso
@@ -501,7 +501,7 @@ ENDSTYLE
 END
 
 
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+## Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 The output is:
 
@@ -546,7 +546,7 @@ ENDSTYLE
 END
 
 
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+## Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 The output is:
 
@@ -584,7 +584,7 @@ END
 The output is:
 
 
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+## Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 In order to apply the same conditional formatting to only two columns, instead of all the
 columns, this version of the report request uses two declarations, each specifying a different
@@ -624,7 +624,7 @@ The following illustrates how you can apply conditional formatting to forecasted
 report.
 
 
-Conditionally Formatting, Displaying, and Linking in a StyleSheet
+## Conditionally Formatting, Displaying, and Linking in a StyleSheet
 
 DEFINE FILE GGSALES
 SDATE/YYM = DATE;
@@ -648,7 +648,7 @@ END
 The output is:
 
 
-Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
+## Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
 
 
 You can include sort-based options such as subtotals and other summary lines, sort headings
@@ -694,7 +694,7 @@ sortfield
 Is the name of a vertical sort (BY) field.
 
 
-Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
+## Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
 
 option
 
@@ -774,7 +774,7 @@ ADMIN SERVICES        000000170       $30,800.00
 
 *TOTAL ADMIN SERVICES                 $56,200.00
 
-Conditionally Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
+## Conditionally Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
 
 You can conditionally include sort-based options such as subtotals and other summary lines,
 sort headings and footings, underlines, skipped lines, and page breaks, as well as
@@ -796,7 +796,7 @@ phrase for each option. For example:
 ON ORDER_NUM SKIP-LINE WHEN QUANTITY GT 5; UNDER-LINE WHEN QUANTITY GT 10
 
 
-Conditionally Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
+## Conditionally Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
 
 Syntax:
 
@@ -893,7 +893,7 @@ ENDSTYLE
 END
 
 
-Conditionally Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
+## Conditionally Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
 
 The output is:
 
@@ -934,9 +934,9 @@ END
 The output is:
 
 
-Controlling the Display of Empty Reports
+## Controlling the Display of Empty Reports
 
-Controlling the Display of Empty Reports
+## Controlling the Display of Empty Reports
 
 If a report request returns no records (for example, because no records satisfy its selection
 criteria, or because the data source has no records), you can choose to display or print:
@@ -998,7 +998,7 @@ the default value.
 
 Example:
 
-Controlling the Display of Empty Reports
+## Controlling the Display of Empty Reports
 
 The following request does not retrieve any records and sets the EMPTYREPORT parameter to
 OFF.
@@ -1023,12 +1023,12 @@ The following output is produced.
 Changing the EMPTYREPORT setting to ON produces the output shown in the following image.
 
 
-Formatting a Report Using Only StyleSheet Defaults
+## Formatting a Report Using Only StyleSheet Defaults
 
 Changing the EMPTYREPORT setting to ANSI produces the output shown in the following
 image.
 
-Formatting a Report Using Only StyleSheet Defaults
+## Formatting a Report Using Only StyleSheet Defaults
 
 You can format a report using only default StyleSheet values. This does not permit you to
 specify specific formatting, and does not access a StyleSheet.

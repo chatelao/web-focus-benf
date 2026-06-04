@@ -6,7 +6,7 @@ characteristics.
 
 In this chapter:
 
-Field Characteristics
+## Field Characteristics
 
 Alternative Report Column Titles: TITLE
 

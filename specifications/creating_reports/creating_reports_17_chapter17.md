@@ -27,7 +27,7 @@ StyleSheets.
 
 In this chapter:
 
-Creating a WebFOCUS StyleSheet
+## Creating a WebFOCUS StyleSheet
 
 General WebFOCUS StyleSheet Syntax
 
@@ -37,7 +37,7 @@ WebFOCUS StyleSheet Attribute Inheritance
 
 Creating Reports With the ENWarm StyleSheet
 
-Creating a WebFOCUS StyleSheet
+## ## Creating a WebFOCUS StyleSheet
 
 You can create a StyleSheet:
 
@@ -46,7 +46,7 @@ StyleSheet to only one report. For details, see Creating a WebFOCUS StyleSheet W
 Report Request on page 1198.
 
 
-Creating a WebFOCUS StyleSheet
+## Creating a WebFOCUS StyleSheet
 
 Outside of a report request, as a separate file. This enables you to apply one StyleSheet to
 multiple reports. For details, see Creating and Applying a WebFOCUS StyleSheet File on page
@@ -124,7 +124,7 @@ How to Include a StyleSheet File in Another StyleSheet
 INCLUDE = stysheet,$
 
 
-Creating a WebFOCUS StyleSheet
+## Creating a WebFOCUS StyleSheet
 
 where:
 
@@ -215,9 +215,9 @@ stylesheet
 Is the name of the StyleSheet file. Do not include the file extension.
 
 
-General WebFOCUS StyleSheet Syntax
+## General WebFOCUS StyleSheet Syntax
 
-General WebFOCUS StyleSheet Syntax
+## General WebFOCUS StyleSheet Syntax
 
 A StyleSheet consists of declarations that identify the report components you wish to format
 and the formatting you wish to apply. A declaration usually begins with the TYPE attribute and
@@ -303,7 +303,7 @@ Include blank spaces or tabs in between the attribute, equal sign (=), value, co
 dollar sign ($).
 
 
-Reusing WebFOCUS StyleSheet Declarations With Macros
+## Reusing WebFOCUS StyleSheet Declarations With Macros
 
 Split a single declaration across a line. The declaration will continue to be processed until
 the terminating dollar sign. For example, you can split a declaration like this:
@@ -337,7 +337,7 @@ $ This is another sample comment
 
 Note: You can add comments anywhere in your request, not only in StyleSheets.
 
-Reusing WebFOCUS StyleSheet Declarations With Macros
+## Reusing WebFOCUS StyleSheet Declarations With Macros
 
 If you frequently use a group of attributes within a StyleSheet declaration, you can create a
 StyleSheet macro that groups the sequence of attributes together, enabling you to apply them
@@ -407,7 +407,7 @@ Is the name of the macro to apply to the specified report component. The macro m
 defined in the same StyleSheet.
 
 
-Reusing WebFOCUS StyleSheet Declarations With Macros
+## Reusing WebFOCUS StyleSheet Declarations With Macros
 
 condition
 
@@ -456,7 +456,7 @@ by TYPE=DATA, COLUMN=N1).
 
 The output is:
 
-WebFOCUS StyleSheet Attribute Inheritance
+## WebFOCUS StyleSheet Attribute Inheritance
 
 Each report component inherits StyleSheet attributes from its parent component. You can
 override an inherited attribute by explicitly specifying the same attribute with a different value
@@ -478,7 +478,7 @@ you can choose to format one column differently, allowing it to inherit the blue
 specifying that it override the bold style and that it add a yellow background color:
 
 
-WebFOCUS StyleSheet Attribute Inheritance
+## WebFOCUS StyleSheet Attribute Inheritance
 
 TYPE=TITLE, COLUMN=N2, STYLE=-BOLD, BACKCOLOR=YELLOW, $
 
@@ -557,7 +557,7 @@ END
 The output is:
 
 
-WebFOCUS StyleSheet Attribute Inheritance
+## WebFOCUS StyleSheet Attribute Inheritance
 
 Example:
 
@@ -607,7 +607,7 @@ embedded fields in the footing.
 
 The output is:
 
-Creating Reports With the ENWarm StyleSheet
+## Creating Reports With the ENWarm StyleSheet
 
 The ENWarm StyleSheet (ENWarm.sty) is the new default style sheet for the WebFOCUS
 toolset. Using a clean and simple layout and design, you can take advantage of this style
@@ -622,7 +622,7 @@ This section explains the specifications of the ENWarm StyleSheet and how it app
 styling, and active reports.
 
 
-Creating Reports With the ENWarm StyleSheet
+## Creating Reports With the ENWarm StyleSheet
 
 Report Styling
 
@@ -700,7 +700,7 @@ Report Footing
 10 pt
 
 
-Creating Reports With the ENWarm StyleSheet
+## Creating Reports With the ENWarm StyleSheet
 
 Font color: RGB (102, 102, 102)
 
@@ -730,7 +730,7 @@ Across Styling
 Across styling for a report is shown in the following image.
 
 
-Creating Reports With the ENWarm StyleSheet
+## Creating Reports With the ENWarm StyleSheet
 
 Across Title
 
@@ -780,7 +780,7 @@ Menu
 Text color: RGB (#6B6B6B)
 
 
-Creating Reports With the ENWarm StyleSheet
+## Creating Reports With the ENWarm StyleSheet
 
 Background color: RGB (#F8F8F8)
 

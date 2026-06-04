@@ -41,9 +41,9 @@ Using PowerPoint PPT Display Format
 Saving Report Output in PPTX Format
 
 
-Report Display Formats
+## Report Display Formats
 
-Report Display Formats
+## Report Display Formats
 
 You can choose from among several display formats for your report:
 
@@ -157,7 +157,7 @@ displaying PS. See Using PostScript (PS) Display Format on page
 620.
 
 
-Report Display Formats
+## Report Display Formats
 
 WP
 
@@ -241,7 +241,7 @@ specific application.
 
 For details, see the Developing Reporting Applications manual.
 
-Preserving Leading and Internal Blanks in Report Output
+## Preserving Leading and Internal Blanks in Report Output
 
 By default, HTML browsers and Excel remove leading and trailing blanks from text and
 compress multiple internal blanks to a single blank.
@@ -253,7 +253,7 @@ Even if you issue this command, trailing blanks will not be preserved except in 
 subheading, footing, and subfooting lines that use the default heading or footing alignment.
 
 
-Preserving Leading and Internal Blanks in Report Output
+## Preserving Leading and Internal Blanks in Report Output
 
 Syntax:
 
@@ -313,7 +313,7 @@ With SHOWBLANKS OFF, these additional blanks are removed:
 With SHOWBLANKS ON, the additional leading and internal blanks are preserved. Note that
 trailing blanks are not preserved:
 
-Using Web Display Format: HTML
+## Using Web Display Format: HTML
 
 You can display a report as an HTML page. HTML supports most style sheet options
 (especially when used with an internal cascading style sheet), allowing for full report
@@ -337,7 +337,7 @@ ONLINE-FMT parameter of the SET command. For more information, see How to Choose
 Display Format Using SET ONLINE-FMT on page 578.
 
 
-Using Web Display Format: HTML
+## Using Web Display Format: HTML
 
 HTML display format requires that the SET command's STYLESHEET parameter be set to any
 value except OFF. Appropriate values include ON (the default), the name of a StyleSheet file, or
@@ -441,7 +441,7 @@ BY PLANTLNG
 END
 
 
-Using Print Display Formats: PDF, PS
+## Using Print Display Formats: PDF, PS
 
 The output looks like this:
 
@@ -462,7 +462,7 @@ interactive reporting features.
 For more information on the AUTOFIT parameter, see the Developing Reporting Applications
 manual.
 
-Using Print Display Formats: PDF, PS
+## Using Print Display Formats: PDF, PS
 
 PDF (Adobe Acrobat Portable Document Format) is most often used to distribute and share
 electronic documents through the web. It is especially useful if you want a report to maintain
@@ -514,7 +514,7 @@ Other print-oriented display formats. You can also display a report as a PostScr
 For more information, see Using PostScript (PS) Display Format on page 620.
 
 
-Using Print Display Formats: PDF, PS
+## Using Print Display Formats: PDF, PS
 
 Syntax:
 
@@ -613,7 +613,7 @@ the page and layers the watermark image (internalonlyport.gif) on top. These ima
 displayed on every page of the report.
 
 
-Using Print Display Formats: PDF, PS
+## Using Print Display Formats: PDF, PS
 
 TABLE FILE GGSALES
 SUM
@@ -657,7 +657,7 @@ END
 The output is:
 
 
-Using Print Display Formats: PDF, PS
+## Using Print Display Formats: PDF, PS
 
 Features Supported
 
@@ -760,7 +760,7 @@ ENDSTYLE
 END
 
 
-Using Print Display Formats: PDF, PS
+## Using Print Display Formats: PDF, PS
 
 Note: The image displayed in the subheading is distributed with WebFOCUS. The path to the
 image is dependent on your platform and installation options. The path in the request uses the
@@ -771,7 +771,7 @@ The output is too wide for the page and is paneled. Page 1.1 has the columns tha
 the width of the page, as shown in the following image.
 
 
-Using Print Display Formats: PDF, PS
+## Using Print Display Formats: PDF, PS
 
 Page 1.2 has the remaining columns, as shown in the following image.
 
@@ -816,7 +816,7 @@ ENDSTYLE
 END
 
 
-Using Print Display Formats: PDF, PS
+## Using Print Display Formats: PDF, PS
 
 The output is shown in the following image. All of the columns fit across the width of the page,
 with no paneling.
@@ -2652,7 +2652,7 @@ STANDARD
 
 STANDARD
 
-Using Word Processing Display Formats: DOC, WP
+## Using Word Processing Display Formats: DOC, WP
 
 You can display a report as a plain text word processing document using:
 
@@ -2670,7 +2670,7 @@ DOC format does not support StyleSheets.
 WP format. The report opens as plain text within your web browser.
 
 
-Saving Report Output in Excel XLSX Format
+## Saving Report Output in Excel XLSX Format
 
 If you issue the SET PAGE = OFF command, or include TABPAGENO in a heading or footing,
 WP will indicate page breaks by including the character "1" in the first column at each
@@ -2684,7 +2684,7 @@ You can specify that a report display as a plain text word processing document v
 command when you run the report in WebFOCUS. For more information, see How to Choose a
 Display Format Using PCHOLD on page 576.
 
-Saving Report Output in Excel XLSX Format
+## Saving Report Output in Excel XLSX Format
 
 With Excel® 2007, Microsoft® introduced enhanced spreadsheet functionality in a new
 workbook file format. Using WebFOCUS, you can retrieve data from any WebFOCUS supported
@@ -2762,7 +2762,7 @@ Using the TITLETEXT StyleSheet attribute, tab names within the workbook can be
 customized to provide better descriptions of the worksheet content.
 
 
-Saving Report Output in Excel XLSX Format
+## Saving Report Output in Excel XLSX Format
 
 Unlike the HTML-based (EXL2K) format, which removes all blanks, XLSX, by default, retains
 leading, internal, and trailing blanks in cells within the worksheet. For more information on
@@ -2848,7 +2848,7 @@ By default, each WebFOCUS Client contains the following URL definition that poin
 &URL_PROTOCOL://&servername:&server_port&IBIF_webapp
 
 
-Saving Report Output in Excel XLSX Format
+## Saving Report Output in Excel XLSX Format
 
 Syntax:
 
@@ -2915,7 +2915,7 @@ extension to save the report output to their machine. The user can then open the
 directly from Excel 2000/2003.
 
 
-Saving Report Output in Excel XLSX Format
+## Saving Report Output in Excel XLSX Format
 
 Save As Option enabled (YES). When the WebFOCUS Redirection Save As option is
 enabled, the WebFOCUS Client sends the report output to the user as a file with the
@@ -3002,7 +3002,7 @@ Note: This behavior is a change from EXL2K format, where cells containing dates 
 complex numeric formats were passed as formatted text.
 
 
-Saving Report Output in Excel XLSX Format
+## Saving Report Output in Excel XLSX Format
 
 Displaying Formatted Numeric Values in XLSX Report Output
 
@@ -3082,7 +3082,7 @@ ON TABLE SET BYDISPLAY ON
 END
 
 
-Saving Report Output in Excel XLSX Format
+## Saving Report Output in Excel XLSX Format
 
 Notice the fixed numeric format defined for the BUDDOLLARS column (Column C) presents the
 local currency symbol in a fixed position within each cell, regardless of the size of the data
@@ -3140,7 +3140,7 @@ ENDSTYLE
 END
 
 
-Saving Report Output in Excel XLSX Format
+## Saving Report Output in Excel XLSX Format
 
 The output is:
 
@@ -4217,7 +4217,7 @@ in combination with the XLSXPAGETITLES=ALL StyleSheet or SET command.
 
 Saving Report Output in Excel XLSX Format
 
-Preserving Leading and Internal Blanks in Report Output
+## Preserving Leading and Internal Blanks in Report Output
 
 The SHOWBLANKS command allows you to preserve leading blanks in data cells and headings
 in XLSX reports. In XLSX, internal blanks will always be retained, but leading and trailing blanks
@@ -4328,7 +4328,7 @@ The following outputs show the differences in XLSX generated using SET SHOWBLANK
 and SET SHOWBLANKS = ON.
 
 
-Saving Report Output in Excel XLSX Format
+## Saving Report Output in Excel XLSX Format
 
 SET SHOWBLANKS = OFF with HEADALIGN=BODY (no leading blanks or trailing blanks)
 
@@ -5951,7 +5951,7 @@ WebFOCUS XLSX Format Supported Features Roadmap, located at the following link:
 
 https://techsupport.informationbuilders.com/tech/wbf/wbf_rln_formatXLSX_support.html
 
-Using PowerPoint PPT Display Format
+## Using PowerPoint PPT Display Format
 
 Specifying PowerPoint (PPT) as the output format creates a PowerPoint document with a single
 slide that includes the report.
@@ -5998,7 +5998,7 @@ Is the number of the slide on which to place the report output. This number is o
 the template has only one slide.
 
 
-Saving Report Output in PPTX Format
+## Saving Report Output in PPTX Format
 
 Example:
 
@@ -6028,7 +6028,7 @@ END
 
 The output is:
 
-Saving Report Output in PPTX Format
+## Saving Report Output in PPTX Format
 
 WebFOCUS Release 8.0 Version 08 introduced the capability to retrieve data from any
 WebFOCUS supported data source and to generate a PPTX formatted (PowerPoint 2007,
@@ -6077,7 +6077,7 @@ For more information on working with Office Online and OneDrive for Business, se
 Office Online in OneDrive.
 
 
-Saving Report Output in PPTX Format
+## Saving Report Output in PPTX Format
 
 Building the .pptx Presentation File
 
@@ -6179,7 +6179,7 @@ name. For more information on the Redirection Settings, see the WebFOCUS Securit
 Administration manual.
 
 
-Saving Report Output in PPTX Format
+## Saving Report Output in PPTX Format
 
 Opening PPTX Report Output
 
@@ -6266,7 +6266,7 @@ version of Office to get continuing support and updates. If your organization us
 information.
 
 
-Saving Report Output in PPTX Format
+## Saving Report Output in PPTX Format
 
 In Windows 7, Microsoft removed the desktop settings that support opening worksheets in
 the browser. This means that to change this behavior, you can no longer simply navigate to
@@ -6356,7 +6356,7 @@ SIZE=(.5 .5), $
 END
 
 
-Saving Report Output in PPTX Format
+## Saving Report Output in PPTX Format
 
 The output is:
 
@@ -6415,7 +6415,7 @@ ENDSTYLE
 END
 
 
-Saving Report Output in PPTX Format
+## Saving Report Output in PPTX Format
 
 SET COMPONENT='chart2'
 SET PAGE-NUM=NOLEAD
@@ -6485,7 +6485,7 @@ following the open caret will be interpreted as the start of a markup tag and wi
 text.
 
 
-Saving Report Output in PPTX Format
+## Saving Report Output in PPTX Format
 
 Font Properties
 
@@ -6581,7 +6581,7 @@ By default, the bullet type is disc. You can also specify circle or square:
 <ul type=square>
 
 
-Saving Report Output in PPTX Format
+## Saving Report Output in PPTX Format
 
 Ordered (Number or Letter) List
 

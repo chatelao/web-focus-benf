@@ -27,14 +27,14 @@ Manipulating Display Fields With Prefix Operators
 
 Displaying Pop-up Field Descriptions for Column Titles
 
-Using Display Commands in a Request
+## Using Display Commands in a Request
 
 The four display commands (PRINT, LIST, SUM, and COUNT) are also known as verbs. These
 commands are flexible; you can report from several fields using a single command, and
 include several different display commands in a single report request.
 
 
-Using Display Commands in a Request
+## Using Display Commands in a Request
 
 Syntax:
 
@@ -92,7 +92,7 @@ virtual field name redefines a real field.
 
 40
 
-Displaying Individual Values
+## Displaying Individual Values
 
 
 The display commands LIST and PRINT list the individual values of the fields you specify in
@@ -138,7 +138,7 @@ END
 The following shows the report output.
 
 
-Displaying Individual Values
+## Displaying Individual Values
 
 LAST_NAME
 ---------
@@ -457,7 +457,7 @@ ADVANCED TECHNIQUES
    82/07/26
 
 
-Displaying Individual Values
+## Displaying Individual Values
 
   19
 
@@ -517,7 +517,7 @@ Subtree in the Describing a Group of Fields chapter in the Describing Data With 
 Language manual.
 
 
-Displaying Individual Values
+## Displaying Individual Values
 
 Example:
 
@@ -589,7 +589,7 @@ EDUCFILE data sources, issue the following command:
 CHECK FILE EMPLOYEE PICTURE RETRIEVE
 
 
-Displaying Individual Values
+## Displaying Individual Values
 
 The following shows the command output that adds the numbers that display at the top left of
 each segment, indicating the retrieval order of the segments. A unique segment such as
@@ -601,7 +601,7 @@ SECSEG are unique segments, and are therefore treated as part of their parents.
 The following shows the retrieval order:
 
 
-Adding Values
+## Adding Values
 
 Example:
 
@@ -649,7 +649,7 @@ a multi-path data source, to remind you that PRINT * only displays the left path
 
 (FOC757) WARNING. YOU REQUESTED PRINT * OR COUNT * FOR A MULTI-PATH FILE
 
-Adding Values
+## Adding Values
 
 SUM, WRITE, and ADD sum the values of a numeric field. The three commands are synonyms;
 they can be used interchangeably, and every reference to SUM in this documentation also
@@ -668,7 +668,7 @@ For SUM, WRITE, and ADD syntax, see Using Display Commands in a Request on page 
 
 Example:
 
-Adding Values
+## Adding Values
 
 This request adds all the values of the field CURR_SAL:
 
@@ -716,9 +716,9 @@ Tip: You can set the SUMPREFIX parameter to FST, MIN, MAX, or LST to control the
 For details, see Sorting Tabular Reports on page 87.
 
 
-Counting Values
+## Counting Values
 
-Counting Values
+## Counting Values
 
 The COUNT command counts the number of instances that exist for a specified field. The
 COUNT command is particularly useful combined with the BY phrase, which is discussed in
@@ -738,7 +738,7 @@ unless the column title is changed with an AS phrase.
 
 Example:
 
-Counting Values
+## Counting Values
 
 To determine how many employees are in the EMPLOYEE data source, you can count the
 instances of EMP_ID, the employee identification number.
@@ -820,7 +820,7 @@ For more information about missing values, short paths, and the SET ALL paramete
 Handling Records With Missing Field Values on page 1035.
 
 
-Expanding Byte Precision for COUNT and LIST
+## Expanding Byte Precision for COUNT and LIST
 
 Example:
 
@@ -854,7 +854,7 @@ path data source (such as EMPLOYEE in the above example):
 
 (FOC757) WARNING. YOU REQUESTED PRINT * OR COUNT * FOR A MULTI-PATH FILE
 
-Expanding Byte Precision for COUNT and LIST
+## Expanding Byte Precision for COUNT and LIST
 
 By default, the number of characters that display for counter values retrieved using the COUNT
 and LIST commands is five. You can increase the number of characters to nine.
@@ -929,12 +929,12 @@ Note: This feature affects the width of a report when COUNTWIDTH is set to ON. C
 the width of a report now requires an additional four display positions for each COUNT or LIST
 column.
 
-Maximum Number of Display Fields Supported in a Request
+## Maximum Number of Display Fields Supported in a Request
 
 There is no limit to the number of verb objects in a TABLE or MATCH request.
 
 
-Manipulating Display Fields With Prefix Operators
+## Manipulating Display Fields With Prefix Operators
 
 However, an error can occur under the following conditions:
 
@@ -949,7 +949,7 @@ If the combined length of the display fields in the data area exceeds the maximu
 error message displays. To correct the problem, adjust the number or lengths of the fields in
 the request.
 
-Manipulating Display Fields With Prefix Operators
+## Manipulating Display Fields With Prefix Operators
 
 You can use prefix operators to perform calculations directly on the values of fields.
 
@@ -1031,7 +1031,7 @@ Because PRINT and LIST display individual field values, not an aggregate value, 
 not used with prefix operators, except TOT. and DST.
 
 
-Manipulating Display Fields With Prefix Operators
+## Manipulating Display Fields With Prefix Operators
 
 To sort by the results of a prefix command, use the phrase BY TOTAL to aggregate and sort
 numeric columns simultaneously. For details, see Sorting Tabular Reports on page 87.
@@ -1162,7 +1162,7 @@ PRINT commands, COMPUTE commands, and IF or WHERE TOTAL
 tests.
 
 
-Manipulating Display Fields With Prefix Operators
+## Manipulating Display Fields With Prefix Operators
 
 Prefix
 
@@ -1277,7 +1277,7 @@ SUM MAX.SALARY AND MIN.SALARY
 END
 
 
-Manipulating Display Fields With Prefix Operators
+## Manipulating Display Fields With Prefix Operators
 
 The following shows the output of the request.
 
@@ -1354,7 +1354,7 @@ END
 The output is shown in the following image:
 
 
-Manipulating Display Fields With Prefix Operators
+## Manipulating Display Fields With Prefix Operators
 
 If you set PCFORMAT to OLD, PCT. and RPCT. WILL take the same format as the field, and the
 column may not always total exactly 100 because of the nature of floating-point arithmetic.
@@ -1429,7 +1429,7 @@ are supported in TABLE and TABLEF requests. They are supported in requests that 
 ACROSS, and FOR phrases.
 
 
-Manipulating Display Fields With Prefix Operators
+## Manipulating Display Fields With Prefix Operators
 
 Note that in a request using the PRINT command and multiple DST operators, you should issue
 the command SET PRINTDST=NEW. For more information, see the Developing Reporting
@@ -1543,7 +1543,7 @@ other display command:
 (FOC1853) CNT/SUM/AVE.DST CAN ONLY BE USED WITH AGGREGATION VERBS
 
 
-Manipulating Display Fields With Prefix Operators
+## Manipulating Display Fields With Prefix Operators
 
 The following error occurs if you use DST. in a MATCH command:
 
@@ -1648,7 +1648,7 @@ Note, however, the command SUM LST.DED_CODE would have retrieved the last logica
 for DED_CODE for each employee.
 
 
-Manipulating Display Fields With Prefix Operators
+## Manipulating Display Fields With Prefix Operators
 
 If the record is in a segment with values organized from highest to lowest (segment type SH1),
 the first logical record that the FST. prefix operator retrieves is the highest value in the set of
@@ -2322,7 +2322,7 @@ These operators can be used on a field in a heading or footing without being ref
 a display command in the request.
 
 
-Displaying Pop-up Field Descriptions for Column Titles
+## Displaying Pop-up Field Descriptions for Column Titles
 
 They work in a heading or footing for real or virtual (DEFINE) fields. They work in a display
 command field list on real fields, virtual (DEFINE) fields, and calculated (COMPUTE) values
@@ -2331,7 +2331,7 @@ that are calculated prior to their use in the request.
 They can be used in subheadings and subfootings to reference the total value for the entire
 report.
 
-Displaying Pop-up Field Descriptions for Column Titles
+## Displaying Pop-up Field Descriptions for Column Titles
 
 You can have pop-up field descriptions display in an HTML report when the mouse pointer is
 positioned over column titles. Field description text displays in a pop-up box near the column
@@ -2406,7 +2406,7 @@ Is the host name and optional port number (specified only if you are not using t
 port number) where the WebFOCUS Web application is deployed.
 
 
-Displaying Pop-up Field Descriptions for Column Titles
+## Displaying Pop-up Field Descriptions for Column Titles
 
 ibi_apps/ibi_html
 

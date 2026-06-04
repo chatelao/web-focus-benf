@@ -26,7 +26,7 @@ Logically rearrange a data source to access the data in a different order.
 
 In this chapter:
 
-A Note About Data Source Terminology
+## A Note About Data Source Terminology
 
 What Is a Data Source Description?
 
@@ -41,9 +41,9 @@ Naming a Master File
 What Is in a Master File?
 
 
-A Note About Data Source Terminology
+## ## A Note About Data Source Terminology
 
-A Note About Data Source Terminology
+## A Note About Data Source Terminology
 
 Different types of data sources make use of similar concepts but refer to each differently. For
 example, the smallest meaningful element of data is called a field by many hierarchical
@@ -57,7 +57,7 @@ However, when required for clarity, we use the term specific to a given data sou
 we introduce a new standard term, we define it and compare it to equivalent terms used with
 different types of data sources.
 
-What Is a Data Source Description?
+## What Is a Data Source Description?
 
 When your application accesses a data source, it needs to know how to interpret the data that
 it finds. Your application needs to know about:
@@ -79,7 +79,7 @@ includes the full data source name and location. You require one Master File and
 data sources, one Access File to describe a data source.
 
 
-How an Application Uses a Data Source Description
+## How an Application Uses a Data Source Description
 
 
 Master Files and Access Files are stored separately, apart from the associated data source.
@@ -121,7 +121,7 @@ Restriction Rules: The ENCRYPT Command on page 436. However, the first line of a
 File that is going to be encrypted cannot be longer than 68 characters. If it is longer than 68
 characters, you must break it up onto multiple lines.
 
-What Does a Master File Describe?
+## What Does a Master File Describe?
 
 A Master File enables you to:
 
@@ -132,7 +132,7 @@ Identify and relate groups of fields.
 Describe individual fields.
 
 
-What Does a Master File Describe?
+## What Does a Master File Describe?
 
 Note:
 
@@ -186,7 +186,7 @@ For more information, see Describing an Individual Field on page 103.
 Note: Master Files/data source descriptions must contain uppercase field and segment
 names if you are using them with Maintain Data.
 
-Creating a Data Source Description
+## Creating a Data Source Description
 
 You can create a Master File and Access File for a data source in several ways. If the data
 source:
@@ -214,14 +214,14 @@ and to refresh your session image.
 Specifying their attributes using the Master File Editor or the Synonym Editor. The Master
 File Editor is available in Maintain Data.
 
-Naming a Master File
+## Naming a Master File
 
 Master File names for FOCUS and fixed-format sequential data sources can be up to 64
 characters long on z/OS, UNIX, and Windows platforms. Except where noted, this length is
 supported in all functional areas that reference a Master File.
 
 
-Naming a Master File
+## Naming a Master File
 
 Using Long Master File Names on z/OS
 
@@ -334,7 +334,7 @@ contains the following attribute
 $ VIRT = long_filename
 
 
-Naming a Master File
+## Naming a Master File
 
 where:
 
@@ -441,7 +441,7 @@ SEGNAME=EMPINFO,  SEGTYPE=S1
          .
 
 
-What Is in a Master File?
+## What Is in a Master File?
 
 Reference: Usage Notes for Long Master File Names
 
@@ -466,7 +466,7 @@ REBUILD utility) to an existing short Master File.
 than or equal to the number of existing long file allocations. Use this internal DDNAME in
 all queries that require a valid DDNAME, such as USE commands.
 
-What Is in a Master File?
+## What Is in a Master File?
 
 A Master File describes a data source using a series of declarations:
 
@@ -533,7 +533,7 @@ You can also include blank lines to separate declarations. Blank spaces and line
 required and are ignored by the application.
 
 
-What Is in a Master File?
+## What Is in a Master File?
 
 Example:
 
@@ -605,5 +605,5 @@ when you run a request against it.
 For more information, see Checking and Changing a Master File: CHECK on page 395.
 
 
-What Is in a Master File?
+## What Is in a Master File?
 

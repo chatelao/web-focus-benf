@@ -46,7 +46,7 @@ Specifying the Sort Order
 
 Hierarchical Reporting: BY HIERARCHY
 
-Sorting Tabular Reports Overview
+## Sorting Tabular Reports Overview
 
 You sort a report using vertical (BY) and horizontal (ACROSS) phrases:
 
@@ -63,7 +63,7 @@ A request can include up to 128 sort phrases consisting of any combination of BY
 ACROSS phrases.
 
 
-Sorting Rows
+## Sorting Rows
 
 Additional sorting options include:
 
@@ -100,7 +100,7 @@ For related information, see Sorting With Multiple Display Commands on page 180.
 
 For details on all display commands, see Displaying Report Data on page 39.
 
-Sorting Rows
+## Sorting Rows
 
 You can sort report information vertically using the BY phrase. This creates rows in your report.
 You can include up to 128 sort phrases (BY phrases plus ACROSS phrases) per report request
@@ -163,7 +163,7 @@ fields must be in the same path.
 Sort phrases cannot contain format information for fields.
 
 
-Sorting Rows
+## Sorting Rows
 
 Each sort field value appears only once in the report. For example, if there are six
 employees in the MIS department, a request that declares
@@ -353,7 +353,7 @@ ED_HRS         CURR_SAL  LAST_NAME
 Others       $78,800.00
 
 
-Sorting Columns
+## Sorting Columns
 
 If the BY HIGHEST phrase is changed to BY LOWEST, all values above the top grouping (50
 ED_HRS and above) are included in the Others category:
@@ -380,7 +380,7 @@ ED_HRS         CURR_SAL  LAST_NAME
              $27,062.00  CROSS
 Others       $56,360.00
 
-Sorting Columns
+## Sorting Columns
 
 You can sort report information horizontally using the ACROSS phrase. This creates columns in
 your report. The total number of ACROSS columns is equal to the total number of ACROSS sort
@@ -444,7 +444,7 @@ PRINT LAST_NAME ACROSS DEPARTMENT
 prints MIS once, followed by six employee names.
 
 
-Sorting Columns
+## Sorting Columns
 
 Example:
 
@@ -1447,7 +1447,7 @@ Running the request with SET HIDENULLACRS=ON hides column Q4 for the Midwest reg
 for the Northeast region, and the entire page for the Southeast region:
 
 
-Controlling Display of Sort Field Values
+## Controlling Display of Sort Field Values
 
 By default, a sort field value displays only on the first row or column of the set of detail rows or
 columns generated for that sort field value. You can control this behavior using the BYDISPLAY
@@ -1490,7 +1490,7 @@ Displays the relevant BY field value on every line of report output and the rele
 field value on every column of report output.
 
 
-Controlling Display of Sort Field Values
+## Controlling Display of Sort Field Values
 
 Example:
 
@@ -1526,12 +1526,12 @@ Changing BYDISPLAY to ACROSS displays ACROSS field values over every column, as 
 the following image.
 
 
-Reformatting Sort Fields
+## Reformatting Sort Fields
 
 Changing BYDISPLAY to ALL displays BY field values on every row and ACROSS field values
 over every column, as shown in the following image.
 
-Reformatting Sort Fields
+## Reformatting Sort Fields
 
 When displaying a vertical (BY) sort column or horizontal (ACROSS) sort row on report output,
 you can reformat the sort field values by specifying the new format in the sort phrase. The
@@ -1587,7 +1587,7 @@ value displays.
 
 Example:
 
-Reformatting Sort Fields
+## Reformatting Sort Fields
 
 The following request against the GGSALES data source includes the following reformatted sort
 fields:
@@ -1701,11 +1701,11 @@ BY STORE_CODE SKIP-LINE BY PROD_CODE
 END
 
 
-Creating a Matrix Report
+## Creating a Matrix Report
 
 The output is:
 
-Creating a Matrix Report
+## Creating a Matrix Report
 
 You can create a matrix report by sorting both rows and columns. When you include both BY
 and ACROSS phrases in a report request, information is sorted vertically and horizontally,
@@ -1766,7 +1766,7 @@ CURR_JOBCODE  ED_HRS
 A17            45.00                .       $27,062.00
 B04            75.00       $21,780.00                .
 
-Controlling Collation Sequence
+## Controlling Collation Sequence
 
 Collation is defined as a set of rules that apply to the ordering and matching of all language
 elements that involve comparison of two values. A wide variety of elements are affected by this
@@ -1780,7 +1780,7 @@ supported in an ON TABLE phrase and should be set in the edasprof server profile
 The collation setting applies only to alphanumeric values.
 
 
-Controlling Collation Sequence
+## Controlling Collation Sequence
 
 Syntax:
 
@@ -1882,7 +1882,7 @@ PRINT PROD_NUM PRODNAME
 END
 
 
-Controlling Collation Sequence
+## Controlling Collation Sequence
 
 On the output, the rows with product numbers 1004 and 1005 differ only in the case of the
 letter d in HD. The record with the lowercase d is before the record with the uppercase D. The
@@ -2086,7 +2086,7 @@ Number:  Name:
 1006     Combo Player - 4 HD VCR + DVD
 1007     Combo Player - 4 Hd VCR + DVD
 
-Specifying the Sort Order
+## Specifying the Sort Order
 
 Sort field values are automatically displayed in ascending order, beginning with the lowest
 value and continuing to the highest. The default sorting sequence varies for operating systems.
@@ -2132,7 +2132,7 @@ BY CURR_SAL
 END
 
 
-Specifying the Sort Order
+## Specifying the Sort Order
 
 You can specify this same ascending order explicitly by including LOWEST in the sort phrase.
 
@@ -2393,7 +2393,7 @@ Column titles for ACROSS fields appear on a single line of the report output.
 Support for AS names for ACROSS values is limited to the TABLE FILE command.
 
 
-Ranking Sort Field Values
+## Ranking Sort Field Values
 
 When you create a HOLD file with SET ASNAMES = ON, the original field name is
 propagated to the output Master File, not the AS name.
@@ -2428,7 +2428,7 @@ Northeast       $509,200       $2,808,855         $590,780
 Southeast       $656,957       $2,637,562         $645,303
 West            $603,436       $2,670,405         $613,624
 
-Ranking Sort Field Values
+## Ranking Sort Field Values
 
 When you sort report rows using the BY phrase, you can indicate the numeric rank of each row.
 Ranking sort field values is frequently combined with restricting sort field values by rank.
@@ -2471,7 +2471,7 @@ Is the column heading to use for the sort field column on the report output.
 
 Example:
 
-Ranking Sort Field Values
+## Ranking Sort Field Values
 
 Issue the following request to display a list of employee names in salary order, indicating the
 rank of each employee by salary. Note that employees Jones and McCoy have the same rank
@@ -2483,7 +2483,7 @@ RANKED AS 'Sequence' BY CURR_SAL
 END
 
 
-Ranking Sort Field Values
+## Ranking Sort Field Values
 
 The output is:
 
@@ -2568,7 +2568,7 @@ or
 BY {HIGHEST|LOWEST} n sortfield [AS 'text']
 
 
-Ranking Sort Field Values
+## Ranking Sort Field Values
 
 where:
 
@@ -2655,7 +2655,7 @@ RANK           SALARY  DIV   LASTNAME         FIRSTNAME
   12       $58,800.00  WE    GOTLIEB          CHRIS
 
 
-Ranking Sort Field Values
+## Ranking Sort Field Values
 
 Example:
 
@@ -2718,7 +2718,7 @@ $115,000.00  CE    LASTRA           KAREN
                    HIRSCHMAN        ROSE
  $58,800.00  WE    GOTLIEB          CHRIS
 
-Grouping Numeric Data Into Ranges
+## Grouping Numeric Data Into Ranges
 
 When you sort a report using a numeric sort field, you can group the sort field values together
 and define the range of each group.
@@ -2747,7 +2747,7 @@ Tiles. These include percentiles, quartiles, or deciles. For details, see Groupi
 Data Into Tiles on page 167.
 
 
-Grouping Numeric Data Into Ranges
+## Grouping Numeric Data Into Ranges
 
 The FOR phrase is usually used to produce matrix reports and is part of the Financial Modeling
 Language (FML). However, you can also use it to create columnar reports that group sort field
@@ -2846,7 +2846,7 @@ BY CURR_SAL IN-RANGES-OF 5000
 END
 
 
-Grouping Numeric Data Into Ranges
+## Grouping Numeric Data Into Ranges
 
 The output is:
 
@@ -2908,7 +2908,7 @@ with an AS phrase. For details on the AS phrase, see Using Headings, Footings, T
 Labels on page 1517.
 
 
-Grouping Numeric Data Into Ranges
+## Grouping Numeric Data Into Ranges
 
 Tiling is calculated within all of the higher-level sort fields in the request, and restarts
 whenever a sort field at a higher level than the tile field value changes.
@@ -3016,7 +3016,7 @@ specify both, the more restrictive value controls the display. If k and m are bo
 than n (the number of tiles), n is used.
 
 
-Grouping Numeric Data Into Ranges
+## Grouping Numeric Data Into Ranges
 
 Example:
 
@@ -3159,7 +3159,7 @@ END
 
 The output is:
 
-Sorting and Aggregating Report Columns
+## Sorting and Aggregating Report Columns
 
 Using the BY TOTAL phrase, you can apply aggregation and sorting simultaneously to numeric
 columns in your report in one pass of the data. For BY TOTAL to work correctly, you must have
@@ -3168,7 +3168,7 @@ PRINT, simply retrieves the data without aggregating it. Records are sorted in e
 or descending sequence, based on your query. Ascending order is the default.
 
 
-Sorting and Aggregating Report Columns
+## Sorting and Aggregating Report Columns
 
 You can also use the BY TOTAL phrase to sort based on temporary values calculated by the
 COMPUTE command.
@@ -3213,7 +3213,7 @@ fields.
 
 Example:
 
-Sorting and Aggregating Report Columns
+## Sorting and Aggregating Report Columns
 
 In this example, the salary average is calculated and used as a sort field. The two highest
 salaries are displayed in the report.
@@ -3261,7 +3261,7 @@ BY CURR_JOBCODE
 END
 
 
-Sorting and Aggregating Report Columns
+## Sorting and Aggregating Report Columns
 
 The output is:
 
@@ -3294,7 +3294,7 @@ phrase works on the result of the BY phrase (that is, on the n rows that result 
 phrase).
 
 
-Hiding Sort Values
+## Hiding Sort Values
 
 When you sort a report, you can omit the sort field value itself from the report by using the
 phrase NOPRINT. This can be helpful in several situations; for instance, when you use the
@@ -3317,7 +3317,7 @@ You can use SUP-PRINT as a synonym for NOPRINT.
 
 Example:
 
-Hiding Sort Values
+## Hiding Sort Values
 
 If you want to display a list of employees sorted by the date on which they were hired, but you
 want the report to contain last name, first name, and then the hire date in the third column,
@@ -3330,7 +3330,7 @@ END
 The output is:
 
 
-Sort Performance Considerations
+## Sort Performance Considerations
 
 To list the employees in the order in which they were hired, you would sort the report by the
 HIRE_DATE field and hide the sort field occurrence using the NOPRINT phrase.
@@ -3342,7 +3342,7 @@ END
 
 The output is:
 
-Sort Performance Considerations
+## Sort Performance Considerations
 
 The sorting procedure analyzes the request being processed and the amount of sort memory
 available in order reduce the amount of disk I/O. The sort strategy is controlled by the
@@ -3396,9 +3396,9 @@ Is the positive number of megabytes of memory available for sorting. The default
 512.
 
 
-Sorting With Multiple Display Commands
+## Sorting With Multiple Display Commands
 
-Sorting With Multiple Display Commands
+## Sorting With Multiple Display Commands
 
 A request can consist of up to 64 sets of separate display commands (also known as verb
 phrases), each with its own sort conditions. In order to display all of the information, a
@@ -3490,7 +3490,7 @@ SUM CURR_SAL ED_HRS BY DEPARTMENT
 END
 
 
-Sorting With Multiple Display Commands
+## Sorting With Multiple Display Commands
 
 With DUPLICATECOL=ON, the output has separate columns for the grand totals and for the
 departmental totals:
@@ -3575,7 +3575,7 @@ The following request has two display commands:
 employee by department).
 
 
-Sorting With Multiple Display Commands
+## Sorting With Multiple Display Commands
 
 SET DUPLICATECOL = OFF
 TABLE FILE EMPLOYEE
@@ -3621,7 +3621,7 @@ also be matched based on AS names. An AS name will not be matched to a field nam
 a field has an AS name, it will only be matched to other fields that have the same AS name.
 
 
-Sorting With Multiple Display Commands
+## Sorting With Multiple Display Commands
 
 Example:
 
@@ -3649,9 +3649,9 @@ END
 The partial output is shown in the following image.
 
 
-Improving Efficiency With External Sorts
+## Improving Efficiency With External Sorts
 
-Improving Efficiency With External Sorts
+## Improving Efficiency With External Sorts
 
 When a report is generated, by default it is sorted using an internal sorting procedure. This
 sorting procedure is optimized for reports of up to approximately 180 to 200K, although many
@@ -3750,7 +3750,7 @@ FOCUS
 The internal sorting procedure was used to sort the entire report.
 
 
-Improving Efficiency With External Sorts
+## Improving Efficiency With External Sorts
 
 SQL
 
@@ -3846,7 +3846,7 @@ There is no explicit way to save them. If there is another type of abnormal term
 files may be left on the disk. You can and should erase them.
 
 
-Improving Efficiency With External Sorts
+## Improving Efficiency With External Sorts
 
 Reference: Sort Work Files on IBM i
 
@@ -3954,7 +3954,7 @@ When you receive a FOC909 message, it includes a return code:
 (FOC909)  CRITICAL ERROR IN EXTERNAL SORT.  RETURN CODE IS: xxxx
 
 
-Improving Efficiency With External Sorts
+## Improving Efficiency With External Sorts
 
 You may also receive one of the following messages:
 
@@ -4055,7 +4055,7 @@ aggropt
 Can be one of the following:
 
 
-Improving Efficiency With External Sorts
+## Improving Efficiency With External Sorts
 
 OFF disallows aggregation by an external sort.
 
@@ -4162,7 +4162,7 @@ Displays the maximum value in the sort order set by your server code page and
 configuration when alphanumeric or smart date data types are aggregated.
 
 
-Improving Efficiency With External Sorts
+## Improving Efficiency With External Sorts
 
 Example:
 
@@ -4235,7 +4235,7 @@ There cannot be an IF/WHERE TOTAL or BY TOTAL in the request.
 If a request contains a SUM command, EXTAGGR must be set ON, and the only column
 prefixes allowed are SUM. and FST.
 
-Hierarchical Reporting: BY HIERARCHY
+## Hierarchical Reporting: BY HIERARCHY
 
 Cube data sources such as Essbase or SAP BW are organized into dimensions and facts.
 Dimensions are often organized into hierarchies. The synonyms for cube data sources have
@@ -4244,7 +4244,7 @@ syntax that can automatically report against these hierarchies and display the r
 to show the hierarchical relationships.
 
 
-Hierarchical Reporting: BY HIERARCHY
+## Hierarchical Reporting: BY HIERARCHY
 
 WebFOCUS also supports defining dimension hierarchies in synonyms for non-cube data
 sources that have hierarchical data. Once hierarchical dimensions are defined in a synonym,
@@ -4344,7 +4344,7 @@ dimname
 Is the name of the dimension for which this hierarchy is defined.
 
 
-Hierarchical Reporting: BY HIERARCHY
+## Hierarchical Reporting: BY HIERARCHY
 
 Several fields are used to define a parent/child hierarchy. Each has a PROPERTY attribute that
 describes which hierarchy property it represents. Each hierarchy must have a unique identifier
@@ -4439,7 +4439,7 @@ captitle
 Is a column title for the caption field.
 
 
-Hierarchical Reporting: BY HIERARCHY
+## Hierarchical Reporting: BY HIERARCHY
 
 Example:
 
@@ -4534,7 +4534,7 @@ DATA
 3300   3200   E.   +  4Salaries-Corporate
 
 
-Hierarchical Reporting: BY HIERARCHY
+## Hierarchical Reporting: BY HIERARCHY
 
 3310   3300   E7301+  5Salaries-Corp Mgmt                   505.00
 3320   3300   E7302+  5Salaries-Administration              505.00
@@ -4644,7 +4644,7 @@ Is the number of descendants of each selected level that will display. The defau
 BOTTOM, which displays all descendants.
 
 
-Hierarchical Reporting: BY HIERARCHY
+## Hierarchical Reporting: BY HIERARCHY
 
 byoption
 
@@ -4688,7 +4688,7 @@ Partial output is shown in the following image. The accounts are indented to sho
 hierarchical relationships:
 
 
-Hierarchical Reporting: BY HIERARCHY
+## Hierarchical Reporting: BY HIERARCHY
 
 The following is the same request using the GL_ACCOUNT_CAPTION field:
 
@@ -4705,7 +4705,7 @@ END
 Partial output is shown in the following image:
 
 
-Hierarchical Reporting: BY HIERARCHY
+## Hierarchical Reporting: BY HIERARCHY
 
 Example:
 
@@ -4731,7 +4731,7 @@ END
 The output is shown in the following image:
 
 
-Hierarchical Reporting: BY HIERARCHY
+## Hierarchical Reporting: BY HIERARCHY
 
 Example:
 

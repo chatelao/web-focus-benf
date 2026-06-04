@@ -6,7 +6,7 @@ source, a Teradata data source, or a FOCUS data source?
 
 In this chapter:
 
-Identifying a Data Source Overview
+## Identifying a Data Source Overview
 
 Specifying a Data Source Name: FILENAME
 
@@ -26,7 +26,7 @@ Creating and Using a Master File Profile
 
 Storing Localized Metadata in Language Files
 
-Identifying a Data Source Overview
+## ## Identifying a Data Source Overview
 
 In a Master File, you identify the name and the type of data source in a data source
 declaration. A data source declaration can include the following attributes:
@@ -45,7 +45,7 @@ DATASET, which identifies the physical file name if your data source has a non-s
 name.
 
 
-Specifying a Data Source Name: FILENAME
+## Specifying a Data Source Name: FILENAME
 
 You can identify a Master File profile (MFD_PROFILE) procedure to run during Master File
 processing. For more information, see Creating and Using a Master File Profile on page 46.
@@ -57,7 +57,7 @@ FDEFCENT, which identifies the century.
 
 FYRTHRESH, which identifies the year.
 
-Specifying a Data Source Name: FILENAME
+## Specifying a Data Source Name: FILENAME
 
 The FILENAME attribute specifies the name of the data source described by the Master File.
 This is the first attribute specified in a Master File. You can abbreviate the FILENAME attribute
@@ -93,7 +93,7 @@ The following example specifies the data source name EMPLOYEE:
 
 FILENAME = EMPLOYEE
 
-Identifying a Data Source Type: SUFFIX
+## Identifying a Data Source Type: SUFFIX
 
 The SUFFIX attribute identifies the type of data source you are using. For example, a DB2 data
 source or a FOCUS data source. Based on the value of SUFFIX, the appropriate data adapter is
@@ -159,7 +159,7 @@ DATACOM
 IDMSR
 
 
-Identifying a Data Source Type: SUFFIX
+## Identifying a Data Source Type: SUFFIX
 
 Data Source Type
 
@@ -323,7 +323,7 @@ SQLRED
 RMS
 
 
-Specifying a Code Page in a Master File
+## Specifying a Code Page in a Master File
 
 Data Source Type
 
@@ -381,7 +381,7 @@ Name of the customized data access routine
 
 PRIVATE (for FOCSAM user exit)
 
-Specifying a Code Page in a Master File
+## Specifying a Code Page in a Master File
 
 The FILE declaration in a Master File can specify the code page to be used to retrieve the data
 in that file. If the file is included as a segment in a cluster join, having the code page specified
@@ -402,7 +402,7 @@ codepage
 
 Is the code page to use to read the file.
 
-Specifying Byte Order
+## Specifying Byte Order
 
 Operating environments differ in whether the most-significant or least-significant byte is
 ordered first when storing numeric data. Ordering the most significant byte first is called big-
@@ -429,7 +429,7 @@ SE
 Specifies that the least significant byte is ordered first, also called reverse byte. Hardware
 using this order includes Intel x86, x86-64, and DEC Alpha.
 
-Specifying Data Type: IOTYPE
+## Specifying Data Type: IOTYPE
 
 IOTYPE is generated when a HOLD file is created to tell WebFOCUS how to read the data file in
 the absence of LRECL/RECFM information from a FILEDEF or allocation. It indicates the type of
@@ -455,7 +455,7 @@ IOTYPE
 STREAM
 
 
-Providing Descriptive Information for a Data Source: REMARKS
+## Providing Descriptive Information for a Data Source: REMARKS
 
 FORMAT
 
@@ -486,7 +486,7 @@ BINARY, then IOTYPE is BINARY.
 
 ALPHA, then IOTYPE is STREAM.
 
-Providing Descriptive Information for a Data Source: REMARKS
+## Providing Descriptive Information for a Data Source: REMARKS
 
 The optional REMARKS attribute provides descriptive information about the data source. This
 descriptive information appears in graphical tools.
@@ -530,7 +530,7 @@ REMARKS='This Oracle table tracks daily, weekly, and monthly orders.' ,$
 Since the descriptive information would not fit on the same line as the other data source
 attributes, the REMARKS attribute appears on a line by itself.
 
-Specifying a Physical File Name: DATASET
+## Specifying a Physical File Name: DATASET
 
 You can add the DATASET attribute to the Master File to specify a physical location for the data
 source to be allocated. In addition, the DATASET attribute permits you to bypass the search
@@ -571,7 +571,7 @@ allocation command and then issue a CHECK FILE command to clear the previous DAT
 allocation.
 
 
-Specifying a Physical File Name: DATASET
+## Specifying a Physical File Name: DATASET
 
 The USE command for FOCUS data sources overrides DATASET attributes and explicit
 allocations.
@@ -669,7 +669,7 @@ SEGNAME=CARREC,SEGTYPE=S1,PARENT=COMP
 .
 
 
-Specifying a Physical File Name: DATASET
+## Specifying a Physical File Name: DATASET
 
 For OpenVMS,
 
@@ -763,7 +763,7 @@ the data source. This distinguishes a text data source from a binary data source
 binary.
 
 
-Specifying a Physical File Name: DATASET
+## Specifying a Physical File Name: DATASET
 
 Syntax:
 
@@ -870,7 +870,7 @@ override it by an explicit allocation command. The CHECK FILE command deallocate
 allocation created by DATASET.
 
 
-Creating and Using a Master File Profile
+## Creating and Using a Master File Profile
 
 Example:
 
@@ -917,7 +917,7 @@ FIELDNAME=STREET5, ALIAS=E14, USAGE=A20, ACTUAL=A20, $
 FIELDNAME=CITY5, ALIAS=E15, USAGE=A15, ACTUAL=A15, $
 FIELDNAME=FILLER, ALIAS=E16, USAGE=A1, ACTUAL=A1, $
 
-Creating and Using a Master File Profile
+## Creating and Using a Master File Profile
 
 This release introduces a profile that you can reference in the Master File and is executed
 during Master File processing. The Master File profile (MFD_PROFILE) is a FOCEXEC that
@@ -980,7 +980,7 @@ request. The profiles will execute in the reverse of their order in the request 
 the Master File mentioned last in the request executes first).
 
 
-Creating and Using a Master File Profile
+## Creating and Using a Master File Profile
 
 The MFD_PROFILE is not executed as a result of the MODIFY, MAINTAIN, or -READFILE
 commands.
@@ -1069,7 +1069,7 @@ Has DBA restrictions. For user HR3, the VALUE clause does a lookup of values in 
 lookup file.
 
 
-Creating and Using a Master File Profile
+## Creating and Using a Master File Profile
 
 The edited EMPDATA Master File is
 
@@ -1145,7 +1145,7 @@ the MFD_PROFILE procedure, and the JOBS file created by the profile was used in 
 report output to Part Time employees, which are the only ones user HR3 is allowed to see:
 
 
-Creating and Using a Master File Profile
+## Creating and Using a Master File Profile
 
 Example:
 
@@ -1242,7 +1242,7 @@ DYNAM SECURITY DA USER1.SECURITY.DATA SHR REU
 -SET &VALUE = ' ';
 
 
-Creating and Using a Master File Profile
+## Creating and Using a Master File Profile
 
 -* Establish the loop for each record of the security.data file
 -SET &DONE =  N ;
@@ -1317,7 +1317,7 @@ report in which only the SALES and MARKETING departments display because of the 
 restriction for the DEPT field:
 
 
-Creating and Using a Master File Profile
+## Creating and Using a Master File Profile
 
 Running the request by first issuing the SET PASS=HR1 command produces the following
 report in which only the salaries between 20000 and 35000 display because of the VALUE
@@ -1408,7 +1408,7 @@ ON TABLE SET PAGE NOPAGE
 END
 
 
-Storing Localized Metadata in Language Files
+## Storing Localized Metadata in Language Files
 
 Running the request when SALLY is the connected user produces a report of employees whose
 salaries are less than $20,000:
@@ -1446,7 +1446,7 @@ PRODUCTION  STEVENS          ALFRED           $11,000.00
             ROMANS           ANTHONY          $21,120.00
             MCKNIGHT         ROGER            $16,100.00
 
-Storing Localized Metadata in Language Files
+## Storing Localized Metadata in Language Files
 
 If you want to centralize localized column titles, descriptions, and prompts, and apply them to
 multiple Master Files, you can create a set of translation files and use the TRANS_FILE
@@ -1502,7 +1502,7 @@ hand edited by translators, to translate the string values from the base languag
 appropriate language.
 
 
-Storing Localized Metadata in Language Files
+## Storing Localized Metadata in Language Files
 
 Translating Applications into English
 
@@ -1577,7 +1577,7 @@ Prefix
 Is the prefix value for the translation files for the selected synonym.
 
 
-Storing Localized Metadata in Language Files
+## Storing Localized Metadata in Language Files
 
 Languages File
 
@@ -1657,5 +1657,5 @@ TRANS_FILE= xlate/tq_
 Translators then have to translate the values in xlate/tq_fre.lng and xlate/tq_spa.lng.
 
 
-Storing Localized Metadata in Language Files
+## Storing Localized Metadata in Language Files
 

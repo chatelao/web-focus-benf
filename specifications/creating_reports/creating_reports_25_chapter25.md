@@ -11,7 +11,7 @@ input data or calculated as a function of the data.
 
 In this chapter:
 
-Reporting With FML
+## Reporting With FML
 
 Inserting Rows of Free Text
 
