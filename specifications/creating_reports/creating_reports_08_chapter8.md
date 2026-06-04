@@ -56,11 +56,8 @@ With HOLD FORMAT SQL_SCRIPT
 
 Creating a Structured HOLD File
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 471
-
-Saving Your Report Output
+Saving Your Report Output
 
 Saving Your Report Output
 
@@ -107,9 +104,6 @@ output file using the DYNAM ALLOCATE or TSO ALLOCATE command in z/OS.
 
 For details, see the Developing Reporting Applications manual.
 
-472
-
-8. Saving and Reusing Your Report Output
 
 When you create a HOLD file using the syntax ON TABLE HOLD AS name, the name can contain
 up to the maximum number of characters supported by your operating system. For information,
@@ -156,11 +150,8 @@ matrix of your last report in order to keep it available for subsequent HOLD, SA
 commands when the request is followed by Dialogue Manager commands. For details on
 SAVEMATRIX, see the Developing Reporting Applications manual.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 473
-
-Creating a HOLD File
+Creating a HOLD File
 
 Syntax:
 
@@ -219,9 +210,6 @@ To use in a text document, choose: ALPHA, DOC, WP
 To use in a spreadsheet application, choose: DIF, EXCEL, EXL97, EXL2K [PIVOT],
 LOTUS, SYLK
 
-474
-
-8. Saving and Reusing Your Report Output
 
 To use in a database application, choose: COMMA, COM, COMT, DB2, DATREC, DFIX,
 FOCUS, INGRES, REDBRICK, SQL, SQLDBC, SQLORA, SQLINF, SQLMSS, SQLSYB,
@@ -271,11 +259,8 @@ Also see the Developing Reporting Applications manual for the SET HOLDMISS, SET
 NULL, and SET HNODATA parameters, which control how missing values are
 propagated to alphanumeric and comma-delimited files.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 475
-
-Creating a HOLD File
+Creating a HOLD File
 
 PERSISTENCE
 
@@ -332,9 +317,6 @@ END
 
 The following message appears:
 
-476
-
-8. Saving and Reusing Your Report Output
 
 NUMBER OF RECORDS IN TABLE=  12 LINES=     12
 
@@ -386,12 +368,8 @@ END
 
 ? HOLD
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 477
-
-
-Creating a HOLD File
+Creating a HOLD File
 
 The output is:
 
@@ -468,9 +446,6 @@ BY E01
 BY HIGHEST E08 AS 'EMPLOYEE,ED_HRS'
 END
 
-478
-
-8. Saving and Reusing Your Report Output
 
 The output is:
 
@@ -524,12 +499,8 @@ Note: Holding a file in FOCUS format may generate the (FOC441) warning: The file
 already. Create will write over it. Issuing the SET WARNING=OFF command
 suppresses this message.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 479
-
-
-Holding Report Output in FOCUS Format
+Holding Report Output in FOCUS Format
 
 Syntax:
 
@@ -576,9 +547,6 @@ procedure right before the END command.
 Note that once you use this format from Hot Screen, you cannot issue another HOLD
 command while in the same Hot Screen session.
 
-480
-
-8. Saving and Reusing Your Report Output
 
 Reference: Operating System Notes for HOLD Files in FOCUS Format
 
@@ -623,11 +591,8 @@ attribute in the Master File of the HOLD file, use the SET ASNAMES command. For 
 information on how to control the TITLE, ACCEPT, and FIELDNAME attributes in a HOLD Master
 File, see Controlling Attributes in HOLD Master Files on page 484.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 481
-
-Holding Report Output in FOCUS Format
+Holding Report Output in FOCUS Format
 
 Example:
 
@@ -674,9 +639,6 @@ FILE=X2, SUFFIX=FOC
   FIELDNAME=FOCLIST      ,ALIAS=E04    ,USAGE=I5    ,$
   FIELDNAME=SALES        ,ALIAS=E05    ,USAGE=I6    ,$
 
-482
-
-8. Saving and Reusing Your Report Output
 
 Example:
 
@@ -709,11 +671,8 @@ FILE=X3, SUFFIX=FOC
   FIELDNAME=MODEL         ,ALIAS=E04    ,USAGE=A24    ,$
   FIELDNAME=SALES         ,ALIAS=E05    ,USAGE=I6     ,$
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 483
-
-Controlling Attributes in HOLD Master Files
+Controlling Attributes in HOLD Master Files
 
 Example:
 
@@ -764,9 +723,6 @@ in a request. That is, non-displaying fields in a request (those designated as N
 fields) are not included in the HOLD file. You can also distinguish between implicitly and
 explicitly non-displaying fields. See Controlling Fields in a HOLD Master File on page 490.
 
-484
-
-8. Saving and Reusing Your Report Output
 
 The SET HOLDATTR command propagates TITLE and ACCEPT attributes used in the original
 Master File to the HOLD Master File. See Controlling Attributes in the HOLD Master File on
@@ -821,11 +777,8 @@ Propagates the field names in the original Master File to the alias names in the
 Master File and the alias names in the original Master File to the field names in the HOLD
 Master File.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 485
-
-Controlling Attributes in HOLD Master Files
+Controlling Attributes in HOLD Master Files
 
 Reference: Usage Notes for Controlling Field Names in HOLD Files
 
@@ -872,9 +825,6 @@ When commas are used as delimiters to break lines in the column heading, only th
 up to the first comma is used as the field name in the Master File. For example, the
 following produces the field name PLACE in the HOLD Master File:
 
-486
-
-8. Saving and Reusing Your Report Output
 
 PRINT COUNTRY AS 'PLACE,OF,ORIGIN'
 
@@ -926,11 +876,8 @@ BY CAR
 ON TABLE HOLD AS HOLD2
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 487
-
-Controlling Attributes in HOLD Master Files
+Controlling Attributes in HOLD Master Files
 
 The request produces the following Master File:
 
@@ -986,9 +933,6 @@ FILE=HOLD4, SUFFIX=FIX
   FIELDNAME=JAPAN      ,ALIAS=E04   ,USAGE=I6  ,ACTUALI04     ,$
   FIELDNAME=W GERMANY  ,ALIAS=E05   ,USAGE=I6  ,ACTUALI04     ,$
 
-488
-
-8. Saving and Reusing Your Report Output
 
 Example:
 
@@ -1043,11 +987,8 @@ FILENAME=HOLD    , SUFFIX=FIX     , IOTYPE=STREAM, $
     FIELDNAME=SALARY, ALIAS=E02, USAGE=D12.2M, ACTUAL=A12, $
     FIELDNAME=PCT_INC, ALIAS=E03, USAGE=F6.2, ACTUAL=A06, $
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 489
-
-Controlling Attributes in HOLD Master Files
+Controlling Attributes in HOLD Master Files
 
 The following is the Master File for the HOLD file in relational format:
 
@@ -1101,9 +1042,6 @@ Specifies that only those fields that would appear in the report are included in
 generated HOLD file. Non-displaying fields in a request (those designated as NOPRINT
 fields explicitly or implicitly) are not included in the HOLD file.
 
-490
-
-8. Saving and Reusing Your Report Output
 
 ALL
 
@@ -1164,14 +1102,8 @@ ALIAS
 
 FORMAT
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 491
-
-
-
-
-Controlling Attributes in HOLD Master Files
+Controlling Attributes in HOLD Master Files
 
 COUNTRY
 
@@ -1255,12 +1187,6 @@ A16
 
 D12.2
 
-492
-
-
-
-
-8. Saving and Reusing Your Report Output
 
 Example:
 
@@ -1296,11 +1222,8 @@ sales', $
     FIELDNAME=DOLLARS, ALIAS=E05, USAGE=D12.2,
       TITLE='Dollar Sales', $
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 493
-
-Controlling Attributes in HOLD Master Files
+Controlling Attributes in HOLD Master Files
 
 Running the request with SET HOLDLIST=ALLKEYS generates the following HOLD Master File.
 Note that the DOLLARS and UNITS fields are included twice, once with the original format,
@@ -1351,9 +1274,6 @@ FILENAME=HOLD, SUFFIX=FOC     , $
     FIELDNAME=DOLLARS, ALIAS=E04, USAGE=D12.2,
       TITLE='Dollar Sales', $
 
-494
-
-8. Saving and Reusing Your Report Output
 
 Controlling Attributes in the HOLD Master File
 
@@ -1413,11 +1333,8 @@ SEGNAME=COMP, SEGTYPE=S1, PARENT=ORIGIN
 .
 .
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 495
-
-Keyed Retrieval From HOLD Files
+Keyed Retrieval From HOLD Files
 
 Using SET HOLDATTR=FOCUS, the following request
 
@@ -1461,9 +1378,6 @@ When a Master File is created for the extract file, a SEGTYPE of either Sn or SH
 based on the BY fields in the request. For example, PRINT field BY field creates a HOLD Master
 File with SEGTYPE=S1. Using BY HIGHEST field creates a Master with SEGTYPE=SH1.
 
-496
-
-8. Saving and Reusing Your Report Output
 
 Syntax:
 
@@ -1513,12 +1427,8 @@ IF and WHERE tests can also include range tests. For example,
 
 The maximum number of vertical (BY) sort fields remains 32.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 497
-
-
-Saving and Retrieving HOLD Files
+Saving and Retrieving HOLD Files
 
 In using this feature, keep in mind that when adding unsorted records to a sorted HOLD file,
 records that are out of sequence are not retrieved. For example, suppose that a sorted file
@@ -1574,9 +1484,6 @@ APP HOLDMETA
 
 Specifies the application name for HOLD Master Files.
 
-498
-
-8. Saving and Reusing Your Report Output
 
 path_to_directory
 
@@ -1631,11 +1538,8 @@ TABLE FILE SALES
 PRINT *
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 499
-
-Using DBMS Temporary Tables as HOLD Files
+Using DBMS Temporary Tables as HOLD Files
 
 Alternatively, you can issue the TABLE request against the HOLD file using a two-part name
 (application name and Master File name):
@@ -1684,9 +1588,6 @@ COMPUTE columns
 
 except for those for which NOPRINT is specified.
 
-500
-
-8. Saving and Reusing Your Report Output
 
 The temporary table that you create from your report will be the same data source type (that is,
 the same DBMS) as the data source from which you reported. If the data source from which
@@ -1736,11 +1637,8 @@ support for volatile tables for a particular DBMS, see Temporary Table Propertie
 SAME_DB Persistence Values on page 503, and consult your DBMS vendor
 documentation.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 501
-
-Using DBMS Temporary Tables as HOLD Files
+Using DBMS Temporary Tables as HOLD Files
 
 persistValue
 
@@ -1774,9 +1672,6 @@ PERMANENT
 Specifies that a regular permanent table will be created. A permanent synonym (a
 Master File and Access File), is generated automatically.
 
-502
-
-8. Saving and Reusing Your Report Output
 
 Reference: Temporary Table Properties for SAME_DB Persistence Values
 
@@ -1841,11 +1736,8 @@ definition and the data
 persist, and are visible, only
 within the current session.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 503
-
-Using DBMS Temporary Tables as HOLD Files
+Using DBMS Temporary Tables as HOLD Files
 
 DBMS
 
@@ -1909,9 +1801,6 @@ session that inserts data into it. The table
 definition persists for the same period as
 the definition of a regular table.
 
-504
-
-8. Saving and Reusing Your Report Output
 
 DBMS
 
@@ -1976,11 +1865,8 @@ unique index is created.
 
 specified), no primary key or index is created.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 505
-
-Creating SAVE and SAVB Files
+Creating SAVE and SAVB Files
 
 Creating SAVE and SAVB Files
 
@@ -2037,9 +1923,6 @@ To display as or in a webpage:
 
 HTML, HTMTABLE, DHTML
 
-506
-
-8. Saving and Reusing Your Report Output
 
 To use in a text document:
 
@@ -2078,11 +1961,8 @@ retrieved.
 
 The output is:
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 507
-
-Creating SAVE and SAVB Files
+Creating SAVE and SAVB Files
 
 Syntax:
 
@@ -2136,11 +2016,9 @@ END
 
 A description of the BINARY file is appears after the records are retrieved.
 
-508
 
-The output is:
+The output is:
 
-8. Saving and Reusing Your Report Output
 
 Creating a PCHOLD File
 
@@ -2178,11 +2056,8 @@ PCHOLD
 Enables you to extract and automatically display data in HTML format in your browser.
 HOLD AT CLIENT is a synonym for PCHOLD. The PCHOLD command does not have a
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 509
-
-Creating a PCHOLD File
+Creating a PCHOLD File
 
 default format. You must specify a format when using PCHOLD. The output is saved
 with a Master File. For details about the behavior of PCHOLD, see Creating a HOLD
@@ -2233,9 +2108,6 @@ AHTML, APDF, AFLEX
 
 For details about all available formats, see Choosing Output File Formats on page 511.
 
-510
-
-8. Saving and Reusing Your Report Output
 
 DATASET name.ext
 
@@ -2373,11 +2245,8 @@ XLSX
 
 XML
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 511
-
-Choosing Output File Formats
+Choosing Output File Formats
 
 Reference: FORMAT AHTML
 
@@ -2428,9 +2297,6 @@ To control missing data characters that are propagated to fields with the MISSIN
 attribute, use the SET HNODATA command. For more information, see the Developing
 Reporting Applications manual.
 
-512
-
-8. Saving and Reusing Your Report Output
 
 Use: For display in a text document. For further reporting in FOCUS, WebFOCUS, or App Studio.
 As a transaction file for modifying a data source.
@@ -2480,11 +2346,8 @@ INTERNAL Format on page 558.)
 
 The output file contains data only.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 513
-
-Choosing Output File Formats
+Choosing Output File Formats
 
 Use: For further reporting in FOCUS, WebFOCUS, or App Studio. As a transaction file for
 modifying a data source.
@@ -2535,9 +2398,6 @@ This format also includes a built-in safety feature, which allows embedded quote
 character fields. A second double quote (") is inserted adjacent to the existing one. For
 example, if you input Joe "Smitty" Smith, the output is Joe ""Smitty"" Smith.
 
-514
-
-8. Saving and Reusing Your Report Output
 
 The extension for this format is CSV. A Master File is created for this format type when the
 command used to create the output file is HOLD. The SUFFIX in the generated Master File is
@@ -2581,11 +2441,8 @@ The extension for this format is CSV. A Master File is created for this format t
 command used to create the output file is HOLD. The SUFFIX in the generated Master File is
 COMT.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 515
-
-Choosing Output File Formats
+Choosing Output File Formats
 
 Note:
 
@@ -2634,9 +2491,6 @@ Supported with the command: HOLD.
 
 Available in: WebFOCUS, App Studio, FOCUS.
 
-516
-
-8. Saving and Reusing Your Report Output
 
 Reference: FORMAT DBASE
 
@@ -2685,11 +2539,8 @@ On demand paging. On demand paging is available with SET HTMLARCHIVE=OFF.
 PDF StyleSheet features. For example, the following features are supported: grids,
 background colors, OVER, bursting, coordinated compound reports.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 517
-
-Choosing Output File Formats
+Choosing Output File Formats
 
 Note:
 
@@ -2741,9 +2592,6 @@ Use: For display in a text document.
 
 Supported with the commands: HOLD, PCHOLD, SAVE.
 
-518
-
-8. Saving and Reusing Your Report Output
 
 The PCHOLD variation transfers the data from a web server to a browser.
 
@@ -2793,11 +2641,8 @@ Use: For display or processing in a spreadsheet application.
 
 Supported with the commands: HOLD, PCHOLD, SAVE.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 519
-
-Choosing Output File Formats
+Choosing Output File Formats
 
 For Internet Explorer, the PCHOLD variation launches Excel 2000 in the browser. For details,
 and for information about working with EXL2K files, see Choosing a Display Format on page
@@ -2845,9 +2690,6 @@ Supported with the command: HOLD, PCHOLD, SAVE.
 
 Available in: FOCUS, WebFOCUS, App Studio.
 
-520
-
-8. Saving and Reusing Your Report Output
 
 Reference: FORMAT FLEX
 
@@ -2897,11 +2739,8 @@ Supported with the commands: HOLD.
 
 Available in: WebFOCUS, App Studio.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 521
-
-Choosing Output File Formats
+Choosing Output File Formats
 
 For details see Creating a Graph on page 1743.
 
@@ -2952,9 +2791,6 @@ Reference: FORMAT INGRES
 Description: Creates an Ingres table, if you have the Adapter for Ingres and permission to
 create tables.
 
-522
-
-8. Saving and Reusing Your Report Output
 
 Use: For further processing in a database application.
 
@@ -3004,11 +2840,8 @@ HTML5 standard. You must include the following command to create an HTML5 graph:
 
 ON GRAPH PCHOLD FORMAT JSCHART
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 523
-
-Choosing Output File Formats
+Choosing Output File Formats
 
 Supported with the commands: ON GRAPH PCHOLD, ON GRAPH HOLD.
 
@@ -3054,9 +2887,6 @@ In WebFOCUS, PDF format also supports StyleSheets that contain drill down parame
 to arbitrary URLs, and embedded GIF or JPEG images in report, page, and sort headings and
 footings.
 
-524
-
-8. Saving and Reusing Your Report Output
 
 PDF format does not support OLAP reports since Java applets cannot be embedded inside PDF
 documents. However, an OLAP report can drill down to a PDF-formatted report. PDF does not
@@ -3115,11 +2945,8 @@ Reference: FORMAT PDF OPEN/CLOSE
 
 Description: Saves multiple reports into one PDF report.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 525
-
-Choosing Output File Formats
+Choosing Output File Formats
 
 Use: For combining multiple reports into a single PDF file, also known as a compound report.
 For complete details, see Laying Out the Report Page on page 1331.
@@ -3171,9 +2998,6 @@ Reference: FORMAT REDBRICK
 Description: Creates a Red Brick table, if you have the Adapter for Red Brick and permission to
 create tables.
 
-526
-
-8. Saving and Reusing Your Report Output
 
 Use: For further processing in a database application.
 
@@ -3223,11 +3047,8 @@ create tables.
 
 Use: For processing in a database application.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 527
-
-Choosing Output File Formats
+Choosing Output File Formats
 
 Supported with the command: HOLD.
 
@@ -3278,9 +3099,6 @@ Use: For processing in a database application.
 
 Supported with the command: HOLD.
 
-528
-
-8. Saving and Reusing Your Report Output
 
 Available in: WebFOCUS, App Studio, FOCUS.
 
@@ -3319,11 +3137,8 @@ Supported with the command: HOLD, SAVE.
 
 Available in: WebFOCUS, App Studio, FOCUS.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 529
-
-Choosing Output File Formats
+Choosing Output File Formats
 
 Reference: FORMAT TAB
 
@@ -3372,9 +3187,6 @@ A Master File is created when the HOLD command is used to create the output file
 Master File behaves exactly as in FORMAT ALPHA, except for the inclusion of double
 quotes.
 
-530
-
-8. Saving and Reusing Your Report Output
 
 Note:
 
@@ -3434,11 +3246,8 @@ Use: HOLD FORMAT VISDIS creates a tab-delimited output file with the extension .
 the first record has the column titles and the second record contains Visual Discovery formats
 based on the FOCUS field formats of the data.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 531
-
-Choosing Output File Formats
+Choosing Output File Formats
 
 Supported with the command: HOLD, SAVE, PCHOLD
 
@@ -3490,9 +3299,6 @@ SET PAGE NUM=ON inserts the carriage control character if TABPAGENO is included 
 the heading and omits the carriage control character if TABPAGENO is not included in
 the heading.
 
-532
-
-8. Saving and Reusing Your Report Output
 
 Tip: HOLD FORMAT WP does not change the number of lines per page. In order to do so, issue
 one or a combination of the commands SET PRINT=OFFLINE, SET SCREEN=PAPER, or SET
@@ -3541,11 +3347,8 @@ included in the DTD for each column is FIELDNAME, ALIAS, data type, width, FOCUS
 DESCRIPTION, ACCEPTS, HELP_MESSAGE, TITLE, WITHIN, PROPERTY, REFERENCE, VALIGN,
 and column title. FORMAT XML does not create a Master File.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 533
-
-Merging Data Into an Existing Data Source With ON TABLE MERGE
+Merging Data Into an Existing Data Source With ON TABLE MERGE
 
 Note: When using an HTML Autoprompt page (select Run in new Window option), BI Portal, or
 an HTML page created with HTML canvas, browsers running in Standards Mode displaying
@@ -3590,9 +3393,6 @@ updated or inserted.
 The target must be a single-segment file with a corresponding synonym, and it must have a
 Write Adapter that enables WebFOCUS to update it.
 
-534
-
-8. Saving and Reusing Your Report Output
 
 Supported Merge Phrases
 
@@ -3636,11 +3436,8 @@ supported by the DBMS, the whole request passed to the DBMS in an SQL request.
 With an optimized request, the MATCHING expression can be any expression, and if any
 record fails in the merge request, the entire merge is rejected.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 535
-
-Merging Data Into an Existing Data Source With ON TABLE MERGE
+Merging Data Into an Existing Data Source With ON TABLE MERGE
 
 Non-Optimized request. If for any reason, the request cannot be optimized, for example if
 the target and source are from different databases or use different connections, or, if the
@@ -3673,9 +3470,6 @@ example of the messages displayed for an optimized request.
 
 The following image shows an example of the messages displayed for a non-optimized request.
 
-536
-
-8. Saving and Reusing Your Report Output
 
 If not all records were processed and you want to know which records were rejected, you must
 either enable traces or look in the Session Log.
@@ -3727,12 +3521,8 @@ this phrase when using the INSERT command to append records. If the field names 
 same in the source and target files, use the prefix SRC. to reference fields in the source
 file, and the prefix TRG. to reference fields in the target file.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 537
-
-
-Merging Data Into an Existing Data Source With ON TABLE MERGE
+Merging Data Into an Existing Data Source With ON TABLE MERGE
 
 matching_expression2
 
@@ -3769,9 +3559,6 @@ Are expressions used to calculate the target field values to be used for inserti
 record. These expressions can use fields from the TABLE request. Use the prefix SRC. to
 reference these fields.
 
-538
-
-8. Saving and Reusing Your Report Output
 
 Example:
 
@@ -3826,20 +3613,12 @@ GRID=OFF,$
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 539
-
-
-
-Merging Data Into an Existing Data Source With ON TABLE MERGE
+Merging Data Into an Existing Data Source With ON TABLE MERGE
 
 The following image of the last page of the output shows the updated values in the existing
 records, and the inserted records (the last two rows).
 
-540
-
-8. Saving and Reusing Your Report Output
 
 Example:
 
@@ -3879,12 +3658,8 @@ GRID=OFF,$
 ENDSTYLE
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 541
-
-
-Merging Data Into an Existing Data Source With ON TABLE MERGE
+Merging Data Into an Existing Data Source With ON TABLE MERGE
 
 The following image shows the appended record (the last row).
 
@@ -3907,9 +3682,6 @@ END
 
 The output is shown in the following image.
 
-542
-
-8. Saving and Reusing Your Report Output
 
 The following ON TABLE MERGE request deletes records where the source product number
 matches the target product number and the plant is 'LA'.
@@ -3946,11 +3718,8 @@ BY UNITS
 ON TABLE HOLD
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 543
-
-Merging Data Into an Existing Data Source With ON TABLE MERGE
+Merging Data Into an Existing Data Source With ON TABLE MERGE
 
 The generated Master File shows the duplicate field names and unique alias names.
 
@@ -3989,9 +3758,6 @@ When an ON TABLE MERGE request is optimized, an SQL request is generated and pas
 to the DBMS. For example, the following request is optimized when the dminv and dmrpts
 tables use the same adapter and connection:
 
-544
-
-8. Saving and Reusing Your Report Output
 
 TABLE FILE dminv
 PRINT
@@ -4043,12 +3809,8 @@ SELECT
    FROM
   dminv T1;
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 545
-
-
-Merging Data Into an Existing Data Source With ON TABLE MERGE
+Merging Data Into an Existing Data Source With ON TABLE MERGE
 
 MERGE INTO dmrpts AS T3
   USING ( SELECT
@@ -4095,9 +3857,6 @@ WHEN NOT MATCHED THEN INSERT (
   T2."E05",
   T2."E09");
 
-546
-
-8. Saving and Reusing Your Report Output
 
 Example:
 
@@ -4152,11 +3911,8 @@ If MISSING=OFF during data extraction, a blank is written out to the HOLD or SAV
 
 See Handling Records With Missing Field Values on page 1035.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 547
-
-Using Text Fields in Output Files
+Using Text Fields in Output Files
 
 In environments that support FIXFORM, due to limitations in the use of text fields with
 FIXFORM, the following restriction applies:
@@ -4243,9 +3999,6 @@ FOR PROGRAMMERS, PROJECT LEADERS AND
 
 FOR VICE PRES OF SALES AND MARKETING.
 
-548
-
-8. Saving and Reusing Your Report Output
 
 NAMA40
 
@@ -4318,11 +4071,8 @@ filename
 Is the name of the file to be created. If you do not specify a name, the default name is
 HOLD.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 549
-
-Creating a Delimited Sequential File
+Creating a Delimited Sequential File
 
 delimiter
 
@@ -4368,9 +4118,6 @@ are included within the enclosure characters. NO is the default value.
 Note: PRESERVESPACE is overridden by the ENCLOSURE option. Therefore, exclude the
 enclosure option in order to have the PRESERVESPACE setting respected.
 
-550
-
-8. Saving and Reusing Your Report Output
 
 rdelimiter
 
@@ -4409,11 +4156,8 @@ and trailing blank spaces are preserved in alphanumeric data. It also adds the a
 PRESERVESPACE=YES in the Access File. This attribute causes leading and trailing blank
 spaces to be preserved when reading a FORMAT DFIX file.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 551
-
-Creating a Delimited Sequential File
+Creating a Delimited Sequential File
 
 Example:
 
@@ -4464,9 +4208,6 @@ The Master File remains the same, but the Access File now specifies the enclosur
 
 SEGNAME=PIPE1, DELIMITER=|, ENCLOSURE=", HEADER=NO, $
 
-552
-
-8. Saving and Reusing Your Report Output
 
 In the delimited file that is created, each data value is separated from the next by a pipe
 character, and alphanumeric values are enclosed within double quotation marks:
@@ -4519,11 +4260,8 @@ SUM QUANTITY LINEPRICE BY REGION BY YEAR
 ON TABLE HOLD AS TAB1 FORMAT DFIX DELIMITER TAB
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 553
-
-Creating a Delimited Sequential File
+Creating a Delimited Sequential File
 
 As the tab character is not printable, the TAB1 Access File specifies the delimiter using its
 hexadecimal value.
@@ -4568,9 +4306,6 @@ The following Access File is generated:
 
 SEGNAME=DFIX1, DELIMITER=',', HEADER=NO, PRESERVESPACE=YES, $
 
-554
-
-8. Saving and Reusing Your Report Output
 
 In the DFIX1 file, the alphanumeric fields contain all of the blank spaces that existed in the
 original file:
@@ -4615,11 +4350,8 @@ West       ,Gifts      ,Coffee Pot      ,613624,47432
 West       ,Gifts      ,Mug             ,1188664,93881
 West       ,Gifts      ,Thermos         ,571368,45648
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 555
-
-Creating a Delimited Sequential File
+Creating a Delimited Sequential File
 
 Creating the same file with PRESERVESPACE NO removes the trailing blank spaces:
 
@@ -4676,9 +4408,6 @@ sequence:
 
 2C: hexadecimal value for comma (,).
 
-556
-
-8. Saving and Reusing Your Report Output
 
 24: hexadecimal value for dollar sign ($).
 
@@ -4730,11 +4459,8 @@ return and line space. a partial listing follows:
 15435,1029,'Coffee','Northeast',$
 14270,1427,'Coffee','Northeast',$
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 557
-
-Saving Report Output in INTERNAL Format
+Saving Report Output in INTERNAL Format
 
 Example: Missing Data in the HOLD File
 
@@ -4778,10 +4504,6 @@ to the correct display lengths.
 
 Specify HOLD FORMAT INTERNAL for the report output.
 
-558
-
-
-8. Saving and Reusing Your Report Output
 
 Syntax:
 
@@ -4818,11 +4540,8 @@ FORMAT INTERNAL
 
 Saves the HOLD file without padding for specified integer and packed decimal fields.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 559
-
-Saving Report Output in INTERNAL Format
+Saving Report Output in INTERNAL Format
 
 Reference: Usage Notes for Suppressing Padded Fields in HOLD Files
 
@@ -4873,9 +4592,6 @@ PRINT CAR COUNTRY RETAIL_COST DEALER_COST SEATS
 ON TABLE HOLD AS DJG
 END
 
-560
-
-8. Saving and Reusing Your Report Output
 
 The request creates the following Master File:
 
@@ -4929,11 +4645,8 @@ retrieved data.
 You can use the output from HOLD FORMAT SQL_SCRIPT as the target file for the DB_INFILE
 function. For information about the DB_INFILE function, see the Using Functions manual.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 561
-
-Creating A Subquery or Sequential File With HOLD FORMAT SQL_SCRIPT
+Creating A Subquery or Sequential File With HOLD FORMAT SQL_SCRIPT
 
 Note: Once you have the .sql file and its accompanying Master File, you can customize the .sql
 file using global Dialogue Manager variables. You must declare these global variables in the
@@ -4988,9 +4701,6 @@ WHERE     (T3."STATE_PROV_CODE_ISO_3166_2" IN('AR', 'IA', 'KS', 'KY', 'WY',
 AND     (T3."BUSINESS_REGION" IN('North America', 'EMEA'))     GROUP BY
 T3."BUSINESS_REGION",    T3."STATE_PROV_CODE_ISO_3166_2"
 
-562
-
-8. Saving and Reusing Your Report Output
 
 The retail_script.mas Master File follows:
 
@@ -5046,11 +4756,8 @@ Creating a Structured HOLD File
 Structured HOLD Files facilitate migration of data sources and reports between operating
 environments.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 563
-
-Creating a Structured HOLD File
+Creating a Structured HOLD File
 
 Other HOLD formats capture data from the original sources and may retain some implicit
 structural elements from the request itself. However, they do not propagate most of the
@@ -5099,9 +4806,6 @@ ON
 Activates Structured HOLD Files for this request and extracts all fields mentioned in
 the request.
 
-564
-
-8. Saving and Reusing Your Report Output
 
 *
 
@@ -5163,11 +4867,8 @@ Excludes the specified fields from the HOLD file.
 
 Is required syntax for delimiting elements in the extract block.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 565
-
-Creating a Structured HOLD File
+Creating a Structured HOLD File
 
 ALL
 
@@ -5214,9 +4915,6 @@ the HOLD file begins with the RECTYPE to indicate the segment to which it belong
 original structure. The root segment has RECTYPE=R. The RECTYPEs for other segments are
 sequential numbers assigned in top to bottom, left to right order.
 
-566
-
-8. Saving and Reusing Your Report Output
 
 Following are the first several records in the HOLD file:
 
@@ -5271,11 +4969,8 @@ ON TABLE SET EXTRACT ON
 ON TABLE HOLD AS RECONST FORMAT FOCUS
 END
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 567
-
-Creating a Structured HOLD File
+Creating a Structured HOLD File
 
 This request produces the following Master File:
 
@@ -5321,9 +5016,6 @@ PRODUCTION       $29,700.00  BANNING          JOHN        A17         .00
                   $9,500.00  SMITH            RICHARD     A01       10.00
                   $9,050.00  SMITH            RICHARD     B01       10.00
 
-568
-
-8. Saving and Reusing Your Report Output
 
 Example:
 
@@ -5374,11 +5066,8 @@ and does not imply a calculation).
 Field based reformatting (FIELD1/FIELD2=) causes the original field and the format field to
 be included.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 569
-
-Creating a Structured HOLD File
+Creating a Structured HOLD File
 
 A GROUP field if referenced explicitly or when all of its members are referenced in the
 request.
@@ -5420,9 +5109,6 @@ Reference: Structural and Behavioral Notes
 Structured HOLD File requests are subject to the same limitations on number and size of
 fields as any other TABLE request.
 
-570
-
-8. Saving and Reusing Your Report Output
 
 Structural Notes
 
@@ -5472,11 +5158,8 @@ BY and ACROSS sort fields become additional display objects.
 BY. . .ROWS and ACROSS . . .COLUMNS function only as implicit WHEREs to limit field
 values included.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 571
-
-Creating a Structured HOLD File
+Creating a Structured HOLD File
 
 FOR fields are included.
 
@@ -5523,17 +5206,10 @@ To reconstitute a FOCUS or flat file from a Structured HOLD file, you use the sa
 used to generate the Structured HOLD File. The ON TABLE SET EXTRACT syntax must be
 used to preserve multipath structures.
 
-572
-
-8. Saving and Reusing Your Report Output
 
 All reconstituted FOCUS segments are SEGTYPE=S0, as neither KEY nor INDEX information
 is retained. An INDEX can be reinserted using REBUILD INDEX.
 
-Creating Reports With TIBCO® WebFOCUS Language
 
- 573
+Creating a Structured HOLD File
 
-Creating a Structured HOLD File
-
-574

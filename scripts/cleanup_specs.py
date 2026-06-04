@@ -2,10 +2,11 @@ import os
 import re
 import sys
 
-# Define book titles to be removed
-BOOK_TITLES = [
-    "Creating Reports With TIBCO® WebFOCUS Language",
-    "Describing Data With TIBCO WebFOCUS® Language"
+# Regex patterns for book titles
+BOOK_TITLE_PATTERNS = [
+    re.compile(r'Creating Reports With TIBCO®?\s*WebFOCUS Language', re.IGNORECASE),
+    re.compile(r'Describing Data With TIBCO\s*WebFOCUS®?\s*Language', re.IGNORECASE),
+    re.compile(r'Describing Data With TIBCO®?\s*WebFOCUS Language', re.IGNORECASE),
 ]
 
 def cleanup_content(content):
@@ -15,15 +16,21 @@ def cleanup_content(content):
     # 1. Identify and remove Chapter X at the beginning of the file
     content = re.sub(r'^Chapter\s?\d+\s*\n+', '', content, flags=re.IGNORECASE)
 
-    # 2. Heuristic for page numbers: identify digits on lines by themselves
-    # before we remove form-feeds, so we can see if they are near them.
     lines = content.split('\n')
     to_remove = set()
 
-    # 3. Identify and remove book titles and nearby page numbers
+    # 2. Identify and remove book titles and nearby page numbers
     for i in range(len(lines)):
         stripped = lines[i].strip()
-        if stripped in BOOK_TITLES:
+        if not stripped:
+            continue
+
+        is_book_title = any(pattern.fullmatch(stripped) for pattern in BOOK_TITLE_PATTERNS)
+        if not is_book_title:
+             # Try partial match if full match fails, but keep it reasonably constrained
+             is_book_title = any(pattern.search(stripped) and len(stripped) < 80 for pattern in BOOK_TITLE_PATTERNS)
+
+        if is_book_title:
             to_remove.add(i)
             # Look backwards for a page number, skipping blank lines
             j = i - 1
@@ -39,33 +46,32 @@ def cleanup_content(content):
             if j < len(lines) and re.match(r'^\s*\d+\s*$', lines[j]):
                 to_remove.add(j)
 
-    # 4. Identify standalone chapter headers (e.g. "2. Displaying Report Data") that follow \f
+    # 3. Identify standalone chapter headers (e.g. "2. Displaying Report Data") that follow \f
     ff_header_pattern = re.compile(r'\f\s*(\d+\.\s+[^\n]+)')
     for match in ff_header_pattern.finditer(content):
         header_text = match.group(1).strip()
-        # Find all occurrences of this header text as a standalone line and mark for removal
         for i in range(len(lines)):
             if lines[i].strip() == header_text:
                 to_remove.add(i)
 
-    # 5. Task 1.2.2: Remove isolated page numbers
+    # 4. Task 1.2.2: Remove isolated page numbers
     # Improved heuristic: A number is likely a page number if it's on a line by itself
     # and is near a form-feed (\f) character (before or after it, with only whitespace in between)
     # OR it's at the very end of the file.
-
     for i in range(len(lines)):
+        if i in to_remove:
+            continue
+
         if re.match(r'^\s*\d+\s*$', lines[i]):
-            # Check proximity to \f
             is_page_num = False
 
-            # Check preceding lines for \f
+            # Check proximity to \f
             j = i - 1
             while j >= 0 and not lines[j].strip():
                 j -= 1
             if j >= 0 and '\f' in lines[j]:
                 is_page_num = True
 
-            # Check following lines for \f
             if not is_page_num:
                 j = i + 1
                 while j < len(lines) and not lines[j].strip():
@@ -92,7 +98,7 @@ def cleanup_content(content):
 
     content = '\n'.join(new_lines)
 
-    # 6. Remove all form-feed characters
+    # 5. Remove all form-feed characters
     content = content.replace('\f', '')
 
     # Task 1.3: Normalize excessive blank lines (4+ newlines) to exactly three

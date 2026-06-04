@@ -433,4 +433,3 @@ the report using the desired format, and then print the report from the display 
 
 You cannot send a report directly to a printer in WebFOCUS.
 
-38
