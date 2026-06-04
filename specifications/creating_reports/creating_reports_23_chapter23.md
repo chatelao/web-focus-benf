@@ -1,4 +1,4 @@
-Formatting Report Data
+# Chapter 23: Formatting Report Data
 
 This chapter covers information about formatting and positioning text in a report. You can
 select the size, color, font, and style for the text of your report, in addition to being able

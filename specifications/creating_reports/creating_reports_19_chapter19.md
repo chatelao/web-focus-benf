@@ -1,4 +1,4 @@
-Chapter19 Identifying a Report Component in a
+# Chapter 19: Identifying a Report Component in a WebFOCUS StyleSheet
 
 WebFOCUS StyleSheet
 

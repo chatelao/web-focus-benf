@@ -1,4 +1,4 @@
-Describing a FOCUS Data Source
+# Chapter 6: Describing a FOCUS Data Source
 
 The following covers data description topics unique to FOCUS data sources:
 

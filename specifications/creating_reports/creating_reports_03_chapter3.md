@@ -1,4 +1,4 @@
-Sorting Tabular Reports
+# Chapter 3: Sorting Tabular Reports
 
 Sorting enables you to group or organize report information vertically and horizontally, in
 rows and columns, and specify a desired sequence of data items in the report.

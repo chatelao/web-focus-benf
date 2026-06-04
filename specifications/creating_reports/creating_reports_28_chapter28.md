@@ -1,4 +1,4 @@
-Improving Report Processing
+# Chapter 28: Improving Report Processing
 
 The following high-performance methods optimize data retrieval and report processing:
 

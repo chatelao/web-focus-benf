@@ -31,12 +31,18 @@ Based on initial analysis, the following issues are prevalent:
 *   - [x] **Task 1.3**: Normalize line endings and remove excessive blank lines caused by page breaks.
 
 ### Phase 2: Structural Reform (Establishing Hierarchy)
-*   - [ ] **Task 2.1**: Convert "Chapter X" and major section titles into `#` and `##` headers.
+*   - [ ] **Task 2.1**: Standardize Headers.
+    *   - [x] **Task 2.1.1**: Standardize Chapter Headings (Convert "Chapter X" to `# Chapter X: [Title]`).
+    *   - [ ] **Task 2.1.2**: Standardize Section Headings (Convert major section titles to `##`).
 *   - [ ] **Task 2.2**: Reconstruct the Table of Contents (TOC) using standard Markdown list syntax with working anchors.
-*   - [ ] **Task 2.3**: Fix multi-line paragraph wrapping that was broken by PDF line breaks.
+*   - [ ] **Task 2.3**: Repair Paragraph Wrapping.
+    *   - [ ] **Task 2.3.1**: Identify lines ending in hyphens or lacking terminal punctuation for rejoining.
+    *   - [ ] **Task 2.3.2**: Rejoin broken paragraphs into single continuous blocks.
 
 ### Phase 3: Semantic Enrichment (Formatting Content)
-*   - [ ] **Task 3.1**: Identify WebFOCUS code blocks and wrap them in ` ```fex ` or ` ```sql ` fences.
+*   - [ ] **Task 3.1**: Code Block Fencing.
+    *   - [ ] **Task 3.1.1**: Identify and fence WebFOCUS code blocks (` ```fex `).
+    *   - [ ] **Task 3.1.2**: Identify and fence SQL code blocks (` ```sql `).
 *   - [ ] **Task 3.2**: Convert ASCII tables into GFM tables.
 *   - [ ] **Task 3.3**: Replace "on page X" references with relative Markdown links (e.g., `[See Sorting](#sorting)`).
 *   - [ ] **Task 3.4**: Standardize list indentation and bullet styles.

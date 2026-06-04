@@ -1,4 +1,4 @@
-Understanding a Data Source Description
+# Chapter 1: Understanding a Data Source Description
 
 Information Builders products provide a flexible data description language, which you can
 use with many types of data sources, including:

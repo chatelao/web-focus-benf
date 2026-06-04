@@ -1,6 +1,4 @@
-Chapter8
-
-Saving and Reusing Your Report Output
+# Chapter 8: Saving and Reusing Your Report Output
 
 When you run a report request, by default the data values are collected and presented in
 a viewable form, complete with column titles and formatting features. Instead of viewing

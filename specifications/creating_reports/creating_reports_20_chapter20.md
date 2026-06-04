@@ -1,4 +1,4 @@
-Using an External Cascading Style Sheet
+# Chapter 20: Using an External Cascading Style Sheet
 
 Cascading style sheets (CSS) provide a standard way of formatting HTML documents. To
 format WebFOCUS HTML report output using an external CSS, simply link the CSS to the

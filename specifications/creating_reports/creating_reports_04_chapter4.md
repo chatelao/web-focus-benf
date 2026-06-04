@@ -1,4 +1,4 @@
-Selecting Records for Your Report
+# Chapter 4: Selecting Records for Your Report
 
 When generating a report and selecting fields, you may not want to include every
 instance of a field. By including selection criteria, you can display only those field values

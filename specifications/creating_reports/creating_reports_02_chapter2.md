@@ -1,4 +1,4 @@
-Displaying Report Data
+# Chapter 2: Displaying Report Data
 
 Reporting, at the simplest level, retrieves field values from a data source and displays
 those values. There are three ways to do this:
