@@ -131,9 +131,11 @@ Displaying Individual Field Values
 To display the values of individual fields, use the PRINT command. The following request
 displays the values of two fields, LAST_NAME and FIRST_NAME, for all employees.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME AND FIRST_NAME
 END
+```
 
 The following shows the report output.
 
@@ -178,9 +180,11 @@ Listing Records
 
 To number the records in a report, use the LIST command.
 
+```fex
 TABLE FILE EMPLOYEE
 LIST LAST_NAME AND FIRST_NAME
 END
+```
 
 The following shows the report output.
 
@@ -250,9 +254,11 @@ The following request produces a report displaying all of the fields in the EDUC
 source.
 
 
+```fex
 TABLE FILE EDUCFILE
 LIST *
 END
+```
 
 The following shows the report output.
 
@@ -493,10 +499,12 @@ Displaying All Fields in a Segment
 The following request produces a report displaying all of the fields in the segment that
 contains the QTY_IN_STOCK field.
 
+```fex
 TABLE FILE CENTINV
 PRINT SEG.QTY_IN_STOCK
 BY PRODNAME NOPRINT
 END
+```
 
 44
 
@@ -526,7 +534,9 @@ Displaying the Structure of a Multi-Path Data Source
 To display the structure diagram of the CENTORD data source, which is joined to the CENTINV
 and CENTCOMP data sources, issue the following command:
 
+```fex
 CHECK FILE CENTORD PICTURE
+```
 
 46
 
@@ -586,7 +596,9 @@ Displaying the Retrieval Order of a Multi-Path Data Source
 To display the retrieval order of the EMPLOYEE data source, which is joined to the JOBFILE and
 EDUCFILE data sources, issue the following command:
 
+```fex
 CHECK FILE EMPLOYEE PICTURE RETRIEVE
+```
 
 
 ## Displaying Individual Values
@@ -610,9 +622,11 @@ Displaying Fields From a Multi-Path Data Source
 The following request produces a report displaying all of the fields on the left path of the
 EMPLOYEE data source.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT *
 END
+```
 
 The following shows a list of the output fields the previous request produces. Due to the size
 of the report, only the fields for which all instances will be printed are listed here. In the report,
@@ -672,9 +686,11 @@ Example:
 
 This request adds all the values of the field CURR_SAL:
 
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL
 END
+```
 
 The following shows the output of the request.
 
@@ -691,9 +707,11 @@ Adding Non-Numeric Values
 This request attempts to add non-numeric fields. Any request for aggregation on non-numeric
 data returns the last record retrieved from the data source.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM LAST_NAME AND FIRST_NAME
 END
+```
 
 The following shows the output of the request.
 
@@ -742,9 +760,11 @@ Example:
 To determine how many employees are in the EMPLOYEE data source, you can count the
 instances of EMP_ID, the employee identification number.
 
+```fex
 TABLE FILE EMPLOYEE
 COUNT EMP_ID
 END
+```
 
 The following shows the output of the request.
 
@@ -762,10 +782,12 @@ Counting Values With a Sort Phrase
 
 To count the instances of EMP_ID for each department, use this request:
 
+```fex
 TABLE FILE EMPLOYEE
 COUNT EMP_ID
 BY DEPARTMENT
 END
+```
 
 52
 
@@ -786,9 +808,11 @@ Counting Instances of Data
 The following example counts the instances of data in the LAST_NAME, DEPARTMENT, and
 JOBCODE fields in the EMPLOYEE data source.
 
+```fex
 TABLE FILE EMPLOYEE
 COUNT LAST_NAME AND DEPARTMENT AND JOBCODE
 END
+```
 
 The following shows the output of the request.
 
@@ -828,9 +852,11 @@ Counting Segments From a Multi-Path Data Source
 The following request counts the number of instances of the SKILLSEG segment of the
 EMPLOYEE data source.
 
+```fex
 TABLE FILE EMPLOYEE
 COUNT *
 END
+```
 
 The following shows the output of the request.
 
@@ -892,10 +918,12 @@ Setting Precision for COUNT and LIST
 
 The following example shows the COUNT command with SET COUNTWIDTH = OFF:
 
+```fex
 TABLE FILE filename
 COUNT Fldxx
 BY Fldyy
 END
+```
 
 Fldyy
 
@@ -909,10 +937,12 @@ COUNT
 
 The following example shows the COUNT command with SET COUNTWIDTH = ON:
 
+```fex
 TABLE FILE filename
 COUNT Fldxx
 BY Fldyy
 END
+```
 
 Fldyy
 
@@ -970,6 +1000,7 @@ You can use the SET PRFTITLE command to create descriptive and translatable colu
 for prefixed fields. For example, the following request sets PRFTITLE to LONG.
 
 SET PRFTITLE = LONG
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM COGS_US CNT.COGS_US AVE.COGS_US CNT.DST.COGS_US MIN.COGS_US MAX.COGS_US
 MDN.COGS_US
@@ -979,6 +1010,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 56
 
@@ -1213,9 +1245,11 @@ Averaging Values of a Field
 
 This request calculates the average number of education hours spent in each department.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM AVE.ED_HRS BY DEPARTMENT
 END
+```
 
 The following shows the output of the request.
 
@@ -1244,10 +1278,12 @@ Averaging the Sum of Squared Fields
 
 This request calculates the sum and the sum of squared fields for the DELIVER_AMT field.
 
+```fex
 TABLE FILE SALES
 SUM DELIVER_AMT AND ASQ.DELIVER_AMT
 BY CITY
 END
+```
 
 The following shows the output of the request.
 
@@ -1271,9 +1307,11 @@ Calculating Maximum and Minimum Field Values
 
 This report request calculates the maximum and minimum values of SALARY.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM MAX.SALARY AND MIN.SALARY
 END
+```
 
 
 ## Manipulating Display Fields With Prefix Operators
@@ -1307,6 +1345,7 @@ Calculating the Median and Mode
 The following request against the EMPLOYEE data source displays the current salaries and
 calculates the average (mean), median, and mode within each department.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL AS 'INDIVIDUAL,SALARIES'
 AVE.CURR_SAL AS 'DEPARTMENT,AVERAGE'
@@ -1315,6 +1354,7 @@ MDE.CURR_SAL AS 'DEPARTMENT,MODE'
 BY DEPARTMENT
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 Both departments have an even number of employees. For the MIS department, the two
 middle values are the same, making that value ($18,480.00) both the median and the mode.
@@ -1341,6 +1381,7 @@ Calculating Column Percentages
 
 To calculate each employee share of education hours, issue the following request:
 
+```fex
 TABLE FILE EMPLOYEE
 SUM ED_HRS PCT.ED_HRS BY LAST_NAME
 ON TABLE COLUMN-TOTAL
@@ -1349,6 +1390,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 The output is shown in the following image:
 
@@ -1366,6 +1408,7 @@ The following request calculates the total units sold for each product (UNIT_SOL
 the percentage that total makes up in relation to the sum of all products sold
 (RPCT.UNIT_SOLD column) in each city.
 
+```fex
 TABLE FILE SALES
 SUM UNIT_SOLD RPCT.UNIT_SOLD ROW-TOTAL
 BY PROD_CODE
@@ -1376,6 +1419,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 The output is shown in the following image.
 
@@ -1404,6 +1448,7 @@ Producing a Direct Percent of a Count
 This request illustrates the relative percentage of the values in the EMP_ID field for each
 department.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM PCT.CNT.EMP_ID
 BY DEPARTMENT
@@ -1412,6 +1457,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 The output is shown in the following image:
 
@@ -1468,15 +1514,19 @@ Using the Distinct Operator
 
 The procedure requesting a count of unique ED_HRS values is either:
 
+```fex
 TABLE FILE EMPLOYEE
 SUM CNT.DST.ED_HRS
 END
+```
 
 or
 
+```fex
 TABLE FILE EMPLOYEE
 COUNT DST.ED_HRS
 END
+```
 
 The output is:
 
@@ -1501,6 +1551,7 @@ The following request against the GGSALES data source counts the total number of
 region, then the number of records, distinct categories, and distinct products by region and by
 state. The DST or CNT.DST operator can be used only with the last display command:
 
+```fex
 TABLE FILE GGSALES
 COUNT CATEGORY AS 'TOTAL,COUNT'
   BY REGION
@@ -1509,6 +1560,7 @@ SUM CNT.CATEGORY AS 'STATE,COUNT'
   BY REGION
   BY ST
 END
+```
 
 The output is:
 
@@ -1600,9 +1652,11 @@ Retrieving the First Record
 
 The following request retrieves the first logical record in the EMP_ID field:
 
+```fex
 TABLE FILE EMPLOYEE
 SUM FST.EMP_ID
 END
+```
 
 The output is:
 
@@ -1620,10 +1674,12 @@ and DED_AMT from lowest value to highest value (segment type of S1). The DED_COD
 indicates the type of deduction, such as CITY, STATE, FED, and FICA. The following request
 retrieves the first logical record for DED_CODE for each employee:
 
+```fex
 TABLE FILE EMPLOYEE
 SUM FST.DED_CODE
 BY EMP_ID
 END
+```
 
 The output is:
 
@@ -1702,9 +1758,11 @@ The following request counts the occurrences of PRODUCT_ID, and sums the value o
 UNIT_PRICE.
 
 
+```fex
 TABLE FILE GGPRODS
 SUM CNT.PRODUCT_ID AND UNIT_PRICE
 END
+```
 
 The output is:
 
@@ -1721,9 +1779,11 @@ Summing Values With SUM
 The following request counts the occurrences of PRODUCT_ID, and sums the value of
 UNIT_PRICE.
 
+```fex
 TABLE FILE GGPRODS
 COUNT PRODUCT_ID AND SUM.UNIT_PRICE
 END
+```
 
 The output is:
 
@@ -1740,12 +1800,14 @@ Summing Values With TOT
 The following request uses the TOT prefix operator to show the total of current salaries for all
 employees.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME
 BY DEPARTMENT
 ON TABLE SUBFOOT
 "Total salaries equal: <TOT.CURR_SAL"
 END
+```
 
 
 ## Manipulating Display Fields With Prefix Operators
@@ -1809,10 +1871,13 @@ service and department. Note that years of service depends on the value of TODAY
 for this example was valid when run in September, 2006:
 
 
+```fex
 DEFINE FILE EMPDATA
   TODAY/YYMD = &YYMD;
   YRS_SERVICE/I9 = DATEDIF(HIREDATE,TODAY,'Y');
 END
+```
+```fex
 TABLE FILE EMPDATA
 PRINT SALARY
   RNK.YRS_SERVICE AS 'RANKING,BY,SERVICE'
@@ -1823,6 +1888,7 @@ PRINT SALARY
 WHERE DEPT EQ 'MARKETING' OR 'SALES'
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 The output is:
 
@@ -1860,15 +1926,19 @@ The following request displays only those rows in the highest two salary ranks w
 of service category. Note that years of service depends on the value of TODAY. The output for
 this example was valid when run in September, 2006:
 
+```fex
 DEFINE FILE EMPDATA
   TODAY/YYMD = &YYMD;
   YRS_SERVICE/I9 = DATEDIF(HIREDATE,TODAY,'Y');
 END
+```
+```fex
 TABLE FILE EMPDATA
 PRINT LASTNAME FIRSTNAME RNK.SALARY
 BY HIGHEST YRS_SERVICE BY HIGHEST SALARY
 WHERE TOTAL RNK.SALARY LE 2
 END
+```
 
 The output is:
 
@@ -1892,10 +1962,13 @@ less than or equal to 5 and the rank of years of service within salary and depar
 than or equal to 6. Otherwise, the flag has the value N. Note that the years of service depends
 on the value of TODAY. The output for this example was valid when run in September, 2006:
 
+```fex
 DEFINE FILE EMPDATA
   TODAY/YYMD = &YYMD;
   YRS_SERVICE/I9 = DATEDIF(HIREDATE,TODAY,'Y');
 END
+```
+```fex
 TABLE FILE EMPDATA
 PRINT RNK.SALARY RNK.YRS_SERVICE
 COMPUTE FLAG/A1 = IF RNK.SALARY LE 5  AND RNK.YRS_SERVICE LE 6
@@ -1904,6 +1977,7 @@ BY DEPT BY SALARY BY YRS_SERVICE
 WHERE DEPT EQ 'MARKETING' OR 'SALES'
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 74
 
@@ -2026,6 +2100,7 @@ ST. The summary command for REGION applies the AVE. operator to the sum of the u
 value for each state.
 
 
+```fex
 TABLE FILE GGSALES
    SUM UNITS AS 'Inventory '
      BY REGION
@@ -2035,6 +2110,7 @@ TABLE FILE GGSALES
    WHERE REGION EQ 'West' OR 'Northeast'
    ON TABLE SET PAGE NOPAGE
    END
+```
 
 On the output, the UNITS values for each state are averaged to calculate the subtotal for each
 region. The UNITS values for each state are also used to calculate the average for the grand
@@ -2060,6 +2136,7 @@ TOTAL                    45144
 The following version of the request adds a summary command for the grand total line that
 includes the ROLL. operator:
 
+```fex
 TABLE FILE GGSALES
    SUM UNITS AS 'Inventory '
      BY REGION
@@ -2070,6 +2147,7 @@ TABLE FILE GGSALES
    ON TABLE SUBTOTAL ROLL.AVE. AS ROLL.AVE
    ON TABLE SET PAGE NOPAGE
    END
+```
 
 
 ## Manipulating Display Fields With Prefix Operators
@@ -2103,6 +2181,7 @@ The following request against the GGSALES data source has three BY fields. The S
 command for the PRODUCT sort field specifies AVE., and the SUMMARIZE command for the
 higher level sort field, REGION, specifies ROLL.AVE.
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS
 BY REGION
@@ -2115,6 +2194,7 @@ WHERE DATE GE 19971001
   ON REGION SUMMARIZE ROLL.AVE. AS ROLL.AVE
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 78
 
@@ -2376,6 +2456,7 @@ FIELD=UNITS, ALIAS=E10, FORMAT=I08, TITLE='Unit Sales',
 
 The code used to create the report is:
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS
 BY REGION
@@ -2383,6 +2464,7 @@ BY PRODUCT
 WHERE REGION EQ 'Midwest'
 ON TABLE SET POPUPDESC ON
 END
+```
 
 The following image shows the report output and the pop-up field description text that displays
 when your mouse pointer is positioned over the Unit Sales column title.

@@ -101,11 +101,14 @@ left of the request correspond to numbers in the following annotations:
 1. SET STYLE = OFF
    SET STYLEMODE=FIXED
    SET ONLINE-FMT = PDF
+```fex
 2. DEFINE FILE EMPLOYEE
       CR_EARNED/I2 = IF ED_HRS GE 50 THEN 9
          ELSE IF ED_HRS GE 30 THEN 6
          ELSE 3;
       END
+```
+```fex
 3. TABLE FILE EMPLOYEE
    BY DEPARTMENT
 4. HEADING
@@ -132,6 +135,7 @@ left of the request correspond to numbers in the following annotations:
 12.FOOTING
    "<15>PRIVATE AND CONFIDENTIAL"
    END
+```
 
 The following explains the role of each line of the request in producing the sample report:
 

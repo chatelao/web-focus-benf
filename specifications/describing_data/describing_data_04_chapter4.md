@@ -283,9 +283,11 @@ The following rules are used to evaluate qualified field names:
 The maximum field name qualification is filename.segname.fieldname. For example:
 
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT EMPLOYEE.EMPINFO.EMP_ID
 END
+```
 
 includes EMP_ID as a fully qualified field. The file name, EMPLOYEE, and the segment
 name, EMPINFO, are the field qualifiers.
@@ -300,9 +302,11 @@ FILENAME=CAR, SUFFIX=FOC
         .
         .
         .
+```fex
 TABLE FILE CAR
 PRINT CAR.COMP.CAR
 END
+```
 
 This request prints the field with alias CARS. Both the file name and field name are CAR.
 
@@ -317,9 +321,11 @@ FILENAME=CAR, SUFFIX=FOC
         .
         .
         .
+```fex
 TABLE FILE CAR
 PRINT COMP.CAR AND CAR.CAR
 END
+```
 
 This request prints the field with alias CARS twice.
 
@@ -340,9 +346,11 @@ FILENAME=CAR, SUFFIX=FOC
    SEGNAME=ORIGIN, SEGTYPE=S1
       FIELDNAME=CNT.COUNTRY, ACNTRY, A10, $
       FIELDNAME=COUNTRY, BCNTRY, A10, $
+```fex
 TABLE FILE CAR
 SUM CNT.COUNTRY
 END
+```
 
 In this request, the string CNT.COUNTRY is interpreted as a reference to the field named
 CNT.COUNTRY, not as a reference to the prefix operator CNT. applied to the field named
@@ -363,10 +371,12 @@ FILENAME=CAR, SUFFIX=FOC
       FIELDNAME=COUNTRY, COUNTRY, A10, $
    SEGNAME=PCT, SEGTYPE=S1, PARENT=ORIGIN
       FIELDNAME=CAR, CARS, I2, $
+```fex
  TABLE FILE CAR
 SUM PCT.CAR PCT.PCT.CAR
 BY COUNTRY
 END
+```
 
 This request sums the field with alias CARS first, and then the percent of CARS by
 COUNTRY.
@@ -384,9 +394,11 @@ FILENAME=CAR, SUFFIX=FOC
    SEGNAME=ORIGIN, SEGTYPE=S1
       FIELDNAME=ORIGIN.COUNTRY, OCNTRY, A10, $
       FIELDNAME=COUNTRY, CNTRY, A10, $
+```fex
 TABLE FILE CAR
 PRINT ORIGIN.COUNTRY
 END
+```
 
 This request prints the field with alias CNTRY. To retrieve the field with alias OCNTRY,
 qualify its field name, ORIGIN.COUNTRY, with its segment name, ORIGIN:
@@ -402,9 +414,11 @@ FILENAME=CAR, SUFFIX=FOC
       FIELDNAME=CAR.CAR, CAR1, A10, $
    SEGNAME=CAR.CAR, SEGTYPE=S1, PARENT=CAR
       FIELDNAME=CAR, CAR2, A10, $
+```fex
 TABLE FILE CAR
 PRINT CAR.CAR.CAR
 END
+```
 
 In this example, it is unclear if you intend CAR.CAR.CAR to refer to the field named
 CAR.CAR in the CAR segment, or the field named CAR in the CAR.CAR segment. (In either
@@ -442,13 +456,17 @@ FIELDNAME = CURR_SAL, ALIAS = CSAL, USAGE = D12.2M,  $
 Both names are equally valid within a request. The following TABLE requests illustrate that they
 are functionally identical, refer to the same field, and produce the same result:
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT CURR_SAL BY EMP_ID
 END
+```
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT CSAL BY EMP_ID
 END
+```
 
 Note: In extract files (HOLD, PCHOLD), the field name is used to identify fields, not the ALIAS.
 
@@ -1581,9 +1599,12 @@ septillionth/quadrillionth
 The following request uses the mega and giga format options. The decimal precision is
 controlled by the format which, in this case, is a reformat specified in the SUM command.
 
+```fex
 DEFINE FILE GGSALES
 NEWDOLL/D12.2 = DOLLARS * 100;
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS NEWDOLL/D12.5nM AS Millions NEWDOLL/D12.3nG AS Billions
 BY CATEGORY
@@ -1592,6 +1613,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 The output is shown in the following image.
 
@@ -1803,6 +1825,7 @@ Displaying Extended Currency Symbols
 The following request displays the euro symbol.
 
 SET PAGE-NUM = OFF
+```fex
 TABLE FILE CENTORD
 PRINT PRODNAME QUANTITY PRICE/D10.2!E
 BY ORDER_DATE
@@ -1811,6 +1834,7 @@ ON TABLE SET STYLE *
 TYPE = REPORT, GRID = OFF,$
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -1892,10 +1916,13 @@ Specifying Currency Parameters in a DEFINE
 The following request creates a virtual field named Currency_parms that displays the currency
 symbol on the right using the ISO code for Japanese yen, 'JPY'.
 
+```fex
 DEFINE FILE WF_RETAIL_LITE
 Currency_parms/D20.2:C(CURRENCY_DISPLAY='TRAILING',CURRENCY_ISO_CODE='JPY')
 = COGS_US;
 END
+```
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM COGS_US Currency_parms
 BY BUSINESS_REGION AS 'Region'
@@ -1903,6 +1930,7 @@ ON TABLE SET PAGE NOLEAD
 ON TABLE SET STYLE *
 GRID=OFF,$
 END
+```
 
 The output is shown in the following image.
 
@@ -2068,6 +2096,7 @@ Assignment between hexadecimal and alphanumeric fields.
 For example, the following request prints the hexadecimal representation of the alphanumeric
 Category field:
 
+```fex
 TABLE FILE GGSALES
 SUM CATEGORY/U10 AS Hex,Category DOLLARS UNITS
 BY CATEGORY
@@ -2076,6 +2105,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 The output is shown in the following image.
@@ -2085,10 +2115,13 @@ The following version of the request creates the hexadecimal field in a DEFINE c
 adds a HOLD command:
 
 APP HOLD baseapp
+```fex
 DEFINE FILE GGSALES
 HEXCAT/U10 = CATEGORY;
 END
+```
 
+```fex
 TABLE FILE GGSALES
 SUM HEXCAT DOLLARS UNITS
 BY CATEGORY
@@ -2098,6 +2131,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 The generated Master File follows. The HEXCAT field has USAGE=U10 and ACTUAL=A20.
 
@@ -3195,6 +3229,7 @@ FULLCOMPONENT with format YYMDm, from the full date field. It then creates two n
 dates FULLDATE2 and FULLDATE3 by assigning the partial date to one and the component
 date to the other.
 
+```fex
 DEFINE FILE GGSALES
 FULLDATE/YYMD = '2017/09/12';
 PARTIALDATE/YYM =FULLDATE;
@@ -3202,6 +3237,8 @@ FULLCOMPONENT/YYMDm = FULLDATE;
 FULLDATE2/YYMD = FULLCOMPONENT;
 FULLDATE3/YYMD = PARTIALDATE;
 END
+```
+```fex
 TABLE FILE GGSALES
 PRINT FULLDATE PARTIALDATE FULLCOMPONENT FULLDATE2 FULLDATE3
 BY CATEGORY
@@ -3211,6 +3248,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 ## The Displayed Data Type: USAGE
@@ -3426,6 +3464,7 @@ CONSTANT:
 ## The Displayed Data Type: USAGE
 
 SET DTSTANDARD = &STAND
+```fex
 DEFINE FILE EMPLOYEE
 -* The following input is format YYYY-MM-DDThh:mm:ss.sTZD
 DT1/HYYMDs  =     DT(2004-06-01T19:20:30.45+01:00);
@@ -3434,6 +3473,8 @@ DT2/HYYMDs  =     DT(2004-06-01T19:20:30,45+01:00);
 DT3/HYYMDs  =     DT(20040601T19:20:30,45);
 DT4/HYYMDUs =     DT(2004-06-01T19:20:30,45+01:00);
 END
+```
+```fex
 TABLE FILE EMPLOYEE
 HEADING CENTER
 "DTSANDARD = &STAND "
@@ -3443,6 +3484,7 @@ OVER DT2 AS 'DT2: INPUT = 2004-06-01T19:20:30,45+01:00'
 OVER DT3 AS 'DT3: INPUT = 20040601T19:20:30,45'
 OVER DT4 AS 'DT4: OUTPUT  FORMAT HYYMDUs'
 END
+```
 
 With DTSTANDARD= STANDARD, the output shows that the input values were accepted, but
 the time zone offsets in DT1, DT2, and DT4 (+01:00) were ignored on output. The character U
@@ -3898,12 +3940,15 @@ Month removal without day removal (which forces day removal), format HodYY.
 Day removal without month removal, format HMeYY. Note that month removal is not forced
 by day removal.
 
+```fex
 DEFINE FILE GGSALES
 DATE1A/HMDYY = DT(01/01/2013);
 DATE1B/HoeYY = DATE1A;
 DATE1C/HodYY = DATE1A;
 DATE1D/HMeYY = DATE1A;
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS NOPRINT
 DATE1A AS 'HMDYY'
@@ -3912,6 +3957,7 @@ DATE1C AS 'HodYY'
 DATE1D AS 'HMeYY'
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 The output is:
 
@@ -3937,6 +3983,7 @@ With zero suppression for the day component, format HdMYY.
 
 With zero removal for the day component, format HeMYY.
 
+```fex
 DEFINE FILE GGSALES
 DATE1A/HDMYY = DT(01/12/2012);
 DATE2A/HMDYY = DT(12/01/2012);
@@ -3945,6 +3992,7 @@ DATE2B/HMdYY = DATE2A;
 DATE1C/HeMYY = DATE1A;
 DATE2C/HMeYY = DATE2A;
 END
+```
 TABLE FILE GGSALES
 SUM DOLLARS NOPRINT
 DATE1A AS 'HDMYY'
@@ -5975,10 +6023,12 @@ The default language for the server code page is English and, by default, SET TI
 Therefore, the following request, uses the TITLE attributes to produce column headings that
 are all in English:
 
+```fex
 TABLE FILE CENTINV
 PRINT PROD_NUM PRODNAME PRICE
 WHERE PRICE LT 200
 END
+```
 
 The output is:
 
@@ -6402,6 +6452,7 @@ SEGNAME=PRODUCT, PARENT=DATE_SEG, SEGTYPE=S1,
 
 The following TABLE request uses the REVENUE field:
 
+```fex
 TABLE FILE SALESTES
 HEADING CENTER
 "NEW YORK PROFIT REPORT"
@@ -6411,6 +6462,7 @@ COMPUTE REVENUE;
 BY PROD_CODE AS 'PROD,CODE'
 WHERE CITY EQ 'NEW YORK'
 END
+```
 
 
 ## Describing a Filter: FILTER
@@ -6529,6 +6581,7 @@ FILTER G_RATING = RATING EQ 'G' OR 'PG'; $
 
 The following request applies the G_RATING filter:
 
+```fex
 TABLE FILE MOVIES
 HEADING CENTER
 "Rating G and PG"
@@ -6542,6 +6595,7 @@ type=report, style=bold, color=black, backcolor=yellow, $
 type=data, backcolor=aqua, $
 ENDSTYLE
 END
+```
 
 
 The output is shown in the following image:
@@ -6560,6 +6614,7 @@ FILTER G_RATING = RATING EQ 'G' OR 'PG'; MANDATORY=YES ,$
 
 The following request does not reference the G_RATING filter:
 
+```fex
 TABLE FILE MOVIES
 HEADING CENTER
 "Rating G and PG"
@@ -6572,6 +6627,7 @@ type=report, style=bold, color=black, backcolor=yellow, $
 type=data, backcolor=aqua, $
 ENDSTYLE
 END
+```
 
 
 The output is shown in the following image. Note that the G_RATING filter is applied even
@@ -6680,11 +6736,13 @@ SORTOBJ CRSORT = ACROSS CATEGORY BY REGION SKIP-LINE ; ,$
 
 The following request references the CRSORT sort object:
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS
 BY CRSORT
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 The output is:
 
@@ -6756,12 +6814,14 @@ DEFINE WHOLENAME/A40 = DF.DMFUNCS.DMPROPER(LASTNAME, FIRSTNAME);
 
 The following request uses the DEFINE field WHOLENAME:
 
+```fex
 TABLE FILE WF_RETAIL_CUSTOMER
 PRINT WHOLENAME AS Whole,Name
 BY ID_CUSTOMER
 WHERE ID_CUSTOMER LT 600
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 The output is:
 
@@ -6863,10 +6923,12 @@ DEFINE TDATE/A12   ='&DATE';, $
 
 The following request displays the value of TDATE:
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME FIRST_NAME HIRE_DATE TDATE AS 'TODAY''S,DATE'
 WHERE LAST_NAME EQ 'BANNING'
 END
+```
 
 The output is:
 
@@ -6894,10 +6956,12 @@ DEFINE TDATE/YYMD   = &YYMD ;, $
 
 The following request displays the value of TDATE:
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME FIRST_NAME HIRE_DATE TDATE AS 'TODAY''S,DATE'
 WHERE LAST_NAME EQ 'BANNING'
 END
+```
 
 The output is:
 
@@ -6972,11 +7036,13 @@ Parameterizing Attributes in a Master and Access File
 The following request creates an Oracle table named ORAEMP from the FOCUS data source
 named EMPLOYEE:
 
+```fex
 TABLE FILE EMPLOYEE
 SUM LAST_NAME FIRST_NAME CURR_SAL CURR_JOBCODE DEPARTMENT
 BY EMP_ID
 ON TABLE HOLD AS ORAEMP FORMAT SQLORA
 END
+```
 
 The following is the Master File created by the request:
 
@@ -7017,9 +7083,11 @@ The following request sets the values of the variables and then issues a TABLE r
 
 -SET &&table = ORAEMP;
 -SET &&emptitle = 'Id,number';
+```fex
 TABLE FILE ORAEMP
 PRINT EMP_ID LAST_NAME FIRST_NAME DEPARTMENT
 END
+```
 
 Note that the value for &&emptitle is enclosed in single quotation marks in the --SET command
 because it contains a special character (the comma). The single quotation marks are not part
@@ -7355,11 +7423,13 @@ FILENAME=DATE1   , SUFFIX=FIX ,
 
 The following request sorts by the DATE1 FIELD:
 
+```fex
 TABLE FILE DATE1
 PRINT DATE1 NOPRINT
 BY DATE1
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 The output shows that the alphanumeric dates are sorted alphabetically, not chronologically:
 

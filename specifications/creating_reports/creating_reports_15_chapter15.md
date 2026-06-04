@@ -55,6 +55,7 @@ How to Merge Data Sources
 
 The syntax of the MATCH command is similar to that of the TABLE command:
 
+```fex
 MATCH FILE file1
 .
 .
@@ -72,6 +73,7 @@ FILE file3
 .
 [AFTER MATCH merge_phrase]
 END
+```
 
 where:
 
@@ -235,6 +237,7 @@ Example: Merging Data Sources
 In the following request, the high-order sort field is the same for both files, so the result is the
 same using grouped and ungrouped processing.
 
+```fex
 MATCH FILE EDUCFILE
 SUM COURSE_CODE
 BY EMP_ID
@@ -244,12 +247,15 @@ SUM LAST_NAME AND FIRST_NAME
 BY EMP_ID BY CURR_SAL
 AFTER MATCH HOLD OLD-OR-NEW
 END
+```
 -******************************
 -*  PRINT CONTENTS OF HOLD FILE
 -******************************
+```fex
 TABLE FILE HOLD
 PRINT *
 END
+```
 
 The merge phrase used in this example was OLD-OR-NEW. This means that records from both
 the first (old) data source plus the records from the second (new) data source appear in the
@@ -285,6 +291,7 @@ command is issued to invoke legacy processing.
 
 
 SET MATCHCOLUMNORDER = UNGROUPED
+```fex
 MATCH FILE GGSALES
 SUM DOLLARS
 BY ST
@@ -298,6 +305,8 @@ SUM BUDDOLLARS BY ST BY CITY
 PRINT BUDUNITS BY ST BY CITY BY CATEGORY
 AFTER MATCH HOLD OLD-OR-NEW
 END
+```
+```fex
 TABLE FILE HOLD
 PRINT *
 ON TABLE SET PAGE NOLEAD
@@ -305,6 +314,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, SIZE=9,$
 ENDSTYLE
 END
+```
 
 The HOLD Master File follows. Since the sort fields are common to both files, the two files
 were merged based on those fields. However, note that the order of fields in the Master File
@@ -495,6 +505,7 @@ SMITH
 
 and this MATCH request:
 
+```fex
 MATCH FILE EMPLOYEE
 SUM LAST_NAME BY EMP_ID
 RUN
@@ -502,6 +513,7 @@ FILE EDUCFILE
 SUM COURSE_CODE BY EMP_ID
 AFTER MATCH HOLD OLD-OR-NEW
 END
+```
 
 MATCH processing occurs as follows:
 
@@ -534,9 +546,11 @@ Record n: 212289111 103
 
 The following code produces a report of the records in the HOLD file:
 
+```fex
 TABLE FILE HOLD
 PRINT *
 END
+```
 
 The output is:
 
@@ -623,6 +637,7 @@ This request combines data from the EMPLOYEE and EMPDATA data sources. The sort 
 are EID and PIN.
 
 
+```fex
 MATCH FILE EMPLOYEE
 PRINT LN FN DPT
 BY EID
@@ -632,16 +647,20 @@ PRINT LN FN DEPT
 BY PIN
 AFTER MATCH HOLD OLD-OR-NEW
 END
+```
 
+```fex
 TABLE FILE HOLD
 PRINT *
 END
+```
 
 Example: Merging Without a Common High-Order Sort Field
 
 If there are no common high-order sort fields, a match is performed on a record-by-record
 basis. The following request matches the data and produces the HOLD file:
 
+```fex
 MATCH FILE EMPLOYEE
 PRINT LAST_NAME AND FIRST_NAME
 BY EMP_ID
@@ -652,10 +671,13 @@ BY LASTNAME
 BY FIRSTNAME
 AFTER MATCH HOLD OLD-OR-NEW
 END
+```
 
+```fex
 TABLE FILE HOLD
 PRINT *
 END
+```
 
 The retrieved records from the two data sources are written to the HOLD file; no values are
 compared. The output is:
@@ -906,6 +928,7 @@ F1  F2  F3      F1  F4  F5
 Request 1: This request sums the fields F2 and F3 from file A, sums the fields F4 and F5 from
 file B, and uses F1 as the common high-order sort field.
 
+```fex
 MATCH FILE A
 SUM F2 AND F3 BY F1
 RUN
@@ -913,6 +936,7 @@ FILE B
 SUM F4 AND F5 BY F1
 AFTER MATCH HOLD OLD-OR-NEW
 END
+```
 
 The HOLD file contains the following data:
 
@@ -926,12 +950,14 @@ Note that the resulting file contains only 1 record for each common high-order s
 Request 2: This request sums fields F2 and F3 from file A, prints fields F4 and F5 from file B,
 and uses F1 as the common high-order sort field.
 
+```fex
 MATCH FILE A
 SUM F2 AND F3 BY F1
 RUN
 FILE B PRINT F4 AND F5 BY F1
 AFTER MATCH HOLD OLD-OR-NEW
 END
+```
 
 The HOLD file contains:
 
@@ -950,6 +976,7 @@ Note that the records from file A are duplicated for each record from file B.
 Request 3: This request prints fields F2 and F3 from file A, sums fields F4 and F5 from file B,
 and uses F1 as the common high-order sort field.
 
+```fex
 MATCH FILE A
 PRINT F2 AND F3 BY F1
 RUN
@@ -957,6 +984,7 @@ FILE B
 SUM F4 AND F5 BY F1
 AFTER MATCH HOLD OLD-OR-NEW
 END
+```
 
 The HOLD file contains:
 
@@ -971,12 +999,14 @@ common high-order sort field is included.
 Request 4: This request prints fields F2 and F3 from file A, prints fields F4 and F5 from file B,
 and uses F1 as the common high-order sort field.
 
+```fex
 MATCH FILE A
 PRINT F2 AND F3 BY F1
 RUN
 FILE B PRINT F4 AND F5 BY F1
 AFTER MATCH HOLD OLD-OR-NEW
 END
+```
 
 The HOLD file contains:
 
@@ -994,6 +1024,7 @@ Request 5: This request sums the fields F2 and F3 from file A, sums the field F5
 and sorts it by field F1, the common high-order sort field, and by F4.
 
 
+```fex
 MATCH FILE A
 SUM F2 AND F3 BY F1
 RUN
@@ -1001,6 +1032,7 @@ FILE B
 SUM F5 BY F1 BY F4
 AFTER MATCH HOLD OLD-OR-NEW
 END
+```
 
 The HOLD file contains:
 
@@ -1107,16 +1139,20 @@ EXPERSON contains the field values SSN=987654321 and WAGE=100.00.
 
 The following annotated request concatenates the two data sources:
 
+```fex
    DEFINE FILE EXPERSON
 1. EMP_ID/A9 = SSN;
    CURR_SAL/D12.2 = WAGE;
    END
+```
+```fex
 2. TABLE FILE EMPLOYEE
    PRINT CURR_SAL
    BY EMP_ID
 3. MORE
    FILE EXPERSON
    END
+```
 
 1. The request must re-map the field names and formats in the EXPERSON data source to
 
@@ -1182,15 +1218,20 @@ The following annotated example concatenates data from the EMPDATA and SALHIST d
 sources.
 
 
+```fex
    DEFINE FILE EMPDATA
 1. NEWID/A11=EDIT (ID,'999-99-9999');
    END
+```
 
+```fex
    DEFINE FILE SALHIST
 2. NEWID/A11=EDIT (ID,'999-99-9999');
    CSAL/D12.2M=OLDSALARY;
    END
+```
 
+```fex
 3. TABLE FILE EMPDATA
    HEADING
    "EMPLOYEE SALARIES"
@@ -1202,6 +1243,7 @@ sources.
    FILE SALHIST
 6. WHERE OLDSALARY GT 65000
    END
+```
 
 1. Defines NEWID in the EMPDATA data source with the same name and format as the sort
 
@@ -1387,14 +1429,17 @@ The following annotated sample stored procedure illustrates MATCH with MORE, usi
 common sort field:
 
 
+```fex
 1. DEFINE FILE EMPDATA
    CURR_SAL/D12.2M = CSAL;
    FIRST_NAME/A10 = FN;
    EID/A9 = PIN;
    END
+```
 
    -*Start MATCH.
 
+```fex
 2. MATCH FILE EMPLOYEE
       SUM CURR_SAL AS 'CURRENT'
           FIRST_NAME AS 'FIRST'
@@ -1410,12 +1455,15 @@ common sort field:
 5.    BY PIN AS 'SSN'
 6.    AFTER MATCH HOLD OLD-OR-NEW
    END
+```
 
    -*Print merged file:
 
+```fex
 7. TABLE FILE HOLD
       PRINT *
    END
+```
 
 1. Defines the EMPDATA fields needed for concatenating it to EMPLOYEE.
 
@@ -1470,14 +1518,17 @@ Example: Merging Concatenated Data Sources Without a Common Sort Field
 In this example, the merged data sources do not share a sort field:
 
 
+```fex
 DEFINE FILE EMPDATA
 CURR_SAL/D12.2M = CSAL;
 FIRST_NAME/A10 = FN;
 EID/A9 = PIN;
 END
+```
 
 -*Start MATCH
 
+```fex
 MATCH FILE EMPLOYEE
 SUM CURR_SAL AS 'CURRENT'
     FIRST_NAME AS 'FIRST'
@@ -1496,12 +1547,15 @@ PRINT EXPENSES
 BY PIN AS 'EID'
 AFTER MATCH HOLD OLD-OR-NEW
 END
+```
 
 -*Print merged file:
 
+```fex
 TABLE FILE HOLD
 PRINT *
 END
+```
 
 The AS phrase changes the answer set. Since the sort fields no longer have the same names,
 the fields are merged with no regard to matching records.
@@ -1595,11 +1649,13 @@ When CARTESIAN is set to ON, the following multi-path request produces a report 
 all possible combinations of models and standards for each car:
 
 SET CARTESIAN=ON
+```fex
 TABLE FILE CAR
 PRINT MODEL STANDARD
 BY CAR
 IF CAR EQ 'JAGUAR'
 END
+```
 
 The output in an ASCII environment is:
 

@@ -207,6 +207,7 @@ the first (highest level) vertical sort field, PLANT:
 
 SET COMPOUND='BYTOC 2'
 
+```fex
 TABLE FILE CENTORD
 HEADING
 "SALES REPORT"
@@ -219,10 +220,12 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 You can also add an HTML TOC as an icon to the upper-left corner of a report by using a SET
 command within the request.
 
+```fex
 TABLE FILE CENTORD
 HEADING
 "SALES REPORT"
@@ -236,9 +239,11 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The following example shows how you can use a PCHOLD command to run the request:
 
+```fex
 TABLE FILE CENTORD
 HEADING
 "SALES REPORT"
@@ -251,12 +256,14 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 ## Adding the HTML Table of Contents Tree Control to Reports
 
 In the following request, the TOC Tree control is enabled in the Report StyleSheet:
 
+```fex
 TABLE FILE CENTORD
 HEADING
 "SALES REPORT"
@@ -271,6 +278,7 @@ TYPE=REPORT, GRID=OFF, $
 TYPE=REPORT, TOC='PRODCAT', $
 ENDSTYLE
 END
+```
 
 Note: Single quotation marks (') should be used when TOC is specified in the StyleSheet.
 
@@ -316,6 +324,7 @@ Example:
 
 Customizing Sections of the Report With a Page Break
 
+```fex
 TABLE FILE SHORT
 PRINT PROJECTED_RETURN
 BY CONTINENT
@@ -339,6 +348,7 @@ STYLE=NORMAL,
 $
 ENDSTYLE
 END
+```
 
 
 One section of the report is displayed at a time.
@@ -376,6 +386,7 @@ including a SET command in the request. The TOC displays a hierarchy consisting 
 of sort fields, beginning with the first (highest-level). The sort fields are: CONTINENT, REGION,
 COUNTRY, and TYPE.
 
+```fex
 TABLE FILE SHORT
 PRINT PROJECTED_RETURN
 BY CONTINENT
@@ -396,6 +407,7 @@ STYLE=NORMAL,
 $
 ENDSTYLE
 END
+```
 
 
 The output is displayed with the TOC object in the upper-left corner.
@@ -537,6 +549,7 @@ This request uses the required StyleSheet attributes to add a TOC to an HTML rep
 drop-down TOC lists the values of the field CONTINENT, identified in the StyleSheet code as
 OBJECT=FIELD, ITEM=1, TOC=CONTINENT.
 
+```fex
 TABLE FILE SHORT
 HEADING
 "Projected Returns Report for Region:  <REGION in Continent:  <CONTINENT "
@@ -559,6 +572,7 @@ $
 TYPE=HEADING, LINE=1, OBJECT=FIELD, ITEM=1, TOC=CONTINENT, $
 ENDSTYLE
 END
+```
 
 
 ## Adding the HTML Table of Contents Tree Control to Reports
@@ -585,6 +599,7 @@ line of the page heading for two sort (BY) fields specified in the request: CONT
 REGION. Each field becomes a place-holder for its TOC. (If the TOC features were not in effect,
 the field would display in the report.)
 
+```fex
 TABLE FILE SHORT
 "Projected Return"
 " "
@@ -606,6 +621,7 @@ TYPE=HEADING, LINE=3, OBJECT=FIELD, ITEM=1, TOC=B1,$
 TYPE=HEADING, LINE=3, OBJECT=FIELD, ITEM=2, TOC=REGION,$
 ENDSTYLE
 END
+```
 
 
 ## Adding the HTML Table of Contents Tree Control to Reports
@@ -987,10 +1003,12 @@ The following request against the EMPLOYEE data source has two sort fields, DEPA
 and YEAR. It uses the PRINT display command.
 
 SET EXPANDBYROW = ALL
+```fex
 DEFINE FILE EMPLOYEE
 YEAR/YY = HIRE_DATE;
 YEARMO/YYM = HIRE_DATE;
 END
+```
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME AS 'Last,Name' FIRST_NAME AS 'First,Name'
 CURR_SAL AS 'Current,Salary' ED_HRS AS 'Education,Hours'
@@ -1108,6 +1126,7 @@ the enhanced interface, the SET EXPANDBYROWTREE command must be set to ON. In or
 automatically resize the data to fit the size of the container, the SET AUTOFIT command must
 be set to ON.
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/D8MC
 UNITS/D8C
@@ -1124,6 +1143,7 @@ ON TABLE SET STYLE *
 INCLUDE=IBFS:/FILE/IBI_HTML_DIR/ibi_themes/Warm.sty,$
 ENDSTYLE
 END
+```
 
 
 The initial output shows only the top level BY field (REGION), as shown in the following image.
@@ -1151,6 +1171,7 @@ and the background color to different shades of purple.
 Note: The color of the arrows match the color of the SUBTOTAL line, in this case, white.
 
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/D8MC
 UNITS/D8C
@@ -1176,6 +1197,7 @@ TYPE=SUBTOTAL, BY=3, BACKCOLOR=RGB(237 127 236),$
 TYPE=GRANDTOTAL, COLOR='WHITE', BACKCOLOR=RGB(151 43 153), STYLE=BOLD,$
 ENDSTYLE
 END
+```
 
 The initial output shows only the top level BY field (REGION), as shown in the following image.
 
@@ -1197,6 +1219,7 @@ color of the arrows. The following syntax shows how to change the color of the a
 purple.
 
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/D8MC
 UNITS/D8C
@@ -1222,6 +1245,7 @@ TYPE=SUBTOTAL, BY=3, BACKCOLOR=RGB(237 127 236),$
 TYPE=GRANDTOTAL, COLOR='WHITE', BACKCOLOR=RGB(151 43 153), STYLE=BOLD,$
 ENDSTYLE
 END
+```
 
 The following output shows the lowest level of the Accordion By Row report, with purple arrows.
 
@@ -1319,10 +1343,13 @@ report in the default presentation, which means pop-up descriptions are not turn
 
 ## Controlling the Display of Sorted Data With Accordion Reports
 
+```fex
 DEFINE FILE GGSALES.
 UNITS/D12C DESCRIPTION ''=UNITS;
 TOTSALES/D12CM DESCRIPTION 'DOLLARS*UNITS'=DOLLARS*UNITS;
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS UNITS AS 'Units'
 TOTSALES AS 'Total Sales'
@@ -1358,6 +1385,7 @@ TYPE=GRANDTOTAL,
 $
 ENDSTYLE
 END
+```
 
 Fields as defined in the Master File:
 
@@ -1392,10 +1420,13 @@ on.
 ## Controlling the Display of Sorted Data With Accordion Reports
 
 SET POPUPDESC = ON
+```fex
 DEFINE FILE GGSALES.
 UNITS/D12C DESCRIPTION ''=UNITS;
 TOTSALES/D12CM DESCRIPTION 'DOLLARS*UNITS'=DOLLARS*UNITS;
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS UNITS AS 'Units'
 TOTSALES AS 'Total Sales'
@@ -1408,6 +1439,7 @@ ON TABLE SET STYLE *
 INCLUDE=IBFS:/FILE/IBI_HTML_DIR/javaassist/intl/EN/ENIADefault_combine.sty,$
 ENDSTYLE
 END
+```
 
 As with all HTML reports, setting POPUPDESC=ON will activate a text box that displays the field
 descriptions for each of the verb column titles.
@@ -1455,6 +1487,7 @@ created, which concatenates the FIRST_NAME field and the LAST_NAME field.
 
 ## Controlling the Display of Sorted Data With Accordion Reports
 
+```fex
 DEFINE FILE EMPLOYEE
 NAME_SORT/A50=EMPLOYEE.EMPINFO.LAST_NAME || ( ', ' |
 EMPLOYEE.EMPINFO.FIRST_NAME );
@@ -1463,6 +1496,7 @@ NAME_CODE/A1=EDIT(LAST_NAME, '9');
 NAME_GROUP/A10=IF NAME_CODE LE 'G' THEN 'A-G' ELSE IF NAME_CODE LE 'P'
  THEN 'H-P' ELSE 'Q-Z';
 END
+```
 TABLE FILE EMPLOYEE
 SUM
 EMPLOYEE.EMPINFO.CURR_SAL AS 'Current Salary'
@@ -1538,6 +1572,7 @@ year of hire. The display fields, HIRE_DATE and CURR_SAL, are sorted by HIRE_DAT
 reformatted with the format, YY, and by the virtual field NAME_DISPLAY (employee name).
 
 
+```fex
 DEFINE FILE EMPLOYEE
 NAME_SORT/A50=EMPLOYEE.EMPINFO.LAST_NAME || ( ', ' |
  EMPLOYEE.EMPINFO.FIRST_NAME ); NAME_DISPLAY/
@@ -1545,6 +1580,8 @@ A57=EMPLOYEE.EMPINFO.FIRST_NAME | EMPLOYEE.EMPINFO.LAST_NAME;NAME_CODE/
 A1=EDIT(LAST_NAME, '9'); NAME_GROUP/A10=IF NAME_CODE LE 'G'
  THEN 'A-G' ELSE IF NAME_CODE LE  'P' THEN 'H-P' ELSE 'Q-Z';
 END
+```
+```fex
 TABLE FILE EMPLOYEE
 SUM
 HIRE_DATE
@@ -1561,6 +1598,7 @@ ON TABLE SET STYLE *
 INCLUDE=IBFS:/FILE/IBI_HTML_DIR/javaassist/intl/EN/ENIADefault_combine.sty,$
 ENDSTYLE
 END
+```
 
 In the report generated, there are multiple expandable groups or nodes for the same year,
 1981. This occurs because the reformatted values are used for display, but the original values
@@ -1579,6 +1617,7 @@ sort, and aggregate on the new redefined BY value.
 
 ## Controlling the Display of Sorted Data With Accordion Reports
 
+```fex
 DEFINE FILE EMPLOYEE
 NAME_SORT/A50=EMPLOYEE.EMPINFO.LAST_NAME || ( ', ' |
 EMPLOYEE.EMPINFO.FIRST_NAME );
@@ -1588,6 +1627,8 @@ NAME_GROUP/A10=IF NAME_CODE LE 'G' THEN 'A-G' ELSE IF NAME_CODE LE 'P'
  THEN 'H-P' ELSE 'Q-Z';
 DATE_HIRED/YY=HIRE_DATE;
 END
+```
+```fex
 TABLE FILE EMPLOYEE
 SUM EMPLOYEE.EMPINFO.CURR_SAL
 BY DATE_HIRED
@@ -1602,6 +1643,7 @@ ON TABLE SET STYLE *
 INCLUDE=IBFS:/FILE/IBI_HTML_DIR/javaassist/intl/EN/ENIADefault_combine.sty,$
 ENDSTYLE
 END
+```
 
 In the above request, the verb fields, HIRE_DATE and CURR_SAL are sorted by the DEFINE
 field, DATE_HIRED. The result is a report sorted and aggregated by the redefined date values,
@@ -1698,11 +1740,13 @@ Creating an Accordion By Column Report
 This example shows how to use an EXPANDABLE command to create an Accordion By Column
 Report.
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS
 BY REGION BY ST BY CITY BY CATEGORY
 ON TABLE SET EXPANDABLE ON
 END
+```
 
 
 The following image shows an Accordion by Column Report which displays all data associated
@@ -1859,6 +1903,7 @@ between BULLET.GIF and the next page of the report, and GOBACK.GIF and the previ
 of the report.
 
 
+```fex
 TABLE FILE GGORDER
 ON TABLE SUBHEAD
 "COFFEE GRINDER SALES BY STORE"
@@ -1878,6 +1923,7 @@ TYPE=HEADING, IMAGE=/IBI_APPs/IBI_HTML/GGDEMO/GOBACK, URL=#_previous,
 IMAGEALIGN=RIGHT,$
 ENDSTYLE
 END
+```
 
 The images display in each page heading.
 
@@ -1909,6 +1955,7 @@ previous page or to the first page.
 
 ## Linking Report Pages
 
+```fex
 TABLE FILE GGORDER
 ON TABLE SUBHEAD
 "COFFEE GRINDER SALES BY STORE"
@@ -1928,6 +1975,7 @@ TYPE=HEADING, LINE=1, URL=#_previous, $
 TYPE=HEADING, LINE=2, URL=#_start, $
 ENDSTYLE
 END
+```
 
 The first page looks as follows:
 

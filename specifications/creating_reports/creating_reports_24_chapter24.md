@@ -161,6 +161,7 @@ Converting a TABLE Request to a GRAPH Request
 The following illustrates how a TABLE request can easily be converted into a GRAPH request by
 changing the TABLE command to a GRAPH command.
 
+```fex
 TABLE FILE GGORDER
 HEADING CENTER
 "SAMPLE TABLE"
@@ -168,6 +169,7 @@ SUM QUANTITY
 BY PRODUCT_DESC AS 'Coffee Types'
 WHERE PRODUCT_DESC EQ 'French Roast' OR 'Hazelnut' OR 'Kona'
 END
+```
 
 The output is:
 
@@ -180,6 +182,7 @@ Kona                      61498
 
 The same request with a GRAPH command in place of the TABLE command is:
 
+```fex
 GRAPH FILE GGORDER
 HEADING CENTER
 "Sample Graph"
@@ -187,6 +190,7 @@ SUM QUANTITY
 BY PRODUCT_DESC AS 'Coffee Types'
 WHERE PRODUCT_DESC EQ 'French Roast' OR 'Hazelnut' OR 'Kona'
 END
+```
 
 
 The output is:
@@ -222,12 +226,14 @@ The following request against the GGSALES data source creates an HTML5 vertical 
 
 ## Creating an HTML5 Graph
 
+```fex
 GRAPH FILE GGSALES
 SUM DOLLARS BUDDOLLARS
 BY REGION
 ON GRAPH PCHOLD FORMAT JSCHART
 ON GRAPH SET LOOKGRAPH VBAR
 END
+```
 
 The output is:
 
@@ -476,6 +482,7 @@ The following illustrates how to create a line graph using the LOOKGRAPH command
 
 SET LOOKGRAPH = LINE, GRID=ON
 SET HAXIS=600, VAXIS=315
+```fex
 GRAPH FILE GGORDER
 HEADING CENTER
 "Sample Line Graph"
@@ -483,6 +490,7 @@ SUM QUANTITY
 ACROSS PRODUCT_DESC
 WHERE PRODUCT_DESC EQ 'French Roast' OR 'Hazelnut' OR 'Kona'
 END
+```
 
 The output is:
 
@@ -550,6 +558,7 @@ Creating a Horizontal Bar Graph
 
 The following illustrates how to create a horizontal bar graph:
 
+```fex
 GRAPH FILE GGORDER
 HEADING CENTER
 "Sample Horizontal Bar Graph"
@@ -557,6 +566,7 @@ SUM QUANTITY
 BY PRODUCT_DESC
 WHERE PRODUCT_DESC EQ 'French Roast' OR 'Hazelnut' OR 'Kona'
 END
+```
 
 The output is:
 
@@ -566,6 +576,7 @@ Creating a Vertical Bar Graph
 
 The following illustrates how to create a vertical bar graph:
 
+```fex
 GRAPH FILE GGORDER
 HEADING CENTER
 "SAMPLE VERTICAL BAR GRAPH"
@@ -573,6 +584,7 @@ SUM QUANTITY
 ACROSS PRODUCT_DESC
 WHERE PRODUCT_DESC EQ 'French Roast' OR 'Hazelnut' OR 'Kona'
 END
+```
 
 
 ## Selecting a Graph Type
@@ -616,6 +628,7 @@ The following illustrates how to create a pie graph using a BY sort phrase and t
 command:
 
 SET LOOKGRAPH=PIE
+```fex
 GRAPH FILE GGORDER
 HEADING CENTER
 "SAMPLE PIE CHART"
@@ -623,6 +636,7 @@ SUM QUANTITY
 BY PRODUCT_DESC AS COFFEES
 WHERE PRODUCT_DESC EQ 'French Roast' OR 'Hazelnut' OR 'Kona'
 END
+```
 
 The output is:
 
@@ -662,6 +676,7 @@ Creating a Scatter Graph
 
 The following illustrates how to create a scatter graph:
 
+```fex
 GRAPH FILE GGORDER
 HEADING CENTER
 "Sample Scatter Graph"
@@ -670,6 +685,7 @@ ACROSS PRODUCT_CODE
 WHERE PRODUCT_CODE EQ 'B144'
 WHERE QUANTITY LT 51
 END
+```
 
 
 The output is:
@@ -1394,10 +1410,12 @@ Example:
 The following illustrates how to set the X-axis (PRODUCT_DESC) using an ACROSS phrase and
 the Y-axis (QUANTITY) with the display command SUM:
 
+```fex
 GRAPH FILE GGORDER
 SUM QUANTITY AS 'Ordered Units'
 ACROSS PRODUCT_DESC
 END
+```
 
 
 The output is:
@@ -1431,12 +1449,14 @@ Interpolating X and Y Axis Values Using Linear Regression
 The following illustrates how to turn on linear regression in a scatter chart.
 
 SET 3D=OFF
+```fex
 GRAPH FILE CAR
 PRINT RC
 ACROSS DC
 ON GRAPH SET LOOKGRAPH SCATTER
 ON GRAPH SET GTREND ON
 END
+```
 
 The output is:
 
@@ -1539,11 +1559,13 @@ The following illustrates a graph with two horizontal, or X-axes, categories (PR
 PACKAGE_TYPE) that have been merged.
 
 SET GRMERGE=ON
+```fex
 GRAPH FILE GGORDER
 SUM UNIT_PRICE ORDER_NUMBER
 ACROSS PRODUCT_ID
 BY PACKAGE_TYPE
 END
+```
 
 
 The output is:
@@ -1555,6 +1577,7 @@ The following example generates a vertical bar graph that separates the outermos
 (REGION) onto separate graphs, distinguishes the next two sort fields (ST and CATEGORY) by
 combining them on the graph legend, and places the CATEGORY sort field on the X-axis:
 
+```fex
 GRAPH FILE GGSALES
 SUM DOLLARS
 BY REGION BY ST BY CATEGORY BY PRODUCT
@@ -1566,6 +1589,7 @@ ON GRAPH SET GRLEGEND 2
 ON GRAPH SET GRXAXIS 1
 ON GRAPH SET LOOKGRAPH VBAR
 END
+```
 
 
 ## Creating Multiple Graphs
@@ -1608,6 +1632,7 @@ the graphs, the SET OLAPGRMERGE=ON command is issued:
 -OLAP ON
 SET GRAPHEDIT=SERVER
 SET OLAPGRMERGE=ON
+```fex
 TABLE FILE EMPLOYEE
 SUM SALARY
 BY DEP
@@ -1634,6 +1659,7 @@ TYPE=REPORT,
 $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -1673,11 +1699,13 @@ The following illustrates how to set the number of columns in which you wish to 
 multiple graphs. In this example, the graphs are set to display in two columns.
 
 SET GRWIDTH=2
+```fex
 GRAPH FILE GGORDER
 SUM UNIT_PRICE ORDER_NUMBER
 ACROSS PRODUCT_ID
 BY PACKAGE_TYPE
 END
+```
 
 The output is:
 
@@ -1719,6 +1747,7 @@ The following example illustrates how month-first formatted date fields are disp
 graph.
 
 SET GRMERGE = ON
+```fex
 GRAPH FILE GGORDER
 SUM QUANTITY
 ACROSS ORDER_DATE
@@ -1726,6 +1755,7 @@ BY PRODUCT_DESC
 WHERE PRODUCT_DESC EQ 'French Roast' OR 'Hazelnut' OR 'Kona' AND
 ORDER_DATE GE '010197'
 END
+```
 
 
 ## Plotting Dates in Graphs
@@ -1833,11 +1863,13 @@ used in a TABLE request.
 The following graph request shows data for specific product descriptions, namely French
 Roast, Hazelnut, or Kona.
 
+```fex
 GRAPH FILE GGORDER
 SUM QUANTITY
 BY PRODUCT_DESC
 WHERE PRODUCT_DESC EQ 'French Roast' OR 'Hazelnut' OR 'Kona'
 END
+```
 
 The output is:
 
@@ -1871,6 +1903,7 @@ Syntax:
 
 How to Display Missing Values in a Graph
 
+```fex
 GRAPH FILE filename
 .
 .
@@ -1882,6 +1915,7 @@ API call
 *END
 ENDSTYLE
 END
+```
 
 where:
 
@@ -1922,6 +1956,7 @@ SET LOOKGRAPH=BAR
 SET GRAPHEDIT=SERVER
 SET GRID=ON
 SET VZERO=ON
+```fex
 GRAPH FILE MSFATIA
 SUM CUR_SAL
 RAISE
@@ -1932,6 +1967,7 @@ setTextRotation(getO1Label(),0);
 *END
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -1949,6 +1985,7 @@ SET LOOKGRAPH=BAR
 SET GRAPHEDIT=SERVER
 SET GRID=ON
 SET VZERO=OFF
+```fex
 GRAPH FILE MSFATIA
 SUM CUR_SAL
 RAISE
@@ -1960,6 +1997,7 @@ setTextRotation(getO1Label(),0);
 *END
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -1978,6 +2016,7 @@ SET LOOKGRAPH=LINE
 SET GRAPHEDIT=SERVER
 SET GRID=ON
 SET VZERO=OFF
+```fex
 GRAPH FILE MSFATIA
 SUM CUR_SAL
 RAISE
@@ -1989,6 +2028,7 @@ setTextRotation(getO1Label(),0);
 *END
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -2006,6 +2046,7 @@ SET LOOKGRAPH=LINE
 SET GRAPHEDIT=SERVER
 SET GRID=ON
 SET VZERO=OFF
+```fex
 GRAPH FILE MSFATIA
 SUM CUR_SAL
 RAISE
@@ -2017,6 +2058,7 @@ setTextRotation(getO1Label(),0);
 *END
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -2095,6 +2137,7 @@ Example:
 
 The following illustrates how you can apply conditional styling to a graph.
 
+```fex
    GRAPH FILE GGSALES
    SUM UNITS DOLLARS ACROSS PRODUCT
    ON GRAPH SET STYLE *
@@ -2104,6 +2147,7 @@ The following illustrates how you can apply conditional styling to a graph.
 4. TYPE=DATA,ACROSSCOLUMN=N1,COLOR=LIME,WHEN=N1 LT 200000,$
    ENDSTYLE
    END
+```
 
 1. This line specifies blue as the default data color.
 
@@ -2236,6 +2280,7 @@ Linking to Additional Reports or Graphs
 In this example, when the value for UNITS is less than four hundred thousand, the color is lime
 and you can drill-down to a detail report.
 
+```fex
 GRAPH FILE GGSALES
 SUM UNITS DOLLARS ACROSS PRODUCT
 ON GRAPH SET STYLE *
@@ -2243,6 +2288,7 @@ TYPE=DATA,COLOR=SILVER,$
 TYPE=DATA,ACROSSCOLUMN=N1,COLOR=LIME,WHEN=N1 LT 400000,FOCEXEC=GRAPH2,$
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -2514,6 +2560,7 @@ Adding a Heading and Footing to a Graph
 The following illustrates how to add a heading with an embedded field value to your graph. In
 this example, the heading is "Total Coffee Orders" with the embedded field TOT.QUANTITY.
 
+```fex
 GRAPH FILE GGORDER
 HEADING CENTER
 "Total Coffee Orders: <TOT.QUANTITY "
@@ -2523,6 +2570,7 @@ WHERE PRODUCT_DESC EQ 'French Roast' OR 'Hazelnut' OR 'Kona'
 FOOTING CENTER
 "For year-end orders"
 END
+```
 
 
 The output is:
@@ -2637,11 +2685,13 @@ Using SET Parameters With GRAPH Requests
 The following shows how to set the height (Y-axis) and width (X-axis) for a graph.
 
 SET HAXIS=75,VAXIS=40
+```fex
 GRAPH FILE filename
 .
 .
 .
 END
+```
 
 Reference: Values and Functions of SET Parameters for Graphs
 
@@ -3006,6 +3056,7 @@ Syntax:
 
 How to Customize a Graph Using the Graph API
 
+```fex
 GRAPH FILE filename
 graph commands
 ON GRAPH SET STYLE *
@@ -3020,6 +3071,7 @@ JSON
 WEBFOCUS StyleSheet commands
 ENDSTYLE
 END
+```
 
 where:
 
@@ -3057,6 +3109,7 @@ Customizing Graphs Using the Graph API
 The following annotated example illustrates how to customize a graph using ON GRAPH SET
 STYLE *. The Graph API code is highlighted in the request.
 
+```fex
    GRAPH FILE SALES
    SUM RETURNS
    RETAIL_PRICE
@@ -3072,6 +3125,7 @@ STYLE *. The Graph API code is highlighted in the request.
    TYPE=DATA,MACRO=COND0001,ACROSSCOLUMN=RETURNS,COLOR=RED,$
    ENDSTYLE
    END
+```
 
 where:
 
@@ -3141,10 +3195,12 @@ How to Save a Graph as an Image File
 
 [FILEDEF filename DISK drive:\...\filename.fmt]
 SET GRAPHSERVURL= graph_servlet_URL
+```fex
 GRAPH FILE file
 graph commands
 ON GRAPH HOLD AS filename FORMAT fmt
 END
+```
 
 where:
 
@@ -3197,12 +3253,15 @@ the GIF image into a PDF report.
 For example, if you are running against your local server it may look like this:
 
 SET GRAPHSERVURL= http://localhost/ibi_apps/IBIGraphServlet
+```fex
 GRAPH FILE CENTORD
 SUM LINEPRICE
 ACROSS PLANTLNG AS 'Plant'
 ON GRAPH HOLD AS PLANT FORMAT GIF
 END
+```
 
+```fex
 TABLE FILE CENTORD
 SUM LINEPRICE
 BY PLANTLNG AS 'Plant'
@@ -3211,6 +3270,7 @@ TYPE=REPORT, IMAGE=plant.gif, POSITION=(4 0), SIZE=(5 3), $
 ENDSTYLE
 ON TABLE PCHOLD FORMAT PDF
 END
+```
 
 Note: If you are using JSCOM3, you can eliminate the SET GRAPHSERVURL parameter from
 the procedure.

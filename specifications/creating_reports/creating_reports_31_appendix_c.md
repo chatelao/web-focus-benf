@@ -22,6 +22,7 @@ TABLE Limits
 
 The syntax of a TABLE request is:
 
+```fex
 DEFINE FILE filename    CLEAR|ADD
 tempfield  [/format] [{DEFCENT|DFC} {cc|19} {YRTHRESH|YRT} {[-]yy|0}]
     [MISSING {ON|OFF} [NEEDS] {SOME|ALL} [DATA]]
@@ -33,6 +34,7 @@ tempfield  [/format]    REDEFINES qualifier.fieldname = expression;
 .
 .
 END
+```
 TABLE  FILE  filename
 HEADING  [CENTER]
 "text"

@@ -52,6 +52,7 @@ attributes appear in a report, and which TYPE values you use to identify them. A
 example the value for COLUMN is B1 and the value for ACROSSCOLUMN is N2, these are not
 the only values you can use to identify these components.
 
+```fex
 TABLE FILE CENTORD
 SUM LINEPRICE LINE_COGS AS 'Line Cost of,Goods Sold'
 BY PLANT AS 'Plant'
@@ -63,6 +64,7 @@ FOOTING CENTER
 "**End of Report**"
 ON TABLE SET PAGE-NUM OFF
 END
+```
 
 Note: Since this request simply illustrates where the components appear in a report, it omits a
 StyleSheet.
@@ -83,6 +85,7 @@ Identifying an Entire Report
 The following illustrates how to identify and apply formatting to an entire report. The relevant
 StyleSheet declarations are highlighted in the request.
 
+```fex
 TABLE FILE CENTINV
 HEADING
 "Excess Stock Report"
@@ -97,6 +100,7 @@ TYPE=REPORT, GRID=OFF,$
 TYPE=REPORT, STYLE=BOLD,$
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -201,6 +205,7 @@ request.
 Note: To produce the same results you can, alternatively, use the values P1, B1, or the
 fieldname (PRODNAME) for the COLUMN attribute in the StyleSheet declaration.
 
+```fex
 TABLE FILE CENTINV
 HEADING
 "Excess Stock Report"
@@ -215,6 +220,7 @@ TYPE=REPORT, GRID=OFF,$
 TYPE=REPORT, COLUMN=N1, STYLE=ITALIC,$
 ENDSTYLE
 END
+```
 
 
 ## Identifying an Entire Report, Column, or Row
@@ -233,6 +239,7 @@ the report output. The relevant StyleSheet declarations are highlighted in the r
 Note: To produce the same results you can alternatively use the values P1 and P2,
 respectively, for the ACROSSCOLUMN attribute.
 
+```fex
 TABLE FILE CENTORD
 SUM LINEPRICE LINE_COGS AS 'Line Cost of,Goods Sold'
 BY PLANT AS 'Plant'
@@ -249,6 +256,7 @@ TYPE=REPORT, ACROSSCOLUMN=N1, STYLE=ITALIC,$
 TYPE=REPORT, ACROSSCOLUMN=N2, STYLE=BOLD,$
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -272,6 +280,7 @@ Identifying an Entire FML Row
 The following illustrates how to identify an entire FML row, consisting of the row label and the
 row data. The relevant StyleSheet declarations are highlighted in the request.
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 1010 AS 'CASH ON HAND' LABEL COH OVER
@@ -287,6 +296,7 @@ TYPE=REPORT, LABEL=DD, STYLE=ITALIC, $
 TYPE=REPORT, LABEL=TD, STYLE=ITALIC, $
 ENDSTYLE
 END
+```
 
 
 ## Identifying an Entire Report, Column, or Row
@@ -333,6 +343,7 @@ Identifying an Entire Total Row
 The following illustrates how to identify an entire COLUMN-TOTAL row in a StyleSheet. The
 relevant StyleSheet declaration is highlighted in the request.
 
+```fex
 TABLE FILE SALES
 SUM RETURNS DAMAGED AND ROW-TOTAL AND COLUMN-TOTAL
 BY PROD_CODE
@@ -342,6 +353,7 @@ TYPE=REPORT, GRID=OFF, $
 TYPE=GRANDTOTAL, STYLE=BOLD, SIZE=12, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -357,6 +369,7 @@ highlighted in the request. Note that if you want to format an instance of row-t
 a WHEN statement to your StyleSheet. For details, see Controlling Report Formatting on page
 1219.
 
+```fex
 TABLE FILE SALES
 SUM RETURNS DAMAGED AND ROW-TOTAL
 BY PROD_CODE AS 'PRODUCT,CODE'
@@ -366,6 +379,7 @@ TYPE=REPORT, GRID=OFF, $
 TYPE=REPORT, COLUMN=ROWTOTAL, STYLE=BOLD, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -448,6 +462,7 @@ The following request against the GGSALES data source generates subtotal and gra
 rows. The tags for the subtotal rows are in italics and are white. The tag for the grand total row
 has a drill-down link to a URL:
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS/D8C DOLLARS/D12CM BUDUNIT/D8C BUDDOLLARS/D12CM
 BY REGION
@@ -467,6 +482,7 @@ TYPE=GRANDTOTAL, BACKCOLOR='LIGHT GREY',$
 TYPE=GRANDTOTAL, OBJECT=TAG,URL='http://www.informationbuilders.com',$
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -492,6 +508,7 @@ Totals and subtotals. For more information, see Identifying Totals and Subtotals
 The following illustrates where the DATA and ACROSSVALUE components appear in a report,
 and which TYPE values you use to identify them.
 
+```fex
 TABLE FILE CENTORD
 HEADING CENTER
 "UNITS SOLD IN 2002 BY PLANT"
@@ -504,6 +521,7 @@ ON TABLE SET PAGE-NUM OFF
 ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF,$
 END
+```
 
 Note: Since this request simply illustrates where the components appear in a report, it omits a
 StyleSheet.
@@ -525,6 +543,7 @@ Identifying All Data in a Report
 The following illustrates how to identify all of the data in a report. The relevant StyleSheet
 declaration is highlighted in the request.
 
+```fex
 TABLE FILE CENTORD
 HEADING CENTER
 "UNITS SOLD IN 2002 BY PLANT"
@@ -539,6 +558,7 @@ TYPE=REPORT, GRID=OFF, $
 TYPE=DATA, STYLE=BOLD, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -569,6 +589,7 @@ Note that when identifying a column using Nn, NOPRINT columns are counted. Even 
 Product Name field is the first column in this report, it is identified with N2 because of the
 NOPRINT column.
 
+```fex
 TABLE FILE CENTORD
 PRINT QUANTITY LINEPRICE LINE_COGS
 BY ORDER_NUM NOPRINT
@@ -580,6 +601,7 @@ TYPE=REPORT, GRID=OFF,$
 TYPE=DATA, COLUMN=N2, STYLE=ITALIC,$
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -614,6 +636,7 @@ Identifying a Row of Horizontal Sort (ACROSS) Data
 The following illustrates how to identify a row of horizontal sort data. The relevant StyleSheet
 declaration is highlighted in the request.
 
+```fex
 TABLE FILE CENTORD
 HEADING
 "Units Sold"
@@ -628,6 +651,7 @@ TYPE=HEADING, SIZE=12, $
 TYPE=ACROSSVALUE, ACROSS=PLANT, STYLE=BOLD, $
 ENDSTYLE
 END
+```
 
 
 ## Identifying Data
@@ -646,6 +670,7 @@ The following illustrates how to identify a row total (ACROSS-TOTAL) for horizon
 (ACROSS) data using the ACROSSVALUE component and a numeric column reference (Nn). The
 relevant StyleSheet declaration is highlighted in the request.
 
+```fex
 TABLE FILE CENTORD
 SUM QUANTITY
 BY PRODNAME
@@ -658,6 +683,7 @@ TYPE=REPORT, GRID=OFF, $
 TYPE=ACROSSVALUE, COLUMN=N8, STYLE=ITALIC, COLOR='RED', $
 ENDSTYLE
 END
+```
 
 
 The following image shows the output with the ACROSS-TOTAL value, Plant Totals, styled in red
@@ -673,6 +699,7 @@ Report, Column, or Row on page 1249.
 The following example illustrates where these components are in a report, and which TYPE
 values you use to identify them.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM DED_AMT AND GROSS
 BY DEPARTMENT BY PAY_DATE
@@ -680,6 +707,7 @@ ON DEPARTMENT RECAP DEPT_NET/D8.2M = GROSS-DED_AMT;
 WHEN PAY_DATE GT 820101
 ON DEPARTMENT SUBTOTAL
 END
+```
 
 
 ## Identifying Data
@@ -769,6 +797,7 @@ declaration.
 To produce the same results you can alternatively use the values N5, P5, or C3 for the
 COLUMN attribute in the StyleSheet declaration.
 
+```fex
 TABLE FILE CENTORD
 SUM QUANTITY LINEPRICE LINE_COGS AND COLUMN-TOTAL
 BY ORDER_NUM BY PRODNAME
@@ -779,6 +808,7 @@ TYPE=REPORT, GRID=OFF,$
 TYPE=GRANDTOTAL, COLUMN=LINE_COGS, STYLE=BOLD, SIZE=11,$
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -807,6 +837,7 @@ COLUMN=P6, or COLUMN=C3 for the COLUMN=LINE_COGS attribute.
 To produce the same results you can, alternatively, use the values COLUMN=N4,
 COLUMN=P4, or COLUMN=C1 for the COLUMN=QUANTITY attribute.
 
+```fex
 TABLE FILE CENTORD
 SUM QUANTITY LINEPRICE LINE_COGS AS 'Line Cost of, Goods Sold'
 BY PLANT
@@ -824,6 +855,7 @@ TYPE=SUBTOTAL, BY=PLANT, COLUMN=LINE_COGS, STYLE=BOLD+ITALIC,
 TYPE=SUBTOTAL, BY=ORDER_NUM, COLUMN=QUANTITY, STYLE=BOLD, SIZE=11,$
 ENDSTYLE
 END
+```
 
 
 ## Identifying Data
@@ -841,6 +873,7 @@ QTY/F6=QUANTITY. The relevant StyleSheet declaration is highlighted in the reque
 Note: If there is more than one RECAP or COMPUTE field in your request, you can distinguish
 them by adding BY=fieldname to the StyleSheet declaration.
 
+```fex
 TABLE FILE CENTORD
 SUM QUANTITY LINEPRICE LINE_COGS AS 'Line Cost of, Goods Sold'
 BY PLANT BY ORDER_NUM
@@ -853,6 +886,7 @@ TYPE=REPORT, GRID=OFF, $
 TYPE=RECAP, STYLE=BOLD+ITALIC, $
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -882,10 +916,12 @@ horizontal sort values are in a report, and which TYPE values you use to identif
 
 ## Identifying a Heading, Footing, Title, or FML Free Text
 
+```fex
 TABLE FILE EMPLOYEE
 SUM GROSS AND DED_AMT
 ACROSS DEPARTMENT BY PAY_DATE
 END
+```
 
 Note: Since this request simply illustrates how to identify column titles and horizontal sort
 values in a report, it omits a StyleSheet.
@@ -953,6 +989,7 @@ The following also demonstrates how to assign drill-down values to the individua
 values of 2001 and 2002, and not the ROW-TOTAL value of TOTAL. The StyleSheet
 declarations in this request are shown in bold.
 
+```fex
 TABLE FILE CENTORD
 SUM QUANTITY AS 'Quantity,Sold' LINE_COGS/I9 AS 'Product,Cost'
 BY PLANT
@@ -971,6 +1008,7 @@ TYPE=ACROSSVALUE, COLUMN=N4, STYLE=BOLD, COLOR=RED, $
 TYPE=ACROSSVALUE, COLUMN=ROWTOTAL(1), COLOR='BLACK',FOCEXEC=NONE, $
 ENDSTYLE
 END
+```
 
 
 ## Identifying a Heading, Footing, Title, or FML Free Text
@@ -1003,6 +1041,7 @@ The following illustrates how to identify free text in an FML report. In this ex
 are the rows "CASH ACCOUNTS" and "OTHER CURRENT ASSETS". The relevant StyleSheet
 declarations are displayed in bold.
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 " --- CASH ACCOUNTS ---" LABEL CA            OVER
@@ -1020,6 +1059,7 @@ TYPE=FREETEXT, LABEL=CA, STYLE=BOLD, SIZE=12, $
 TYPE=FREETEXT, LABEL=OCA, STYLE=BOLD, SIZE=12, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -1040,6 +1080,7 @@ The following code and output examples illustrate where a report heading (TABHEA
 page heading (HEADING), a sort heading (SUBHEAD), a sort footing (SUBFOOT), and a report
 footing (TABFOOTING) are in a report, and which TYPE values you use to identify them.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT CURR_SAL HIRE_DATE
 BY LAST_NAME
@@ -1059,6 +1100,7 @@ ON TABLE SUBFOOT
 "</1>***END OF REPORT***"
 ON TABLE SET ONLINE-FMT STANDARD
 END
+```
 
 The following output goes with the previous code example:
 
@@ -1122,6 +1164,7 @@ The following illustrates how to identify a page heading, which appears at the t
 report page, and a report footing, which appears only on the last page of the report. The
 relevant StyleSheet declarations are highlighted in the request.
 
+```fex
 TABLE FILE CENTORD
 HEADING
 "Sales Quantity and Amount by Plant"
@@ -1137,6 +1180,7 @@ TYPE=HEADING, FONT=TIMES, SIZE=12, STYLE=BOLD,$
 TYPE=TABFOOTING, JUSTIFY=CENTER, STYLE=BOLD, SIZE=11,$
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -1168,6 +1212,7 @@ The following example illustrates how to format individual lines in a heading. H
 is formatted in bold and red. The relevant StyleSheet declarations are highlighted in the
 request.
 
+```fex
 TABLE FILE CENTORD
 HEADING
 "Sales Quantity Analysis"
@@ -1184,6 +1229,7 @@ TYPE=HEADING, LINE=2, COLOR=RED, STYLE=BOLD,$
 TYPE=HEADING, JUSTIFY=CENTER,$
 ENDSTYLE
 END
+```
 
 
 ## Identifying a Heading, Footing, Title, or FML Free Text
@@ -1248,6 +1294,7 @@ The following illustrates how to apply different formats to text strings in a he
 markers. The spot markers used in this example are <+0> since they do not add any spaces.
 The relevant StyleSheet declarations are highlighted in the request.
 
+```fex
 TABLE FILE CENTORD
 HEADING
 "Third Quarter,<+0>2002:<+0> Sales Quantity Analysis"
@@ -1261,6 +1308,7 @@ TYPE=HEADING, OBJECT=TEXT, ITEM=2, COLOR=BLUE, SIZE=12,
 TYPE=HEADING, OBJECT=TEXT, ITEM=3, STYLE=ITALIC,$
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -1304,6 +1352,7 @@ The following illustrates how to format an embedded field in a heading. Notice t
 number is not specified in the StyleSheet declaration since there is only one embedded field in
 the heading. The relevant StyleSheet declaration is highlighted in the request.
 
+```fex
 TABLE FILE CENTORD
 HEADING
 "Sales For <YEAR By Plant"
@@ -1316,6 +1365,7 @@ TYPE=HEADING, OBJECT=TEXT, COLOR=BLUE,$
 TYPE=HEADING, OBJECT=FIELD, COLOR=RED, STYLE=BOLD,$
 ENDSTYLE
 END
+```
 
 
 ## Identifying a Heading, Footing, Title, or FML Free Text
@@ -1346,6 +1396,7 @@ department is MIS. The fourth WHEN condition applies if the department is PRODUC
 StyleSheet declarations include styling elements for the second and third conditions:
 
 
+```fex
 DEFINE FILE EMPLOYEE
 GENDER/A1 = DECODE FIRST_NAME(ALFRED 'M' RICHARD 'M' JOHN 'M'
   ANTHONY 'M' ROGER 'M' MARY 'F' DIANE 'F' JOAN 'F' ROSEMARIE 'F'
@@ -1353,7 +1404,9 @@ GENDER/A1 = DECODE FIRST_NAME(ALFRED 'M' RICHARD 'M' JOHN 'M'
 MIXEDNAME/A15 = LCWORD(15, LAST_NAME, MIXEDNAME);
 NAME/A16 = MIXEDNAME||',';
 END
+```
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME NOPRINT GENDER NOPRINT NAME NOPRINT
 HEADING
@@ -1384,6 +1437,7 @@ TYPE=HEADING, CONDITION=2, STYLE=ITALIC,$
 TYPE=HEADING, CONDITION=3, STYLE=BOLD,$
 ENDSTYLE
 END
+```
 
 In the StyleSheet for the request, heading lines displayed because of the first condition are in
 italics and heading lines displayed because of the third condition are in boldface.
@@ -1408,6 +1462,7 @@ The following code and output examples illustrate where the PAGENUM, UNDERLINE, 
 SKIPLINE components appear in a report, and which TYPE values you use to identify them.
 
 SET ONLINE-FMT=PDF
+```fex
 TABLE FILE CENTORD
 HEADING
 "Sales By Plant"
@@ -1417,6 +1472,7 @@ WHERE PLANT EQ 'BOS' OR 'DAL'
 ON YEAR UNDER-LINE
 ON PLANT SKIP-LINE
 END
+```
 
 
 The following output goes with the previous code example.
@@ -1459,6 +1515,7 @@ Note that this report is formatted in PDF since formatting is not supported for 
 HTML report.
 
 SET ONLINE-FMT=PDF
+```fex
 TABLE FILE CENTORD
 HEADING
 "Sales By Plant"
@@ -1473,6 +1530,7 @@ TYPE=PAGENUM, STYLE=ITALIC, SIZE=8,$
 TYPE=UNDERLINE, COLOR=RED,$
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -1485,6 +1543,7 @@ The following illustrates how to identify skipped lines in a report. The relevan
 declaration is highlighted in the request.
 
 SET ONLINE-FMT=PDF
+```fex
 TABLE FILE CENTINV
 HEADING
 "Low Stock Report"
@@ -1498,6 +1557,7 @@ ON TABLE SET STYLE *
 TYPE=SKIPLINE, BACKCOLOR=SILVER, $
 ENDSTYLE
 END
+```
 
 The output is:
 

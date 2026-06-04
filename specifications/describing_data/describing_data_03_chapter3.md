@@ -735,11 +735,15 @@ Implementing a Many-to-Many Relationship Directly
 You can use the JOIN command to describe the relationship from the perspective of the
 STUDENT table as follows:
 
+```fex
 JOIN STUDENT_ID IN STUDENT TO ALL STUDENT_ID IN CLASSES
+```
 
 You can describe the relationship from the perspective of the CLASSES table as follows:
 
+```fex
 JOIN COURSE_CODE IN CLASSES TO ALL COURSE_CODE IN STUDENT
+```
 
 
 ## Many-to-Many Relationship
@@ -794,7 +798,9 @@ the parent (host) segment, you implement the relationship as a standard one-to-o
 For example, you can use the JOIN command to describe the relationship from the perspective
 of the CLASSES segment, making ENROLLED the join host:
 
+```fex
 JOIN EMP_ID IN ENROLLED TO EMP_ID IN EMPINFO
+```
 
 
 The new structure is illustrated in the following diagram.
@@ -828,7 +834,9 @@ If you want to generate a report showing every employee ID number and name, and 
 manager ID number and name, you must join the segment to itself. Issue the following
 command:
 
+```fex
 JOIN MANAGER_ID IN MANAGER TO ID IN MANAGER AS BOSS
+```
 
 This creates the following structure:
 
@@ -862,7 +870,9 @@ subparts, such as bolts, are used throughout aircraft at many different levels. 
 to give each occurrence of a subpart its own segment instance. Instead, use the two-segment
 design shown previously and then join the data source to itself:
 
+```fex
 JOIN SUBPART IN AIRCRAFT TO PART IN AIRCRAFT AS SUB_PART
+```
 
 
 ## Recursive Relationships

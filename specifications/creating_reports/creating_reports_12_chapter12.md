@@ -138,6 +138,7 @@ contains a hyperlink for each REGION data value. The directory you select depend
 WebFOCUS is installed. In this example, the index page is stored in the directory e:\ibi
 \WebFOCUS82\temp.
 
+```fex
 TABLE FILE GGSALES
 HEADING
 "Regional Report"
@@ -149,6 +150,7 @@ ON TABLE SUBHEAD
 "Regional Summary by Store"
 ON REGION PCSEND LOCATION E:\IBI\WebFOCUS82\temp AS TEST FORMAT HTML
 END
+```
 
 After running this request, no report output is returned, but the following message displays if
 the request was successful:

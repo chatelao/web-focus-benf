@@ -43,7 +43,7 @@ Based on initial analysis, the following issues are prevalent:
 
 ### Phase 3: Semantic Enrichment (Formatting Content)
 *   - [ ] **Task 3.1**: Code Block Fencing.
-    *   - [ ] **Task 3.1.1**: Identify and fence WebFOCUS code blocks (` ```fex `).
+    *   - [x] **Task 3.1.1**: Identify and fence WebFOCUS code blocks (` ```fex `).
     *   - [ ] **Task 3.1.2**: Identify and fence SQL code blocks (` ```sql `).
 *   - [ ] **Task 3.2**: Convert ASCII tables into GFM tables.
 *   - [ ] **Task 3.3**: Replace "on page X" references with relative Markdown links (e.g., `[See Sorting](#sorting)`).

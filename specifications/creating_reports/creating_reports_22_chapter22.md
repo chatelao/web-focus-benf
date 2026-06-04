@@ -177,9 +177,12 @@ line.)
 
 SET ONLINE-FMT = HTML
 SET PAGE-NUM = OFF
+```fex
 JOIN STORE_CODE IN CENTCOMP TO STORE_CODE IN CENTORD
+```
 
 
+```fex
 TABLE FILE CENTCOMP
 HEADING
 "Century Corporation Orders Report"
@@ -196,6 +199,7 @@ TYPE=SUBHEAD, OBJECT=FIELD, ITEM=2, STYLE=ITALIC, $
 TYPE=SUBHEAD, OBJECT=FIELD, ITEM=3, STYLE=BOLD, $
 ENDSTYLE
 END
+```
 
 
 ## Creating Headings and Footings
@@ -266,6 +270,7 @@ Creating a Custom Report Title in an HTML Report
 The following illustrates how you can replace the default report title in an HTML report using
 the TITLETEXT attribute in your StyleSheet.
 
+```fex
 TABLE FILE SHORT
 SUM PROJECTED REGION
 BY REGION
@@ -275,6 +280,7 @@ TYPE=REPORT, TITLETEXT='1999 Sales Report', $
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -286,6 +292,7 @@ Creating a Custom Report Title in an EXL2K Report
 The following illustrates how you can replace the default worksheet tab name in an EXL2K
 report using the TITLETEXT attribute in your StyleSheet.
 
+```fex
 TABLE FILE SHORT
 SUM PROJECTED_RETURN
 BY REGION
@@ -294,6 +301,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, TITLETEXT='1999 Sales Report', $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -410,6 +418,7 @@ Creating a Single-Line Report Heading
 
 This request creates a single-line report heading that identifies the content of the report.
 
+```fex
 TABLE FILE GGSALES
 PRINT BUDDOLLARS DOLLARS
 BY STCD
@@ -423,6 +432,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 ## Creating Headings and Footings
@@ -534,6 +544,7 @@ Creating a Single-Line Report Footing
 
 This request creates a single-line report footing that identifies the author of the report.
 
+```fex
 TABLE FILE GGSALES
 PRINT UNITS
 WHERE UNITS GE 1400
@@ -548,6 +559,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 ## Creating Headings and Footings
@@ -692,6 +704,7 @@ Creating a Single-Line Page Heading
 This request omits the command HEADING since the page heading text precedes the display
 command PRINT. The page heading includes text and an embedded field.
 
+```fex
 TABLE FILE EMPLOYEE
 "ACCOUNT REPORT FOR DEPARTMENT <DEPARTMENT"
 PRINT CURR_SAL BY DEPARTMENT BY HIGHEST BANK_ACCT
@@ -703,6 +716,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF,$
 ENDSTYLE
 END
+```
 
 The output illustrates the placement of a page heading on a multi-page HTML report. The page
 heading appears on both pages of the report, identifying the department to which the data
@@ -817,6 +831,7 @@ Creating a Multiple-Line Page Footing
 This request creates a two-line page footing that identifies the data as preliminary and
 indicates when the final report will be available.
 
+```fex
 TABLE FILE GGSALES
 PRINT UNITS DOLLARS
 BY CATEGORY BY STCD
@@ -831,6 +846,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 The partial output illustrates the placement of page footings on a multi-page HTML report. The
@@ -1189,6 +1205,7 @@ Creating a Sort Heading When a Product Description Changes
 This request displays a sort heading each time the product description changes. The sort
 heading includes text and an embedded field.
 
+```fex
 TABLE FILE GGPRODS
 PRINT PACKAGE_TYPE AND UNIT_PRICE
 WHERE UNIT_PRICE GT 50
@@ -1201,6 +1218,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The sort heading identifies the product that the next line of data applies to.
 
@@ -1216,6 +1234,7 @@ Creating a Conditional Sort Heading
 
 This request displays a sort heading for a category only if its sales fall below $17,000,000.
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS
 BY CATEGORY SUBHEAD
@@ -1227,6 +1246,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 Sales for the category Gifts fall below the specified amount, as the sort heading warns. No
 other category is preceded by a sort heading.
@@ -1375,6 +1395,7 @@ Creating a Sort Footing When a Product Description Changes
 
 This request displays a sort footing each time the product description changes.
 
+```fex
 TABLE FILE GGPRODS
 PRINT PACKAGE_TYPE AND UNIT_PRICE
 WHERE UNIT_PRICE GT 50
@@ -1387,6 +1408,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 See How to Include a Field Value in a Heading or Footing on page 1558 for information on
 embedded field values.
@@ -1403,6 +1425,7 @@ less than $200,000.
 Notice that one sort phrase (ON ORDER_NUM) specifies several sort-related options (two
 different SUBFOOT phrases), and that each option has its own WHEN phrase.
 
+```fex
 TABLE FILE CENTORD
 HEADING
 "Order Revenue"
@@ -1424,6 +1447,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 ## Creating Headings and Footings
@@ -1437,6 +1461,7 @@ Suppressing a Sort Footing
 This request suppresses the sort footing for any product that has only one line of data (that is,
 a product that was only ordered one time on 01/01/96).
 
+```fex
 TABLE FILE GGORDER
 PRINT QUANTITY
 BY PRODUCT_CODE NOPRINT BY PRODUCT_DESCRIPTION
@@ -1451,6 +1476,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 In the output, the sort footing for Biscotti is suppressed.
@@ -1462,6 +1488,7 @@ Replacing the Default RECAP Label With a Sort Footing
 In this request, a SUBFOOT command for the field DEPARTMENT follows a RECAP command for
 that field. The RECAP command creates subtotal values for the calculation.
 
+```fex
 TABLE FILE SHORT
 SUM BALANCE AS 'Dollars' ENGLAND_POUND AS 'Sterling'
 BY REGION
@@ -1473,6 +1500,7 @@ SUBFOOT
 "Balance of investments for <COUNTRY> in Euros is <EURO>."
 " "
 END
+```
 
 
 ## Creating Headings and Footings
@@ -1489,6 +1517,7 @@ This request creates a complete report as a sort footing. It does not require a 
 command because the sort footing content contains the data fields DEPARTMENT and
 SALARY. By default, the field SALARY is summed in the sort footing.
 
+```fex
 TABLE FILE EMPLOYEE
 BY DEPARTMENT NOPRINT SUBFOOT
 "<DEPARTMENT DEPARTMENT TOTAL SALARY IS <SALARY"
@@ -1498,6 +1527,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -1601,6 +1631,7 @@ This request includes the field name DEPARTMENT in both the page heading and foo
 The command HEADING is not required in the request because the page heading text appears
 before the command PRINT.
 
+```fex
 TABLE FILE EMPLOYEE
 "<DEPARTMENT : BANK, EMPLOYEES AND SALARIES"
 PRINT CURR_SAL
@@ -1616,6 +1647,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 Including an Element in a Heading or Footing
@@ -1635,6 +1667,7 @@ Displaying a Less Than Symbol in a Heading
 The following request computes the difference between REVENUE_US and COGS_US and
 displays those rows in which the difference is less than 100,000.
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 HEADING CENTER
 " Difference <<  100,000"
@@ -1648,6 +1681,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 Including an Element in a Heading or Footing
@@ -1664,6 +1698,7 @@ DEPARTMENT, the STYLEMODE setting has been changed to FIXED in this request and 
 delimiters < and > have been included around the field name in the sort footing text.
 
 SET STYLEMODE = FIXED
+```fex
 TABLE FILE EMPLOYEE
 SUM SALARY
 BY DEPARTMENT SUBFOOT
@@ -1674,6 +1709,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 Values for DEPARTMENT appear in the sort footing as MIS and PRODUCTION.
 
@@ -1687,10 +1723,13 @@ Using the Prefix Operator TOT in a Page Heading
 
 This request uses the prefix operator TOT to generate grand totals for three fields.
 
+```fex
 DEFINE FILE SALES
 ACTUAL_SALES/D8.2 = UNIT_SOLD - RETURNS;
 SALES/F5.1 = 100 * ACTUAL_SALES / UNIT_SOLD;
 END
+```
+```fex
 TABLE FILE SALES
 "SUMMARY OF ACTUAL SALES"
 "UNITS SOLD <TOT.UNIT_SOLD"
@@ -1706,6 +1745,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 Including an Element in a Heading or Footing
@@ -1719,6 +1759,7 @@ Using Multiple Prefix Operators in a Page Heading
 This request uses the prefix operators MAX, MIN, AVE, and TOT. It does not require a display
 command because the page heading text contains data fields.
 
+```fex
 TABLE FILE SALES
 "MOST UNITS SOLD WERE <MAX.UNIT_SOLD"
 "LEAST UNITS SOLD WERE <MIN.UNIT_SOLD"
@@ -1730,6 +1771,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 The prefix operators generate summary data in the page heading.
@@ -1741,6 +1783,7 @@ Using Multiple Prefix Operators in a Sort Footing
 This request uses the prefix operators CNT and AVE in a sort footing. The output does not
 contain columns of data. All data is included in the sort footing itself.
 
+```fex
 TABLE FILE EMPLOYEE
 BY DEPARTMENT NOPRINT SUBFOOT
 "NUMBER OF EMPLOYEES IN DEPARTMENT <DEPARTMENT = <CNT.LAST_NAME"
@@ -1751,6 +1794,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The sort footing is a summary report on the number of employees in a department and their
 average salary.
@@ -1818,6 +1862,7 @@ END
 
 4. Create and save the following report request.
 
+```fex
 TABLE FILE TXTFLD
 BY CATALOG SUBFOOT
 "<TEXTFLD"
@@ -1827,6 +1872,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF,$
 ENDSTYLE
 END
+```
 
 5. Run the report request.
 
@@ -1921,6 +1967,7 @@ Including the Current Date in a Report Heading
 This request includes today's date on the second line of the report heading, highlighted in
 bold.
 
+```fex
 TABLE FILE GGSALES
 PRINT BUDDOLLARS DOLLARS
 BY STCD
@@ -1936,6 +1983,7 @@ TYPE=TABHEADING, LINE=1, FONT='TIMES', SIZE=10, STYLE=BOLD, $
 TYPE=TABHEADING, LINE=2, COLOR=BLUE, $
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -2005,6 +2053,7 @@ The following request displays all available syntax components from the report r
 heading. The spot markers (<+0>) are used to separate heading items so they can be styled
 separately in the StyleSheet.
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 HEADING
 "Display Objects: <+0> <REQUEST.VERB_OBJECTS"
@@ -2032,6 +2081,7 @@ TYPE=ACROSSTITLE, FONT=ARIAL, STYLE=BOLD, COLOR=NAVY,$
 TYPE=ACROSSVALUE, FONT=ARIAL, STYLE=ITALIC, COLOR=NAVY, SIZE=10,$
 ENDSTYLE
 END
+```
 
 
 Repeating Headings and Footings on Panels in PDF Report Output
@@ -2138,6 +2188,7 @@ The following request against the GGSALES data source sums units sold, budgeted 
 dollar sales, and budgeted sales by region, state, city, category, and product. The report has a
 page heading and, for each region, a subfooting.
 
+```fex
 TABLE FILE GGSALES
 HEADING
 "PRODUCT SALES REPORT"
@@ -2160,6 +2211,7 @@ TYPE=REPORT, GRID=OFF, $
 TYPE = REPORT, HEADPANEL=OFF,$
 ENDSTYLE
 END
+```
 
 The request sets BYPANEL ON, so each panel displays the sort field values. However, since
 HEADPANEL=OFF for the entire report, the first panel for page 1 has the heading and the
@@ -2194,6 +2246,7 @@ attribute only for the subfoot, not for the entire report. Notice that this requ
 default page numbering (ON TABLE SET PAGE ON) rather than TABPAGENO to present the page
 numbers on each page.
 
+```fex
 TABLE FILE GGSALES
 HEADING
 " PRODUCT SALES REPORT"
@@ -2214,6 +2267,7 @@ TYPE = SUBFOOT, HEADPANEL=ON,$
 
 ENDSTYLE
 END
+```
 
 
 Repeating Headings and Footings on Panels in PDF Report Output
@@ -2230,6 +2284,7 @@ Since the page heading is not repeated, if you use the <TABPAGENO system variabl
 the page number in the heading, it will not display the panel number and will not display on the
 second panel.
 
+```fex
 TABLE FILE GGSALES
 HEADING
 " PRODUCT SALES REPORT PAGE <TABPAGENO"
@@ -2250,6 +2305,7 @@ TYPE = SUBFOOT, HEADPANEL=ON,$
 
 ENDSTYLE
 END
+```
 
 
 The first panel displays the page number in the heading, without the panel number, as shown
@@ -2270,9 +2326,11 @@ The following request against the GGSALES data source has a report heading, a pa
 with an image, a footing, a subheading, a subfooting, and a subtotal.
 
 SET BYPANEL=ON
+```fex
 DEFINE FILE GGSALES
 SHOWCATPROD/A30 = CATEGORY || ' / ' || PRODUCT;
 END
+```
 TABLE FILE GGSALES
 SUM
      DOLLARS/I8M AS ''
@@ -2426,6 +2484,7 @@ Using Default Column Titles
 
 Consider this request:
 
+```fex
 TABLE FILE EMPDATA
 SUM SALARY
 BY DEPT
@@ -2436,6 +2495,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The report output illustrates these default column titles:
 
@@ -2504,6 +2564,7 @@ Customizing Column Titles in a Request
 This request customizes the column titles for the field named in the SUM command (SALARY),
 and the fields named in the BY phrases (DIV and DEPT).
 
+```fex
 TABLE FILE EMPDATA
 SUM SALARY AS 'Total,Salary'
 BY DIV AS 'Division'
@@ -2515,6 +2576,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT,GRID=OFF,$
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -2526,6 +2588,7 @@ Suppressing a Column Title
 This request suppresses the column title for LAST_NAME. It also illustrates a multiple-line
 column title (EMPLOYEE NUMBER) for the data for EMP_ID.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT FIRST_NAME AS 'NAME' AND LAST_NAME AS ''
 BY DEPARTMENT
@@ -2536,6 +2599,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -2548,6 +2612,7 @@ Customizing a Column Title for a Calculated Value
 
 This request customizes the column title for the calculated value REV.
 
+```fex
 TABLE FILE SALES
 SUM UNIT_SOLD RETAIL_PRICE
 COMPUTE REV/D12.2M = UNIT_SOLD * RETAIL_PRICE;AS 'GENERATED REVENUE'
@@ -2559,6 +2624,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -2633,6 +2699,7 @@ Controlling Column Title Underlining Using a SET Command
 The following request has a BY and an ACROSS field.
 
 SET TITLELINE=ON
+```fex
 TABLE FILE GGSALES
 SUM UNITS BY PRODUCT
 ACROSS REGION
@@ -2641,6 +2708,7 @@ ON TABLE SET STYLE *
 INCLUDE=IBFS:/FILE/IBI_HTML_DIR/javaassist/intl/EN/ENIADefault_combine.sty,$
 ENDSTYLE
 END
+```
 
 
 Controlling Column Title Underlining Using a SET Command
@@ -2687,6 +2755,7 @@ Controlling Column Title Underlining Using a StyleSheet Attribute
 
 The following request has a BY and an ACROSS field.
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS BY PRODUCT
 ACROSS REGION
@@ -2696,6 +2765,7 @@ TYPE=REPORT, TITLELINE=ON, GRID=OFF, FONT=ARIAL,$
 INCLUDE=IBFS:/FILE/IBI_HTML_DIR/javaassist/intl/EN/ENIADefault_combine.sty,$
 ENDSTYLE
 END
+```
 
 With the default value (ON) for TITLELINE, the column titles are underlined.
 
@@ -2789,6 +2859,7 @@ This request creates the label Total Population by State for the row total, and 
 Population by Gender for the column total. The format D12 for ROW-TOTAL displays that data
 with commas.
 
+```fex
 TABLE FILE GGDEMOG
 PRINT MALEPOP98 FEMPOP98
 ROW-TOTAL/D12 AS 'Total Population by State'
@@ -2801,6 +2872,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -2815,6 +2887,7 @@ This request adds the populations of two states, sorts the information using the
 phrase, and labels the row totals as Total by Gender. There are two row totals within the Total
 by Gender column, Male Population and Female Population.
 
+```fex
 TABLE FILE GGDEMOG
 SUM MALEPOP98/D12 FEMPOP98/D12
 ROW-TOTAL AS 'Total by Gender'
@@ -2826,6 +2899,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -2879,6 +2953,7 @@ This request creates a customized label for the subtotal, which is the total dol
 deducted from employee paychecks for city taxes per department; and the grand total which is
 the total dollar amount for both departments.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM DED_AMT BY DED_CODE BY DEPARTMENT
 BY BANK_ACCT
@@ -2892,6 +2967,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 Creating Labels to Identify Data
@@ -2906,6 +2982,7 @@ Creating a Label for the Subtotal of a Specific Field
 This request creates a customized label, Order Total, for the subtotal for LINEPRICE. It uses
 the default label TOTAL for the grand total.
 
+```fex
 TABLE FILE CENTORD
 PRINT PNUM QUANTITY LINEPRICE
 BY ORDER_NUM SUBTOTAL LINEPRICE AS 'Order Total'
@@ -2916,6 +2993,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -2969,6 +3047,7 @@ Creating a Label for the Subtotal of a Calculated Value
 This request creates a customized label for the subtotal, including the calculation for the field
 DG_RATIO, created with COMPUTE.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM GROSS DED_AMT AND COMPUTE
 DG_RATIO/F4.2 = DED_AMT / GROSS;
@@ -2981,6 +3060,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 In the output, the department values MIS and PRODUCTION are included by default in the
@@ -3098,6 +3178,7 @@ For an HTML report, the font name must be enclosed in single quotation marks. Th
 StyleSheet attribute TYPE = TABHEADING identifies the report heading, and the attribute TYPE
 = TITLE identifies the column titles.
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS
 BY CATEGORY BY PRODUCT
@@ -3111,6 +3192,7 @@ TYPE = TABHEADING, FONT = 'ARIAL', SIZE = 12, STYLE = BOLD, $
 TYPE = TITLE, FONT = 'ARIAL', SIZE = 10, STYLE = ITALIC, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -3127,6 +3209,7 @@ Report Formatting on page 1219.
 This request generates an internal cascading style sheet and specifies font characteristics for
 the report heading.
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS
 BY CATEGORY BY PRODUCT
@@ -3141,6 +3224,7 @@ TYPE = TABHEADING, FONT = 'ARIAL', SIZE = 12, STYLE = BOLD, $
 TYPE = TITLE, FONT = 'ARIAL', SIZE = 10, STYLE = ITALIC, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -3155,6 +3239,7 @@ This request includes the system variable &DATE in the heading. Styling is itali
 it from the rest of the heading text, which is bold. The spot marker <+0> creates two items in
 the heading so that each one can be formatted separately.
 
+```fex
 TABLE FILE GGSALES
 PRINT BUDDOLLARS DOLLARS
 BY STCD
@@ -3169,6 +3254,7 @@ TYPE=TABHEADING, FONT='TIMES', SIZE=10, STYLE=BOLD,$
 TYPE=TABHEADING, ITEM=2, STYLE=ITALIC,$
 ENDSTYLE
 END
+```
 
 The partial output is:
 
@@ -3185,6 +3271,7 @@ Adding a Grid Around a Report Heading in a PDF Report
 This request generates a PDF report with a grid around the heading, created with the GRID
 attribute, to set the heading off from the body of the report.
 
+```fex
 TABLE FILE GGSALES
 SUM BUDUNITS UNITS BUDDOLLARS DOLLARS
 BY CATEGORY
@@ -3199,6 +3286,7 @@ ON TABLE SET STYLESHEET *
 TYPE = TABHEADING, JUSTIFY = CENTER, GRID=ON, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -3212,6 +3300,7 @@ Emphasizing Column Titles With Horizontal Lines in a PDF Report
 This request generates a PDF report with horizontal lines, created with the HGRID attribute,
 above and below the column titles.
 
+```fex
 TABLE FILE GGSALES
 SUM BUDUNITS UNITS BUDDOLLARS DOLLARS
 BY CATEGORY
@@ -3226,6 +3315,7 @@ ON TABLE SET STYLESHEET *
 TYPE = TABHEADING, JUSTIFY = CENTER, FONT=ARIAL, SIZE=12, $
 TYPE = TITLE, HGRID=ON, $
 END
+```
 
 The output is:
 
@@ -3237,6 +3327,7 @@ Formatting a Border Around a Report Heading
 This request generates an HTML report with a heavy red dotted line around the entire report
 heading.
 
+```fex
 TABLE FILE GGSALES
 SUM BUDUNITS UNITS BUDDOLLARS DOLLARS
 BY CATEGORY
@@ -3253,6 +3344,7 @@ TYPE=TABHEADING, STYLE=BOLD, JUSTIFY=CENTER, BORDER=HEAVY,
      BORDER-COLOR=RED, BORDER-STYLE=DOTTED, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -3269,6 +3361,7 @@ This request generates a light blue line above the heading and a heavy double li
 color below the heading. The request does not specify border lines for the left and right sides
 of the heading.
 
+```fex
 TABLE FILE GGSALES
 SUM BUDUNITS UNITS BUDDOLLARS DOLLARS
 BY CATEGORY
@@ -3285,6 +3378,7 @@ TYPE=TABHEADING, JUSTIFY=CENTER, BORDER-TOP=LIGHT, BORDER-COLOR=BLUE,
        BORDER-BOTTOM=HEAVY, BORDER-BOTTOM-STYLE=DOUBLE,$
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -3379,6 +3473,7 @@ Justifying a Report Heading
 This request centers the report heading PRODUCT REPORT, using the attribute JUSTIFY =
 CENTER.
 
+```fex
 TABLE FILE GGPRODS
 SUM UNITS BY PRODUCT_DESCRIPTION BY PRODUCT_ID BY VENDOR_NAME
 ON TABLE SUBHEAD
@@ -3391,6 +3486,7 @@ TYPE = REPORT, COLUMN = VENDOR_NAME, JUSTIFY = CENTER, $
 TYPE = TABHEADING, JUSTIFY = CENTER, $
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -3407,6 +3503,7 @@ Justifying Individual Lines in a Multiple-Line Report Heading
 In this request, heading line 1 (SALES REPORT) is centered, heading line 2
 (**CONFIDENTIAL**) is also centered, and heading line 3 (December 2001) is right justified.
 
+```fex
 TABLE FILE GGSALES
 SUM BUDUNITS UNITS BUDDOLLARS DOLLARS
 BY CATEGORY
@@ -3423,6 +3520,7 @@ TYPE = TABHEADING, LINE = 2, JUSTIFY = CENTER, $
 TYPE = TABHEADING, LINE = 3, JUSTIFY = RIGHT, $
 ENDSTYLE
 END
+```
 
 
 Justifying a Heading, Footing, Title, or Label
@@ -3439,6 +3537,7 @@ Centering All Lines in a Multiple-Line Report Heading
 This request centers all lines in a multiple-line report heading using the single StyleSheet
 attribute for the entire heading.
 
+```fex
 TABLE FILE GGSALES
 SUM BUDUNITS UNITS BUDDOLLARS DOLLARS
 BY CATEGORY
@@ -3453,6 +3552,7 @@ TYPE = REPORT, GRID=OFF, $
 TYPE = TABHEADING, JUSTIFY = CENTER, $
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -3579,6 +3679,7 @@ Centering a Page Heading
 
 This request uses the command CENTER in the page heading syntax.
 
+```fex
 TABLE FILE EMPLOYEE
 HEADING CENTER
 "ACCOUNT REPORT FOR DEPARTMENT <DEPARTMENT"
@@ -3592,6 +3693,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, SIZE=10, GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 Justifying a Heading, Footing, Title, or Label
@@ -3692,6 +3794,7 @@ The default column title for ADDRESS1 is Contact, also specified in the Master F
 request right-justifies the column title for STATE, which is specified in the AS phrase as St.
 Each column is identified by its field name and justified separately.
 
+```fex
 TABLE FILE GGSTORES
 PRINT STORE_NAME STATE AS 'St' BY ADDRESS1
 WHERE STATE EQ 'CA'
@@ -3705,6 +3808,7 @@ TYPE=TITLE, COLUMN=STATE, JUSTIFY=RIGHT, $
 TYPE=TITLE, COLUMN=ADDRESS1, JUSTIFY=CENTER, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -3718,6 +3822,7 @@ values (MT and WY) and the row total column title, Total by Gender, over the two
 (Male Population and Female Population). Notice that each across value functions as a title for
 one or more columns in the report.
 
+```fex
 TABLE FILE GGDEMOG
 SUM MALEPOP98 FEMPOP98
 ROW-TOTAL/D12 AS 'Total by Gender'
@@ -3731,6 +3836,7 @@ TYPE=ACROSSTITLE, JUSTIFY=CENTER, FONT='TIMES', SIZE=11, STYLE=BOLD, $
 TYPE=ACROSSVALUE, COLUMN=N5, JUSTIFY=CENTER, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -3740,6 +3846,7 @@ Using a StyleSheet to Justify a Column Title for a Calculated Value
 
 This request identifies the column title of the calculated value and left justifies it over the data.
 
+```fex
 TABLE FILE SALES
 SUM UNIT_SOLD RETAIL_PRICE
 COMPUTE REV/D12.2M = UNIT_SOLD * RETAIL_PRICE;
@@ -3752,6 +3859,7 @@ TYPE=REPORT, GRID=OFF, $
 TYPE=TITLE, COLUMN=REV, STYLE=BOLD, JUSTIFY=LEFT, $
 ENDSTYLE
 END
+```
 
 
 Justifying a Heading, Footing, Title, or Label
@@ -3806,6 +3914,7 @@ title for STORE_NAME is Store Name, as specified in the Master File with the TIT
 The default column title for ADDRESS1 is Contact, also specified in the Master File. The
 request right justifies the column title for STATE, which is specified in the AS phrase as St.
 
+```fex
 TABLE FILE GGSTORES
 PRINT STORE_NAME/C STATE/R AS 'St' BY ADDRESS1/C
 WHERE STATE EQ 'CA'
@@ -3815,6 +3924,7 @@ ON TABLE SET STYLESHEET *
 TYPE = REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -3868,6 +3978,7 @@ Centering a Label for a Row Total
 This request creates the stacked label Total, Population, by State for the row total and centers
 it. The format D12 for ROW-TOTAL displays commas by default.
 
+```fex
 TABLE FILE GGDEMOG
 PRINT MALEPOP98 FEMPOP98
 ROW-TOTAL/C/D12 AS 'Total,Population,by State'
@@ -3880,6 +3991,7 @@ ON TABLE SET STYLESHEET *
 TYPE = REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -3903,6 +4015,7 @@ is right-justified by default, in this example the justification specifications 
 used to reposition the labels. The default label for the automatically generated grand total is
 also right-justified.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM DED_AMT BY DED_CODE BY DEPARTMENT
 BY BANK_ACCT
@@ -3917,6 +4030,7 @@ TYPE=SUBTOTAL, STYLE=BOLD, JUSTIFY=RIGHT,$
 TYPE=GRANDTOTAL, STYLE=BOLD, JUSTIFY=RIGHT,$
 ENDSTYLE
 END
+```
 
 
 Justifying a Heading, Footing, Title, or Label
@@ -4273,6 +4387,7 @@ report column using the <+0 spot marker, and the field object is placed in the t
 column using another <+0 spot marker. Then the text item is left aligned (the default) with its
 report column. The field object is right aligned with its report column.
 
+```fex
 TABLE FILE GGORDER
 PRINT QUANTITY
 ORDER_NUMBER ORDER_DATE STORE_CODE
@@ -4289,6 +4404,7 @@ TYPE = SUBFOOT,OBJECT=TEXT,STYLE = BOLD, $
 TYPE = SUBFOOT,OBJECT=FIELD,JUSTIFY=RIGHT,STYLE = BOLD, $
 ENDSTYLE
 END
+```
 
 
 The output shows that the text Total is aligned with the product names and the subtotal field
@@ -4312,6 +4428,7 @@ placed in headings to correspond with column two that appears on subsequent rows
 displayed.
 
 SET LAYOUTGRID=ON
+```fex
 TABLE FILE GGSALES
 "Product<+0>"
 "Units<+0>Dollars"
@@ -4333,6 +4450,7 @@ TYPE=REPORT, COLUMN=PRODUCT(2),   SQUEEZE=2,  $
 TYPE=REPORT, COLUMN=UNITS, SQUEEZE=1, $
 TYPE=REPORT, COLUMN=DOLLARS, SQUEEZE=1, $
 END
+```
 
 
 The output shows that the heading lines have one column each, while the data lines alternate
@@ -4352,6 +4470,7 @@ Aligning a Heading or Footing Element in an HTML, XLSX, EXL2K, PDF, PPTX, or DHT
 All HEADALIGN settings are compatible with COLSPAN syntax, which allows heading items to
 span multiple columns.
 
+```fex
 TABLE FILE CAR
 SUM SALES BY COUNTRY BY CAR BY MODEL
 ON COUNTRY SUBHEAD
@@ -4366,6 +4485,7 @@ TYPE=SUBHEAD, HEADALIGN=OPTION, $
 TYPE=SUBHEAD, LINE=1, ITEM=1, COLSPAN=4, JUSTIFY=CENTER, $
 ENDSTYLE
 END
+```
 
 HEADALIGN=NONE without the second TYPE=SUBHEAD declaration highlighted in the request
 syntax creates a separate table with default left alignment. The text and fields in each heading
@@ -4430,6 +4550,7 @@ the sort footing (TOTAL IS and the value) with each of the two data columns (Pro
 Ordered Units). JUSTIFY = RIGHT, which applies to the entire sort footing, right justifies each
 sort footing element under the data column.
 
+```fex
 TABLE FILE GGORDER
 PRINT QUANTITY
 BY PRODUCT_CODE NOPRINT BY PRODUCT_DESCRIPTION
@@ -4445,6 +4566,7 @@ TYPE = SUBFOOT, HEADALIGN = BODY, JUSTIFY = RIGHT, $
 TYPE = SUBFOOT, OBJECT = FIELD, STYLE = BOLD, $
 ENDSTYLE
 END
+```
 
 
 The partial output is:
@@ -4471,6 +4593,7 @@ The spot markers in the third line of the heading split it into three text eleme
 Report, blank, Run on: &DATE. In the output, each element appears in a cell in the third row of
 the embedded HTML table, in the order specified in the request.
 
+```fex
 TABLE FILE GGORDER
 HEADING
 " <+0>Gotham Grinds, Inc."
@@ -4487,6 +4610,7 @@ TYPE = REPORT, GRID = ON, $
 TYPE = HEADING, HEADALIGN = INTERNAL, STYLE = BOLD, $
 ENDSTYLE
 END
+```
 
 GRID=ON in the request enables you to see the embedded HTML table for the heading, and
 the main HTML table for the body of the report.
@@ -4514,6 +4638,7 @@ for the report: the first element (the text Course Description:) is aligned with
 column, CATALOG. The embedded field is aligned in a second column. The grid is turned on in
 this example to make the alignment easier to see.
 
+```fex
 TABLE FILE TXTFLD
 BY CATALOG SUBFOOT
 "Course Description: <TEXTFLD"
@@ -4524,6 +4649,7 @@ TYPE = REPORT, GRID = ON, $
 TYPE = SUBFOOT, HEADALIGN = BODY, $
 ENDSTYLE
 END
+```
 
 The output displays a new value for the text field each time the value of CATALOG changes.
 
@@ -4540,6 +4666,7 @@ align the text field. This request applies boldface type to the second line of a
 footing, which includes the text Course Description as well as the text of the field TEXTFLD.
 Line 1 of the sort footing is the text Evening Course.
 
+```fex
 TABLE FILE TXTFLD
 BY DESCRIPTION AS 'CATALOG' SUBFOOT
 "Evening Course"
@@ -4552,6 +4679,7 @@ TYPE = SUBFOOT, HEADALIGN = BODY, $
 TYPE = SUBFOOT, LINE = 2, STYLE = BOLD, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -4645,6 +4773,7 @@ In this request, HEADALIGN=INTERNAL creates a three-column embedded HTML table f
 heading. The COLSPAN attribute then centers the first line of the heading, Gotham Grinds, Inc.,
 over the report, spanning the three columns in the embedded HTML table.
 
+```fex
 TABLE FILE GGORDER
 HEADING
 "Gotham Grinds, Inc."
@@ -4663,6 +4792,7 @@ TYPE = HEADING, LINE=1, COLSPAN=3, STYLE = BOLD, JUSTIFY=CENTER, $
 TYPE = HEADING, LINE=3, ITEM=3, JUSTIFY=RIGHT, $
 ENDSTYLE
 END
+```
 
 
 Aligning a Heading or Footing Element Across Columns in an HTML or PDF Report
@@ -4683,6 +4813,7 @@ The HEADALIGN attribute is on a separate line from the COLSPAN attribute because
 to the entire sort footing (and consequently to both items), whereas COLSPAN applies to the
 single item Total.
 
+```fex
 TABLE FILE GGORDER
 PRINT ORDER_NUMBER ORDER_DATE STORE_CODE QUANTITY
 BY PRODUCT_CODE BY PRODUCT_DESCRIPTION
@@ -4698,6 +4829,7 @@ TYPE = SUBFOOT, HEADALIGN = BODY, JUSTIFY = RIGHT, STYLE = BOLD, $
 TYPE = SUBFOOT, OBJECT = TEXT, COLSPAN = 5, $
 ENDSTYLE
 END
+```
 
 The partial output is:
 
@@ -4717,6 +4849,7 @@ The HEADALIGN attribute is on a separate line from the COLSPAN attribute because
 to the entire sort footing (and consequently to both items), whereas COLSPAN applies only to
 the text item Total.
 
+```fex
 TABLE FILE GGORDER
 PRINT ORDER_NUMBER ORDER_DATE STORE_CODE QUANTITY
 BY PRODUCT_CODE BY PRODUCT_DESCRIPTION
@@ -4733,6 +4866,7 @@ TYPE = SUBFOOT, HEADALIGN = BODY, JUSTIFY = RIGHT, STYLE = BOLD, $
 TYPE = SUBFOOT, ITEM=1, COLSPAN = 5, $
 ENDSTYLE
 END
+```
 
 
 The output shows that the first item in the sort footing (the text Total) is in the fifth column of
@@ -4982,9 +5116,12 @@ Aligning Content in a Multi-Line Heading or Footing
 For each item, you specify the width of the column and the justification of its content, as
 illustrated in the following code.
 
+```fex
 DEFINE FILE SHORT
 BALANCE/D14.2=BALANCE;
 END
+```
+```fex
 TABLE FILE SHORT
 BY COUNTRY NOPRINT SUBHEAD
 "Country:<COUNTRY Exchange Rate:<EXCHANGE_RATE"
@@ -5002,6 +5139,7 @@ TYPE=SUBHEAD, ITEM=3, WIDTH=1.25, JUSTIFY=RIGHT,$
 TYPE=SUBHEAD, ITEM=4, WIDTH=1.5,  JUSTIFY=DECIMAL(.6),$
 ENDSTYLE
 END
+```
 
 This procedure produces a three-line sort heading, broken out as four items, each with a
 measured width and defined justification. The decimal item (4) uses a variation on standard
@@ -5182,9 +5320,12 @@ StyleSheet on page 1249.
 
 Request and annotations:
 
+```fex
     DEFINE FILE SHORT
     BALANCE/D14.2=BALANCE;
     END
+```
+```fex
     TABLE FILE SHORT
     BY COUNTRY NOPRINT SUBHEAD
 1.  " <+0>Country:<COUNTRY"
@@ -5216,6 +5357,7 @@ Request and annotations:
 18. TYPE=SUBHEAD, LINE=2, ITEM=3, WIDTH=2, JUSTIFY=LEFT, $
     ENDSTYLE
     END
+```
 
 
 Aligning Content in a Multi-Line Heading or Footing
@@ -5388,6 +5530,7 @@ Setting a Starting Position for a Report Heading in PDF
 This request positions the report heading 1.25 inches from the left margin.
 
 SET ONLINE-FMT=PDF
+```fex
 TABLE FILE GGSALES
 PRINT BUDDOLLARS DOLLARS
 BY STCD
@@ -5402,6 +5545,7 @@ ON TABLE SET STYLESHEET *
 TYPE = TABHEADING, POSITION = 1.25, $
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -5415,6 +5559,7 @@ use of the POSITION attribute to specify a starting position for the heading, Sa
 inches from the left margin.
 
 SET ONLINE-FMT = HTML
+```fex
 TABLE FILE GGSALES
 PRINT BUDDOLLARS DOLLARS
 BY STCD
@@ -5430,6 +5575,7 @@ TYPE=REPORT, GRID=OFF, $
 TYPE = TABHEADING, POSITION = 1.5, $
 ENDSTYLE
 END
+```
 
 
 Positioning Headings, Footings, or Items Within Them
@@ -5518,6 +5664,7 @@ starts the third text string, 1st Qtr 2001, 3 inches from the left report margin
 can be used in PDF as well as PS reports.
 
 SET ONLINE-FMT = PDF
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS BY CATEGORY BY PRODUCT
 ON TABLE SUBHEAD
@@ -5531,6 +5678,7 @@ TYPE = TABHEADING, OBJECT = TEXT, ITEM=2, STYLE = BOLD, $
 TYPE = TABHEADING, OBJECT = TEXT, ITEM=3, POSITION = 3, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -5545,6 +5693,7 @@ heading line. Inches is the default unit of measure. This technique can be used 
 as PS reports.
 
 SET ONLINE-FMT = PDF
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS BY CATEGORY BY PRODUCT
 ON TABLE SUBHEAD
@@ -5558,6 +5707,7 @@ TYPE = TABHEADING, OBJECT = TEXT, ITEM=2, STYLE = BOLD, $
 TYPE = TABHEADING, OBJECT = TEXT, ITEM=3, POSITION = +1, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -5573,6 +5723,7 @@ starts the second text string at the horizontal position where the column UNITS 
 This technique can be used in PDF as well as PS reports.
 
 SET ONLINE-FMT = PDF
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS BY CATEGORY BY PRODUCT
 ON TABLE SUBHEAD
@@ -5584,6 +5735,7 @@ ON TABLE SET STYLESHEET *
 TYPE = TABHEADING, LINE=1, ITEM=2, POSITION=UNITS, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -5647,6 +5799,7 @@ Using PRINTPLUS With SUBFOOT and FOOTING
 With PRINTPLUS on, the SUBFOOT prints first, followed by the FOOTING.
 
 SET PRINTPLUS = ON
+```fex
  TABLE FILE CAR
   PRINT CAR MODEL
   BY SEATS BY COUNTRY
@@ -5660,6 +5813,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT,GRID=OFF,$
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -5785,11 +5939,14 @@ the display.
 
 SET ONLINE-FMT = HTML
 SET PAGE-NUM = OFF
+```fex
 JOIN STORE_CODE IN CENTCOMP TO STORE_CODE IN CENTORD
+```
 
 
 Positioning Headings, Footings, or Items Within Them
 
+```fex
 TABLE FILE CENTCOMP
 HEADING
 "Century Corporation Orders Report </1"
@@ -5803,6 +5960,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The partial output is:
 
@@ -5825,8 +5983,11 @@ proportional font and size.
 
 SET ONLINE-FMT = PDF
 SET PAGE-NUM = OFF
+```fex
 JOIN STORE_CODE IN CENTCOMP TO STORE_CODE IN CENTORD
+```
 
+```fex
 TABLE FILE CENTCOMP
 HEADING
 "Century Corporation Orders Report"
@@ -5841,6 +6002,7 @@ TYPE=REPORT, GRID=OFF, UNITS=POINTS, $
 TYPE=SUBHEAD, OBJECT=TEXT, ITEM=3, POSITION= -7, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -5858,8 +6020,11 @@ value of -2 moves the text in this font and size to the required position.
 
 SET ONLINE-FMT = PDF
 SET PAGE-NUM = OFF
+```fex
 JOIN STORE_CODE IN CENTCOMP TO STORE_CODE IN CENTORD
+```
 
+```fex
 TABLE FILE CENTCOMP
 HEADING
 "CENTURY CORPORATION ORDERS REPORT"
@@ -5875,6 +6040,7 @@ TYPE=REPORT, GRID=OFF, UNITS=POINTS, FONT='Helvetica', SIZE=12, $
 TYPE=SUBHEAD, OBJECT=TEXT, ITEM=3, POSITION= -2, $
 ENDSTYLE
 END
+```
 
 Tip: You cannot use the POSITION attribute to position a heading element in an in HTML
 report. However, you can achieve the same result by placing the horizontal spot markers <-1
@@ -5935,6 +6101,7 @@ heading and two blank lines between the page heading and the actual report. The 
 line is added as an empty text line, The next blank lines are added with the skip-line spot
 marker.
 
+```fex
 TABLE FILE GGSALES
 SUM BUDUNITS UNITS BUDDOLLARS DOLLARS
 BY CATEGORY
@@ -5951,6 +6118,7 @@ TYPE=REPORT, GRID=OFF, TOPMARGIN=0, $
 TYPE = TABHEADING, JUSTIFY = CENTER, $
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -6005,6 +6173,7 @@ This request generates a PDF report with blank space added above and below the r
 heading to separate the text from the upper and lower grid lines. The space above is added by
 the TOPGAP attribute. The space below is added by the BOTTOMGAP attribute.
 
+```fex
 TABLE FILE GGSALES
 SUM BUDUNITS UNITS BUDDOLLARS DOLLARS
 BY CATEGORY
@@ -6019,6 +6188,7 @@ TYPE = TABHEADING,  FONT='TIMES', SIZE=12, STYLE=BOLD, $
 TYPE = TABHEADING, ITEM=2, SIZE=10, STYLE=ITALIC, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -6030,6 +6200,7 @@ Adjusting Vertical Spacing Below a Sort Footing
 The request generates a PDF report in which the sort footings are bolded for emphasis and
 space is added below each footing to visually tie the footing text to the preceding data.
 
+```fex
 TABLE FILE GGPRODS
 PRINT PACKAGE_TYPE AND UNIT_PRICE
 WHERE UNIT_PRICE GT 50
@@ -6043,6 +6214,7 @@ ON TABLE SET STYLESHEET *
 TYPE=SUBFOOT, STYLE=BOLD, BOTTOMGAP=.25, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -6145,6 +6317,7 @@ Positioning a Page Footing at the Bottom of a Page
 This request produces a PDF report in which the page footing appears at the bottom of the
 page, rather than in its default position, two lines below the report data.
 
+```fex
 TABLE FILE GGSALES
 PRINT UNITS DOLLARS
 BY CATEGORY BY STCD
@@ -6154,6 +6327,7 @@ FOOTING BOTTOM
 ON TABLE SET ONLINE-FMT PDF
 ON TABLE SET PAGE-NUM OFF
 END
+```
 
 
 Placing a Report Heading or Footing on Its Own Page
@@ -6266,6 +6440,7 @@ Positioning a Report Heading on a Separate Page
 Using PAGE-BREAK, this request generates a two-page report, with important information by
 itself on the first page.
 
+```fex
 TABLE FILE CENTORD
 SUM ORDER_DATE LINEPRICE AS 'Order,Total:'
 BY HIGHEST 5 ORDER_NUM
@@ -6278,6 +6453,7 @@ HEADING
 ON TABLE SET PAGE-NUM OFF
 ON TABLE SET ONLINE-FMT PDF
 END
+```
 
 The first page of output identifies the confidential nature of the report and the date.
 
@@ -6304,6 +6480,7 @@ Positioning a Report Footing on a Separate Page
 Using PAGE-BREAK, this request generates a two-page report with the report footing, which
 signals the end of the report, on a page by itself.
 
+```fex
 TABLE FILE CENTORD
 HEADING
 "Order Revenue"
@@ -6315,6 +6492,7 @@ ON TABLE PAGE-BREAK AND SUBFOOT
 ON TABLE SET PAGE-NUM OFF
 ON TABLE SET ONLINE-FMT PDF
 END
+```
 
 The first page of output contains the column titles and data.
 

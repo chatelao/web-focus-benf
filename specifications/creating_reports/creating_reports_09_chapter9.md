@@ -288,6 +288,7 @@ both leading and internal blanks to the values TRAIN/EX and SCI/FI in the CATEGO
 also adds trailing blanks to the value COMEDY:
 
 SET SHOWBLANKS = OFF
+```fex
 DEFINE FILE MOVIES
 NEWCAT/A30 = IF CATEGORY EQ 'ACTION' THEN '  ACTION'
         ELSE IF CATEGORY EQ 'SCI/FI' THEN 'SCIENCE   FICTION'
@@ -295,6 +296,8 @@ NEWCAT/A30 = IF CATEGORY EQ 'ACTION' THEN '  ACTION'
         ELSE IF CATEGORY EQ 'COMEDY' THEN 'COMEDY     '
         ELSE                'GENERAL';
 END
+```
+```fex
 TABLE FILE MOVIES
 SUM CATEGORY LISTPR/D12.2 COPIES
 BY NEWCAT
@@ -304,6 +307,7 @@ GRID=OFF,$
 TYPE=REPORT, FONT=COURIER NEW,$
 ENDSTYLE
 END
+```
 
 
 With SHOWBLANKS OFF, these additional blanks are removed:
@@ -395,10 +399,12 @@ server.
 
 
 SET JSURL=/ibi_apps/ibi_html/killmenu.js
+```fex
 TABLE FILE CENTORD
 SUM QUANTITY
 BY PLANTLNG
 END
+```
 
 The right-click menu option is not available in the report output.
 
@@ -434,10 +440,12 @@ function disableOnLoadFunc(arrayofonloads,currentindex) {
 -OLAP ON
 SET AUTODRILL = ON
 SET JSURL=/ibi_apps/ibi_html/disable.js
+```fex
 TABLE FILE CENTORD
 SUM QUANTITY
 BY PLANTLNG
 END
+```
 
 
 ## Using Print Display Formats: PDF, PS
@@ -614,6 +622,7 @@ displayed on every page of the report.
 
 ## Using Print Display Formats: PDF, PS
 
+```fex
 TABLE FILE GGSALES
 SUM
      GGSALES.SALES01.DOLLARS/D12CM
@@ -651,6 +660,7 @@ TYPE=REPORT,
     SIZE=(.5 .5),
 $ENDSTYLE
 END
+```
 
 
 The output is:
@@ -723,11 +733,14 @@ Scaling PDF Report Output to Fit the Page Width
 The following request generates PDF report output without using page scaling.
 
 SET SQUEEZE=ON
+```fex
 DEFINE FILE WF_RETAIL_LITE
 SHOWPIC/A100='C:\ibi\WebFOCUS82\samples\web_resource\signin\images
 \favicon.jpg';
 END
+```
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 PRINT  PRODUCT_CATEGORY
 COGS_US REVENUE_US MSRP_US DISCOUNT_US GROSS_PROFIT_US QUANTITY_SOLD
@@ -757,6 +770,7 @@ TYPE=SUBHEAD, IMAGE=(SHOWPIC), SIZE=(.5 .5), $
 TYPE=TABHEADING, SIZE=12, STYLE=BOLD, JUSTIFY=CENTER, $
 ENDSTYLE
 END
+```
 
 
 ## Using Print Display Formats: PDF, PS
@@ -778,11 +792,14 @@ Page 1.2 has the remaining columns, as shown in the following image.
 The following version of the request uses page scaling.
 
 SET SQUEEZE=ON
+```fex
 DEFINE FILE WF_RETAIL_LITE
 SHOWPIC/A100='C:\ibi\WebFOCUS82\samples\web_resource\signin\images
 \favicon.jpg';
 END
+```
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 PRINT  PRODUCT_CATEGORY
 COGS_US REVENUE_US MSRP_US DISCOUNT_US GROSS_PROFIT_US QUANTITY_SOLD
@@ -813,6 +830,7 @@ TYPE=SUBHEAD, IMAGE=(SHOWPIC), SIZE=(.5 .5), $
 TYPE=TABHEADING, SIZE=12, STYLE=BOLD, JUSTIFY=CENTER, $
 ENDSTYLE
 END
+```
 
 
 ## Using Print Display Formats: PDF, PS
@@ -837,6 +855,7 @@ Left-Aligning a PDF Report Within a Page
 To left-align a PDF report, include the TYPE=REPORT, JUSTIFYREPORT=LEFT attribute, as
 shown in the following procedure.
 
+```fex
 TABLE FILE GGSALES
 SUM BUDDOLLARS
 BY REGION
@@ -857,6 +876,7 @@ TYPE=REPORT, JUSTIFYREPORT=LEFT,$
 ENDSTYLE
 
 END
+```
 
 
 ## Using Print Display Formats: PDF, PS
@@ -870,6 +890,7 @@ Centering a PDF Report Within a Page
 To center a PDF report, include the TYPE=REPORT, JUSTIFYREPORT=CENTER attribute, as
 shown in the following procedure.
 
+```fex
 TABLE FILE GGSALES
 SUM BUDDOLLARS
 BY REGION
@@ -890,6 +911,7 @@ TYPE=REPORT, JUSTIFYREPORT=CENTER,$
 ENDSTYLE
 
 END
+```
 
 
 The output is:
@@ -902,6 +924,7 @@ Right-Aligning a PDF Report Within a Page
 To right-align a PDF report, include the TYPE=REPORT, JUSTIFYREPORT=RIGHT attribute, as
 shown in the following procedure.
 
+```fex
 TABLE FILE GGSALES
 SUM BUDDOLLARS
 BY REGION
@@ -922,6 +945,7 @@ TYPE=REPORT, JUSTIFYREPORT=RIGHT,$
 ENDSTYLE
 
 END
+```
 
 
 ## Using Print Display Formats: PDF, PS
@@ -1011,6 +1035,7 @@ commands that enable accessibility appear in boldface.
 
 ## Using Print Display Formats: PDF, PS
 
+```fex
 TABLE FILE GGSALES
 SUM
    DOLLARS/D12M
@@ -1037,6 +1062,7 @@ TYPE=SUBTOTAL, BY=1, STYLE=BOLD,$
 TYPE=GRANDTOTAL, FONT='ARIAL', STYLE=BOLD,$
 ENDSTYLE
 END
+```
 
 WebFOCUS generates the following tags when SET ACCESSPDF is set to 508.
 
@@ -1103,6 +1129,7 @@ The USEASTITLES attribute that enables the alignment of the heading elements is 
 Note that the HEADALIGN=BODY attribute is also in bold.
 
 
+```fex
 TABLE FILE GGSALES
 SUM
    DOLLARS/D12M AS ''
@@ -1144,6 +1171,7 @@ TYPE=SUBTOTAL, BY=1, STYLE=BOLD,$
 TYPE=GRANDTOTAL, FONT='ARIAL', STYLE=BOLD,$
 ENDSTYLE
 END
+```
 
 
 ## Using Print Display Formats: PDF, PS
@@ -1230,6 +1258,7 @@ REQUIRED-SPACE=(*3.5), RELATIVE-POINT=BOTTOM-LEFT, POSITION-POINT=TOP-LEFT,$
 END
 
 SET COMPONENT=report0
+```fex
 TABLE FILE GGSALES
 BY CATEGORY NOPRINT
 ON TABLE SUBHEAD
@@ -1243,8 +1272,10 @@ ON TABLE SET STYLE *
 TYPE=TABHEADING , SIZE=18, FONT=ARIAL, STYLE=BOLD, JUSTIFY=CENTER,$
 ENDSTYLE
 END
+```
 
 SET COMPONENT=report1
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/F8M
 BY CATEGORY
@@ -1266,11 +1297,13 @@ TYPE=HEADING, SIZE=14, FONT=ARIAL, STYLE=BOLD, JUSTIFY=CENTER,$
 TYPE=SUBTOTAL, SIZE=10, STYLE=BOLD,$
 ENDSTYLE
 END
+```
 
 
 ## Using Print Display Formats: PDF, PS
 
 SET COMPONENT=report2
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/F8M
 BY REGION
@@ -1292,6 +1325,7 @@ TYPE=HEADING, SIZE=14, FONT=ARIAL, STYLE=BOLD, JUSTIFY=CENTER,$
 TYPE=SUBTOTAL, SIZE=10, STYLE=BOLD,$
 ENDSTYLE
 END
+```
 COMPOUND END
 
 The report output, with bookmarks, is shown below.
@@ -1349,6 +1383,7 @@ StyleSheet ALT attribute to add descriptive text (Information Builders logo) tha
 image.
 
 
+```fex
 TABLE FILE GGSALES
 SUM
    DOLLARS/D12N
@@ -1379,6 +1414,7 @@ TYPE=REPORT, IMAGE=smplogo1.gif, ALT='Information Builders logo',
 POSITION=(1.19 .9), SIZE=(.8 .2),$
 ENDSTYLE
 END
+```
 
 The report is:
 
@@ -1412,6 +1448,7 @@ marks (‘). The length can be a maximum of 256 characters.
 For details on the StyleSheet syntax for Drill Down reports, see the Creating Reports With
 WebFOCUS Language manual.
 
+```fex
 TABLE FILE GGSALES
 SUM
    DOLLARS/D12N
@@ -1442,6 +1479,7 @@ TYPE=HEADING, SIZE=12, STYLE=BOLD, JUSTIFY=CENTER,$
 TYPE=SUBTOTAL, BACKCOLOR=RGB(210 210 210), STYLE=BOLD,$
 ENDSTYLE
 END
+```
 
 
 Note the ALT attribute and associated text in BOLD.
@@ -1579,6 +1617,7 @@ SET PSPAGESETUP=ON
 SET PAGESIZE=LEGAL
 SET ORIENTATION=LANDSCAPE
 SET PAGE-NUM=OFF
+```fex
 TABLE FILE CENTORD
 HEADING
 "Sales Report"
@@ -1590,6 +1629,7 @@ TYPE=HEADING, SIZE=18, $
 ENDSTYLE
 ON TABLE HOLD FORMAT PS
 END
+```
 
 -RUN
 DOS COPY HOLD.PS \\IBIPRINTA\28C2
@@ -1603,6 +1643,7 @@ landscape mode.
 
 
 SET PSPAGESETUP=ON
+```fex
 TABLE FILE CAR
 SUM RC DC SALES BY COUNTRY BY CAR BY MODEL
 ON TABLE HOLD FORMAT PS
@@ -1621,6 +1662,7 @@ GRAPHTYPE=DATA, COLUMN=SALES,
 GRAPHPATTERN=HORIZONTAL, $
 ENDSTYLE
 END
+```
 -RUN
 DOS COPY HOLD.PS \\IBIPRINTA\28C2
 
@@ -2538,6 +2580,7 @@ addition, the Trebuchet MS and Tahoma fonts have been added to the fontuser.xml 
 The following request against the GGSALES data source specifies the Trebuchet MS font for
 the column headings and the bold style of Tahoma for the data in the PDF report output:
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS UNITS
 BY REGION
@@ -2547,6 +2590,7 @@ ON TABLE SET STYLE *
 TYPE = TITLE, FONT='Trebuchet MS',$
 TYPE = DATA, FONT='Tahoma', style=bold, size=10, color=blue, $
 END
+```
 
 
 ## Using Print Display Formats: PDF, PS
@@ -3044,6 +3088,7 @@ In the following example, the DOLLARS field is assigned different numeric format
 demonstrate different available options. The column titles have been edited to display the
 WebFOCUS format options that have been applied:
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/D12.2 AS 'D12.2'
     DOLLARS/D12C  AS 'D12C'
@@ -3053,6 +3098,7 @@ BY CATEGORY
 ON TABLE PCHOLD FORMAT XLSX
 ON TABLE SET BYDISPLAY ON
 END
+```
 
 
 In the resulting worksheet, notice that cell C2 containing the DOLLAR value for Midwest Coffee
@@ -3070,6 +3116,7 @@ The following example uses Fixed Dollar (N) format, as well as multiple combined
 options. Each WebFOCUS format option is translated to the appropriate Excel XLSX format
 mask and applied to the cell value:
 
+```fex
 TABLE FILE GGSALES
 SUM BUDDOLLARS/D12N
     DOLLARS/D12M
@@ -3079,6 +3126,7 @@ BY CATEGORY
 ON TABLE PCHOLD FORMAT XLSX
 ON TABLE SET BYDISPLAY ON
 END
+```
 
 
 ## Saving Report Output in Excel XLSX Format
@@ -3125,6 +3173,7 @@ same behavior in EXL2K. In EXL2K format, the footer is not included as a part of
 For example, if you run the following procedure and sort the data table, the report footer is part
 of the data table, as shown in the image below the request:
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 PRINT COUNTRY_NAME AS Country
 STATE_PROV_NAME AS State
@@ -3137,6 +3186,7 @@ ON TABLE PCHOLD FORMAT XLSX
 ON TABLE SET STYLE *
 ENDSTYLE
 END
+```
 
 
 ## Saving Report Output in Excel XLSX Format
@@ -3146,6 +3196,7 @@ The output is:
 The workaround is to add a named data range to the procedure, as shown in the following
 procedure:
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 PRINT COUNTRY_NAME AS Country
 STATE_PROV_NAME AS State
@@ -3160,6 +3211,7 @@ TYPE=DATA, IN-RANGES=DATA, $
 TYPE=TITLE, IN-RANGES=DATA, $
 ENDSTYLE
 END
+```
 
 
 The report footer is not part of the data table, as shown in the following image:
@@ -3189,6 +3241,7 @@ Translating WebFOCUS Dates to Excel XLSX Dates
 The following request against the GGSALES data source creates the date January 1, 2010 and
 converts it to four date formats with translated text:
 
+```fex
 DEFINE FILE GGSALES
 NEWDATE/MDYY = '01/01/2010';
 WRMtrDY/WRMtrDY = NEWDATE;
@@ -3196,11 +3249,14 @@ wDMTY/wDMTY = NEWDATE;
 wrDMTRY/wrDMTRY = NEWDATE;
 wrYMtrD/wrYMtrD = NEWDATE;
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM DATE NOPRINT
 NEWDATE WRMtrDY wDMTY wrDMTRY wrYMtrD
 ON TABLE PCHOLD FORMAT XLSX
 END
+```
 
 The following table shows how the dates should appear.
 
@@ -3297,15 +3353,19 @@ Passing WebFOCUS Dates With and Without a Day Component to XLSX Report Output
 The following request against the GGSALES data source creates the date January 2, 2010 and
 passes it to Excel with formats MDYY, DMYY, MY, and MTDY:
 
+```fex
 DEFINE FILE GGSALES
 NEWDATE/MDYY = '01/02/2010';
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM DATE NOPRINT
 NEWDATE AS 'MDYY' NEWDATE/DMYY AS 'DMYY' NEWDATE/MY AS 'MY'
         NEWDATE/MTY AS 'MTY' NEWDATE/MTDY AS 'MTDY'
 ON TABLE PCHOLD FORMAT XLSX
 END
+```
 
 Columns D and E have actual date values with format masks, displayed by Excel 2007/2010
 in mixed-case. Since the MTY format does not have a day component, the date value stored is
@@ -3327,6 +3387,7 @@ Passing Numeric Date Components to XLSX Report Output
 The following request against the GGSALES data source creates the date January 1, 2010 and
 extracts numeric date components, passing them to Excel 2007/2010:
 
+```fex
 DEFINE FILE GGSALES
 NEWDATE/MDYY = '01/01/2010';
 D/D = NEWDATE;
@@ -3336,11 +3397,14 @@ w/w = NEWDATE;
 M/M = NEWDATE;
 YY/YY = NEWDATE;
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM DATE NOPRINT
 NEWDATE D Y W w M YY
 ON TABLE PCHOLD FORMAT XLSX
 END
+```
 
 The output is:
 
@@ -3356,17 +3420,21 @@ Passing Dates With a Quarter Component to XLSX Report Output
 The following request against the GGSALES data source creates the date January 1, 2010 and
 converts it to date formats that contain a Quarter component:
 
+```fex
 DEFINE FILE GGSALES
 NEWDATE/MDYY = '01/01/2010';
 Q/Q = NEWDATE;
 QY/QY = NEWDATE;
 YBQ/YBQ = NEWDATE;
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM DATE NOPRINT
 NEWDATE Q QY YBQ
 ON TABLE PCHOLD FORMAT XLSX
 END
+```
 
 In XLSX, the cells containing dates with Quarter components have General format. To see this,
 open the Format Cells dialog box.
@@ -3399,6 +3467,7 @@ Passing Date Components Defined as Translated Text to XLSX Report Output
 The following request against the GGSALES data source creates the date January 1, 2010 and
 converts it to date formats that are defined as either month name or day name:
 
+```fex
 DEFINE FILE GGSALES
 NEWDATE/MDYY = '01/01/2010';
 MT/MT = NEWDATE;
@@ -3407,11 +3476,14 @@ Mtr/Mtr = NEWDATE;
 WR/WR = NEWDATE;
 wr/wr = NEWDATE;
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM DATE NOPRINT
 NEWDATE MT MTR Mtr WR wr
 ON TABLE PCHOLD FORMAT XLSX
 END
+```
 
 In Excel 2007 or 2010, the cells containing the days have General format. To see this, open
 the Format Cells dialog box.
@@ -3445,11 +3517,14 @@ Passing Date-Time to XLSX
 
 The following request shows an example against the GGSALES data source.
 
+```fex
 DEFINE FILE GGSALES
 DT1/HYYMDm WITH REGION = DT(20100506 16:17:01.993876);
 DPT1/HDMTYYm = DT1;
 ALPHA_DATE1/A30 = HCNVRT(DT1,'(HYYMDm)',30,'A30');
 END
+```
+```fex
 TABLE FILE GGSALES
 PRINT
 ALPHA_DATE1
@@ -3461,6 +3536,7 @@ ON TABLE SET SPACES 1
 IF RECORDLIMIT EQ 1
 ON TABLE PCHOLD FORMAT XLSX
 END
+```
 
 
 The output is:
@@ -3639,6 +3715,7 @@ column total (TYPE=GRANDTOTAL) is retained in the Excel workbook. When you selec
 in the report, the equation =SUM(B4:B10) displays in the formula bar, representing the column
 total as a sum of cell ranges.
 
+```fex
 TABLE FILE SHORT
 HEADING
 "Projected Return By Region"
@@ -3653,6 +3730,7 @@ TYPE=TITLE, BACKCOLOR=RGB(102 102 102), COLOR=RGB(255 255 255),$
 TYPE=HEADING, SIZE=12, STYLE=BOLD, JUSTIFY=CENTER,$
 TYPE=GRANDTOTAL, BACKCOLOR=RGB(210 210 210), STYLE=BOLD,$
 END
+```
 
 The output is:
 
@@ -3668,6 +3746,7 @@ Generating Native Excel Formulas for Row Totals
 The following request calculates totals for returns and balances across continents. The row
 totals are represented as sums of cell ranges.
 
+```fex
 TABLE FILE SHORT
 HEADING
 "Projected Return Across Continent"
@@ -3685,6 +3764,7 @@ TYPE=HEADING, SIZE=12, STYLE=BOLD, JUSTIFY=CENTER,$
 TYPE=ACROSSTITLE, STYLE=BOLD,$
 TYPE=GRANDTOTAL, BACKCOLOR=RGB(210 210 210), STYLE=BOLD,$
 END
+```
 
 The following output highlights the formula that calculates the row total in cell
 I12=C12+E12+G12.
@@ -3708,6 +3788,7 @@ be created using cell references. Otherwise, it may be created using values not 
 the fields used in the calculation are not present in the report and there is a subsequent
 RECOMPUTE, the formula created for the RECOMPUTE will not be correct.
 
+```fex
 TABLE FILE GGSALES
 ON TABLE SET PAGE-NUM OFF
 SUM BUDDOLLARS/I8MC AND DOLLARS/I8MC
@@ -3724,6 +3805,7 @@ TYPE=TITLE, BACKCOLOR=RGB(102 102 102), COLOR=RGB(255 255 255),$
 TYPE=HEADING, SIZE=12, STYLE=BOLD, JUSTIFY=CENTER,$
 TYPE=GRANDTOTAL, BACKCOLOR=RGB(210 210 210), STYLE=BOLD,$
 END
+```
 
 The following output highlights the formula that calculates for the column total of PROFIT:
 D8=SUM(D4:D7).
@@ -3740,6 +3822,7 @@ formula corresponds to =TRUNC((MOD($C3,(1000)))). TRUNC is used when the answer
 returned from an equation is being placed into an Integer field, to be sure there are no
 decimals.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT ACCTNUMBER AS 'Account Number'
 COMPUTE LAST3_ACCT/I3L = IMOD(ACCTNUMBER, 1000, LAST3_ACCT);
@@ -3751,6 +3834,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, FONT='ARIAL', SIZE=9,$
 TYPE=TITLE, BACKCOLOR=RGB(102 102 102), COLOR=RGB(255 255 255), STYLE=BOLD,$
 END
+```
 
 The output is:
 
@@ -3774,6 +3858,7 @@ The following request computes the difference (DIFF) by subtracting budgeted dol
 dollar sales. The budgeted dollars field used in the expression is not included in the SUM
 command. The value of DIFF is recomputed on the region level.
 
+```fex
 TABLE FILE GGSALES
 HEADING
 "Profit By Region"
@@ -3791,6 +3876,7 @@ TYPE=HEADING, SIZE=12, STYLE=BOLD, JUSTIFY=CENTER,$
 TYPE=SUBTOTAL, BACKCOLOR=RGB(210 210 210),$
 TYPE=GRANDTOTAL, BACKCOLOR=RGB(166 166 166), STYLE=BOLD,$
 END
+```
 
 
 The output shows that the formula is subtracting a data value that is not displayed on the
@@ -3886,6 +3972,7 @@ of the aggregated BUDDOLLARS field.
 
 ## Saving Report Output in Excel XLSX Format
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS/I8MC BUDDOLLARS/I8MC
 AND COMPUTE DIFF/I8MC= DOLLARS-BUDDOLLARS;
@@ -3901,6 +3988,7 @@ TYPE=TITLE, BACKCOLOR=RGB(102 102 102), COLOR=RGB(255 255 255),$
 TYPE=SUBTOTAL, BACKCOLOR=RGB(210 210 210),$
 TYPE=GRANDTOTAL, BACKCOLOR=RGB(166 166 166), STYLE=BOLD,$
 END
+```
 
 In the output, shown in the following image, the cell that represents the recomputed DOLLARS
 for the Midwest region has been generated as the following formula.
@@ -3914,6 +4002,7 @@ Using a Prefix Operator on a Display Command With FORMAT XLSX FORMULA
 In the following request against the GGSALES data source, the CNT., AVE., and PCT. Prefix
 operators are used in the SUM display command.
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS
 CNT.UNITS
@@ -3923,6 +4012,7 @@ BY REGION
 BY ST
 ON TABLE PCHOLD FORMAT XLSX FORMULA
 END
+```
 
 
 The output shows that the prefix operators were not passed to Excel as formulas. They were
@@ -3943,6 +4033,7 @@ For example:
 ## Saving Report Output in Excel XLSX Format
 
 SET NODATA=''
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/D12CM UNITS/D12C AND ROW-TOTAL AND COLUMN-TOTAL
 COMPUTE REVENUE/D12CM=DOLLARS*UNITS; AS 'Revenue'
@@ -3951,11 +4042,15 @@ BY GGSALES.SALES01.PRODUCT
 ACROSS REGION
 ON TABLE PCHOLD FORMAT XLSX FORMULA
 END
+```
 ------------------------
 SET NODATA=''
+```fex
 DEFINE FILE GGSALES
 DOLLARMOD/D12CM MISSING ON=IF REGION GT 'V' THEN MISSING ELSE DOLLAR;
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM DOLLARMOD/D12CM UNITS/D12C AND ROW-TOTAL AND COLUMN-TOTAL
 COMPUTE REVENUE/D12CM=DOLLARMOD*UNITS; AS 'Revenue'
@@ -3965,6 +4060,7 @@ BY GGSALES.SALES01.PRODUCT
 ON TABLE SET PAGE-NUM NOLEAD
 ON TABLE PCHOLD FORMAT XLSX FORMULA
 END
+```
 
 Reference: Usage Notes for XLSX With Formulas
 
@@ -4082,12 +4178,15 @@ The following example illustrates how to turn on and turn off data wrapping in a
 how to set the column width for a particular column. The UNITS in this example are set to
 inches (the default).
 
+```fex
 DEFINE FILE GGSALES
 PROFIT/D14.3 = BUDDOLLARS-DOLLARS;
 DESCRIPTION/A80 = 'Subtract Total Sales Quota from Reported Sales to
 calculate profit.';
 END
+```
 
+```fex
 TABLE FILE GGSALES
 SUM
 DESCRIPTION AS 'DEFAULT'
@@ -4102,6 +4201,7 @@ TYPE=REPORT, COLUMN=DESCRIPTION(2), WRAP=2,$
 TYPE=REPORT, COLUMN=DESCRIPTION(3), WRAP=OFF,$
 TYPE=REPORT, COLUMN=DESCRIPTION(4), SQUEEZE=1.5,$
 END
+```
 
 
 where:
@@ -4140,6 +4240,7 @@ Output
 The following request generates format XLSX report output with WebFOCUS page breaks that
 are inserted using the BY REGION PAGE-BREAK phrase.
 
+```fex
 TABLE FILE GGSALES
 HEADING
 "Sales Report by Region"
@@ -4157,6 +4258,7 @@ TYPE=TITLE, STYLE=BOLD, SIZE=10, $
 TYPE=HEADING, STYLE=BOLD, SIZE=12, $
 ENDSTYLE
 END
+```
 
 
 Using Print Preview in Excel, output for pages 1 and 2 for the Midwest Region are shown in the
@@ -4178,6 +4280,7 @@ the following procedure.
 
 Note: You can also use XLSXPAGETITLES as a SET command.
 
+```fex
 TABLE FILE GGSALES
 HEADING
 "Sales Report by Region"
@@ -4196,6 +4299,7 @@ TYPE=TITLE, STYLE=BOLD, SIZE=10, $
 TYPE=HEADING, STYLE=BOLD, SIZE=12, $
 ENDSTYLE
 END
+```
 
 
 ## Saving Report Output in Excel XLSX Format
@@ -4299,10 +4403,13 @@ trailing blanks.
 SET SHOWBLANKS = OFF
 
 -SET &SHOWVAR= '  AB  C  ';
+```fex
 DEFINE FILE CAR
 SHOWFIELD/A9 = '  AB  C  ';
 END
+```
 
+```fex
 TABLE FILE CAR
 ON TABLE SUBHEAD
 "SHOWBLANKS OFF"
@@ -4322,6 +4429,7 @@ ON TABLE SET STYLE *
 HEADALIGN=BODY,SQUEEZE=ON,$
 TYPE=TABHEADING,COLSPAN=2,$
 END
+```
 
 The following outputs show the differences in XLSX generated using SET SHOWBLANKS = OFF
 and SET SHOWBLANKS = ON.
@@ -4579,9 +4687,12 @@ Example:
 
 Adding a GIF Image to a Single Table Request
 
+```fex
 DEFINE FILE GGSALES
 SHOWCAT/A100=CATEGORY || '.GIF';
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/D12CM UNITS/D12C
 BY LOWEST CATEGORY NOPRINT
@@ -4629,6 +4740,7 @@ TYPE=TABHEADING, IMAGE=gglogo.gif,$
 TYPE=TABFOOTING, SIZE=12, STYLE=BOLD, JUSTIFY=RIGHT,$
 TYPE=TABFOOTING, IMAGE=logo.gif, SIZE=(1.67 .6),$
 END
+```
 
 
 ## Saving Report Output in Excel XLSX Format
@@ -4676,16 +4788,19 @@ END
 
 SET COMPONENT='report1'
 -*component_type report
+```fex
 DEFINE FILE GGSALES
 SHOWCAT/A100=CATEGORY || '.GIF';
 SHOWDATEQ/Q=DATE;
 SHOWDATEY/YY=DATE;
 SHOWDATEQY/YYQ=DATE;
 END
+```
 
 
 ## Saving Report Output in Excel XLSX Format
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/D12CM AS 'Dollars'
 BY REGION AS ''
@@ -4726,6 +4841,7 @@ TYPE=ACROSS, JUSTIFY=CENTER, BORDER=LIGHT,$
 TYPE=ACROSSTITLE, STYLE=-UNDERLINE+BOLD,$
 TYPE=ACROSSVALUE, BACKCOLOR=RGB(218 225 232), STYLE=-UNDERLINE+BOLD,$
 END
+```
 
 
 SET COMPONENT='chart1'
@@ -4734,6 +4850,7 @@ ENGINE INT CACHE SET ON
 -DEFAULTH &WF_STYLE_HEIGHT='1005.0';
 -DEFAULTH &WF_STYLE_WIDTH='1070.0';
 -DEFAULTH &WF_TITLE='WebFOCUS Report';
+```fex
 GRAPH FILE GGSALES
 HEADING
 "Sales Graph"
@@ -4778,6 +4895,7 @@ setSelectionEnableMove(false);
 *END
 ENDSTYLE
 END
+```
 COMPOUND END
 
 
@@ -4913,6 +5031,7 @@ left header area of the first page and the right header area of every subsequent
 resulting worksheet. It places the image webfocus1.gif in the center area of the footer on every
 page.
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS UNITS BUDDOLLARS BUDUNITS
 BY REGION
@@ -4932,6 +5051,7 @@ TYPE=PAGEHEADER, OBJECT=IMAGE, JUSTIFY=RIGHT, IMAGE=IBI_LOGO.GIF,
 DISPLAYON=NOT-FIRST,$
 TYPE=PAGEFOOTER, OBJECT=IMAGE, JUSTIFY=CENTER, IMAGE=WEBFOCUS1.GIF,$
 END
+```
 
 
 The first page of output has the image ibilogo.gif in the left area of the header and the image
@@ -4987,6 +5107,7 @@ is placed in the center area of the header, it is large enough to span the entir
 page. It has a transparent background, so it does not cover the logo images placed at the left
 in the header and the center in the footer.
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS UNITS BUDDOLLARS BUDUNITS
 BY REGION
@@ -5004,6 +5125,7 @@ DISPLAYON=FIRST,$
 TYPE=PAGEHEADER, OBJECT=IMAGE, JUSTIFY=CENTER, IMAGE=WFINTERNALUSEONLY.GIF,$
 TYPE=PAGEFOOTER, OBJECT=IMAGE, JUSTIFY=RIGHT, IMAGE=WEBFOCUS1.GIF,$
 END
+```
 
 
 ## Saving Report Output in Excel XLSX Format
@@ -5153,6 +5275,7 @@ Creating a Simple BYTOC Report
 The following request against the GGSALES data source creates separate tabs based on the
 REGION sort field.
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS/D12C DOLLARS/D12CM
 BY REGION NOPRINT
@@ -5169,6 +5292,7 @@ TYPE=HEADING, SIZE=12,$
 TYPE=TITLE, BACKCOLOR=GREY, COLOR=WHITE,$
 ENDSTYLE
 END
+```
 
 
 ## Saving Report Output in Excel XLSX Format
@@ -5310,6 +5434,7 @@ The following request creates XLSX report output with overflow worksheets. The
 ROWOVERFLOW=ON attribute in the StyleSheet activates the overflow feature. Without this
 attribute, one worksheet would have been generated instead of three.
 
+```fex
 TABLE FILE GGSALES
 -* ****Report Heading****
 ON TABLE SUBHEAD
@@ -5351,6 +5476,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, TITLETEXT=EXLOVER, ROWOVERFLOW=ON, ROWLIMIT=2000,$
 ENDSTYLE
 END
+```
 
 The report heading displays on the first worksheet only, the page heading and column titles
 display on each worksheet, and the subhead and subfoot display whenever the associated sort
@@ -5380,6 +5506,7 @@ ROWLIMIT=250 sets the maximum number of rows in each worksheet to approximately 
 Without this attribute, one worksheet would have been generated. The PRODUCT sort phrase
 specifies a page break.
 
+```fex
 TABLE FILE GGSALES
 -* ****Report Heading****
 ON TABLE SUBHEAD
@@ -5410,6 +5537,7 @@ TITLETEXT=EXLOVER, ROWOVERFLOW=PBON, ROWLIMIT=250,
 $
 ENDSTYLE
 END
+```
 
 
 The report heading displays on the first worksheet only, the page heading, footing, and column
@@ -5469,6 +5597,7 @@ COMPONENT=R4, TYPE=REPORT,TEXT='report4', POSITION=(0.938 7.083),
 DIMENSION=(6.042 1.146),$
 END
 SET COMPONENT=R1
+```fex
 TABLE FILE GGSALES
 HEADING CENTER
 "Gotham Grinds Sales to Information Builders"
@@ -5490,11 +5619,13 @@ TYPE=HEADING, LINE=4, OBJECT=TEXT, COLOR=PURPLE, JUSTIFY=CENTER, STYLE=BOLD,
 $
 ENDSTYLE
 END
+```
 
 
 ## Saving Report Output in Excel XLSX Format
 
 SET COMPONENT=R2
+```fex
 TABLE FILE GGSALES
 SUM UNITS/D12C DOLLARS/D12CM
 BY REGION BY CATEGORY BY PRODUCT
@@ -5517,8 +5648,10 @@ TYPE=HEADING, LINE=3, COLOR=BLUE, JUSTIFY=CENTER, STYLE=BOLD,$
 TYPE=HEADING, LINE=4, COLOR=PURPLE, JUSTIFY=CENTER, STYLE=BOLD,$
 ENDSTYLE
 END
+```
 
 SET COMPONENT=R3
+```fex
 TABLE FILE GGSALES
 HEADING CENTER
 "Gotham Grinds Sales to Information Builders"
@@ -5538,9 +5671,11 @@ TYPE=HEADING,LINE=3,OBJECT=TEXT,COLOR=BLUE, JUSTIFY=CENTER, STYLE=BOLD,$
 TYPE=HEADING,LINE=4,OBJECT=TEXT,COLOR=PURPLE, JUSTIFY=CENTER, STYLE=BOLD,$
 ENDSTYLE
 END
+```
 
 
 SET COMPONENT=R4
+```fex
 TABLE FILE GGSALES
 HEADING CENTER
 "Gotham Grinds Sales to Information Builders"
@@ -5561,6 +5696,7 @@ TYPE=HEADING,LINE=3,OBJECT=TEXT,COLOR=BLUE, JUSTIFY=CENTER, STYLE=BOLD,$
 TYPE=HEADING,LINE=4,OBJECT=TEXT,COLOR=PURPLE, JUSTIFY=CENTER, STYLE=BOLD,$
 ENDSTYLE
 END
+```
 COMPOUND END
 
 The output is:
@@ -5652,6 +5788,7 @@ Example:
 Creating a Simple Compound Report Using XLSX
 
 SET PAGE-NUM=OFF
+```fex
 TABLE FILE GGSALES
 HEADING
 "Report 1: Coffee - Budget"
@@ -5664,7 +5801,9 @@ TYPE=HEADING, SIZE=14,$
 ENDSTYLE
 ON TABLE PCHOLD AS EX1 FORMAT XLSX OPEN
 END
+```
 
+```fex
 TABLE FILE GGSALES
 HEADING
 "Report 2: Coffee - Actual "
@@ -5676,7 +5815,9 @@ TYPE=REPORT, TITLETEXT=Coffee Actual,$
 TYPE=HEADING, SIZE=14,$
 ENDSTYLE
 END
+```
 
+```fex
 TABLE FILE GGSALES
 HEADING
 "Report 3: Food - Budget"
@@ -5688,6 +5829,7 @@ TYPE=HEADING, SIZE=14,$
 ENDSTYLE
 ON TABLE PCHOLD FORMAT XLSX CLOSE
 END
+```
 
 
 The output is:
@@ -5700,6 +5842,7 @@ Creating a Compound Report Using NOBREAK
 In this example, the first two reports are on the first worksheet, and the last two reports are on
 the second worksheet, since NOBREAK appears on both the first and third reports.
 
+```fex
 TABLE FILE GGSALES
 HEADING
 "Report 1: Coffee - Budget"
@@ -5713,7 +5856,9 @@ TYPE=TITLE, STYLE=BOLD,$
 TYPE=HEADING, SIZE=12, STYLE=BOLD, COLOR=BLUE,$
 TYPE=GRANDTOTAL, STYLE=BOLD,$
 END
+```
 
+```fex
 TABLE FILE GGSALES
 HEADING
 " "
@@ -5727,10 +5872,12 @@ TYPE=REPORT, FONT=ARIAL, SIZE=10, STYLE=NORMAL,$
 TYPE=GRANDTOTAL, STYLE=BOLD,$
 TYPE=HEADING, SIZE=12, STYLE=BOLD, COLOR=BLUE,$
 END
+```
 
 
 ## Saving Report Output in Excel XLSX Format
 
+```fex
 TABLE FILE GGSALES
 HEADING
 "Report 3: Food - Budget"
@@ -5744,7 +5891,9 @@ TYPE=HEADING, STYLE=BOLD, SIZE=12, COLOR=BLUE,$
 TYPE=TITLE, STYLE=BOLD,$
 TYPE=GRANDTOTAL, STYLE=BOLD,$
 END
+```
 
+```fex
 TABLE FILE GGSALES
 HEADING
 " "
@@ -5759,6 +5908,7 @@ TYPE=TITLE, STYLE=BOLD,$
 TYPE=HEADING, SIZE=12, STYLE=BOLD, COLOR=BLUE,$
 TYPE=GRANDTOTAL, STYLE=BOLD,$
 END
+```
 
 
 Report output is displayed in two separate tabs.
@@ -5804,9 +5954,11 @@ SET COMPONENT='report1'
 -*component_type report
 -*File: IBFS:/localhost/EDA/9999/APPPATH/xlsx2015/Report1.fex
 -*Created by WebFOCUS AppStudio
+```fex
 DEFINE FILE GGSALES
 D_UOVERBUD/D12C=GGSALES.SALES01.UNITS - GGSALES.SALES01.BUDUNITS;
 END
+```
 TABLE FILE GGSALES
 SUM
      GGSALES.SALES01.UNITS
@@ -5861,6 +6013,7 @@ table and pivot chart within an existing Excel template called wf2pivot.xltx.
 Note: Template names containing embedded blanks must be enclosed in single quotation
 marks.
 
+```fex
 TABLE FILE GGSALES
 PRINT
 UNITS/D12C DOLLARS/D12CM
@@ -5877,6 +6030,7 @@ TYPE=DATA,IN-RANGES='DATAwithHEADERS',$
 TYPE=TITLE,IN-RANGES='DATAwithHEADERS',$
 ENDSTYLE
 END
+```
 
 The wf2pivot.xltx template file must be in the Reporting Server path. The following images
 show the default of the first and second worksheets in the wf2pivot.xltx template, before
@@ -6006,6 +6160,7 @@ Using a PowerPoint PPT Template
 The following request against the GGSALES data source inserts a WebFOCUS report into a
 PowerPoint template named mytemplate.mht, which is stored in the application directory:
 
+```fex
 TABLE FILE GGSALES
 HEADING
 " "
@@ -6024,6 +6179,7 @@ TYPE=REPORT, FONT=ARIAL, SIZE=10,$
 TYPE=HEADING, image=gglogo.gif, POSITION=(0.000000 0.000000),$
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -6327,6 +6483,7 @@ Displaying Group Tables and Components in a Standard Report
 In the following standard report, the grouping is defined for the core report elements, excluding
 images and drawing objects, defined at the TYPE=REPORT level.
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/D12CM UNITS/D12C BUDDOLLARS/D12CM BUDUNITS/D12C
 COMPUTE SHOWCAT/A100=CATEGORY||'.GIF';
@@ -6353,6 +6510,7 @@ TYPE=TABHEADING, IMAGE=GGLOGO.GIF, POSITION=(6.5 .10), $
 TYPE=DATA,COLUMN=SHOWCAT, IMAGE=(SHOWCAT), PRESERVERATIO=ON,
 SIZE=(.5 .5), $
 END
+```
 
 
 ## Saving Report Output in PPTX Format
@@ -6399,6 +6557,7 @@ POSITION=(0.502 0.499), DIMENSION=(1.861 0.506), $
 END
 
 SET COMPONENT='report1'
+```fex
 TABLE FILE GGSALES
 SUM
    GGSALES.SALES01.DOLLARS
@@ -6412,6 +6571,7 @@ ON TABLE SET STYLE *
 $
 ENDSTYLE
 END
+```
 
 
 ## Saving Report Output in PPTX Format
@@ -6421,6 +6581,7 @@ SET PAGE-NUM=NOLEAD
 SET ARGRAPHENGINE=JSCHART
 SET EMBEDHEADING=ON
 SET GRAPHDEFAULT=OFF
+```fex
 GRAPH FILE GGSALES
 SUM GGSALES.SALES01.DOLLARS
 BY GGSALES.SALES01.CATEGORY
@@ -6459,6 +6620,7 @@ setLegendPosition(4);
 *END
 ENDSTYLE
 END
+```
 -RUN
 
 COMPOUND END
@@ -6692,6 +6854,7 @@ Tags for a Text Object on page 751.
 
 SET PAGE-NUM=OFF
 SET LAYOUTGRID=ON
+```fex
 TABLE FILE GGSALES
 BY REGION NOPRINT
 ON TABLE PCHOLD AS LINESP1 FORMAT PPTX
@@ -6713,6 +6876,7 @@ object=string, position=(1 1), dimension=(7 3), wrap=on, markup=on,
  employees to serve them.</full>', $
 ENDSTYLE
 END
+```
 
 In this request:
 
@@ -6779,6 +6943,7 @@ END
 
 
 SET COMPONENT=HEADER
+```fex
 TABLE FILE GGSALES
 " "
 "Report package for <REGION"
@@ -6789,7 +6954,9 @@ TYPE=REPORT, FONT=HELVETICA, SIZE=20, $
 TYPE=REPORT, IMAGE=gglogo.gif, POSITION=(+.25 +.25), $
 TYPE=HEADING, LINE=2, ITEM=1, POSITION=1.5, $
 END
+```
 SET COMPONENT=R1
+```fex
 TABLE FILE GGSALES
 "Sales report for <REGION"
 " "
@@ -6800,7 +6967,9 @@ BY CITY
 ON TABLE SET STYLE *
 TYPE=REPORT, FONT=HELVETICA, COLOR=RED, SQUEEZE=ON, $
 END
+```
 SET COMPONENT=R2
+```fex
 TABLE FILE GGSALES
 "Number of unit sales per product for <REGION"
 " "
@@ -6810,7 +6979,9 @@ BY PRODUCT
 ON TABLE SET STYLE *
 TYPE=REPORT, FONT=HELVETICA, COLOR=BLUE, SQUEEZE=ON, $
 END
+```
 SET COMPONENT=R3
+```fex
 TABLE FILE GGSALES
 "Report R3 for <REGION"
 BY REGION NOPRINT
@@ -6818,6 +6989,7 @@ SUM DOLLARS BY ST
 ON TABLE SET STYLE *
 TYPE=REPORT, FONT=HELVETICA, COLOR=GREEN, $
 END
+```
 COMPOUND END
 
 
@@ -6851,6 +7023,7 @@ information on displaying carriage returns within the text object see Text Forma
 Tags for a Text Object on page 751.
 
 SET PAGE-NUM=OFF
+```fex
 TABLE FILE GGSALES
 BY REGION NOPRINT
 ON TABLE PCHOLD FORMAT PPTX
@@ -6869,6 +7042,7 @@ object=string, text='<bottom>Vertically aligned text within a text object
 using bottom alignment.</bottom>', position=(5.05 .9), dimension=(2
 1),linespacing=exact(.15), markup=on, wrap=on, $
 END
+```
 
 The output is:
 
@@ -6917,6 +7091,7 @@ MARKUP=ON, WRAP=ON, DIMENSION=(6.563 4.167), $
 COMPONENT='DfltCmpt1', POSITION=(0 0), DIMENSION=(0 0), $
 END
 SET COMPONENT='DfltCmpt1'
+```fex
 TABLE FILE SYSCOLUM
 " "
 SUM TBNAME NOPRINT
@@ -6925,6 +7100,7 @@ ON TABLE SET PREVIEW ON
 ON TABLE PCHOLD FORMAT PPTX
 ON TABLE SET STYLE *
 END
+```
 COMPOUND END
 
 
@@ -6954,6 +7130,7 @@ MARKUP=ON, WRAP=ON, DIMENSION=(6.563 4.167), $
 COMPONENT='DfltCmpt1', POSITION=(0 0), DIMENSION=(0 0), $
 END
 SET COMPONENT='DfltCmpt1'
+```fex
 TABLE FILE SYSCOLUM
 " "
 SUM TBNAME NOPRINT
@@ -6962,6 +7139,7 @@ ON TABLE SET PREVIEW ON
 ON TABLE PCHOLD FORMAT PPTX
 ON TABLE SET STYLE *
 END
+```
 COMPOUND END
 
 
@@ -7322,6 +7500,7 @@ END
 ## Saving Report Output in PPTX Format
 
 SET COMPONENT='report1'
+```fex
 TABLE FILE GGSALES
 SUM
    GGSALES.SALES01.DOLLARS
@@ -7335,8 +7514,10 @@ INCLUDE=IBFS:/FILE/IBI_HTML_DIR/ibi_themes/Warm.sty,$
 $
 ENDSTYLE
 END
+```
 
 SET COMPONENT='chart2'
+```fex
 GRAPH FILE ggsales
 SUM GGSALES.SALES01.DOLLARS
 BY GGSALES.SALES01.CATEGORY
@@ -7380,6 +7561,7 @@ setLegendPosition(4);
 *END
 ENDSTYLE
 END
+```
 -RUN
 
 COMPOUND END
@@ -7410,13 +7592,16 @@ COMPONENT-TYPE=GRAPH, ARREPORTSIZE=DIMENSION, $
 END
 
 SET COMPONENT='ppt_template'
+```fex
 TABLE FILE SYSCOLUM
 SUM TBNAME NOPRINT
 IF READLIMIT EQ 1
 ON TABLE PCHOLD FORMAT PPTX TEMPLATE 'golden.potx' SLIDENUMBER 1
 END
+```
 
 SET COMPONENT='chart1'
+```fex
 GRAPH FILE ggsales
 SUM GGSALES.SALES01.DOLLARS
 BY GGSALES.SALES01.CATEGORY
@@ -7453,6 +7638,7 @@ setFillType(getChartBackground(),1);
 *END
 ENDSTYLE
 END
+```
 -RUN
 COMPOUND END
 
@@ -8129,6 +8315,7 @@ COMPONENT='report3', TEXT='report3', POSITION=(5.702 0.759),
 DIMENSION=(* *), $
 END
 SET COMPONENT='report1'
+```fex
 TABLE FILE WF_RETAIL
 BY WF_RETAIL.WF_RETAIL_GEOGRAPHY_CUSTOMER.BUSINESS_REGION NOPRINT
 HEADING
@@ -8162,6 +8349,7 @@ TYPE=HEADING,
 $
 ENDSTYLE
 END
+```
 SET COMPONENT='report2'
 TABLE FILE WF_RETAIL
 SUM
@@ -8299,22 +8487,26 @@ layout. For uncoordinated standard compound reports, this default component can 
 using the system table, as shown in the following request.
 
 SET COMPONENT='ppt_template'
+```fex
 TABLE FILE SYSCOLUM
 SUM TBNAME NOPRINT
 IF READLIMIT EQ 1
 ON TABLE PCHOLD FORMAT PPTX TEMPLATE 'template_plus.potx' SLIDENUMBER 1
 END
+```
 
 For Coordinated Compound Reports, this table must contain the same primary key as the other
 components in the report. This includes any preprocessing of the data to define the universe of
 available primary key values including JOINS and DEFINES.
 
 SET COMPONENT='ppt_template'
+```fex
 TABLE FILE GGSALES
 BY REGION NOPRINT
 IF READLIMIT EQ 1
 ON TABLE PCHOLD FORMAT PPTX TEMPLATE 'template_plus.potx' SLIDENUMBER 1
 END
+```
 
 
 Adding Images to a Compound Request
@@ -8366,11 +8558,13 @@ END
 ## Saving Report Output in PPTX Format
 
 SET COMPONENT='ppt_template'
+```fex
 TABLE FILE SYSCOLUM
 SUM TBNAME NOPRINT
 IF READLIMIT EQ 1
 ON TABLE PCHOLD FORMAT PPTX TEMPLATE '_ibi_template.potx' SLIDENUMBER 2
 END
+```
 SET COMPONENT='report1'
 TABLE FILE IBISAMP/EMPDATA
 SUM
@@ -8617,11 +8811,13 @@ COMPONENT='DfltCmpt9', POSITION=(0 0), DIMENSION=(0 0), $
 END
 
 SET COMPONENT='ppt_template'
+```fex
 TABLE FILE SYSCOLUM
 SUM TBNAME NOPRINT
 IF READLIMIT EQ 1
 ON TABLE PCHOLD FORMAT PPTX TEMPLATE 'template_plus.potx' SLIDENUMBER 1
 END
+```
 
 
 SET COMPONENT='report1'
@@ -8631,6 +8827,7 @@ SET COMPONENT='chart1'
 -INCLUDE GG_CHART1
 
 SET COMPONENT='DfltCmpt2_3'
+```fex
 TABLE FILE SYSCOLUM
 " "
 SUM TBNAME NOPRINT
@@ -8639,6 +8836,7 @@ ON TABLE SET PAGE-NUM NOLEAD
 ON TABLE PCHOLD FORMAT PPTX
 ON TABLE SET STYLE *
 END
+```
 
 SET COMPONENT='report2_2'
 -INCLUDE GG_RPT2
@@ -8648,6 +8846,7 @@ SET COMPONENT='report2_3'
 -INCLUDE GG_RPT3
 
 SET COMPONENT='DfltCmpt9'
+```fex
 TABLE FILE SYSCOLUM
 " "
 SUM TBNAME NOPRINT
@@ -8656,10 +8855,12 @@ ON TABLE SET PAGE-NUM NOLEAD
 ON TABLE PCHOLD FORMAT PPTX
 ON TABLE SET STYLE *
 END
+```
 
 COMPOUND END
 
 -*gg_rpt1.fex
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/D12CM BUDDOLLARS/D12CM UNITS/D12 BUDUNITS/D12
 BY REGION
@@ -8670,11 +8871,13 @@ ON TABLE SET STYLE *
 $
 ENDSTYLE
 END
+```
 
 
 ## Saving Report Output in PPTX Format
 
 -*gg_rpt2.fex
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/D12CM BUDDOLLARS/D12CM UNITS/D12 BUDUNITS/D12
 BY REGION NOPRINT
@@ -8687,6 +8890,7 @@ ON TABLE SET STYLE *
 $
 ENDSTYLE
 END
+```
 
 -*gg_chart1.fex
 ENGINE INT CACHE SET ON
@@ -8694,6 +8898,7 @@ ENGINE INT CACHE SET ON
 -DEFAULTH &WF_STYLE_HEIGHT='4.21875';
 -DEFAULTH &WF_STYLE_WIDTH='8.020833';
 -DEFAULTH &WF_TITLE='WebFOCUS Report';
+```fex
 GRAPH FILE GGSALES
 SUM DOLLARS UNITS
 BY REGION NOPRINT
@@ -8744,6 +8949,7 @@ setPlace(true);
 *END
 ENDSTYLE
 END
+```
 -RUN
 
 -*gg_chart2.fex
@@ -8807,6 +9013,7 @@ END
 -RUN
 
 -*gg_rpt3.fex
+```fex
 TABLE FILE GGSALES
 BY REGION PAGE-BREAK NOPRINT
 HEADING
@@ -8820,6 +9027,7 @@ TYPE=HEADING, SIZE=20,
 $
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -8856,6 +9064,7 @@ Merge Procedure
 The following procedure includes the TEMPLATE-ACTION=MERGE StyleSheet attribute to merge
 WebFOCUS content with PowerPoint template content, my_template.potx.
 
+```fex
 TABLE FILE GGSALES
 HEADING CENTER
 "Sales for Region: <REGION"
@@ -8875,6 +9084,7 @@ TYPE=REPORT, PAGESIZE=PPT-SLIDE, ORIENTATION=LANDSCAPE,
 ENDSTYLE
 
 END
+```
 
 The output is:
 
@@ -8888,6 +9098,7 @@ Overriding Target Slide Content
 The following procedure includes the TEMPLATE-ACTION=REPLACE StyleSheet attribute to
 retain the default behavior and override all target slide content.
 
+```fex
 TABLE FILE GGSALES
 HEADING CENTER
 "Sales for Region: <REGION"
@@ -8906,6 +9117,7 @@ TYPE=REPORT, PAGESIZE=PPT-SLIDE, ORIENTATION=LANDSCAPE,
 ENDSTYLE
 
 END
+```
 
 The output is:
 

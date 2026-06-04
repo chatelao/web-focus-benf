@@ -58,6 +58,7 @@ Specifying Font Size in a Report
 
 In the following report request, the point size of column titles is set to 12:
 
+```fex
 TABLE FILE GGSALES
 ON TABLE SET PAGE-NUM OFF
 SUM UNITS DOLLARS BY CATEGORY
@@ -66,6 +67,7 @@ TYPE=TITLE, SIZE=12, $
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -154,6 +156,7 @@ Specifying Font Style in a Report
 
 In the following report, the column titles are specified to have bold and italic font styles:
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS BY CATEGORY
 ON TABLE SET STYLE *
@@ -161,6 +164,7 @@ TYPE=TITLE, STYLE=BOLD+ITALIC, $
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 ## Specifying Font Format in a Report
@@ -175,6 +179,7 @@ In the following report request, the font styles bold and italics are specified 
 report. The inherited italics are removed from the heading, and both styles are removed from
 the column titles:
 
+```fex
 TABLE FILE GGSALES
 HEADING
 "Sales Report by Category"
@@ -186,6 +191,7 @@ TYPE=TITLE, STYLE=-BOLD-ITALIC, $
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -473,6 +479,7 @@ In this example, the web browser uses the default monospace font for the entire 
 the report heading and the column headings. For these headings, the web browser uses the
 default proportional font.
 
+```fex
 TABLE FILE GGSALES
 HEADING
 "Sales Report"
@@ -484,6 +491,7 @@ TYPE=HEADING,FONT=DEFAULT-PROPORTIONAL,$
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -557,6 +565,7 @@ report request, the data in the Dollar Sales column has been specified as RED on
 condition that the Dollars value is less than 2,500,000. The background color is set to LIGHT
 BLUE:
 
+```fex
 TABLE FILE GGSALES
 ON TABLE SET PAGE-NUM OFF
 HEADING
@@ -569,6 +578,7 @@ TYPE=REPORT, GRID=OFF, $
 TYPE=HEADING, JUSTIFY=CENTER, SIZE=12,$
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -619,6 +629,7 @@ Specifying Alternating Background Colors for the Data Lines in a Report
 The following request against the GGSALES data source produces alternating light blue and
 white data rows on the report output:
 
+```fex
 TABLE FILE GGSALES
 ON TABLE SET PAGE-NUM OFF
 HEADING
@@ -633,6 +644,7 @@ TYPE=DATA, BACKCOLOR=('LIGHT BLUE' WHITE),$
 TYPE=HEADING, JUSTIFY=CENTER, SIZE=12,$
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -671,6 +683,7 @@ The following report request prints a COMPUTE field with a long line of text, us
 without using the SET ALTBACKPERLINE command. The default alternating background color is
 applied by row.
 
+```fex
 TABLE FILE WF_RETAIL PRINT
 COMPUTE LONG_LINE/A1000 = 'This is a very long line of data, set up so that'
                            |'it wraps onto the next line within a report'
@@ -688,6 +701,7 @@ TYPE=REPORT, COLUMN=N4, WRAP=1, $
 TYPE=DATA, COLUMN=N4, BACKCOLOR=(RGB(235 240 178) RGB(255 255 255)), $
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -752,9 +766,11 @@ Changing the Format of Values in a Column
 The UNIT_PRICE field has a format of D7.2 as defined in the GGPRODS Master File. To add a
 floating dollar sign to the display, the field format can be redefined as follows:
 
+```fex
 TABLE FILE GGPRODS
 PRINT UNIT_PRICE/D7.2M
 END
+```
 
 
 ## Specifying Data Format in a Report
@@ -780,11 +796,13 @@ Using Multiple Format Specifications in a Column
 The following request illustrates column title justification with a format specification, a BY field
 specification, and an AS phrase specification:
 
+```fex
 TABLE FILE CAR
 PRINT MODEL/A10 STANDARD/A15/R AS 'RJUST,STANDARD'
 BY CAR/C
 WHERE CAR EQ 'JAGUAR' OR 'TOYOTA'
 END
+```
 
 The output is:
 
@@ -866,11 +884,13 @@ adds missing values to the SALES data source, has been run.
 ## Specifying Data Format in a Report
 
 SET COMPMISS = OFF
+```fex
 TABLE FILE SALES
 PRINT RETURNS RETURNS/D12.2 AS 'REFORMATTED,RETURNS'
 BY STORE_CODE
 WHERE STORE_CODE EQ '14Z'
 END
+```
 
 The output is:
 
@@ -892,11 +912,13 @@ With COMPMISS ON, the column for the reformatted version of RETURNS displays the
 data symbol when a value is missing:
 
 SET COMPMISS = ON
+```fex
 TABLE FILE SALES
 PRINT RETURNS RETURNS/D12.2 AS 'REFORMATTED,RETURNS'
 BY STORE_CODE
 WHERE STORE_CODE EQ '14Z'
 END
+```
 
 The output is:
 
@@ -978,6 +1000,7 @@ Setting the NODATA Character in a Request
 This request changes the NODATA character for missing data from a period (default) to the
 word NONE.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT CURR_SAL
 BY LAST_NAME BY FIRST_NAME
@@ -987,6 +1010,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, SQUEEZE=OFF,$
 ENDSTYLE
 END
+```
 
 This request produces the following report.
 
@@ -1104,6 +1128,7 @@ Example:
 
 Creating a Report Using Conditional Grid Formatting
 
+```fex
 TABLE FILE CAR
 SUM SALES BY CAR
 ON TABLE SET STYLE *
@@ -1111,6 +1136,7 @@ ON TABLE PCHOLD FORMAT PDF
 TYPE=DATA, COLUMN=SALES, GRID=HEAVY, WHEN=CAR EQ 'DATSUN', $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -1233,6 +1259,7 @@ The following example, with WRAP=ON, wraps report data based on the web browser
 functionality. Note that because this value is the default, there is no need to specify WRAP=ON
 in the report request syntax.
 
+```fex
 TABLE FILE GGPRODS
 PRINT SIZE UNIT_PRICE PACKAGE_TYPE
 VENDOR_CODE VENDOR_NAME
@@ -1241,6 +1268,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=ON, $
 ENDSTYLE
 END
+```
 
 Note: Wrap is determined by the size of your browser window, so you may need to shrink your
 window to see the example wrap the data as in the following image.
@@ -1253,6 +1281,7 @@ Suppressing the Wrapping of Report Data
 
 The following report request, with WRAP=OFF, suppresses the web browser data wrapping:
 
+```fex
 TABLE FILE GGPRODS
 PRINT SIZE UNIT_PRICE PACKAGE_TYPE
 VENDOR_CODE VENDOR_NAME
@@ -1262,6 +1291,7 @@ TYPE=REPORT, WRAP=OFF, $
 TYPE=REPORT, GRID=ON, $
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -1273,6 +1303,7 @@ The following request against the GGPRODS data source places the column VENDOR_N
 a new line with the OVER phrase. By default, wrap is turned off and must be defined explicitly
 within the StyleSheet:
 
+```fex
 TABLE FILE GGPRODS
 PRINT SIZE UNIT_PRICE PACKAGE_TYPE OVER
 VENDOR_NAME
@@ -1282,6 +1313,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, SQUEEZE=ON, $
 ENDSTYLE
 END
+```
 
 
 ## Positioning Data in a Report
@@ -1291,6 +1323,7 @@ The partial output is shown in the following image.
 The following version of the request turns wrapping on and sets a column width of 1.5 for the
 VENDOR_NAME column, which has been placed on a new line because of the OVER phrase:
 
+```fex
 TABLE FILE GGPRODS
 PRINT SIZE UNIT_PRICE PACKAGE_TYPE OVER
 VENDOR_NAME
@@ -1300,6 +1333,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, COLUMN=VENDOR_NAME, WRAP=1.5,$
 ENDSTYLE
 END
+```
 
 
 The partial output shows that the VENDOR_NAME column now wraps. Notice that turning WRAP
@@ -1356,6 +1390,7 @@ Example: Wrapping ACROSS Values in PDF Report Output
 In the following request against the GGPRODS data source, VENDOR_NAME is an ACROSS
 field:
 
+```fex
 TABLE FILE GGPRODS
 HEADING
 " PRODUCT REPORT"
@@ -1371,6 +1406,7 @@ TYPE=REPORT, COLUMN=PRODUCT_ID, WIDTH=.25, $
 TYPE=REPORT, COLUMN=UNIT_PRICE, WIDTH=.25, $
 ENDSTYLE
 END
+```
 
 As shown in the following image, the output is too wide for one panel because some of the
 ACROSS field values (vendor names) are longer than the sum of the product code and unit
@@ -1381,6 +1417,7 @@ The following version of the request wraps the ACROSS values (TYPE=ACROSSVALUE,
 WRAP=ON ,$):
 
 
+```fex
 TABLE FILE GGPRODS
 HEADING
 " PRODUCT REPORT"
@@ -1397,6 +1434,7 @@ TYPE=REPORT, COLUMN=UNIT_PRICE, WIDTH=.25, $
 TYPE = ACROSSVALUE, WRAP=ON,$
 ENDSTYLE
 END
+```
 
 The report now fits on one panel, as shown in the following image.
 
@@ -1422,6 +1460,7 @@ Using OVER and WRAP With Blank AS Names
 The following example demonstrates using OVER with blank AS names and WRAP to build a
 multi-data line report:
 
+```fex
 TABLE FILE GGPRODS
 PRINT PACKAGE_TYPE AS '' SIZE  AS '' OVER
 VENDOR_NAME AS ''
@@ -1448,6 +1487,7 @@ TYPE=HEADING, LINE=2, ITEM=1, BORDER=ON, $
 TYPE=HEADING, LINE=2, ITEM=2, BORDER=ON, POSITION=PACKAGE_TYPE,$
 ENDSTYLE
 END
+```
 
 
 On the report output, the Package Type and Size have been placed over the vendor name. The
@@ -1478,10 +1518,13 @@ Name and Vendor Name fields. It then prints each virtual field next to its relat
 gives each a blank AS name. The first virtual field and data field are placed over the second
 virtual field and data field:
 
+```fex
 DEFINE FILE GGPRODS
 TITLE_PROD/A20 = 'Product Description';
 TITLE_VEND/A20 = 'Vendor Name';
 END
+```
+```fex
 TABLE FILE GGPRODS
 PRINT TITLE_PROD AS '' PRODUCT_DESCRIPTION  AS '' OVER
 TITLE_VEND AS '' VENDOR_NAME  AS ''
@@ -1499,6 +1542,7 @@ TYPE=REPORT, COLUMN=VENDOR_NAME, WRAP=.75 ,$
 TYPE=REPORT, BORDER=ON, $
 ENDSTYLE
 END
+```
 
 
 The output shows that the titles and data align properly.
@@ -1539,6 +1583,7 @@ Specifying Spacing for Wrapped Lines
 
 In the following request, wrapping is turned on for the ADDRESS_LN3 column of the report:
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT ADDRESS_LN3
 BY LAST_NAME BY FIRST_NAME
@@ -1552,6 +1597,7 @@ type=data, wrapgap=off, $
 type=REPORT, column=ADDRESS_LN3, wrap=1.0 ,$
 ENDSTYLE
 END
+```
 
 
 With WRAPGAP=OFF, each wrapped line is placed on the next report line:
@@ -1624,6 +1670,7 @@ Justifying Data in a Report Column
 The following example displays the StyleSheet syntax used to center the data in the Vendor
 Name column. The header is also center justified.
 
+```fex
 TABLE FILE GGPRODS
 HEADING
 "PRODUCT REPORT"
@@ -1634,6 +1681,7 @@ TYPE=HEADING, JUSTIFY=CENTER, $
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 ## Positioning Data in a Report
@@ -1688,9 +1736,11 @@ How to Define and Apply a Format Field
 
 With a DEFINE command:
 
+```fex
 DEFINE FILE filename
 format_field/A8 = expression;
 END
+```
 
 In a Master File:
 
@@ -1715,9 +1765,11 @@ Is the expression that assigns the format values to the format field.
 
 After the format field is defined, you can apply it in a report request:
 
+```fex
 TABLE FILE filename
 displayfieldname/format_field[/just]
 END
+```
 
 where:
 
@@ -1745,15 +1797,19 @@ Example:
 
 Displaying Different Decimal Places for Currency Values
 
+```fex
 DEFINE FILE CAR
 CFORMAT/A8 = DECODE COUNTRY('ENGLAND' 'D10.1' 'JAPAN' 'D10' ELSE
 'D10.2');
 END
+```
 
+```fex
 TABLE FILE CAR
 SUM SALES/CFORMAT/C DEALER_COST/CFORMAT
 BY COUNTRY
 END
+```
 
 The output is:
 
@@ -1814,10 +1870,13 @@ EDCDIC environment) or a circumflex (in an ASCII environment) in the middle. The
 function then replaces the semicolon or circumflex with a carriage return character and stores
 this string in a field named ANLBC. On the report output, this field displays on two lines:
 
+```fex
 DEFINE FILE EMPLOYEE
 ANLB/A40 ='THIS IS AN An FIELD;WITH A LINE BREAK.';
 ANLBC/A40 = CTRAN(40, ANLB, 094, 013  , ANLBC);
 END
+```
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME ANLBC
 WHERE LAST_NAME EQ 'BLACKWOOD'
@@ -1826,6 +1885,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT,LINEBREAK='CR',$
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -1841,10 +1901,13 @@ field named ANLBC. In the subfoot, this field displays on two lines.
 The following report request is for an EBCDIC environment:
 
 
+```fex
 DEFINE FILE EMPLOYEE
 ANLB/A40 ='THIS IS AN An FIELD;WITH A LINE BREAK.';
 ANLBC/A40 = CTRAN(40, ANLB, 094, 013  , ANLBC);
 END
+```
+```fex
 TABLE FILE EMPLOYEE
 PRINT FIRST_NAME
 BY LAST_NAME
@@ -1857,13 +1920,17 @@ ON TABLE SET STYLE *
 TYPE=REPORT,LINEBREAK='CR',$
 ENDSTYLE
 END
+```
 
 The following report request is for an ASCII environment:
 
+```fex
 DEFINE FILE EMPLOYEE
 ANLB/A40 ='THIS IS AN An FIELD;WITH A LINE BREAK.';
 ANLBC/A40 = CTRAN(40, ANLB, 059, 013  , ANLBC);
 END
+```
+```fex
 TABLE FILE EMPLOYEE
 PRINT FIRST_NAME
 BY LAST_NAME
@@ -1876,6 +1943,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT,LINEBREAK='CR',$
 ENDSTYLE
 END
+```
 
 The output is:
 

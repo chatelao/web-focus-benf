@@ -99,6 +99,7 @@ Creating a WebFOCUS StyleSheet Within a Report Request
 The following illustrates an inline StyleSheet. The StyleSheet is highlighted in the request.
 
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS BY CATEGORY BY PRODUCT
 HEADING
@@ -114,6 +115,7 @@ TYPE=DATA, COLUMN=N1, STYLE=BOLD, COLOR=BLUE, $
 TYPE=FOOTING, COLOR=RED, STYLE=BOLD, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -254,6 +256,7 @@ Following is a request that includes an inline StyleSheet. The StyleSheet begins
 SET STYLE * and ends with ENDSTYLE.
 
 
+```fex
 TABLE FILE CENTORD
 HEADING
 " "
@@ -284,6 +287,7 @@ TYPE=Heading, LINE=7, BACKCOLOR=White, $
 ENDSTYLE
 
 END
+```
 
 Improving WebFOCUS StyleSheet Readability
 
@@ -421,6 +425,7 @@ Defining, Applying, and Overriding a WebFOCUS StyleSheet Macro
 The following annotated example illustrates how to define, apply, and override macros in your
 StyleSheet:
 
+```fex
    TABLE FILE GGSALES
     SUM UNITS DOLLARS
     BY CATEGORY BY PRODUCT
@@ -437,6 +442,7 @@ StyleSheet:
 5.  TYPE=DATA, COLUMN=N1, MACRO=BI, $
    ENDSTYLE
    END
+```
 
 1. Defines the A macro.
 
@@ -539,6 +545,7 @@ case we have added the declaration TYPE=HEADING, LINE=2, STYLE=ITALIC. The secon
 of the heading will inherit the bold style and 12-point font size from the first HEADING
 declaration, and will also receive the italic style defined in the second declaration.
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS
 BY CATEGORY BY PRODUCT
@@ -552,6 +559,7 @@ TYPE=HEADING, STYLE=BOLD, SIZE=12, $
 TYPE=HEADING, LINE=2, STYLE=ITALIC, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -565,6 +573,7 @@ Overriding Inherited WebFOCUS StyleSheet Attributes
 The following illustrates how to override StyleSheet inheritance. The StyleSheet declarations
 discussed in this example are highlighted in the report request.
 
+```fex
    TABLE FILE GGSALES
 HEADING
 "Sales Report"
@@ -584,6 +593,7 @@ ON TABLE SET STYLE *
 4. TYPE=FOOTING, OBJECT=FIELD, ITEM=1, STYLE=-ITALIC, $
    ENDSTYLE
    END
+```
 
 1. Formats the entire report (all components) to appear with a blue background and white
 

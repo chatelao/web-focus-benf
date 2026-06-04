@@ -338,11 +338,13 @@ TABLE Request
 
 This TABLE request prints the values and a total for all six fields.
 
+```fex
 TABLE FILE FIVE
 PRINT PACK2 PACK1 DOUBLE1 FLOAT1 MATH1 XMATH1
 ON TABLE SUMMARIZE
 ON TABLE SET PAGE NOLEAD
 END
+```
 
 
 ## Rounding in Calculations and Conversions
@@ -457,6 +459,7 @@ and decimal precision fields are stored and displayed.
 The request prints the values and a total for all six database fields, and for the five DEFINE
 fields.
 
+```fex
 DEFINE FILE EXAMPLE
 PACKED4/P9.4=PACKED2;
 DOUBLE4/D9.4=DOUBLE2;
@@ -464,7 +467,9 @@ FLOAT4/D9.4=FLOAT2;
 MATH4/M9.4 = MATH2;
 XMATH4/X9.4=XMATH2;
 END
+```
 
+```fex
 TABLE FILE EXAMPLE
 PRINT PACKED2 PACKED4 DOUBLE2 DOUBLE4 FLOAT2 FLOAT4 MATH2 MATH4 XMATH2
 XMATH4 INTEGER
@@ -473,6 +478,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 The following image shows the resulting output on z/OS:
 
@@ -505,14 +511,18 @@ are rounded.
 
 The following request illustrates the difference between floating-point and MATH data types.
 
+```fex
 DEFINE FILE ROUND1
 DOUBLE20/D32.20=DOUBLE2;
 MATH20/M32.20=MATH2;
 END
+```
+```fex
 TABLE FILE ROUND1
 PRINT DOUBLE20 MATH20
 ON TABLE SUMMARIZE
 END
+```
 
 
 ## Rounding in Calculations and Conversions
@@ -540,15 +550,19 @@ DEFINE and COMPUTE may give different results for rounded fields. DEFINE fields 
 like data source fields, while COMPUTE fields are calculated on the results of the display
 command in the TABLE request. The following example illustrates this difference:
 
+```fex
 DEFINE FILE EXAMPLE
 DEFP3/P9.3=PACKED2/4;
 END
+```
 
+```fex
 TABLE FILE EXAMPLE
 PRINT PACKED2 DEFP3
 COMPUTE COMPP3/P9.3=PACKED2/4;
 ON TABLE SUMMARIZE
 END
+```
 
 The following report results:
 
@@ -751,7 +765,9 @@ Index
 
 blank lines between declarations 27, 28
 
+```fex
 CHECK FILE command 395–397
+```
 
 blank spaces in declarations 27, 28
 
@@ -799,7 +815,9 @@ chart of accounts hierarchies 181
 
 CHECK command 415
 
+```fex
 CHECK FILE command 395–397
+```
 
 DATASET attribute and 39
 
@@ -2294,7 +2312,9 @@ NOMAD data sources 33
 
 non-FOCUS data sources 254
 
+```fex
 CHECK FILE command 397
+```
 
 redefining fields 254, 255
 

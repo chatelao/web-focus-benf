@@ -357,6 +357,7 @@ Setting Page Orientation
 This request sets the page orientation of a PDF report to landscape.
 
 SET ONLINE-FMT = PDF
+```fex
 TABLE FILE CENTQA
 SUM CNT.PROBNUM AS 'Total Number, of Problems'
 SUM CNT.PROBNUM AS 'Problems From, Each Plant' BY PLANT
@@ -371,6 +372,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, ORIENTATION=LANDSCAPE, $
 ENDSTYLE
 END
+```
 
 Syntax:
 
@@ -400,6 +402,7 @@ silver.
 
 
 SET HTMLCSS = ON
+```fex
 TABLE FILE CENTORD
 ON TABLE SUBHEAD
 "SELECTED PRODUCT INVENTORY"
@@ -412,6 +415,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, PAGECOLOR=SILVER, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -548,6 +552,7 @@ This request sets the left margin of an HTML report with internal cascading styl
 inch.
 
 SET HTMLCSS = ON
+```fex
 TABLE FILE GGSALES
 SUM CATEGORY PRODUCT DOLLARS BUDDOLLARS
 BY REGION BY ST BY CITY
@@ -558,6 +563,7 @@ TYPE=REPORT, GRID=OFF, $
 LEFTMARGIN = 1, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -663,6 +669,7 @@ request that the PRODUCT_DESCRIPTION field display three inches from the left ma
 PDF report.
 
 SET ONLINE-FMT = PDF
+```fex
 TABLE FILE GGORDER
 "PRODUCTS ORDERED ON 08/01/96"
 SUM QUANTITY BY PRODUCT_DESCRIPTION
@@ -672,6 +679,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, COLUMN=PRODUCT_DESCRIPTION, POSITION=3, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -685,6 +693,7 @@ default position, in this case, two inches from the end of the preceding column.
 
 
 SET ONLINE-FMT = PDF
+```fex
 TABLE FILE GGORDER
 "PRODUCTS ORDERED ON 08/01/96"
 SUM QUANTITY BY PRODUCT_DESCRIPTION
@@ -695,6 +704,7 @@ TYPE=REPORT, COLUMN=PRODUCT_DESCRIPTION, POSITION=3, $
 TYPE=REPORT, COLUMN=QUANTITY, POSITION=+2, $
 ENDSTYLE
 END
+```
 
 QUANTITY, titled Ordered Units in the report, is relatively positioned to Product:
 
@@ -777,6 +787,7 @@ report.
 
 SET ONLINE-FMT = PDF
 SET PAGE-NUM = OFF
+```fex
 TABLE FILE GGORDER
 "PRODUCTS ORDERED ON 08/01/96"
 " "
@@ -786,6 +797,7 @@ ON TABLE SET STYLE *
 TYPE=DATA, TOPGAP = 0.1, $
 ENDSTYLE
 END
+```
 
 The data is spaced for readability:
 
@@ -800,6 +812,7 @@ The following illustrates how to add blank space to the left of a report compone
 example, 1.5 inches of blank space are inserted to the left of the Product Category column.
 
 SET ONLINE-FMT=PDF
+```fex
 TABLE FILE CENTORD
 HEADING CENTER
 "Summary Report for Digital Products"
@@ -814,6 +827,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, COLUMN=PRODCAT, LEFTGAP=1.5, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -978,6 +992,7 @@ This request uses SQUEEZE=ON (the default) for an HTML report. Column width is b
 the wider of the data value or column title.
 
 SET PAGE-NUM = OFF
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS
 BY CATEGORY BY PRODUCT
@@ -985,6 +1000,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, FONT=COURIER, $
 ENDSTYLE
 END
+```
 
 For Category, Unit Sales, and Dollar Sales, the column title is wider than the corresponding
 data values. For Product, the wider data values determine column width. The HTML report is:
@@ -997,6 +1013,7 @@ This request sets SQUEEZE to OFF for an HTML report. Column width is based on th
 data value or column title, whichever is greater.
 
 SET PAGE-NUM = OFF
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS
 BY CATEGORY BY PRODUCT
@@ -1004,6 +1021,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, SQUEEZE=OFF, FONT=COURIER, $
 ENDSTYLE
 END
+```
 
 
 ## Arranging Columns on a Page
@@ -1078,6 +1096,7 @@ a PDF report. Note that this feature is used primarily for printed reports. Depe
 screen resolution, the column width may look different than how it will print.
 
 SET ONLINE-FMT = PDF
+```fex
 TABLE FILE GGSALES
 SUM UNITS
 BY PRODUCT
@@ -1086,6 +1105,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, COLUMN=PRODUCT, SQUEEZE=2.5, $
 ENDSTYLE
 END
+```
 
 The PDF report is:
 
@@ -1134,6 +1154,7 @@ Controlling Column Spacing Between Horizontal (ACROSS) Fields
 This request uses ACROSS with ON TABLE SET SPACES. The ON TABLE SET STYLEMODE
 FIXED parameter is required for HTML.
 
+```fex
 TABLE FILE CENTORD
 SUM QUANTITY LINEPRICE ACROSS ORDER_NUM BY PLANT AS 'Plant'
 WHERE ORDER_NUM EQ '28003' OR '28004'
@@ -1141,6 +1162,7 @@ ON TABLE SET SPACES 7
 ON TABLE SET PAGE-NUM OFF
 ON TABLE SET STYLEMODE FIXED
 END
+```
 
 The ACROSS set consists of the fields titled Quantity and Line Total. The distance between
 each set is seven spaces:
@@ -1188,6 +1210,7 @@ This request rearranges the order in which columns normally appear in the report
 SNAME first, PRODCAT second, and LINEPRICE third.
 
 SET ONLINE-FMT = PDF
+```fex
 TABLE FILE CENTORD
 SUM LINEPRICE AS 'Sales'
 BY SNAME BY PRODCAT AS 'Product'
@@ -1199,6 +1222,7 @@ TYPE=REPORT, COLUMN=PRODCAT, SEQUENCE=2, $
 TYPE=REPORT, COLUMN=LINEPRICE, SEQUENCE=1, $
 ENDSTYLE
 END
+```
 
 
 LINEPRICE (Sales) is now the first column, PRODCAT (Product) is the second column (as it was
@@ -1272,6 +1296,7 @@ Stacking Columns With FOLD-LINE
 The following illustrates how to use FOLD-LINE to decrease the width of your report. In this
 example, columns are stacked when the value of the sort field CATEGORY changes.
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS BUDUNITS
 BY CATEGORY
@@ -1279,6 +1304,7 @@ ON CATEGORY FOLD-LINE
 ON TABLE SET ONLINE-FMT PDF
 ON TABLE SET PAGE-NUM OFF
 END
+```
 
 
 The report is:
@@ -1309,6 +1335,7 @@ Stacking Columns With OVER
 This request contains an ACROSS phrase in an HTML report to sort horizontally by department.
 It uses two OVER phrases to stack columns.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM GROSS OVER DED_AMT OVER
 COMPUTE NET/D8.2M = GROSS - DED_AMT;
@@ -1318,6 +1345,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 ## Arranging Columns on a Page
@@ -1409,6 +1437,7 @@ The following request against the GGSALES data source places the PRODUCT field o
 UNITS and DOLLARS fields and sets GAPINTERNAL to OFF:
 
 SET LAYOUTGRID=ON
+```fex
 TABLE FILE GGSALES
 "Product<+0>"
 "Units<+0>Dollars"
@@ -1431,6 +1460,7 @@ TYPE=REPORT, COLUMN=UNITS, SQUEEZE=1, $
 TYPE=REPORT, COLUMN=DOLLARS, SQUEEZE=1, $
 ENDSTYLE
 END
+```
 
 
 ## Arranging Columns on a Page
@@ -1500,6 +1530,7 @@ Positioning Columns
 This request specifies absolute positioning for the three columns in the report. The ON TABLE
 SET STYLEMODE FIXED parameter is required for HTML.
 
+```fex
 TABLE FILE CENTQA
 SUM CNT.PROBNUM IN 1 AS 'Total #,Problems'
 SUM CNT.PROBNUM IN 45 AS '# Problems,by Product'
@@ -1508,6 +1539,7 @@ WHERE PLANT EQ 'ORL'
 ON TABLE SET PAGE-NUM OFF
 ON TABLE SET STYLEMODE FIXED
 END
+```
 
 
 The columns are spaced for readability:
@@ -1521,6 +1553,7 @@ This request uses the IN phrase with the horizontal sort field PLANT to specify 
 starting position. It also uses relative positioning to add extra spaces between the PROBNUM
 columns. The ON TABLE SET STYLEMODE FIXED parameter is required for HTML reports.
 
+```fex
 TABLE FILE CENTQA
 SUM PROBNUM IN +8
 ACROSS PLANT IN 35
@@ -1529,6 +1562,7 @@ WHERE PLANT EQ 'BOS' OR 'ORL'
 ON TABLE SET PAGE-NUM OFF
 ON TABLE SET STYLEMODE FIXED
 END
+```
 
 
 ## Arranging Columns on a Page
@@ -1542,6 +1576,7 @@ Positioning Stacked (OVER) Columns
 
 The following request uses OVER to stack columns and IN to position them.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM GROSS IN 40
 OVER DED_AMT IN 40
@@ -1549,6 +1584,7 @@ BY DEPARTMENT BY LAST_NAME IN 20
 ON TABLE SET PAGE-NUM OFF
 ON TABLE SET STYLEMODE FIXED
 END
+```
 
 
 In the report, GROSS and DED_AMT are stacked, starting in column 40. LAST_NAME starts in
@@ -1622,6 +1658,7 @@ This request sorts data by city. Since the page heading contains the name of the
 field occurrence is suppressed.
 
 
+```fex
 TABLE FILE SALES
 HEADING
 "Page <TABPAGENO"
@@ -1633,6 +1670,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The page heading identifies the city to which the data applies:
 
@@ -1650,6 +1688,7 @@ This request generates a subtotal for each value of the sort field CATEGORY but 
 the display of the sort field occurrence.
 
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS BY CATEGORY
 BY PRODUCT
@@ -1659,6 +1698,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The default subtotal line identifies each category (for example, *TOTAL Coffee):
 
@@ -1676,6 +1716,7 @@ This request sorts last names alphabetically but avoids duplication of data by s
 sort field occurrence of LAST_NAME.
 
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME
 BY LAST_NAME NOPRINT
@@ -1684,6 +1725,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 Last names are arranged alphabetically:
 
@@ -1795,6 +1837,7 @@ Example:
 
 This request generates a new page whenever the value of the sort field SALARY changes.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT EMP_ID
 BY SALARY IN-GROUPS-OF 5000
@@ -1803,6 +1846,7 @@ ON SALARY PAGE-BREAK
 ON TABLE SET ONLINE-FMT PDF
 ON TABLE SET PAGE-NUM OFF
 END
+```
 
 
 ## Inserting a Page Break
@@ -1822,6 +1866,7 @@ set to OFF for consistent alignment of tables across pages.
 
 SET STYLEMODE = PAGED
 SET LINES = 12
+```fex
 TABLE FILE CENTORD
 HEADING
 "SALES OVER $200,000"
@@ -1832,6 +1877,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, SQUEEZE=OFF, $
 ENDSTYLE
 END
+```
 
 
 ## Inserting a Page Break
@@ -1885,11 +1931,13 @@ Preventing an Undesirable Split
 This request uses NOSPLIT to keep related information on the same page:
 
 SET ONLINE-FMT = PDF
+```fex
 TABLE FILE EMPLOYEE
 PRINT DED_CODE AND DED_AMT
 BY PAY_DATE BY LAST_NAME
 ON LAST_NAME NOSPLIT
 END
+```
 
 
 When the value of LAST_NAME changes from STEVENS to CROSS, the lines related to CROSS
@@ -2035,6 +2083,7 @@ Inserting the Current Page Number in a Sort Footing
 This request generates a new page whenever the value of the sort field REGION changes. It
 uses TABPAGENO to insert a page number in the sort footing.
 
+```fex
 TABLE FILE GGSALES
 SUM BUDDOLLARS
 BY REGION BY ST BY CITY
@@ -2043,6 +2092,7 @@ ON REGION PAGE-BREAK SUBFOOT
 "Page <TABPAGENO"
 ON TABLE SET ONLINE-FMT PDF
 END
+```
 
 The first page of output is:
 
@@ -2090,6 +2140,7 @@ Inserting the Current Page Number and the Total Page Count
 The following illustrates how to add the current page number and the total page count to a
 report. The relevant syntax is highlighted in the request.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT EMP_ID AS 'Employee ID'
 BY SALARY IN-GROUPS-OF 5000 AS 'Salary'
@@ -2104,6 +2155,7 @@ ENDSTYLE
 FOOTING
 "Page <TABPAGENO of <TABLASTPAGE"
 END
+```
 
 
 ## Inserting Page Numbers
@@ -2166,6 +2218,7 @@ TABPAGENO but stores it as an I2 field, and the spot marker in the heading moves
 BYLASTPAGE page number four spaces to the left. The heading command must come after the
 COMPUTE command or the field named X will not be recognized:
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS
 COMPUTE X/I2 = TABPAGENO;
@@ -2177,6 +2230,7 @@ HEADING CENTER
 "<PRODUCT : Page <X of <-4> <BYLASTPAGE "
 ON TABLE PCHOLD FORMAT PDF
 END
+```
 
 
 ## Inserting Page Numbers
@@ -2231,6 +2285,7 @@ Assigning a Page Number to the First Page
 This request assigns the number 3 to the first page of the report.
 
 SET FOCFIRSTPAGE = 3
+```fex
 TABLE FILE CENTORD
 HEADING
 "Sales By Store"
@@ -2240,6 +2295,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 ## Inserting Page Numbers
@@ -2254,6 +2310,7 @@ This procedure contains two report requests. The second request sets FOCFIRSTPAG
 value of &FOCNEXTPAGE.
 
 SET FOCFIRSTPAGE = 3
+```fex
 TABLE FILE CENTORD
 HEADING
 "Sales By Store"
@@ -2264,9 +2321,11 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 -RUN
 
 SET FOCFIRSTPAGE = &FOCNEXTPAGE
+```fex
 TABLE FILE CENTORD
 HEADING
 "Sales By Product"
@@ -2277,6 +2336,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 The first page of the second report is numbered 4, which is one more than the last page of the
@@ -2341,6 +2401,7 @@ This request uses SET PAGE-NUM = NOPAGE to suppress default page numbers. It use
 top line of the first page of the report for the report heading.
 
 SET PAGE-NUM = NOPAGE
+```fex
 TABLE FILE GGPRODS
 ON TABLE SUBHEAD
 "PACKAGING INFORMATION"
@@ -2352,6 +2413,7 @@ ON PRODUCT_DESCRIPTION PAGE-BREAK SUBFOOT
 "Page <TABPAGENO "
 ON TABLE SET ONLINE-FMT PDF
 END
+```
 
 
 TABPAGENO inserts the page number in the sort footing. The first page of the report is:
@@ -2401,6 +2463,7 @@ Setting the Number of Data Rows For Each Report Page
 The following example uses the default WebFOCUS StyleSheet and displays 20 data rows on
 each page of the report output.
 
+```fex
 TABLE FILE GGSALES
 HEADING
 "Sales Report"
@@ -2413,6 +2476,7 @@ INCLUDE=IBFS:/FILE/IBI_HTML_DIR/ibi_themes/Warm.sty,$
 TYPE=REPORT, GRID=OFF, LINES-PER-PAGE = 20, $
 ENDSTYLE
 END
+```
 
 
 The following image shows the output for the first page.
@@ -2683,6 +2747,7 @@ Inserting and Formatting a Border
 This request generates an HTML report with a heavy red dotted line around the entire report
 heading.
 
+```fex
 TABLE FILE GGSALES
 SUM BUDUNITS UNITS BUDDOLLARS DOLLARS
 BY CATEGORY
@@ -2699,6 +2764,7 @@ TYPE=TABHEADING, STYLE=BOLD, JUSTIFY=CENTER, BORDER=HEAVY,
      BORDER-COLOR=RED, BORDER-STYLE=DOTTED, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -2713,11 +2779,13 @@ Displaying the Default Grid on an HTML Report
 
 This request uses the default setting GRID=ON.
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS
 BY CATEGORY BY PRODUCT
 ON TABLE SET PAGE-NUM OFF
 END
+```
 
 The cells underneath the sort field CATEGORY do not have grid lines until the value changes
 (for example, from Coffee to Food):
@@ -2729,6 +2797,7 @@ Applying Grid Lines to All Cells of an HTML Report
 This request uses GRID=FILL to apply grid lines to all cells, including those underneath the
 sort field CATEGORY.
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS
 BY CATEGORY BY PRODUCT
@@ -2737,6 +2806,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=FILL, $
 ENDSTYLE
 END
+```
 
 
 All cells have grid lines:
@@ -2748,6 +2818,7 @@ Removing a Grid From an HTML Report
 
 This request uses GRID=OFF to remove the default grid from a report.
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS
 BY CATEGORY BY PRODUCT
@@ -2756,6 +2827,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 ## Adding Grids and Borders
@@ -2776,6 +2848,7 @@ Adding Borders to FORMAT XLSX Report Output
 
 The following request turns borders on and generates FORMAT XLSX report output.
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM COGS_US
 BY PRODUCT_CATEGORY
@@ -2788,6 +2861,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT,BORDER=ON,$
 ENDSTYLE
 END
+```
 
 
 The output is shown in the following image. A blank row has been added after the heading.
@@ -2797,6 +2871,7 @@ The output is shown in the following image. A blank row has been added after the
 
 The following version of the request has no border attributes.
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM COGS_US
 BY PRODUCT_CATEGORY
@@ -2806,6 +2881,7 @@ HEADING
 ON TABLE PCHOLD FORMAT XLSX
 ON TABLE NOTOTAL
 END
+```
 
 
 The output is shown in the following image. There is no blank row between the report heading
@@ -3011,6 +3087,7 @@ Controlling Borders Within Heading and Footing Elements in PDF Report Output
 The following request against the EMPLOYEE data source has a page heading, a subheading, a
 subfooting, and a report footing:
 
+```fex
 TABLE FILE EMPLOYEE
 HEADING
 " Department Report Page <TABPAGENO "
@@ -3042,6 +3119,7 @@ TYPE = TABFOOTING, ITEM=1, COLSPAN=3, JUSTIFY=RIGHT,$
 TYPE = TABFOOTING, ITEM=2, JUSTIFY=RIGHT,$
 ENDSTYLE
 END
+```
 
 
 ## Adding Grids and Borders
@@ -3149,9 +3227,11 @@ The following request against the GGSALES data source has a report heading, repo
 page heading, page footing, and a subheading for each region. The margins of the
 subheadings and subfootings are not aligned (ALIGN-BORDERS=OFF ,$):
 
+```fex
 DEFINE FILE GGSALES
 SHOWCATPROD/A30 = CATEGORY || (' / ' | PRODUCT);
 END
+```
 TABLE FILE GGSALES
 SUM
      DOLLARS/I8M AS ''
@@ -3289,9 +3369,11 @@ BORDERS=BODY attribute:
 
 
 SET BYPANEL=ON
+```fex
 DEFINE FILE GGSALES
 SHOWCATPROD/A30 = CATEGORY || (' / ' | PRODUCT);
 END
+```
 TABLE FILE GGSALES
 SUM
      DOLLARS/I8M AS ''
@@ -3461,6 +3543,7 @@ Applying Grid Lines to Report Data (PDF)
 This request applies light, horizontal grid lines to report data.
 
 SET ONLINE-FMT = PDF
+```fex
 TABLE FILE GGDEMOG
 HEADING
 "State Statistics"
@@ -3474,6 +3557,7 @@ ON TABLE SET STYLE *
 TYPE=DATA, HGRID=ON, $
 ENDSTYLE
 END
+```
 
 In the PDF report, the lines make it easier to distinguish the data by state:
 
@@ -3490,6 +3574,7 @@ box is displayed in the border color specified, as shown in the example below.
 
 Defining Borders Around Boxes With PPTX and PDF Formats
 
+```fex
 TABLE FILE GGSALES
 BY REGION NOPRINT
 ON TABLE PCHOLD FORMAT PPTX
@@ -3498,6 +3583,7 @@ TYPE=REPORT, OBJECT=BOX, POSITION=(1 1), DIMENSION=(2 1), BORDER-
 COLOR=GREEN,$
 ENDSTYLE
 END
+```
 
 The output is shown in the following image.
 
@@ -3506,6 +3592,7 @@ Backcolor Without Borders
 In PPTX format, when a backcolor is defined and there is no border (BORDER-STYLE=NONE),
 the box retains the color defined for the backcolor.
 
+```fex
 TABLE FILE GGSALES
 BY REGION NOPRINT
 ON TABLE PCHOLD FORMAT PPTX
@@ -3514,6 +3601,7 @@ TYPE=REPORT, OBJECT=BOX, POSITION=(1 1), DIMENSION=(2 1), BACKCOLOR=GREEN,
 BORDER-STYLE=NONE, $
 ENDSTYLE
 END
+```
 
 The output is shown in the following image.
 
@@ -3525,6 +3613,7 @@ Border styles, except 3D border styles such as ridged, groove, inset, and outset
 in PPTX and PDF formats.
 
 
+```fex
 TABLE FILE GGSALES
 BY REGION NOPRINT
 ON TABLE PCHOLD FORMAT PPTX
@@ -3533,6 +3622,7 @@ TYPE=REPORT, OBJECT=BOX, POSITION=(1 1), DIMENSION=(2 1), BORDER-
 COLOR=GREEN, BORDER-STYLE=DASHED, $
 ENDSTYLE
 END
+```
 
 The output is shown in the following image.
 
@@ -3620,11 +3710,14 @@ In the StyleSheet, every component that will display a superscript has the attri
 MARKUP=ON.
 
 
+```fex
 DEFINE FILE GGSALES
 SUP1/A12= '<SUP>1</SUP>';
 SUP2/A15= '<SUP>2</SUP>';
 SUPCOPY/A20= '<SUP>'||HEXBYT(169,'A2')||'</SUP>';
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM
 COMPUTE PROFIT/D12CM=DOLLARS-BUDDOLLARS; NOPRINT
@@ -3659,6 +3752,7 @@ TYPE=FOOTING, LINE=2,JUSTIFY=LEFT, COLOR=RED,$
 TYPE=FOOTING, LINE=3,JUSTIFY=LEFT, COLOR=GREEN,$
 ENDSTYLE
 END
+```
 
 
 Displaying Superscripts On Data, Heading, and Footing Lines
@@ -3675,9 +3769,12 @@ The following request against the GGSALES data source defines superscripts for t
 and copyright symbols in the heading and footing. COPYRIGHT consists of a copyright symbol.
 Note the STYLE = SUPERSCRIPT syntax in the heading and footing lines.
 
+```fex
 DEFINE FILE GGSALES
 COPYRIGHT/A1= HEXBYT(169, 'A1');
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM UNITS BY CATEGORY
 HEADING
@@ -3703,6 +3800,7 @@ TYPE=FOOTING, LINE=3, ITEM=1, OBJECT=FIELD, STYLE='SUPERSCRIPT+BOLD',
 COLOR=GREEN, $
 ENDSTYLE
 END
+```
 
 
 ## Adding Underlines and Skipped Lines
@@ -3898,12 +3996,15 @@ Adding a Blank Line Between Sort Groups
 
 This request inserts a blank line before every change in value of the sort field EMP_ID.
 
+```fex
 DEFINE FILE EMPLOYEE
 INCREASE/D8.2M = .05*CURR_SAL;
 CURR_SAL/D8.2M=CURR_SAL;
 NEWSAL/D8.2M=CURR_SAL + INCREASE;
 END
+```
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT CURR_SAL OVER INCREASE OVER NEWSAL
 BY LOWEST 4 EMP_ID BY LAST_NAME BY FIRST_NAME
@@ -3911,6 +4012,7 @@ ON EMP_ID SKIP-LINE
 ON TABLE SET PAGE-NUM OFF
 ON TABLE SET ONLINE-FMT PDF
 END
+```
 
 
 ## Adding Underlines and Skipped Lines
@@ -3946,6 +4048,7 @@ StyleSheet declaration is highlighted in the request.
 
 
 SET ONLINE-FMT=PDF
+```fex
 TABLE FILE CENTINV
 HEADING
 "Low Stock Report"
@@ -3959,6 +4062,7 @@ ON TABLE SET STYLE *
 TYPE=SKIPLINE, BACKCOLOR=SILVER, $
 ENDSTYLE
 END
+```
 
 The report is:
 
@@ -3995,6 +4099,7 @@ Underlining a Sort Group
 This request adds an underline when the value of the sort field BANK_NAME changes. It sets
 the GRID attribute to OFF, as required by an HTML report.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT EMP_ID AND BANK_ACCT AND LAST_NAME
 BY BANK_NAME
@@ -4004,6 +4109,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 The data for each bank stands out and is easy to read:
@@ -4055,6 +4161,7 @@ Formatting a Sort Group Underline
 This request uses UNDERLINE to change the default color of an underline from black to red.
 
 SET ONLINE-FMT = PDF
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS
 BY CATEGORY BY PRODUCT
@@ -4067,6 +4174,7 @@ ON TABLE SET STYLE *
 TYPE=UNDERLINE, COLOR=RED, $
 ENDSTYLE
 END
+```
 
 The result is an eye-catching separation between sort group values. The online PDF report is:
 
@@ -4125,6 +4233,7 @@ This request adds underlines to the values of the column CATEGORY and removes th
 underlines from the column titles in an HTML report with internal cascading style sheet.
 
 SET HTMLCSS = ON
+```fex
 TABLE FILE MOVIES
 PRINT TITLE DIRECTOR
 BY CATEGORY
@@ -4135,6 +4244,7 @@ TYPE=TITLE, STYLE=-UNDERLINE, $
 TYPE=REPORT, COLUMN=CATEGORY, STYLE=UNDERLINE, $
 ENDSTYLE
 END
+```
 
 The partial report is:
 
@@ -4180,10 +4290,13 @@ Extending an Underline to the Entire Report Column
 
 The following request against the GGSALES data source sums dollar sales by city and by date:
 
+```fex
 DEFINE FILE GGSALES
 YEAR/YY = DATE;
 MONTH/M = DATE;
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS AS 'Sales'
 BY DATE
@@ -4194,6 +4307,7 @@ WHERE CITY EQ 'Seattle' OR 'San Francisco' OR 'Los Angeles'
 ON TABLE SET PAGE NOPAGE
 ON TABLE PCHOLD FORMAT DHTML
 END
+```
 
 
 ## Adding Underlines and Skipped Lines
@@ -4205,10 +4319,13 @@ EXTUNDERLINE option in the STYLE attribute for the TITLE component. For example,
 following request creates DHTML output in which the column titles are in boldface and left
 justified, and the underline is extended to the entire report column:
 
+```fex
 DEFINE FILE GGSALES
 YEAR/YY = DATE;
 MONTH/M = DATE;
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS AS 'Sales'
 BY DATE
@@ -4222,6 +4339,7 @@ ON TABLE SET STYLE *
 TYPE=TITLE, STYLE= BOLD +EXTUNDERLINE, JUSTIFY=LEFT, $
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -4231,10 +4349,13 @@ The following version of the request makes the EXTUNDERLINE and JUSTIFY=LEFT opt
 default for the TITLE component, then makes the Date column title bold and removes the
 extended underline from that column:
 
+```fex
 DEFINE FILE GGSALES
 YEAR/YY = DATE;
 MONTH/M = DATE;
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS AS 'Sales'
 BY DATE
@@ -4249,6 +4370,7 @@ TYPE=TITLE,STYLE= EXTUNDERLINE, JUSTIFY=LEFT ,$
 TYPE=TITLE,COLUMN= DATE, STYLE= -EXTUNDERLINE +BOLD ,$
 ENDSTYLE
 END
+```
 
 
 ## Adding Underlines and Skipped Lines
@@ -4284,6 +4406,7 @@ Changing the Default Underline in a Financial Modeling Language (FML) Report
 This request changes the default light underline to a heavy underline in an FML report.
 
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 1010 AS 'CASH ON HAND'       OVER
@@ -4296,6 +4419,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 A heavy underline separates total cash from the detail data, making it stand out:
 
@@ -4305,6 +4429,7 @@ Changing the Default Underline in a Financial Modeling Language (FML) Report (PD
 
 This request changes the default single underline in a PDF report to a double underline.
 
+```fex
 TABLE FILE LEDGER
 SUM AMOUNT FOR ACCOUNT
 1010 AS 'CASH ON HAND'       OVER
@@ -4318,6 +4443,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 ## Removing Blank Lines From a Report
@@ -4422,6 +4548,7 @@ Comparing DROPBLNKLINE Parameter Settings
 The following request against the GGSALES data source has a heading, a footing, and a
 subtotal. Initially, DROPBLNKLINE is set to OFF.
 
+```fex
 TABLE FILE GGSALES
 HEADING CENTER
 "Gotham Grinds Sales By Region"
@@ -4442,6 +4569,7 @@ TYPE=HEADING, BORDER=LIGHT,
 $
 ENDSTYLE
 END
+```
 
 
 The output has a blank line below the heading, above the footing, and above and below the
@@ -4762,6 +4890,7 @@ Adding a GIF Image to an HTML Report Heading
 This request adds the Gotham Grinds logo to a report heading. The logo is in a separate image
 file identified by a relative URL in the IMAGE attribute.
 
+```fex
 TABLE FILE GGORDER
 ON TABLE SUBHEAD
 "PRODUCTS ORDERED ON 08/01/96"
@@ -4774,6 +4903,7 @@ TYPE=TABHEADING, IMAGE=/IBI_APPS/IBI_HTML/GGDEMO/GOTHAM.GIF, IMAGEBREAK=ON,
 $
 ENDSTYLE
 END
+```
 
 
 IMAGEBREAK, set to ON, generates a line break between the logo and the heading text:
@@ -4783,6 +4913,7 @@ Example:
 
 Creating a Report Heading With an Embedded JPEG Image
 
+```fex
 TABLE FILE EMPLOYEE
 ON TABLE SUBHEAD
 "Employee Salary Information and Courses"
@@ -4803,6 +4934,7 @@ TYPE=TABHEADING, IMAGE=C:\IBI\APPS\IMAGES\Pencils.jpg,
 POSITION=(.5 .5), SIZE=(.5 .5), $
 ENDSTYLE
 END
+```
 
 Note: The image used in this request is not distributed with WebFOCUS.
 
@@ -4820,12 +4952,15 @@ The following illustrates how to embed an image in a SUBHEAD, and use a differen
 each value of the BY field on which the SUBHEAD occurs.
 
 
+```fex
 DEFINE FILE CAR
 FLAG/A12=
 DECODE COUNTRY ( 'ENGLAND' 'uk' 'ITALY' 'italy'
    'FRANCE' 'france' 'JAPAN' 'japan' );
 END
+```
 
+```fex
 TABLE FILE CAR
 PRINT FLAG NOPRINT AND MODEL AS '' BY COUNTRY NOPRINT AS '' BY CAR AS ''
 WHERE COUNTRY EQ 'ENGLAND' OR 'FRANCE' OR 'ITALY' OR 'JAPAN'
@@ -4842,6 +4977,7 @@ TYPE=HEADING, SIZE=12, STYLE=BOLD, $
 TYPE=SUBHEAD, STYLE=BOLD, $
 ENDSTYLE
 END
+```
 
 
 ## Adding an Image to a Report
@@ -4858,6 +4994,7 @@ This request adds the Information Builders logo to a report footing. It uses the
 StyleSheet ALT attribute to add descriptive text (Information Builders logo) that identifies the
 image.
 
+```fex
 TABLE FILE GGORDER
 SUM QUANTITY AS 'Ordered Units'
 BY PRODUCT
@@ -4872,6 +5009,7 @@ TYPE=REPORT, GRID=OFF,$
 TYPE=FOOTING, IMAGE=/ibi_html/iblogo.gif, ALT='Information Builders logo',$
 ENDSTYLE
 END
+```
 
 Note: If the request is located in the WebFOCUS repository and the WebFOCUS Client Upload
 Images to be Embedded in Reports Applications setting is selected, you need to either:
@@ -4935,6 +5073,7 @@ Adding a Background Image
 This request adds a background image to a report. The image file CALM_BKG.GIF resides in
 the relative address shown.
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS
 BY CATEGORY BY PRODUCT
@@ -4944,6 +5083,7 @@ TYPE=REPORT, STYLE=BOLD, GRID=OFF, $
 TYPE=REPORT, BACKIMAGE=/IBI_APPS/IBI_HTML/TEMPLATE/CALM_BKG.GIF, $
 ENDSTYLE
 END
+```
 
 The background is tiled across the report area:
 
@@ -5071,6 +5211,7 @@ and one-tenth inch vertically from the upper-left corner of the report page. The
 inch wide and one inch high as specified by SIZE.
 
 SET HTMLCSS = ON
+```fex
 TABLE FILE GGSALES
 SUM UNITS BY PRODUCT
 ON TABLE SUBHEAD
@@ -5087,6 +5228,7 @@ TYPE=TABHEADING, IMAGE=HTTP://WEBSRVR1/IBI_APPS/IBI_HTML/GGDEMO/GOTHAM.GIF,
      POSITION=(.25 .10), SIZE=(1 1), $
 ENDSTYLE
 END
+```
 
 
 The company logo is positioned and sized in the report heading:
@@ -5101,6 +5243,7 @@ quarter inch horizontally and one-quarter vertically from the upper-left corner 
 The image is one-half inch wide and one-half inch high as specified by SIZE.
 
 SET ONLINE-FMT = PDF
+```fex
 TABLE FILE GGSALES
 SUM UNITS BY PRODUCT
 ON TABLE SUBHEAD
@@ -5115,6 +5258,7 @@ ON TABLE SET STYLE *
 TYPE=TABHEADING, IMAGE=GOTHAM.GIF, POSITION=(.25 .25), SIZE=(.5 .5), $
 ENDSTYLE
 END
+```
 
 
 ## Adding an Image to a Report
@@ -5130,6 +5274,7 @@ upper-left corner of the report page. The image is one inch wide and half an inc
 specified by SIZE.
 
 SET HTMLCSS = ON
+```fex
 TABLE FILE GGSALES
 SUM UNITS BY PRODUCT
 ON TABLE SUBHEAD
@@ -5146,6 +5291,7 @@ TYPE=REPORT, GRID=OFF, $
 TYPE=TABHEADING, IMAGE=Ibi_logo.png, POSITION=(0 .30), SIZE=(1 0.5), $
 ENDSTYLE
 END
+```
 
 
 The report is:
@@ -5366,7 +5512,10 @@ corresponding image. The output is generated in DHTML format.
 -* BLOB field in report column, heading, footing, subhead, or
 -* subfoot
 -* Rel 769 supports PDF format
+```fex
 JOIN PRODUCTID IN RETAILDETAIL TO PRODUCTID IN RETAILIMAGE
+```
+```fex
 TABLE FILE RETAILDETAIL
 HEADING CENTER
 "Product List"
@@ -5392,6 +5541,7 @@ TYPE=HEADING, SIZE = 18, COLOR=RED,$
 TYPE=DATA,COLUMN=PRODIMAGE,IMAGE=(PRODIMAGE),SIZE=(1 1),$
 ENDSTYLE
 END
+```
 
 The image is placed in the report column using the following StyleSheet declaration, which
 names the image field, and establishes the size and position in the column for the image.
@@ -5410,7 +5560,10 @@ The following request generates the output in HTML format.
 -* BLOB field in report column, heading, footing, subhead, or
 -* subfoot
 -* Rel 769 supports PDF format
+```fex
 JOIN PRODUCTID IN RETAILDETAIL TO PRODUCTID IN RETAILIMAGE
+```
+```fex
 TABLE FILE RETAILDETAIL
 HEADING CENTER
 "Product List"
@@ -5436,6 +5589,7 @@ TYPE=HEADING, SIZE = 18, COLOR=RED,$
 TYPE=DATA,COLUMN=PRODIMAGE,IMAGE=(PRODIMAGE),SIZE=(1 1),$
 ENDSTYLE
 END
+```
 
 
 The partial output shows that the spacing is different because the browser removes blank
@@ -5450,7 +5604,10 @@ The following request generates the report output in PDF format.
 -* BLOB field in report column, heading, footing, subhead, or
 -* subfoot
 -* Rel 769 supports PDF format
+```fex
 JOIN PRODUCTID IN RETAILDETAIL TO PRODUCTID IN RETAILIMAGE
+```
+```fex
 TABLE FILE RETAILDETAIL
 HEADING CENTER
 "Product List"
@@ -5476,6 +5633,7 @@ TYPE=HEADING, SIZE = 18, FONT = ARIAL, COLOR=RED,$
 TYPE=DATA,COLUMN=PRODIMAGE,IMAGE=(PRODIMAGE),SIZE=(1 1),$
 ENDSTYLE
 END
+```
 
 
 The PDF partial output preserves specified spacing providing results similar to DHTML output.
@@ -5502,7 +5660,10 @@ The output is generated in DHTML format. It can also be generated in HTML or PDF
 -*SET BASEURL='' - Required for embedded images to work. Overrides default
 -* setting from WF Client.
 SET BASEURL=''
+```fex
 JOIN PRODUCTID IN RETAILDETAIL TO PRODUCTID IN RETAILIMAGE
+```
+```fex
 TABLE FILE RETAILDETAIL
 HEADING CENTER
 "Product Catalog"
@@ -5538,6 +5699,7 @@ TYPE=HEADING, COLOR = RED, SIZE = 16, JUSTIFY=CENTER,$
 TYPE=SUBHEAD,BY=PRODUCTID,IMAGE=(PRODIMAGE),SIZE=(1 1), POSITION=(+2 +1),$
 ENDSTYLE
 END
+```
 
 
 The partial output is.
@@ -5564,7 +5726,10 @@ The output is generated in DHTML format. It can also be generated in HTML or PDF
 -* BLOB field in report column, heading, footing, subhead, or
 -* subfoot
 -* Rel 769 supports PDF format
+```fex
 JOIN PRODUCTID IN RETAILDETAIL TO PRODUCTID IN RETAILIMAGE
+```
+```fex
 TABLE FILE RETAILDETAIL
 PRINT PRODIMAGE AS '' PRODIMAGE AS '' PRODIMAGE AS ''
 BY STYLE NOPRINT
@@ -5588,6 +5753,7 @@ TYPE=DATA,COLUMN=P2,IMAGE=(PRODIMAGE),SIZE=(.75 1),PRESERVERATIO=ON,$
 TYPE=DATA,COLUMN=P3,IMAGE=(PRODIMAGE),SIZE=(.75 1),PRESERVERATIO=OFF,$
 ENDSTYLE
 END
+```
 
 Note that PRESERVERATIO=OFF is specified for the second column to preserve the image
 height and width ratio for that column even though the styling SIZE height specifies a different
@@ -5629,7 +5795,10 @@ The output is generated in DHTML format. It can also be generated in HTML or PDF
 -* subfoot
 -* Rel 769 supports PDF format
 SET PRINTPLUS=ON
+```fex
 JOIN PRODUCTID IN RETAILDETAIL TO PRODUCTID IN RETAILIMAGE
+```
+```fex
 TABLE FILE RETAILDETAIL
 HEADING CENTER
 "Product Price Summary"
@@ -5674,6 +5843,7 @@ TYPE=SUBFOOT,BY=PRODUCTID,IMAGE=(PRODIMAGE),SIZE=(1 1), POSITION=(0 0),$
 TYPE=SUBFOOT,BY=PRODUCTID,OBJECT=FIELD, ITEM=1, WRAP=5,$
 ENDSTYLE
 END
+```
 
 
 ## Adding an Image to a Report
@@ -5940,10 +6110,13 @@ GRAPHTYPE=DATA, ACROSSCOLUMN=DIFFERENCE, $. Bar graphs that represent positive
 values display in the color blue. Bar graphs that represent negative values display in the color
 red.
 
+```fex
 DEFINE FILE GGSALES
 DIFFERENCE/D7M=BUDDOLLARS-DOLLARS;
 END
+```
 
+```fex
 TABLE FILE GGSALES
 BY CITY
 SUM BUDDOLLARS/D7M DOLLARS/D7M DIFFERENCE
@@ -5953,6 +6126,7 @@ GRID=OFF, $
 GRAPHTYPE=DATA, COLUMN=N4, GRAPHCOLOR=BLUE, GRAPHNEGCOLOR=RED, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -6011,6 +6185,7 @@ The following report creates vertical bars for the ACROSS column values (DOLLARS
 BUDDOLLARS, UNITS, BUDUNITS).
 
 SET VISBARORIENT=V
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS BUDDOLLARS UNITS BUDUNITS
 BY REGION
@@ -6026,6 +6201,7 @@ GRAPHTYPE=DATA, ACROSSCOLUMN=UNITS, GRAPHCOLOR=blue, $
 GRAPHTYPE=DATA, ACROSSCOLUMN=BUDUNITS, GRAPHCOLOR=thistle, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -6036,6 +6212,7 @@ BUDDOLLARS.
 ## Associating Bar Graphs With Report Data
 
 SET VISBARORIENT=H
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS BUDDOLLARS
 BY REGION
@@ -6049,6 +6226,7 @@ GRAPHCOLOR=GREEN,BACKCOLOR=RGB(#ffff00), $
 GRAPHTYPE=DATA, ACROSSCOLUMN=BUDDOLLARS, GRAPHCOLOR=RGB(255 0 0), $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -6096,10 +6274,13 @@ Using GRAPHSCALE to Display Distinct Vertical Bar Graphs
 The following report request displays vertical bar graphs for two columns (DOLLARS and
 DIFFERENCE) associated with a common ACROSS field (REGION):
 
+```fex
 DEFINE FILE GGSALES
 Difference/D12.2M=DOLLARS-BUDDOLLARS;
 END
+```
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/D12.2M Difference
 ACROSS REGION
@@ -6109,6 +6290,7 @@ GRAPHTYPE=DATA, ACROSSCOLUMN=N1,$
 GRAPHTYPE=DATA,ACROSSCOLUMN=N2,$
 ENDSTYLE
 END
+```
 
 This request produces the following report output:
 
@@ -6122,10 +6304,13 @@ Working With Mailing Labels and Multi-Pane Pages
 The following request is the same as the above request, except it has the
 GRAPHSCALE=DISTINCT attribute included in the StyleSheet.
 
+```fex
 DEFINE FILE GGSALES
 Difference/D12.2M=DOLLARS-BUDDOLLARS;
 END
+```
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/D12.2M Difference
 ACROSS REGION
@@ -6135,6 +6320,7 @@ GRAPHTYPE=DATA, ACROSSCOLUMN=N2,$
 TYPE=REPORT, GRAPHSCALE=DISTINCT,$
 ENDSTYLE
 END
+```
 
 Notice the difference in the output:
 
@@ -6311,6 +6497,7 @@ Printing Mailing Labels
 The following report prints on 81/2 x 11 sheets of address labels.
 
 SET ONLINE-FMT = PDF
+```fex
 TABLE FILE EMPLOYEE
 BY LAST_NAME NOPRINT BY FIRST_NAME NOPRINT
 ON FIRST_NAME PAGE-BREAK
@@ -6322,6 +6509,7 @@ HEADING
 ON TABLE SET PAGE-NUM NOPAGE
 ON TABLE SET STYLE LABEMP
 END
+```
 
 The labels have the following dimensions, defined in the StyleSheet LABEMP:
 
@@ -6343,6 +6531,7 @@ appears in the second column of the first page. A PAGE-BREAK creates a multi-pag
 the purpose of this example.
 
 SET ONLINE-FMT = PDF
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME AND CURR_SAL BY
 
@@ -6356,6 +6545,7 @@ MATRIXORDER=VERTICAL, $
 TYPE=REPORT, SIZE=8, $
 ENDSTYLE
 END
+```
 
 The report prints as:
 

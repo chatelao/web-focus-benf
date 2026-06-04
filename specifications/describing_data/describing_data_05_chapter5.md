@@ -1877,10 +1877,12 @@ Using a RECTYPE Value in a Display Command
 Display the RECTYPE values by including the alias as a display field. In this example, the alias
 MANUAL displays the RECTYPE values M and I:
 
+```fex
 TABLE FILE DOC
 PRINT MANUAL MRELEASE MPAGES
 BY DOCID BY TITLE BY MDATE
 END
+```
 
 The output is:
 
@@ -1901,11 +1903,13 @@ Using a RECTYPE Value in a WHERE Test
 
 You can use the alias in a WHERE test to display a subset of records:
 
+```fex
 TABLE FILE DOC
 PRINT MANUAL MRELEASE MPAGES
 BY DOCID BY TITLE BY MDATE
 WHERE MANUAL EQ 'I'
 END
+```
 
 The output is:
 
@@ -2255,10 +2259,12 @@ alternate index. An alternate index is automatically used when described in the 
 To take advantage of a specific alternate index during a TABLE request, provide a WHERE or IF
 test on the alternative index field that meets the above criteria. For example:
 
+```fex
 TABLE FILE CUST
 PRINT SSN
 WHERE LNAME EQ 'SMITH'
 END
+```
 
 As you see in the Master File in Describing a VSAM Alternate Index on page 281, the LNAME
 field is defined as an alternate index field. The records in the data source are retrieved
@@ -2710,6 +2716,7 @@ HOLD command preserves these trailing blank spaces:
 
 APP HOLDDATA APP1
 APP HOLDMETA APP1
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS UNITS
 BY REGION
@@ -2717,6 +2724,7 @@ BY CATEGORY
 BY PRODUCT
 ON TABLE HOLD AS DFIX1 FORMAT DFIX DELIMITER , PRESERVESPACE YES
 END
+```
 
 The following Master File is generated:
 
@@ -2844,11 +2852,13 @@ codes.
 
 0A: hexadecimal value for new line.
 
+```fex
 TABLE FILE GGSALES
 PRINT DOLLARS UNITS CATEGORY REGION
 ON TABLE HOLD AS RDELIM1 FORMAT DFIX DELIMITER , ENCLOSURE ''''
 HEADER NO RDELIMITER 0x2C240D0A
 END
+```
 
 The generated Master File follows:
 

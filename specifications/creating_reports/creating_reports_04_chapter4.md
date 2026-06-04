@@ -162,11 +162,13 @@ Using a Simple WHERE Test
 To show only the names and salaries of employees earning more than $20,000 a year, issue
 the following request:
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME AND FIRST_NAME AND CURR_SAL
 BY LAST_NAME NOPRINT
 WHERE CURR_SAL GT 20000
 END
+```
 
 In this example, CURR_SAL is a selected field, and CURR_SAL GT 20000 is the selection
 criterion. Only those records with a current salary greater than $20,000 are retrieved. All other
@@ -182,12 +184,14 @@ You can use as many WHERE phrases as necessary to define your selection criteria
 request uses multiple WHERE phrases so that only those employees in the MIS or Production
 departments with the last name of Cross or Banning are included in the report.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT EMP_ID LAST_NAME
 WHERE SALARY GT 20000
 WHERE DEPARTMENT IS 'MIS' OR 'PRODUCTION'
 WHERE LAST_NAME IS 'CROSS' OR 'BANNING'
 END
+```
 
 The output is:
 
@@ -288,12 +292,14 @@ displays data if either criterion is met:
 
 SET ALL = OFF
 SET MULTIPATH = SIMPLE
+```fex
 TABLE FILE EMPLOYEE
 PRINT GROSS DATE_ATTEND COURSE_NAME
 BY LAST_NAME BY FIRST_NAME
 WHERE PAY_DATE EQ 820730
 WHERE COURSE_CODE EQ '103'
 END
+```
 
 The following warning message is generated:
 
@@ -538,10 +544,12 @@ Using WHERE TOTAL for Record Selection
 
 The following example sums current salaries by department.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL
 BY DEPARTMENT
 END
+```
 
 The output is:
 
@@ -556,11 +564,13 @@ Applying Selection Criteria to the Internal Matrix Prior to COMPUTE Processing
 Now, add a WHERE TOTAL phrase to the request in order to generate a report that lists only
 the departments where the total of the salaries is more than $110,000.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL
 BY DEPARTMENT
 WHERE TOTAL CURR_SAL EXCEEDS 110000
 END
+```
 
 The values for each department are calculated and then each final value is compared to
 $110,000. The output is:
@@ -578,12 +588,14 @@ for each employee. If the total salary for an employee is greater than $20,000, 
 CURR_SAL are processed for the report. In other words, WHERE TOTAL screens data after
 records are selected.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL
 BY LAST_NAME AND BY FIRST_NAME
 WHERE TOTAL CURR_SAL EXCEEDS 20000
 WHERE DEPARTMENT IS 'MIS'
 END
+```
 
 The output is:
 
@@ -623,6 +635,7 @@ business region value has changed, incrementing a counter if it has. This allows
 sequence the records in the matrix. The second COMPUTE creates a rolling total of the days
 delayed within the business region.
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM  DAYSDELAYED AS DAYS
 COMPUTE CTR/I3 = IF BUSINESS_REGION EQ LAST BUSINESS_REGION THEN CTR+1 ELSE
@@ -634,6 +647,7 @@ BY TIME_MTH
 WHERE BUSINESS_REGION NE 'Oceania'
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 
 Applying Selection Criteria to the Internal Matrix Prior to COMPUTE Processing
@@ -644,6 +658,7 @@ The output is shown in the following image.
 The following version of the request adds a WHERE TOTAL test to select only those months
 where DAYSDELAYED exceeded 200 days.
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM  DAYSDELAYED AS DAYS
 COMPUTE CTR/I3 = IF BUSINESS_REGION EQ LAST BUSINESS_REGION THEN CTR+1 ELSE
@@ -656,6 +671,7 @@ WHERE BUSINESS_REGION NE 'Oceania'
 WHERE TOTAL DAYSDELAYED GT 200
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 
 Applying Selection Criteria to the Internal Matrix Prior to COMPUTE Processing
@@ -671,6 +687,7 @@ the COMPUTE expressions are evaluated. This requires WHERE_GROUPED.
 The following version of the request replaces the WHERE TOTAL test with a WHERE_GROUPED
 test.
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM  DAYSDELAYED AS DAYS
 COMPUTE CTR/I3 = IF BUSINESS_REGION EQ LAST BUSINESS_REGION THEN CTR+1 ELSE
@@ -683,6 +700,7 @@ WHERE BUSINESS_REGION NE 'Oceania'
 WHERE_GROUPED DAYSDELAYED GT 200
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 
 Applying Selection Criteria to the Internal Matrix Prior to COMPUTE Processing
@@ -755,11 +773,13 @@ Using Operators in Record Selection Tests
 
 If parentheses are excluded, the logical AND is evaluated before the literal OR.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT CURR_SAL BY LAST_NAME
 WHERE (LAST_NAME EQ 'CROSS' OR 'JONES')
 AND (CURR_SAL GT 22000)
 END
+```
 
 The output is:
 
@@ -1058,6 +1078,7 @@ The following request uses IF-THEN-ELSE logic in a WHERE clause to select record
 values of WHOLESALEPR where the values used for selection vary depending on the value of
 LISTPR in that record.
 
+```fex
 TABLE FILE MOVIES
 PRINT COPIES
 LISTPR
@@ -1069,6 +1090,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 The output is shown in the following image. In the selected records, WHOLESALEPR is greater
@@ -1087,6 +1109,7 @@ report is executed, the user is prompted to select one of the listed values (CE,
 or WE) of the REGION field. The text that appears after the values is what appears before the
 drop-down list in the output.
 
+```fex
 TABLE FILE EMPDATA
 SUM SALARY
 BY DIV
@@ -1098,6 +1121,7 @@ HEADING
 WHERE ( DIV EQ
 '&REGION.(CE,CORP,NE,SE,WE).Please select a Region.');
 END
+```
 
 The output is:
 
@@ -1185,11 +1209,13 @@ The following illustrates how you can use the range test NOT-FROM ... TO to disp
 records that fall outside of the specified range. In this example, it is all employees whose
 salaries do not fall in the range between $12,000 and $22,000.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT CURR_SAL
 BY LAST_NAME
 WHERE CURR_SAL NOT-FROM 12000 TO 22000
 END
+```
 
 The output is:
 
@@ -1277,11 +1303,13 @@ The following illustrates how you can select values that are outside a range of 
 LT and GT operators. In this example, only those employees whose salaries are less than
 $12,000 and greater than $22,000 are included in the output.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT CURR_SAL
 BY LAST_NAME
 WHERE CURR_SAL LT 12000 OR CURR_SAL GT 22000
 END
+```
 
 The output is:
 
@@ -1375,10 +1403,12 @@ WHERE LAST_NAME OMITS 'JOHN'
 
 In this example, all names that contain the letters ING are retrieved.
 
+```fex
 TABLE FILE EMPLOYEE
 LIST LAST_NAME AND FIRST_NAME
 WHERE LAST_NAME CONTAINS 'ING'
 END
+```
 
 
 ## Types of Record Selection Tests
@@ -1526,11 +1556,13 @@ Screening on Initial Characters
 To list all employees who have taken basic-level courses, where every basic course begins with
 the word BASIC, issue the following request:
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT COURSE_NAME COURSE_CODE
 BY LAST_NAME BY FIRST_NAME
 WHERE COURSE_NAME LIKE 'BASIC%'
 END
+```
 
 
 The output is:
@@ -1544,11 +1576,13 @@ If you want to see which employees have taken a FOCUS course, but you do not kno
 the word FOCUS appears in the title, bracket the word FOCUS with wildcards (which is
 equivalent to using the CONTAINS operator):
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT COURSE_NAME COURSE_CODE
 BY LAST_NAME BY FIRST_NAME
 WHERE COURSE_NAME LIKE '%FOCUS%'
 END
+```
 
 The output is:
 
@@ -1560,11 +1594,13 @@ JONES            DIANE       FOCUS INTERNALS                 203
 If you want to list all employees who have taken a 20x-series course, and you know that all of
 these courses have the same code except for the final character, issue the following request:
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT COURSE_NAME COURSE_CODE
 BY LAST_NAME BY FIRST_NAME
 WHERE COURSE_CODE LIKE '20_'
 END
+```
 
 The output is:
 
@@ -1587,10 +1623,12 @@ name must begin with BAN and be seven characters in length (the three initial ch
 and the four placeholders, in this case, the dollar sign). The remaining characters in the field
 (positions 8 through 15) must be blank.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME
 WHERE LAST_NAME IS 'BAN$$$$'
 END
+```
 
 The output is:
 
@@ -1640,18 +1678,22 @@ handy$man@usa.com, which has a dollar sign.
 handyiman@usa.com, which has the letter i in the same position as the $ character in the
 other email address.
 
+```fex
 DEFINE FILE VIDEOTR2
 SMAIL/A18= IF EMAIL EQ 'handyman@usa.com'
            THEN 'handyiman@usa.com'
            ELSE EMAIL;
 SMAIL/A18 = STRREP(18,SMAIL,1,'_',1,'$',18,SMAIL);
 END
+```
+```fex
 TABLE FILE VIDEOTR2
 PRINT SMAIL
 BY LASTNAME BY FIRSTNAME
 WHERE SMAIL EQ 'handy$man@usa.com'
 ON TABLE SET EQTEST WILDCARD
 END
+```
 
 With SET EQTEST=WILDCARD (the default), the WHERE test WHERE SMAIL IS 'handy
 $man@usa.com' returns both the record with the $ in the address and the record with the
@@ -1760,10 +1802,12 @@ Using the Escape Character in a WHERE Phrase
 The VIDEOTR2 data source contains an email address field. To search for the email address
 with the characters 'handy_' you can issue the following request:
 
+```fex
 TABLE FILE VIDEOTR2
 PRINT CUSTID LASTNAME FIRSTNAME EMAIL
 WHERE EMAIL LIKE 'handy_%'
 END
+```
 
 Because the underscore character functions as a wildcard character, this request returns two
 instances, only one of which contains the underscore character.
@@ -1779,10 +1823,12 @@ To retrieve only the instance that contains the underscore character, you must i
 the underscore should be treated as a normal character, not a wildcard. The following request
 retrieves only the instance with the underscore character in the email field:
 
+```fex
 TABLE FILE VIDEOTR2
 PRINT CUSTID LASTNAME FIRSTNAME EMAIL
 WHERE EMAIL LIKE 'handy\_%' ESCAPE '\'
 END
+```
 
 The output is:
 
@@ -1800,10 +1846,12 @@ Using an Escape Character in an IF Phrase
 The VIDEOTR2 data source contains an email address field. To search for email addresses
 with the characters 'handy_' you can issue the following request:
 
+```fex
 TABLE FILE VIDEOTR2
 PRINT CUSTID LASTNAME FIRSTNAME EMAI
 IF EMAIL LIKE 'handy_%'
 END
+```
 
 Because the underscore character functions as a wildcard character, this request returns two
 instances, only one of which contains the underscore character.
@@ -1819,10 +1867,12 @@ To retrieve only the instance that contains the underscore character, you must i
 the underscore should be treated as a normal character, not a wildcard. The following request
 retrieves only the instance with the underscore character in the email field:
 
+```fex
 TABLE FILE VIDEOTR2
 PRINT CUSTID LASTNAME FIRSTNAME EMAI
 IF EMAIL LIKE 'handy\_%' ESCAPE '\'
 END
+```
 
 The output is:
 
@@ -1878,10 +1928,12 @@ every record that does not have both values is selected for the report.
 
 In the CAR data source, only England produces Jaguars and Jensens, and so the request
 
+```fex
 TABLE FILE CAR
 PRINT COUNTRY
 WHERE CAR INCLUDES JAGUAR AND JENSEN
 END
+```
 
 generates this output:
 
@@ -1969,10 +2021,12 @@ Limiting the Number of Records Read
 
 The following request retrieves four records, generating a four-line report:
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME AND FIRST_NAME AND EMP_ID
 WHERE RECORDLIMIT EQ 4
 END
+```
 
 The output is:
 
@@ -2034,12 +2088,14 @@ Using Multiple IF Phrases
 You can use as many IF phrases as necessary to define all your selection criteria, as
 illustrated in the following example:
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT EMP_ID LAST_NAME
 IF SALARY GT 20000
 IF DEPARTMENT IS MIS
 IF LAST_NAME IS CROSS OR BANNING
 END
+```
 
 All of these criteria must be satisfied in order for a record to be included in a report. The
 output is:
@@ -2197,11 +2253,13 @@ FILEDEF EXPER DISK baseapp/exper.ftm
 
 All records for which PRODUCT_ID has a value of B141 or B142 are selected:
 
+```fex
 TABLE FILE GGPRODS
 SUM UNIT_PRICE
 BY PRODUCT_DESCRIPTION
 WHERE PRODUCT_ID IN FILE EXPER
 END
+```
 
 If you include the selection criteria directly in the request, the WHERE phrase specifies the
 values explicitly:
@@ -2226,29 +2284,35 @@ that contains product IDs B141, B142, B143, and B144.
 
 ## Reading Selection Values From a File
 
+```fex
 TABLE FILE GGPRODS
 BY PRODUCT_ID BY PRODUCT_DESCRIPTION
 WHERE PRODUCT_ID EQ 'B141' OR 'B142' OR 'B143' OR 'B144'
 ON TABLE HOLD AS EXPER1 FORMAT ALPHA
 END
+```
 
 The following request against the GGPRODS data source creates a HOLD file named EXPER2
 that contains product IDs B144, F101, and F102.
 
+```fex
 TABLE FILE GGPRODS
 BY PRODUCT_ID BY PRODUCT_DESCRIPTION
 WHERE PRODUCT_ID EQ 'B144' OR 'F101' OR 'F102'
 ON TABLE HOLD AS EXPER2 FORMAT ALPHA
 END
+```
 
 The following request selects the values that exist in both EXPER1 AND EXPER2.
 
+```fex
 TABLE FILE GGPRODS
 SUM PRODUCT_DESCRIPTION
 BY PRODUCT_ID
 WHERE PRODUCT_ID EQ (EXPER1) AND PRODUCT_ID IS (EXPER2)
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 The output is:
 
@@ -2266,11 +2330,13 @@ Create a file named EXPER, which contains the values B141 and B142.
 This request uses selection criteria from the file EXPER. All records for which PRODUCT_ID has
 a value of B141 or B142 are selected:
 
+```fex
 TABLE FILE GGPRODS
 SUM UNIT_PRICE
 BY PRODUCT_DESCRIPTION
 IF PRODUCT_ID IS (EXPER)
 END
+```
 
 If you include the selection criteria directly in the request, the IF phrase specifies the values
 explicitly:
@@ -2407,17 +2473,20 @@ greater than 1000 is automatically added to the request.
 Note: The virtual field MARK_UP cannot be explicitly displayed or referenced in the TABLE
 request.
 
+```fex
 FILTER FILE CAR ADD
 MARK_UP/D7=RCOST-DCOST;
 NAME=UK
 WHERE MARK_UP GT 1000
 END
+```
 
 The second example declares three named filters for the CAR data source: ASIA, UK, and
 LUXURY. The filter ASIA contains a textual description, for documentation purposes only.
 CLEAR, on the first line, erases any previously existing filters for CAR, as well any previously
 defined virtual fields used in filters for CAR, before it processes the new definitions.
 
+```fex
 FILTER FILE CAR CLEAR
 NAME=ASIA,DESC=Asian cars only
 IF COUNTRY EQ JAPAN
@@ -2426,6 +2495,7 @@ IF COUNTRY EQ ENGLAND
 NAME=LUXURY
 IF RETAIL_COST GT 50000
 END
+```
 
 
 ## Assigning Screening Conditions to a File
@@ -2487,14 +2557,18 @@ The following commands activate some filters and deactivate others:
 
 SET FILTER = UK LUXURY IN CAR ON
 ...
+```fex
 TABLE FILE CAR
 PRINT COUNTRY MODEL RETAIL_COST
 END
+```
 ...
 SET FILTER = LUXURY IN CAR OFF
+```fex
 TABLE FILE CAR
 PRINT COUNTRY MODEL RETAIL_COST
 END
+```
 
 The first SET FILTER command activates the filters UK and LUXURY, assigned to the CAR data
 source, and applies their screening conditions to any subsequent report request against the
@@ -2540,15 +2614,19 @@ Querying Filters
 
 To query filters, issue the following command:
 
+```fex
 FILTER FILE CAR CLEAR
 NAME=BOTH, DESC=Asian and British cars only
 IF COUNTRY EQ JAPAN AND ENGLAND
 END
+```
 SET FILTER =BOTH IN CAR ON
+```fex
 TABLE FILE CAR
 PRINT CAR RETAIL_COST
 BY COUNTRY
 END
+```
 
 The output is:
 
@@ -2658,12 +2736,14 @@ The first filter, UNITPR, is defined prior to issuing any joins, but after setti
 ON:
 
 SET KEEPFILTERS = ON
+```fex
 FILTER FILE VIDEOTRK
 PERUNIT/F5 = TRANSTOT/QUANTITY;
 NAME=UNITPR
 WHERE PERUNIT GT 2
 WHERE LASTNAME LE 'CRUZ'
 END
+```
 
 The ? FILTER command shows that the filter named UNITPR was created but not activated
 (activation is indicated by an asterisk in the SET column of the display:
@@ -2688,9 +2768,11 @@ SET FILE     FILTER NAME DESCRIPTION
 
 The following TABLE request is issued against the filtered data source:
 
+```fex
 TABLE FILE VIDEOTRK
 SUM QUANTITY TRANSTOT BY LASTNAME
 END
+```
 
 
 The output shows that the TABLE request retrieved only the data that satisfies the UNITPR
@@ -2710,7 +2792,9 @@ CRUZ                    2     16.00
 Now, the VIDEOTRK data source is joined to the MOVIES data source. The ? FILTER query
 shows that the join did not clear the UNITPR filter:
 
+```fex
 JOIN MOVIECODE IN VIDEOTRK TO ALL MOVIECODE IN MOVIES AS J1
+```
 
 The ? FILTER command shows that the UNITPR filter still exists and is still activated:
 
@@ -2723,11 +2807,13 @@ SET FILE     FILTER NAME DESCRIPTION
 Next a new filter, YEARS1, is created and activated for the join between VIDEOTRK and
 MOVIES:
 
+```fex
 FILTER FILE VIDEOTRK
 YEARS/I5 = (EXPDATE - TRANSDATE)/365;
 NAME=YEARS1
 WHERE YEARS GT 1
 END
+```
 SET FILTER= YEARS1 IN VIDEOTRK ON
 
 The ? FILTER query shows that both the UNITPR and YEARS1 filters exist and are activated:

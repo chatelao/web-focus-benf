@@ -75,13 +75,17 @@ use the same expression DELIVER_AMT/OPENING_AMT, but do not return the same resu
 The value for CRATIO is calculated after all records have been selected, sorted, and
 aggregated. The virtual field DRATIO is calculated for each retrieved record.
 
+```fex
 DEFINE FILE SALES
 DRATIO = DELIVER_AMT/OPENING_AMT;
 END
+```
+```fex
 TABLE FILE SALES
 SUM DELIVER_AMT AND OPENING_AMT AND DRATIO
 COMPUTE CRATIO = DELIVER_AMT/OPENING_AMT;
 END
+```
 
 
 ## Defining a Virtual Field
@@ -325,13 +329,17 @@ In the following request, the value of RATIO is calculated by dividing the value
 by OPENING_AMT. The DEFINE command creates RATIO as a virtual field, which is used in the
 request as though it were a real field in the data source.
 
+```fex
 DEFINE FILE SALES
 RATIO = DELIVER_AMT/OPENING_AMT;
 END
+```
+```fex
 TABLE FILE SALES
 PRINT DELIVER_AMT AND OPENING_AMT AND RATIO
 WHERE DELIVER_AMT GT 50
 END
+```
 
 The output is:
 
@@ -351,16 +359,20 @@ for job titles that contain the word EXECUTIVE:
 
 
 SET EXTENDNUM=OFF
+```fex
 DEFINE FILE EMPDATA
 SALARY REDEFINES EMPDATA.SALARY =
  IF TITLE CONTAINS 'EXECUTIVE' THEN  ELSE
  EMPDATA.SALARY;
 END
+```
+```fex
 TABLE FILE EMPDATA
 SUM SALARY BY TITLE
 WHERE TITLE CONTAINS 'MANAGER' OR 'MARKETING' OR 'SALES'
 ON TABLE SET PAGE OFF
 END
+```
 
 The output is:
 
@@ -391,19 +403,25 @@ replaced by asterisks, and redefines the salary field in the child segment (tag 
 that all names starting with the letter M are replace by asterisks:
 
 SET EXTENDNUM=OFF
+```fex
 JOIN PIN IN EMPDATA TAG ORIG TO PIN IN EMPDATA TAG NEW AS AJ
+```
+```fex
 DEFINE FILE EMPDATA
 SALARY/D12.2M REDEFINES ORIG.SALARY = IF LASTNAME LIKE 'L%'  THEN
                                       999999999999 ELSE ORIG.SALARY;
 SALARY/D12.2M REDEFINES NEW.SALARY = IF LASTNAME LIKE 'M%' THEN
                                      999999999999 ELSE NEW.SALARY * 1.2;
 END
+```
+```fex
 TABLE FILE EMPDATA
 PRINT ORIG.SALARY AS 'ORIGINAL' NEW.SALARY AS 'NEW'
 BY LASTNAME
 WHERE LASTNAME FROM 'HIRSCHMAN' TO 'OLSON'
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 The output is:
 
@@ -450,14 +468,18 @@ Adding Virtual Fields
 The following annotated example illustrates the use of the ADD and CLEAR options for virtual
 fields:
 
+```fex
 1. DEFINE FILE CAR
    ETYPE/A2=DECODE STANDARD (OHV O OHC O ELSE L);
    END
+```
+```fex
 2. DEFINE FILE CAR ADD
    TAX/D8.2=IF MPG LT 15 THEN .06*RCOST
       ELSE .04*RCOST;
    FCOST = RCOST+TAX;
    END
+```
 
 1. The first DEFINE command creates the TYPE virtual field for the CAR data source. For
 
@@ -514,12 +536,16 @@ Clearing Virtual Fields
 
 The following annotated example illustrates the use of the CLEAR options for virtual fields:
 
+```fex
 1. DEFINE FILE CAR
    ETYPE/A2=DECODE STANDARD (OHV O OHC O ELSE L);
    END
+```
+```fex
 2. DEFINE FILE CAR CLEAR
    COST = RCOST-DCOST;
    END
+```
 
 1. The first DEFINE command creates the TYPE virtual field for the CAR data source. For
 
@@ -574,9 +600,11 @@ Establishing a Segment Location
 The field NCOUNT is placed in the same segment as the UNITS field. NCOUNT is calculated
 each time a new segment instance is retrieved.
 
+```fex
 DEFINE FILE GGSALES
 NCOUNT/I5 WITH UNITS = NCOUNT+1;
 END
+```
 
 Defining Virtual Fields Using a Multi-Path Data Source
 
@@ -628,10 +656,12 @@ Syntax:
 
 How to Protect Virtual Fields From Being Overwritten
 
+```fex
 DEFINE FILE filename SAVE
 fld1/format1=expression1;
 fld2/format2=expression2;
 END
+```
 TABLE FILE filename ...
 MODIFY FILE filename ...
 DEFINE FILE filename RETURN
@@ -710,9 +740,11 @@ How to Define and Apply a Format Field
 
 With a DEFINE command:
 
+```fex
 DEFINE FILE filename
 format_field/A8 = expression;
 END
+```
 
 In a Master File:
 
@@ -734,9 +766,11 @@ Is the expression that assigns the format values to the format field.
 
 After the format field is defined, you can apply it in a report request:
 
+```fex
 TABLE FILE filename
 display fieldname/format_field[/just]
 END
+```
 
 where:
 
@@ -805,13 +839,16 @@ Creating Dynamically Formatted Fields
 The following request formats the DOLLARS2 field according to the value of the CATEGORY
 field and shows the numeric differences in sums using dynamic and static reformatting:
 
+```fex
 DEFINE FILE GGSALES
 MYFORMAT/A8=DECODE CATEGORY ('Coffee' 'P15.3' 'Gifts' 'P15.0' ELSE
 'P15.2');
 DOLLARS2/P15.2 = DOLLARS + .5;
 END
+```
 
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS2/MYFORMAT AS 'Dynamic' DOLLARS2/P10.2 AS 'Specific'
 BY CATEGORY
@@ -820,6 +857,7 @@ ON TABLE SET PAGE NOLEAD
 ON TABLE SET STYLE *
 GRID=OFF,$
 END
+```
 
 The output is shown in the following image:
 
@@ -878,14 +916,18 @@ SET TRACEON = STMTRACE//CLIENT
 SET TRACESTAMP=OFF
 SET XRETRIEVAL = OFF
 
+```fex
 DEFINE FILE WF_RETAIL
 CAT_SUBCAT/A50 = SQL.CONCAT(PRODUCT_CATEGORY, PRODUCT_SUBCATEG);
 END
+```
 
+```fex
 TABLE FILE WF_RETAIL
 PRINT CAT_SUBCAT
 BY PRODUCT_CATEGORY NOPRINT
 END
+```
 
 The trace output shows that the SQL function call was passed to the RDBMS.
 
@@ -1052,6 +1094,7 @@ City. The format D12.2M indicates the field format for REVENUE and the AS comman
 the default column headings for UNIT_SOLD and RETAIL_PRICE. REVENUE is only available for
 this report request.
 
+```fex
 TABLE FILE SALES
 HEADING CENTER
 "NEW YORK PROFIT REPORT"
@@ -1061,6 +1104,7 @@ COMPUTE REVENUE/D12.2M = UNIT_SOLD * RETAIL_PRICE;
 BY PROD_CODE AS 'PROD,CODE'
 WHERE CITY EQ 'NEW YORK'
 END
+```
 
 The output is:
 
@@ -1102,11 +1146,13 @@ Using Positional Column Referencing
 The following example demonstrates positional field references in a COMPUTE command:
 
 
+```fex
 TABLE FILE CAR
 SUM AVE.DEALER_COST
 SUM AVE.DEALER_COST AND COMPUTE RATIO=C1/C2;
 BY COUNTRY
 END
+```
 
 The columns produced by display commands can be referred to as C1 for the first column
 (AVE.DEALER_COST), C2 for the second column (AVE.DEALER_COST BY COUNTRY), and so
@@ -1133,11 +1179,13 @@ Example:
 
 Using COMPUTE as Part of a Display Command
 
+```fex
 TABLE FILE SALES
 SUM UNIT_SOLD
 COMPUTE NEWVAL = UNIT_SOLD * RETAIL_PRICE;
 ACROSS CITY
 END
+```
 
 The first page of output is:
 
@@ -1158,6 +1206,7 @@ In the following COMPUTE command, C1, C2, C3, C4, C5, and C6 are positional colu
 references, and the COMPUTE command follows the ACROSS phrase. The COMPUTE is
 performed once for the report, and the results are displayed to the right of all sort groups.
 
+```fex
 TABLE FILE SALES
 SUM UNIT_SOLD AND RETURNS
 WHERE DATE GE '010' AND DATE LE '1031'
@@ -1166,6 +1215,7 @@ COMPUTE
 TOT_UNITS/D5=C1 + C3 + C5;
 TOT_RETURNS = C2 + C4 + C6;
 END
+```
 
 The output is:
 
@@ -1260,12 +1310,14 @@ In the following request with CNOTATION=ALL, the product of C1 and C2 does not c
 TRANSTOT times QUANTITY because the reformatting generates additional columns.
 
 SET CNOTATION = ALL
+```fex
 TABLE FILE VIDEOTRK
 SUM TRANSTOT/D12.2 QUANTITY/D12.2
 AND COMPUTE
 PRODUCT = C1 * C2;
 BY TRANSDATE
 END
+```
 
 The output is:
 
@@ -1295,12 +1347,14 @@ case, the product of C1 and C2 does calculate TRANSTOT times QUANTITY.
 
 SET CNOTATION = PRINTONLY
 
+```fex
 TABLE FILE VIDEOTRK
 SUM TRANSTOT/D12.2 QUANTITY/D12.2
 AND COMPUTE
 PRODUCT = C1 * C2;
 BY TRANSDATE
 END
+```
 
 
 The output is:
@@ -1334,10 +1388,13 @@ The resulting calculation is displayed in column 2 of the row labeled CASH GROWT
 The RECAP value is only calculated for the column specified.
 
 SET CNOTATION=PRINTONLY
+```fex
 DEFINE FILE LEDGER
 CUR_YR/I5C=AMOUNT;
 LAST_YR/I5C=.87*CUR_YR - 142;
 END
+```
+```fex
 TABLE FILE LEDGER
 SUM CUR_YR/F9.2 AS 'CURRENT,YEAR'
 LAST_YR/F9.2 AS 'LAST,YEAR'
@@ -1352,6 +1409,7 @@ RECAP TOTCASH/F9.2C= R1 + R2 + R3; AS 'TOTAL CASH' OVER
 RECAP GROCASH(2)/F9.2C=100*TOTCASH(1)/TOTCASH(2) - 100;
 AS 'CASH GROWTH(%)'
 END
+```
 
 The output is:
 
@@ -1405,11 +1463,14 @@ In this example, the RECAP calculation for ATOT occurs only for displayed column
 specified in the request. No calculation is performed for displayed column 1.
 
 SET CNOTATION=PRINTONLY
+```fex
 DEFINE FILE LEDGER
 CUR_YR/I5C=AMOUNT;
 LAST_YR/I5C=.87*CUR_YR - 142;
 NEXT_YR/I5C=1.13*CUR_YR + 222;
 END
+```
+```fex
 TABLE FILE LEDGER
 SUM NEXT_YR/F9.2 CUR_YR/F9.2 LAST_YR/F9.2
 FOR ACCOUNT
@@ -1420,6 +1481,7 @@ BAR                                 OVER
 RECAP ATOT(2,3)/I5C = R1 + R2 + R3;
 AS 'ASSETS  ACTUAL'
 END
+```
 
 The output is:
 
@@ -1474,11 +1536,14 @@ Using CNOTATION=PRINTONLY With Relative Column Addressing in an FML Request
 This example computes the change in cash (CHGCASH) for displayed columns 1 and 2.
 
 SET CNOTATION=PRINTONLY
+```fex
 DEFINE FILE LEDGER
 CUR_YR/I5C=AMOUNT;
 LAST_YR/I5C=.87*CUR_YR - 142;
 NEXT_YR/I5C=1.13*CUR_YR + 222;
 END
+```
+```fex
 TABLE FILE LEDGER
 SUM NEXT_YR/F9.2 CUR_YR/F9.2 LAST_YR/F9.2
 FOR ACCOUNT
@@ -1486,6 +1551,7 @@ FOR ACCOUNT
 " "                                          OVER
 RECAP CHGCASH(1,2)/I5SC = TOTCASH(*) - TOTCASH(*+1); AS 'CHANGE IN CASH'
 END
+```
 
 The output is:
 
@@ -1521,6 +1587,7 @@ values in four displayed columns (1, 2, 3, 4) in row three (PROFIT); these value
 using cell notation (r,c).
 
 SET CNOTATION=PRINTONLY
+```fex
 TABLE FILE REGION
 SUM E_ACTUAL/F9.2 E_BUDGET/F9.2 W_ACTUAL/F9.2 W_BUDGET/F9.2
 FOR ACCOUNT
@@ -1534,6 +1601,7 @@ AS 'EAST  VARIANCE'                     OVER
 RECAP WVAR(3)/I5C = E(3,3) - E(3,4);
 AS 'WEST  VARIANCE'
 END
+```
 
 The output is:
 
@@ -1547,11 +1615,14 @@ calculated values. With SET CNOTATION=PRINTONLY, the column references result in
 output.
 
 SET CNOTATION = PRINTONLY
+```fex
 DEFINE FILE LEDGER
 CUR_YR/I5C=AMOUNT;
 LAST_YR/I5C=.87*CUR_YR - 142;
 NEXT_YR/I5C=1.13*CUR_YR + 222;
 END
+```
+```fex
 TABLE FILE LEDGER
 SUM NEXT_YR NOPRINT CUR_YR
 COMPUTE AMT2/D6 = AMOUNT *2;
@@ -1566,6 +1637,7 @@ BAR                                            OVER
 RECAP ATOT/I8C = R1 + R2 + R3; AS 'TOTAL'      OVER
 RECAP DIFF(2,10,2)/D8  = ATOT(*) - ATOT(*-1);
 END
+```
 
 The output is:
 
@@ -1587,6 +1659,7 @@ UNIT_COST2, which is calculated by dividing column1 by QUANTITY.
 ## Assigning Column Reference Numbers
 
 SET CNOTATION = ALL
+```fex
 TABLE FILE VIDEOTRK
 SUM TRANSTOT/D7.2 NOPRINT QUANTITY/D7.2 TRANSCODE
   COMPUTE TTOT2/D7.2 = C1;
@@ -1594,6 +1667,7 @@ SUM TRANSTOT/D7.2 NOPRINT QUANTITY/D7.2 TRANSCODE
   COMPUTE UNIT_COST2/D7.2 = C1/QUANTITY;
 BY TRANSDATE
 END
+```
 
 With this request, only CNOTATION=EXPLICIT produces the correct output. The following
 discussion illustrates why the EXPLICIT setting is needed.
@@ -1695,11 +1769,14 @@ In the following request, CUR_YR has the NOPRINT option. The CHGCASH RECAP expre
 supposed to subtract CUR_YR from LAST_YR and NEXT_YR.
 
 SET CNOTATION = ALL
+```fex
 DEFINE FILE LEDGER
 CUR_YR/I7C = AMOUNT;
 LAST_YR/I5C = .87*CUR_YR - 142;
 NEXT_YR/I5C = 1.13*CUR_YR + 222;
 END
+```
+```fex
 TABLE FILE LEDGER
 SUM CUR_YR/I5C NOPRINT LAST_YR NEXT_YR
 FOR ACCOUNT
@@ -1708,6 +1785,7 @@ FOR ACCOUNT
 RECAP CHGCASH(1,3)/I5SC=(TOTCASH(*) - TOTCASH(1));
   AS 'CHANGE FROM CURRENT'
 END
+```
 
 When CNOTATION = ALL, C1 refers to the CUR_YR field with its original format, C2 refers to
 the reformatted value, C3 is LAST_YR, and C4 is NEXT_YR. Since there is an extra column and
@@ -1956,12 +2034,15 @@ the moving average. It predicts three periods of values beyond the range of the 
 The MOVAVE column on the report output shows the calculated moving average numbers for
 existing data points.
 
+```fex
 DEFINE FILE GGSALES
 SDATE/YYM = DATE;
 SYEAR/Y = SDATE;
 SMONTH/M = SDATE;
 PERIOD/I2 = SMONTH;
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS
 COMPUTE  MOVAVE/D10.1= FORECAST_MOVAVE(MODEL_DATA, DOLLARS,1,3,3);
@@ -1971,6 +2052,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 ## Using FORECAST in a COMPUTE Command
@@ -2012,12 +2094,15 @@ It uses the keyword INPUT_FIELD as the first argument in the FORECAST parameter 
 trend values do not display in the report. The actual data values for DOLLARS are followed by
 the predicted values in the report column.
 
+```fex
 DEFINE FILE GGSALES
 SDATE/YYM = DATE;
 SYEAR/Y = SDATE;
 SMONTH/M = SDATE;
 PERIOD/I2 = SMONTH;
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS
 COMPUTE MOVAVE/D10.1 = FORECAST_MOVAVE(INPUT_FIELD,DOLLARS,1,3,3);
@@ -2027,6 +2112,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 ## Using FORECAST in a COMPUTE Command
@@ -2131,12 +2217,15 @@ Calculating a Single Exponential Smoothing Column
 The following defines an integer value named PERIOD to use as the independent variable for
 the moving average. It predicts three periods of values beyond the range of retrieved data.
 
+```fex
 DEFINE FILE GGSALES
 SDATE/YYM = DATE;
 SYEAR/Y = SDATE;
 SMONTH/M = SDATE;
 PERIOD/I2 = SMONTH;
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS
 COMPUTE EXPAVE/D10.1= FORECAST_EXPAVE(MODEL_DATA,DOLLARS,1,3,3);
@@ -2146,6 +2235,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 The output is shown in the following image:
@@ -2320,6 +2410,7 @@ The following sums the TRANSTOT field of the VIDEOTRK data source by TRANSDATE, 
 calculates a single exponential and double exponential moving average. The report columns
 show the calculated values for existing data points.
 
+```fex
 TABLE FILE VIDEOTRK
 SUM TRANSTOT
 COMPUTE EXP/D15.1 = FORECAST_EXPAVE(MODEL_DATA,TRANSTOT,1,0,3);
@@ -2329,6 +2420,7 @@ WHERE TRANSDATE NE '19910617'
 ON TABLE SET STYLE *
 GRID=OFF,$
 END
+```
 
 The output is shown in the following image:
 
@@ -2495,6 +2587,7 @@ Calculating a Triple Exponential Smoothing Column
 In the following, the data has seasonality but no trend. Therefore, npoint2 is set high (1000) to
 make the trend factor negligible in the calculation:
 
+```fex
 TABLE FILE VIDEOTRK
 SUM TRANSTOT
 COMPUTE SEASONAL/D10.1 = FORECAST_SEASONAL(MODEL_DATA,TRANSTOT,
@@ -2505,6 +2598,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 In the output, npredict is 3. Therefore, three periods (nine points, nperiod * npredict) are
 generated.
@@ -2618,6 +2712,7 @@ The following request calculates a regression line using the VIDEOTRK data sourc
 QUANTITY by TRANSDATE. The interval is one day, and three predicted values are calculated.
 
 
+```fex
 TABLE FILE VIDEOTRK
 SUM QUANTITY
 COMPUTE FORTOT=FORECAST_LINEAR(MODEL_DATA,QUANTITY,1,3);
@@ -2627,6 +2722,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 The output is shown in the following image:
 
@@ -2649,6 +2745,7 @@ The equation is used to calculate QUANTITY FORECAST trend and predicted values.
 
 The following version of the request charts the data values and the regression line.
 
+```fex
 GRAPH FILE VIDEOTRK
 SUM QUANTITY
 COMPUTE FORTOT=FORECAST_LINEAR(MODEL_DATA,QUANTITY,1,3);
@@ -2656,6 +2753,7 @@ BY TRANSDATE
 ON GRAPH PCHOLD FORMAT JSCHART
 ON GRAPH SET LOOKGRAPH VLINE
 END
+```
 
 The output is shown in the following image.
 
@@ -2677,9 +2775,12 @@ source. It has the value zero for the predicted rows. The PREDICT field is calcu
 predicted rows, and NO for rows containing data. In addition, the StyleSheet attribute
 WHEN=FORECAST is used to display the predicted values for the FORTOT field in red.
 
+```fex
 DEFINE FILE VIDEOTRK
 DATA_ROW/I1 = 1;
 END
+```
+```fex
 TABLE FILE VIDEOTRK
 SUM TRANSTOT DATA_ROW
 COMPUTE
@@ -2692,6 +2793,7 @@ GRID=OFF,$
 TYPE=DATA, COLUMN=FORTOT, WHEN=FORECAST, COLOR=RED,$
 ENDSTYLE
 END
+```
 
 The output is shown in the following image:
 
@@ -2974,18 +3076,22 @@ Calculating a New Simple Moving Average Column
 This request defines an integer value named PERIOD to use as the independent variable for
 the moving average. It predicts three periods of values beyond the range of the retrieved data.
 
+```fex
 DEFINE FILE GGSALES
  SDATE/YYM = DATE;
  SYEAR/Y = SDATE;
  SMONTH/M = SDATE;
  PERIOD/I2 = SMONTH;
 END
+```
+```fex
 TABLE FILE GGSALES
   SUM UNITS DOLLARS
   BY  CATEGORY BY PERIOD
   WHERE SYEAR EQ 97 AND CATEGORY NE 'Gifts'
   ON PERIOD RECAP MOVAVE/D10.1= FORECAST(DOLLARS,1,3,'MOVAVE',3);
 END
+```
 
 
 ## Calculating Trends and Predicting Values With FORECAST
@@ -3027,18 +3133,22 @@ It uses the same name for the RECAP field as the first argument in the FORECAST 
 list. The trend values do not display in the report. The actual data values for DOLLARS are
 followed by the predicted values in the report column.
 
+```fex
 DEFINE FILE GGSALES
  SDATE/YYM = DATE;
  SYEAR/Y = SDATE;
  SMONTH/M = SDATE;
  PERIOD/I2 = SMONTH;
 END
+```
+```fex
 TABLE FILE GGSALES
   SUM UNITS DOLLARS
   BY  CATEGORY BY PERIOD
   WHERE SYEAR EQ 97 AND CATEGORY NE 'Gifts'
   ON PERIOD RECAP DOLLARS/D10.1 = FORECAST(DOLLARS,1,3,'MOVAVE',3);
 END
+```
 
 
 ## Calculating Trends and Predicting Values With FORECAST
@@ -3085,18 +3195,22 @@ Calculating a Single Exponential Smoothing Column
 The following defines an integer value named PERIOD to use as the independent variable for
 the moving average. It predicts three periods of values beyond the range of retrieved data.
 
+```fex
 DEFINE FILE GGSALES
  SDATE/YYM = DATE;
  SYEAR/Y = SDATE;
  SMONTH/M = SDATE;
  PERIOD/I2 = SMONTH;
 END
+```
+```fex
 TABLE FILE GGSALES
   SUM UNITS DOLLARS
   BY  CATEGORY BY PERIOD
   WHERE SYEAR EQ 97 AND CATEGORY NE 'Gifts'
   ON PERIOD RECAP EXPAVE/D10.1= FORECAST(DOLLARS,1,3,'EXPAVE',3);
 END
+```
 
 
 ## Calculating Trends and Predicting Values With FORECAST
@@ -3186,6 +3300,7 @@ the moving average. The double exponential smoothing method estimates the trend 
 points better than the single smoothing method:
 
 SET HISTOGRAM = OFF
+```fex
 TABLE FILE CENTSTMT
 SUM ACTUAL_YTD
   BY PERIOD
@@ -3194,6 +3309,7 @@ SUM ACTUAL_YTD
      'DOUBLEXP',3,3);
 WHERE GL_ACCOUNT LIKE '3%%%'
 END
+```
 
 The output is:
 
@@ -3280,6 +3396,7 @@ In the following, the data has seasonality but no trend. Therefore, npoint2 is s
 make the trend factor negligible in the calculation:
 
 SET HISTOGRAM = OFF
+```fex
 TABLE FILE VIDEOTRK
 SUM TRANSTOT
 BY  TRANSDATE
@@ -3287,6 +3404,7 @@ ON TRANSDATE RECAP SEASONAL/D10.1 = FORECAST(TRANSTOT,1,3,'SEASONAL',
    3,3,1000,1);
 WHERE TRANSDATE NE '19910617'
 END
+```
 
 
 In the output, npredict is 3. Therefore, three periods (nine points, nperiod * npredict) are
@@ -3347,12 +3465,14 @@ Example:
 
 Calculating a New Linear Regression Field
 
+```fex
 TABLE FILE CAR
 PRINT MPG
 BY DEALER_COST
 WHERE MPG NE 0.0
   ON DEALER_COST RECAP FORMPG=FORECAST(MPG,1000,3,'REGRESS');
 END
+```
 
 
 The output is:
@@ -3458,12 +3578,15 @@ This example calculates moving averages and exponential averages for both the DO
 BUDDOLLARS fields in the GGSALES data source. The sort field, interval, and number of
 predictions are the same for all of the calculations.
 
+```fex
 DEFINE FILE GGSALES
  SDATE/YYM = DATE;
  SYEAR/Y = SDATE;
  SMONTH/M = SDATE;
  PERIOD/I2 = SMONTH;
 END
+```
+```fex
 TABLE FILE GGSALES
   SUM DOLLARS AS 'DOLLARS' BUDDOLLARS AS 'BUDGET'
   BY CATEGORY NOPRINT BY PERIOD AS 'PER'
@@ -3473,6 +3596,7 @@ TABLE FILE GGSALES
   ON PERIOD RECAP BUDMOVAVE/D10.1 = FORECAST(BUDDOLLARS,1,0,'MOVAVE',3);
   ON PERIOD RECAP BUDEXPAVE/D10.1 = FORECAST(BUDDOLLARS,1,0,'EXPAVE',4);
 END
+```
 
 
 The output is shown in the following image.
@@ -3485,12 +3609,15 @@ COMPUTE command as a placeholder for the MOVAVE field. Both the COMPUTE command 
 the RECAP command specify formats for MOVAVE (of the same data type), but the format of
 the RECAP command takes precedence.
 
+```fex
 DEFINE FILE GGSALES
  SDATE/YYM = DATE;
  SYEAR/Y = SDATE;
  SMONTH/M = SDATE;
  PERIOD/I2 = SMONTH;
 END
+```
+```fex
 TABLE FILE GGSALES
 SUM   UNITS
 COMPUTE MOVAVE/D10.2 = ;
@@ -3499,6 +3626,7 @@ DOLLARS
   WHERE SYEAR EQ 97 AND CATEGORY EQ 'Coffee'
   ON PERIOD RECAP MOVAVE/D10.1= FORECAST(DOLLARS,1,3,'MOVAVE',3);
 END
+```
 
 
 ## Calculating Trends and Predicting Values With FORECAST
@@ -3530,9 +3658,12 @@ In the following example, the DATA_ROW virtual field has the value 1 for each ro
 source. It has the value zero for the predicted rows. The PREDICT field is calculated as YES for
 predicted rows, and NO for rows containing data.
 
+```fex
 DEFINE FILE CAR
 DATA_ROW/I1 = 1;
 END
+```
+```fex
 TABLE FILE CAR
   PRINT DATA_ROW
 COMPUTE PREDICT/A3 = IF DATA_ROW EQ 1 THEN 'NO' ELSE 'YES' ;
@@ -3542,6 +3673,7 @@ WHERE MPG GE 20
   ON DEALER_COST RECAP FORMPG/D12.2=FORECAST(MPG,1000,3,'REGRESS');
   ON DEALER_COST RECAP MPG         =FORECAST(MPG,1000,3,'REGRESS');
 END
+```
 
 The output is:
 
@@ -3670,12 +3802,15 @@ The following request uses the GGSALES data source to calculate an estimated DOL
 column. The BUDUNITS, UNITS, and BUDDOLLARS fields are the independent variables. The
 DOLLARS field provides the actual values to be estimated:
 
+```fex
 DEFINE FILE GGSALES
  YEAR/Y = DATE;
  MONTH/M = DATE;
  PERIOD/I2 = MONTH;
 END
+```
 
+```fex
 TABLE FILE GGSALES
 PRINT BUDUNITS UNITS BUDDOLLARS DOLLARS
 BY PERIOD
@@ -3685,6 +3820,7 @@ WHERE CATEGORY EQ 'Coffee'
 WHERE REGION EQ 'West'
 WHERE UNITS GT 1600 AND UNITS LT 1700
 END
+```
 
 
 ## Using Text Fields in DEFINE and COMPUTE
@@ -3708,14 +3844,18 @@ This example uses the COURSES data source, which contains a text field, to creat
 alphanumeric field named ADESC, which truncates the text field at 36 characters, and a new
 text field named NEWDESC, which is a text version of ADESC:
 
+```fex
 DEFINE FILE COURSES
 ADESC/A36   = DESCRIPTION;
 NEWDESC/TX36 = ADESC;
 END
+```
 
+```fex
 TABLE FILE COURSES
 PRINT ADESC NEWDESC
 END
+```
 
 The output is:
 
@@ -3852,12 +3992,14 @@ END
 
 ## Creating Temporary Fields Independent of a Master File
 
+```fex
 TABLE FILE MOVIES
  PRINT TITLE LISTPR IN 35 WHOLESALEPR AND
  COMPUTE PROFIT/D8.2 = SUBTRACT(LISTPR,WHOLESALEPR);
  BY CATEGORY
    WHERE CATEGORY EQ 'MYSTERY' OR 'ACTION'
 END
+```
 
 The output is:
 

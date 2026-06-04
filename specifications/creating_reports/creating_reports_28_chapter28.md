@@ -100,6 +100,7 @@ Consider the following data structure, in which PROD_CODE is an indexed field:
 You could issue the following request to promote the segment containing PROD_CODE to the
 top of the hierarchy, thereby enabling quicker access to the data in that segment.
 
+```fex
 TABLE FILE SALES.PROD_CODE
 "SALES OF B10 DISTRIBUTED BY AREA"
 SUM UNIT_SOLD AND RETAIL_PRICE
@@ -107,6 +108,7 @@ BY AREA
 WHERE PROD_CODE EQ 'B10'
 ON TABLE COLUMN-TOTAL
 END
+```
 
 ## Optimizing Retrieval Speed for FOCUS Data Sources
 
@@ -207,11 +209,13 @@ The following procedure contains an equality test on DEPT_CODE and PROD_CODE.
 DEPT_CODE is used for indexed retrieval since it is in the higher of the referenced segments.
 
 SET AUTOINDEX=ON
+```fex
 TABLE FILE SALES
 SUM UNIT_SOLD RETAIL_PRICE
 IF DEPT_CODE EQ 'H01'
 IF PROD_CODE EQ 'B10'
 END
+```
 
 If your TABLE request contains an equality or range test against more than one indexed field in
 the same segment, AUTOINDEX uses the first index referenced in that segment for retrieval.
@@ -220,11 +224,13 @@ DEPT_CODE appears before PROD_TYPE in the Master File, AUTOINDEX uses DEPT_CODE 
 retrieval.
 
 SET AUTOINDEX=ON
+```fex
 TABLE FILE SALES
 SUM UNIT_SOLD AND RETAIL_PRICE
 IF PROD_TYPE EQ 'STEREO'
 IF DEPT_CODE EQ 'H01'
 END
+```
 
 
 Indexed retrieval is not invoked if the equality or range test is run against an indexed field that
@@ -233,12 +239,14 @@ is not performed, because the request contains a reference to AREA, a field in t
 segment:
 
 SET AUTOINDEX=ON
+```fex
 TABLE FILE SALES
 SUM UNIT_SOLD AND RETAIL_PRICE
 BY AREA
 IF PROD_CODE EQ 'B10'
 IF PROD_TYPE EQ 'STEREO'
 END
+```
 
 ## Data Retrieval Using TABLEF
 

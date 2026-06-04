@@ -175,7 +175,9 @@ organized by PIN, and they are joined on a PIN field in the root segments of bot
 PIN has one segment instance in the EMPDATA data source, and one instance in the SALHIST
 data source. To join these two data sources, issue this JOIN command:
 
+```fex
 JOIN PIN IN EMPDATA TO PIN IN SALHIST
+```
 
 Example:
 
@@ -199,7 +201,9 @@ source but can have as many instances in the EDUCFILE data source as courses att
 
 To join these two data sources, issue the following JOIN command, using the ALL phrase:
 
+```fex
 JOIN EMP_ID IN JOB TO ALL EMP_ID IN EDUCFILE
+```
 
 Syntax:
 
@@ -254,11 +258,13 @@ The following request prints the city of origin (OR_CITY) and the destination ci
 Note that missing data is generated, causing the data for stations and corresponding cities to
 lag, or be off by one line.
 
+```fex
 TABLE FILE ROUTES
 PRINT TRAIN_NUM
 OR_STATION OR_CITY
 DE_STATION DE_CITY
 END
+```
 
 The output is:
 
@@ -278,11 +284,13 @@ Issuing SET JOINOPT=NEW enables segments to be retrieved in the expected order (
 to right and from top to bottom), without missing data.
 
 SET JOINOPT=NEW
+```fex
 TABLE FILE ROUTES
 PRINT TRAIN_NUM
 OR_STATION OR_CITY
 DE_STATION DE_CITY
 END
+```
 
 The correct report has only 5 lines instead of 6, and the station and city data is properly
 aligned. The output is:
@@ -312,7 +320,9 @@ For example, the GENERIC data source shown below consists of Segments A and B.
 
 The following request creates a recursive structure:
 
+```fex
 JOIN FIELD_B IN GENERIC TAG G1 TO FIELD_A IN GENERIC TAG G2 AS RECURSIV
+```
 
 This results in the joined structure (shown below).
 
@@ -413,7 +423,9 @@ can go from CABIN to SEATS and from SEATS to BOLTS.
 
 Join the bottom segment to the top segment with this JOIN command:
 
+```fex
 JOIN SUBPART IN AIRCRAFT TO PART IN AIRCRAFT AS SUB
+```
 
 This creates the following recursive structure.
 
@@ -421,9 +433,11 @@ This creates the following recursive structure.
 You can then produce a report on all three levels of data with this TABLE command (the field
 SUBDESCRIPT describes the contents of the field SUBPART):
 
+```fex
 TABLE FILE AIRCRAFT
 PRINT SUBPART BY PART BY SUBPART BY SUBDESCRIPT
 END
+```
 
 ## How the JOIN Command Works
 
@@ -452,15 +466,19 @@ GRAPH request to read the joined data source. You only need to specify the first
 (host file) to produce a report from two or more data sources. For example, assume you are
 writing a report from the JOB and SALARY data sources. You execute the following equijoin:
 
+```fex
 JOIN EMP_ID IN JOB TO ALL EMP_ID IN SALARY
+```
 
 This command joins the field EMP_ID in the JOB file to the field EMP_ID in the SALARY file.
 JOB is the host file and SALARY is the cross-referenced file. You then execute this report
 request:
 
+```fex
 TABLE FILE JOB
 PRINT SALARY AND JOB_TITLE BY EMP_ID
 END
+```
 
 
 ## Creating an Equijoin
@@ -638,7 +656,9 @@ Creating a Simple Unique Joined Structure
 
 An example of a simple unique join is shown below:
 
+```fex
 JOIN JOBCODE IN EMPLOYEE TO JOBCODE IN JOBFILE AS JJOIN
+```
 
 Example:
 
@@ -660,25 +680,31 @@ EDUCFILE data source.
 The procedure then adds an employee to EMPINFO named Fred Newman who has no matching
 record in the JOBINFO or EDINFO data sources.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM LAST_NAME FIRST_NAME CURR_JOBCODE
 BY EMP_ID
 ON TABLE HOLD AS EMPINFO FORMAT FOCUS INDEX EMP_ID CURR_JOBCODE
 END
+```
 -RUN
 
+```fex
 TABLE FILE JOBFILE
 SUM JOB_DESC
 BY JOBCODE
 ON TABLE HOLD AS JOBINFO FORMAT FOCUS INDEX JOBCODE
 END
+```
 -RUN
 
+```fex
 TABLE FILE EDUCFILE
 SUM COURSE_CODE COURSE_NAME
 BY EMP_ID
 ON TABLE HOLD AS EDINFO FORMAT FOCUS INDEX EMP_ID
 END
+```
 -RUN
 
 MODIFY FILE EMPINFO
@@ -693,9 +719,11 @@ END
 The following request prints the contents of EMPINFO. Note that Fred Newman has been added
 to the data source:
 
+```fex
 TABLE FILE EMPINFO
 PRINT *
 END
+```
 
 
 The output is:
@@ -719,8 +747,12 @@ EMP_ID     LAST_NAME        FIRST_NAME  CURR_JOBCODE
 The following JOIN command creates an inner join between the EMPINFO data source and the
 JOBINFO data source.
 
+```fex
 JOIN CLEAR *
+```
+```fex
 JOIN INNER CURR_JOBCODE IN EMPINFO TO MULTIPLE JOBCODE IN JOBINFO AS J0
+```
 
 Note that the JOIN command specifies a multiple join. In a unique join, the cross-referenced
 segment is never considered missing, and all records from the host file display on the report
@@ -729,9 +761,11 @@ actual data exists.
 
 The following request displays fields from the joined structure:
 
+```fex
 TABLE FILE EMPINFO
 PRINT LAST_NAME FIRST_NAME JOB_DESC
 END
+```
 
 Fred Newman is omitted from the report output because his job code does not have a match in
 the JOBINFO data source:
@@ -761,14 +795,20 @@ Creating a Left Outer Join
 The following JOIN command creates a left outer join between the EMPINFO data source and
 the EDINFO data source:
 
+```fex
 JOIN CLEAR *
+```
+```fex
 JOIN LEFT_OUTER EMP_ID IN EMPINFO TO MULTIPLE EMP_ID IN EDINFO AS J1
+```
 
 The following request displays fields from the joined structure:
 
+```fex
 TABLE FILE EMPINFO
 PRINT LAST_NAME FIRST_NAME COURSE_NAME
 END
+```
 
 All employee records display on the report output. The records for those employees with no
 matching records in the EDINFO data source display the missing data character (.) in the
@@ -801,31 +841,38 @@ request against the join.
 The following request generates the WF_SALES table. The field ID_PRODUCT will be used in
 the right outer join command.
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM GROSS_PROFIT_US PRODUCT_CATEGORY PRODUCT_SUBCATEG
 BY ID_PRODUCT
 WHERE ID_PRODUCT FROM 2150 TO 4000
 ON TABLE HOLD AS WF_SALES FORMAT SQLMSS
 END
+```
 
 
 The following request generates the WF_PRODUCT table. The field ID_PRODUCT will be used in
 the right outer join command.
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM PRICE_DOLLARS PRODUCT_CATEGORY PRODUCT_SUBCATEG PRODUCT_NAME
 BY ID_PRODUCT
 WHERE ID_PRODUCT FROM 3000 TO 5000
 ON TABLE HOLD AS WF_PRODUCT FORMAT SQLMSS
 END
+```
 
 The following request issues the SET SHORTPATH=SQL and JOIN commands and displays
 values from the joined tables:
 
 SET SHORTPATH = SQL
+```fex
 JOIN RIGHT_OUTER ID_PRODUCT IN WF_PRODUCT TAG T1 TO ALL ID_PRODUCT IN
 WF_SALES TAG T2
 END
+```
+```fex
 TABLE FILE WF_PRODUCT
 PRINT T1.ID_PRODUCT AS 'Product ID'
 PRICE_DOLLARS AS Price
@@ -837,6 +884,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 You can generate a trace that shows the resulting SQL by adding the following commands.
 
@@ -874,9 +922,15 @@ Creating Two Inner Joins With a Multipath Structure
 The following JOIN commands create an inner join between the EMPINFO and JOBINFO data
 sources and an inner join between the EMPINFO and EDINFO data sources:
 
+```fex
 JOIN CLEAR *
+```
+```fex
 JOIN INNER CURR_JOBCODE IN EMPINFO TO MULTIPLE JOBCODE IN JOBINFO AS J0
+```
+```fex
 JOIN INNER EMP_ID IN EMPINFO TO MULTIPLE EMP_ID IN EDINFO AS J1
+```
 
 
 The structure created by the two joins has two independent paths:
@@ -910,9 +964,11 @@ The structure created by the two joins has two independent paths:
 The following request displays fields from the joined structure:
 
 SET MULTIPATH=SIMPLE
+```fex
 TABLE FILE EMPINFO
 PRINT LAST_NAME FIRST_NAME IN 12 COURSE_NAME JOB_DESC
 END
+```
 
 With MULTIPATH=SIMPLE, the independent paths create independent joins. All employee
 records accepted by either join display on the report output. Only Fred Newman (who has no
@@ -1237,16 +1293,22 @@ The TABLE command produces the report.
 
 The procedure is:
 
+```fex
 JOIN ID_NUM WITH CITY IN SALES TO ALL EMP_ID IN EDUCFILE AS SALEDUC
+```
 
+```fex
 DEFINE FILE SALES
 ID_NUM/A9 = DECODE CITY ('NEW YORK' 451123478 'NEWARK' 119265415
                          'STAMFORD' 818692173 'UNIONDALE' 112847612);
 END
+```
 
+```fex
 TABLE FILE SALES
 PRINT DATE_ATTEND BY CITY BY COURSE_NAME
 END
+```
 
 The output is:
 
@@ -1416,7 +1478,9 @@ FILE=PACKED2,SUFFIX=FIX,$
 
 The JOIN command might look like this:
 
+```fex
 JOIN FIRST IN PACKED TO ALL PFIRST IN PACKED2 AS J1
+```
 
 When joining packed fields, the preferred sign format of X'C' for positive values and X'D' for
 negative values is still required. All other non-preferred signs are converted to either X'C' or
@@ -1445,6 +1509,7 @@ How to Create a Conditional JOIN
 
 The syntax of the conditional (WHERE-based) JOIN command is
 
+```fex
 JOIN [LEFT_OUTER|RIGHT_OUTER|INNER] FILE hostfile AT hfld1     [WITH
 hfld2] [TAG tag1]
      TO {UNIQUE|MULTIPLE}
@@ -1453,6 +1518,7 @@ hfld2] [TAG tag1]
      [WHERE expression2;
      ...]
 END
+```
 
 where:
 
@@ -1568,11 +1634,14 @@ The following request displays the title, most recent transaction date, and rele
 each movie in the join, and computes the number of years between this transaction date and
 the release date:
 
+```fex
 JOIN FILE VIDEOTRK AT MOVIECODE TAG V1 TO ALL
      FILE MOVIES   AT RELDATE   TAG M1 AS JW1
   WHERE DATEDIF(RELDATE, TRANSDATE,'Y') GT 10;
   WHERE V1.MOVIECODE EQ M1.MOVIECODE;
 END
+```
+```fex
 TABLE FILE VIDEOTRK
  SUM TITLE/A25 AS 'Title'
      TRANSDATE AS 'Last,Transaction'
@@ -1581,6 +1650,7 @@ TABLE FILE VIDEOTRK
  BY TITLE NOPRINT
  BY HIGHEST 1 TRANSDATE NOPRINT
 END
+```
 
 
 The output is:
@@ -1815,6 +1885,7 @@ must be on a line by itself.
 
 The following syntax generates a full outer conditional join:
 
+```fex
 JOIN FULL_OUTER FILE table1 AT hfld1 [WITH hfld2] [TAG tag1]
      TO {UNIQUE|MULTIPLE}
      FILE table2 AT crfld [TAG tag2] [AS joinname]
@@ -1822,6 +1893,7 @@ JOIN FULL_OUTER FILE table1 AT hfld1 [WITH hfld2] [TAG tag1]
      [WHERE expression2;
      ...]
 END
+```
 
 where:
 
@@ -1909,23 +1981,27 @@ the full outer join command. The generated table will contain ID_PRODUCT values 
 to 4000:
 
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM GROSS_PROFIT_US PRODUCT_CATEGORY PRODUCT_SUBCATEG
 BY ID_PRODUCT
 WHERE ID_PRODUCT FROM 2150 TO 4000
 ON TABLE HOLD AS WF_SALES FORMAT SQLMSS
 END
+```
 
 The following request generates the WF_PRODUCT table. The field ID_PRODUCT will be used in
 the full outer join command. The generated table will contain ID_PRODUCT values from 3000
 to 5000:
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM PRICE_DOLLARS PRODUCT_CATEGORY PRODUCT_SUBCATEG PRODUCT_NAME
 BY ID_PRODUCT
 WHERE ID_PRODUCT FROM 3000 TO 5000
 ON TABLE HOLD AS WF_PRODUCT FORMAT SQLMSS
 END
+```
 
 The following request issues the SET SHORTPATH = SQL and JOIN commands and displays
 values from the joined tables:
@@ -1935,9 +2011,12 @@ SET TRACEUSER=ON
 SET TRACESTAMP=OFF
 SET TRACEOFF=ALL
 SET TRACEON = STMTRACE//CLIENT
+```fex
 JOIN FULL_OUTER ID_PRODUCT IN WF_PRODUCT TAG T1
  TO ALL ID_PRODUCT IN WF_SALES TAG T2
 END
+```
+```fex
 TABLE FILE WF_PRODUCT
 PRINT T1.ID_PRODUCT AS 'Product ID'
 PRICE_DOLLARS AS Price
@@ -1949,6 +2028,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 ## Full Outer Joins
@@ -2025,6 +2105,7 @@ from the WF_RETAIL_SHIPMENTS segment. The first BY field, BRAND, is in the share
 dimension WF_RETAIL_PRODUCT. The second BY field, TIME_QTR, is from the non-shared
 dimension WF_RETAIL_TIME_DELIVERED.
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM COGS_US DAYSDELAYED
 BY BRAND
@@ -2035,6 +2116,7 @@ ON TABLE SET PAGE NOLEAD
 ON TABLE SET STYLE *
 INCLUDE=IBFS:/FILE/IBI_HTML_DIR/ibi_themes/Warm.sty,$
 END
+```
 
 The output is shown in the following image. The sum of DAYSDELAYED is totaled for each
 value of the shared dimension and, within each value of the shared dimension, for each value
@@ -2140,15 +2222,19 @@ The following image shows the data in the Excel file.
 The following request joins from the wf_retail_product segment of the wf_retail data source to
 the excel file as a new root and reports from both parent segments:
 
+```fex
 JOIN AS_ROOT PRODUCT_CATEGORY AND PRODUCT_SUBCATEG IN WF_RETAIL
   TO UNIQUE PRODUCT_CATEGORY AND PRODUCT_SUBCATEGORY IN PROJECTED
   AS J1
 END
+```
+```fex
 TABLE FILE WF_RETAIL
 SUM PROJECTED_SALE_UNITS REVENUE_US
 BY PRODUCT_CATEGORY
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 
 The output is:
@@ -2238,10 +2324,13 @@ The following request joins the Excel file as a root and generates a report that
 from both roots and the shared dimension. Using the default value for BLEND-MODE produces
 an inner join that returns only common values of PRODUCT_CATEGORY.
 
+```fex
 JOIN AS_ROOT PRODUCT_CATEGORY AND PRODUCT_SUBCATEG IN ibisamp/WF_RETAIL
   TO PRODUCT_CATEGORY AND PRODUCT_SUBCATEGORY IN ibisamp/EXCELROOT
   AS J1
   END
+```
+```fex
 TABLE FILE ibisamp/WF_RETAIL
 SUM COGS_US PROJECTED_SALE_UNITS
 BY PRODUCT_CATEGORY
@@ -2249,6 +2338,7 @@ ON TABLE SET PAGE NOPAGE
 ON TABLE SET STYLE *
 GRID=OFF,$
 END
+```
 
 The output is shown in the following image.
 
@@ -2256,10 +2346,13 @@ The following version of the request issues the ENGINE INT SET BLEND-MODE ALL-VA
 command to produce a full outer join that returns all values of PRODUCT_CATEGORY.
 
 ENGINE INT SET BLEND-MODE ALL-VALUES
+```fex
 JOIN AS_ROOT PRODUCT_CATEGORY AND PRODUCT_SUBCATEG IN ibisamp/WF_RETAIL
   TO PRODUCT_CATEGORY AND PRODUCT_SUBCATEGORY IN ibisamp/EXCELROOT
   AS J1
   END
+```
+```fex
 TABLE FILE ibisamp/WF_RETAIL
 SUM COGS_US PROJECTED_SALE_UNITS
 BY PRODUCT_CATEGORY
@@ -2267,6 +2360,7 @@ ON TABLE SET PAGE NOPAGE
 ON TABLE SET STYLE *
 GRID=OFF,$
 END
+```
 
 The output is shown in the following image. Note the missing value indicators:
 
@@ -2335,8 +2429,11 @@ Reporting Against a Multi-Fact Cluster Synonym
 The following request joins the product segment to the dimension table wf_retail_vendor based
 on the vendor ID and issues a request against the joined structure:
 
+```fex
 JOIN ID_VENDOR IN WF_RETAIL_MULTI_PARENT TO ID_VENDOR IN WF_RETAIL_VENDOR
+```
 AS J1
+```fex
 TABLE FILE WF_RETAIL_MULTI_PARENT
 SUM COGS_US DAYSDELAYED
 BY PRODUCT_CATEGORY
@@ -2344,6 +2441,7 @@ BY VENDOR_NAME
 WHERE PRODUCT_CATEGORY LT 'S'
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 
 The output is:
@@ -2422,8 +2520,11 @@ cluster:
 
 SET FOCTRANSFORM = NESTED_CLUSTERS/&VALUE
 SET SHORTPATH = SQL
+```fex
 JOIN LEFT_OUTER START_STATION_ID IN CITIBIKE_TRIPDATA TAG T1 TO ALL
+```
 STATION_ID IN STATION_TRIP_CLS TAG T2 AS J1
+```fex
 TABLE FILE CITIBIKE_TRIPDATA
 " NESTED_CLUSTERS/&VALUE"
 " "
@@ -2434,6 +2535,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 Running the request with &VALUE set to OFF generates the following trace:
 
@@ -2612,6 +2714,7 @@ END
 
 Next, the citibike_mssql table is joined to the HOLD file.
 
+```fex
 JOIN INNER
    CITIBIKE_MSSQL2.START_STATION_ID
   IN CITIBIKE_MSSQL
@@ -2620,6 +2723,7 @@ JOIN INNER
   IN SQLHLD01
  AS SQLJNM01
 END
+```
 
 Finally, the joined structure is queried to produce the output.
 
@@ -2737,6 +2841,7 @@ END
 The Session Log shows the joins that were generated. The left outer joins were converted to
 inner joins, as shown in the following partial listing.
 
+```fex
 JOIN INNER
    SQLAPP01.ID_AGE
   IN 'ibisamp/dimensions/o_wf_retail_customer' TAG SQLAPP01
@@ -2745,6 +2850,7 @@ JOIN INNER
   IN 'ibisamp/dimensions/o_wf_retail_age' TAG SQLJTG01
  AS SQLJNM01
 END
+```
 DEFINE FILE 'ibisamp/dimensions/o_wf_retail_customer' TEMP
  SQLDEF01/I1 WITH SQLJTG01.O_WF_RETAIL_AGE.ID_AGE = 1;
 END
@@ -2888,17 +2994,21 @@ Using the DBAJOIN Setting With Relational Tables
 
 The following request creates two tables, EMPINFOSQL and EDINFOSQL:
 
+```fex
 TABLE FILE EMPLOYEE
 SUM LAST_NAME FIRST_NAME CURR_JOBCODE
 BY EMP_ID
 ON TABLE HOLD AS EMPINFOSQL FORMAT SQLMSS
 END
+```
 -RUN
+```fex
 TABLE FILE EDUCFILE
 SUM COURSE_CODE COURSE_NAME
 BY EMP_ID
 ON TABLE HOLD AS EDINFOSQL FORMAT SQLMSS
 END
+```
 
 Add the following DBA attributes to the end of the generated EMPINFOSQL Master File. With
 the restrictions listed, USER2 cannot retrieve course codes of 300 or above:
@@ -2922,13 +3032,17 @@ Issue the following request:
 
 SET USER=USER2
 SET DBAJOIN=OFF
+```fex
 JOIN LEFT_OUTER EMP_ID IN EMPINFOSQL TO MULTIPLE EMP_ID IN EDINFOSQL AS J1
+```
+```fex
 TABLE FILE EMPINFOSQL
 PRINT LAST_NAME FIRST_NAME COURSE_CODE COURSE_NAME
 ON TABLE SET PAGE NOPAGE
 ON TABLE SET STYLE *
 GRID=OFF,$
 END
+```
 
 On the report output, all host and child rows with course codes 300 or above have been
 omitted, as shown in the following image:
@@ -3043,9 +3157,11 @@ KEEPDEFINES to ON. DAYSKEPT is the number of days between the return date and re
 date for a videotape:
 
 SET KEEPDEFINES = ON
+```fex
 DEFINE FILE VIDEOTRK
 DAYSKEPT/I5 = RETURNDATE - TRANSDATE;
 END
+```
 
 The ? DEFINE query command shows that this is the only virtual field defined at this point:
 
@@ -3056,11 +3172,13 @@ VIDEOTRK DAYSKEPT                    I5            4
 
 The following request prints all transactions in which the number of days kept is two:
 
+```fex
 TABLE FILE VIDEOTRK
 PRINT MOVIECODE TRANSDATE RETURNDATE DAYSKEPT
 COMPUTE ACTUAL_DAYS/I2 = RETURNDATE-TRANSDATE;
 WHERE DAYSKEPT EQ 2
 END
+```
 
 The first few lines of output show that each return date is two days after the transaction date:
 
@@ -3073,7 +3191,9 @@ MOVIECODE  TRANSDATE  RETURNDATE  DAYSKEPT  ACTUAL_DAYS
 Now, the VIDEOTRK data source is joined to the MOVIES data source. The ? DEFINE query
 shows that the join did not clear the DAYSKEPT virtual field:
 
+```fex
 JOIN  MOVIECODE IN VIDEOTRK TO ALL MOVIECODE IN MOVIES AS J1
+```
 ? DEFINE
 
 FILE     FIELD NAME                  FORMAT  SEGMENT   VIEW       TYPE
@@ -3084,9 +3204,11 @@ Preserving Virtual Fields During Join Parsing
 
 Next a new virtual field, YEARS, is defined for the join between VIDEOTRK and MOVIES:
 
+```fex
 DEFINE FILE VIDEOTRK
 YEARS/I5 = (TRANSDATE - RELDATE)/365;
 END
+```
 
 The ? DEFINE query shows that the virtual field created prior to the join was not cleared by this
 new virtual field because it was in a separate context:
@@ -3099,9 +3221,11 @@ VIDEOTRK YEARS                        I5            5
 
 Next, the field DAYSKEPT is re-defined so that it is the number of actual days plus one:
 
+```fex
 DEFINE FILE VIDEOTRK
 DAYSKEPT/I5 = RETURNDATE - TRANSDATE + 1;
 END
+```
 
 The ? DEFINE query shows that there are two versions of the DAYSKEPT virtual field. However,
 YEARS was cleared because it was in the same context (after the join) as the new version of
@@ -3125,7 +3249,9 @@ MOVIECODE  TRANSDATE  RETURNDATE  DAYSKEPT  ACTUAL_DAYS
 
 Now, J1 is cleared. The redefinition for DAYSKEPT is also cleared:
 
+```fex
 JOIN CLEAR J1
+```
 ? DEFINE
 
 FILE     FIELD NAME                   FORMAT  SEGMENT   VIEW         TYPE
@@ -3156,15 +3282,19 @@ SET KEEPDEFINES=ON
 The following command defines virtual field A for the VIDEOTRK data source and places it in
 the current context:
 
+```fex
 DEFINE FILE VIDEOTRK
  A/A5='JAWS';
  END
+```
 
 The following command creates a new context and saves virtual field B in this context:
 
+```fex
 DEFINE FILE VIDEOTRK SAVE
  B/A5='ROCKY';
  END
+```
 ? DEFINE
 
 The output of the ? DEFINE query lists virtual fields A and B:
@@ -3176,9 +3306,11 @@ VIDEOTRK B                         A5
 The following DEFINE command creates virtual field C. All previously defined virtual fields are
 cleared because the ADD option was not used in the DEFINE command:
 
+```fex
 DEFINE FILE VIDEOTRK
  C/A10='AIRPLANE';
  END
+```
 ? DEFINE
 
 The output of the ? DEFINE query shows that C is the only virtual field defined:
@@ -3192,7 +3324,9 @@ Preserving Virtual Fields During Join Parsing
 The following JOIN command creates a new context. Because KEEPDEFINES is set to ON,
 virtual field C is not cleared by the JOIN command:
 
+```fex
 JOIN MOVIECODE IN VIDEOTRK TAG V1 TO MOVIECODE IN MOVIES TAG M1 AS J1
+```
 ? DEFINE
 
 The output of the ? DEFINE query shows that field C is still defined:
@@ -3203,9 +3337,11 @@ VIDEOTRK C                          A10
 The next DEFINE command creates virtual field D in the new context created by the JOIN
 command:
 
+```fex
 DEFINE FILE VIDEOTRK SAVE
  D/A10='TOY STORY';
  END
+```
 ? DEFINE
 
 The output of the ? DEFINE query shows that virtual fields C and D are defined:
@@ -3276,7 +3412,9 @@ How to Display a Joined Structure
 
 To display the joined structure, issue the following command:
 
+```fex
 CHECK FILE hostfile PICTURE
+```
 
 where:
 
@@ -3296,7 +3434,9 @@ asterisks. The segments belonging to the cross-referenced file appear as virtual
 outlined by dots. The segments of the cross-referenced file are also labeled with the cross-
 referenced file name below each segment.
 
+```fex
 JOIN PIN IN EMPDATA TO PIN IN SALHIST
+```
 CHECK FILE EMPDATA PICTURE
 0 NUMBER OF ERRORS=     0
   NUMBER OF SEGMENTS=   2  ( REAL=    1  VIRTUAL=   1 )
@@ -3389,7 +3529,9 @@ How to Clear a Join
 
 To clear a joined structure, issue this command:
 
+```fex
 JOIN CLEAR {joinname|*}
+```
 
 where:
 
@@ -3425,31 +3567,41 @@ Clearing Joins
 The following request creates three joins using VIDEOTRK as the host data source. The first
 two are conditional (JW1, JW2), and the third join is unconditional (J1):
 
+```fex
 JOIN FILE VIDEOTRK AT PRODCODE TO ALL
      FILE GGSALES  AT PCD AS JW1
 WHERE PRODCODE NE PCD;
 END
+```
+```fex
 JOIN  FILE VIDEOTRK AT TRANSDATE TO ALL
       FILE MOVIES   AT RELDATE   AS JW2
 WHERE (TRANSDATE - RELDATE)/365 GT 10;
 END
+```
+```fex
 JOIN MOVIECODE IN VIDEOTRK TO MOVIECODE IN MOVIES AS J1
+```
 
 
 The next request creates a conditional join (JW3) using MOVIES as the host data source:
 
+```fex
 JOIN  FILE MOVIES   AT MOVIECODE TO ONE
       FILE VIDEOTRK AT TRANSDATE AS JW3
 WHERE (TRANSDATE - RELDATE)/365 LT 2;
 END
+```
 
 The last request creates a third conditional join (JW4) that uses VIDEOTRK as the host data
 source:
 
+```fex
 JOIN  FILE VIDEOTRK AT LASTNAME  TO ALL
       FILE EMPLOYEE AT LAST_NAME AS JW4
 WHERE LASTNAME GE LAST_NAME;
 END
+```
 
 Following is the output of the ? JOIN query after executing these joins:
 

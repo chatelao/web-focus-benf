@@ -143,7 +143,9 @@ Using the CHECK File Command
 
 Entering the following command
 
+```fex
 CHECK FILE EMPLOYEE
+```
 
 produces the following information:
 
@@ -297,7 +299,9 @@ Using the CHECK FILE PICTURE Option
 The following diagram shows the structure of the JOB data source joined to the SALARY data
 source:
 
+```fex
 JOIN EMP_ID IN JOB TO EMP_ID IN SALARY
+```
 >
 CHECK FILE JOB PICTURE
  NUMBER OF ERRORS=    0
@@ -397,7 +401,10 @@ writes a report that displays the names of cross-referenced segments in the EMPL
 source, the segment types, and the attributes of the fields: field names, aliases, and formats.
 
 
+```fex
 CHECK FILE EMPLOYEE HOLD
+```
+```fex
 TABLE FILE HOLD
 HEADING
 "FIELDNAMES, ALIASES, AND FORMATS"
@@ -406,6 +413,7 @@ HEADING
 PRINT FIELDNAME/A12 ALIAS/A12 USAGE BY SEGNAME BY SEGTYPE
 WHERE SEGTYPE CONTAINS 'K'
 END
+```
 
 The output is:
 
@@ -436,10 +444,14 @@ FILENAME = EMPLOYEE, SUFFIX = FOC, FDEFCENT = 19, FYRTHRESH = 50
 
 The following request:
 
+```fex
 CHECK FILE EMPLOYEE HOLD ALL
+```
+```fex
 TABLE FILE HOLD
 PRINT FDEFCENT FYRTHRESH
 END
+```
 
 produces the following output:
 
