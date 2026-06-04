@@ -1,4 +1,5 @@
-Checking and Changing a Master File:
+# Checking and Changing a Master File:
+
 CHECK
 
 Use the CHECK command to validate your Master Files. You must always do this after

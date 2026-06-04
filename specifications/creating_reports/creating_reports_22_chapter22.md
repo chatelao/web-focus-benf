@@ -1,4 +1,5 @@
-Using Headings, Footings, Titles, and
+# Using Headings, Footings, Titles, and
+
 Labels
 
 After you have selected the data for a report, you can make it more meaningful by adding

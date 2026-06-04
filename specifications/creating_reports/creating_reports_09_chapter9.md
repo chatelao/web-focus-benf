@@ -1,4 +1,4 @@
-Choosing a Display Format
+# Choosing a Display Format
 
 You can choose from several different display formats when you display a report on the
 screen. Some display formats are best suited for particular kinds of uses. For example,

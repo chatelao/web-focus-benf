@@ -1,4 +1,5 @@
-Handling Records With Missing Field
+# Handling Records With Missing Field
+
 Values
 
 Missing data is defined as data that is missing from a report because it is not relevant or

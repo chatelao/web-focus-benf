@@ -1,4 +1,4 @@
-Merging Data Sources
+# Merging Data Sources
 
 You can gather data for your reports by merging the contents of data structures with the
 MATCH command, or concatenating data sources with the MORE phrase, and reporting

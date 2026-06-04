@@ -1,4 +1,4 @@
-Creating a Graph
+# Creating a Graph
 
 Graphs often convey meaning more clearly than data listed in tabular format. Using the
 GRAPH command, you can easily transform almost any type of data into an effective

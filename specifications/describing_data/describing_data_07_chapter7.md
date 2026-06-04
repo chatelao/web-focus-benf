@@ -1,4 +1,4 @@
-Defining a Join in a Master File
+# Defining a Join in a Master File
 
 Describe a new relationship between any two segments that have at least one field in
 common by joining them. The underlying data structures remain physically separate, but
