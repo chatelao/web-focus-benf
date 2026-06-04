@@ -434,7 +434,10 @@ END
 
 The drilldown report, which must be in application ibisamp, is:
 
+```fex
 -DEFAULTS &REGION='$*';
+
+```
 
 ```fex
 TABLE FILE GGSALES
@@ -660,8 +663,10 @@ ENDSTYLE
 END
 ```
 
+```fex
 -RUN
 -HTMLFORM JAVAFORM
+```
 
 The JAVAFORM.HTM file that contains the JavaScript function is:
 
@@ -1187,6 +1192,7 @@ on page 836.
 
 Sample Drill Menu Stylesheet Code
 
+```fex
 TABLE FILE GGSALES
 SUM
    GGSALES.SALES01.UNITS
@@ -1252,6 +1258,7 @@ TYPE=DATA,COLUMN=B3,
 $
 ENDSTYLE
 END
+```
 
 
 Multi-Drill Feature With Cascading Menus and User-Defined Styling
@@ -1742,7 +1749,9 @@ ENDSTYLE
 END
 ```
 
+```fex
 -RUN
+```
 
 Note: You can also use DRILLMETHOD in a StyleSheet command for each drill down, for
 example:
@@ -4292,6 +4301,8 @@ COMPONENT='report4', TEXT='report4', TOC-LEVEL=2,
    POSITION-POINT=TOP-LEFT, $
 END
 SET COMPONENT='report1'
+
+```fex
 -INCLUDE GGHDR.FEX
 SET COMPONENT='report2'
 -INCLUDE GGRPT1.FEX
@@ -4299,6 +4310,8 @@ SET COMPONENT='report3'
 -INCLUDE GGRPT2.FEX
 SET COMPONENT='report4'
 -INCLUDE GGRPT3.FEX
+```
+
 COMPOUND END
 
 

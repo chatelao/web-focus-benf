@@ -4791,6 +4791,7 @@ and Access File.
 
 The retail_script.sql file contains the following SQL SELECT statement:
 
+```sql
  SELECT      MAX(T3."BUSINESS_REGION") AS "VB001_MAX_BUSINESS_REGION",
 MAX(T3."STATE_PROV_CODE_ISO_3166_2")
 AS "VB002_MAX_STATE_PROV_CODE_ISO_"     FROM     wrd_wf_retail_geography
@@ -4829,6 +4830,8 @@ The following request against the EMPLOYEE data source creates a sequential file
 the values retrieved by the request along with a corresponding Master File:
 
 APP HOLD baseapp
+
+```
 
 ```fex
 TABLE FILE EMPLOYEE

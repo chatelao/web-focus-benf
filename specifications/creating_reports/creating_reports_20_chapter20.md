@@ -219,7 +219,11 @@ to either the CSSURL WebFOCUS StyleSheet attribute or to the CSSURL SET paramete
 For instructions, see Using the CSSURL Attribute and Parameter on page 1310.
 
 There is one exception: if you embed the report output in an existing HTML page using the
+
+```fex
 -HTMLFORM command, include a LINK element in that HTML page instead of setting
+```
+
 CSSURL.
 
 

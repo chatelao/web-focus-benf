@@ -3319,9 +3319,11 @@ Date format fields are used in special ways with the following facilities:
 Dialogue Manager. Amper variables can function as date fields if they are set to natural
 date literals. For example:
 
+```fex
 -SET &NOW = 'APR 25 1960' ;
 -SET &LATER = '1990 25 APR' ;
 -SET &DELAY = &LATER - &NOW ;
+```
 
 In this case, the value of &DELAY is the difference between the two dates, measured in
 days: 10,957.
@@ -7081,8 +7083,11 @@ SEGNAME=SEG01, TABLENAME=&&table, KEYS=01, WRITE=YES, $
 
 The following request sets the values of the variables and then issues a TABLE request:
 
+```fex
 -SET &&table = ORAEMP;
 -SET &&emptitle = 'Id,number';
+
+```
 
 ```fex
 TABLE FILE ORAEMP
@@ -7144,8 +7149,11 @@ TABLENAME=mydb.myusrid.test_table
 In a request, set the following values for the separate variables:
 
 I-SET &&db=db1;
+
+```fex
 -SET &&tprf=prod_;
 -SET &&tsuf=200801;
+```
 
 With these values, the TABLENAME used is the following:
 

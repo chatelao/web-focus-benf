@@ -2263,7 +2263,9 @@ where field is a dimension in an MDI.
 You can use an MDI with an SQL query by issuing an SQL SELECT statement with a WHERE
 test using a field of an MDI. For example,
 
+```sql
 SELECT field_1, field_2 FROM table WHERE field_3 = value;
+```
 
 where field_3 is a dimension in an MDI.
 
@@ -2369,6 +2371,7 @@ platforms.
 Note: WebFOCUS TABLE requests can automatically turn off AUTOINDEX and select the
 appropriate index for retrieval by indicating the index name in the request itself:
 
+```fex
 TABLE FILE filename.mdiname
 
 You can also assure access with a specific MDI by creating an Access File that describes only
@@ -2455,6 +2458,7 @@ join from overwriting the existing join, allows you to selectively clear the joi
 a prefix for duplicate field names in a recursive join.
 
 END
+```
 
 Is required to terminate the JOIN command if it is longer than one line.
 

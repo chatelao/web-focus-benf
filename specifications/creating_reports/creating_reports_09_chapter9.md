@@ -437,9 +437,12 @@ function disableOnLoadFunc(arrayofonloads,currentindex) {
 
 3. Run the report.
 
+```fex
 -OLAP ON
 SET AUTODRILL = ON
 SET JSURL=/ibi_apps/ibi_html/disable.js
+
+```
 
 ```fex
 TABLE FILE CENTORD
@@ -1512,12 +1515,14 @@ setting to provide the URL context of the WebFOCUS environment the Drill Down is
 back to. In addition, the FOCEXURL value has to have the parameter to specify that the
 request is a Drill Down request. For example:
 
+```fex
 -SET &FOCEXURL='http://host:port/ibi_apps/WFServlet?IBIF_webapp=
    /ibi_apps' | '&';
 -SET &FOCEXURL=&FOCEXURL | 'IBIMR_drill=IBFS,RUNFEX,IBIF_ex,true' | '&';
 -SET &FOCEXURL=&FOCEXURL | 'IBIC_server=EDASERVE' | '&';
 -SET &FOCEXURL=&FOCEXURL | 'IBIAPP_app=ibisamp' | '&';
 SET FOCEXURL='&FOCEXURL'
+```
 
 Accessibility Limitations
 
@@ -1633,7 +1638,10 @@ ON TABLE HOLD FORMAT PS
 END
 ```
 
+```fex
 -RUN
+```
+
 DOS COPY HOLD.PS \\IBIPRINTA\28C2
 
 Selecting Paper Size Using a SET Command and a StyleSheet
@@ -1667,7 +1675,10 @@ ENDSTYLE
 END
 ```
 
+```fex
 -RUN
+```
+
 DOS COPY HOLD.PS \\IBIPRINTA\28C2
 
 WebFOCUS Font Support
@@ -4399,7 +4410,10 @@ trailing blanks.
 
 SET SHOWBLANKS = OFF
 
+```fex
 -SET &SHOWVAR= '  AB  C  ';
+```
+
 DEFINE FILE CAR
 SHOWFIELD/A9 = '  AB  C  ';
 END
@@ -4838,10 +4852,13 @@ END
 
 SET COMPONENT='chart1'
 ENGINE INT CACHE SET ON
+
+```fex
 -DEFAULTH &WF_STYLE_UNITS='PIXELS';
 -DEFAULTH &WF_STYLE_HEIGHT='1005.0';
 -DEFAULTH &WF_STYLE_WIDTH='1070.0';
 -DEFAULTH &WF_TITLE='WebFOCUS Report';
+```
 
 ```fex
 GRAPH FILE GGSALES
@@ -6622,7 +6639,9 @@ ENDSTYLE
 END
 ```
 
+```fex
 -RUN
+```
 
 COMPOUND END
 
@@ -7363,6 +7382,8 @@ The following request inserts images in the data cells of a report.
 ## Saving Report Output in PPTX Format
 
 APP PATH IBISAMP IBIDEMO
+
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/D17M AS 'Revenue'
 COMPUTE Surplus/A15 = IF DOLLARS GE 4000000 THEN 'g1.gif' ELSE 'r1.gif';
@@ -7435,6 +7456,7 @@ TYPE=SUBFOOT,
      BORDER-TOP-COLOR=RGB(219 219 219),
 $
 END
+```
 
 
 ## Saving Report Output in PPTX Format
@@ -7580,7 +7602,9 @@ ENDSTYLE
 END
 ```
 
+```fex
 -RUN
+```
 
 COMPOUND END
 
@@ -7660,7 +7684,10 @@ ENDSTYLE
 END
 ```
 
+```fex
 -RUN
+```
+
 COMPOUND END
 
 The output is:
@@ -7713,6 +7740,7 @@ Drilling Down to an External URL
 The following request places a reference to an external URL on the grand total line tag.
 
 
+```fex
 TABLE FILE GGSALES
 SUM
   GGSALES.SALES01.BUDDOLLARS/D12CM
@@ -7788,6 +7816,7 @@ TYPE=GRANDTOTAL,
 $
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -7837,6 +7866,7 @@ Using Standard PowerPoint Templates (POTX)
 In the following request, the report occupies multiple slides. The designated slide is replaced
 by as many slides as are needed to display the report output.
 
+```fex
 TABLE FILE TRAINING
 SUM
 TRAINING.TRAINING.EXPENSES/D12CM
@@ -7896,6 +7926,7 @@ TYPE=SUBTOTAL,
 $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -7909,6 +7940,8 @@ The following request is a technique for inserting different components across m
 ## Saving Report Output in PPTX Format
 
 -* Replace Slide #2
+
+```fex
 TABLE FILE GGSALES
 HEADING
 "FIRST SLIDE"
@@ -7972,7 +8005,11 @@ TYPE=GRANDTOTAL,
   BORDER-TOP-COLOR=RGB(102 102 102),
 $
 END
+```
+
 -* Replace Slide #3
+
+```fex
 TABLE FILE GGSALES HEADING
 "SECOND SLIDE"
 SUM DOLLARS/D12CM UNITS
@@ -8037,9 +8074,12 @@ TYPE=GRANDTOTAL,
   BORDER-TOP-COLOR=RGB(102 102 102),
 $
 END
+```
 
 
 -* Replace Slide #4
+
+```fex
 TABLE FILE GGSALES
 HEADING
 "THIRD SLIDE"
@@ -8106,6 +8146,7 @@ TYPE=GRANDTOTAL,
   BORDER-TOP-COLOR=RGB(102 102 102),
 $
 END
+```
 
 The output is:
 
@@ -8138,10 +8179,15 @@ DIMENSION=(9.271 3.646), $
 END
 SET COMPONENT='chart1'
 ENGINE INT CACHE SET ON
+
+```fex
 -DEFAULTH &WF_STYLE_UNITS='PIXELS';
 -DEFAULTH &WF_STYLE_HEIGHT='405.0';
 -DEFAULTH &WF_STYLE_WIDTH='770.0';
 -DEFAULTH &WF_TITLE='WebFOCUS Report';
+```
+
+```fex
 GRAPH FILE ibisamp/ggsales
 SUM GGSALES.SALES01.DOLLARS
 BY GGSALES.SALES01.REGION
@@ -8206,11 +8252,16 @@ setGradientPinPosition1(getSeries(9),1.0);
 *END
 ENDSTYLE
 END
+```
+
+```fex
 -RUN
 
 
 SET COMPONENT='report1'
 TABLE FILE IBISAMP/GGSALES
+```
+
 SUM
   GGSALES.SALES01.BUDDOLLARS/D12CM
   GGSALES.SALES01.DOLLARS/D12CM
@@ -8374,6 +8425,8 @@ END
 ```
 
 SET COMPONENT='report2'
+
+```fex
 TABLE FILE WF_RETAIL
 SUM
 WF_RETAIL.WF_RETAIL_SALES.COGS_US
@@ -8436,7 +8489,11 @@ TYPE=SUBTOTAL,
 $
 ENDSTYLE
 END
+```
+
 SET COMPONENT='report3'
+
+```fex
 TABLE FILE WF_RETAIL
 SUM
 WF_RETAIL.WF_RETAIL_SALES.DISCOUNT_US
@@ -8495,6 +8552,8 @@ TYPE=SUBTOTAL,
 $
 ENDSTYLE
 END
+```
+
 COMPOUND END
 
 
@@ -8593,6 +8652,8 @@ END
 ```
 
 SET COMPONENT='report1'
+
+```fex
 TABLE FILE IBISAMP/EMPDATA
 SUM
   EMPDATA.EMPDATA.SALARY
@@ -8690,6 +8751,8 @@ TYPE=SUBFOOT,
 $
 ENDSTYLE
 END
+```
+
 COMPOUND END
 
 The output is:
@@ -8849,12 +8912,16 @@ END
 
 
 SET COMPONENT='report1'
+
+```fex
 -INCLUDE GG_RPT1
 
 SET COMPONENT='chart1'
 -INCLUDE GG_CHART1
 
 SET COMPONENT='DfltCmpt2_3'
+
+```
 
 ```fex
 TABLE FILE SYSCOLUM
@@ -8868,6 +8935,8 @@ END
 ```
 
 SET COMPONENT='report2_2'
+
+```fex
 -INCLUDE GG_RPT2
 SET COMPONENT='chart2_2'
 -INCLUDE GG_CHART2
@@ -8875,6 +8944,8 @@ SET COMPONENT='report2_3'
 -INCLUDE GG_RPT3
 
 SET COMPONENT='DfltCmpt9'
+
+```
 
 ```fex
 TABLE FILE SYSCOLUM
@@ -8926,10 +8997,13 @@ END
 
 -*gg_chart1.fex
 ENGINE INT CACHE SET ON
+
+```fex
 -DEFAULTH &WF_STYLE_UNITS='INCHES';
 -DEFAULTH &WF_STYLE_HEIGHT='4.21875';
 -DEFAULTH &WF_STYLE_WIDTH='8.020833';
 -DEFAULTH &WF_TITLE='WebFOCUS Report';
+```
 
 ```fex
 GRAPH FILE GGSALES
@@ -8984,6 +9058,7 @@ ENDSTYLE
 END
 ```
 
+```fex
 -RUN
 
 -*gg_chart2.fex
@@ -8991,6 +9066,9 @@ END
 -DEFAULTH &WF_STYLE_HEIGHT='4.21875';
 -DEFAULTH &WF_STYLE_WIDTH='8.020833';
 -DEFAULTH &WF_TITLE='WebFOCUS Report';
+```
+
+```fex
 GRAPH FILE GGSALES
 SUM DOLLARS UNITS
 BY REGION NOPRINT
@@ -9044,9 +9122,14 @@ setPlace(true);
 *END
 ENDSTYLE
 END
+```
+
+```fex
 -RUN
 
 -*gg_rpt3.fex
+
+```
 
 ```fex
 TABLE FILE GGSALES

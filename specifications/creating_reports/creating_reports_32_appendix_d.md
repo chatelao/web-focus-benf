@@ -260,7 +260,9 @@ _ masking character 248
 
 -n spot marker 1680
 
+```fex
 -SET command 429
+```
 
 ? DEFINE command 287
 

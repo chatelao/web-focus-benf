@@ -1019,14 +1019,20 @@ will result. If there is a reason why the MFD_PROFILE needs to execute a request
 itself, add a global Dialogue Manager variable as a counter to make sure it is executed only
 once, as shown in the following sample.
 
+```fex
 -DEFAULT &&COUNTER=1;
 -IF &&COUNTER EQ 1 THEN GOTO START;
 -SET &&COUNTER= 2;
 -GOTO DONE
 -START
+```
+
 MFD_PROFILE request against same Master as original request END
+
+```fex
 -SET &&COUNTER=2;
 -DONE
+```
 
 
 The first time the MFD_PROFILE is invoked, &&COUNTER is set to 1, so the part of the
@@ -1107,8 +1113,11 @@ lookup file:
 
 FILEDEF JOBS DISK jobs.ftm
 
+```fex
 -RUN
 -SET &&Emptitle = 'Employee ID';
+
+```
 
 ```fex
 TABLE FILE JOBLIST
@@ -1125,9 +1134,12 @@ the JOBS file created by the MFD_PROFILE as a lookup table:
 FILEDEF JOBS DISK jobs.ftm
 
 
+```fex
 -SET &PASS = 'HR3';
 SET PASS = &PASS
 -RUN
+
+```
 
 ```fex
 TABLE FILE EMPDATA
@@ -1231,6 +1243,7 @@ FILEDEF SECURITY DISK c:\ibi\apps\baseapp\security.data (LRECL 81
 DYNAM OUTFI DA USER1.DBAEMP2.MASTER SHR REU
 DYNAM SECURITY DA USER1.SECURITY.DATA SHR REU
 
+```fex
 -RUN
 -* Write out the first part of the DBAEMP2 Master File
 -WRITE OUTFI FILE=DBAEMP2,SUFFIX=FIX,$
@@ -1246,11 +1259,14 @@ DYNAM SECURITY DA USER1.SECURITY.DATA SHR REU
 -SET &RESTRICT=' ';
 -SET &NAME = ' ';
 -SET &VALUE = ' ';
+```
 
 
 ## Creating and Using a Master File Profile
 
 -* Establish the loop for each record of the security.data file
+
+```fex
 -SET &DONE =  N ;
 -REPEAT ENDLP WHILE &DONE EQ N ;
 -* Read a record from security.data
@@ -1279,6 +1295,8 @@ DYNAM SECURITY DA USER1.SECURITY.DATA SHR REU
 -* If there is a VALUE attribute, write out USER, ACCESS, RESTRICT,
 -*  NAME, and VALUE, and loop for next record
 -WRITE OUTFI  USER=&USER, ACCESS=&ACCESS,RESTRICT=&RESTRICT,NAME=&NAME, VALUE =
+```
+
 &VALUE ,$
 -ENDLP
 -ENDLP1
@@ -1380,11 +1398,15 @@ USER=&&UID,ACCESS=R,RESTRICT=VALUE,NAME=EMPINFO,VALUE=&&VAL,$
 The following is the MFD_PROFILE procedure:
 
 SET MESSAGE = OFF
+
+```fex
 -SET &VALUETEST = 'NOTFOUND';
 -* Find the user ID of the connected user
 -SET &&UID = GETUSER('A20');
 -SET &&UID = TRUNCATE(&&UID);
 -* Create a HOLD file with the value test for the connected user
+
+```
 
 ```fex
 TABLE FILE VALTEST
@@ -1394,6 +1416,7 @@ ON TABLE HOLD AS USERVAL FORMAT ALPHA
 END
 ```
 
+```fex
 -RUN
 -READ USERVAL &VALUETEST.A30
 -* If the user name was not in the file, type a message and exit
@@ -1405,6 +1428,7 @@ END
 -SET &&VAL = ''|&VALUETEST||'';
 -* Set the USER parameter to the user ID of the connected user
 SET USER = &&UID
+```
 
 The following request displays a report against the EMPDBA view of the EMPLOYEE data
 source:
@@ -1412,7 +1436,11 @@ source:
 USE
 EMPLOYEE AS EMPDBA
 END
+
+```fex
 -RUN
+
+```
 
 ```fex
 TABLE FILE EMPDBA

@@ -914,6 +914,7 @@ Creating an Accordion By Row SUM Report
 The following request against the GGSALES data source has four sort fields, REGION, ST,
 CATEGORY, and PRODUCT:
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/D8MC
 UNITS/D8C
@@ -978,6 +979,7 @@ TYPE=GRANDTOTAL,
 $
 ENDSTYLE
 END
+```
 
 The initial output shows only the top level BY field (REGION), as shown in the following image.
 
@@ -1007,6 +1009,8 @@ DEFINE FILE EMPLOYEE
 YEAR/YY = HIRE_DATE;
 YEARMO/YYM = HIRE_DATE;
 END
+
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME AS 'Last,Name' FIRST_NAME AS 'First,Name'
 CURR_SAL AS 'Current,Salary' ED_HRS AS 'Education,Hours'
@@ -1070,6 +1074,7 @@ TYPE=GRANDTOTAL,
 $
 ENDSTYLE
 END
+```
 
 Including the fields LAST_NAME and FIRST_NAME in the report output distinguishes each detail
 line. However, those fields do not apply to the summary lines, so they are blank on the
@@ -1491,6 +1496,8 @@ NAME_CODE/A1=EDIT(LAST_NAME, '9');
 NAME_GROUP/A10=IF NAME_CODE LE 'G' THEN 'A-G' ELSE IF NAME_CODE LE 'P'
  THEN 'H-P' ELSE 'Q-Z';
 END
+
+```fex
 TABLE FILE EMPLOYEE
 SUM
 EMPLOYEE.EMPINFO.CURR_SAL AS 'Current Salary'
@@ -1542,6 +1549,7 @@ TYPE=GRANDTOTAL,
 $
 ENDSTYLE
 END
+```
 
 
 ## Controlling the Display of Sorted Data With Accordion Reports

@@ -677,7 +677,10 @@ ON TABLE HOLD AS EMPINFO FORMAT FOCUS INDEX EMP_ID CURR_JOBCODE
 END
 ```
 
+```fex
 -RUN
+
+```
 
 ```fex
 TABLE FILE JOBFILE
@@ -687,7 +690,10 @@ ON TABLE HOLD AS JOBINFO FORMAT FOCUS INDEX JOBCODE
 END
 ```
 
+```fex
 -RUN
+
+```
 
 ```fex
 TABLE FILE EDUCFILE
@@ -697,7 +703,9 @@ ON TABLE HOLD AS EDINFO FORMAT FOCUS INDEX EMP_ID
 END
 ```
 
+```fex
 -RUN
+```
 
 MODIFY FILE EMPINFO
 FREEFORM EMP_ID LAST_NAME FIRST_NAME CURR_JOBCODE
@@ -2002,6 +2010,7 @@ END
 The trace shows that the full outer join was optimized (translated to SQL) so that SQL Server
 could process the join:
 
+```sql
 SELECT
 T1."ID_PRODUCT",
 T1."PRICE_DOLLARS",
@@ -2019,6 +2028,8 @@ T1."ID_PRODUCT";
 The output has a row for each ID_PRODUCT value that is in either table. Rows with
 ID_PRODUCT values from 2150 to 2167 are only in the WF_SALES table, so the columns from
 WF_PRODUCT display the NODATA symbol. Rows with ID_PRODUCT values above 4000 are
+```
+
 only in the WF_PRODUCT table, so the columns from WF_SALES display the NODATA symbol.
 Rows with ID_PRODUCT values from 2000 to 4000 are in both tables, so all columns have
 values, as shown in the following image.
@@ -2959,7 +2970,10 @@ ON TABLE HOLD AS EMPINFOSQL FORMAT SQLMSS
 END
 ```
 
+```fex
 -RUN
+
+```
 
 ```fex
 TABLE FILE EDUCFILE
