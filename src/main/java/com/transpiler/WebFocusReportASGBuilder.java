@@ -706,4 +706,56 @@ public class WebFocusReportASGBuilder extends WebFocusReportBaseVisitor<Object> 
         }
         return new ComputeCommand(name, expression, format, alias);
     }
+
+    @Override
+    public Object visitRecap_command(WebFocusReportParser.Recap_commandContext ctx) {
+        List<RecapAssignment> assignments = ctx.recap_assignment().stream()
+                .map(a -> (RecapAssignment) visit(a))
+                .toList();
+        return new RecapCommand(assignments);
+    }
+
+    @Override
+    public Object visitRecap_assignment(WebFocusReportParser.Recap_assignmentContext ctx) {
+        String name = ctx.qualified_name().getText();
+
+        boolean hasColRef = ctx.getChild(1).getText().equals("(");
+        Expression columnRef = hasColRef ? (Expression) visit(ctx.dm_expression(0)) : null;
+
+        int exprIdx = hasColRef ? 1 : 0;
+        Expression expression = (Expression) visit(ctx.dm_expression(exprIdx));
+
+        String format = ctx.format_name() != null ? ctx.format_name().getText() : null;
+
+        String alias = null;
+        Integer indent = null;
+        boolean noprint = false;
+
+        for (var opt : ctx.recap_option()) {
+            Object res = visit(opt);
+            if (res instanceof String) {
+                alias = (String) res;
+            } else if (res instanceof Integer) {
+                indent = (Integer) res;
+            } else if (res instanceof Boolean && (Boolean) res) {
+                noprint = true;
+            }
+        }
+
+        return new RecapAssignment(name, expression, columnRef, format, alias, indent, noprint);
+    }
+
+    @Override
+    public Object visitRecap_option(WebFocusReportParser.Recap_optionContext ctx) {
+        if (ctx.as_phrase() != null) {
+            return visit(ctx.as_phrase());
+        }
+        if (ctx.INDENT() != null) {
+            return Integer.parseInt(ctx.NUMBER().getText());
+        }
+        if (ctx.NOPRINT() != null) {
+            return true;
+        }
+        return null;
+    }
 }

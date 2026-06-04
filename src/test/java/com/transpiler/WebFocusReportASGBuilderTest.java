@@ -564,6 +564,29 @@ public class WebFocusReportASGBuilderTest {
     }
 
     @Test
+    public void testRecapCommand() {
+        WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
+        WebFocusReportParser parser = createParser("RECAP TOTAL_SALARY(1)/D12.2 = SALARY + 1000 AS 'Total Salary' INDENT 4 NOPRINT;");
+        RecapCommand recap = (RecapCommand) builder.visit(parser.recap_command());
+        assertEquals(1, recap.assignments().size());
+
+        RecapAssignment assignment = recap.assignments().get(0);
+        assertEquals("TOTAL_SALARY", assignment.name());
+        assertEquals("D12.2", assignment.format());
+        assertEquals("Total Salary", assignment.alias());
+        assertEquals(4, assignment.indent());
+        assertTrue(assignment.noprint());
+
+        assertNotNull(assignment.columnRef());
+        assertTrue(assignment.columnRef() instanceof Literal);
+        assertEquals(1, ((Literal) assignment.columnRef()).value());
+
+        assertTrue(assignment.expression() instanceof BinaryOperation);
+        BinaryOperation expr = (BinaryOperation) assignment.expression();
+        assertEquals("+", expr.operator());
+    }
+
+    @Test
     public void testWhenCommand() {
         WebFocusReportASGBuilder builder = new WebFocusReportASGBuilder();
         WebFocusReportParser parser = createParser("WHEN COUNTRY EQ 'USA'");
