@@ -157,10 +157,13 @@ sufficient length to accommodate the concatenated name:
 DEFINE FILE EMPLOYEE
 FULL_NAME/A25 = FIRST_NAME | LAST_NAME;
 END
+
+```fex
 TABLE FILE EMPLOYEE
 PRINT FULL_NAME
 WHERE LAST_NAME IS 'BLACKWOOD'
 END
+```
 
 The output is:
 
@@ -371,12 +374,14 @@ The order of evaluation can affect the result of an expression. Suppose you want
 the dollar loss in retail sales attributed to the return of damaged items. You could issue the
 following request:
 
+```fex
 TABLE FILE SALES
 PRINT RETAIL_PRICE RETURNS DAMAGED
 COMPUTE RETAIL_LOSS/D12.2 = RETAIL_PRICE * RETURNS + DAMAGED;
 BY PROD_CODE
 WHERE PROD_CODE IS 'E1';
 END
+```
 
 The calculation
 
@@ -407,6 +412,7 @@ Using IF-THEN-ELSE Logic in an Arithmetic Expression
 The following request uses IF-THEN-ELSE logic in an arithmetic expression to determine how
 much to add to LISTPR to calculate NEWPRICE.
 
+```fex
 TABLE FILE MOVIES
 SUM COPIES
 LISTPR
@@ -418,6 +424,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 The output is shown in the following image. Where there are more than 10 copies, the
@@ -941,6 +948,7 @@ Assigning Date and Date-Time Values
 The following request generates a date-time value using the DT_CURRENT_DATETIME function.
 It then assigns this value to a date field and assigns that date field to a date-time field.
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 PRINT QUANTITY_SOLD NOPRINT AND COMPUTE
  DATETIME1/HYYMDm =  DT_CURRENT_DATETIME(MILLISECOND);
@@ -957,6 +965,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 The output is shown in the following image. The original date-time field has a non-zero time
@@ -977,6 +986,7 @@ component. In all other cases, the date-time field has the current date with a n
 component, and the date field has the current date. The EQUAL1 field compares them to see if
 they compare as equal.
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 PRINT QUANTITY_SOLD AS Quantity AND COMPUTE
  DATETIME1/HYYMDm = IF QUANTITY_SOLD EQ 1 THEN '2017/06/05'
@@ -997,6 +1007,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 The output is shown in the following image. When a date value is compared to a date-time
@@ -1152,9 +1163,11 @@ DEFINE FILE EMPLOYEE
 DTFLDYYMD/HYYMDI =  DT(APR 04 05);
 END
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT CURR_SAL DTFLDYYMD
 END
+```
 
 The output shows that the natural date literal 'APR 04 05' is interpreted as April 5, 1904:
 
@@ -1205,12 +1218,14 @@ Example:
 
 Using a Date-Time Value in a COMPUTE Command
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME FIRST_NAME AND COMPUTE
 NEWSAL/D12.2M = CURR_SAL + (0.1 * CURR_SAL);
 RAISETIME/HYYMDIA = DT(20000101 09:00AM);
 WHERE CURR_JOBCODE LIKE 'B%'
 END
+```
 
 The output is:
 
@@ -1229,10 +1244,12 @@ Using a Date-Time Value in WHERE Criteria
 
 In a WHERE clause, a date-time constant must use the DT( ) format:
 
+```fex
 TABLE FILE VIDEOTR2
 PRINT CUSTID TRANSDATE
 WHERE TRANSDATE GT DT(2000/01/01 02:57:25)
 END
+```
 
 The output is:
 
@@ -1251,10 +1268,12 @@ Using a Date-Time Value in IF Criteria
 In an IF clause, a date-time constant must be enclosed in single quotation marks if it contains
 any blanks:
 
+```fex
 TABLE FILE VIDEOTR2
 PRINT CUSTID TRANSDATE
 IF TRANSDATE GT '2000/01/01 02:57:25'
 END
+```
 
 Note: The DT prefix for a date-time constant is not supported in an IF clause.
 
@@ -1331,9 +1350,11 @@ FIELD=DT1, DT1,   USAGE=HYYMDS, MISSING=ON,$
 
 Field DT1 supports missing values. Consider the following request:
 
+```fex
 TABLE FILE DATETIM2
 PRINT ID DT1
 END
+```
 
 The resulting report output shows that in the instance with ID=3, the field DT1 has a missing
 value:
@@ -1347,10 +1368,12 @@ ID  DT1
 The following request selects values of DT1 that are greater than 2000/01/01 00:00:00 and
 are not missing:
 
+```fex
 TABLE FILE DATETIM2
 PRINT ID DT1
   WHERE DT1 NE MISSING AND DT1 GT DT(2000/01/01 00:00:00);
 END
+```
 
 
 ## Creating a Character Expression
@@ -1367,12 +1390,14 @@ Assigning a Different Usage Format to a Date-Time Column
 
 Consider the following request using the VIDEOTR2 data source:
 
+```fex
 TABLE FILE VIDEOTR2
  PRINT CUSTID TRANSDATE AND COMPUTE
   DT2/HYYMDH = TRANSDATE;
   T1/HHIS = TRANSDATE;
  WHERE DATE EQ 2000
  END
+```
 
 The output is:
 
@@ -1459,10 +1484,12 @@ Specifying the Data Value O'BRIEN in a Quote-Delimited Literal String
 The following example illustrates the use of quotation marks for the correct interpretation of
 the data value O'BRIEN:
 
+```fex
 TABLE FILE VIDEOTRK
 PRINT LASTNAME
 WHERE LASTNAME IS 'O'BRIEN'
 END
+```
 
 Concatenating Character Strings
 
@@ -1502,9 +1529,11 @@ FIRST_INIT/A1 = EDIT(FIRST_NAME, '9$$$$$$$$$');
 NAME/A19 = LAST_NAME ||(', '| FIRST_INIT |'.');
 END
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT NAME WHERE LAST_NAME IS 'BANNING'
 END
+```
 
 The output is:
 
@@ -1536,6 +1565,7 @@ Using IF-THEN-ELSE Logic in a Character Expression
 The following request uses IF-THEN-ELSE logic to determine what characters to concatenate to
 MOVIECODE in order to compute NEWCODE.
 
+```fex
 TABLE FILE MOVIES
 PRINT COPIES
 MOVIECODE
@@ -1549,6 +1579,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 ## Creating a Variable Length Character Expression
@@ -1993,10 +2024,12 @@ BANK_NAME/A20 = IF BANK_NAME EQ ' ' THEN 'NONE'
 ELSE BANK_NAME;
 END
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT CURR_SAL AND BANK_NAME
 BY EMP_ID BY BANK_ACCT
 END
+```
 
 The output is:
 
@@ -2027,11 +2060,13 @@ DEFINE FILE EMPLOYEE
 MYTEST= (CURR_SAL GE 11000) OR (DEPARTMENT EQ 'MIS');
 END
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT CURR_SAL AND DEPARTMENT
 BY EMP_ID
 IF MYTEST IS TRUE
 END
+```
 
 
 The output is:

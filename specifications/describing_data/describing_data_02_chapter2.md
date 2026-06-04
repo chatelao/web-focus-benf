@@ -1109,11 +1109,14 @@ FILEDEF JOBS DISK jobs.ftm
 
 -RUN
 -SET &&Emptitle = 'Employee ID';
+
+```fex
 TABLE FILE JOBLIST
 PRINT JOBCLASS
 WHERE JOBDESC  CONTAINS '2ND' OR '3RD'
 ON TABLE HOLD AS JOBS
 END
+```
 
 The following request against the EMPDATA data source allocates the JOBS file and sets the
 user password to HR3. The EMP_TYPE field and the DBA VALUE restriction for user HR3 use
@@ -1125,6 +1128,8 @@ FILEDEF JOBS DISK jobs.ftm
 -SET &PASS = 'HR3';
 SET PASS = &PASS
 -RUN
+
+```fex
 TABLE FILE EMPDATA
 " Password used is &PASS "
 " "
@@ -1139,6 +1144,7 @@ ON TABLE SET PAGE NOPAGE
 ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, FONT=ARIAL,$
 END
+```
 
 On the output, the column title for the PIN field is the value of the &&Emptitle variable set in
 the MFD_PROFILE procedure, and the JOBS file created by the profile was used in limiting the
@@ -1297,6 +1303,7 @@ USER=HR2,   ACCESS=R, RESTRICT=VALUE, NAME=EMPDATA,
 
 The following request prints the PIN, SALARY, TITLE, and DEPT fields from EMPDATA:
 
+```fex
 TABLE FILE EMPDATA
 PRINT SALARY TITLE DEPT
 BY PIN
@@ -1304,6 +1311,7 @@ WHERE PIN GE '000000010'  AND PIN LE  '000000200'
 ON TABLE SET PAGE NOPAGE
 ON TABLE PCHOLD FORMAT PDF
 END
+```
 
 To run the request, you must first set a valid user password. The MFD_PROFILE procedure will
 be run first and will create the dbaemp2.mas DBAFILE.
@@ -1377,11 +1385,15 @@ SET MESSAGE = OFF
 -SET &&UID = GETUSER('A20');
 -SET &&UID = TRUNCATE(&&UID);
 -* Create a HOLD file with the value test for the connected user
+
+```fex
 TABLE FILE VALTEST
 PRINT VALUETEST
 WHERE USERNAME EQ '&&UID'
 ON TABLE HOLD AS USERVAL FORMAT ALPHA
 END
+```
+
 -RUN
 -READ USERVAL &VALUETEST.A30
 -* If the user name was not in the file, type a message and exit
@@ -1401,11 +1413,14 @@ USE
 EMPLOYEE AS EMPDBA
 END
 -RUN
+
+```fex
 TABLE FILE EMPDBA
 PRINT LN FN CURR_SAL
 BY DEPARTMENT
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 
 ## Storing Localized Metadata in Language Files

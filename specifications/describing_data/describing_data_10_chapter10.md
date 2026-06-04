@@ -328,9 +328,12 @@ USER = USERRW, ACCESS = RW,$
 The following FOCEXEC sets a permanent password:
 
 SET PERMPASS = USERU
+
+```fex
 TABLE FILE MOVIES
 PRINT TITLE BY DIRECTOR
 END
+```
 
 The user has ACCESS=U and, therefore, is not allowed to issue a table request against the
 file:
@@ -826,12 +829,15 @@ The following request sets the password to USER1 and sums dollar sales and units
 REGION, CATEGORY, and PRODUCT:
 
 SET USER = USER1
+
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS UNITS
 BY REGION
 BY CATEGORY
 BY PRODUCT
 END
+```
 
 The output only displays those regions and products that satisfy the WHERE expression in the
 Master File:
@@ -1133,6 +1139,8 @@ sources and then issues a request against the joined structure:
 JOIN CLEAR *
 JOIN COURSECODE IN TRAINING TO COURSECODE IN COURSE AS J1
 JOIN PIN IN TRAINING TO PIN IN EMPDATA AS J2
+
+```fex
 TABLE FILE TRAINING
 PRINT COURSECODE AS 'CODE' CTITLE
    LOCATION AS 'LOC'
@@ -1140,6 +1148,7 @@ BY LASTNAME
 WHERE COURSECODE NE '   '
 WHERE LOCATION EQ 'CA' OR LOCATION LIKE 'N%'
 END
+```
 
 When the Master Files do not have DBA attributes, the output is:
 
@@ -1374,6 +1383,8 @@ sources, and then issues a request against the joined structure:
 JOIN CLEAR *
 JOIN COURSECODE IN TRAINING TO COURSECODE IN COURSE AS J1
 JOIN PIN IN TRAINING TO PIN IN EMPDATA AS J2
+
+```fex
 TABLE FILE TRAINING
 PRINT COURSECODE AS 'CODE' CTITLE
    LOCATION AS 'LOC'
@@ -1381,6 +1392,7 @@ BY LASTNAME
 WHERE COURSECODE NE '   '
 WHERE LOCATION EQ 'CA' OR LOCATION LIKE 'N%'
 END
+```
 
 When the Master Files do not have DBA attributes, the output is:
 

@@ -49,12 +49,14 @@ Example:
 The following request shows how the default NODATA character displays missing data in a
 report.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT CURR_SAL
 BY LAST_NAME
 BY FIRST_NAME
 ACROSS DEPARTMENT
 END
+```
 
 The output is:
 
@@ -186,9 +188,11 @@ END
 
 Now issue the following report request:
 
+```fex
 TABLE FILE SALES
 SUM CNT.X_RETURNS CNT.RETURNS AVE.X_RETURNS AVE.RETURNS
 END
+```
 
 Remember that the field X_RETURNS has the same value as RETURNS except when RETURNS
 is missing a value, in which case, the X_RETURNS value is 0.
@@ -283,10 +287,13 @@ evaluated as 0.
 DEFINE FILE SALES
 NO_SALE/I4 = RETURNS + DAMAGED;
 END
+
+```fex
 TABLE FILE SALES
 PRINT RETURNS AND DAMAGED AND NO_SALE
 BY CITY BY DATE BY PROD_CODE
 END
+```
 
 The output is:
 
@@ -341,10 +348,12 @@ SOMEDATA/I5 MISSING ON NEEDS SOME=RETURNS + DAMAGED;
 ALLDATA/I5 MISSING ON NEEDS ALL=RETURNS + DAMAGED;
 END
 
+```fex
 TABLE FILE SALES
 PRINT RETURNS AND DAMAGED SOMEDATA ALLDATA
 BY CITY BY DATE BY PROD_CODE
 END
+```
 
 
 The output is:
@@ -395,6 +404,8 @@ AAA/D20 MISSING ON = MISSING;
 BBB/D20 MISSING ON = IF CATEGORY EQ 'Gifts' THEN MISSING ELSE 100;
 CCC/D20 MISSING ON = AAA + BBB;
 END
+
+```fex
 TABLE FILE GGSALES
 SUM
 AAA
@@ -405,6 +416,7 @@ ON TABLE SET PAGE NOLEAD
 ON TABLE SET STYLE *
 GRID=OFF,$
 END
+```
 
 Running the request with SET MISS_ON=SOME (the default) shows that CCC has a value
 unless both AAA and BBB are missing.
@@ -460,6 +472,8 @@ DEFINE FILE GGSALES
 AAA/D20 MISSING ON = MISSING;
 BBB/D20 MISSING ON = 100;
 END
+
+```fex
 TABLE FILE GGSALES
 SUM
   AAA
@@ -473,6 +487,7 @@ ON TABLE SET PAGE NOLEAD
 ON TABLE SET STYLE *
 GRID=OFF,$
 END
+```
 
 The output is shown in the following image. While CCC evaluates to a missing value, DDD
 evaluates to 0 because the both AAA and BBB were evaluated to get the TRUE condition and
@@ -528,6 +543,7 @@ MISS_FIELD/A10 MISSING ON = IF COUNTRY_NAME NE 'Austria' THEN 'DATAEXISTS'
 ELSE MISSING;
 END
 
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM COGS_US MISS_FIELD
 COMPUTE CALC1/A7 MISSING ON = IF ((MISS_FIELD EQ '') OR (MISS_FIELD EQ
@@ -543,6 +559,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 ## Missing Field Values
@@ -598,11 +615,13 @@ Testing for a Missing Field Value
 The following request illustrates the use of MISSING to display grocery items (by code) for
 which the number of packages returned by customers is missing.
 
+```fex
 TABLE FILE SALES
 PRINT RETURNS
 BY CITY BY DATE BY PROD_CODE
 WHERE RETURNS IS MISSING
 END
+```
 
 The output is:
 
@@ -621,11 +640,13 @@ Testing for an Existing Field Value
 The following request illustrates the use of MISSING to display only those grocery items for
 which the number of packages returned by customers is not missing.
 
+```fex
 TABLE FILE SALES
 PRINT RETURNS
 BY CITY BY DATE BY PROD_CODE
 WHERE RETURNS IS-NOT MISSING
 END
+```
 
 The output is:
 
@@ -636,11 +657,13 @@ Testing for a Blank or Zero
 The following request displays grocery items that either were never returned or for which the
 number of returned packages was never recorded:
 
+```fex
 TABLE FILE SALES
 PRINT RETURNS
 BY CITY BY DATE BY PROD_CODE
 WHERE RETURNS EQ 0
 END
+```
 
 
 The output is:
@@ -653,12 +676,14 @@ To display only those items that have not been returned by customers, you need t
 criteria. The first to restrict the number of returns to 0, the other to exclude missing values, as
 in the following request.
 
+```fex
 TABLE FILE SALES
 PRINT RETURNS
 BY CITY BY DATE BY PROD_CODE
 WHERE RETURNS EQ 0
 WHERE RETURNS IS-NOT MISSING
 END
+```
 
 The output is:
 
@@ -707,10 +732,12 @@ Incorporating MISSING Values in an Extract File
 
 The following request specifies MISSING ON in the HOLD phrase:
 
+```fex
 TABLE FILE SALES
 SUM RETURNS AND HOLD FORMAT ALPHA MISSING ON
 BY CITY BY DATE BY PROD_CODE
 END
+```
 
 The MISSING=ON attribute for the RETURNS field is propagated to the HOLD Master File. In
 addition, the missing data symbols are propagated to the HOLD file for the missing field
@@ -763,14 +790,20 @@ Example:
 Holding Missing Values Using HOLDMISS
 
 SET HOLDMISS=ON
+
+```fex
 TABLE FILE MOVIES
  SUM WHOLESALEPR
 BY CATEGORY ACROSS RATING
  ON TABLE HOLD AS HLDM
 END
+```
+
+```fex
 TABLE FILE HLDM
  PRINT *
  END
+```
 
 
 ## Missing Field Values
@@ -831,11 +864,14 @@ adds missing values to the SALES data source, has been run.
 
 
 SET COMPMISS = OFF
+
+```fex
 TABLE FILE SALES
 PRINT RETURNS RETURNS/D12.2 AS 'REFORMATTED,RETURNS'
 BY STORE_CODE
 WHERE STORE_CODE EQ '14Z'
 END
+```
 
 The output is:
 
@@ -857,11 +893,14 @@ With COMPMISS ON, the column for the reformatted version of RETURNS displays the
 data symbol when a value is missing:
 
 SET COMPMISS = ON
+
+```fex
 TABLE FILE SALES
 PRINT RETURNS RETURNS/D12.2 AS 'REFORMATTED,RETURNS'
 BY STORE_CODE
 WHERE STORE_CODE EQ '14Z'
 END
+```
 
 The output is:
 
@@ -930,11 +969,13 @@ Reporting Against Segments Without Descendant Instances
 
 The following request displays the salary histories for each employee.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT SALARY
 BY LAST_NAME BY FIRST_NAME
 BY DAT_INC
 END
+```
 
 However, two employees, Davis and Gardner, are omitted from the following report because
 the LAST_NAME and FIRST_NAME fields belong to the root segment, and the DAT_INC and
@@ -981,10 +1022,13 @@ example, Henry Chisolm has taken two courses but only has expenses for one. Ther
 designator for missing instances displays in the EXPENSES column.
 
 JOIN EMPDATA.PIN IN EMPDATA TO ALL TRAINING.PIN IN TRAIN2 AS JOIN1
+
+```fex
 TABLE FILE EMPDATA
 PRINT LASTNAME AND FIRSTNAME AND COURSECODE AND EXPENSES
 BY PIN
 END
+```
 
 The output is:
 
@@ -1132,11 +1176,13 @@ Including Missing Segment Instances With the ALL. Prefix
 The following request displays the salary history of each employee. Although employees
 Elizabeth Davis and David Gardner have no salary histories, they are included in the report.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT SALARY
 BY ALL.LAST_NAME BY FIRST_NAME
 BY DAT_INC
 END
+```
 
 The output is:
 
@@ -1245,11 +1291,14 @@ been omitted because of the WHERE criteria.
 
 JOIN EMPDATA.PIN IN EMPDATA TO ALL TRAINING.PIN IN TRAINING AS JOIN1
 SET ALL = PASS
+
+```fex
 TABLE FILE EMPDATA
 PRINT LASTNAME AND FIRSTNAME AND COURSECODE AND EXPENSES
 BY PIN
 WHERE EXPENSES GT 3000
 END
+```
 
 
 ## Handling a Missing Segment Instance
@@ -1292,26 +1341,35 @@ Controlling Outer Join Processing
 The following procedure creates two Oracle tables, ORAEMP and ORAEDUC, that will be used in
 a join.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM LAST_NAME FIRST_NAME CURR_SAL CURR_JOBCODE DEPARTMENT
 BY EMP_ID
 ON TABLE HOLD AS ORAEMP FORMAT SQLORA
 END
+```
+
 -RUN
+
+```fex
 TABLE FILE EDUCFILE
 SUM COURSE_CODE COURSE_NAME
 BY EMP_ID BY DATE_ATTEND
 ON TABLE HOLD AS ORAEDUC FORMAT SQLORA
 END
+```
 
 The following request joins the two Oracle tables and creates a left outer join (SET ALL = ON).
 
 JOIN EMP_ID IN ORAEMP TO ALL EMP_ID IN ORAEDUC AS J1
 SET ALL = ON
+
+```fex
 TABLE FILE ORAEMP
 PRINT COURSE_CODE COURSE_NAME
 BY EMP_ID
 END
+```
 
 Since the join is an outer join, all ORAEMP rows display on the report output. ORAEMP rows
 with no corresponding ORAEDUC row display the missing data symbol for the fields from the
@@ -1349,11 +1407,14 @@ screening condition, the course name must either contain the characters BASIC or
 JOIN CLEAR
 JOIN EMP_ID IN ORAEMP TO ALL EMP_ID IN ORAEDUC AS J1
 SET ALL = ON
+
+```fex
 TABLE FILE ORAEMP
 PRINT COURSE_CODE COURSE_NAME
 BY EMP_ID
 WHERE COURSE_NAME CONTAINS 'BASIC' OR COURSE_NAME IS MISSING
 END
+```
 
 However, with SET ALL = ON, the rows with missing values are not retained on the report
 output.
@@ -1373,11 +1434,14 @@ JOIN CLEAR
 JOIN EMP_ID IN ORAEMP TO ALL EMP_ID IN ORAEDUC AS J1
 SET ALL = ON
 SET SHORTPATH=SQL
+
+```fex
 TABLE FILE ORAEMP
 PRINT COURSE_CODE COURSE_NAME
 BY EMP_ID
 WHERE COURSE_NAME CONTAINS 'BASIC' OR COURSE_NAME IS MISSING
 END
+```
 
 The report output now displays both the records containing the characters BASIC and those
 with missing values.
@@ -1404,11 +1468,14 @@ The following request counts and lists those employees who have taken no courses
 JOIN LEFT_OUTER EMP_ID IN ORAEMP TO ALL EMP_ID IN ORAEDUC AS J1
 SET ALL = ON
 SET SHORTPATH=SQL
+
+```fex
 TABLE FILE ORAEMP
 COUNT EMP_ID
 LIST EMP_ID LAST_NAME FIRST_NAME
 WHERE COURSE_NAME IS MISSING
 END
+```
 
 The output is:
 
@@ -1441,11 +1508,14 @@ display in the report output.
 
 JOIN EMPDATA.PIN IN EMPDATA TO ALL TRAINING.PIN IN TRAINING AS JOIN1
 SET ALL = PASS
+
+```fex
 TABLE FILE EMPDATA
 PRINT LASTNAME AND FIRSTNAME AND COURSECODE AND EXPENSES
 BY PIN
 WHERE COURSECODE EQ 'XXXX'
 END
+```
 
 The output is:
 
@@ -1606,10 +1676,12 @@ displays on the report instead of the default period.
 
 SET NODATA=MISSING
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT CURR_SAL BY LAST_NAME BY FIRST_NAME
 ACROSS DEPARTMENT
 END
+```
 
 The output is:
 

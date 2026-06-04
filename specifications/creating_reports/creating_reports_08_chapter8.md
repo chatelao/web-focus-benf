@@ -305,6 +305,7 @@ Extracting Data to a HOLD File
 
 The following request extracts data from the EMPLOYEE data source and creates a HOLD file.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL AND ED_HRS
 BY DEPARTMENT
@@ -313,6 +314,7 @@ BY DEPARTMENT
 BY LAST_NAME BY FIRST_NAME
 ON TABLE HOLD
 END
+```
 
 The following message appears:
 
@@ -356,6 +358,7 @@ done for alphanumeric fields.
 The following request contains the query command ? HOLD, which displays the fields, aliases,
 and formats in the associated Master File and creates a HOLD file.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL AND ED_HRS
 BY DEPARTMENT
@@ -364,6 +367,7 @@ BY DEPARTMENT
 BY LAST_NAME BY FIRST_NAME
 ON TABLE HOLD
 END
+```
 
 ? HOLD
 
@@ -438,12 +442,14 @@ I9S
 
 You can now issue the following report request against the HOLD file:
 
+```fex
 TABLE FILE HOLD
 PRINT E07 AS 'SALARY OF,EMPLOYEE' AND LAST_NAME AND FIRST_NAME
 BY HIGHEST E03 AS 'TOTAL,DEPT,ED_HRS'
 BY E01
 BY HIGHEST E08 AS 'EMPLOYEE,ED_HRS'
 END
+```
 
 
 The output is:
@@ -599,10 +605,12 @@ Creating a HOLD File in FOCUS Format
 
 The following example creates a subset of the CAR data source.
 
+```fex
 TABLE FILE CAR
 SUM SALES BY COUNTRY BY CAR BY MODEL
 ON TABLE HOLD AS X1 FORMAT FOCUS
 END
+```
 
 This request creates a single-segment FOCUS data source with a SEGTYPE of S3 (because it
 has three BY fields) named X1.
@@ -623,10 +631,12 @@ Using PRINT to Create a FOCUS Data Source With a FOCLIST Field
 This example creates a single-segment FOCUS data source with a SEGTYPE of S4 because of
 the three BY fields and the FOCLIST FIELD.
 
+```fex
 TABLE FILE CAR
 PRINT SALES BY COUNTRY BY CAR BY MODEL
 ON TABLE HOLD AS X2 FORMAT FOCUS INDEX MODEL
 END
+```
 
 The Master File created by this request is:
 
@@ -651,11 +661,13 @@ with CAR and MODEL as the keys and SALES as a non-key field.
 The COUNTRY field does not form part of the key to the second segment. COUNTRY is a key in
 the path to the second segment. Any repetition of this value is redundant.
 
+```fex
 TABLE FILE CAR
 SUM SALES BY COUNTRY
 SUM SALES BY COUNTRY BY CAR BY MODEL
 ON TABLE HOLD AS X3 FORMAT FOCUS
 END
+```
 
 This creates a two-segment FOCUS data source:
 
@@ -683,12 +695,14 @@ The key to the root segment is the BY field, COUNTRY, while the keys to the desc
 segments are the new BY fields. The last segment uses the internal FOCLIST field as part of
 the key, since the display command is PRINT.
 
+```fex
 TABLE FILE CAR
 SUM SALES BY COUNTRY BY CAR
 SUM SALES BY COUNTRY BY CAR BY MODEL
 PRINT SALES BY COUNTRY BY CAR BY MODEL BY BODY
 ON TABLE HOLD AS X4 FORMAT FOCUS INDEX COUNTRY MODEL
 END
+```
 
 The Master File is:
 
@@ -847,11 +861,14 @@ field names in the HOLD1 Master File. The two fields in the HOLD1 Master File, N
 AUTOMOBILE, contain the data for COUNTRY and CAR.
 
 SET ASNAMES=ON
+
+```fex
 TABLE FILE CAR
 PRINT CAR AS 'AUTOMOBILE'
 BY COUNTRY AS 'NATION'
 ON TABLE HOLD AS HOLD1
 END
+```
 
 The request produces the following Master File:
 
@@ -869,11 +886,14 @@ one for AVE.SALES. Both SALES and AVE.SALES would be named SALES, if SET ASNAMES
 not been used.
 
 SET ASNAMES=ON
+
+```fex
 TABLE FILE CAR
 SUM SALES AND AVE.SALES AS 'AVERAGESALES'
 BY CAR
 ON TABLE HOLD AS HOLD2
 END
+```
 
 
 Controlling Attributes in HOLD Master Files
@@ -894,11 +914,14 @@ The following request produces a HOLD Master File with the literal CASH concaten
 value of COUNTRY.
 
 SET ASNAMES=ON
+
+```fex
 TABLE FILE CAR
 SUM SALES AS 'CASH'
 ACROSS COUNTRY
 ON TABLE HOLD AS HOLD3
 END
+```
 
 The request produces the following Master File:
 
@@ -916,11 +939,14 @@ To generate field names for ACROSS values that include only the field value, use
 phrase followed by two single quotation marks, as follows:
 
 SET ASNAMES=ON
+
+```fex
 TABLE FILE CAR
 SUM SALES AS ''
 ACROSS COUNTRY
 ON TABLE HOLD AS HOLD4
 END
+```
 
 The resulting Master File looks like this:
 
@@ -941,11 +967,14 @@ The following request generates a HOLD file in ALPHA format using the OFF value 
 ASNAMES. The field CURR_SAL has the AS name SALARY in the request:
 
 SET ASNAMES=OFF
+
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL AS SALARY PCT_INC
 BY DEPARTMENT
 ON TABLE HOLD FORMAT ALPHA
 END
+```
 
 In the HOLD Master File, AS names have not been propagated, the field names are from the
 original Master File, and default alias names are generated:
@@ -959,11 +988,14 @@ FILENAME=HOLD    , SUFFIX=FIX     , IOTYPE=STREAM, $
 The following version of the request generates a relational table:
 
 SET ASNAMES=OFF
+
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL AS SALARY PCT_INC
 BY DEPARTMENT
 ON TABLE HOLD FORMAT SQLMSS
 END
+```
 
 The field names from the original Master File have been propagated to the field names in the
 HOLD Maser File, and the alias names from the original Master File have been propagated to
@@ -1078,12 +1110,14 @@ specified fields, including NOPRINT fields and values calculated with the COMPUT
 
 SET HOLDLIST=ALL
 
+```fex
 TABLE FILE CAR
 PRINT CAR MODEL NOPRINT
 COMPUTE TEMPSEATS=SEATS+1;
 BY COUNTRY
 ON TABLE HOLD
 END
+```
 
 ? HOLD
 
@@ -1143,12 +1177,14 @@ containing only fields that would appear in report output:
 
 SET HOLDLIST=PRINTONLY
 
+```fex
 TABLE FILE CAR
 PRINT CAR MODEL NOPRINT
 COMPUTE TEMPSEATS=SEATS+1;
 BY COUNTRY
 ON TABLE HOLD
 END
+```
 
 ? HOLD
 
@@ -1196,11 +1232,14 @@ The following request against the GGSALES data source has two reformatted displa
 CATEGORY is also an explicit NOPRINT field:
 
 SET HOLDLIST=ALL
+
+```fex
 TABLE FILE GGSALES
 SUM UNITS/I5 DOLLARS/D12.2 NOPRINT
 BY REGION BY CATEGORY NOPRINT
 ON TABLE HOLD FORMAT FOCUS
 END
+```
 
 Running the request with SET HOLDLIST=ALL generates the following HOLD Master File. Note
 that the DOLLARS and UNITS fields are included twice, once with the original format (which
@@ -1338,10 +1377,13 @@ SEGNAME=COMP, SEGTYPE=S1, PARENT=ORIGIN
 Using SET HOLDATTR=FOCUS, the following request
 
 SET HOLDATTR = FOCUS
+
+```fex
 TABLE FILE CAR2
 PRINT CAR
 BY COUNTRY ON TABLE HOLD FORMAT FOCUS AS HOLD5
 END
+```
 
 produces this HOLD Master File:
 
@@ -1404,10 +1446,12 @@ SEGNAME=ONE,SEGTYPE=S1,$
  FIELD=MYKEY,MK,I8,I8,$
  FIELD=MFIELD,MF,A10,A10,$
 
+```fex
 TABLE FILE SORTED
  PRINT MFIELD
  WHERE MYKEY EQ 100
 END
+```
 
 In this instance, with FIXRETRIEVE=ON, retrieval stops when MYKEY reaches 101, vastly
 reducing the potential number of IOs, as only 101 records are read out of a possible 100,000.
@@ -1514,10 +1558,12 @@ APP HOLDMETA holdapp
 The following request creates a HOLD Master file named sales.mas and a HOLD data file
 named sales.ftm that will be stored in the /ggtmp directory:
 
+```fex
 TABLE FILE GGSALES
 PRINT SEQ_NO CATEGORY PRODUCT
 ON TABLE HOLD AS SALES
 END
+```
 
 To issue a TABLE request against the HOLD file, you must first issue a FILEDEF command that
 points to the HOLD data file. The DDNAME for the FILEDEF is the AS name specified in the
@@ -1533,9 +1579,11 @@ APP APPENDPATH holdapp
 
 Then you can issue a request against the HOLD file:
 
+```fex
 TABLE FILE SALES
 PRINT *
 END
+```
 
 
 Using DBMS Temporary Tables as HOLD Files
@@ -1543,9 +1591,11 @@ Using DBMS Temporary Tables as HOLD Files
 Alternatively, you can issue the TABLE request against the HOLD file using a two-part name
 (application name and Master File name):
 
+```fex
 TABLE FILE holdapp/sales
 PRINT *
 END
+```
 
 Reference: Allocating HOLD Files on z/OS
 
@@ -1949,11 +1999,13 @@ Creating a SAVE File
 
 The following request extracts data from the EMPLOYEE data source and creates a SAVE file.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME AND FIRST_NAME
 BY DEPARTMENT
 ON TABLE SAVE
 END
+```
 
 A description of the ALPHA (default SAVE format) file layout appears after the records are
 retrieved.
@@ -2006,12 +2058,14 @@ Creating a SAVB File
 
 The following request extracts data from the SALES data source and creates a SAVB file.
 
+```fex
 TABLE FILE SALES
 PRINT PROD_CODE AND AREA
 BY DATE
 WHERE CITY IS 'STAMFORD' OR 'UNIONDALE'
 ON TABLE SAVB
 END
+```
 
 A description of the BINARY file is appears after the records are retrieved.
 
@@ -3574,6 +3628,7 @@ when the field value PROD_NUM in dminv (SRC.PROD_NUM) matches the field value
 PROD_NUM in dmrpts (TRG.PROD_NUM). When the PROD_NUM fields do not match, records
 are inserted.
 
+```fex
 TABLE FILE dminv
 PRINT
    PROD_NUM
@@ -3601,9 +3656,11 @@ WHEN NOT MATCHED INSERT
   LINECOGS=SRC.LINECOGS;
   PROFIT=SRC.LINECOGS - SRC.LINECOST;
 END
+```
 
 The following TABLE request prints the values in the updated dmrpts target.
 
+```fex
 TABLE FILE DMRPTS
 PRINT *
 ON TABLE SET PAGE NOLEAD
@@ -3611,6 +3668,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 Merging Data Into an Existing Data Source With ON TABLE MERGE
@@ -3629,6 +3687,7 @@ GGDATREC, as the target. The following image shows GGDATREC in its original stat
 The following request appends one record to the GGDATREC target using ON TABLE MERGE.
 There is no MATCHING or WHEN NOT MATCHED phrase.
 
+```fex
 TABLE FILE ggsales
 SUM
    FST.PCD
@@ -3646,9 +3705,11 @@ INSERT
   SIZE = 18;
   UNIT_PRICE = SRC.DOLLARS/SRC.UNITS;
 END
+```
 
 The following TABLE request prints the values in the updated ggdatrec target.
 
+```fex
 TABLE FILE GGDATREC
 PRINT *
 ON TABLE SET PAGE NOLEAD
@@ -3656,6 +3717,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 Merging Data Into an Existing Data Source With ON TABLE MERGE
@@ -3671,6 +3733,7 @@ generated by the DataMigrator - General tutorial.
 
 The following request displays all of the plant locations in the dmordsgl data source.
 
+```fex
 TABLE FILE DMORDSGL
 SUM QUANTITY
 BY PLANT
@@ -3678,6 +3741,7 @@ ON TABLE SET PAGE NOLEAD
 ON TABLE SET STYLE *
 GRID=OFF,$
 END
+```
 
 The output is shown in the following image.
 
@@ -3685,6 +3749,7 @@ The output is shown in the following image.
 The following ON TABLE MERGE request deletes records where the source product number
 matches the target product number and the plant is 'LA'.
 
+```fex
 TABLE FILE dminv
 PRINT
 PROD_NUM
@@ -3692,6 +3757,7 @@ ON TABLE MERGE INTO FILE dmordsgl
 MATCHING TRG.PROD_NUM EQ SRC.PROD_NUM;
 WHEN MATCHED AND PLANT EQ 'LA'; DELETE
 END
+```
 
 Running this request and then the request to display the plants shows that the records with
 the LA plant have been deleted, as shown in the following image.
@@ -3711,11 +3777,13 @@ the HOLD file. Unique names must be used, so either use the alias names, or assi
 new name to a duplicate field name using the AS phrase. For example, the following
 request generates three fields named DOLLARS:
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS MAX.DOLLARS MIN.DOLLARS
 BY UNITS
 ON TABLE HOLD
 END
+```
 
 
 Merging Data Into an Existing Data Source With ON TABLE MERGE
@@ -3731,6 +3799,7 @@ FILENAME=HOLD, SUFFIX=FIX     , IOTYPE=BINARY, $
 
 The following version of the request generates unique field names using the AS phrase.
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS AS TOTDOLL
 MAX.DOLLARS AS MAXDOLL
@@ -3739,6 +3808,7 @@ BY UNITS
 ON TABLE SET ASNAMES ON
 ON TABLE HOLD AS UNIQNAME
 END
+```
 
 This request generates the following Master File.
 
@@ -3758,6 +3828,7 @@ to the DBMS. For example, the following request is optimized when the dminv and 
 tables use the same adapter and connection:
 
 
+```fex
 TABLE FILE dminv
 PRINT
  PROD_NUM
@@ -3783,6 +3854,7 @@ MATCHING TRG.PROD_NUM EQ SRC.PROD_NUM;
   LINECOGS=SRC.LINECOGS;
   PROFIT=SRC.LINECOGS - SRC.LINECOST;
 END
+```
 
 The following messages indicate that the request was optimized.
 
@@ -3864,6 +3936,7 @@ Using Alias Names With ON TABLE MERGE
 The following request uses alias names from the source HOLD file in the expressions used to
 insert fields into the target file.
 
+```fex
 TABLE FILE dminv
 PRINT
    PROD_NUM
@@ -3881,6 +3954,7 @@ ON TABLE MERGE INTO FILE ibisamp/dmrpts
   LINECOGS=SRC.E05;
   PROFIT=SRC.E04 - SRC.E05;
 END
+```
 
 ## Using Text Fields in Output Files
 
@@ -3929,16 +4003,20 @@ Applying Text Field Rules in HOLD Files
 
 The following request extracts data to a HOLD file named CRSEHOLD:
 
+```fex
 TABLE FILE COURSE
 PRINT COURSECODE DESCRIPTN1
 ON TABLE HOLD AS CRSEHOLD
 END
+```
 
 The following request prints the data from the HOLD file:
 
+```fex
 TABLE FILE CRSEHOLD
 PRINT *
 END
+```
 
 The partial output is:
 
@@ -4166,10 +4244,12 @@ The following request against the CENTORD data source creates a sequential file 
 with fields separated by the pipe character (|). Alphanumeric values are not enclosed in
 quotation marks, and there is no header record:
 
+```fex
 TABLE FILE CENTORD
 SUM QUANTITY LINEPRICE BY REGION BY YEAR
 ON TABLE HOLD AS PIPE1 FORMAT DFIX DELIMITER |
 END
+```
 
 The PIPE1 Master File specifies the SUFFIX value as DFIX:
 
@@ -4254,10 +4334,12 @@ Creating a Tab-Delimited File
 The following request against the CENTORD data source creates a sequential file named TAB1
 with fields separated by a tab character:
 
+```fex
 TABLE FILE CENTORD
 SUM QUANTITY LINEPRICE BY REGION BY YEAR
 ON TABLE HOLD AS TAB1 FORMAT DFIX DELIMITER TAB
 END
+```
 
 
 ## Creating a Delimited Sequential File
@@ -4283,6 +4365,8 @@ HOLD command preserves these trailing blank spaces:
 
 APP HOLDDATA APP1
 APP HOLDMETA APP1
+
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS UNITS
 BY REGION
@@ -4290,6 +4374,7 @@ BY CATEGORY
 BY PRODUCT
 ON TABLE HOLD AS DFIX1 FORMAT DFIX DELIMITER , PRESERVESPACE YES
 END
+```
 
 The following Master File is generated:
 
@@ -4414,11 +4499,13 @@ sequence:
 
 0A: hexadecimal value for new line.
 
+```fex
 TABLE FILE GGSALES
 PRINT DOLLARS UNITS CATEGORY REGION
 ON TABLE HOLD AS RDELIM1 FORMAT DFIX DELIMITER , ENCLOSURE ''''
 HEADER NO RDELIMITER 0x2C240D0A
 END
+```
 
 The generated Master File follows:
 
@@ -4471,11 +4558,13 @@ AREA/A5 MISSING ON = IF REGION EQ 'EAST' THEN MISSING ELSE REGION;
 MQUANTITY/I9 MISSING ON = IF REGION EQ 'WEST' THEN MISSING ELSE 200;
 END
 
+```fex
 TABLE FILE CENTORD
 SUM QUANTITY MQUANTITY LINEPRICE BY AREA BY YEAR
 WHERE AREA NE 'NORTH' OR 'SOUTH'
   ON TABLE HOLD AS MISS1 FORMAT DFIX DELIMITER , ENCLOSURE "
 END
+```
 
 In the MISS1 HOLD file, the missing alphanumeric values are indicated by two enclosure
 characters in a row ("") and the missing numeric values are indicated by two delimiters in a
@@ -4509,12 +4598,15 @@ Syntax:
 How to Suppress Field Padding in HOLD Files
 
 SET HOLDLIST = PRINTONLY
+
+```fex
 TABLE FILE filename
 display_command fieldname/[In|Pn.d]
 .
 .
 ON TABLE HOLD AS name FORMAT INTERNAL
 END
+```
 
 where:
 
@@ -4586,10 +4678,12 @@ Creating a HOLD File Without HOLD FORMAT INTERNAL
 In this example, the values of ACTUAL for RETAIL_COST, DEALER_COST, and SEATS are all
 padded to a full word. Alphanumeric fields also occupy full words.
 
+```fex
 TABLE FILE CAR
 PRINT CAR COUNTRY RETAIL_COST DEALER_COST SEATS
 ON TABLE HOLD AS DJG
 END
+```
 
 
 The request creates the following Master File:
@@ -4610,10 +4704,13 @@ In this example, DEALER_COST and RETAIL_COST are defined in the Master File as D
 but the request overrides RETAIL_COST as an I2 field and DEALER_COST as a P3 field.
 
 SET HOLDLIST=PRINTONLY
+
+```fex
 TABLE FILE CAR
 PRINT CAR COUNTRY RETAIL_COST/I2 DEALER_COST/P3 SEATS/I1
 ON TABLE HOLD AS HINT3 FORMAT INTERNAL
 END
+```
 
 This creates the following Master File:
 
@@ -4673,6 +4770,8 @@ The following request against the WF_RETAIL relational data source creates an SQ
 in the baseapp application:
 
 APP HOLD baseapp
+
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM BUSINESS_REGION STATE_PROV_CODE_ISO_3166_2
 BY BUSINESS_REGION NOPRINT BY STATE_PROV_CODE_ISO_3166_2 NOPRINT
@@ -4682,6 +4781,7 @@ WHERE STATE_PROV_CODE_ISO_3166_2 EQ 'AR' OR 'IA' OR 'KS' OR 'KY' OR 'WY' OR
 OR 'NJ' OR 'NY' OR 'RI'
 ON TABLE HOLD AS RETAIL_SCRIPT FORMAT SQL_SCRIPT
 END
+```
 
 WF_RETAIL is a sample data source you can create by right-clicking an application on the
 Reporting Server Web Console and selecting New and then Samples from the context menu.
@@ -4729,11 +4829,14 @@ The following request against the EMPLOYEE data source creates a sequential file
 the values retrieved by the request along with a corresponding Master File:
 
 APP HOLD baseapp
+
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME FIRST_NAME
 WHERE DEPARTMENT EQ 'MIS'
 ON TABLE HOLD AS EMPVALUES FORMAT SQL_SCRIPT
 END
+```
 
 The sequential file empvalues.ftm contains the following data:
 
@@ -4887,6 +4990,7 @@ Example:
 
 Creating a Structured HOLD File in ALPHA Format
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME FIRST_NAME JOBCODE ED_HRS
 BY DEPARTMENT
@@ -4894,6 +4998,7 @@ BY HIGHEST SALARY
 ON TABLE SET EXTRACT ON
 ON TABLE HOLD FORMAT ALPHA
 END
+```
 
 This request produces the following HOLD Master File:
 
@@ -4933,6 +5038,7 @@ Example:
 
 Creating a Structured HOLD File in FOCUS Format
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME FIRST_NAME JOBCODE ED_HRS
 BY DEPARTMENT
@@ -4940,6 +5046,7 @@ BY HIGHEST SALARY
 ON TABLE SET EXTRACT ON
 ON TABLE HOLD FORMAT FOCUS
 END
+```
 
 This request produces the following HOLD Master File:
 
@@ -4960,6 +5067,7 @@ Reconstituting a Structured HOLD File
 The following request reconstitutes the original FOCUS data source from the Structured HOLD
 File created in the example named Creating a Structured HOLD File in ALPHA Format:
 
+```fex
 TABLE FILE HOLD
 PRINT LAST_NAME FIRST_NAME JOBCODE ED_HRS
 BY DEPARTMENT
@@ -4967,6 +5075,7 @@ BY HIGHEST SALARY
 ON TABLE SET EXTRACT ON
 ON TABLE HOLD AS RECONST FORMAT FOCUS
 END
+```
 
 
 Creating a Structured HOLD File
@@ -4985,11 +5094,13 @@ FILENAME=RECONST    , SUFFIX=FOC     , $
 
 The following request prints the report output:
 
+```fex
 TABLE FILE RECONST
 PRINT LAST_NAME FIRST_NAME JOBCODE ED_HRS
 BY DEPARTMENT
 BY HIGHEST SALARY
 END
+```
 
 The output is:
 
@@ -5022,6 +5133,7 @@ Excluding Fields From Structured HOLD Files
 
 This request excludes the SALARY field used for sequencing.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME FIRST_NAME JOBCODE ED_HRS
 BY DEPARTMENT
@@ -5031,6 +5143,7 @@ EXCLUDE=(SALARY),$
 ENDEXTRACT
 ON TABLE HOLD FORMAT FOCUS
 END
+```
 
 This request produces the following HOLD Master File:
 

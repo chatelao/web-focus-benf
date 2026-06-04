@@ -247,9 +247,12 @@ END
 -******************************
 -*  PRINT CONTENTS OF HOLD FILE
 -******************************
+
+```fex
 TABLE FILE HOLD
 PRINT *
 END
+```
 
 The merge phrase used in this example was OLD-OR-NEW. This means that records from both
 the first (old) data source plus the records from the second (new) data source appear in the
@@ -298,6 +301,8 @@ SUM BUDDOLLARS BY ST BY CITY
 PRINT BUDUNITS BY ST BY CITY BY CATEGORY
 AFTER MATCH HOLD OLD-OR-NEW
 END
+
+```fex
 TABLE FILE HOLD
 PRINT *
 ON TABLE SET PAGE NOLEAD
@@ -305,6 +310,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, SIZE=9,$
 ENDSTYLE
 END
+```
 
 The HOLD Master File follows. Since the sort fields are common to both files, the two files
 were merged based on those fields. However, note that the order of fields in the Master File
@@ -534,9 +540,11 @@ Record n: 212289111 103
 
 The following code produces a report of the records in the HOLD file:
 
+```fex
 TABLE FILE HOLD
 PRINT *
 END
+```
 
 The output is:
 
@@ -633,9 +641,11 @@ BY PIN
 AFTER MATCH HOLD OLD-OR-NEW
 END
 
+```fex
 TABLE FILE HOLD
 PRINT *
 END
+```
 
 Example: Merging Without a Common High-Order Sort Field
 
@@ -653,9 +663,11 @@ BY FIRSTNAME
 AFTER MATCH HOLD OLD-OR-NEW
 END
 
+```fex
 TABLE FILE HOLD
 PRINT *
 END
+```
 
 The retrieved records from the two data sources are written to the HOLD file; no values are
 compared. The output is:
@@ -1499,9 +1511,11 @@ END
 
 -*Print merged file:
 
+```fex
 TABLE FILE HOLD
 PRINT *
 END
+```
 
 The AS phrase changes the answer set. Since the sort fields no longer have the same names,
 the fields are merged with no regard to matching records.
@@ -1595,11 +1609,14 @@ When CARTESIAN is set to ON, the following multi-path request produces a report 
 all possible combinations of models and standards for each car:
 
 SET CARTESIAN=ON
+
+```fex
 TABLE FILE CAR
 PRINT MODEL STANDARD
 BY CAR
 IF CAR EQ 'JAGUAR'
 END
+```
 
 The output in an ASCII environment is:
 

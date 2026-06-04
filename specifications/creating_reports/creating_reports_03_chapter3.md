@@ -180,10 +180,12 @@ Sorting Rows With BY
 
 The following illustrates how to display all employee IDs by department.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT EMP_ID
 BY DEPARTMENT
 END
+```
 
 The output displays a row for each EMP_ID in each department:
 
@@ -201,11 +203,13 @@ Sorting With Multiple Vertical (BY) Sort Fields
 
 The following request uses multiple vertical (BY) sort fields.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT CURR_SAL
 BY DEPARTMENT BY LAST_NAME
 WHERE CURR_SAL GT 21500
 END
+```
 
 The output is:
 
@@ -308,11 +312,13 @@ The following request displays the top two ED_HRS values and aggregates the valu
 included in a row labeled Others:
 
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT CURR_SAL LAST_NAME
   BY HIGHEST 2 ED_HRS
   PLUS OTHERS AS 'Others'
 END
+```
 
 The output is:
 
@@ -331,12 +337,14 @@ The following request sorts by highest 2 ED_HRS and groups the sort field values
 increments of 25 ED_HRS. Values that fall below the lowest group label are included in the
 Others category. All values above the top group label are included in the top group:
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT CURR_SAL LAST_NAME
   BY HIGHEST 2 ED_HRS
   PLUS OTHERS AS 'Others'
 IN-GROUPS-OF 25 TOP 50
 END
+```
 
 The output is:
 
@@ -358,12 +366,14 @@ Others       $78,800.00
 If the BY HIGHEST phrase is changed to BY LOWEST, all values above the top grouping (50
 ED_HRS and above) are included in the Others category:
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT CURR_SAL LAST_NAME
   BY LOWEST 2 ED_HRS
   PLUS OTHERS AS 'Others'
 IN-GROUPS-OF 25 TOP 50
 END
+```
 
 The output is:
 
@@ -453,9 +463,11 @@ Sorting Columns With ACROSS
 The following illustrates how to show the total salary outlay for each department. This request
 is sorted horizontally with an ACROSS phrase.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL ACROSS DEPARTMENT
 END
+```
 
 The output is:
 
@@ -514,6 +526,8 @@ Hiding an ACROSS Title With ACRSVRBTITL
 The following request against the GGSALES data source has a display field in the heading:
 
 SET ACRSVRBTITL=HIDEONE
+
+```fex
 TABLE FILE GGSALES
 HEADING
 "Sales Report for <CATEGORY with ACRSVRBTITL=HIDEONE"
@@ -534,6 +548,7 @@ TYPE=HEADING, SIZE=11, STYLE=BOLD,JUSTIFY=CENTER, $
 TYPE=ACROSSTITLE,STYLE=BOLD,$
 TYPE=ACROSSVALUE,BACKCOLOR=RGB(218 225 232),$
 END
+```
 
 Using the default value for ACRSVRBTITL, HIDEONE, suppresses the ACROSS title Sales, even
 though the heading displays a field value that adds a report column to the internal matrix.
@@ -655,6 +670,8 @@ each subsequent panel.
 
 SET ACROSSTITLE=SIDE
 SET BYPANEL=ON
+
+```fex
 TABLE FILE GGSALES
 SUM
      DOLLARS/I8M AS ''
@@ -683,6 +700,7 @@ TYPE=ACROSSVALUE,
 $
 ENDSTYLE
 END
+```
 
 
 ## Sorting Columns
@@ -712,6 +730,8 @@ field has an AS name that is longer than the default name:
 
 SET ACROSSTITLE=SIDE
 SET BYPANEL=1
+
+```fex
 TABLE FILE GGSALES
 SUM
      DOLLARS/I8M AS ''
@@ -735,6 +755,7 @@ TYPE=REPORT,
    $
 ENDSTYLE
 END
+```
 
 
 The first panel follows:
@@ -756,6 +777,8 @@ ACROSS values and sets matching styling of font color and backcolor for the ACRO
 ACROSSVALUES, and column titles to white text on grey background color.
 
 SET ACROSSTITLE=SIDE
+
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/I8M AS ''
 BY REGION
@@ -776,6 +799,7 @@ TYPE=ACROSSVALUE,COLOR=WHITE, BACKCOLOR=GREY,$
 TYPE=TITLE,COLOR=WHITE, BACKCOLOR=GREY,$
 ENDSTYLE
 END
+```
 
 The output has a grey background color and white text for the ACROSS titles, ACROSS values,
 and column titles.
@@ -795,11 +819,13 @@ Sorting With Multiple Horizontal (ACROSS) Phrases
 The following request sorts the sum of current salaries, first by department and then by job
 code.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL
 ACROSS DEPARTMENT ACROSS CURR_JOBCODE
 WHERE CURR_SAL GT 21500
 END
+```
 
 The output is:
 
@@ -866,6 +892,7 @@ Compressing Report Output With SET ACROSSPRT
 The following request against the GGSALES data source prints unit sales by product across
 region:
 
+```fex
 TABLE FILE GGSALES
 PRINT UNITS/I5
 BY PRODUCT
@@ -875,6 +902,7 @@ WHERE PRODUCT EQ 'Capuccino' OR 'Espresso';
 ON TABLE SET ACROSSPRT NORMAL
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 
 Each line of the report represents one sale in one region, so at most one column in each row
@@ -910,6 +938,7 @@ Espresso                1333           .           .           .
 Setting ACROSSPRT to COMPRESS promotes non-missing values up to replace missing values
 within the same BY group and then eliminates lines consisting of all missing values.
 
+```fex
 TABLE FILE GGSALES
 PRINT UNITS/I5
 BY PRODUCT
@@ -919,6 +948,7 @@ WHERE PRODUCT EQ 'Capuccino' OR 'Espresso';
 ON TABLE SET ACROSSPRT COMPRESS
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 
 ## Sorting Columns
@@ -1026,6 +1056,8 @@ named REGION and an ACROSS phrase on the CITY field. The display fields in each 
 group are UNITS and DOLLARS:
 
 SET HIDENULLACRS=OFF
+
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS
 BY REGION PAGE-BREAK
@@ -1038,6 +1070,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, FONT=ARIAL, SIZE=9,$
 ENDSTYLE
 END
+```
 
 With SET HIDENULLACRS=OFF, all columns display:
 
@@ -1064,6 +1097,8 @@ DEFINE FILE GGSALES
 SHOWDOLLARS/I8M MISSING ON = IF (PRODUCT EQ 'Espresso') THEN MISSING ELSE
 DOLLARS;
 END
+
+```fex
 TABLE FILE GGSALES
 HEADING
 "Page <TABPAGENO "
@@ -1091,6 +1126,7 @@ TYPE=REPORT,
 $
 ENDSTYLE
 END
+```
 
 
 Running the request with SET HIDENULLACRS=OFF displays the Espresso column and any
@@ -1118,6 +1154,8 @@ DEFINE FILE GGSALES
 SHOWDOLLARS/I8M MISSING ON = IF (PRODUCT EQ 'Espresso' OR
    CATEGORY EQ 'Gifts') THEN MISSING ELSE DOLLARS;
 END
+
+```fex
 TABLE FILE GGSALES
 SUM SHOWDOLLARS AS ''
 BY REGION
@@ -1148,6 +1186,7 @@ TYPE=REPORT,
 $
 ENDSTYLE
 END
+```
 
 
 ## Sorting Columns
@@ -1207,6 +1246,8 @@ DEFINE FILE GGSALES
 SHOWDOLLARS/I8M MISSING ON = IF (PRODUCT EQ 'Espresso') THEN MISSING ELSE
 DOLLARS;
 END
+
+```fex
 TABLE FILE GGSALES
 SUM SHOWDOLLARS AS ''
 BY REGION
@@ -1236,6 +1277,7 @@ TYPE=REPORT,
 $
 ENDSTYLE
 END
+```
 
 Running the request hides the null columns within each REGION page break and generates a
 separate page for the column totals.
@@ -1313,6 +1355,8 @@ IF ((PRODUCT EQ 'Capuccino' AND REGION EQ 'Midwest') OR
 (PRODUCT EQ 'Scone' AND REGION EQ 'Southeast') OR
 (REGION EQ 'West')) THEN MISSING ELSE DOLLARS;
 END
+
+```fex
 TABLE FILE GGSALES
 SUM SHOWDOLLARS AS ''
 BY REGION
@@ -1350,6 +1394,7 @@ TYPE=DATA, COLUMN = B3, BACKCOLOR=GOLDENROD,$
 TYPE=DATA, COLUMN = SHOWDOLLARS(6), BACKCOLOR=silver,$
 ENDSTYLE
 END
+```
 
 
 ## Sorting Columns
@@ -1403,6 +1448,8 @@ SHOWDOLLARS/D12CM MISSING ON =
      ELSE IF REGION EQ 'Southeast' THEN MISSING
      ELSE DOLLARS;
 END
+
+```fex
 TABLE FILE GGSALES
 SUM SHOWDOLLARS
 BY REGION
@@ -1435,6 +1482,7 @@ TYPE=ACROSSTITLE,
      STYLE=BOLD,$
 ENDSTYLE
 END
+```
 
 
 Running the request with SET HIDENULLACRS=OFF generates all columns and a page for all
@@ -1501,6 +1549,8 @@ change (BYDISPLAY OFF).
 
 -SET &BYDISP = OFF;
 SET BYDISPLAY = &BYDISP
+
+```fex
 TABLE FILE WF_RETAIL_LITE
 HEADING CENTER
 " BYDISPLAY = &BYDISP"
@@ -1514,6 +1564,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 The output is shown in the following image.
 
@@ -1598,6 +1649,7 @@ BY PRODUCT, with PRODUCT reformatted as A4.
 
 ACROSS REGION, with region reformatted as A6.
 
+```fex
 TABLE FILE GGSALES
 SUM UNIT
 BY CATEGORY/A3
@@ -1609,6 +1661,7 @@ ON CATEGORY SUBHEAD
 " "
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 
 Manipulating Display Field Values in a Sort Group
@@ -1693,12 +1746,14 @@ Summing Values Within Sort Groups
 The following report shows the units sold and the percent of units sold for each product within
 store and within the table:
 
+```fex
 TABLE FILE SALES
 SUM UNIT_SOLD AS 'UNITS'
 AND PCT.UNIT_SOLD AS 'PCT,SOLD,WITHIN,TABLE'
 AND PCT.UNIT_SOLD WITHIN STORE_CODE AS 'PCT,SOLD,WITHIN,STORE'
 BY STORE_CODE SKIP-LINE BY PROD_CODE
 END
+```
 
 
 ## Creating a Matrix Report
@@ -1719,11 +1774,13 @@ Creating a Simple Matrix
 The following request displays total salary outlay across departments and by job codes,
 creating a matrix report.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL
 ACROSS DEPARTMENT
 BY CURR_JOBCODE
 END
+```
 
 
 The output is:
@@ -1747,6 +1804,7 @@ Creating a Matrix With Several Sort Fields
 
 The following request uses several BY and ACROSS sort fields to create a matrix report.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL
 ACROSS DEPARTMENT ACROSS LAST_NAME
@@ -1754,6 +1812,7 @@ BY CURR_JOBCODE BY ED_HRS
 WHERE DEPARTMENT EQ 'MIS'
 WHERE CURR_SAL GT 21500
 END
+```
 
 The output is:
 
@@ -1877,9 +1936,11 @@ END
 The following request prints the values of PRODNAME in the order in which they are
 encountered in the input stream:
 
+```fex
 TABLE FILE COLLATE
 PRINT PROD_NUM PRODNAME
 END
+```
 
 
 ## Controlling Collation Sequence
@@ -1918,10 +1979,12 @@ Number:  Name:
 The next request sorts the output in BINARY order. The setting COLLATION = BINARY is in
 effect:
 
+```fex
 TABLE FILE COLLATE
 PRINT PROD_NUM
 BY PRODNAME
 END
+```
 
 
 In an EBCDIC environment, the records with the lowercase letters sort in front of the records
@@ -2059,10 +2122,12 @@ Using Binary and Case-Insensitive Collation Sequence for Selection
 The following request against the COLLATE data source selects records in which the
 PRODNAME contains the characters 'HD':
 
+```fex
 TABLE FILE COLLATE
 PRINT PROD_NUM PRODNAME
 WHERE PRODNAME CONTAINS 'HD'
 END
+```
 
 With COLLATION set to BINARY, only the records with an exact match (uppercase HD) are
 selected. The output is:
@@ -2126,20 +2191,24 @@ Sorting in Ascending Order
 The following report request does not specify a particular sorting order, and so, by default, it
 lists salaries ranging from the lowest to the highest.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME
 BY CURR_SAL
 END
+```
 
 
 ## Specifying the Sort Order
 
 You can specify this same ascending order explicitly by including LOWEST in the sort phrase.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME
 BY LOWEST CURR_SAL
 END
+```
 
 The output is:
 
@@ -2149,10 +2218,12 @@ Sorting in Descending Order
 
 The following request lists salaries ranging from the highest to lowest.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME
 BY HIGHEST CURR_SAL
 END
+```
 
 
 The output is:
@@ -2266,11 +2337,13 @@ The following illustrates how to sort employees by the banks at which their payc
 automatically deposited, and how to define your own label in the sorting sequence for the bank
 field.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME
 BY BANK_NAME ROWS 'BEST BANK' OVER STATE
    OVER ASSOCIATED OVER 'BANK ASSOCIATION'
 END
+```
 
 The output is:
 
@@ -2327,11 +2400,13 @@ The following illustrates how to sum employee salaries by the bank at which they
 automatically deposited, and to define your own label within the sorting sequence for the bank
 field.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL
 ACROSS BANK_NAME COLUMNS 'BEST BANK' AND STATE
    AND ASSOCIATED AND 'BANK ASSOCIATION'
 END
+```
 
 The output is:
 
@@ -2406,6 +2481,7 @@ The following request against the GGSALES data source selects the columns Coffee
 Latte, and Coffee Pot for the ACROSS field PRODUCT, and assigns each of them a new column
 title:
 
+```fex
  TABLE FILE GGSALES
  SUM
  DOLLARS/I8M AS ''
@@ -2416,6 +2492,7 @@ title:
     AND 'Coffee Pot' AS 'Carafe'
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 The output is:
 
@@ -2477,10 +2554,12 @@ Issue the following request to display a list of employee names in salary order,
 rank of each employee by salary. Note that employees Jones and McCoy have the same rank
 since their current salary is the same.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME
 RANKED AS 'Sequence' BY CURR_SAL
 END
+```
 
 
 ## Ranking Sort Field Values
@@ -2494,10 +2573,12 @@ Ranking and Restricting Sort Field Values
 Ranking sort field values is frequently combined with restricting sort field values by rank, as in
 the following example.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME
 RANKED BY HIGHEST 5 CURR_SAL
 END
+```
 
 The output is:
 
@@ -2601,12 +2682,15 @@ The following request against the EMPDATA data source ranks salaries in descendi
 division. The RANK parameter is set to DENSE (the default).
 
 SET RANK = DENSE
+
+```fex
 TABLE FILE EMPDATA
 PRINT LASTNAME FIRSTNAME
 RANKED BY HIGHEST 12 SALARY
 BY DIV
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 
 On the output, six employees are included in rank number 6. With dense ranking, the next rank
@@ -2665,12 +2749,15 @@ The following request against the EMPDATA data source sorts salaries in descendi
 division and prints the 12 highest salaries. The RANK parameter is set to DENSE (the default).
 
 SET RANK = DENSE
+
+```fex
 TABLE FILE EMPDATA
 PRINT LASTNAME FIRSTNAME
 BY HIGHEST 12 SALARY
 BY DIV
 ON TABLE SET PAGE NOPAGE
 END
+```
 
 On the output, 12 distinct salary values are displayed, even though some of the employees
 have the same salaries.
@@ -2788,10 +2875,12 @@ Defining Groups of Equal Ranges
 The following illustrates how to show which employees fall into which salary ranges, and to
 define the ranges by $5,000 increments.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME
 BY CURR_SAL IN-GROUPS-OF 5000
 END
+```
 
 
 The output is:
@@ -2840,10 +2929,12 @@ Example:
 
 Defining Equal Ranges
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME
 BY CURR_SAL IN-RANGES-OF 5000
 END
+```
 
 
 ## Grouping Numeric Data Into Ranges
@@ -2880,6 +2971,7 @@ The following request displays employee salaries, but it groups them in an arbit
 that the starting value of each range prints in the report.
 
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME
 FOR CURR_SAL
@@ -2887,6 +2979,7 @@ FOR CURR_SAL
 14000 TO 19700 OVER
 19800 TO 30000
 END
+```
 
 The output is:
 
@@ -3024,11 +3117,13 @@ Grouping Data Into Five Tiles
 
 The following illustrates how to group data into five tiles.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME FIRST_NAME
 BY DEPARTMENT
 BY CURR_SAL IN-GROUPS-OF 5 TILES
 END
+```
 
 The output is:
 
@@ -3042,11 +3137,13 @@ Displaying the First Three Tile Groups
 
 In this example, the employees with the three lowest salaries are grouped into five tiles.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME FIRST_NAME
 BY DEPARTMENT
 BY LOWEST 3 CURR_SAL IN-GROUPS-OF 5 TILES
 END
+```
 
 
 The output is:
@@ -3063,11 +3160,13 @@ In this example, the employees with the three lowest salaries are listed and gro
 tiles, but only the tiles that are in the top 3 (tiles 1, 2, or 3) are displayed in the report. Also,
 the heading for the TILES field has been renamed (using the AS phrase) to DECILES.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME FIRST_NAME
 BY DEPARTMENT
 BY LOWEST 3 CURR_SAL IN-GROUPS-OF 5 TILES TOP 3 AS DECILES
 END
+```
 
 The output is:
 
@@ -3152,10 +3251,12 @@ Restricting Sort Field Values to a Group
 
 The following request displays the names of the employees earning the five highest salaries.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME
 BY HIGHEST 5 CURR_SAL
 END
+```
 
 The output is:
 
@@ -3218,12 +3319,14 @@ Example:
 In this example, the salary average is calculated and used as a sort field. The two highest
 salaries are displayed in the report.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM SALARY CNT.SALARY
 BY DEPARTMENT
 BY HIGHEST 2 TOTAL AVE.SALARY AS 'HIGHEST,AVERAGE,SALARIES'
 BY CURR_JOBCODE
 END
+```
 
 
 The output is:
@@ -3236,12 +3339,14 @@ Sorting, Aggregating, and Ranking Report Columns
 In this example, the salary average is calculated and used as a sort field. The two highest
 salaries are displayed and ranked.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM SALARY CNT.SALARY
 BY DEPARTMENT
 RANKED BY HIGHEST 2 TOTAL AVE.SALARY AS 'HIGHEST,AVERAGE,SALARIES'
 BY CURR_JOBCODE
 END
+```
 
 The output is:
 
@@ -3252,6 +3357,7 @@ Sorting and Aggregating Report Columns With COMPUTE
 In this example, the monthly salary is calculated using a COMPUTE within a sort field. The two
 highest monthly salaries are displayed.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM SALARY CNT.SALARY
 BY DEPARTMENT
@@ -3259,6 +3365,7 @@ BY HIGHEST 2 TOTAL COMPUTE MONTHLY_SALARY/D12.2M=SALARY/12;
 AS 'HIGHEST,MONTHLY,SALARIES'
 BY CURR_JOBCODE
 END
+```
 
 
 ## Sorting and Aggregating Report Columns
@@ -3272,6 +3379,7 @@ Using BY TOTAL on a Calculated Value With an ACROSS Phrase
 The following request creates the calculated value PROFIT and uses it in the BY TOTAL phrase.
 The request also has an ACROSS RATING phrase.
 
+```fex
 TABLE FILE MOVIES
 SUM LISTPR WHOLESALEPR
 COMPUTE
@@ -3284,6 +3392,7 @@ ON TABLE SET PAGE NOLEAD
 ON TABLE SET STYLE *GRID = OFF,$
 ENDSTYLE
 END
+```
 
 The output is shown in the following image.
 
@@ -3323,9 +3432,11 @@ If you want to display a list of employees sorted by the date on which they were
 want the report to contain last name, first name, and then the hire date in the third column,
 the following request is insufficient.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME FIRST_NAME HIRE_DATE
 END
+```
 
 The output is:
 
@@ -3335,10 +3446,12 @@ The output is:
 To list the employees in the order in which they were hired, you would sort the report by the
 HIRE_DATE field and hide the sort field occurrence using the NOPRINT phrase.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME FIRST_NAME HIRE_DATE
 BY HIRE_DATE NOPRINT
 END
+```
 
 The output is:
 
@@ -3415,6 +3528,7 @@ IF criteria are explained in Selecting Records for Your Report on page 217.
 When a sort phrase is used with a display command, the display commands following it
 must use the same sorting condition in the same order. For example:
 
+```fex
 TABLE FILE EMPLOYEE
 SUM ED_HRS
 SUM CURR_SAL CNT.CURR_SAL
@@ -3423,6 +3537,7 @@ PRINT FIRST_NAME
 BY DEPARTMENT
 BY LAST_NAME
 END
+```
 
 The first SUM does not have a sort condition. The second SUM has a sort condition: BY
 DEPARTMENT. Because of this sort condition, the PRINT command must have BY
@@ -3435,11 +3550,13 @@ Using Multiple Display and Sort Fields
 
 The following request summarizes several levels of detail in the data source.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL
 SUM CURR_SAL BY DEPARTMENT
 SUM CURR_SAL BY DEPARTMENT BY LAST_NAME
 END
+```
 
 The command SUM CURR_SAL calculates the total amount of current salaries; SUM
 CURR_SAL BY DEPARTMENT calculates the total amounts of current salaries in each
@@ -3483,10 +3600,12 @@ Displaying Reports With Multiple Display Commands
 The following request sums current salaries and education hours for the entire EMPLOYEE data
 source and for each department:
 
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL ED_HRS
 SUM CURR_SAL ED_HRS BY DEPARTMENT
 END
+```
 
 
 ## Sorting With Multiple Display Commands
@@ -3513,11 +3632,14 @@ The following request adds a PRINT command sorted by department and by last name
 previous request:
 
 SET SPACES = 1
+
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL ED_HRS
 SUM CURR_SAL ED_HRS BY DEPARTMENT AS 'DEPT'
 PRINT FIRST_NAME CURR_SAL ED_HRS BY DEPARTMENT BY LAST_NAME
 END
+```
 
 With DUPLICATECOL=ON, the output has separate columns for the grand totals, for the
 departmental totals, and for each last name:
@@ -3577,6 +3699,8 @@ employee by department).
 ## Sorting With Multiple Display Commands
 
 SET DUPLICATECOL = OFF
+
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL ED_HRS BY DEPARTMENT
 PRINT FIRST_NAME CURR_SAL ED_HRS BY DEPARTMENT BY LAST_NAME
@@ -3586,6 +3710,7 @@ TYPE = REPORT, COLUMN= P4, VERBSET = 1, STYLE = ITALIC,    COLOR=BLUE,$
 TYPE = REPORT, COLUMN= B2, VERBSET = 2, STYLE = UNDERLINE, COLOR = RED,$
 ENDSTYLE
 END
+```
 
 On the output:
 
@@ -3630,6 +3755,7 @@ The following request has three display commands. The first sums the CURR_SAL fi
 second sums the SALARY field by department. The third prints the GROSS field by department
 and last name. Each field is assigned the same AS name, even the CURR_SAL field.
 
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL AS CURR_SAL  ED_HRS
 SUM SALARY AS CURR_SAL ED_HRS BY DEPARTMENT AS 'DEPT'
@@ -3643,6 +3769,7 @@ VERBSET=2, COLOR=BLUE,$
 VERBSET=3,COLOR=BLACK,$
 ENDSTYLE
 END
+```
 
 
 The partial output is shown in the following image.
@@ -4094,9 +4221,12 @@ and, therefore, displays the last record:
 
 SET EXTAGGR = ON
 SET SUMPREFIX = LST
+
+```fex
 TABLE FILE CAR
 SUM CAR BY COUNTRY
 END
+```
 
 The output is:
 
@@ -4173,6 +4303,8 @@ matches the MIN.PRODUCT_CATEGORY value. The DAYSDELAYED numeric field is not aff
 by the SUMPREFIX value and is aggregated.
 
 SET SUMPREFIX = MIN
+
+```fex
 TABLE FILE WF_RETAIL_LITE
 SUM PRODUCT_CATEGORY DAYSDELAYED MIN.PRODUCT_CATEGORY MAX.PRODUCT_CATEGORY
      FST.PRODUCT_CATEGORY LST.PRODUCT_CATEGORY
@@ -4183,6 +4315,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 The output is shown in the following image.
 
@@ -4672,6 +4805,7 @@ Reporting on a Dimension HIerarchy
 The following request reports on the entire GL_ACCOUNT hierarchy for the CENTGL2 data
 source created in the Describing Data With WebFOCUS Language manual.
 
+```fex
 TABLE FILE NEWGL
 SUM GL_ACCOUNT_AMOUNT
 BY GL_ACCOUNT HIERARCHY
@@ -4680,6 +4814,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT,GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 Partial output is shown in the following image. The accounts are indented to show the
@@ -4690,6 +4825,7 @@ hierarchical relationships:
 
 The following is the same request using the GL_ACCOUNT_CAPTION field:
 
+```fex
 TABLE FILE NEWGL
 SUM GL_ACCOUNT_AMOUNT
 BY GL_ACCOUNT_CAPTION HIERARCHY
@@ -4698,6 +4834,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT,GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 Partial output is shown in the following image:
@@ -4714,6 +4851,7 @@ level up and one level down from the selected nodes with values. Note that all l
 root node display on the output for context, but if they are not in the members selected, they
 are not populated with measure values:
 
+```fex
 TABLE FILE NEWGL
 SUM GL_ACCOUNT_AMOUNT
 BY GL_ACCOUNT_CAPTION HIERARCHY
@@ -4724,6 +4862,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT,GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 The output is shown in the following image:
@@ -4738,6 +4877,7 @@ Using WHERE to Screen Selected Hierarchy Members
 The following request selects members using the WHEN phrase and then screens the output
 by applying a WHERE phrase to the selected members:
 
+```fex
 TABLE FILE NEWGL
 SUM GL_ACCOUNT_AMOUNT GL_ACCOUNT_TYPE
 BY GL_ACCOUNT HIERARCHY
@@ -4749,6 +4889,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF,$
 ENDSTYLE
 END
+```
 
 
 The output is shown in the following image:

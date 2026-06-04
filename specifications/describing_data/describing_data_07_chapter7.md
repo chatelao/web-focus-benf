@@ -585,6 +585,7 @@ CONTAINS '019';$
 
 The following request uses the joined Master File.
 
+```fex
 TABLE FILE EMPDATAJ1
 SUM SALARY TITLE AS 'Empdata Title' FUNCTITLE AS 'Jobhist Title'
 BY LASTNAME
@@ -599,6 +600,7 @@ GRID=OFF,$
 FONT=ARIAL, SIZE=8,$
 TYPE=TITLE, STYLE=BOLD,$
 END
+```
 
 The following image shows that all of the job class values from the EMPDATA segment start
 with the characters 257, and all of the job class values from the JOBHIST segment start with
@@ -1027,10 +1029,12 @@ SEGNAME=COMMA2, RDELIMITER=',', HEADER=NO, PRESERVESPACE=NO, $
 
 The following request uses the COMMA2 Master File to print the values.
 
+```fex
 TABLE FILE COMMA2
 PRINT COORD
 BY COUNTRY
 END
+```
 
 On the output, the LNGLAT field has been treated as two separate records. The partial output
 follows:

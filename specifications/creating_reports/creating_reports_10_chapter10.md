@@ -174,6 +174,7 @@ the request.
 
 The main report is:
 
+```fex
 TABLE FILE GGSALES
 HEADING
 "Sales Report"
@@ -193,6 +194,7 @@ TYPE=SUBFOOT, LINE=3, OBJECT=TEXT, ITEM=2, COLOR=BLUE,
      FOCEXEC=HSTSALES(STOREID=STCD), $
 ENDSTYLE
 END
+```
 
 Using StyleSheet declarations, the subfoot phrase Sales By Product links to a second
 procedure named PRDSALES and passes it the value of STCD displayed in the subfoot. The
@@ -201,6 +203,7 @@ of STCD displayed in the subfoot.
 
 The request for the linked report HSTSALES is:
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS
 BY STCD
@@ -211,9 +214,11 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The request for the linked report PRDSALES is:
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS
 BY STCD
@@ -224,6 +229,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 ## Linking to Another Report
@@ -365,6 +371,7 @@ are highlighted in the request.
 
 Note that webserver indicates the name of the webserver that runs WebFOCUS.
 
+```fex
 TABLE FILE GGSALES
 ON TABLE SET PAGE-NUM OFF
 SUM UNITS AND DOLLARS
@@ -379,6 +386,7 @@ TYPE=HEADING, LINE=2, OBJECT=TEXT, ITEM=1,
    URL=http://www.ibi.com, $
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -407,6 +415,7 @@ Reporting repository.
 
 The main procedure is:
 
+```fex
 TABLE FILE GGSALES
 ON TABLE SET PAGE-NUM OFF
 SUM UNITS AND DOLLARS
@@ -421,10 +430,13 @@ URL=/ibi_apps/WFServlet?(IBIF_ex='ggdrill' AREA=REGION
 IBIC_server='EDASERVE' IBI_APPS='IBISAMP'),$
 ENDSTYLE
 END
+```
 
 The drilldown report, which must be in application ibisamp, is:
 
 -DEFAULTS &REGION='$*';
+
+```fex
 TABLE FILE GGSALES
 ON TABLE SET PAGE-NUM OFF
 SUM UNITS AND DOLLARS
@@ -437,6 +449,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 The output of the main report is:
@@ -507,6 +520,7 @@ color is purple.
 
 ## Linking to a URL
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/D12CM UNITS/D12C
 BY REGION
@@ -524,6 +538,7 @@ TYPE=DATA, COLUMN=DOLLARS, COLOR=GREEN, HYPERLINK-COLOR='PURPLE',$
 TYPE=DATA, COLUMN=DOLLARS, WHEN=REGION GE 'O', URL='http://www.ibi.com',$
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -630,6 +645,7 @@ browser.
 The report request (which contains the inline StyleSheet) is:
 
 
+```fex
 TABLE FILE GGORDER
 SUM PRODUCT_ID
 BY STORE_CODE
@@ -642,6 +658,8 @@ TYPE=REPORT, GRID=OFF, $
 TYPE=DATA, COLUMN=PRODUCT_ID, JAVASCRIPT=showitem(PRODUCT),$
 ENDSTYLE
 END
+```
+
 -RUN
 -HTMLFORM JAVAFORM
 
@@ -731,6 +749,7 @@ output by linking the report to the appropriate Maintain procedure.
 
 The report request is:
 
+```fex
 TABLE FILE GGPRODS
 PRINT PRODUCT_DESCRIPTION VENDOR_CODE VENDOR_NAME UNIT_PRICE
 BY PRODUCT_ID
@@ -743,6 +762,7 @@ IBIS_passthru=\
      'on' IBIS_connect='on'), $
 ENDSTYLE
 END
+```
 
 The Maintain Data procedure (ggupd1) is:
 
@@ -1405,6 +1425,8 @@ Main report:
 
 SET LOOKGRAPH BAR
 SET 3D=OFF
+
+```fex
 GRAPH FILE SHORT
 HEADING
 "Sum of Balance Across Short Date"
@@ -1415,9 +1437,11 @@ ON GRAPH SET STYLE *
 TYPE=DATA, ACROSSCOLUMN=N1,FOCEXEC=PROJRET(Short_Date='06291998'),$
 ENDSTYLE
 END
+```
 
 Drill-down report (PROJRET):
 
+```fex
 TABLE FILE SHORT
 HEADING
 "Projected Returns Since June 29, 1998 "
@@ -1430,6 +1454,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 The output for the main report is:
@@ -1558,6 +1583,7 @@ a report that contains the product and regional breakdowns for the respective va
 
 Main report:
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS
 BY CATEGORY
@@ -1571,10 +1597,12 @@ ENDSTYLE
 FOOTING
 "This report was created on &DATE ."
 END
+```
 
 Drill-down report (SALES):
 
 
+```fex
 TABLE FILE GGSALES
 ON TABLE SET PAGE-NUM OFF
 SUM UNITS DOLLARS
@@ -1586,6 +1614,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The output for the main report is:
 
@@ -1604,6 +1633,8 @@ The relevant StyleSheet declarations are highlighted in the request.
 Main report:
 
 SET3D=OFF
+
+```fex
 GRAPH FILE EMPLOYEE
 HEADING
 "Salary Report Per Employee ID"
@@ -1615,9 +1646,11 @@ TYPE=DATA, ACROSSCOLUMN=SALARY,
 FOCEXEC=EMPBYDEP(DEPARTMENT='&DEPARTMENT'), $
 ENDSTYLE
 END
+```
 
 Linked report (EMPBYDEP):
 
+```fex
 TABLE FILE EMPLOYEE
 HEADING
 "List Of Employees in the '&DEPARTMENT' Department "
@@ -1629,6 +1662,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 When the main report request is run, the following prompt opens:
 
@@ -1693,6 +1727,8 @@ DRILLMETHOD=POST command and two parameters, one for CATEGORY and one for
 PRODUCT.
 
 SET DRILLMETHOD=POST
+
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS BUDDOLLARS
 BY CATEGORY
@@ -1704,6 +1740,8 @@ TYPE=DATA, COLUMN=N1, TARGET='_blank', FOCEXEC=IBFS:/WFC/Repository/
 My_Workspace/~admin/child_report.fex(PARA1=CATEGORY PARA2=PRODUCT), $
 ENDSTYLE
 END
+```
+
 -RUN
 
 Note: You can also use DRILLMETHOD in a StyleSheet command for each drill down, for
@@ -1713,6 +1751,7 @@ TYPE=DATA, COLUMN=N1, DRILLMETHOD='POST', FOCEXEC=drilldown.fex, $
 
 The following request is the child report.
 
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS BUDDOLLARS
 BY CATEGORY
@@ -1723,6 +1762,7 @@ ON TABLE SET STYLE *
 INCLUDE=IBFS:/FILE/IBI_HTML_DIR/ibi_themes/Warm.sty,$
 ENDSTYLE
 END
+```
 
 
 When you run the drill-down request with DRILLMETHOD=POST and select a category, for
@@ -1746,6 +1786,8 @@ highlighted in the request.
 Main report:
 
 SET 3D=OFF
+
+```fex
 GRAPH FILE EMPLOYEE
 SUM CURR_SAL
 ACROSS DEPARTMENT
@@ -1754,12 +1796,14 @@ TYPE=DATA, ACROSSCOLUMN=CURR_SAL,
 FOCEXEC=REPORT2 (DEPARTMENT='&DEPARTMENT' LAST_NAME='SMITH'), $
 ENDSTYLE
 END
+```
 
 
 ## Creating Parameters
 
 Drill-down report (REPORT2):
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT SALARY
 BY DEPARTMENT
@@ -1772,6 +1816,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 When the main report request is run, the following prompt opens:
 
@@ -1891,6 +1936,7 @@ The relevant declarations are highlighted in the requests.
 
 Main report:
 
+```fex
 TABLE FILE EMPLOYEE
 SUM CURR_SAL AS 'Total,Current,Salaries'
 BY DEPARTMENT AS 'Department'
@@ -1901,9 +1947,11 @@ TYPE=DATA, COLUMN=N1, FOCEXEC=REPORT3(DEPARTMENT=N1),
      WHEN=DEPARTMENT EQ 'MIS', $
 ENDSTYLE
 END
+```
 
 Drill-down report (REPORT3):
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT SALARY
 BY DEPARTMENT
@@ -1914,6 +1962,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 In the following output, note that only the MIS department is linked:
 
@@ -2083,6 +2132,7 @@ declarations are highlighted in the request.
 
 Main report:
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT LAST_NAME BY EMP_ID
 HEADING
@@ -2097,12 +2147,14 @@ IMAGE=E:\IBI\WEBFOCUS81\APPS\IBINCCEN\IMAGES\LEFTLOGO.GIF,
      FOCEXEC=IMAGE-D, $
 ENDSTYLE
 END
+```
 
 Note: The IBINCCEN directory contains the English version of the samples.
 
 Drill-down report (IMAGE-D):
 
 
+```fex
 TABLE FILE EMPDATA
 PRINT SALARY
 BY DIV
@@ -2112,6 +2164,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 The output for the main report is:
 
@@ -2342,6 +2395,7 @@ SET TARGETFRAME=_SELF
 The following illustrates how to specify a target frame in a request. The relevant StyleSheet
 declaration is highlighted in the request.
 
+```fex
 TABLE FILE EMPLOYEE
 PRINT CURR_SAL
 BY DEPARTMENT
@@ -2350,6 +2404,7 @@ TYPE=DATA, COLUMN=N1, URL=http:\\www.informationbuilders.com,
      TARGET=_SELF, $
 ENDSTYLE
 END
+```
 
 ## Creating a Compound Report
 
@@ -2555,12 +2610,15 @@ page that do not overlap with the heading.
 For example, the following report does not display any data:
 
 SET COMPONENT='DfltCmpt1'
+
+```fex
 TABLE FILE SYSCOLUM
 SUM TBNAME NOPRINT
 IF READLIMIT EQ 1
 ON TABLE SET PREVIEW ON
 ON TABLE SET PAGE-NUM NOLEAD
 END
+```
 
 Page masters for coordinated compound reports must have the same primary BY field as
 other components in the compound layout report. The best way to create the default
@@ -2570,6 +2628,8 @@ PAGELAYOUT1 is against the GGSALES data source, and the primary BY field is PCD,
 default component for the page master could be:
 
 SET COMPONENT='DfltCmpt1'
+
+```fex
 TABLE FILE GGSALES
 SUM UNITS NOPRINT
 BY PCD NOPRINT
@@ -2577,6 +2637,7 @@ IF READLIMIT EQ 1
 ON TABLE SET PREVIEW ON
 ON TABLE SET PAGE-NUM NOLEAD
 END
+```
 
 
 Note that the recommended way to create a design theme with repeating text and images
@@ -2762,6 +2823,8 @@ COMPONENT=Sales, TYPE=REPORT, POSITION=(1 1), DIMENSION=(4 4), $
 COMPONENT=Units, TYPE=REPORT, POSITION=(6.25 1), DIMENSION=(4 4), $
 END
 SET COMPONENT=Sales
+
+```fex
 TABLE FILE GGSALES
 "Sales report for <REGION"
 " "
@@ -2773,7 +2836,11 @@ ON TABLE HOLD FORMAT PDF
 ON TABLE SET STYLE *
 TYPE=REPORT, FONT=HELVETICA, COLOR=RED, SQUEEZE=ON, $
 END
+```
+
 SET COMPONENT=Units
+
+```fex
 TABLE FILE GGSALES
 "Number of unit sales per product for <REGION"
 " "
@@ -2785,6 +2852,8 @@ ON TABLE SET STYLE *
 TYPE=REPORT, FONT=HELVETICA, COLOR=BLUE, SQUEEZE=ON, $
 ENDSTYLE
 END
+```
+
 COMPOUND END
 
 The following syntax is an example of what the same report might look like if the component
@@ -2837,6 +2906,8 @@ END
 
 
 SET COMPONENT=Sales
+
+```fex
 GRAPH FILE GGSALES
 SUM PCT.DOLLARS
 BY REGION NOPRINT
@@ -2875,10 +2946,12 @@ setTextString(getY1Title(),"");
 setFontStyle(getTitle(),0);
 ENDSTYLE
 END
+```
 
 
 ## Creating a Compound Report
 
+```fex
 TABLE FILE GGSALES
 "Percent of Sales by Product in <REGION"
 " "
@@ -2896,8 +2969,11 @@ TYPE=REPORT,PAGE-LOCATION=OFF,$
 TYPE=REPORT, FONT=HELVETICA, COLOR=BLACK, SQUEEZE=ON, $
 ENDSTYLE
 END
+```
 
 SET COMPONENT=Fuel
+
+```fex
 TABLE FILE GGSALES
 "Sales report for <REGION"
 " "
@@ -2910,6 +2986,8 @@ ON TABLE SET STYLE *
 TYPE=REPORT, FONT=HELVETICA, COLOR=RED, SQUEEZE=ON, $
 ENDSTYLE
 END
+```
+
 COMPOUND END
 
 
@@ -2930,6 +3008,7 @@ embedded value of the first sort field at the top of each side.
 For the heading report, create a procedure (named HEADER.FEX), and enter the following
 syntax:
 
+```fex
 TABLE FILE GGSALES
 " "
 "Report package for <REGION"
@@ -2941,6 +3020,7 @@ TYPE=REPORT, IMAGE=poweredbyibi.gif, POSITION=(+.25 +.25), $
 TYPE=HEADING, LINE=2, ITEM=1, POSITION=4, $
 ENDSTYLE
 END
+```
 
 
 ## Creating a Compound Report
@@ -2949,6 +3029,7 @@ We will use components R1 and R2 from the previous example. If you did not alrea
 save them as REPORT1.FEX and REPORT2.FEX. Enter the following syntax as the R3 report
 component, by creating a procedure named REPORT3.FEX.
 
+```fex
 TABLE FILE GGSALES
 "Report R3 for <REGION"
 BY REGION NOPRINT
@@ -2958,6 +3039,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, FONT=HELVETICA, COLOR=GREEN, $
 ENDSTYLE
 END
+```
 
 From the Text Editor, enter the following syntax specifying that the R1 and R2 report
 components appear on page 1. The R3 report component appears on page 2, and the heading
@@ -3032,6 +3114,8 @@ SECTION=Example, LAYOUT=ON, MERGE=OFF, $
 END
 
 SET COMPONENT=R1
+
+```fex
 TABLE FILE GGSALES
 HEADING CENTER
 "Report 1"
@@ -3043,9 +3127,12 @@ ON TABLE SET STYLE *
 TYPE=REPORT, FONT=HELVETICA, SQUEEZE=ON, $
 ENDSTYLE
 END
+```
 
 
 SET COMPONENT=R2
+
+```fex
 TABLE FILE GGSALES
 HEADING CENTER
 "Report 2"
@@ -3060,8 +3147,11 @@ ON TABLE SET STYLE *
 TYPE=REPORT, FONT=HELVETICA, SQUEEZE=ON, $
 ENDSTYLE
 END
+```
 
 SET COMPONENT=HEADER
+
+```fex
 TABLE FILE GGSALES
 HEADING
 "Gotham Grinds sales to Information Builders, October 1997"
@@ -3071,6 +3161,7 @@ ON TABLE SET STYLE *
 TYPE=REPORT, IMAGE=gotham.gif, POSITION=(3.25 .25), DIMENSION=(2 .75), $
 ENDSTYLE
 END
+```
 
 
 ## Creating a Compound Report
@@ -3316,6 +3407,8 @@ OBJECT=IMAGE, IMAGE=gglogo.gif, POSITION=(1 4.5), DIMENSION=(1 1), $
 OBJECT=BOX, POSITION=(1 1), DIMENSION=(5 3), BACKCOLOR=GOLDENROD, $
 END
 SET COMPONENT=Sales
+
+```fex
 TABLE FILE GGSALES
 "Sales report for <REGION"
 " "
@@ -3327,7 +3420,11 @@ ON TABLE SET STYLE *
 TYPE=REPORT, FONT=HELVETICA, STYLE=BOLD, $
 ENDSTYLE
 END
+```
+
 SET COMPONENT=Budget
+
+```fex
 TABLE FILE GGSALES
 "Budget report for <REGION"
 " "
@@ -3339,6 +3436,8 @@ ON TABLE SET STYLE *
 TYPE=REPORT, FONT=HELVETICA, COLOR=BLUE, $
 ENDSTYLE
 END
+```
+
 COMPOUND END
 
 
@@ -3574,6 +3673,8 @@ Object on page 901.
 
 SET PAGE-NUM=OFF
 SET LAYOUTGRID=ON
+
+```fex
 TABLE FILE GGSALES
 BY REGION NOPRINT
 ON TABLE PCHOLD AS LINESP1 FORMAT PDF
@@ -3595,6 +3696,7 @@ object=string, position=(1 1), dimension=(7 3), wrap=on, markup=on,
  employees to serve them.</full>', $
 ENDSTYLE
 END
+```
 
 In this request:
 
@@ -3661,6 +3763,8 @@ END
 
 
 SET COMPONENT=HEADER
+
+```fex
 TABLE FILE GGSALES
 " "
 "Report package for <REGION"
@@ -3672,7 +3776,11 @@ TYPE=REPORT, IMAGE=gglogo.gif, POSITION=(+.25 +.25), $
 TYPE=HEADING, LINE=2, ITEM=1, POSITION=1.5, $
 ENDSTYLE
 END
+```
+
 SET COMPONENT=R1
+
+```fex
 TABLE FILE GGSALES
 "Sales report for <REGION"
 " "
@@ -3684,7 +3792,11 @@ ON TABLE SET STYLE *
 TYPE=REPORT, FONT=HELVETICA, COLOR=RED, SQUEEZE=ON, $
 ENDSTYLE
 END
+```
+
 SET COMPONENT=R2
+
+```fex
 TABLE FILE GGSALES
 "Number of unit sales per product for <REGION"
 " "
@@ -3695,7 +3807,11 @@ ON TABLE SET STYLE *
 TYPE=REPORT, FONT=HELVETICA, COLOR=BLUE, SQUEEZE=ON, $
 ENDSTYLE
 END
+```
+
 SET COMPONENT=R3
+
+```fex
 TABLE FILE GGSALES
 "Report R3 for <REGION"
 BY REGION NOPRINT
@@ -3704,6 +3820,8 @@ ON TABLE SET STYLE *
 TYPE=REPORT, FONT=HELVETICA, COLOR=GREEN, $
 ENDSTYLE
 END
+```
+
 COMPOUND END
 
 
@@ -3740,6 +3858,8 @@ on displaying carriage returns within the text object see Text Formatting Markup
 Object on page 901.
 
 SET PAGE-NUM=OFF
+
+```fex
 TABLE FILE GGSALES
 BY REGION NOPRINT
 ON TABLE PCHOLD FORMAT PDF
@@ -3759,6 +3879,7 @@ using bottom alignment.</bottom>', position=(5.05 .9), dimension=(2
 1),linespacing=exact(.15), markup=on, wrap=on, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -3887,6 +4008,7 @@ END
 
 The following procedure creates the data source GGHDR:
 
+```fex
 TABLE FILE GGORDER
 SUM
      FST.STORE_NAME
@@ -3900,9 +4022,11 @@ WHERE STORE_CODE IN ('R1019','R1020','R1040','R1041');
 ON TABLE NOTOTAL
 ON TABLE HOLD AS GGHDR FORMAT FOCUS INDEX 'STORE_CODE'
 END
+```
 
 The following procedure creates the data source GG1:
 
+```fex
 TABLE FILE GGORDER
 PRINT
      QUANTITY
@@ -3918,9 +4042,11 @@ WHERE ( PRODUCT_CATEGORY EQ 'Coffee' ) AND ( ORDER_DATE GE '09/01/97' );
 WHERE STORE_CODE IN ('R1019','R1040','R1088');
 ON TABLE HOLD AS GG1 FORMAT FOCUS INDEX 'STORE_CODE'
 END
+```
 
 The following procedure creates the data source GG2:
 
+```fex
 TABLE FILE GGORDER
 PRINT
      QUANTITY
@@ -3936,12 +4062,14 @@ WHERE ( PRODUCT_CATEGORY EQ 'Food' ) AND ( ORDER_DATE GE '09/01/97' );
 WHERE STORE_CODE IN ('R1019','R1020','R1041','R1088');
 ON TABLE HOLD AS GG2 FORMAT FOCUS INDEX 'STORE_CODE'
 END
+```
 
 
 ## Creating a Compound Report
 
 The following procedure creates the data source GG3:
 
+```fex
 TABLE FILE GGORDER
 PRINT
      QUANTITY
@@ -3957,6 +4085,7 @@ WHERE ( PRODUCT_CATEGORY EQ 'Gifts' ) AND ( ORDER_DATE GE '09/01/97' );
 WHERE STORE_CODE IN ('R1019','R1020','R1040','R1088');
 ON TABLE HOLD AS GG3 FORMAT FOCUS INDEX 'STORE_CODE'
 END
+```
 
 Example:
 
@@ -3968,6 +4097,7 @@ page of the Compound Layout report. The shared sort field for all of the report 
 STORE_CODE. On each page of the PDF output file, this procedure lists the name and address
 of one store:
 
+```fex
 TABLE FILE GGHDR
 BY STORE_CODE NOPRINT
 HEADING
@@ -3994,12 +4124,14 @@ TYPE=HEADING,
      COLOR=BLUE,$
 ENDSTYLE
 END
+```
 
 
 The following procedure, GGRPT1.FEX, creates the second report component for the
 Coordinated Compound Layout report. For the same store code value in the header report, it
 displays data from the GG1 data source about the product category Coffee:
 
+```fex
 TABLE FILE GG1
 SUM
      QUANTITY
@@ -4035,6 +4167,7 @@ TYPE=HEADING,
     COLOR=RED,$
 ENDSTYLE
 END
+```
 
 
 ## Creating a Compound Report
@@ -4043,6 +4176,7 @@ The following procedure, GGRPT2.FEX, creates the third report component for the 
 Compound Layout report. For the same store code value in the header report, it displays data
 from the GG2 data source about the product category Food:
 
+```fex
 TABLE FILE GG2
 SUM
      QUANTITY
@@ -4078,12 +4212,14 @@ TYPE=HEADING,
      COLOR=RED,$
 ENDSTYLE
 END
+```
 
 
 The following procedure, GGRPT3.FEX, creates the final report component for the Coordinated
 Compound Layout report. For the same store code value in the header report, it displays data
 from the GG3 data source about the product category Gifts:
 
+```fex
 TABLE FILE GG3
 SUM
      QUANTITY
@@ -4119,6 +4255,7 @@ TYPE=HEADING,
      COLOR=RED,$
 ENDSTYLE
 END
+```
 
 
 ## Creating a Compound Report
@@ -4268,6 +4405,8 @@ POSITION=(+0.00 +0.519), DIMENSION=(* *), RELATIVE-TO='report1',
 RELATIVE-POINT=BOTTOM-LEFT, POSITION-POINT=TOP-LEFT, $
 END
 SET COMPONENT=report1
+
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/F8M
 BY CATEGORY
@@ -4281,7 +4420,11 @@ ON TABLE SET STYLE *
 TYPE=REPORT, SQUEEZE=ON, $
 ENDSTYLE
 END
+```
+
 SET COMPONENT=report2
+
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/F8M
 BY REGION
@@ -4295,6 +4438,8 @@ ON TABLE SET STYLE *
 TYPE=REPORT, SQUEEZE=ON, $
 ENDSTYLE
 END
+```
+
 COMPOUND END
 
 
@@ -4484,6 +4629,8 @@ END
 ## Creating a Compound Report
 
 SET COMPONENT=report1
+
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/F8M
 BY CATEGORY
@@ -4497,8 +4644,11 @@ ON TABLE SET STYLE *
 TYPE=REPORT, SQUEEZE=ON, $
 ENDSTYLE
 END
+```
 
 SET COMPONENT=report2
+
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/F8M
 BY REGION
@@ -4512,6 +4662,8 @@ ON TABLE SET STYLE *
 TYPE=REPORT, SQUEEZE=ON, $
 ENDSTYLE
 END
+```
+
 COMPOUND END
 
 
@@ -4629,6 +4781,8 @@ Report on page 938.
 Report 1:
 
 SET PAGE-NUM=OFF
+
+```fex
 TABLE FILE CENTORD
 HEADING
 "Sales Report"
@@ -4640,10 +4794,12 @@ TYPE=HEADING, SIZE=18, $
 ENDSTYLE
 ON TABLE PCHOLD FORMAT PDF OPEN NOBREAK
 END
+```
 
 
 Report 2:
 
+```fex
 TABLE FILE CENTORD
 HEADING
 "Inventory Report"
@@ -4655,9 +4811,11 @@ TYPE=HEADING, SIZE=18, $
 ENDSTYLE
 ON TABLE PCHOLD FORMAT PDF NOBREAK
 END
+```
 
 Report 3:
 
+```fex
 TABLE FILE CENTORD
 HEADING
 "Cost of Goods Sold Report"
@@ -4669,6 +4827,7 @@ TYPE=HEADING, SIZE=18, $
 ENDSTYLE
 ON TABLE PCHOLD FORMAT PDF CLOSE
 END
+```
 
 
 ## Creating a Compound Report
@@ -4711,6 +4870,8 @@ reports on the same page. Key lines of code are highlighted in the following req
 Report 1:
 
 SET GRMERGE = ON
+
+```fex
 GRAPH FILE SHORT
 SUM PROJECTED_RETURN AS 'Return on Investment'
 BY HOLDER
@@ -4719,8 +4880,11 @@ ON GRAPH SET LOOKGRAPH 3D_BAR
 ON GRAPH SET GRAPHEDIT SERVER
 ON GRAPH HOLD AS SLSGRPH1 FORMAT GIF
 END
+```
 
 SET COMPOUND='OPEN NOBREAK'
+
+```fex
 TABLE FILE SHORT
 SUM PROJECTED_RETURN AS 'Return on Investment'
 BY CONTINENT
@@ -4737,12 +4901,14 @@ ENDSTYLE
 ON TABLE PCHOLD FORMAT PDF
 
 END
+```
 
 
 ## Creating a Compound Report
 
 Report 2:
 
+```fex
 GRAPH FILE TRADES
 SUM AMOUNT
 BY CONTINENT
@@ -4750,8 +4916,11 @@ ON GRAPH SET LOOKGRAPH PIE
 ON GRAPH SET GRAPHEDIT SERVER
 ON GRAPH HOLD AS TRDSGR1 FORMAT GIF
 END
+```
 
 SET COMPOUND=NOBREAK
+
+```fex
 TABLE FILE TRADES
 SUM AMOUNT AS 'Amount'
 BY CONTINENT AS 'Continent'
@@ -4767,10 +4936,12 @@ TYPE=REPORT, IMAGE=TRDSGR1.gif, POSITION=(4 3), SIZE=(4 2.5), $
 ENDSTYLE
 ON TABLE PCHOLD FORMAT HTML
 END
+```
 
 
 Report 3:
 
+```fex
 GRAPH FILE SHORT
 SUM BALANCE
 BY CONTINENT
@@ -4781,8 +4952,11 @@ TYPE=DATA, COLOR=RED,$
 ENDSTYLE
 ON GRAPH HOLD AS BALGR1 FORMAT GIF
 END
+```
 
 SET COMPOUND=CLOSE
+
+```fex
 TABLE FILE SHORT
 SUM BALANCE AS 'Balance'
 BY CONTINENT AS 'Continent'
@@ -4797,6 +4971,7 @@ TYPE=REPORT, IMAGE=BALGR1.gif, POSITION=(4 6), SIZE=(4 2.5), $
 ENDSTYLE
 ON TABLE PCHOLD FORMAT EXL2K
 END
+```
 
 
 ## Creating a Compound Report
@@ -4907,6 +5082,8 @@ Creating a Simple Compound Report Using EXL2K
 
 
 SET PAGE-NUM=OFF
+
+```fex
 TABLE FILE CAR
 HEADING
 "Sales Report"
@@ -4919,7 +5096,9 @@ type=heading, size=18, $
 ENDSTYLE
 ON TABLE PCHOLD AS EX1 FORMAT EXL2K OPEN
 END
+```
 
+```fex
 TABLE FILE CAR
 HEADING
 "Inventory Report"
@@ -4932,7 +5111,9 @@ type=heading, size=18, $
 ENDSTYLE
 ON TABLE HOLD AS EX1 FORMAT EXL2K
 END
+```
 
+```fex
 TABLE FILE CAR
 HEADING
 "Cost of Goods Sold Report"
@@ -4945,6 +5126,7 @@ type=heading, size=18, $
 ENDSTYLE
 ON TABLE HOLD AS EX1 FORMAT EXL2K CLOSE
 END
+```
 
 
 ## Creating a Compound Report
@@ -4957,6 +5139,8 @@ Example:
 Creating a Compound Report With Pivot Tables and Formulas
 
 SET PAGE-NUM=OFF
+
+```fex
 TABLE FILE CAR
 HEADING
 "Sales Report"
@@ -4969,10 +5153,12 @@ type=heading, size=18, $
 ENDSTYLE
 ON TABLE PCHOLD AS PIV1 FORMAT EXL2K OPEN
 END
+```
 
 
 ## Creating a Compound Report
 
+```fex
 TABLE FILE CAR
 HEADING
 "Inventory Report"
@@ -4987,14 +5173,18 @@ ON TABLE HOLD AS PPPP FORMAT EXL2K PIVOT
 PAGEFIELDS TYPE SEATS
 CACHEFIELDS MODEL MPG RPM
 END
+```
 
+```fex
 TABLE FILE CAR
 SUM RCOST
 BY COUNTRY BY CAR BY MODEL BY TYPE BY SEATS SUMMARIZE
 ON MODEL SUB-TOTAL
 ON TABLE HOLD AS XFOCB FORMAT EXL2K FORMULA
 END
+```
 
+```fex
 TABLE FILE CAR
 HEADING
 "Cost of Goods Sold Report"
@@ -5009,6 +5199,7 @@ ON TABLE HOLD AS ONE FORMAT EXL2K CLOSE PIVOT
 PAGEFIELDS RCOST
 CACHEFIELDS MODEL TYPE SALES ACCEL SEATS
 END
+```
 
 
 The output for each tab in the Excel worksheet is:
@@ -5024,6 +5215,7 @@ Creating a Compound Report Using NOBREAK
 In this example, the first two reports are on the first worksheet, and the last two reports are on
 the second worksheet, since NOBREAK appears on both the first and third reports.
 
+```fex
 TABLE FILE GGSALES
 HEADING
 "Report 1: Coffee - Budget"
@@ -5038,7 +5230,9 @@ type=heading,   size=12, style=bold, color=blue, $
 type=grandtotal,  style=bold,  $
 ENDSTYLE
 END
+```
 
+```fex
 TABLE FILE GGSALES
 HEADING
 " "
@@ -5053,7 +5247,9 @@ type=grandtotal,  style=bold, $
 type=heading,  size=12, style=bold, color=blue, $
 ENDSTYLE
 END
+```
 
+```fex
 TABLE FILE GGSALES
 HEADING
 "Report 3: Food - Budget"
@@ -5068,10 +5264,12 @@ type=title, style=bold, $
 type=grandtotal,  style=bold,  $
 ENDSTYLE
 END
+```
 
 
 ## Creating a Compound Report
 
+```fex
 TABLE FILE GGSALES
 HEADING
 " "
@@ -5087,6 +5285,7 @@ type=heading,size=12, style=bold,  color=blue,$
 type=grandtotal, style=bold,  $
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -5364,10 +5563,12 @@ Creating the Summary Report (Step 1)
 
 The following syntax generates a sample summary report:
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS BY CATEGORY BY PRODUCT
 ON TABLE PCHOLD FORMAT PDF
 END
+```
 
 The output is:
 
@@ -5383,6 +5584,8 @@ The following syntax generates a sample detail report:
 The first page of the output is:
 
 SET SQUEEZE=ON
+
+```fex
 TABLE FILE GGSALES
 SUM UNITS BUDUNITS DOLLARS
 BY CATEGORY NOPRINT BY PRODUCT NOPRINT
@@ -5399,6 +5602,7 @@ ON PRODUCT PAGE-BREAK
 BY REGION BY CITY
 ON TABLE PCHOLD FORMAT PDF
 END
+```
 
 
 Example:
@@ -5439,6 +5643,7 @@ Uses the default appearance for the hyperlinks, which is blue, underlined text.
 
 The summary report is:
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS BY CATEGORY BY PRODUCT
 ON TABLE PCHOLD FORMAT PDF
@@ -5446,6 +5651,7 @@ ON TABLE SET STYLE *
 TYPE=DATA, COLUMN=PRODUCT, DRILLTHROUGH=DOWN(CATEGORY PRODUCT), $
 ENDSTYLE
 END
+```
 
 
 Creating a PDF Compound Report With Drill Through Links
@@ -5467,6 +5673,8 @@ Uses the COLOR attribute to display the hyperlink as red, underlined text.
 The detail report is:
 
 SET SQUEEZE=ON
+
+```fex
 TABLE FILE GGSALES
 SUM UNITS BUDUNITS DOLLARS
 BY CATEGORY NOPRINT BY PRODUCT NOPRINT
@@ -5487,6 +5695,7 @@ TYPE=SUBFOOT, LINE=2, ITEM=1, DRILLTHROUGH=FIRST(CATEGORY PRODUCT),
 COLOR=RED, $
 ENDSTYLE
 END
+```
 
 The next step is the only step that is different for creating a Compound Layout report or a
 legacy Compound Report.
@@ -5532,6 +5741,8 @@ END
 
 -* Add Report1 code and SET COMPONENT command
 SET COMPONENT='REPORT1'
+
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS BY CATEGORY BY PRODUCT
 ON TABLE PCHOLD FORMAT PDF
@@ -5539,6 +5750,7 @@ ON TABLE SET STYLE *
 TYPE=DATA, COLUMN=PRODUCT, DRILLTHROUGH=DOWN(CATEGORY PRODUCT), $
 ENDSTYLE
 END
+```
 
 
 Creating a PDF Compound Report With Drill Through Links
@@ -5546,6 +5758,8 @@ Creating a PDF Compound Report With Drill Through Links
 -* Add report2 code and SET COMPONENT command
 SET COMPONENT='REPORT2'
 SET SQUEEZE=ON
+
+```fex
 TABLE FILE GGSALES
 SUM UNITS BUDUNITS DOLLARS
 BY CATEGORY NOPRINT BY PRODUCT NOPRINT
@@ -5566,6 +5780,8 @@ TYPE=SUBFOOT, LINE=2, ITEM=1, DRILLTHROUGH=FIRST(CATEGORY PRODUCT),
 COLOR=RED, $
 ENDSTYLE
 END
+```
+
 COMPOUND END
 
 Example: Merging Summary and Detail Reports Into a PDF Compound Report (Step 4)
@@ -5586,6 +5802,7 @@ intervening page breaks.
 This example uses the OPEN and CLOSE options on the PCHOLD FORMAT PDF command:
 
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS BY CATEGORY BY PRODUCT
 ON TABLE PCHOLD FORMAT PDF OPEN
@@ -5593,8 +5810,11 @@ ON TABLE SET STYLE *
 TYPE=DATA, COLUMN=PRODUCT, DRILLTHROUGH=DOWN(CATEGORY PRODUCT), $
 ENDSTYLE
 END
+```
 
 SET SQUEEZE=ON
+
+```fex
 TABLE FILE GGSALES
 SUM UNITS BUDUNITS DOLLARS
 BY CATEGORY NOPRINT BY PRODUCT NOPRINT
@@ -5615,6 +5835,7 @@ TYPE=SUBFOOT, LINE=2, ITEM=1, DRILLTHROUGH=FIRST(CATEGORY PRODUCT),
 COLOR=RED, $
 ENDSTYLE
 END
+```
 
 
 Creating a PDF Compound Report With Drill Through Links

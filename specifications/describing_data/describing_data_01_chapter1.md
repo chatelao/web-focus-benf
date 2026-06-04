@@ -399,10 +399,12 @@ DYNAM ALLOC DD EMPLOYEE LONGNAME EMPLOYEE_DATA -
 
 You can now issue a request using the long name:
 
+```fex
 TABLE FILE EMPLOYEE_DATA
 PRINT CURR_SAL
 BY LAST_NAME BY FIRST_NAME
 END
+```
 
 The output is:
 

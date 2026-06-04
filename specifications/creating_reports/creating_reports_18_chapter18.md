@@ -309,6 +309,7 @@ Using Sequential Conditional Formatting
 This example illustrates how to apply sequential conditional formatting to a report. This report
 uses sequential conditional logic to format each row based on its order total (LINEPRICE).
 
+```fex
    TABLE FILE CENTORD
    HEADING
    "Order Revenue"
@@ -330,6 +331,7 @@ uses sequential conditional logic to format each row based on its order total (L
    ENDSTYLE
 
    END
+```
 
 Notice that:
 
@@ -374,6 +376,7 @@ Notice that because a particular column is not specified in the declaration, the
 applied to the entire row.
 
 
+```fex
 TABLE FILE CENTORD
 HEADING
 "Order Revenue"
@@ -389,6 +392,7 @@ TYPE=HEADING, FONT='Arial', STYLE=BOLD, SIZE=11, $
 ENDSTYLE
 
 END
+```
 
 The output is:
 
@@ -406,6 +410,7 @@ orders exceeding 200,000 should display in boldface with an aqua background.
 Notice that the column that is evaluated in the WHEN condition (LINEPRICE) is different from
 the column that is formatted (ORDER_NUM); they do not need to be the same.
 
+```fex
 TABLE FILE CENTORD
 HEADING
 "Order Revenue"
@@ -422,6 +427,7 @@ TYPE=HEADING, FONT='Arial', STYLE=BOLD, SIZE=11, $
 ENDSTYLE
 
 END
+```
 
 
 The output is:
@@ -442,6 +448,8 @@ for all ACROSS columns in the Category Coffee, and additional font styling for t
 ACROSS column.
 
 SET ACROSSTITLE=SIDE
+
+```fex
 TABLE FILE GGSALES
 SUM DOLLARS/I8M AS ''
 BY REGION
@@ -465,6 +473,7 @@ TYPE=DATA, ACROSSCOLUMN=DOLLARS, BACKCOLOR=THISTLE, WHEN=CATEGORY EQ
 TYPE=DATA, ACROSSCOLUMN=DOLLARS, STYLE=BOLD+ITALIC, WHEN=A2 EQ 'Espresso', $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -481,6 +490,7 @@ more than 200,000. It conditionally applies that formatting both to the data col
 
 Note that data visualization is only supported for HTML reports.
 
+```fex
 TABLE FILE CENTORD
 HEADING
 "Order Revenue"
@@ -498,6 +508,7 @@ TYPE=HEADING, FONT='Arial', STYLE=BOLD, SIZE=11, $
 ENDSTYLE
 
 END
+```
 
 
 ## Conditionally Formatting, Displaying, and Linking in a StyleSheet
@@ -518,6 +529,7 @@ request, you can prevent it from displaying in the report by using the NOPRINT o
 shown in the following request.
 
 
+```fex
 TABLE FILE CENTHR
 HEADING
 "Employee List for Boston"
@@ -543,6 +555,7 @@ TYPE=HEADING, LINE=5, ITEM=2, STYLE=BOLD, COLOR=RED, $
 ENDSTYLE
 
 END
+```
 
 
 ## Conditionally Formatting, Displaying, and Linking in a StyleSheet
@@ -560,6 +573,7 @@ Notice that one conditional declaration can apply formatting to all the sort gro
 accomplish this by evaluating the sort field (STATUS) in the WHEN attribute condition.
 
 
+```fex
 TABLE FILE CENTHR
 HEADING
 "Employee List for Boston"
@@ -579,6 +593,7 @@ TYPE=HEADING, FONT='Arial', STYLE=BOLD, SIZE=11, $
 ENDSTYLE
 
 END
+```
 
 The output is:
 
@@ -589,6 +604,7 @@ In order to apply the same conditional formatting to only two columns, instead o
 columns, this version of the report request uses two declarations, each specifying a different
 column (LNAME and FNAME):
 
+```fex
 TABLE FILE CENTHR
 HEADING
 "Employee List for Boston"
@@ -610,6 +626,7 @@ TYPE=HEADING, FONT='Arial', STYLE=BOLD, SIZE=11, $
 ENDSTYLE
 
 END
+```
 
 
 The output is:
@@ -632,6 +649,7 @@ SMONTH/M = SDATE;
 PERIOD/I2 = SMONTH;
 END
 
+```fex
 TABLE FILE GGSALES
 SUM UNITS DOLLARS
 BY CATEGORY BY PERIOD
@@ -643,6 +661,7 @@ TYPE=REPORT, GRID=OFF, $
 TYPE=REPORT, BACKCOLOR=SILVER, WHEN=FORECAST, $
 ENDSTYLE
 END
+```
 
 The output is:
 
@@ -734,6 +753,8 @@ DIV, and PIN. PIN is a sort field, but the other sort field must be entered at r
 amper variable &F1:
 
 SET USER = EUSER
+
+```fex
  TABLE FILE EMPDATA
    SUM SALARY
    BY &F1
@@ -743,6 +764,7 @@ SET USER = EUSER
       ON DIV   PAGE-BREAK
       ON TABLE SET ONFIELD ALL
  END
+```
 
 Run the request supplying the value DEPT for the variable &F1. The following messages are
 generated:
@@ -836,12 +858,14 @@ quotation marks.
 If the condition evaluates a numeric detail field, it evaluates the sum of the detail field
 values within each sort group, not the individual detail values. For example, in the request
 
+```fex
 TABLE FILE CENTHR
 PRINT ID_NUM SALARY
 BY PLANT
 ON PLANT UNDER-LINE
 WHEN SALARY GT 2000000
 END
+```
 
 the condition evaluates the sum of the SALARY values within each PLANT value.
 
@@ -872,6 +896,7 @@ Using a WHEN Condition for a Sort Option
 This example illustrates how to conditionally display a sub footing in a report. This report uses
 a conditional sort footing to draw attention to orders that total less than 200,000.
 
+```fex
 TABLE FILE CENTORD
 HEADING
 "Order Revenue"
@@ -890,6 +915,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 ## Conditionally Including Summary Lines, Underlines, Skipped Lines, and Page Breaks
@@ -907,6 +933,7 @@ less than 200,000.
 Notice that one sort phrase (ON ORDER_NUM) specifies several sort-related options (two
 different SUBFOOT phrases), and that each option has its own WHEN phrase.
 
+```fex
 TABLE FILE CENTORD
 HEADING
 "Order Revenue"
@@ -928,6 +955,7 @@ ON TABLE SET STYLESHEET *
 TYPE=REPORT, GRID=OFF, $
 ENDSTYLE
 END
+```
 
 
 The output is:
@@ -1002,6 +1030,8 @@ The following request does not retrieve any records and sets the EMPTYREPORT par
 OFF.
 
 SET EMPTYREPORT=OFF
+
+```fex
 TABLE FILE WF_RETAIL_LITE
 HEADING
 "This is the heading"
@@ -1013,6 +1043,7 @@ FOOTING
 ON TABLE SET STYLE *
 GRID=OFF,$
 END
+```
 
 The following output is produced.
 

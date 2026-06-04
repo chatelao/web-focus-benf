@@ -310,6 +310,7 @@ curprods.fex. The external cascading style sheet, named report01.css, follows th
 
 curprods.fex
 
+```fex
     TABLE FILE GGPRODS
     HEADING
     "</1 Current Products</1"
@@ -324,6 +325,7 @@ curprods.fex
 5.  TYPE=DATA, CLASS=lowCost, WHEN=N3 LT 27, $
 6.  ENDSTYLE
     END
+```
 
 
 Note: To specify a path that points to a WebFOCUS repository that contains the report01.css
@@ -830,6 +832,7 @@ This report displays the products currently offered by Gotham Grinds. It is form
 external cascading style sheet (CSS), and links to the CSS using the CSSURL attribute in the
 WebFOCUS StyleSheet:
 
+```fex
 TABLE FILE GGPRODS
 HEADING
 "</1 Current Products</1"
@@ -845,6 +848,7 @@ TYPE=DATA, CLASS=lowCost, WHEN=N3 LT 27, $
 ENDSTYLE
 
 END
+```
 
 The request produces this report:
 
@@ -940,6 +944,7 @@ prodvend.fex. The external cascading style sheet, named report02.css, follows th
 
 prodvend.fex
 
+```fex
    TABLE FILE GGPRODS
    PRINT PRODUCT_DESCRIPTION VENDOR_NAME
    BY PRODUCT_ID
@@ -953,6 +958,7 @@ prodvend.fex
 
 
     END
+```
 
 report02.css
 
@@ -1038,6 +1044,8 @@ that you use this technique:
 
 1.  -DEFAULTS &FORMAT='output_type';
 2.  SET ONLINE-FMT = &FORMAT
+
+```fex
     TABLE FILE datasource
      report_logic
 
@@ -1072,6 +1080,7 @@ that you use this technique:
      .
     ENDSTYLE
     END
+```
 
 1. Assign the type of report output (for example, HTML, PDF, PS, or EXL2K) to the Dialogue
 
@@ -1151,6 +1160,8 @@ videorpt.fex
 1.  -DEFAULTS &FORMAT='HTML';
 2.  SET CSSURL = http://websrv2/css/reports.css
 3.  SET ONLINE-FMT = &FORMAT
+
+```fex
     TABLE FILE VIDEOTRK
     PRINT LASTNAME AS 'Last Name' FIRSTNAME AS 'First Name'
     BY LOWEST 5 CUSTID AS 'Cust ID'
@@ -1168,6 +1179,7 @@ videorpt.fex
     TYPE=TITLE, MACRO=boldTitles, $
     ENDSTYLE
     END
+```
 
 reports.css
 
@@ -1344,12 +1356,15 @@ WebFOCUS would generate the following HTML for a value with a drilldown:
 For example, if you want red hyperlinks without underlines, issue:
 
 SET CSSURL=http://myserver/mycss.css
+
+```fex
 TABLE FILE CAR
 SUM SALES BY COUNTRY
 ON TABLE PCHOLD FORMAT HTML
 ON TABLE SET STYLE *
 type=data, column=country, focexec=fex1, class=class1, $
 END
+```
 
 where mycss.css contains:
 
