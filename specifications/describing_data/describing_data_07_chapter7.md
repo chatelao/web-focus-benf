@@ -28,7 +28,7 @@ Creating a Single-Root Cluster Master File
 
 Creating a Multiple-Root Cluster Master File
 
-Join Types
+## Join Types
 
 You can join two data sources in the following ways:
 
@@ -40,7 +40,7 @@ JOIN command is described in detail in the Creating Reports With WebFOCUS Langua
 manual.
 
 
-Static Joins Defined in the Master File: SEGTYPE = KU and KM
+## Static Joins Defined in the Master File: SEGTYPE = KU and KM
 
 Statically within a Master File. This method is helpful if you want to access the joined
 structure frequently. The link (pointer) information needed to implement the join is
@@ -63,7 +63,7 @@ facility.
 
 Note: Master File defined joins are sometimes referred to as cross-references.
 
-Static Joins Defined in the Master File: SEGTYPE = KU and KM
+## Static Joins Defined in the Master File: SEGTYPE = KU and KM
 
 Static joins allow you to relate segments in different FOCUS data sources permanently. You
 specify static joins in the Master File of the host data source.
@@ -102,7 +102,7 @@ contains the Job Description segment from the JOBFILE data source. The actual st
 the JOBFILE data source is not affected.
 
 
-Static Joins Defined in the Master File: SEGTYPE = KU and KM
+## Static Joins Defined in the Master File: SEGTYPE = KU and KM
 
 The EMPLOYEE data source is viewed as follows:
 
@@ -188,7 +188,7 @@ accessible whenever the host data source is used. There does not need to be any 
 cross-referenced data source.
 
 
-Static Joins Defined in the Master File: SEGTYPE = KU and KM
+## Static Joins Defined in the Master File: SEGTYPE = KU and KM
 
 Using a Unique Join for Decoding
 
@@ -256,13 +256,13 @@ SEGNAME = ATTNDSEG, SEGTYPE = KM,  PARENT = EMPINFO, CRFILE = EDUCFILE,
    CRKEY = EMP_ID, $
 
 
-Using Cross-Referenced Descendant Segments: SEGTYPE = KL and KLU
+## Using Cross-Referenced Descendant Segments: SEGTYPE = KL and KLU
 
 Within a report request, both cross-referenced data sources, JOBFILE and EDUCFILE, are
 treated as though they are part of the EMPLOYEE data source. The data structure resembles
 the following:
 
-Using Cross-Referenced Descendant Segments: SEGTYPE = KL and KLU
+## Using Cross-Referenced Descendant Segments: SEGTYPE = KL and KLU
 
 When you join two data sources, you can access any or all of the segments in the cross-
 referenced data source, not just the cross-referenced segment itself. These other segments
@@ -330,7 +330,7 @@ common join field (which is identified by CRKEY) needs to be specified only for 
 referenced segment.
 
 
-Using Cross-Referenced Descendant Segments: SEGTYPE = KL and KLU
+## Using Cross-Referenced Descendant Segments: SEGTYPE = KL and KLU
 
 Example:
 
@@ -351,7 +351,7 @@ When the JOBSEG segment is retrieved from JOBFILE, it also retrieves all of the 
 JOBSEG that were declared with KL or KLU SEGTYPEs in the EMPLOYEE Master File:
 
 
-Using Cross-Referenced Descendant Segments: SEGTYPE = KL and KLU
+## Using Cross-Referenced Descendant Segments: SEGTYPE = KL and KLU
 
 Example:
 
@@ -397,7 +397,7 @@ SEGNAME = ATTNDSEG,SEGTYPE = KM, PARENT = EMPINFO,  CRFILE = EDUCFILE,
 SEGNAME = COURSEG, SEGTYPE = KLU,PARENT = ATTNDSEG, CRFILE = EDUCFILE, $
 
 
-Dynamic Joins Defined in the Master File: SEGTYPE = DKU and DKM
+## Dynamic Joins Defined in the Master File: SEGTYPE = DKU and DKM
 
 Hierarchy of Linked Segments
 
@@ -407,7 +407,7 @@ The letters on the arrows are the SEGTYPEs.
 
 Note that segment G may either be a unique descendant of B or the parent of B.
 
-Dynamic Joins Defined in the Master File: SEGTYPE = DKU and DKM
+## Dynamic Joins Defined in the Master File: SEGTYPE = DKU and DKM
 
 You can define a dynamic join in a Master File using the SEGTYPE attribute. There are two
 types of dynamic Master File defined joins: one-to-one (SEGTYPE DKU) and one-to-many
@@ -480,9 +480,8 @@ SEGNAME = ATTNDSEG,SEGTYPE = DKM,  PARENT = EMPINFO, CRFILE = EDUCFILE,
 SEGNAME = COURSEG, SEGTYPE = KLU,  PARENT = ATTNDSEG,CRFILE = EDUCFILE,$
 
 
-Conditional Joins in the Master File
+## Conditional Joins in the Master File
 
-Conditional Joins in the Master File
 
 The conditional (or WHERE-based) join describes how to relate rows from two data sources
 based on any condition. In this type of embedded join, the Master File for one data source
@@ -582,7 +581,7 @@ CRJOINTYPE=INNER,$
 CONTAINS '019';$
 
 
-Conditional Joins in the Master File
+## Conditional Joins in the Master File
 
 The following request uses the joined Master File.
 
@@ -606,7 +605,7 @@ with the characters 257, and all of the job class values from the JOBHIST segmen
 the characters 019, as specified in the join condition:
 
 
-Comparing Static and Dynamic Joins
+## Comparing Static and Dynamic Joins
 
 
 To join two FOCUS data sources, you can choose between two types of joins (static and
@@ -669,7 +668,7 @@ specify relationships for linked
 segments (KL, KLU).
 
 
-Joining to One Cross-Referenced Segment From Several Host Segments
+## Joining to One Cross-Referenced Segment From Several Host Segments
 
 Join Type
 
@@ -730,7 +729,7 @@ All segments in the target are
 always included, whether or not
 you need them.
 
-Joining to One Cross-Referenced Segment From Several Host Segments
+## Joining to One Cross-Referenced Segment From Several Host Segments
 
 You may come upon situations where you need to join to one cross-referenced segment from
 several different segments in the host data source. You may also find a need to join to one
@@ -752,7 +751,7 @@ Retrieve personal information for both the product managers and the division man
 single personnel data source, as shown below:
 
 
-Joining to One Cross-Referenced Segment From Several Host Segments
+## Joining to One Cross-Referenced Segment From Several Host Segments
 
 You cannot retrieve this information with a standard Master File defined join because there are
 two cross-reference keys in the host data source (PRODMGR and DIVMGR) and in your reports
@@ -835,7 +834,7 @@ however, describe the information in separate data sources, using joins to achie
 effect.
 
 
-Joining to One Cross-Referenced Segment From Several Host Segments
+## Joining to One Cross-Referenced Segment From Several Host Segments
 
 Consider an application that keeps track of customer orders for parts, warehouse inventory of
 parts, and general part information. If this were described as a single data source, it would be
@@ -865,14 +864,14 @@ products, each with a list of parts that compose the product, where a part may i
 product and have subparts. Schematically, this would appear as:
 
 
-Creating a Single-Root Cluster Master File
+## Creating a Single-Root Cluster Master File
 
 A description for this case, shown for two levels of subparts, is:
 
 See the Creating Reports With WebFOCUS Language manual for more information on recursive
 joins.
 
-Creating a Single-Root Cluster Master File
+## Creating a Single-Root Cluster Master File
 
 A cluster Master File is a Master File in which different segments describe separate data
 sources, which may be of varying types. The SEGSUF attribute specifies the suffix for a specific
@@ -945,7 +944,7 @@ alias2
 Is the alias for the pieces of the delimited field.
 
 
-Creating a Single-Root Cluster Master File
+## Creating a Single-Root Cluster Master File
 
 delimiter
 
@@ -1057,9 +1056,8 @@ China            105.0000000
 Colombia         -72.0000000
 
 
-Creating a Multiple-Root Cluster Master File
+## Creating a Multiple-Root Cluster Master File
 
-Creating a Multiple-Root Cluster Master File
 
 A cluster Master File is a Master File in which each segment is added to the cluster by
 reference using a CRFILE attribute that points to the base synonym. Child segments are joined
@@ -1138,7 +1136,7 @@ SEGMENT=dsegname
 Is the name of the shared dimension segment.
 
 
-Creating a Multiple-Root Cluster Master File
+## Creating a Multiple-Root Cluster Master File
 
 CRFILE=[dapp/]dfilename
 
@@ -1205,5 +1203,5 @@ SEGMENT=WF_RETAIL_TIME_DELIVERED, SEGTYPE=KU, PARENT=WF_RETAIL_SHIPMENTS,
       SEG_TITLE_PREFIX='Delivery,', $
 
 
-Creating a Multiple-Root Cluster Master File
+## Creating a Multiple-Root Cluster Master File
 

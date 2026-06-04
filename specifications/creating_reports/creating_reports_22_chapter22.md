@@ -43,13 +43,13 @@ Customizing a Column Title
 Controlling Column Title Underlining
 Using a SET Command
 
-Controlling Column Title Underlining
+## Controlling Column Title Underlining
 Using a StyleSheet Attribute
 
 Creating Labels to Identify Data
 
 Formatting a Heading, Footing, Title, or
-Label
+## Label
 
 Aligning a Heading or Footing Element in
 an HTML, XLSX, EXL2K, PDF, PPTX, or
@@ -66,7 +66,7 @@ Positioning Headings, Footings, or Items
 Within Them
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 Controlling the Vertical Positioning of a
 Heading or Footing
@@ -74,7 +74,7 @@ Heading or Footing
 Placing a Report Heading or Footing on
 Its Own Page
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 There are several types of headings and footings:
 
@@ -130,7 +130,7 @@ number of heading or footing lines must leave room on the page for at least one 
 (including column titles).
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 Extending Heading and Footing Code to Multiple Lines in a Report Request
 
@@ -198,7 +198,7 @@ ENDSTYLE
 END
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 The partial output is:
 
@@ -257,7 +257,7 @@ Note: The words "Microsoft Internet Explorer" are always appended to any HTML re
 title.
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 Example:
 
@@ -312,7 +312,7 @@ A report heading or footing can include text, fields, Dialogue Manager variables
 spot markers.
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 Syntax:
 
@@ -425,7 +425,7 @@ ENDSTYLE
 END
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 The output illustrates the placement of a report heading on a multi-page HTML report. The
 report heading is at the top of the first page.
@@ -436,7 +436,7 @@ Subsequent pages do not contain a heading.
 Tip: If you do not see the navigation arrows, click the maximize button.
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 Syntax:
 
@@ -550,7 +550,7 @@ ENDSTYLE
 END
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 The output illustrates the placement of a report footing on a multi-page HTML report. The
 report footing follows the data on the last page.
@@ -623,7 +623,7 @@ details, see How to Center a Page Heading or Footing Using Legacy Formatting on 
 1622.
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 content
 
@@ -710,7 +710,7 @@ applies. See How to Include a Field Value in a Heading or Footing on page 1558 f
 information on embedded field values. The first page of data applies to the MIS department.
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 The second page of data applies to the PRODUCTION department.
 
@@ -808,7 +808,7 @@ line (for example, " ") which you can use to skip a line in the heading or footi
 can also skip a line using a vertical spot marker, such as </1.)
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 Example:
 
@@ -837,7 +837,7 @@ The partial output illustrates the placement of page footings on a multi-page HT
 page footing appears on both pages of the report.
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 Tip: If you do not see the navigation arrows, click the maximize button.
 
@@ -946,7 +946,7 @@ vertically and horizontally) when the size of the output container changes.
 Note: The AUTOFIT=ON setting will override the SCROLLHEIGHT setting.
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 nn[.n]
 
@@ -1045,7 +1045,7 @@ from the first sort group and the data for footings is taken from the last sort 
 information, see Limits for Headings and Footings on page 1519.
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 By default, WebFOCUS generates a blank line before a subheading or subfooting. You can
 eliminate these automatic blank lines by issuing the SET DROPBLNKLINE=ON command.
@@ -1121,7 +1121,7 @@ Text can be combined with variables and spot markers.
 For related information, see Limits for Headings and Footings on page 1519.
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 variable
 
@@ -1208,7 +1208,7 @@ See Including a Field Value in a Heading or Footing on page 1558 for information
 embedded field values.
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 Example:
 
@@ -1291,7 +1291,7 @@ Suppresses the sort footing when there is only one line of data for a sort field
 (MULTI-LINES is a synonym for MULTILINES.)
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 content
 
@@ -1367,7 +1367,7 @@ NEWPAGE
 Inserts a new page before the sort footing.
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 Example:
 
@@ -1426,7 +1426,7 @@ ENDSTYLE
 END
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 The following report appears.
 
@@ -1475,7 +1475,7 @@ SUBFOOT
 END
 
 
-Creating Headings and Footings
+## Creating Headings and Footings
 
 The sort footing text (for example, "Balance of investments for FRANCE in Euros is
 87,336,971.") replaces the default label for the RECAP value (** EURO 87,336,971).
@@ -2404,7 +2404,7 @@ The following image shows page 1 panel 1.
 
 The following image shows page 1 panel 2.
 
-Customizing a Column Title
+## Customizing a Column Title
 
 A column title identifies the data in a report. Use the AS phrase to change the default column
 title for customized data identification or more desirable formatting. You can change a column
@@ -2418,7 +2418,7 @@ A column title defaults to the field name in the Master File. For a calculated v
 with COMPUTE), the title defaults to the field name in the request.
 
 
-Customizing a Column Title
+## Customizing a Column Title
 
 Example:
 
@@ -2495,7 +2495,7 @@ referencing the next computed field.
 Multi-line column titles created with the AS phrase are not supported for ACROSS fields.
 
 
-Customizing a Column Title
+## Customizing a Column Title
 
 Example:
 
@@ -2540,7 +2540,7 @@ END
 The output is:
 
 
-Customizing a Column Title
+## Customizing a Column Title
 
 Example:
 
@@ -3173,7 +3173,7 @@ END
 The partial output is:
 
 
-Adding Borders and Grid Lines
+## Adding Borders and Grid Lines
 
 You can add borders and grid lines to headings, footings, titles and labels. For detailed syntax,
 see Laying Out the Report Page on page 1331.
@@ -3203,7 +3203,7 @@ END
 The output is:
 
 
-Adding Borders and Grid Lines
+## Adding Borders and Grid Lines
 
 Example:
 

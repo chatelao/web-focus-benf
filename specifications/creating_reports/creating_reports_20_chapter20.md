@@ -31,7 +31,7 @@ FAQ About Using External Cascading Style Sheets
 
 Troubleshooting External Cascading Style Sheets
 
-What Is a Cascading Style Sheet?
+## What Is a Cascading Style Sheet?
 
 Cascading style sheets (CSS) are an extension to HTML that allow you to specify formatting for
 an HTML document. You can use two kinds of CSS with WebFOCUS:
@@ -41,7 +41,7 @@ formats. For information about generating and using an internal CSS for a WebFOC
 report, see Generating an Internal Cascading Style Sheet for HTML Reports on page 1220.
 
 
-What Is a Cascading Style Sheet?
+## What Is a Cascading Style Sheet?
 
 An external cascading style sheet, which is stored in a separate file that can be shared by
 multiple documents. The external CSS file can reside on any web server accessible to the
@@ -113,7 +113,7 @@ You can use a generic class to specify formatting for any WebFOCUS report compon
 Using external cascading style sheet rules and classes to format a report is described in
 Formatting a Report With an External Cascading Style Sheet on page 1296.
 
-Why Use an External Cascading Style Sheet?
+## Why Use an External Cascading Style Sheet?
 
 If you already use WebFOCUS StyleSheets to format reports, you can realize these additional
 benefits by combining them with external cascading style sheets:
@@ -136,14 +136,14 @@ them to WebFOCUS reports, avoiding duplication of effort to specify and maintain
 formatting instructions.
 
 
-Formatting a Report With an External Cascading Style Sheet
+## Formatting a Report With an External Cascading Style Sheet
 
 Easier standards conformance. You can ensure that reports conform to your enterprise's
 formatting guidelines, because now formatting instructions for all your Web documents can
 be specified in one set of cascading style sheets (instead of replicating some of them in
 WebFOCUS StyleSheets).
 
-Formatting a Report With an External Cascading Style Sheet
+## Formatting a Report With an External Cascading Style Sheet
 
 There are just three items required to format a report with an external cascading style sheet
 (CSS):
@@ -171,7 +171,7 @@ For an example that demonstrates how these items work together, see Linking to t
 ReportStyles External Cascading Style Sheet on page 1299 and the following diagram:
 
 
-Formatting a Report With an External Cascading Style Sheet
+## Formatting a Report With an External Cascading Style Sheet
 
 Procedure: How to Format a Report Using an External Cascading Style Sheet
 
@@ -268,7 +268,7 @@ or
 TYPE=REPORT, CSSURL=IBFS:/WFC/Repository/css/reportstyles.css
 
 
-Formatting a Report With an External Cascading Style Sheet
+## Formatting a Report With an External Cascading Style Sheet
 
 You could accomplish the same thing using a SET command:
 
@@ -383,7 +383,7 @@ The WebFOCUS StyleSheet applies this rule conditionally to report rows for which
 product unit cost is less than $27 (see line 5).
 
 
-Working With an External Cascading Style Sheet
+## Working With an External Cascading Style Sheet
 
 11.The CSS rule for the generic class headText specifies the font family Times New Roman
 and, if Times New Roman is unavailable, the generic font family serif. It also specifies a
@@ -394,7 +394,7 @@ font family specified in the rule for the BODY element (see line 7).
 
 The procedure displays this report:
 
-Working With an External Cascading Style Sheet
+## Working With an External Cascading Style Sheet
 
 When you work with an external cascading style sheet (CSS) to specify report formatting, you
 need to know about:
@@ -457,7 +457,7 @@ imports several others. For information about importing one CSS into another, se
 party CSS documentation.
 
 
-Working With an External Cascading Style Sheet
+## Working With an External Cascading Style Sheet
 
 Editing an External Cascading Style Sheet
 
@@ -542,9 +542,8 @@ you want all report titles to be red, the class you declare to format titles mig
 but not Red.
 
 
-Applying External Cascading Style Sheet Formatting
+## Applying External Cascading Style Sheet Formatting
 
-Applying External Cascading Style Sheet Formatting
 
 You can apply external cascading style sheet (CSS) formatting to:
 
@@ -634,7 +633,7 @@ Is an optional WHEN attribute and value. Supply this if you want to apply the fo
 conditionally. For more information, see Formatting Reports: An Overview on page 1187.
 
 
-Combining an External CSS With Other Formatting Methods
+## Combining an External CSS With Other Formatting Methods
 
 link
 
@@ -644,7 +643,7 @@ down. For more information, see Linking a Report to Other Resources on page 819.
 
 For an example, see Applying a CSS Class to ACROSS Values in a Report on page 1299.
 
-Combining an External CSS With Other Formatting Methods
+## Combining an External CSS With Other Formatting Methods
 
 When you use an external cascading style sheet (CSS) to format a report, you can use other
 formatting methods at the same time. Some of these other methods are subject to
@@ -718,7 +717,7 @@ TYPE=Data, COLUMN=Country, COLOR=Orange, $
 TYPE=Data, CLASS=TextColor, $
 
 
-Linking to an External Cascading Style Sheet
+## Linking to an External Cascading Style Sheet
 
 You can specify classes and WebFOCUS StyleSheet attributes that format different properties
 of the same report component, and that format different report components. For example, the
@@ -742,7 +741,7 @@ font size).
 
 component, but instead defines a hyperlink.
 
-Linking to an External Cascading Style Sheet
+## Linking to an External Cascading Style Sheet
 
 To format a report using an external cascading style sheet (CSS), you must link the cascading
 style sheet to the report in one of the following ways:
@@ -821,7 +820,7 @@ sheet file. This path is internally converted to a web-accessible URL that point
 location of the .css file.
 
 
-Linking to an External Cascading Style Sheet
+## Linking to an External Cascading Style Sheet
 
 Example:
 
@@ -901,9 +900,8 @@ For general information about using SET commands, see Customizing Your Environme
 Developing Reporting Applications manual.
 
 
-Inheritance and External Cascading Style Sheets
+## Inheritance and External Cascading Style Sheets
 
-Inheritance and External Cascading Style Sheets
 
 In a report that is formatted using an external cascading style sheet (CSS), a report component
 inherits formatting from the TD element and from all elements that TD nests within, such as
@@ -992,11 +990,11 @@ StyleSheet applies this rule to data for PRODUCT_ID (see line 3).
 This rule overrides the default background color specified in line 4.
 
 
-Using External Cascading Style Sheets With Non-HTML Reports
+## Using External Cascading Style Sheets With Non-HTML Reports
 
 The procedure displays this report:
 
-Using External Cascading Style Sheets With Non-HTML Reports
+## Using External Cascading Style Sheets With Non-HTML Reports
 
 You can use an external cascading style sheet (CSS) to format a report that is generated as
 HTML, but not one that is generated as a different output type, such as PDF. If you have a
@@ -1028,7 +1026,7 @@ You can see the basic code for this technique in How to Use an External CSS With
 Output Types on page 1318.
 
 
-Using External Cascading Style Sheets With Non-HTML Reports
+## Using External Cascading Style Sheets With Non-HTML Reports
 
 Syntax:
 
@@ -1134,7 +1132,7 @@ native WebFOCUS StyleSheet attributes.
 12.These are the macros that were defined earlier and are being applied to the report.
 
 
-Using External Cascading Style Sheets With Non-HTML Reports
+## Using External Cascading Style Sheets With Non-HTML Reports
 
 Example:
 
@@ -1219,7 +1217,7 @@ ignored because &FORMAT is set to HTML.
 
 The procedure displays this report:
 
-Requirements for Using an External Cascading Style Sheet
+## Requirements for Using an External Cascading Style Sheet
 
 When you use an external cascading style sheet (CSS) to format a report, be aware of the
 following requirements:
@@ -1239,7 +1237,7 @@ StyleSheet (other than the exceptions noted in the next paragraph). Doing so cou
 formatting conflicts.
 
 
-Requirements for Using an External Cascading Style Sheet
+## Requirements for Using an External Cascading Style Sheet
 
 Exceptions. Even when specifying external CSS classes, you should use native WebFOCUS
 StyleSheet attributes to:
@@ -1310,7 +1308,7 @@ border weights are seen in different elements of the report.
 When the heading of the report contains multiple lines, the border outlines the entire
 heading. With HTMLCSS OFF, the border outlines each line in the heading.
 
-FAQ About Using External Cascading Style Sheets
+## FAQ About Using External Cascading Style Sheets
 
 This topic answers the most frequently asked questions (FAQ) about using external cascading
 style sheets (CSS) to format reports.
@@ -1326,7 +1324,7 @@ for the BODY or TD element. For more information, see Choosing an External Casca
 Sheet on page 1303.
 
 
-FAQ About Using External Cascading Style Sheets
+## FAQ About Using External Cascading Style Sheets
 
 Do I always need to use the CLASS attribute?
 
@@ -1375,7 +1373,7 @@ information about internal cascading style sheets, see Generating an Internal Ca
 Sheet for HTML Reports on page 1220.
 
 
-FAQ About Using External Cascading Style Sheets
+## FAQ About Using External Cascading Style Sheets
 
 Which version of CSS does WebFOCUS support?
 
@@ -1406,7 +1404,7 @@ Free-form reports. Most people choose to generate free-form reports using output
 other than HTML, making CSS a rarely-used option for formatting free form.
 
 
-Troubleshooting External Cascading Style Sheets
+## Troubleshooting External Cascading Style Sheets
 
 
 This topic will help you solve some common problems encountered when formatting reports
@@ -1454,7 +1452,7 @@ support one of the properties specified for the rule, none of the formatting wil
 the report.
 
 
-Troubleshooting External Cascading Style Sheets
+## Troubleshooting External Cascading Style Sheets
 
 Solution 4: Remove the unsupported property, or upgrade your browser to a version that
 supports the property.
@@ -1548,5 +1546,5 @@ the command ON TABLE SET HTMLCSS ON in your request. This creates reports with a
 inline CSS.
 
 
-Troubleshooting External Cascading Style Sheets
+## Troubleshooting External Cascading Style Sheets
 

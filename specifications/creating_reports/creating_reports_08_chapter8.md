@@ -44,7 +44,7 @@ Creating a Delimited Sequential File
 Saving and Retrieving HOLD Files
 
 Using DBMS Temporary Tables as HOLD
-Files
+## Files
 
 Creating SAVE and SAVB Files
 
@@ -57,9 +57,8 @@ With HOLD FORMAT SQL_SCRIPT
 Creating a Structured HOLD File
 
 
-Saving Your Report Output
+## Saving Your Report Output
 
-Saving Your Report Output
 
 The following commands extract and save report output in a variety of file formats:
 
@@ -123,7 +122,7 @@ a file starting with a number.
 May be problematic to a third party application that does not work with numeric file names
 or with file names that begin with numbers.
 
-Creating a HOLD File
+## Creating a HOLD File
 
 You can use the HOLD command to create report output files for a range of purposes:
 
@@ -151,7 +150,7 @@ commands when the request is followed by Dialogue Manager commands. For details 
 SAVEMATRIX, see the Developing Reporting Applications manual.
 
 
-Creating a HOLD File
+## Creating a HOLD File
 
 Syntax:
 
@@ -260,7 +259,7 @@ NULL, and SET HNODATA parameters, which control how missing values are
 propagated to alphanumeric and comma-delimited files.
 
 
-Creating a HOLD File
+## Creating a HOLD File
 
 PERSISTENCE
 
@@ -369,7 +368,7 @@ END
 ? HOLD
 
 
-Creating a HOLD File
+## Creating a HOLD File
 
 The output is:
 
@@ -481,7 +480,7 @@ RICHARD
 ANTHONY
                          .00       $29,700.00  BANNING          JOHN
 
-Holding Report Output in FOCUS Format
+## Holding Report Output in FOCUS Format
 
 Whether issued within a request or after the request has been executed, the HOLD command
 can create a FOCUS data source and a corresponding Master File from the data extracted by
@@ -500,7 +499,7 @@ already. Create will write over it. Issuing the SET WARNING=OFF command
 suppresses this message.
 
 
-Holding Report Output in FOCUS Format
+## Holding Report Output in FOCUS Format
 
 Syntax:
 
@@ -592,7 +591,7 @@ information on how to control the TITLE, ACCEPT, and FIELDNAME attributes in a H
 File, see Controlling Attributes in HOLD Master Files on page 484.
 
 
-Holding Report Output in FOCUS Format
+## Holding Report Output in FOCUS Format
 
 Example:
 
@@ -1334,7 +1333,7 @@ SEGNAME=COMP, SEGTYPE=S1, PARENT=ORIGIN
 .
 
 
-Keyed Retrieval From HOLD Files
+## Keyed Retrieval From HOLD Files
 
 Using SET HOLDATTR=FOCUS, the following request
 
@@ -1355,7 +1354,7 @@ FILE=HOLD5, SUFFIX=FOC
   FIELDNAME=CAR     ,USAGE=E03   ,ACTUAL=A16    ,
       TITLE='NAME OF CAR' ,$
 
-Keyed Retrieval From HOLD Files
+## Keyed Retrieval From HOLD Files
 
 Keyed retrieval is supported with any single-segment SUFFIX=FIX data source or HOLD file that
 is sorted based on the key. Keyed retrieval can reduce the IOs incurred in reading extract files,
@@ -1428,7 +1427,7 @@ IF and WHERE tests can also include range tests. For example,
 The maximum number of vertical (BY) sort fields remains 32.
 
 
-Saving and Retrieving HOLD Files
+## Saving and Retrieving HOLD Files
 
 In using this feature, keep in mind that when adding unsorted records to a sorted HOLD file,
 records that are out of sequence are not retrieved. For example, suppose that a sorted file
@@ -1449,7 +1448,7 @@ and you add the following record at the bottom of the file:
 With FIXRETRIEVE=ON, the new record with a key value of 1 is omitted, as retrieval stops as
 soon as a key value of 2 is encountered.
 
-Saving and Retrieving HOLD Files
+## Saving and Retrieving HOLD Files
 
 In WebFOCUS, HOLD files are saved to a temporary directory during processing and deleted
 after the connection to the server is broken. If you wish to retain these files for later use, you
@@ -2020,7 +2019,7 @@ A description of the BINARY file is appears after the records are retrieved.
 The output is:
 
 
-Creating a PCHOLD File
+## Creating a PCHOLD File
 
 The PCHOLD command enables you to extract data from the WebFOCUS Reporting Server by
 way of the WebFOCUS client, and automatically display the data in HTML format in your
@@ -2057,7 +2056,7 @@ Enables you to extract and automatically display data in HTML format in your bro
 HOLD AT CLIENT is a synonym for PCHOLD. The PCHOLD command does not have a
 
 
-Creating a PCHOLD File
+## Creating a PCHOLD File
 
 default format. You must specify a format when using PCHOLD. The output is saved
 with a Master File. For details about the behavior of PCHOLD, see Creating a HOLD
@@ -2117,7 +2116,7 @@ the specified extension. If the extension is defined in the WebFOCUS Administrat
 Console, and the Save Report value is yes, the report output will be saved in your
 Downloads directory with the specified file name and extension.
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 You can select from a wide range of output formats to preserve your report output for use in
 any of the following ways:
@@ -2246,7 +2245,7 @@ XLSX
 XML
 
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 Reference: FORMAT AHTML
 
@@ -2347,7 +2346,7 @@ INTERNAL Format on page 558.)
 The output file contains data only.
 
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 Use: For further reporting in FOCUS, WebFOCUS, or App Studio. As a transaction file for
 modifying a data source.
@@ -2442,7 +2441,7 @@ command used to create the output file is HOLD. The SUFFIX in the generated Mast
 COMT.
 
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 Note:
 
@@ -2540,7 +2539,7 @@ PDF StyleSheet features. For example, the following features are supported: grid
 background colors, OVER, bursting, coordinated compound reports.
 
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 Note:
 
@@ -2642,7 +2641,7 @@ Use: For display or processing in a spreadsheet application.
 Supported with the commands: HOLD, PCHOLD, SAVE.
 
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 For Internet Explorer, the PCHOLD variation launches Excel 2000 in the browser. For details,
 and for information about working with EXL2K files, see Choosing a Display Format on page
@@ -2740,7 +2739,7 @@ Supported with the commands: HOLD.
 Available in: WebFOCUS, App Studio.
 
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 For details see Creating a Graph on page 1743.
 
@@ -2841,7 +2840,7 @@ HTML5 standard. You must include the following command to create an HTML5 graph:
 ON GRAPH PCHOLD FORMAT JSCHART
 
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 Supported with the commands: ON GRAPH PCHOLD, ON GRAPH HOLD.
 
@@ -2946,7 +2945,7 @@ Reference: FORMAT PDF OPEN/CLOSE
 Description: Saves multiple reports into one PDF report.
 
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 Use: For combining multiple reports into a single PDF file, also known as a compound report.
 For complete details, see Laying Out the Report Page on page 1331.
@@ -3048,7 +3047,7 @@ create tables.
 Use: For processing in a database application.
 
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 Supported with the command: HOLD.
 
@@ -3138,7 +3137,7 @@ Supported with the command: HOLD, SAVE.
 Available in: WebFOCUS, App Studio, FOCUS.
 
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 Reference: FORMAT TAB
 
@@ -3247,7 +3246,7 @@ the first record has the column titles and the second record contains Visual Dis
 based on the FOCUS field formats of the data.
 
 
-Choosing Output File Formats
+## Choosing Output File Formats
 
 Supported with the command: HOLD, SAVE, PCHOLD
 
@@ -3883,7 +3882,7 @@ ON TABLE MERGE INTO FILE ibisamp/dmrpts
   PROFIT=SRC.E04 - SRC.E05;
 END
 
-Using Text Fields in Output Files
+## Using Text Fields in Output Files
 
 Text fields can be propagated to HOLD and SAVE files that have the following formats: ALPHA,
 WP, and FOCUS or XFOCUS. However, although a Master File is generated for format ALPHA,
@@ -3912,7 +3911,7 @@ If MISSING=OFF during data extraction, a blank is written out to the HOLD or SAV
 See Handling Records With Missing Field Values on page 1035.
 
 
-Using Text Fields in Output Files
+## Using Text Fields in Output Files
 
 In environments that support FIXFORM, due to limitations in the use of text fields with
 FIXFORM, the following restriction applies:
@@ -4039,7 +4038,7 @@ FOR GENERAL MANAGERS. TO EXPLORE
 
 FOR MANAGERS AND SECRETARIES. HELP
 
-Creating a Delimited Sequential File
+## Creating a Delimited Sequential File
 
 You can use the HOLD FORMAT DFIX command to create an alphanumeric sequential file
 delimited by any character or combination of characters. You can also specify whether to
@@ -4072,7 +4071,7 @@ Is the name of the file to be created. If you do not specify a name, the default
 HOLD.
 
 
-Creating a Delimited Sequential File
+## Creating a Delimited Sequential File
 
 delimiter
 
@@ -4157,7 +4156,7 @@ PRESERVESPACE=YES in the Access File. This attribute causes leading and trailing
 spaces to be preserved when reading a FORMAT DFIX file.
 
 
-Creating a Delimited Sequential File
+## Creating a Delimited Sequential File
 
 Example:
 
@@ -4261,7 +4260,7 @@ ON TABLE HOLD AS TAB1 FORMAT DFIX DELIMITER TAB
 END
 
 
-Creating a Delimited Sequential File
+## Creating a Delimited Sequential File
 
 As the tab character is not printable, the TAB1 Access File specifies the delimiter using its
 hexadecimal value.
@@ -4351,7 +4350,7 @@ West       ,Gifts      ,Mug             ,1188664,93881
 West       ,Gifts      ,Thermos         ,571368,45648
 
 
-Creating a Delimited Sequential File
+## Creating a Delimited Sequential File
 
 Creating the same file with PRESERVESPACE NO removes the trailing blank spaces:
 

@@ -28,7 +28,7 @@ Suppressing Grand Totals
 
 Conditionally Displaying Summary Lines and Text
 
-Calculating Row and Column Totals
+## Calculating Row and Column Totals
 
 You can produce totals for rows or columns of numbers in a report. Use:
 
@@ -42,7 +42,7 @@ ACROSS in your report request), rename row and column total titles, and include 
 values in your row or column totals. You can also create row totals using ACROSS-TOTAL.
 
 
-Calculating Row and Column Totals
+## Calculating Row and Column Totals
 
 Note that when producing totals in a report, if one field is summed, the format of the row total
 is the same as the format of the field. For example, if the format of the CURR_SAL field is
@@ -102,7 +102,7 @@ ON TABLE ROW-TOTAL [alignment][/format] [AS 'name']
 
 Example:
 
-Calculating Row and Column Totals
+## Calculating Row and Column Totals
 
 The following request illustrates the use of ROW-TOTAL and COLUMN-TOTAL. The column and
 row total labels are "TOTAL" by default. You can change them using an AS phrase.
@@ -143,7 +143,7 @@ ON TABLE COLUMN-TOTAL
 END
 
 
-Calculating Row and Column Totals
+## Calculating Row and Column Totals
 
 The output is:
 
@@ -244,7 +244,7 @@ Los Angeles             298070  3772014
 San Francisco           312500  3870258
 
 
-Calculating Row and Column Totals
+## Calculating Row and Column Totals
 
 When you specify a row total with ACROSS, the row total is calculated separately for each
 column in each ACROSS group. For example, in the following request the row total has a
@@ -345,7 +345,7 @@ Los Angeles             298070   3772014    295637      4365721
 San Francisco           312500   3870258    314725      4497483
 
 
-Calculating Row and Column Totals
+## Calculating Row and Column Totals
 
 Producing Row Totals for Horizontal (ACROSS) Sort Field Values
 
@@ -426,7 +426,7 @@ ACROSS-TOTAL populates the ACROSSVALUE component in a StyleSheet. For an example
 of styling an ACROSS-TOTAL component, see Identifying Row Totals (ACROSS-TOTAL) for
 Horizontal Sort Data on page 1266.
 
-Including Section Totals and a Grand Total
+## Including Section Totals and a Grand Total
 
 Frequently, reports contain detailed information that is broken down into subsections, for
 which simple column and row totals may not provide adequate summaries. In these instances,
@@ -455,7 +455,7 @@ these automatic blank lines by issuing the SET DROPBLNKLINE=ON command.
 Note: When the request has a PAGE-BREAK command, the GRANDTOTAL is on a page by itself.
 
 
-Including Section Totals and a Grand Total
+## Including Section Totals and a Grand Total
 
 You can use prefix operators with SUBTOTAL, SUB-TOTAL, SUMMARIZE, and RECOMPUTE. For
 details, see Manipulating Summary Values With Prefix Operators on page 388. In addition, you
@@ -508,7 +508,7 @@ FED       MIS          40950036        $1,190.77
 TOTAL                                 $18,436.45
 
 
-Including Subtotals
+## Including Subtotals
 
 
 You can use the SUBTOTAL and SUB-TOTAL commands to sum individual values, such as
@@ -566,7 +566,7 @@ includes all numeric display fields. The list can included numeric and alphanume
 fields.
 
 
-Including Subtotals
+## Including Subtotals
 
 You can use the asterisk (*) wildcard character instead of a field list to indicate that all
 fields, numeric and alphanumeric, should be included on the summary lines.
@@ -662,7 +662,7 @@ WHERE DED_CODE EQ 'FICA' OR 'CITY'
 END
 
 
-Including Subtotals
+## Including Subtotals
 
 On the output, the grand total line comes first, then the subtotal for the MIS department
 followed by the detail lines for the MIS department, followed by the subtotal for the
@@ -765,7 +765,7 @@ W GERMANY   SEDAN              20   88190        9,247
 TOTAL                              208420
 
 
-Including Subtotals
+## Including Subtotals
 
 Example:
 
@@ -822,7 +822,7 @@ STAT      MIS          40950036          $196.13        $6,099.50
 TOTAL                                 $41,521.18      $461,210.75
 
 
-Recalculating Values for Subtotal Rows
+## Recalculating Values for Subtotal Rows
 
 You can use the SUMMARIZE and RECOMPUTE commands instead of SUB-TOTAL and
 SUBTOTAL to recalculate the result of a COMPUTE command. SUMMARIZE is similar to SUB-
@@ -879,7 +879,7 @@ Denotes a list of specific fields to be subtotaled after the RECOMPUTE or
 SUMMARIZE. This list overrides the default, which includes all numeric display fields.
 
 
-Recalculating Values for Subtotal Rows
+## Recalculating Values for Subtotal Rows
 
 You can use the asterisk (*) wildcard character instead of a field list to indicate that all
 fields, numeric and alphanumeric, should be included on the summary lines. You can
@@ -971,7 +971,7 @@ ON DEPARTMENT RECOMPUTE
 END
 
 
-Summarizing Alphanumeric Columns
+## Summarizing Alphanumeric Columns
 
 The first portion of the output is:
 
@@ -1014,7 +1014,7 @@ PAY_DATE  DEPARTMENT  BANK_ACCT          GROSS          DED_AMT  DG_RATIO
 
 TOTAL                               $65,887.25       $41,521.18       .63
 
-Summarizing Alphanumeric Columns
+## Summarizing Alphanumeric Columns
 
 By default, subtotals (using the SUBTOTAL and SUB-TOTAL commands) and recalculations
 (using the RECOMPUTE and SUMMARIZE commands) only display values for numeric report
@@ -1073,7 +1073,7 @@ ON TABLE SET PAGE NOPAGE
 END
 
 
-Manipulating Summary Values With Prefix Operators
+## Manipulating Summary Values With Prefix Operators
 
 On the output, the alphanumeric formula is recomputed using the summed numeric fields.
 However, the product value is taken from the first product within each sort value, as that field
@@ -1110,7 +1110,7 @@ Column total lines follow the same rules as summary lines.
 
 Summary values for ACROSS sort fields are supported.
 
-Manipulating Summary Values With Prefix Operators
+## Manipulating Summary Values With Prefix Operators
 
 You can use the SUBTOTAL, SUB-TOTAL, RECOMPUTE, and SUMMARIZE commands at the ON
 TABLE level to specify the type of summary operation to use to produce the grand total line on
@@ -1172,7 +1172,7 @@ MAX.
 MIN.
 
 
-Manipulating Summary Values With Prefix Operators
+## Manipulating Summary Values With Prefix Operators
 
 SUM. (means LST. if SUMPREFIX=LST or FST. if SUMPREFIX=FST)
 
@@ -1284,7 +1284,7 @@ Average list price by rating.
 Sum copies by category within the rating field.
 
 
-Manipulating Summary Values With Prefix Operators
+## Manipulating Summary Values With Prefix Operators
 
 Notice that the subtotal row for each rating contains a value only in the LISTPR column, and
 the subtotal row for each category contains a value only in the COPIES column. The grand total
@@ -1362,7 +1362,7 @@ PRINT COPIES LISTPR WHOLESALEPR TITLE/A23
 END
 
 
-Manipulating Summary Values With Prefix Operators
+## Manipulating Summary Values With Prefix Operators
 
 The output is exactly the same as in the previous request, except for the grand total line:
 
@@ -1446,7 +1446,7 @@ ON RATING SUBTOTAL SUM. LISTPR MIN. DIRECTOR AS '*A/N:'
 END
 
 
-Manipulating Summary Values With Prefix Operators
+## Manipulating Summary Values With Prefix Operators
 
 The output is:
 
@@ -1545,7 +1545,7 @@ RECOMPUTE to the grand total. In addition, if all summary commands in the reques
 field lists, only the specified fields are aggregated and displayed on the grand total line.
 
 
-Manipulating Summary Values With Prefix Operators
+## Manipulating Summary Values With Prefix Operators
 
 When SUBTOTAL and RECOMPUTE are the only summary commands used in the request, a
 grand total line is produced only if it is explicitly specified in the request using the ON TABLE
@@ -1646,7 +1646,7 @@ ON CATEGORY SUBTOTAL LISTPR
 END
 
 
-Manipulating Summary Values With Prefix Operators
+## Manipulating Summary Values With Prefix Operators
 
 Running the request with SUMMARYLINES=NEW subtotals COPIES only for the RATING sort
 break and subtotals LISTPR only for the CATEGORY sort break but propagates both to the
@@ -1734,7 +1734,7 @@ ON TABLE COLUMN-TOTAL
 END
 
 
-Manipulating Summary Values With Prefix Operators
+## Manipulating Summary Values With Prefix Operators
 
 The grand total line displays a column total only for the WHOLESALEPR column because of the
 ON TABLE SUBTOTAL command:
@@ -1824,7 +1824,7 @@ West        Coffee          356763      4473517        4523963     -50446
 TOTAL                      1371188     17192638       17013960     178678
 
 
-Manipulating Summary Values With Prefix Operators
+## Manipulating Summary Values With Prefix Operators
 
 The following request uses prefix operators in the RECOMPUTE command to calculate the
 maximum DOLLARS and the minimum BUDDOLLARS and then recompute DIFF. No matter
@@ -1933,7 +1933,7 @@ WHERE YEAR EQ '1996' OR '1997'
 END
 
 
-Manipulating Summary Values With Prefix Operators
+## Manipulating Summary Values With Prefix Operators
 
 In the following report output, some of the values have been manually italicized or bolded for
 clarity:
@@ -1954,12 +1954,12 @@ command ON REGION SUB-TOTAL MIN. This is the last summary command, and therefore
 propagates to all other summary lines, but only calculates minimum values for those
 columns not already populated with a count or an average.
 
-Combinations of Summary Commands
+## Combinations of Summary Commands
 
 You can specify a different summary operation for each sort break (BY or ACROSS field).
 
 
-Combinations of Summary Commands
+## Combinations of Summary Commands
 
 If you have multiple summary commands for the same sort field, the following message
 displays and the last summary command specified in the request is used:
@@ -2058,7 +2058,7 @@ and WHOLESALEPR values because the SUBTOTAL command controls the grand total lin
 TOTAL                              129.85        60.99           12.97
 
 
-Combinations of Summary Commands
+## Combinations of Summary Commands
 
 You can change the operation performed at the grand total level by adding the following
 command to the request:
@@ -2146,7 +2146,7 @@ WHERE COPIES LT 3
 END
 
 
-Combinations of Summary Commands
+## Combinations of Summary Commands
 
 On the output:
 
@@ -2219,7 +2219,7 @@ total line by making it consistent with the behavior for any sort break. Therefo
 setting in effect, SUB-TOTAL and SUMMARIZE propagate to the grand total line but
 SUBTOTAL and RECOMPUTE do not.
 
-Producing Summary Columns for Horizontal Sort Fields
+## Producing Summary Columns for Horizontal Sort Fields
 
 The summary commands SUBTOTAL, SUB-TOTAL, SUMMARIZE, and RECOMPUTE can be used
 with horizontal sort breaks.
@@ -2244,7 +2244,7 @@ ACROSS acrossfieldsumoption [field1field2 ... fieldn]
 or
 
 
-Producing Summary Columns for Horizontal Sort Fields
+## Producing Summary Columns for Horizontal Sort Fields
 
 ACROSS acrossfield
 
@@ -2346,7 +2346,7 @@ operator is not applied, and the value is recalculated using the expression in t
 COMPUTE command and the values from the summary line.
 
 
-Producing Summary Columns for Horizontal Sort Fields
+## Producing Summary Columns for Horizontal Sort Fields
 
 If an ACROSS field has an ACROSS-TOTAL phrase and a summary command with a
 prefix operator, the prefix operator is applied, not the ACROSS-TOTAL.
@@ -2399,7 +2399,7 @@ ON TABLE SET PAGE NOPAGE
 END
 
 
-Producing Summary Columns for Horizontal Sort Fields
+## Producing Summary Columns for Horizontal Sort Fields
 
 The output shows that only the rows with the UNITS values are subtotaled.
 
@@ -2501,7 +2501,7 @@ The values of DOLLARS and UNITS for the Midwest and West regions under the Food
 category.
 
 
-Producing Summary Columns for Horizontal Sort Fields
+## Producing Summary Columns for Horizontal Sort Fields
 
 The summary column, which has a value just for the DOLLARS row. Note that for ACROSS,
 the summary column for REGION appears only after the higher-level ACROSS field,
@@ -2582,13 +2582,13 @@ PAGE   1.2
 Dollars    2930486      2883881
 Units       230854       230854
 
-Performing Calculations at Sort Field Breaks
+## Performing Calculations at Sort Field Breaks
 
 You can use the RECAP and COMPUTE commands to create subtotal values in a calculation.
 The subtotal values are not displayed. Only the result of the calculation is shown on the report.
 
 
-Performing Calculations at Sort Field Breaks
+## Performing Calculations at Sort Field Breaks
 
 Syntax:
 
@@ -2674,7 +2674,7 @@ WHEN PAY_DATE GT 820101
 END
 
 
-Performing Calculations at Sort Field Breaks
+## Performing Calculations at Sort Field Breaks
 
 The output is:
 
@@ -2758,7 +2758,7 @@ DATE   AREA  PROD_CODE  UNIT_SOLD  RETURNS
 
 ------------------------------------------
 
-Suppressing Grand Totals
+## Suppressing Grand Totals
 
 You can use the NOTOTAL command to suppress grand totals in a report.
 
@@ -2777,11 +2777,11 @@ To suppress grand totals, add the following syntax to your request:
 ON TABLE NOTOTAL
 
 
-Suppressing Grand Totals
+## Suppressing Grand Totals
 
 Example:
 
-Suppressing Grand Totals
+## Suppressing Grand Totals
 
 The following request includes the NOTOTAL phrase to suppress grand totals for CURR_SAL,
 GROSS, and DED_AMT.
@@ -2799,7 +2799,7 @@ END
 The output is:
 
 
-Conditionally Displaying Summary Lines and Text
+## Conditionally Displaying Summary Lines and Text
 
 In addition to using summary lines to control the look and content of your report, you can
 specify WHEN criteria to control the conditions under which summary lines appear for each
@@ -2807,11 +2807,11 @@ vertical (BY) sort field value. WHEN is supported with SUBFOOT, SUBHEAD, SUBTOTA
 TOTAL, SUMMARIZE, RECOMPUTE, and RECAP.
 
 
-Conditionally Displaying Summary Lines and Text
+## Conditionally Displaying Summary Lines and Text
 
 Example:
 
-Conditionally Displaying Summary Lines and Text
+## Conditionally Displaying Summary Lines and Text
 
 In a sales report that covers four regions (Midwest, Northeast, Southeast, and West), you may
 only want to display a subtotal when total dollar sales are greater than $11,500,000. The

@@ -18,7 +18,7 @@ Creating a Free-Form Report
 
 Designing a Free-Form Report
 
-Creating a Free-Form Report
+## Creating a Free-Form Report
 
 You can create a free-form report from a TABLE request that omits the display commands that
 control columnar and matrix formatting (PRINT, LIST, SUM, and COUNT). Instead, the request
@@ -44,7 +44,7 @@ Temporary fields
 Derives new values from existing fields in a data source.
 
 
-Creating a Free-Form Report
+## Creating a Free-Form Report
 
 BY phrases
 
@@ -67,7 +67,7 @@ Selecting Records in a Free-Form Report on page 1906.
 
 Example:
 
-Creating a Free-Form Report
+## Creating a Free-Form Report
 
 Suppose that you are a Personnel Manager and it is your responsibility to administer your
 company education policies. This education policy states that the number of hours of outside
@@ -89,7 +89,7 @@ The following diagram simulates the output you would see if you ran the procedur
 example named Request for EMPLOYEE EDUCATION HOURS REPORT on page 1902.
 
 
-Creating a Free-Form Report
+## Creating a Free-Form Report
 
 Example:
 
@@ -193,7 +193,7 @@ the report includes only employees who have accumulated in-house education credi
 12.Since we have designed a personnel report, it is important to have the words PRIVATE AND
 CONFIDENTIAL at the end of each report page. The FOOTING command accomplishes this.
 
-Designing a Free-Form Report
+## Designing a Free-Form Report
 
 To design the body of a free-form report, use the HEADING and FOOTING commands. They
 enable you to:
@@ -204,7 +204,7 @@ Lay out your report by positioning text and data in exact column locations and s
 lines for readability.
 
 
-Designing a Free-Form Report
+## Designing a Free-Form Report
 
 Use the HEADING command to define the body of a free-form report, and the FOOTING
 command to define what appears at the bottom of each page of a report. A footing is optional.
@@ -297,7 +297,7 @@ Note: To take advantage of this feature in an HTML report, include the SET STYLE
 command in your request.
 
 
-Designing a Free-Form Report
+## Designing a Free-Form Report
 
 The sample request (see the example named Request for EMPLOYEE EDUCATION HOURS
 REPORT on page 1902) illustrates this feature. The first two examples show how to position

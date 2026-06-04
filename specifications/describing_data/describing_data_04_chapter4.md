@@ -55,14 +55,14 @@ Values Using Variables
 Converting Alphanumeric Dates to
 WebFOCUS Dates
 
-Field Characteristics
+## Field Characteristics
 
 The Master File describes the following field characteristics:
 
 The name of the field, as identified in the FIELDNAME attribute.
 
 
-The Field Name: FIELDNAME
+## The Field Name: FIELDNAME
 
 Another name for the field, either its original name, as defined to its native data
 management system, or (for some types of data sources) a synonym of your own choosing,
@@ -99,7 +99,7 @@ An alternative report column title for the field, described by the TITLE attribu
 A 100-year window that assigns a century value to a two-digit year stored in the field. Two
 attributes define this window: DEFCENT and YRTHRESH.
 
-The Field Name: FIELDNAME
+## The Field Name: FIELDNAME
 
 Identify a field using FIELDNAME, the first attribute specified in a field declaration in the
 Master File. You can assign any name to a field, regardless of its name in its native data
@@ -152,7 +152,7 @@ index has been created for the field), you cannot change the field name without 
 the data source. You may change the name in all other situations.
 
 
-The Field Name: FIELDNAME
+## The Field Name: FIELDNAME
 
 Reference: Restrictions for Field Names
 
@@ -233,7 +233,7 @@ QUALCHAR command and valid qualifying characters (. : ! % | \ ), see the Develop
 Applications manual.
 
 
-The Field Name: FIELDNAME
+## The Field Name: FIELDNAME
 
 Using a Duplicate Field Name
 
@@ -328,7 +328,7 @@ Therefore, if the file name and segment name are the same, the field qualified b
 segment name is retrieved.
 
 
-The Field Name: FIELDNAME
+## The Field Name: FIELDNAME
 
 If a field name begins with characters that are the same as the name of a prefix operator, it
 may be unclear whether a request is referencing that field name or a second field name
@@ -419,9 +419,8 @@ This is different from the prior example, where the choice is between two levels
 qualification. To retrieve the CAR1 field, you must specify its alias.
 
 
-The Field Synonym: ALIAS
+## The Field Synonym: ALIAS
 
-The Field Synonym: ALIAS
 
 You can assign every field an alternative name, or alias. A field alias may be its original name
 as defined to its native data source, any name you choose, or, in special cases, a predefined
@@ -482,7 +481,7 @@ can have the value blank. For more information, see Describing a FOCUS Data Sour
 page 293. Aliases can be changed without rebuilding the data source. If an alias is
 referred to in other data sources, similar changes may be needed in those Master Files.
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 This attribute, which is also known as FORMAT, describes how to format a field when
 displaying it in a report or using it in a calculation.
@@ -517,7 +516,7 @@ Is the data type. Valid values are A (alphanumeric), F (floating-point single-pr
 (packed decimal), D, W, M, Q, or Y used in a valid combination (date), and TX (text).
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 l
 
@@ -612,7 +611,7 @@ The integer USAGE type is I. See Numeric Display Options on page 121. The format
 length specification is:
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 n
 
@@ -716,7 +715,7 @@ Is the number of digits that follow the decimal point. It can be up to 31 digits
 less than t.
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 For example:
 
@@ -823,7 +822,7 @@ Display
 614.2
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 Packed-Decimal Format
 
@@ -930,7 +929,7 @@ followed by a percent sign (%). Not
 supported with formats I and P.
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 Edit Option
 
@@ -1068,7 +1067,7 @@ L
 m
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 Edit Option
 
@@ -1219,7 +1218,7 @@ Display
 8878.00-
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 Option
 
@@ -1495,7 +1494,7 @@ thousand
 thousandth
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 Prefix
 
@@ -1631,7 +1630,7 @@ SET CURSYM_F = ' €'
 For more information, see the Developing Reporting Applications manual.
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 The following table lists the supported extended currency display options:
 
@@ -1777,7 +1776,7 @@ C. Displays the currency symbol determined by the locale settings.
 d. Displays a non-floating dollar sign.
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 D. Displays a floating dollar sign.
 
@@ -1841,7 +1840,7 @@ fmt
 Is a numeric format that supports a currency value.
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 pos
 
@@ -1929,7 +1928,7 @@ Since 8 is greater than or equal to five, the value is rounded up, and PRESSURE 
 746.13
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 The details of rounding are handled in the following ways for the following numeric formats:
 
@@ -2029,7 +2028,7 @@ If the value is 716431014, the PRODCODE appears as 716-431-014. See the Creating
 Reports With WebFOCUS Language manual for more information.
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 Reference: Usage Notes for 4K Alphanumeric Fields
 
@@ -2121,7 +2120,7 @@ determined on retrieval. For example:
 FIELD1/STRING
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 The STRING data type has all of the functionality of alphanumeric data types in WebFOCUS.
 The limit to a STRING field value length is 2 GB. It can be propagated to relational data
@@ -2278,7 +2277,7 @@ Julian format
 Prints date in Julian format.
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 Display Option
 
@@ -2556,7 +2555,7 @@ yyyy
      *
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 Date Format
 
@@ -2858,7 +2857,7 @@ Y-M
 93-12
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 Format
 
@@ -3009,7 +3008,7 @@ In computational date comparisons    IF MYDATE GT '25 APR 1999'
 In comma-delimited data          ...,MYDATE = APR 25 1999, ...
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 The following chart describes the format of natural date literals.
 
@@ -3116,7 +3115,7 @@ Is a date format field, or an alphanumeric or integer format field using date di
 options.
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 format
 
@@ -3214,7 +3213,7 @@ ENDSTYLE
 END
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 The output is shown in the following image. Note that when the partial and component dates
 are assigned to FULLDATE2 and FULLDATE3, the day assigned is 01 in both cases.
@@ -3320,7 +3319,7 @@ Display
 04/21/98
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 Format
 
@@ -3424,7 +3423,7 @@ formats. With SET DTSTANDARD=OFF, the request terminates with a (FOC177): INVALI
 CONSTANT:
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 SET DTSTANDARD = &STAND
 DEFINE FILE EMPLOYEE
@@ -3522,7 +3521,7 @@ entered using the 24-hour system. For example, the value 19991231225725333444
 represents 1999/12/31 10:57:25.333444PM.
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 Syntax:
 
@@ -3686,7 +3685,7 @@ AM or PM. For example:
 USAGE = HHISA prints 02:05:27AM
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 Option
 
@@ -3838,7 +3837,7 @@ Feb
 05
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 Option
 
@@ -3934,7 +3933,7 @@ With all zeros displayed, format HDMYY.
 With zero suppression for the day component, format HdMYY.
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 With zero removal for the day component, format HeMYY.
 
@@ -4089,7 +4088,7 @@ USAGE = HHISZ prints 14:30[:
 20.99]Z
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 The date components can be in any of the following combinations and order:
 
@@ -4193,7 +4192,7 @@ AnV can be used anywhere that An can be used, except for the restrictions listed
 notes.
 
 
-The Displayed Data Type: USAGE
+## The Displayed Data Type: USAGE
 
 Full FOCUS and SQL operations are supported with this data type, including CREATE FILE
 for relational data sources.
@@ -4298,9 +4297,8 @@ commands.
 Multiple text fields are supported, and they and be anywhere in the segment.
 
 
-The Stored Data Type: ACTUAL
+## The Stored Data Type: ACTUAL
 
-The Stored Data Type: ACTUAL
 
 ACTUAL describes the type and length of data as it is actually stored in the data source. While
 some data types, such as alphanumeric, are universal, others differ between different types of
@@ -4405,7 +4403,7 @@ byte which contains a digit and the sign (+ or -). For example, P6
 means 11 digits plus a sign.
 
 
-The Stored Data Type: ACTUAL
+## The Stored Data Type: ACTUAL
 
 ACTUAL Type
 
@@ -4545,7 +4543,7 @@ P8.1
 A2
 
 
-The Stored Data Type: ACTUAL
+## The Stored Data Type: ACTUAL
 
 COBOL USAGE
 FORMAT
@@ -4664,7 +4662,7 @@ ACTUAL attribute, and instead rely upon the USAGE attribute to specify both how 
 stored and formatted.
 
 
-Adding a Geographic Role for a Field
+## Adding a Geographic Role for a Field
 
 When a field represents a geographic location or coordinate, you can identify its correct
 geographic role using the GEOGRAPHIC_ROLE attribute in the Master File.
@@ -4717,7 +4715,7 @@ LATITUDE. Latitude.
 LONGITUDE. Longitude.
 
 
-Null or MISSING Values: MISSING
+## Null or MISSING Values: MISSING
 
 NUTS0. Country name (NUTS level 0).
 
@@ -4761,7 +4759,7 @@ ZIP3. US 3-digit postal code.
 
 ZIP5. US 5-digit postal code.
 
-Null or MISSING Values: MISSING
+## Null or MISSING Values: MISSING
 
 If a segment instance exists but no data has been entered into one of its fields, that field has
 no value. Some types of data sources represent this absence of data as a blank space ( ) or
@@ -4819,7 +4817,7 @@ FOCUS data sources also support MISSING=ON, which assigns sets an internal flag 
 missing values.
 
 
-Describing an FML Hierarchy
+## Describing an FML Hierarchy
 
 Changes. You can change the MISSING attribute at any time. Note that changing MISSING
 does not affect the actual stored data values that were entered using the old setting.
@@ -4855,7 +4853,7 @@ distinguishing these values in reports, such as using the WHERE phrase with MISS
 selection operators, and creating virtual fields using the DEFINE FILE command with the SOME
 or ALL phrase.
 
-Describing an FML Hierarchy
+## Describing an FML Hierarchy
 
 The Financial Modeling Language (FML) supports dynamic reporting against hierarchical data
 structures.
@@ -4907,7 +4905,7 @@ PARENT_OF is also allowed on a virtual field in the Master File:
 DEFINE name/fmt=expression;,PROPERTY=PARENT_OF,REFERENCE=hierarchyfld,$
 
 
-Describing an FML Hierarchy
+## Describing an FML Hierarchy
 
 Syntax:
 
@@ -4976,7 +4974,7 @@ FIELDNAME=GL_ACCOUNT_CAPTION,   ALIAS=GLCAP,   FORMAT=A30,
 FIELDNAME=SYS_ACCOUNT,          ALIAS=ALINE,   FORMAT=A6,
           TITLE='System,Account,Line', MISSING=ON, $
 
-Defining a Dimension: WITHIN
+## Defining a Dimension: WITHIN
 
 The OLAP model organizes data structures by predefining dimensions in the Master File, using
 the field name attribute WITHIN. A dimension is a group or list of related fields called
@@ -4994,7 +4992,7 @@ hierarchy, would contain a list of all available States within Region, and so on
 be defined in the Master File for any supported data source.
 
 
-Defining a Dimension: WITHIN
+## Defining a Dimension: WITHIN
 
 The combination, or matrix, of two or more dimensional hierarchies in an OLAP-enabled data
 source is called multi-dimensional. For example, although products are sold within states they
@@ -5075,7 +5073,7 @@ TIME Dimension
                        ===> Date
 
 
-Defining a Dimension: WITHIN
+## Defining a Dimension: WITHIN
 
 OSALES Master File
 
@@ -5159,7 +5157,7 @@ how many units were sold, the total dollar amount of reported sales, how many un
 budgeted, and total sales quota in dollars, respectively.
 
 
-Validating Data: ACCEPT
+## Validating Data: ACCEPT
 
 6. Shows the following:
 
@@ -5205,7 +5203,7 @@ within Year, Month within Quarter, Date within Month.
 
 Fields in a hierarchy can occur in any order in the Master File.
 
-Validating Data: ACCEPT
+## Validating Data: ACCEPT
 
 ACCEPT is an optional attribute that you can use to validate data as it is entered into a
 parameter prompt screen.
@@ -5253,7 +5251,7 @@ need to have matching field names. You supply the name of the synonym, the looku
 name, and the display field name.
 
 
-Validating Data: ACCEPT
+## Validating Data: ACCEPT
 
 Syntax:
 
@@ -5460,14 +5458,14 @@ external OSTATE data source:
 
 ACCEPT=(OSTATE)
 
-Alternative Report Column Titles: TITLE
+## Alternative Report Column Titles: TITLE
 
 When you generate a report, each column title in the report defaults to the name of the field
 that appears in that column. However, you can change the default column title by specifying
 the optional TITLE attribute for that field.
 
 
-Alternative Report Column Titles: TITLE
+## Alternative Report Column Titles: TITLE
 
 You can also specify a different column title within an individual report by using the AS phrase
 in that report request, as described in the Creating Reports With WebFOCUS Language manual.
@@ -5529,7 +5527,7 @@ HOLD files. To propagate the TITLE attribute into the Master File of a HOLD file
 SET HOLDATTR command. HOLD files are discussed in the Creating Reports With
 WebFOCUS Language manual.
 
-Documenting the Field: DESCRIPTION
+## Documenting the Field: DESCRIPTION
 
 DESCRIPTION is an optional attribute that enables you to provide comments and other
 documentation for a field within the Master File. You can include any comment up to 2K
@@ -5573,7 +5571,7 @@ The following FIELD declaration provides a DESCRIPTION:
 FIELD=UNITS,ALIAS=QTY,USAGE=I6, DESC='QUANTITY SOLD, NOT RETURNED',$
 
 
-Multilingual Metadata
+## Multilingual Metadata
 
 Reference: Usage Notes for DESCRIPTION
 
@@ -5586,7 +5584,7 @@ Changes. You can change DESCRIPTION at any time.
 Virtual fields. You can use the DESCRIPTION attribute for a virtual field created with the
 DEFINE attribute.
 
-Multilingual Metadata
+## Multilingual Metadata
 
 Master Files support column headings and descriptions in multiple languages.
 
@@ -5747,7 +5745,7 @@ GRE
 HEW
 
 
-Multilingual Metadata
+## Multilingual Metadata
 
 Language Name
 
@@ -5894,7 +5892,7 @@ abbreviations. For information, see Languages and Language Code Abbreviations on
 195.
 
 
-Multilingual Metadata
+## Multilingual Metadata
 
 DESC_ln = desc_for_ln
 
@@ -5999,7 +5997,7 @@ Now, issue the following command to set the language to Spanish and run the same
 SET LANG = SPA
 
 
-Describing a Virtual Field: DEFINE
+## Describing a Virtual Field: DEFINE
 
 The output now displays column headings from the TITLE_ES attributes where they exist
 (Product Number and Product Name). Where no Spanish title is specified (the Price field), the
@@ -6015,7 +6013,7 @@ de Producto:  de Producto:                          Price:
 1030          QX Portable CD Player                 169.00
 1032          R5 Micro Digital Tape Recorder         89.00
 
-Describing a Virtual Field: DEFINE
+## Describing a Virtual Field: DEFINE
 
 DEFINE is an optional attribute used to create a virtual field for reporting. You can derive the
 virtual field value from information already in the data source (that is, from permanent fields).
@@ -6103,7 +6101,7 @@ NUTS1_CC. Region code (NUTS level1).
 NUTS2. Province name (NUTS level 2).
 
 
-Describing a Virtual Field: DEFINE
+## Describing a Virtual Field: DEFINE
 
 NUTS2_CC. Province code (NUTS level 2).
 
@@ -6212,7 +6210,7 @@ helpful when you wish to create a virtual field that is only used once, and you 
 add a declaration for it to the Master File.
 
 
-Describing a Calculated Value: COMPUTE
+## Describing a Calculated Value: COMPUTE
 
 Virtual fields defined in the Master File are available whenever the data source is used, and
 are treated like other stored fields. Thus, a field defined in the Master File cannot be cleared in
@@ -6226,7 +6224,7 @@ such a field in a Maintain Data procedure generates the following message:
 
 (FOC03605) name is not recognized.
 
-Describing a Calculated Value: COMPUTE
+## Describing a Calculated Value: COMPUTE
 
 COMPUTE commands can be included in Master Files and referenced in subsequent TABLE
 requests, enabling you to build expressions once and use them in multiple requests.
@@ -6317,7 +6315,7 @@ USSCITY. US city name.
 USCITY_FIPS. US city FIPS code.
 
 
-Describing a Calculated Value: COMPUTE
+## Describing a Calculated Value: COMPUTE
 
 USCOUNTY. US county name.
 
@@ -6415,7 +6413,7 @@ WHERE CITY EQ 'NEW YORK'
 END
 
 
-Describing a Filter: FILTER
+## Describing a Filter: FILTER
 
 The output is:
 
@@ -6432,7 +6430,7 @@ The output is:
   E1       30          $.89           $26.70
   E3       35         $1.09           $38.15
 
-Describing a Filter: FILTER
+## Describing a Filter: FILTER
 
 Boolean virtual fields (DEFINE fields that evaluate to TRUE or FALSE) can be used as record
 selection criteria. If the primary purpose of a virtual field is for use in record selection, you can
@@ -6516,7 +6514,7 @@ A filter can be used as a standard numeric virtual field anywhere in a report re
 that they are not supported in WHERE TOTAL tests.
 
 
-Describing a Filter: FILTER
+## Describing a Filter: FILTER
 
 A mandatory filter can be used to force access to a segment (for example, a table in a
 cluster synonym) that is not referenced in a request.
@@ -6558,7 +6556,7 @@ Consider the following filter declaration added to the MOVIES Master File:
 FILTER G_RATING = RATING EQ 'G' OR 'PG'; MANDATORY=YES ,$
 
 
-Describing a Filter: FILTER
+## Describing a Filter: FILTER
 
 The following request does not reference the G_RATING filter:
 
@@ -6580,7 +6578,7 @@ The output is shown in the following image. Note that the G_RATING filter is app
 though it is not referenced in the request:
 
 
-Describing a Sort Object: SORTOBJ
+## Describing a Sort Object: SORTOBJ
 
 You can define sort phrases and attributes in a Master File and reference them by name in a
 request against the Master File. The entire text of the sort object is substituted at the point in
@@ -6589,7 +6587,7 @@ verified prior to this substitution. The only verification is that there is a so
 an equal sign in the Master File SORTOBJ record.
 
 
-Describing a Sort Object: SORTOBJ
+## Describing a Sort Object: SORTOBJ
 
 Reference: Usage Notes for Sort Objects in a Master File
 

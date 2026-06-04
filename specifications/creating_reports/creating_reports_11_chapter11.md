@@ -31,7 +31,7 @@ Navigating a Multi-Page Report With the WebFOCUS Viewer
 
 Linking Report Pages
 
-Navigating Sort Groups From a Table of Contents
+## Navigating Sort Groups From a Table of Contents
 
 You can enhance navigation within a large HTML report by adding a dynamic HTML-based Table
 of Contents (TOC). To take advantage of this feature, the report must contain at least one
@@ -43,7 +43,7 @@ the report at a time, or you can view all sections at once. You can control this
 break. For more information, see Grouping Sort Fields for Display on page 976.
 
 
-Navigating Sort Groups From a Table of Contents
+## Navigating Sort Groups From a Table of Contents
 
 The TOC displays all values of the first (highest-level) vertical sort field, as well as the values of
 any lower level BY fields that you designate for inclusion. These values are displayed as an
@@ -107,7 +107,7 @@ SET BASEURL=http://{hostname:portnumber}
 
 For more information on SET BASEURL, see Specifying a Base URL on page 872.
 
-Adding the HTML Table of Contents Tree Control to Reports
+## Adding the HTML Table of Contents Tree Control to Reports
 
 You can use three different types of syntax to add an HTML TOC object to a report.
 
@@ -143,7 +143,7 @@ Note: Single quotation marks (') should be used when BYTOC is specified with a n
 SET command.
 
 
-Adding the HTML Table of Contents Tree Control to Reports
+## Adding the HTML Table of Contents Tree Control to Reports
 
 Syntax:
 
@@ -253,7 +253,7 @@ ENDSTYLE
 END
 
 
-Adding the HTML Table of Contents Tree Control to Reports
+## Adding the HTML Table of Contents Tree Control to Reports
 
 In the following request, the TOC Tree control is enabled in the Report StyleSheet:
 
@@ -287,7 +287,7 @@ If you wish to display all available fields (the whole report), click the View E
 option.
 
 
-Adding the HTML Table of Contents Tree Control to Reports
+## Adding the HTML Table of Contents Tree Control to Reports
 
 Tip: You can also customize the look and feel of the TOC object by editing a .css file. It is
 recommended that you make a backup copy prior to editing.
@@ -365,7 +365,7 @@ If the selected lower level value is already viewable on the screen, and the rem
 will fit on the screen, the value flashes, but the report does not scroll.
 
 
-Adding the HTML Table of Contents Tree Control to Reports
+## Adding the HTML Table of Contents Tree Control to Reports
 
 Example:
 
@@ -407,7 +407,7 @@ Select View Entire Report. Scroll down to see that the report contains data for 
 continents.
 
 
-Adding the HTML Table of Contents Tree Control to Reports
+## Adding the HTML Table of Contents Tree Control to Reports
 
 Scroll back to the top of the report window and reopen the TOC. This time select Americas.
 Your selection flashes to highlight it on the screen. Although the report display does not
@@ -454,7 +454,7 @@ Is the type of heading or footing that contains the TOC.
 Valid values are:
 
 
-Adding the HTML Table of Contents Tree Control to Reports
+## Adding the HTML Table of Contents Tree Control to Reports
 
 TABHEADING
 
@@ -561,7 +561,7 @@ ENDSTYLE
 END
 
 
-Adding the HTML Table of Contents Tree Control to Reports
+## Adding the HTML Table of Contents Tree Control to Reports
 
 When you run the report. The TOC appears as a drop-down menu in the heading, in place of
 the field CONTINENT:
@@ -608,7 +608,7 @@ ENDSTYLE
 END
 
 
-Adding the HTML Table of Contents Tree Control to Reports
+## Adding the HTML Table of Contents Tree Control to Reports
 
 The output is:
 
@@ -623,7 +623,7 @@ Note that if you select information already in your field of view, the value wil
 gray and will flash, to draw your attention to it.
 
 
-Adding the HTML Table of Contents Tree Control to Reports
+## Adding the HTML Table of Contents Tree Control to Reports
 
 Next, scroll up and choose ASIA from the first TOC list. This selection changes your highest-
 level sort group, and affects all of the lists below it. ASIA flashes and moves to the top of the
@@ -677,14 +677,14 @@ the following commands in the report request:
 The SET BASEURL command set to the URL to connect to the application server on which
 WebFOCUS Client is installed. For information, see Specifying a Base URL on page 872.
 
-Controlling the Display of Sorted Data With Accordion Reports
+## Controlling the Display of Sorted Data With Accordion Reports
 
 Accordion Reports provide a way to control the amount of sorted data that appears on an
 HTML report page. You can produce reports with expandable views for each vertical sort field in
 a request with multiple BY fields.
 
 
-Controlling the Display of Sorted Data With Accordion Reports
+## Controlling the Display of Sorted Data With Accordion Reports
 
 You can create two types of Accordion Reports:
 
@@ -780,7 +780,7 @@ SET FOCHTMLURL command, which must be set to an absolute URL instead of the defa
 value. For example,
 
 
-Controlling the Display of Sorted Data With Accordion Reports
+## Controlling the Display of Sorted Data With Accordion Reports
 
 SET FOCHTMLURL = http://hostname[:port]/ibi_apps/ibi_html
 
@@ -875,7 +875,7 @@ Creates an Accordion report in which all sort field levels are initially expande
 sort field level, click the minus sign (-) next to one of the sort field values on that level.
 
 
-Controlling the Display of Sorted Data With Accordion Reports
+## Controlling the Display of Sorted Data With Accordion Reports
 
 n
 
@@ -966,7 +966,7 @@ END
 The initial output shows only the top level BY field (REGION), as shown in the following image.
 
 
-Controlling the Display of Sorted Data With Accordion Reports
+## Controlling the Display of Sorted Data With Accordion Reports
 
 Clicking the plus sign (+) next to the Midwest region opens the rows that show the states
 associated with that region, as shown in the following image.
@@ -1007,7 +1007,7 @@ TYPE=REPORT,
 $
 
 
-Controlling the Display of Sorted Data With Accordion Reports
+## Controlling the Display of Sorted Data With Accordion Reports
 
 TYPE=TITLE,
     BACKCOLOR=RGB(102 102 102),
@@ -1071,7 +1071,7 @@ SET EXPANDBYROWTREE = {OFF|ON|ALL|n}
 ON TABLE SET EXPANDBYROWTREE {OFF|ON|ALL|n}
 
 
-Controlling the Display of Sorted Data With Accordion Reports
+## Controlling the Display of Sorted Data With Accordion Reports
 
 where:
 
@@ -1136,7 +1136,7 @@ Clicking the plus sign (+) next to the state IL opens the rows that show the cat
 associated with that state, as shown in the following image.
 
 
-Controlling the Display of Sorted Data With Accordion Reports
+## Controlling the Display of Sorted Data With Accordion Reports
 
 Clicking the plus sign (+) next to the Coffee category shows the products associated with that
 category, as shown in the following image. This is the lowest level of the Accordion By Row
@@ -1183,7 +1183,7 @@ Clicking the arrow next to the Midwest region opens the rows that show the state
 with that region, as shown in the following image.
 
 
-Controlling the Display of Sorted Data With Accordion Reports
+## Controlling the Display of Sorted Data With Accordion Reports
 
 Clicking the right arrow next to the state IL opens the rows that show the categories
 associated with that state, as shown in the following image.
@@ -1232,7 +1232,7 @@ As of Release 8.2 Version 04, grids are supported with EXPANDBYROWTREE.
 The maximum length of a BY field value is 245 bytes.
 
 
-Controlling the Display of Sorted Data With Accordion Reports
+## Controlling the Display of Sorted Data With Accordion Reports
 
 EXPANDBYROWTREE is not supported with OLAP. When both OLAP and
 EXPANDBYROWTREE are enabled, EXPANDBYROWTREE will be ignored. As a workaround,
@@ -1317,7 +1317,7 @@ The following example demonstrates how pop-up text will display for the standard
 report in the default presentation, which means pop-up descriptions are not turned on.
 
 
-Controlling the Display of Sorted Data With Accordion Reports
+## Controlling the Display of Sorted Data With Accordion Reports
 
 DEFINE FILE GGSALES.
 UNITS/D12C DESCRIPTION ''=UNITS;
@@ -1389,7 +1389,7 @@ The following example demonstrates how pop-up text displays with pop-up descript
 on.
 
 
-Controlling the Display of Sorted Data With Accordion Reports
+## Controlling the Display of Sorted Data With Accordion Reports
 
 SET POPUPDESC = ON
 DEFINE FILE GGSALES.
@@ -1453,7 +1453,7 @@ NOPRINT on the sort phrase. To display employee names, the NAME_DISPLAY virtual 
 created, which concatenates the FIRST_NAME field and the LAST_NAME field.
 
 
-Controlling the Display of Sorted Data With Accordion Reports
+## Controlling the Display of Sorted Data With Accordion Reports
 
 DEFINE FILE EMPLOYEE
 NAME_SORT/A50=EMPLOYEE.EMPINFO.LAST_NAME || ( ', ' |
@@ -1516,7 +1516,7 @@ ENDSTYLE
 END
 
 
-Controlling the Display of Sorted Data With Accordion Reports
+## Controlling the Display of Sorted Data With Accordion Reports
 
 If you hover the mouse over any value in the NAME_DISPLAY column, the tooltip will display the
 AS name, Employee Name, as shown in the following image.
@@ -1577,7 +1577,7 @@ virtual field containing the BY value with the new format applied. This will all
 sort, and aggregate on the new redefined BY value.
 
 
-Controlling the Display of Sorted Data With Accordion Reports
+## Controlling the Display of Sorted Data With Accordion Reports
 
 DEFINE FILE EMPLOYEE
 NAME_SORT/A50=EMPLOYEE.EMPINFO.LAST_NAME || ( ', ' |
@@ -1668,7 +1668,7 @@ The following commands are not supported when using Accordion Reports:
 BORDER, COLUMN, FOR, IN, OVER, PAGE-NUM, ROW-TOTAL, TOTAL
 
 
-Controlling the Display of Sorted Data With Accordion Reports
+## Controlling the Display of Sorted Data With Accordion Reports
 
 Data Visualization, HTML BYTOC, OLAP, On Demand Paging (WebFOCUS Viewer), column
 freezing, and the ReportCaster burst feature are also not supported with Accordion Reports.
@@ -1710,7 +1710,7 @@ with the first-level sort field, Region, by default. The expanded data values yo
 result of a report user clicking plus signs to the left of specific first, second- and third-level sort
 fields after the report is generated.
 
-Navigating a Multi-Page Report With the WebFOCUS Viewer
+## Navigating a Multi-Page Report With the WebFOCUS Viewer
 
 Normally, a web server returns an entire HTML report to a browser, which waits for all of the
 report before displaying it. On-demand paging, implemented in the WebFOCUS Viewer, returns
@@ -1729,7 +1729,7 @@ Note that you can use the HFREEZE StyleSheet option to display column titles on 
 output returned by the WebFOCUS Viewer.
 
 
-Navigating a Multi-Page Report With the WebFOCUS Viewer
+## Navigating a Multi-Page Report With the WebFOCUS Viewer
 
 The following is page 1 of a 31-page report displayed in the WebFOCUS Viewer.
 
@@ -1803,7 +1803,7 @@ search) or by controlling the direction of your search (either forward or backwa
 starting point in the report).
 
 
-Linking Report Pages
+## Linking Report Pages
 
 When using the Search option:
 
@@ -1813,7 +1813,7 @@ When using the Search option:
 in the direction selected in the Viewer Control Panel. Note that the direction control is to
 the right of the Search entry field used to specify a search string.
 
-Linking Report Pages
+## Linking Report Pages
 
 With a StyleSheet, you can insert one or more navigational hyperlinks in a multi-page HTML
 report. This feature makes it easy for you to link consecutive report pages together without
@@ -1882,7 +1882,7 @@ END
 The images display in each page heading.
 
 
-Linking Report Pages
+## Linking Report Pages
 
 Click the image on the left of page 1 to display page 2.
 
@@ -1907,7 +1907,7 @@ the text of the page heading, which appears at the top of every report page, bac
 previous page or to the first page.
 
 
-Linking Report Pages
+## Linking Report Pages
 
 TABLE FILE GGORDER
 ON TABLE SUBHEAD
@@ -1943,5 +1943,5 @@ issued at the start of the procedure:
 SET BASEURL = ''
 
 
-Linking Report Pages
+## Linking Report Pages
 

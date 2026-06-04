@@ -46,9 +46,8 @@ Using a VSAM Alternate Index
 Describing a Token-Delimited Data Source
 
 
-Sequential Data Source Formats
+## Sequential Data Source Formats
 
-Sequential Data Source Formats
 
 Sequential data sources formatted in the following ways are recognized:
 
@@ -142,7 +141,7 @@ described in the Master File may not exceed the actual length of the data record
 LRECL value).
 
 
-Sequential Data Source Formats
+## Sequential Data Source Formats
 
 You must describe the entire record. The values for field name and alias can be omitted for
 fields that do not need to be accessed. This is significant when using existing data sources,
@@ -238,7 +237,7 @@ Each record is completely contained on one line and terminated with the cr/lf ch
 combination.
 
 
-Sequential Data Source Formats
+## Sequential Data Source Formats
 
 Reference: Accessing SUFFIX=TAB Data Sources
 
@@ -331,9 +330,8 @@ BI=H, PR=17.95,$
 BI=H, P=17.95,$
 
 
-Standard Master File Attributes for a Sequential Data Source
+## Standard Master File Attributes for a Sequential Data Source
 
-Standard Master File Attributes for a Sequential Data Source
 
 Most standard Master File attributes are used with sequential data sources in the standard
 way. For more information, see Identifying a Data Source on page 31, Describing a Group of
@@ -355,7 +353,7 @@ you are not joining. However, they are recommended in order to make the data sou
 description self-documenting, and to give you the option of joining the data source in the
 future.
 
-Standard Master File Attributes for a VSAM or ISAM Data Source
+## Standard Master File Attributes for a VSAM or ISAM Data Source
 
 Most standard Master File attributes are used with VSAM and ISAM data sources in the
 standard way. For more information, see Identifying a Data Source on page 31, Describing a
@@ -428,7 +426,7 @@ Fields of type P that are 8 bytes can have a USAGE of P15.x or P16 (sign and dec
 total of 15 digits). Fields that are 16 bytes have a USAGE of P16.x, P17 or larger.
 
 
-Standard Master File Attributes for a VSAM or ISAM Data Source
+## Standard Master File Attributes for a VSAM or ISAM Data Source
 
 Fields of type D have a value of 8.
 
@@ -534,7 +532,7 @@ where each integer or single precision field counted as 4 bytes, each double pre
 8 bytes, and each packed field counted as either 8 or 16 bytes depending on its size.
 
 
-Standard Master File Attributes for a VSAM or ISAM Data Source
+## Standard Master File Attributes for a VSAM or ISAM Data Source
 
 To avoid the need to calculate these lengths, you can use the GROUP ELEMENTS option, which
 describes a group as a set of elements without USAGE and ACTUAL formats.
@@ -691,12 +689,12 @@ A7
 A7
 
 
-Describing a Multiply Occurring Field in a Free-Format Data Source
+## Describing a Multiply Occurring Field in a Free-Format Data Source
 
 Note that the display characteristics of the group have not changed. The mixed format group
 GRP1 will still display as all alphanumeric.
 
-Describing a Multiply Occurring Field in a Free-Format Data Source
+## Describing a Multiply Occurring Field in a Free-Format Data Source
 
 Since any data field not explicitly referred to in a logical record continues to have the same
 value as it did the last time one was assigned, up until the point a new data value is entered,
@@ -705,7 +703,7 @@ information needs to be entered only once, and it carries over for each descenda
 
 Example:
 
-Describing a Multiply Occurring Field in a Free-Format Data Source
+## Describing a Multiply Occurring Field in a Free-Format Data Source
 
 Consider the example of a library data source. The information for two copies of The Sun Also
 Rises, one hardcover and one paperback, can be entered as follows:
@@ -741,7 +739,7 @@ FILENAME = LIBRARY4, SUFFIX = COM, $
 Note that each segment other than the first has a PARENT attribute. You use the PARENT
 attribute to signal that you are describing a hierarchical structure.
 
-Describing a Multiply Occurring Field in a Fixed-Format, VSAM, or ISAM Data Source
+## Describing a Multiply Occurring Field in a Fixed-Format, VSAM, or ISAM Data Source
 
 Fixed-format sequential, VSAM, or ISAM data sources can have repeating fields. Consider the
 following data structure:
@@ -777,7 +775,7 @@ attribute, to specify that these segments represent multiply occurring fields. I
 you may also need a second attribute, called the POSITION attribute.
 
 
-Describing a Multiply Occurring Field in a Fixed-Format, VSAM, or ISAM Data Source
+## Describing a Multiply Occurring Field in a Fixed-Format, VSAM, or ISAM Data Source
 
 Using the OCCURS Attribute
 
@@ -887,7 +885,7 @@ C1
 C2
 
 
-Describing a Multiply Occurring Field in a Fixed-Format, VSAM, or ISAM Data Source
+## Describing a Multiply Occurring Field in a Fixed-Format, VSAM, or ISAM Data Source
 
 In this example, fields B1 and B2 and fields C1 and C2 repeat within the record. The number
 of times that fields B1 and B2 occur has nothing to do with the number of times fields C1 and
@@ -999,7 +997,7 @@ E
 E
 
 
-Describing a Multiply Occurring Field in a Fixed-Format, VSAM, or ISAM Data Source
+## Describing a Multiply Occurring Field in a Fixed-Format, VSAM, or ISAM Data Source
 
 It produces the following data structure:
 
@@ -1059,7 +1057,7 @@ You can also use the POSITION attribute to redescribe fields with SEGTYPE=U. For
 information, see Redefining a Field in a Non-FOCUS Data Source on page 254.
 
 
-Describing a Multiply Occurring Field in a Fixed-Format, VSAM, or ISAM Data Source
+## Describing a Multiply Occurring Field in a Fixed-Format, VSAM, or ISAM Data Source
 
 Syntax:
 
@@ -1140,7 +1138,7 @@ counter field in any OCCURS segment. A value is automatically supplied that defi
 sequence number of each repeating group.
 
 
-Redefining a Field in a Non-FOCUS Data Source
+## Redefining a Field in a Non-FOCUS Data Source
 
 Syntax:
 
@@ -1178,7 +1176,7 @@ WHERE ACT_MONTH IS 6
 The ORDER field is a virtual field used internally. It does not alter the logical record length
 (LRECL) of the data source being accessed.
 
-Redefining a Field in a Non-FOCUS Data Source
+## Redefining a Field in a Non-FOCUS Data Source
 
 Redefining record fields in non-FOCUS data sources is supported. This enables you to describe
 a field with an alternate layout.
@@ -1236,7 +1234,7 @@ FILE = REDEF, SUFFIX = VSAM,$
    FIELDNAME = RFLD1,, USAGE = P8.2 ,ACTUAL = Z4 ,$
 
 
-Extra-Large Record Length Support
+## Extra-Large Record Length Support
 
 Reference: Special Considerations for Redefining a Field
 
@@ -1251,7 +1249,7 @@ More than one field can be redefined in a segment.
 
 Redefines are supported only for IDMS, IMS, VSAM, DB2, and FIX data sources.
 
-Extra-Large Record Length Support
+## Extra-Large Record Length Support
 
 MAXLRECL indicates the largest actual file record length that WebFOCUS can read. The limit
 for MAXLRECL is 65536 bytes, allowing the user to read a record twice as large as the length
@@ -1281,7 +1279,7 @@ If the actual record length is longer than specified, retrieval halts and the ac
 appears in hexadecimal notation.
 
 
-Describing Multiple Record Types
+## Describing Multiple Record Types
 
 
 Fixed-format sequential, VSAM, and ISAM data sources can contain more than one type of
@@ -1328,7 +1326,7 @@ attribute. In Describing VSAM Positionally Related Records on page 262, the RECT
 added to the group key in the SERIANO segment, the lowest descendant segment in the chain.
 
 
-Describing Multiple Record Types
+## Describing Multiple Record Types
 
 SEGTYPE Attributes With RECTYPE Fields
 
@@ -1425,7 +1423,7 @@ To specify a range of values, include the lowest value, the keyword TO, and the 
 value, in that order. For example:
 
 
-Describing Multiple Record Types
+## Describing Multiple Record Types
 
 FIELDNAME = RECTYPE, ALIAS = ACCTREC, USAGE = P3,ACTUAL = P2,
  ACCEPT = 100 TO 200, $
@@ -1502,7 +1500,7 @@ in your reports by using the SET command to change the ALL parameter. The SET co
 described in the Developing Reporting Applications manual.
 
 
-Describing Multiple Record Types
+## Describing Multiple Record Types
 
 In the example in Describing Positionally Related Records on page 260, if the first record in the
 data source is not a PUBINFO record, the record is considered to be a child without a parent.
@@ -1572,7 +1570,7 @@ further speed retrieval, add search criteria based on the BINDING field, which i
 the key.
 
 
-Describing Multiple Record Types
+## Describing Multiple Record Types
 
 Describing Unrelated Records
 
@@ -1663,7 +1661,7 @@ Book
 Book
 
 
-Describing Multiple Record Types
+## Describing Multiple Record Types
 
 Magazine
 
@@ -1741,7 +1739,7 @@ When using a generalized segment, you identify RECTYPE values using the ACCEPT a
 You can assign any value to the ALIAS attribute.
 
 
-Describing Multiple Record Types
+## Describing Multiple Record Types
 
 Syntax:
 
@@ -1838,7 +1836,7 @@ applies to the record layout for both record type M and I. The ACCEPT attribute 
 any RECTYPE specification, even when there is only one acceptable value.
 
 
-Describing Multiple Record Types
+## Describing Multiple Record Types
 
 FILENAME=DOC2, SUFFIX=VSAM,$
 SEGNAME=ROOT, SEGTYPE=SO,$
@@ -1920,7 +1918,7 @@ DOCID    TITLE                MDATE   RECTYPE   MRELEASE   MPAGES
 40114    zOS INSTALL GUIDE    8806    I         5.5.3          58
                               8808    I         5.5.4          58
 
-Combining Multiply Occurring Fields and Multiple Record Types
+## Combining Multiply Occurring Fields and Multiple Record Types
 
 You can have two types of descendant segments in a single fixed-format sequential, VSAM, or
 ISAM data source:
@@ -1930,7 +1928,7 @@ Descendant segments consisting of multiply occurring fields.
 Additional descendant segments consisting of multiple record types.
 
 
-Combining Multiply Occurring Fields and Multiple Record Types
+## Combining Multiply Occurring Fields and Multiple Record Types
 
 Describing a Multiply Occurring Field and Multiple Record Types
 
@@ -1989,7 +1987,7 @@ descendants (the repetition of fields B1, B2, C1, and D1) extends from the first
 fields B1 and B2 to the end of the record.
 
 
-Combining Multiply Occurring Fields and Multiple Record Types
+## Combining Multiply Occurring Fields and Multiple Record Types
 
 Although fields C1 and D1 appear in separate segments, they are actually part of the
 repeating pattern that makes up the OCCURS=VARIABLE segment. Since they occur
@@ -2065,7 +2063,7 @@ segment of C and D that was identified by its preceding record indicator. The se
 has a different record indicator and contains a different repeating group, this time for E.
 
 
-Combining Multiply Occurring Fields and Multiple Record Types
+## Combining Multiply Occurring Fields and Multiple Record Types
 
 The following diagram illustrates this relationship:
 
@@ -2138,7 +2136,7 @@ ACTUAL
 Is the same format as the MAPFIELD format in the parent segment.
 
 
-Establishing VSAM Data and Index Buffers
+## Establishing VSAM Data and Index Buffers
 
 list
 
@@ -2188,7 +2186,7 @@ means that the segment definition cannot contain POSITION=fieldname.
 
 MAPFIELD and MAPVALUE may be used with SUFFIX=FIX and SUFFIX=VSAM data sources.
 
-Establishing VSAM Data and Index Buffers
+## Establishing VSAM Data and Index Buffers
 
 Two SET commands make it possible to establish DATA and INDEX buffers for processing
 VSAM data sources online.
@@ -2223,7 +2221,7 @@ Reference: Determining How Many Buffers Are in Effect
 
 MVS VSAM SET ?
 
-Using a VSAM Alternate Index
+## Using a VSAM Alternate Index
 
 VSAM key-sequenced data sources support the use of alternate key indexes (keys). A key-
 sequenced VSAM data source consists of two components: an index component and a data
@@ -2243,7 +2241,7 @@ VSAM environment. It can, however, be described in your Master File, so that you
 advantage of the benefits of an alternate index.
 
 
-Using a VSAM Alternate Index
+## Using a VSAM Alternate Index
 
 The primary benefit of these indexes is improved efficiency. You can use it as an alternate,
 more efficient, retrieval sequence or take advantage of its potential indirectly, with screening
@@ -2341,12 +2339,12 @@ IDCAMS output (fragments):
 This gives you the path names: CUST.PATH1 and CUST.PATH2.
 
 
-Describing a Token-Delimited Data Source
+## Describing a Token-Delimited Data Source
 
 This information, along with the TSO DDNAME command, may be used to ensure the proper
 allocation of your alternate index.
 
-Describing a Token-Delimited Data Source
+## Describing a Token-Delimited Data Source
 
 You can read files in which fields are separated by any type of delimiter including commas,
 tabs and other characters. Defining a Master File with the SUFFIX=DFIX attribute lets you
@@ -2453,7 +2451,7 @@ If the data is numeric and has a zoned format (ACTUAL=Zn), the data must be unsi
 (cannot contain a positive or negative value).
 
 
-Describing a Token-Delimited Data Source
+## Describing a Token-Delimited Data Source
 
 Numeric values may be used to represent any character, but are predominantly used for
 non-printable characters such as Tab. The numeric values may differ between EBCDIC and
@@ -2553,7 +2551,7 @@ DELIMITER = delimiter [,ENCLOSURE = enclosure]
   [,RDELIMITER=rdelimiter], $
 
 
-Describing a Token-Delimited Data Source
+## Describing a Token-Delimited Data Source
 
 where:
 
@@ -2648,7 +2646,7 @@ WEST|2001|155252|39167974.18
 WEST|2002|170421|42339953.45
 
 
-Describing a Token-Delimited Data Source
+## Describing a Token-Delimited Data Source
 
 The PIPE1 Master File is:
 
@@ -2735,7 +2733,7 @@ The following Access File is generated:
 SEGNAME=DFIX1, DELIMITER=',', HEADER=NO, PRESERVESPACE=YES, $
 
 
-Describing a Token-Delimited Data Source
+## Describing a Token-Delimited Data Source
 
 In the DFIX1 file, the alphanumeric fields contain all of the blank spaces that existed in the
 original file:
@@ -2838,7 +2836,7 @@ codes.
 2C: hexadecimal value for comma (,).
 
 
-Describing a Token-Delimited Data Source
+## Describing a Token-Delimited Data Source
 
 24: hexadecimal value for dollar sign ($).
 

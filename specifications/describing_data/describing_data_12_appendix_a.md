@@ -48,7 +48,7 @@ Gotham Grinds Data Sources
 
 Century Corp Data Sources
 
-EMPLOYEE Data Source
+## EMPLOYEE Data Source
 
 EMPLOYEE contains sample data about company employees. Its segments are:
 
@@ -61,7 +61,7 @@ FUNDTRAN
 Specifies employee direct deposit accounts. This segment is unique.
 
 
-EMPLOYEE Data Source
+## EMPLOYEE Data Source
 
 PAYINFO
 
@@ -148,13 +148,13 @@ FILENAME=EMPLOYEE, SUFFIX=FOC
  SEGNAME=COURSEG,   SEGTYPE=KLU, PARENT=ATTNDSEG, CRFILE=EDUCFILE,$
 
 
-JOBFILE Data Source
+## JOBFILE Data Source
 
 EMPLOYEE Structure Diagram
 
 The EMPLOYEE structure follows:
 
-JOBFILE Data Source
+## JOBFILE Data Source
 
 JOBFILE contains sample data about company job positions. Its segments are:
 
@@ -215,9 +215,8 @@ SECTION 01
                     *************
 
 
-EDUCFILE Data Source
+## EDUCFILE Data Source
 
-EDUCFILE Data Source
 
 EDUCFILE contains sample data about company in-house courses. Its segments are:
 
@@ -272,7 +271,7 @@ A. Master Files and Diagrams
  ***************
   **************
 
-SALES Data Source
+## SALES Data Source
 
 SALES contains sample data about a dairy company with an affiliated store chain. Its
 segments are:
@@ -291,7 +290,7 @@ Contains sales data for each product on each date. The PROD_CODE field is indexe
 RETURNS and DAMAGED fields have the MISSING=ON attribute.
 
 
-SALES Data Source
+## SALES Data Source
 
 SALES Master File
 
@@ -356,7 +355,7 @@ A. Master Files and Diagrams
  ***************
   **************
 
-CAR Data Source
+## CAR Data Source
 
 CAR contains sample data about specifications and sales information for rare cars. Its
 segments are:
@@ -366,7 +365,7 @@ ORIGIN
 Lists the country that manufactures the car. The field COUNTRY is indexed.
 
 
-CAR Data Source
+## CAR Data Source
 
 COMP
 
@@ -429,11 +428,11 @@ FILENAME=CAR,SUFFIX=FOC
   FIELDNAME=STANDARD,EQUIP,A40,$
 
 
-LEDGER Data Source
+## LEDGER Data Source
 
 CAR Structure Diagram
 
-LEDGER Data Source
+## LEDGER Data Source
 
 LEDGER contains sample accounting data. It consists of one segment, TOP. This data source
 is specified primarily for FML examples. Aliases do not exist for the fields in this Master File,
@@ -466,7 +465,7 @@ SECTION 01
  ***************
   **************
 
-FINANCE Data Source
+## FINANCE Data Source
 
 FINANCE contains sample financial data for balance sheets. It consists of one segment, TOP.
 This data source is specified primarily for FML examples. Aliases do not exist for the fields in
@@ -481,7 +480,7 @@ FILENAME=FINANCE, SUFFIX=FOC,$
   FIELDNAME=AMOUNT ,  , FORMAT=D12C,$
 
 
-REGION Data Source
+## REGION Data Source
 
 FINANCE Structure Diagram
 
@@ -499,7 +498,7 @@ SECTION 01
  ***************
   **************
 
-REGION Data Source
+## REGION Data Source
 
 REGION contains sample account data for the eastern and western regions of the country. It
 consists of one segment, TOP. This data source is specified primarily for FML examples.
@@ -534,7 +533,7 @@ SECTION 01
 
 A. Master Files and Diagrams
 
-EMPDATA Data Source
+## EMPDATA Data Source
 
 EMPDATA contains sample data about company employees. It consists of one segment,
 EMPDATA. The PIN field is indexed. The AREA field is a temporary field.
@@ -573,14 +572,14 @@ SECTION 01
  ***************
   **************
 
-TRAINING Data Source
+## TRAINING Data Source
 
 TRAINING contains sample data about training courses for employees. It consists of one
 segment, TRAINING. The PIN field is indexed. The EXPENSES, GRADE, and LOCATION fields
 have the MISSING=ON attribute.
 
 
-COURSE Data Source
+## COURSE Data Source
 
 TRAINING Master File
 
@@ -609,7 +608,7 @@ SECTION 01
  ***************
   **************
 
-COURSE Data Source
+## COURSE Data Source
 
 COURSE contains sample data about education courses. It consists of one segment,
 CRSELIST.
@@ -647,7 +646,7 @@ A. Master Files and Diagrams
 ***************
  **************
 
-JOBHIST Data Source
+## JOBHIST Data Source
 
 JOBHIST contains information about employee jobs. Both the PIN and JOBSTART fields are
 keys. The PIN field is indexed.
@@ -676,12 +675,12 @@ SECTION 01
  ***************
   **************
 
-JOBLIST Data Source
+## JOBLIST Data Source
 
 JOBLIST contains information about jobs. The JOBCLASS field is indexed.
 
 
-LOCATOR Data Source
+## LOCATOR Data Source
 
 JOBLIST Master File
 
@@ -711,7 +710,7 @@ SECTION 01
  ***************
   **************
 
-LOCATOR Data Source
+## LOCATOR Data Source
 
 JOBHIST contains information about employee location and phone number. The PIN field is
 indexed.
@@ -744,7 +743,7 @@ SECTION 01
  ***************
   **************
 
-PERSINFO Data Source
+## PERSINFO Data Source
 
 PERSINFO contains employee personal information. The PIN field is indexed.
 
@@ -782,9 +781,8 @@ SECTION 01
   **************
 
 
-SALHIST Data Source
+## SALHIST Data Source
 
-SALHIST Data Source
 
 SALHIST contains information about employee salary history. The PIN field is indexed. Both the
 PIN and EFFECTDATE fields are keys.
@@ -936,7 +934,7 @@ FILENAME=ITEMS,   SUFFIX=FOC
   FIELDNAME=ON_HAND,   ALIAS=NUM,   FORMAT=I5,           $
 
 
-VIDEOTR2 Data Source
+## VIDEOTR2 Data Source
 
 ITEMS Structure Diagram
 
@@ -954,7 +952,7 @@ SECTION 01
 ***************
  **************
 
-VIDEOTR2 Data Source
+## VIDEOTR2 Data Source
 
 VIDEOTR2 contains sample data about customer, rental, and purchase information for a video
 rental business. It consists of four segments.
@@ -1030,7 +1028,7 @@ A. Master Files and Diagrams
  ***************   ***************
   **************    **************
 
-Gotham Grinds Data Sources
+## Gotham Grinds Data Sources
 
 Gotham Grinds is a group of data sources that contain sample data about a specialty items
 company.
@@ -1043,7 +1041,7 @@ GGORDER contains order information for Gotham Grinds. It consists of two segment
 ORDER01 and ORDER02.
 
 
-Gotham Grinds Data Sources
+## Gotham Grinds Data Sources
 
 GGPRODS contains product information for Gotham Grinds. It consists of one segment,
 PRODS01.
@@ -1120,7 +1118,7 @@ SEGNAME=ORDER02, SEGTYPE=KU, PARENT=ORDER01, CRFILE=GGPRODS, CRKEY=PCD,
 CRSEG=PRODS01  ,$
 
 
-Gotham Grinds Data Sources
+## Gotham Grinds Data Sources
 
 GGORDER Structure Diagram
 
@@ -1220,7 +1218,7 @@ FILENAME=GGSALES, SUFFIX=FOC
    DESC='Total sales quota in dollars',$
 
 
-Gotham Grinds Data Sources
+## Gotham Grinds Data Sources
 
 GGSALES Structure Diagram
 
@@ -1274,7 +1272,7 @@ SECTION 01
  **************
 
 
-Century Corp Data Sources
+## Century Corp Data Sources
 
 A. Master Files and Diagrams
 
@@ -1320,7 +1318,7 @@ hierarchy field. The field GL_ACCOUNT_CAPTION can be used as the descriptive cap
 the hierarchy field.
 
 
-Century Corp Data Sources
+## Century Corp Data Sources
 
 CENTCOMP Master File
 
@@ -1414,7 +1412,7 @@ SECTION 01
   **************
 
 
-Century Corp Data Sources
+## Century Corp Data Sources
 
 CENTHR Master File
 
@@ -1514,7 +1512,7 @@ A. Master Files and Diagrams
    DESCRIPTION='Full Name: Last, First', WITHIN='POSITION_DESC',$
 
 
-Century Corp Data Sources
+## Century Corp Data Sources
 
   DEFINE SALARY/D12.2=IF BMONTH LT 4 THEN PAYLEVEL * 12321
    ELSE IF BMONTH GE 4 AND BMONTH LT 8 THEN PAYLEVEL * 13827
@@ -1594,7 +1592,7 @@ SECTION 01
   **************
 
 
-Century Corp Data Sources
+## Century Corp Data Sources
 
 CENTORD Master File
 
@@ -1686,7 +1684,7 @@ A. Master Files and Diagrams
                     JOINED  CENTINV
 
 
-Century Corp Data Sources
+## Century Corp Data Sources
 
 CENTQA Master File
 
@@ -1790,7 +1788,7 @@ FILE=CENTGL ,SUFFIX=FOC
    TITLE='System,Account,Line', MISSING=ON, $
 
 
-Century Corp Data Sources
+## Century Corp Data Sources
 
 CENTGL Structure Diagram
 
@@ -1869,7 +1867,7 @@ FILE=CENTSTMT, SUFFIX=FOC
    TITLE='YTD,Budget', $
 
 
-Century Corp Data Sources
+## Century Corp Data Sources
 
 CENTSTMT Structure Diagram
 
@@ -1941,5 +1939,5 @@ A. Master Files and Diagrams
   **************
 
 
-Century Corp Data Sources
+## Century Corp Data Sources
 

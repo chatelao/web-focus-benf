@@ -31,7 +31,7 @@ Handling a Missing Segment Instance
 
 Setting the NODATA Character String
 
-Irrelevant Report Data
+## Irrelevant Report Data
 
 Data can be missing from a report row or column because it is not relevant. The missing or
 inapplicable value is indicated by the NODATA default character, a period (.).
@@ -40,11 +40,11 @@ Tip: You may specify a more meaningful NODATA value by issuing the SET NODATA co
 (see Setting the NODATA Character String on page 1066).
 
 
-Missing Field Values
+## Missing Field Values
 
 Example:
 
-Irrelevant Report Data
+## Irrelevant Report Data
 
 The following request shows how the default NODATA character displays missing data in a
 report.
@@ -63,7 +63,7 @@ column. The salary for an employee working in the MIS department displays in the
 The corresponding value in the PRODUCTION or MIS column, respectively, is missing because
 the salary displays only under the department where the person is employed.
 
-Missing Field Values
+## Missing Field Values
 
 Missing values within segment instances occur when the instances exist, but some of the
 fields lack values.
@@ -121,7 +121,7 @@ Suppose you have the following records of data for a field:
 1
 
 
-Missing Field Values
+## Missing Field Values
 
 The numeric values in the first two records are missing (indicated by the periods). The last two
 records have values of 1 and 3. If you average these fields without the MISSING attribute
@@ -210,7 +210,7 @@ field that is missing a value is evaluated as 0 or blank for computational purpo
 MISSING attribute has been set to ON for that field in the Master File.
 
 
-Missing Field Values
+## Missing Field Values
 
 To ensure that missing values are handled properly for temporary fields, you can set the
 MISSING attribute ON for the virtual field in the DEFINE or COMPUTE command, and specify
@@ -316,7 +316,7 @@ UNIONDALE        10/18  B20              1        1        2
                         C7               0        0        0
 
 
-Missing Field Values
+## Missing Field Values
 
 Notice that the products C13, C14, and E2 in the New York section all show missing values for
 either RETURNS or DAMAGED, because the MISSING ON attribute has been set in the Master
@@ -373,7 +373,7 @@ of the fields in the expression are missing values, the temporary field has a mi
 SOME is the default value.
 
 
-Missing Field Values
+## Missing Field Values
 
 ALL
 
@@ -451,7 +451,7 @@ using IS MISSING is preferred to using EQ 0, as it is more direct and does not r
 same behavior change from previous releases.
 
 
-Missing Field Values
+## Missing Field Values
 
 Consider the following request. CCC uses EQ 0 in the IF-THEN-ELSE test, and DDD uses IS
 MISSING.
@@ -545,7 +545,7 @@ ENDSTYLE
 END
 
 
-Missing Field Values
+## Missing Field Values
 
 Running the request with MISSINGTEST=OLD produces the output shown in the following
 image:
@@ -612,7 +612,7 @@ NEW YORK         10/17  C13              .
                         E2               .
 
 
-Missing Field Values
+## Missing Field Values
 
 Example:
 
@@ -673,7 +673,7 @@ the NODATA character in an output file. For related information, see Saving and 
 Report Output on page 471.
 
 
-Missing Field Values
+## Missing Field Values
 
 Syntax:
 
@@ -773,7 +773,7 @@ TABLE FILE HLDM
  END
 
 
-Missing Field Values
+## Missing Field Values
 
 The output is:
 
@@ -880,7 +880,7 @@ STORE_CODE  RETURNS     RETURNS
                   4            4.00
 
 
-Handling a Missing Segment Instance
+## Handling a Missing Segment Instance
 
 Reference: Usage Notes for SET COMPMISS
 
@@ -888,7 +888,7 @@ If you create a HOLD file with COMPMISS ON, the HOLD Master File for the reforma
 indicates MISSING = ON (as does the original field). With COMPMISS = OFF, the reformatted
 field does NOT have MISSING = ON in the generated Master File.
 
-Handling a Missing Segment Instance
+## Handling a Missing Segment Instance
 
 In multi-segment data sources, when an instance in a parent segment does not have
 descendant instances, the nonexistent descendant instances are called missing instances.
@@ -966,7 +966,7 @@ STEVENS          ALFRED      81/01/01       $10,000.00
                              82/01/01       $11,000.00
 
 
-Handling a Missing Segment Instance
+## Handling a Missing Segment Instance
 
 Example:
 
@@ -1171,7 +1171,7 @@ SET ALL command before executing the request. In a join, issuing the SET ALL = O
 controls left outer join processing.
 
 
-Handling a Missing Segment Instance
+## Handling a Missing Segment Instance
 
 Note: A request with WHERE or IF criteria, which screen fields in a segment that has missing
 instances, omits instances in the parent segment even if you use the SET ALL=ON command.
@@ -1252,7 +1252,7 @@ WHERE EXPENSES GT 3000
 END
 
 
-Handling a Missing Segment Instance
+## Handling a Missing Segment Instance
 
 The output is:
 
@@ -1318,7 +1318,7 @@ with no corresponding ORAEDUC row display the missing data symbol for the fields
 ORAEDUC table.
 
 
-Handling a Missing Segment Instance
+## Handling a Missing Segment Instance
 
 EMP_ID     COURSE_CODE     COURSE_NAME
 ------     -----------     -----------
@@ -1422,7 +1422,7 @@ COUNT    LIST  EMP_ID     LAST_NAME        FIRST_NAME
             5  543729165  GREENSPAN        MARY
 
 
-Setting the NODATA Character String
+## Setting the NODATA Character String
 
 Testing for Missing Instances in FOCUS Data Sources
 
@@ -1569,7 +1569,7 @@ ANNE
 
        .
 
-Setting the NODATA Character String
+## Setting the NODATA Character String
 
 In a report, the NODATA character string indicates no data or inapplicable data. The default
 NODATA character is a period. However, you can change this character designation.
@@ -1599,7 +1599,7 @@ SET NODATA = ' '
 
 Example:
 
-Setting the NODATA Character String
+## Setting the NODATA Character String
 
 In the following request, the NODATA character string is set to MISSING. The word MISSING
 displays on the report instead of the default period.
@@ -1614,5 +1614,5 @@ END
 The output is:
 
 
-Setting the NODATA Character String
+## Setting the NODATA Character String
 

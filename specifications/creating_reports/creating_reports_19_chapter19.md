@@ -26,7 +26,7 @@ Identifying a Heading, Footing, Title, or FML Free Text
 
 Identifying a Page Number, Underline, or Skipped Line
 
-Identifying an Entire Report, Column, or Row
+## Identifying an Entire Report, Column, or Row
 
 You can apply formatting to an:
 
@@ -45,7 +45,7 @@ although each of these rows contains only a single kind of information. For deta
 How to Identify a Column Title on page 1274.
 
 
-Identifying an Entire Report, Column, or Row
+## Identifying an Entire Report, Column, or Row
 
 The following illustrates where the REPORT component and the COLUMN and ACROSSCOLUMN
 attributes appear in a report, and which TYPE values you use to identify them. Although in this
@@ -101,7 +101,7 @@ END
 The output is:
 
 
-Identifying an Entire Report, Column, or Row
+## Identifying an Entire Report, Column, or Row
 
 Syntax:
 
@@ -217,7 +217,7 @@ ENDSTYLE
 END
 
 
-Identifying an Entire Report, Column, or Row
+## Identifying an Entire Report, Column, or Row
 
 The output is:
 
@@ -289,7 +289,7 @@ ENDSTYLE
 END
 
 
-Identifying an Entire Report, Column, or Row
+## Identifying an Entire Report, Column, or Row
 
 The output is:
 
@@ -346,7 +346,7 @@ END
 The output is:
 
 
-Identifying Tags for SUBTOTAL and GRANDTOTAL Lines
+## Identifying Tags for SUBTOTAL and GRANDTOTAL Lines
 
 Example:
 
@@ -369,7 +369,7 @@ END
 
 The output is:
 
-Identifying Tags for SUBTOTAL and GRANDTOTAL Lines
+## Identifying Tags for SUBTOTAL and GRANDTOTAL Lines
 
 The tag is the text that is displayed in the leftmost portion of each SUBTOTAL and
 GRANDTOTAL row in a report. The tag is used to identify the type of data represented within
@@ -429,7 +429,7 @@ red. The hexadecimal digits can be in uppercase or lowercase and must be precede
 pound sign (#).
 
 
-Identifying Tags for SUBTOTAL and GRANDTOTAL Lines
+## Identifying Tags for SUBTOTAL and GRANDTOTAL Lines
 
 drilltype
 
@@ -471,7 +471,7 @@ END
 
 The output is:
 
-Identifying Data
+## Identifying Data
 
 You can identify and format many categories of data in a report, including:
 
@@ -487,7 +487,7 @@ Totals and subtotals. For more information, see Identifying Totals and Subtotals
 1267.
 
 
-Identifying Data
+## Identifying Data
 
 The following illustrates where the DATA and ACROSSVALUE components appear in a report,
 and which TYPE values you use to identify them.
@@ -543,7 +543,7 @@ END
 The output is:
 
 
-Identifying Data
+## Identifying Data
 
 Syntax:
 
@@ -630,7 +630,7 @@ ENDSTYLE
 END
 
 
-Identifying Data
+## Identifying Data
 
 The output is:
 
@@ -682,7 +682,7 @@ ON DEPARTMENT SUBTOTAL
 END
 
 
-Identifying Data
+## Identifying Data
 
 The following figure shows each component:
 
@@ -750,7 +750,7 @@ Specifies the column whose totals or subtotals you wish to format. For a list of
 How to Identify an Entire Column on page 1252.
 
 
-Identifying Data
+## Identifying Data
 
 Example:
 
@@ -826,7 +826,7 @@ ENDSTYLE
 END
 
 
-Identifying Data
+## Identifying Data
 
 The output is:
 
@@ -857,7 +857,7 @@ END
 
 The output is:
 
-Identifying a Heading, Footing, Title, or FML Free Text
+## Identifying a Heading, Footing, Title, or FML Free Text
 
 A report data is framed by headings, footings, and titles. These provide context for the data.
 You can identify and format many categories of headings, footings, and titles in a report,
@@ -880,7 +880,7 @@ report in order to format them. The following example illustrates where column t
 horizontal sort values are in a report, and which TYPE values you use to identify them.
 
 
-Identifying a Heading, Footing, Title, or FML Free Text
+## Identifying a Heading, Footing, Title, or FML Free Text
 
 TABLE FILE EMPLOYEE
 SUM GROSS AND DED_AMT
@@ -973,7 +973,7 @@ ENDSTYLE
 END
 
 
-Identifying a Heading, Footing, Title, or FML Free Text
+## Identifying a Heading, Footing, Title, or FML Free Text
 
 The following image shows the report output.
 
@@ -1029,7 +1029,7 @@ Within a StyleSheet you can identify a report headings and footings, and the ind
 text strings, and fields within them, in order to format them.
 
 
-Identifying a Heading, Footing, Title, or FML Free Text
+## Identifying a Heading, Footing, Title, or FML Free Text
 
 A TABLE request can have more than one page heading or footing. For each heading or footing,
 a WHEN clause against the data being retrieved can determine whether the heading or footing
@@ -1112,7 +1112,7 @@ Specifies the vertical sort (BY) column associated with one of the report sort h
 sort footings.
 
 
-Identifying a Heading, Footing, Title, or FML Free Text
+## Identifying a Heading, Footing, Title, or FML Free Text
 
 Example:
 
@@ -1186,7 +1186,7 @@ ENDSTYLE
 END
 
 
-Identifying a Heading, Footing, Title, or FML Free Text
+## Identifying a Heading, Footing, Title, or FML Free Text
 
 The output is:
 
@@ -1238,7 +1238,7 @@ OBJECT=TEXT, count only text strings from left to right.
 No OBJECT, count text strings and embedded field values from left to right.
 
 
-Identifying a Heading, Footing, Title, or FML Free Text
+## Identifying a Heading, Footing, Title, or FML Free Text
 
 Example:
 
@@ -1318,7 +1318,7 @@ ENDSTYLE
 END
 
 
-Identifying a Heading, Footing, Title, or FML Free Text
+## Identifying a Heading, Footing, Title, or FML Free Text
 
 The output is:
 
@@ -1391,12 +1391,12 @@ italics and heading lines displayed because of the third condition are in boldfa
 The first page of output is for a male employee, so the greeting line is in italics:
 
 
-Identifying a Page Number, Underline, or Skipped Line
+## Identifying a Page Number, Underline, or Skipped Line
 
 The second page of output is for an employee in the MIS department, so the signature line is
 in boldface:
 
-Identifying a Page Number, Underline, or Skipped Line
+## Identifying a Page Number, Underline, or Skipped Line
 
 In a report you can identify and format page numbers, underlines, and skipped lines using the
 PAGENUM, SKIPLINE, and UNDERLINE attributes.
@@ -1446,7 +1446,7 @@ Financial Modeling Language (FML) report. This is not supported for reports in H
 format.
 
 
-Identifying a Page Number, Underline, or Skipped Line
+## Identifying a Page Number, Underline, or Skipped Line
 
 Example:
 
@@ -1502,5 +1502,5 @@ END
 The output is:
 
 
-Identifying a Page Number, Underline, or Skipped Line
+## Identifying a Page Number, Underline, or Skipped Line
 

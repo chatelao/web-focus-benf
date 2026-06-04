@@ -57,7 +57,7 @@ report. The default page size is letter (8.5 x 11 inches), but you can select fr
 sizes, including legal and envelopes.
 
 
-Selecting Page Size, Orientation, and Color
+## Selecting Page Size, Orientation, and Color
 
 Reference: Page Size, Orientation, and Color Attributes
 
@@ -180,7 +180,7 @@ WIDESCREEN
 13.333 x 7.5 inches.
 
 
-Selecting Page Size, Orientation, and Color
+## Selecting Page Size, Orientation, and Color
 
 Value
 
@@ -338,7 +338,7 @@ TYPE=REPORT
 Applies the page orientation to the entire report. Not required, as it is the default.
 
 
-Selecting Page Size, Orientation, and Color
+## Selecting Page Size, Orientation, and Color
 
 PORTRAIT
 
@@ -415,7 +415,7 @@ END
 
 The output is:
 
-Setting Page Margins
+## Setting Page Margins
 
 You can set the page margins for your report. This includes the top, bottom, left, and right
 margins. You can also change the default unit of measurement (inches) to either centimeters
@@ -425,7 +425,7 @@ position.
 Reference: Page Margin Attributes
 
 
-Setting Page Margins
+## Setting Page Margins
 
 Attribute
 
@@ -538,7 +538,7 @@ the print area has 0.25 inch margins all around, set the margins to 0.25 inches,
 The default value for all margins is 0.25 inches.
 
 
-Positioning a Report Component
+## Positioning a Report Component
 
 Example:
 
@@ -561,7 +561,7 @@ END
 
 The output is:
 
-Positioning a Report Component
+## Positioning a Report Component
 
 A StyleSheet enables you to specify an absolute or relative starting position for a column,
 heading, or footing, or element in a heading or footing. You can also add blank space around a
@@ -641,7 +641,7 @@ By default, text items and alphanumeric fields are left-justified in a column, a
 fields are right-justified in a column.
 
 
-Positioning a Report Component
+## Positioning a Report Component
 
 -
 
@@ -709,7 +709,7 @@ TYPE=type, [COLUMN=identifier,|ACROSSCOLUMN=acrosscolumn,]
  {LEFTGAP|RIGHTGAP}=gap, $
 
 
-Positioning a Report Component
+## Positioning a Report Component
 
 TYPE=type, [COLUMN=identifier,|ACROSSCOLUMN=acrosscolumn,]
  {LEFTGAP|RIGHTGAP}=gap, $
@@ -790,7 +790,7 @@ END
 The data is spaced for readability:
 
 
-Arranging Columns on a Page
+## Arranging Columns on a Page
 
 Example:
 
@@ -817,7 +817,7 @@ END
 
 The output is:
 
-Arranging Columns on a Page
+## Arranging Columns on a Page
 
 How easily a user locates data depends on the arrangement of columns on a page. You have
 many design options. Using StyleSheet attributes or commands you can:
@@ -913,7 +913,7 @@ conflicting StyleSheet and SET values, the StyleSheet overrides the SET. For det
 see the Developing Reporting Applications manual.
 
 
-Arranging Columns on a Page
+## Arranging Columns on a Page
 
 When SQUEEZE is set to ON (the default), StyleSheet column width is ignored. Column width is
 determined using your browser's default settings.
@@ -1006,7 +1006,7 @@ ENDSTYLE
 END
 
 
-Arranging Columns on a Page
+## Arranging Columns on a Page
 
 Blank spaces pad the column width up to the length of the field format for Category (A11) and
 Product (A16). The HTML report is:
@@ -1067,7 +1067,7 @@ Asterisks (*) in place of the field value.
 Note: SQUEEZE is not supported for columns created with the OVER phrase.
 
 
-Arranging Columns on a Page
+## Arranging Columns on a Page
 
 Example:
 
@@ -1151,7 +1151,7 @@ You can change the order in which vertical sort (BY) columns are displayed in a 
 feature does not apply to horizontal sort (ACROSS) rows or stacked (OVER) columns.
 
 
-Arranging Columns on a Page
+## Arranging Columns on a Page
 
 Syntax:
 
@@ -1232,7 +1232,7 @@ Modeling Language (FML) on page 1817.
 Alternating back colors are not supported for stacked columns.
 
 
-Arranging Columns on a Page
+## Arranging Columns on a Page
 
 The difference between FOLD-LINE and OVER is that FOLD-LINE begins the second line (not the
 second column) just underneath the first line, but slightly indented. OVER literally stacks the
@@ -1320,7 +1320,7 @@ ENDSTYLE
 END
 
 
-Arranging Columns on a Page
+## Arranging Columns on a Page
 
 With the use of OVER, the columns GROSS, DED_AMT, and NET are stacked for readability:
 
@@ -1350,7 +1350,7 @@ OVER Title and the OVER Value each are measured by the combination of three para
 LEFTGAP, WIDTH, and RIGHTGAP:
 
 
-Arranging Columns on a Page
+## Arranging Columns on a Page
 
 With OVER and blank AS names, each data value becomes a data cell that can be used to
 construct rows and columns within the data lines of the report. In order to align data values on
@@ -1394,7 +1394,7 @@ With GAPINTERNAL=OFF, you must account for the accumulation of left and right ga
 as the field widths when defining widths of stacked columns.
 
 
-Arranging Columns on a Page
+## Arranging Columns on a Page
 
 With GAPINTERNAL=ON, the defined WIDTH represents the entire space used by the given data
 cell or column. This takes the cumulative effect out as the OVER values proceed across a row.
@@ -1433,7 +1433,7 @@ ENDSTYLE
 END
 
 
-Arranging Columns on a Page
+## Arranging Columns on a Page
 
 The widths specified for UNITS and DOLLARS are one inch each, while the PRODUCT field is
 specified to be two inches. With GAPINTERNAL=OFF, the LAYOUTGRID shows that the widths
@@ -1447,7 +1447,7 @@ change the StyleSheet declaration for the PRODUCTS field to JUSTIFY=RIGHT, you c
 the extra space prevents the product value from aligning with the dollar value:
 
 
-Arranging Columns on a Page
+## Arranging Columns on a Page
 
 Changing the StyleSheet declaration to GAPINTERNAL=ON causes the specified widths to be
 used because the gaps are internal and are included in the specified values:
@@ -1465,7 +1465,7 @@ starting position is the number of characters to the right of the last column.
 When using this feature with an HTML report, set the STYLEMODE parameter to FIXED.
 
 
-Arranging Columns on a Page
+## Arranging Columns on a Page
 
 Syntax:
 
@@ -1531,7 +1531,7 @@ ON TABLE SET STYLEMODE FIXED
 END
 
 
-Arranging Columns on a Page
+## Arranging Columns on a Page
 
 The ACROSS set starts in column 35, and there are eight extra spaces between the data
 columns in the ACROSS:
@@ -1555,7 +1555,7 @@ In the report, GROSS and DED_AMT are stacked, starting in column 40. LAST_NAME s
 column 20.
 
 
-Suppressing Column Display
+## Suppressing Column Display
 
 A report request may include a field to create a certain result. For example, it may name a sort
 field by which to arrange data. However, you may not want to display the title or values of that
@@ -1563,7 +1563,7 @@ field if they appear elsewhere in the report. The phrase NOPRINT (synonym SUP-PR
 suppresses column display.
 
 
-Suppressing Column Display
+## Suppressing Column Display
 
 Reference: Column Suppression Commands
 
@@ -1637,7 +1637,7 @@ END
 The page heading identifies the city to which the data applies:
 
 
-Suppressing Column Display
+## Suppressing Column Display
 
 Without NOPRINT, the report would unnecessarily repeat the city:
 
@@ -1663,7 +1663,7 @@ END
 The default subtotal line identifies each category (for example, *TOTAL Coffee):
 
 
-Suppressing Column Display
+## Suppressing Column Display
 
 Without SUP-PRINT, the report would unnecessarily repeat the category:
 
@@ -1687,7 +1687,7 @@ END
 
 Last names are arranged alphabetically:
 
-Inserting a Page Break
+## Inserting a Page Break
 
 Use the PAGE-BREAK command to generate a new page each time the value of a specified
 vertical sort (BY) field changes. This helps to prevent related information from being presented
@@ -1698,7 +1698,7 @@ page by itself.
 PAGE-BREAK does not apply when report output is stored in a HOLD, SAVE, or SAVB file.
 
 
-Inserting a Page Break
+## Inserting a Page Break
 
 In an HTML report, PAGE-BREAK creates a new section of the report, with column titles and an
 incremented page number, on the same webpage. It does not, by itself, create a new
@@ -1791,7 +1791,7 @@ expression. See Controlling Report Formatting on page 1219 for details.
 
 Example:
 
-Inserting a Page Break
+## Inserting a Page Break
 
 This request generates a new page whenever the value of the sort field SALARY changes.
 
@@ -1805,7 +1805,7 @@ ON TABLE SET PAGE-NUM OFF
 END
 
 
-Inserting a Page Break
+## Inserting a Page Break
 
 The first two pages of the report are displayed to illustrate where the page breaks occur:
 
@@ -1834,7 +1834,7 @@ ENDSTYLE
 END
 
 
-Inserting a Page Break
+## Inserting a Page Break
 
 Two pages of the report follow, showing consistent alignment:
 
@@ -1853,7 +1853,7 @@ sort headings, sort footings, and subtotals if applicable.
 This feature applies to a PDF or PS report.
 
 
-Inserting a Page Break
+## Inserting a Page Break
 
 If you use NOSPLIT with PAGE-BREAK, the PAGE-BREAK must apply to a higher-level sort field.
 Otherwise, NOSPLIT is ignored. NOSPLIT is also ignored when report output is stored in a
@@ -1896,15 +1896,14 @@ When the value of LAST_NAME changes from STEVENS to CROSS, the lines related to 
 do not fit on the current page. With NOSPLIT, they appear on the next page:
 
 
-Inserting a Page Break
+## Inserting a Page Break
 
 
 Without NOSPLIT, the information for CROSS falls on the first and second pages:
 
 
-Inserting Page Numbers
+## Inserting Page Numbers
 
-Inserting Page Numbers
 
 By default, the first two lines of a report page are reserved. The first line contains the page
 number in the top-left corner, and the second line is blank.
@@ -2003,7 +2002,7 @@ PS
 PPTX
 
 
-Inserting Page Numbers
+## Inserting Page Numbers
 
 Command
 
@@ -2107,7 +2106,7 @@ FOOTING
 END
 
 
-Inserting Page Numbers
+## Inserting Page Numbers
 
 The first two pages of output are:
 
@@ -2180,7 +2179,7 @@ ON TABLE PCHOLD FORMAT PDF
 END
 
 
-Inserting Page Numbers
+## Inserting Page Numbers
 
 The following partial output shows that the page number resets to 1 when the product changes
 and that the BYLASTPAGE variable displays the total number of pages for each product:
@@ -2243,7 +2242,7 @@ ENDSTYLE
 END
 
 
-Inserting Page Numbers
+## Inserting Page Numbers
 
 The report is:
 
@@ -2318,7 +2317,7 @@ the default value.
 OFF suppresses default page numbers.
 
 
-Inserting Page Numbers
+## Inserting Page Numbers
 
 You can use the system variable TABPAGENO.
 
@@ -2390,7 +2389,7 @@ number of data rows as the LINES-PER-PAGE StyleSheet option:
 ON TABLE SET LINES {n|UNLIMITED}
 
 
-Inserting Page Numbers
+## Inserting Page Numbers
 
 In an HTML report request, using either the LINES-PER-PAGE StyleSheet option or the SET
 LINES command, you will see the number of lines, as opposed to the number of data rows.
@@ -2419,11 +2418,11 @@ END
 The following image shows the output for the first page.
 
 
-Adding Grids and Borders
+## Adding Grids and Borders
 
 The following image shows the output for the second page.
 
-Adding Grids and Borders
+## Adding Grids and Borders
 
 By default, an HTML report contains horizontal and vertical grid lines. You can remove the grid
 lines or adjust their use on a horizontal (BY) sort field. Grid characteristics apply to an entire
@@ -2485,7 +2484,7 @@ PPTX
 PPT
 
 
-Adding Grids and Borders
+## Adding Grids and Borders
 
 Attribute
 
@@ -2607,7 +2606,7 @@ You can specify a position qualifier for any of the BORDER attributes. This enab
 format line width, line style, and line color individually, for any side of the border.
 
 
-Adding Grids and Borders
+## Adding Grids and Borders
 
 line_style
 
@@ -2706,7 +2705,7 @@ The output is:
 Tip: You can use the same BORDER syntax to generate this output in a PDF or PS report.
 
 
-Adding Grids and Borders
+## Adding Grids and Borders
 
 Example:
 
@@ -2759,7 +2758,7 @@ ENDSTYLE
 END
 
 
-Adding Grids and Borders
+## Adding Grids and Borders
 
 Column titles are underlined:
 
@@ -2794,7 +2793,7 @@ END
 The output is shown in the following image. A blank row has been added after the heading.
 
 
-Adding Grids and Borders
+## Adding Grids and Borders
 
 The following version of the request has no border attributes.
 
@@ -2813,7 +2812,7 @@ The output is shown in the following image. There is no blank row between the re
 and report body.
 
 
-Adding Grids and Borders
+## Adding Grids and Borders
 
 Syntax:
 
@@ -2923,7 +2922,7 @@ OFF turns borders off. OFF is the default value.
 LIGHT specifies a thin line.
 
 
-Adding Grids and Borders
+## Adding Grids and Borders
 
 MEDIUM identifies a medium line. ON sets the line to MEDIUM.
 
@@ -3045,7 +3044,7 @@ ENDSTYLE
 END
 
 
-Adding Grids and Borders
+## Adding Grids and Borders
 
 The REPORT component has BORDER=ON, so the page heading has an external border.
 
@@ -3104,7 +3103,7 @@ is determined by the largest width of all of the headings and footings (report, 
 subheadings, and subfootings).
 
 
-Adding Grids and Borders
+## Adding Grids and Borders
 
 The following image illustrates report output without the ALIGN-BORDERS=BODY attribute.
 
@@ -3114,7 +3113,7 @@ backcolor of the subheading and subfooting lines are expanded to match the width
 lines, as shown on the following report output.
 
 
-Adding Grids and Borders
+## Adding Grids and Borders
 
 If the subheading and subfooting lines are longer than the body lines, an additional filler cell is
 added to each data line to allow the defined borders and backcolor to fill the width defined by
@@ -3140,7 +3139,7 @@ subheadings and subfootings to the data. Otherwise, the borders will continue to
 the default behavior of aligning with the page headings and footings.
 
 
-Adding Grids and Borders
+## Adding Grids and Borders
 
 Example:
 
@@ -3236,7 +3235,7 @@ TYPE=FOOTING,
      STYLE=BOLD,
 
 
-Adding Grids and Borders
+## Adding Grids and Borders
 
 $
 TYPE=SUBHEAD,
@@ -3275,7 +3274,7 @@ The output shows that the subheading margins align with the heading, not with th
 body.
 
 
-Adding Grids and Borders
+## Adding Grids and Borders
 
 Now change the ALIGN-BORDERS attribute to ALIGN-BORDERS=BODY and rerun the request.
 The subheadings now align with the report body, as shown in the following image.
@@ -3323,7 +3322,7 @@ ON TABLE SUBFOOT
 "Report Footing"
 
 
-Adding Grids and Borders
+## Adding Grids and Borders
 
 WHERE CATEGORY NE 'Coffee';
 ON TABLE SET PAGE-NUM OFF
@@ -3415,7 +3414,7 @@ ENDSTYLE
 END
 
 
-Adding Grids and Borders
+## Adding Grids and Borders
 
 The output shows that the subheadings are aligned with the data on each panel.
 
@@ -3706,11 +3705,11 @@ ENDSTYLE
 END
 
 
-Adding Underlines and Skipped Lines
+## Adding Underlines and Skipped Lines
 
 The output is shown in the following image.
 
-Adding Underlines and Skipped Lines
+## Adding Underlines and Skipped Lines
 
 You can make a detailed tabular report easier to read by separating sections with blank lines
 or underlines.
@@ -3804,7 +3803,7 @@ XLSX
 EXL2K
 
 
-Adding Underlines and Skipped Lines
+## Adding Underlines and Skipped Lines
 
 Feature
 
@@ -3914,7 +3913,7 @@ ON TABLE SET ONLINE-FMT PDF
 END
 
 
-Adding Underlines and Skipped Lines
+## Adding Underlines and Skipped Lines
 
 The data for each employee stands out and is easy to read:
 
@@ -3964,7 +3963,7 @@ END
 The report is:
 
 
-Adding Underlines and Skipped Lines
+## Adding Underlines and Skipped Lines
 
 Syntax:
 
@@ -4033,7 +4032,7 @@ Is one of the supported color values. For a list of supported values, see Color 
 Report on page 1701.
 
 
-Adding Underlines and Skipped Lines
+## Adding Underlines and Skipped Lines
 
 RGB
 
@@ -4116,7 +4115,7 @@ Specifies a column. For valid values, see Identifying a Report Component in a We
 StyleSheet on page 1249.
 
 
-Adding Underlines and Skipped Lines
+## Adding Underlines and Skipped Lines
 
 Example:
 
@@ -4197,7 +4196,7 @@ ON TABLE PCHOLD FORMAT DHTML
 END
 
 
-Adding Underlines and Skipped Lines
+## Adding Underlines and Skipped Lines
 
 The output shows that only the column titles are underlined:
 
@@ -4252,7 +4251,7 @@ ENDSTYLE
 END
 
 
-Adding Underlines and Skipped Lines
+## Adding Underlines and Skipped Lines
 
 The output is:
 
@@ -4321,11 +4320,11 @@ ENDSTYLE
 END
 
 
-Removing Blank Lines From a Report
+## Removing Blank Lines From a Report
 
 The output is:
 
-Removing Blank Lines From a Report
+## Removing Blank Lines From a Report
 
 The DROPBLNKLINE parameter controls whether blank lines display in a WebFOCUS report.
 With the options provided, you can affect blank lines that are automatically generated in
@@ -4405,7 +4404,7 @@ overlap the bottom of the data grid. You can resolve this by adding a blank line
 top of your footing.
 
 
-Removing Blank Lines From a Report
+## Removing Blank Lines From a Report
 
 Applying borders for the entire report (TYPE=REPORT) is recommended to avoid certain
 known issues that arise when bordering report elements individually. In some reports
@@ -4449,7 +4448,7 @@ The output has a blank line below the heading, above the footing, and above and 
 subtotal lines and the grand total line.
 
 
-Removing Blank Lines From a Report
+## Removing Blank Lines From a Report
 
 Changing the DROPBLNKLINE setting to HEADING produces the following output. The blank line
 below the heading and the blank line above the footing have been removed. The blank lines
@@ -4461,13 +4460,13 @@ the blank lines above and below the subtotal and grand total lines have been rem
 blank lines below the heading and above the footing are still inserted.
 
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 Changing the DROPBLNKLINE setting to ALL produces the following output in which the blank
 lines around the subtotal and grandtotal lines as well as the blank lines below the heading and
 above the footing have been removed.
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 With a StyleSheet you can add and position an image in a report. An image, such as a logo,
 gives corporate identity to a report, or provides visual appeal. You can add more than one
@@ -4528,7 +4527,7 @@ The image must reside on the WebFOCUS Reporting Server in a directory named on E
 or APPPATH. If the file is not on the search path, supply the full path name.
 
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 Note: For JPEG files, currently only the .jpg extension is supported. The .jpeg extension is not
 supported.
@@ -4635,7 +4634,7 @@ BACKIMAGE
 Adds a background image.
 
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 Syntax:
 
@@ -4738,7 +4737,7 @@ relative URLs in the request. With this feature, you can add an image by specify
 file name in the IMAGE attribute. For example:
 
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 SET BASEURL=http://host:port/
 .
@@ -4808,7 +4807,7 @@ END
 Note: The image used in this request is not distributed with WebFOCUS.
 
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 The output is:
 
@@ -4845,7 +4844,7 @@ ENDSTYLE
 END
 
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 The output is:
 
@@ -4892,7 +4891,7 @@ The -MRNOEDIT command instructs the WebFOCUS Client to not process the line of c
 more information on the -MRNOEDIT command, see the Business Intelligence Portal manual.
 
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 When you run the request, the image displays below the report data, as shown in the following
 image.
@@ -4949,7 +4948,7 @@ END
 The background is tiled across the report area:
 
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 Syntax:
 
@@ -5048,7 +5047,7 @@ SIZE
 Is the size of the image. By default, an image is added at its original size.
 
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 w
 
@@ -5118,7 +5117,7 @@ ENDSTYLE
 END
 
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 The report is:
 
@@ -5182,7 +5181,7 @@ SET BASEURL='' (required to make embedded images work as it overrides the defaul
 setting sent from the WebFOCUS Client).
 
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 SET HTMLCSS=ON (required for image positioning in subheads in HTML reports). Setting
 HTMLCSS=ON creates an HTML report with an Internal cascading style sheet. A report with
@@ -5279,7 +5278,7 @@ Is the size of the image. By default, an image is added at its original size. No
 images stored in BLOB fields are supported only for PDF, HTML, and DHTML output.
 
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 w
 
@@ -5358,7 +5357,7 @@ FILENAME=RETAILIMAGE, SUFFIX=SQLMSS  , $
       MISSING=ON, $
 
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 The following request joins the two data sources and prints product names and prices with the
 corresponding image. The output is generated in DHTML format.
@@ -5403,7 +5402,7 @@ TYPE=DATA,COLUMN=PRODIMAGE,IMAGE=(PRODIMAGE),SIZE=(1 1),$
 The partial output shows that DHTML format preserves the specified spacing.
 
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 The following request generates the output in HTML format.
 
@@ -5443,7 +5442,7 @@ The partial output shows that the spacing is different because the browser remov
 spaces for HTML report output.
 
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 The following request generates the report output in PDF format.
 
@@ -5482,7 +5481,7 @@ END
 The PDF partial output preserves specified spacing providing results similar to DHTML output.
 
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 Example:
 
@@ -5544,7 +5543,7 @@ END
 The partial output is.
 
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 Example:
 
@@ -5610,7 +5609,7 @@ include two display commands in the request, a SUM command for the summary infor
 and a PRINT or LIST command for displaying the image and any other detail data.
 
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 The Microsoft SQL Server data source named retaildetail contains product information for a
 sports clothing and shoe retailer. The Microsoft SQL Server data source named retailimage
@@ -5677,7 +5676,7 @@ ENDSTYLE
 END
 
 
-Adding an Image to a Report
+## Adding an Image to a Report
 
 The output for the first category is:
 
@@ -5692,7 +5691,7 @@ SIZE attribute does not decrease the size of the file. Note also that using SET
 FILECOMPRESS=ON will not reduce the size of images in a PDF file, since images are already
 saved in compressed form.
 
-Associating Bar Graphs With Report Data
+## Associating Bar Graphs With Report Data
 
 To make PDF, HTML, DHTML, PPTX, PPT, and PS reports more powerful, you can insert visual
 representations of selected data directly into the report output. These visual representations
@@ -5710,7 +5709,7 @@ To see how each of these types of reports is generated, see the example followin
 Associate Data Visualization Bar Graphs With Report Columns on page 1504.
 
 
-Associating Bar Graphs With Report Data
+## Associating Bar Graphs With Report Data
 
 Horizontal Bar Graph. You can apply a horizontal bar graph to report columns. The report
 output displays a horizontal bar graph in a new column to the right of the associated data
@@ -5788,7 +5787,7 @@ in the current units. See GRAPHLENGTH, above, for more
 information about units.
 
 
-Associating Bar Graphs With Report Data
+## Associating Bar Graphs With Report Data
 
 Syntax:
 
@@ -5894,7 +5893,7 @@ This value is initially expressed in the current units (defined by the UNITS att
 value is then converted into the corresponding number of pixels.
 
 
-Associating Bar Graphs With Report Data
+## Associating Bar Graphs With Report Data
 
 Syntax:
 
@@ -5958,7 +5957,7 @@ END
 The output is:
 
 
-Associating Bar Graphs With Report Data
+## Associating Bar Graphs With Report Data
 
 Controlling Bar Graph Scaling in Horizontal (ACROSS) Sort Fields
 
@@ -6034,7 +6033,7 @@ The following report creates horizontal bars for the ACROSS column values ( DOLL
 BUDDOLLARS.
 
 
-Associating Bar Graphs With Report Data
+## Associating Bar Graphs With Report Data
 
 SET VISBARORIENT=H
 TABLE FILE GGSALES

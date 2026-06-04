@@ -38,9 +38,8 @@ Describing a Partitioned FOCUS Data Source
 Multi-Dimensional Index (MDI)
 
 
-Types of FOCUS Data Sources
+## Types of FOCUS Data Sources
 
-Types of FOCUS Data Sources
 
 The type of FOCUS data source you create depends on the amount of storage you require:
 
@@ -140,7 +139,7 @@ pages set for XFOCUS buffers and an indication of whether the memory has actuall
 allocated (passive for no, active for yes).
 
 
-Types of FOCUS Data Sources
+## Types of FOCUS Data Sources
 
 Procedure: How to Create an XFOCUS Data Source
 
@@ -192,7 +191,7 @@ The COMBINE command supports SUFFIX=XFOCUS data sources. You can COMBINE
 SUFFIX FOC and XFOCUS in a single COMBINE.
 
 
-Designing a FOCUS Data Source
+## Designing a FOCUS Data Source
 
 The database management system enables you to create sophisticated hierarchical data
 structures. The following sections provide information to help you design an effective and
@@ -223,7 +222,7 @@ be placed in different paths.
 The following illustration summarizes the rules for data relationship considerations:
 
 
-Designing a FOCUS Data Source
+## Designing a FOCUS Data Source
 
 Join Considerations
 
@@ -298,7 +297,7 @@ Some characteristics whose attributes cannot be edited can be changed if you reb
 source using the REBUILD facility, as described in Creating and Rebuilding a Data Source on
 page 441. You can also use REBUILD to add new fields to a data source.
 
-Describing a Single Segment
+## Describing a Single Segment
 
 In a segment description, you can describe key fields, sort order, and segment relationships.
 The number of segments cannot exceed 64 in a FOCUS data source, or 512 in an XFOCUS
@@ -318,7 +317,7 @@ another physical file location.
 You can also create a field to timestamp changes to a segment using AUTODATE.
 
 
-Describing a Single Segment
+## Describing a Single Segment
 
 Three additional segment attributes that describe joins between FOCUS segments, CRFILE,
 CRKEY, and CRSEGNAME, are described in Defining a Join in a Master File on page 349.
@@ -412,7 +411,7 @@ Defining a Join in a Master File on page 349. The parent-child pointer is resolv
 time, and therefore new instances can be added without rebuilding.
 
 
-Describing a Single Segment
+## Describing a Single Segment
 
 KL
 
@@ -563,7 +562,7 @@ Brown
 Walsh
 
 
-Describing a Single Segment
+## Describing a Single Segment
 
 Describing Segment Relationships
 
@@ -651,7 +650,7 @@ SEGNAME = SKREC,   SEGTYPE = S1,PARENT = SSNREC, $
  FIELD = SCODE,   ALIAS = SC,     USAGE = A3,  $
 
 
-Describing a Single Segment
+## Describing a Single Segment
 
 This description groups the five segments into two physical files, as shown in the following
 diagram:
@@ -724,7 +723,7 @@ Is the maximum number of LOCATION segments and text LOCATION files (up to a
 maximum of 64).
 
 
-Describing a Single Segment
+## Describing a Single Segment
 
 Number of Segments
 
@@ -823,7 +822,7 @@ The syntax on z/OS is:
 {DATASET|DATA}='qualifier.qualifier ...'
 
 
-Describing a Single Segment
+## Describing a Single Segment
 
 or
 
@@ -927,7 +926,7 @@ alias
 Is any valid alias.
 
 
-Describing a Single Segment
+## Describing a Single Segment
 
 Example:
 
@@ -999,7 +998,7 @@ are updated, the system updates the AUTODATE field.
 The AUTODATE field does not support the following attributes: MISSING, ACCEPT, and
 HELPMESSAGE.
 
-GROUP Attribute
+## GROUP Attribute
 
 A group provides a convenient alternate name for one or more contiguous fields. The group
 redefines a sequence of fields and does not require any storage of its own.
@@ -1026,7 +1025,7 @@ length of four bytes, regardless of the USAGE format that determines how many ch
 appear on a report.
 
 
-GROUP Attribute
+## GROUP Attribute
 
 Syntax:
 
@@ -1132,7 +1131,7 @@ If the group has an index, and the group components are also indexes, you can MA
 the group level with no need to match on the group components.
 
 
-GROUP Attribute
+## GROUP Attribute
 
 Although MODIFY enables you to update group components even if they are key fields, this
 is not recommended. Instead, use SCAN or FSCAN to update key fields.
@@ -1238,7 +1237,7 @@ where each integer or single precision field counted as 4 bytes, each double pre
 8 bytes, and each packed field counted as either 8 or 16 bytes depending on its size.
 
 
-GROUP Attribute
+## GROUP Attribute
 
 To avoid the need to calculate these lengths, you can use the GROUP ELEMENTS option, which
 describes a group as a set of elements without USAGE and ACTUAL formats.
@@ -1395,9 +1394,8 @@ A7
 A7
 
 
-ACCEPT Attribute
+## ACCEPT Attribute
 
-ACCEPT Attribute
 
 ACCEPT is an optional attribute that you can use to validate data that is entered into a field
 using a MODIFY procedure. For a description of its use with all types of data sources, see
@@ -1444,7 +1442,7 @@ Is the name of the file describing the data source that contains the indexed fie
 acceptable values.
 
 
-INDEX Attribute
+## INDEX Attribute
 
 
 Index the values of a field by including the INDEX attribute, or its alias of FIELDTYPE, in the
@@ -1485,7 +1483,7 @@ Specifying an Index for the JOBCODE Field
 FIELDNAME = JOBCODE, ALIAS = CJC, FORMAT = A3, INDEX = I, $
 
 
-INDEX Attribute
+## INDEX Attribute
 
 Joins and the INDEX Attribute
 
@@ -1526,7 +1524,7 @@ attribute, and then use the REBUILD command with the INDEX option to create the 
 This is known as post-indexing the data source.
 
 
-Describing a Partitioned FOCUS Data Source
+## Describing a Partitioned FOCUS Data Source
 
 You can index the field after the data source has already been created and populated with
 records, by using the REBUILD facility with the INDEX option.
@@ -1565,7 +1563,7 @@ field.
 
 Missing values are represented internally by a flag.
 
-Describing a Partitioned FOCUS Data Source
+## Describing a Partitioned FOCUS Data Source
 
 FOCUS data sources can consist of up to 1022 physical files. The horizontal partition is a slice
 of one or more segments of the entire data source structure. Note, however, that the number
@@ -1618,7 +1616,7 @@ The name of the Access File must be the same as the Master File name, and it mus
 specified with the ACCESS = attribute in the Master File.
 
 
-Describing a Partitioned FOCUS Data Source
+## Describing a Partitioned FOCUS Data Source
 
 Syntax:
 
@@ -1694,7 +1692,7 @@ There is nothing in the request or output that signifies that a partitioned data
 However, only the second partition is retrieved, reducing I/O and enhancing performance.
 
 
-Describing a Partitioned FOCUS Data Source
+## Describing a Partitioned FOCUS Data Source
 
 Reference: Usage Notes for Partitioned FOCUS Data Sources
 
@@ -1783,7 +1781,7 @@ same value included in the Master File ACCESS=filename attribute, used to indica
 the existence of the Access File and its name.
 
 
-Describing a Partitioned FOCUS Data Source
+## Describing a Partitioned FOCUS Data Source
 
 DATA=file_specification,
    [WHERE= expression; ,]$
@@ -1867,7 +1865,7 @@ Defines a hierarchy of dimensions. This dimension is defined within the dimname
 dimension. For example, CITY WITHIN STATE.
 
 
-Describing a Partitioned FOCUS Data Source
+## Describing a Partitioned FOCUS Data Source
 
 Example:
 
@@ -1940,7 +1938,7 @@ MASTER=VIDEOTR2 ,$
   DATA=c:\user1\vidpart3.foc,
    WHERE=DATE FROM 1999 TO 2000;,$
 
-Multi-Dimensional Index (MDI)
+## Multi-Dimensional Index (MDI)
 
 A multi-dimensional index (MDI) enables you to efficiently and flexibly retrieve information you
 need for business analysis. It looks at data differently from transaction processing systems in
@@ -1978,7 +1976,7 @@ needed in the Master File is the ACCESSFILE attribute to point to the Access Fil
 the MDI specifications.
 
 
-Multi-Dimensional Index (MDI)
+## Multi-Dimensional Index (MDI)
 
 An MDI can be partitioned into multiple MDI files. However, even if the data source on which
 the MDI is built is partitioned, each MDI partition spans all data source partitions.
@@ -2083,7 +2081,7 @@ MASTERNAME = CAR,$
    MDIDATA = c:\user1\car2.mdi,$
 
 
-Multi-Dimensional Index (MDI)
+## Multi-Dimensional Index (MDI)
 
 Example:
 
@@ -2169,7 +2167,7 @@ The maximum size of an MDI is 200 GB.
 The maximum size of each index partition is 2 GB.
 
 
-Multi-Dimensional Index (MDI)
+## Multi-Dimensional Index (MDI)
 
 The total size of all dimensions in an MDI cannot exceed 256 bytes. However, if you
 include the MAXVALUES attribute in the Access File declaration for a dimension,
@@ -2263,7 +2261,7 @@ MDIs. The command ? MDI allows you to display information about MDIs for a given
 XFOCUS Master File that hosts the target of your MDI.
 
 
-Multi-Dimensional Index (MDI)
+## Multi-Dimensional Index (MDI)
 
 Syntax:
 
@@ -2362,7 +2360,7 @@ You can also assure access with a specific MDI by creating an Access File that d
 that index.
 
 
-Multi-Dimensional Index (MDI)
+## Multi-Dimensional Index (MDI)
 
 Joining to a Multi-Dimensional Index
 
@@ -2446,7 +2444,7 @@ END
 Is required to terminate the JOIN command if it is longer than one line.
 
 
-Multi-Dimensional Index (MDI)
+## Multi-Dimensional Index (MDI)
 
 Syntax:
 
@@ -2557,7 +2555,7 @@ mdiname
 Is the logical name of the MDI.
 
 
-Multi-Dimensional Index (MDI)
+## Multi-Dimensional Index (MDI)
 
 request
 
@@ -2666,7 +2664,7 @@ accumulated in the MDI build. 100,000 is the default value.
 Disables progress messages.
 
 
-Multi-Dimensional Index (MDI)
+## Multi-Dimensional Index (MDI)
 
 Displaying a Warning Message
 

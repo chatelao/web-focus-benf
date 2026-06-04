@@ -49,7 +49,7 @@ Using Functions in RECAP Calculations
 
 Creating HOLD Files From FML Reports
 
-Reporting With FML
+## Reporting With FML
 
 FML is an integrated extension of the TABLE command. By adding the FOR phrase and the
 RECAP command, you can handle an expanded range of applications.
@@ -62,7 +62,7 @@ intelligence features, such as statistical analysis and graphics, in addition to
 financial statements.
 
 
-Reporting With FML
+## Reporting With FML
 
 Procedures using FML are not hard-wired to the data. As in any other report request, they can
 easily be changed. FML includes the following facilities:
@@ -156,11 +156,11 @@ directly from the data source, and from values derived from previous RECAP compu
 (UTPNET and TOTCAS).
 
 
-Creating Rows From Data
+## Creating Rows From Data
 
 The output is shown as follows.
 
-Creating Rows From Data
+## Creating Rows From Data
 
 A normal TABLE request sorts rows of a report according to the BY phrase you use. The data
 retrieved is sorted from either low-to-high or high-to-low, as requested. The rows may be limited
@@ -224,7 +224,7 @@ coltitle
 Is the column title for the FOR field on the report output.
 
 
-Creating Rows From Data
+## Creating Rows From Data
 
 value
 
@@ -320,7 +320,7 @@ information, see How to Use the Same FOR Field Value in Multiple Rows on page 18
 In addition to these methods, you can extract multiple tags for a row from an external file.
 
 
-Creating Rows From Data
+## Creating Rows From Data
 
 Syntax:
 
@@ -434,7 +434,7 @@ SUM AMOUNT FOR ACCOUNT
 END
 
 
-Creating Rows From Data
+## Creating Rows From Data
 
 Syntax:
 
@@ -549,7 +549,7 @@ INVENTORY              27,307
 TOTAL NON-CASH ASSETS  46,136
 
 
-Creating Rows From Data
+## Creating Rows From Data
 
 Example:
 
@@ -628,14 +628,14 @@ AS 'AVAILABLE FOR DIVIDENDS'
 
 For more information, see Performing Inter-Row Calculations on page 1831.
 
-Supplying Data Directly in a Request
+## Supplying Data Directly in a Request
 
 In certain cases, you may need to include additional constants (such as exchange rates or
 inflation rates) in your model. Not all data values for the model have to be retrieved from the
 data source. Using FML, you can supply data directly in the request.
 
 
-Supplying Data Directly in a Request
+## Supplying Data Directly in a Request
 
 Syntax:
 
@@ -664,7 +664,7 @@ must be unique.
 
 Example:
 
-Supplying Data Directly in a Request
+## Supplying Data Directly in a Request
 
 In this example, two values (.87 and 1.67) are provided for the exchange rates of euros and
 pounds, respectively.
@@ -689,7 +689,7 @@ originally specified.
 
 The output is shown in the following image.
 
-Performing Inter-Row Calculations
+## Performing Inter-Row Calculations
 
 The RECAP command enables you to perform calculations on data in the rows of the report to
 produce new rows. You must supply the name and format of the value that results from the
@@ -731,7 +731,7 @@ expression. For more information, see Using Functions in RECAP Calculations on p
 1845 and the Using Functions manual.
 
 
-Referring to Rows in Calculations
+## Referring to Rows in Calculations
 
 The expression can include references to specific rows using the default FML positional
 labels (R1, R2, and so on), or it can refer to rows, columns, and cells using a variety of
@@ -771,7 +771,7 @@ labels in FML with field format redefinition.
 Rn references (default positional row labels) can only be used for rows previously evaluated
 within the model.
 
-Referring to Rows in Calculations
+## Referring to Rows in Calculations
 
 FML assigns a default positional label to each TAG, DATA, RECAP, and PICKUP row. These
 positional labels are automatically prefixed with the letter R, so that the first such row in the
@@ -830,7 +830,7 @@ name is used for default positional row labels assigned by FML and may cause pro
 with subsequent RECAPs.
 
 
-Referring to Rows in Calculations
+## Referring to Rows in Calculations
 
 Even if you assign an explicit label, the positional label (R1, R2, and so on) is retained
 internally.
@@ -913,7 +913,7 @@ CASH was first used.
 Tip: If you set the FORMULTIPLE parameter ON, you can repeat the row without giving it
 another name. For more information, see Creating Rows From Multiple Records on page 1823.
 
-Referring to Columns in Calculations
+## Referring to Columns in Calculations
 
 An FML report can refer to explicit columns, as well as explicit rows. You can refer to columns
 using:
@@ -938,7 +938,7 @@ Applying Column Declarations in RECAP Expressions
 The following request generates an FML matrix with four rows and three columns of data.
 
 
-Referring to Columns in Calculations
+## Referring to Columns in Calculations
 
 DEFINE FILE LEDGER
 CUR_YR/I5C=AMOUNT;
@@ -1016,7 +1016,7 @@ last column numbers with commas. For example, DIFFERENCE (2,5) indicates that yo
 compute the results for columns 2 through 5.
 
 
-Referring to Columns in Calculations
+## Referring to Columns in Calculations
 
 Example:
 
@@ -1114,7 +1114,7 @@ When referring to a prior column, the column must already have been retrieved, o
 zero.
 
 
-Referring to Columns in Calculations
+## Referring to Columns in Calculations
 
 Applying Relative Column Addressing in a RECAP Expression
 
@@ -1242,13 +1242,13 @@ END
 
 The output is shown in the following image.
 
-Referring to Cells in Calculations
+## Referring to Cells in Calculations
 
 You can refer to columns and rows using a form of cell notation that identifies the intersection
 of a row and a column as (r, c).
 
 
-Referring to Cells in Calculations
+## Referring to Cells in Calculations
 
 Syntax:
 
@@ -1312,7 +1312,7 @@ numbering. Notice that the display of the EAST and WEST VARIANCEs in columns 1 a
 respectively, are controlled by the numbers in parentheses in the request: EVAR (1) and WVAR
 (3).
 
-Using Functions in RECAP Calculations
+## Using Functions in RECAP Calculations
 
 You may provide your own calculation routines in RECAP rows to perform special-purpose
 calculations, a useful feature when these calculations are mathematically complex or require
@@ -1355,7 +1355,7 @@ label and cannot contain any of the following special characters:
 = -, / ()
 
 
-Using Functions in RECAP Calculations
+## Using Functions in RECAP Calculations
 
 input1, inputn
 
@@ -1409,7 +1409,7 @@ END
 
 The output is shown in the following image.
 
-Inserting Rows of Free Text
+## Inserting Rows of Free Text
 
 Insert text anywhere in your FML report by typing it on a line by itself and enclosing it within
 double quotation marks. You can also add blank lines, designated as text, to improve the
@@ -1419,7 +1419,7 @@ In addition, you can include data developed in your FML report in a row of free 
 the label for the data variable in the text row.
 
 
-Inserting Rows of Free Text
+## Inserting Rows of Free Text
 
 Example:
 
@@ -1509,7 +1509,7 @@ Accounts Receivable  18,829
 Inventory            27,307
 Current Assets: 67,375
 
-Adding a Column to an FML Report
+## Adding a Column to an FML Report
 
 The request controls the number of columns in any report. For instance, if a request contains
 the display command SUM AMOUNT AND FORECAST, the report contains two columns:
@@ -1520,14 +1520,14 @@ calculate a value or simply to allocate the space, column title, and format for 
 
 Example:
 
-Adding a Column to an FML Report
+## Adding a Column to an FML Report
 
 This example uses a COMPUTE command to generate the calculated value CHANGE and
 display it as a new column in the FML report. The following request generates an FML matrix
 with four rows and three columns of data.
 
 
-Adding a Column to an FML Report
+## Adding a Column to an FML Report
 
 DEFINE FILE LEDGER
 CUR_YR/I5C=AMOUNT;
@@ -1576,9 +1576,8 @@ END
 The output is shown as follows.
 
 
-Creating a Recursive Model
+## Creating a Recursive Model
 
-Creating a Recursive Model
 
 Models involving different time periods often require using the ending value of one time period
 as the starting value for the next. The calculations describing these situations have two
@@ -1600,7 +1599,7 @@ forward reference to a label in a calculation).
 
 Example:
 
-Creating a Recursive Model
+## Creating a Recursive Model
 
 The following example illustrates recursive models. Note that one year of ENDCASH becomes
 the next year of STARTING CASH.
@@ -1628,7 +1627,7 @@ END
 
 The output is shown as follows.
 
-Reporting Dynamically From a Hierarchy
+## Reporting Dynamically From a Hierarchy
 
 Hierarchical relationships between fields can be defined in a Master File, and automatically
 displayed using the Financial Modeling Language (FML). The parent and child fields must share
@@ -1645,7 +1644,7 @@ A general ledger data source contains both an account number field and an accoun
 field.
 
 
-Reporting Dynamically From a Hierarchy
+## Reporting Dynamically From a Hierarchy
 
 By examining these fields, it is possible to construct the entire organization chart or chart of
 accounts structure. However, to print the chart in a traditional FML report, you need to list the
@@ -1739,7 +1738,7 @@ FIELDNAME=SYS_ACCOUNT,          ALIAS=ALINE,   FORMAT=A6,
           TITLE='System,Account,Line', MISSING=ON, $
 
 
-Reporting Dynamically From a Hierarchy
+## Reporting Dynamically From a Hierarchy
 
 The CENTSYSF data source contains detail-level financial data. This is unconsolidated financial
 data for a fictional corporation, CenturyCorp. It is designed to be separate from the CENTGL
@@ -1841,7 +1840,7 @@ For information about the FMLFOR, FMLLIST, FMLCAP, and FMLINFO functions that re
 tag values and captions used in an FML request, see the Using Functions manual.
 
 
-Reporting Dynamically From a Hierarchy
+## Reporting Dynamically From a Hierarchy
 
 Example:
 
@@ -1934,7 +1933,7 @@ direct children have a line in the report output, and the summary for each child
 its children.
 
 
-Reporting Dynamically From a Hierarchy
+## Reporting Dynamically From a Hierarchy
 
 When used in conjunction with WITH CHILDREN, ADD first displays a line in the report output
 that consists of the summation of the parent value and all of its children. Then it displays
@@ -2018,7 +2017,7 @@ label
 Is an explicit row label. Each generated row is labeled with the specified label text.
 
 
-Reporting Dynamically From a Hierarchy
+## Reporting Dynamically From a Hierarchy
 
 Example:
 
@@ -2104,7 +2103,7 @@ Sums the hierarchy to the depth specified by m for each line generated by the GE
 CHILDREN command.
 
 
-Reporting Dynamically From a Hierarchy
+## Reporting Dynamically From a Hierarchy
 
 m|ALL
 
@@ -2173,7 +2172,7 @@ themselves have children, so the sum on each of those lines consists of only the
 value.
 
 
-Reporting Dynamically From a Hierarchy
+## Reporting Dynamically From a Hierarchy
 
 Using GET CHILDREN instead of WITH CHILDREN eliminates the top line from each portion of
 the output. The remaining lines are the same.
@@ -2213,7 +2212,7 @@ BY parentfield BY hierarchyfield
 END
 
 
-Reporting Dynamically From a Hierarchy
+## Reporting Dynamically From a Hierarchy
 
 The resulting chart contains the following information. It may also contain the associated
 captions, depending on whether the AS CAPTION phrase was used in the request.
@@ -2314,9 +2313,8 @@ When the report output is in HTML format, the setting SHOWBLANKS=ON must be in e
 in order to retain the hierarchical indentations.
 
 
-Customizing a Row Title
+## Customizing a Row Title
 
-Customizing a Row Title
 
 You can customize a row title in an FML report for accurate data identification. Using the AS
 phrase, you can provide new titles for TAG, DATA, RECAP, and PICKUP rows.
@@ -2413,7 +2411,7 @@ TOTAL CASH       21,239
 
 If no AS phrases are included, the name of the RECAP value (TOTCASH) displays in the report.
 
-Formatting an FML Report
+## Formatting an FML Report
 
 Improve the readability and presentation of your FML report by:
 
@@ -2425,7 +2423,7 @@ Adding page breaks. You can request a new page at any point in a report by placi
 word PAGE-BREAK in place of the tag value.
 
 
-Formatting an FML Report
+## Formatting an FML Report
 
 Formatting rows, columns, and cells. You can apply StyleSheet attributes, such as FONT,
 SIZE, STYLE, and COLOR, to individual rows and columns, or to cells within those rows.
@@ -2516,7 +2514,7 @@ RECAP TOTAL = TOTCASH + TOTASSET;
 END
 
 
-Formatting an FML Report
+## Formatting an FML Report
 
 The output is shown as follows.
 
@@ -2590,7 +2588,7 @@ ENDSTYLE
 END
 
 
-Formatting an FML Report
+## Formatting an FML Report
 
 The output is shown in the following image.
 
@@ -2660,7 +2658,7 @@ ENDSTYLE
 END
 
 
-Formatting an FML Report
+## Formatting an FML Report
 
 The output is shown in the following image.
 
@@ -2714,7 +2712,7 @@ ENDSTYLE
 END
 
 
-Formatting an FML Report
+## Formatting an FML Report
 
 The output is shown in the following image.
 
@@ -2785,7 +2783,7 @@ To specify different characteristics for the top, bottom, left, and/or right bor
 syntax:
 
 
-Formatting an FML Report
+## Formatting an FML Report
 
 TYPE=REPORT, LABEL=row_label, [COLUMN=column,] BORDER-position=option,
 [BORDER-[position-]STYLE=line_style,]
@@ -2878,7 +2876,7 @@ the label TOTCASH. For HTML reports, the BORDERS feature requires that cascading
 sheets be turned ON.
 
 
-Formatting an FML Report
+## Formatting an FML Report
 
 SET PAGE-NUM=OFF
 TABLE FILE LEDGER
@@ -2944,7 +2942,7 @@ row identified by the label TOTCASH. The combined LABEL and COLUMN specification
 identified in the cell. The BORDERS feature requires that cascading style sheets be turned ON.
 
 
-Formatting an FML Report
+## Formatting an FML Report
 
 SET PAGE-NUM=OFF
 TABLE FILE LEDGER
@@ -3035,7 +3033,7 @@ expression
 Is the expression that describes how to calculate the field value for RECAP.
 
 
-Formatting an FML Report
+## Formatting an FML Report
 
 Example:
 
@@ -3146,7 +3144,7 @@ Turns off indentations for FML hierarchy captions in an HTML report. OFF is the 
 value. For other formats, uses the default indentation of two spaces.
 
 
-Formatting an FML Report
+## Formatting an FML Report
 
 n
 
@@ -3203,11 +3201,11 @@ ENDSTYLE
 END
 
 
-Suppressing the Display of Rows
+## Suppressing the Display of Rows
 
 The output is shown in the following image.
 
-Suppressing the Display of Rows
+## Suppressing the Display of Rows
 
 You may sometimes wish to retrieve data in a TAG row solely for use in a calculation, without
 displaying the row in a report. To suppress the display of a tag row, add the word NOPRINT to
@@ -3428,7 +3426,7 @@ AS 'ACCTS REC AND INVENTORY'
 Note: Since the rows in a PICKUP file are stored in standard comma-delimited format, they can
 be provided either from a prior posting, or directly by a user.
 
-Creating HOLD Files From FML Reports
+## Creating HOLD Files From FML Reports
 
 A report created with FML can be extracted to a HOLD file in the same way as all other reports
 created with the TABLE language.
@@ -3464,7 +3462,7 @@ ON TABLE HOLD
 END
 
 
-Creating HOLD Files From FML Reports
+## Creating HOLD Files From FML Reports
 
 Query the HOLD file:
 
