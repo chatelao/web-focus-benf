@@ -3388,6 +3388,7 @@ In this example, assume that the variable DIVISION contains Division 1, a real e
 syndicate, and Division 2, a bank. The following request describes their balance sheets in one
 FML report. Rows that are irrelevant for each division are not displayed.
 
+```fex
 TABLE FILE LEDGER
 HEADING CENTER
 "BALANCE SHEET FOR DIVISION <DIVISION"
@@ -3470,6 +3471,7 @@ DEFINE FILE LEDGER
 CUR_YR/I5C=AMOUNT;
 LAST_YR/I5C=.87*CUR_YR - 142;
 END
+```
 
 ```fex
 TABLE FILE LEDGER

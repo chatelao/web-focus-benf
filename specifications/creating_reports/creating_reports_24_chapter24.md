@@ -1633,9 +1633,12 @@ The following OLAP request against the EMPLOYEE data source has two BY fields. T
 the graphs, the SET OLAPGRMERGE=ON command is issued:
 
 
+```fex
 -OLAP ON
 SET GRAPHEDIT=SERVER
 SET OLAPGRMERGE=ON
+
+```
 
 ```fex
 TABLE FILE EMPLOYEE
@@ -3330,18 +3333,28 @@ lines. For example:
 
 Single line
 
+```fex
 -MRNOEDIT TYPE=REPORT, IMAGE=PLANT.gif, POSITION=(4 0), SIZE=(5 3), $
+```
 
 or
 
+```fex
 -MRNOEDIT TYPE=REPORT, IMAGE=PLANT.gif,
 -MRNOEDIT POSITION=(4 0), SIZE=(5 3), $
+```
 
 Multiple lines
 
+```fex
 -MRNOEDIT BEGIN
+```
+
 TYPE=REPORT, IMAGE=PLANT.gif, POSITION=(4 0), SIZE=(5 3), $
+
+```fex
 -MRNOEDIT END
+```
 
 
 ## Printing a Graph

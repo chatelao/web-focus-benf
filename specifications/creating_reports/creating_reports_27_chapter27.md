@@ -303,6 +303,7 @@ Translator Commands on page 1910.
 
 Using the SQL SELECT Statement Without a FROM Clause
 
+```sql
 SELECT without a FROM clause is supported for returning a one-row answer set consisting of
 one or more constant values. No Master File is needed for issuing this type of SELECT. One
 use for this syntax is to test functions. For example, the following SQL SELECT returns a literal
@@ -316,6 +317,7 @@ ON TABLE SET STYLE *
 GRID=OFF,$
 ENDSTYLE
 END
+```
 
 The output is shown in the following image.
 
@@ -335,9 +337,12 @@ Two syntax variations are supported for inner joins.
 Variation 1
 
 SQL
+
+```sql
 SELECT fieldlist FROM file1 [alias1], file2 [alias2]
 [WHERE where_condition];
 END
+```
 
 
 ## Using SQL Translator Commands
@@ -345,6 +350,8 @@ END
 Variation 2
 
 SQL
+
+```sql
 SELECT fieldlist FROM file1 [alias1] INNER JOIN file2 [alias2]
 ON join_condition [INNER JOIN ...]
 [WHERE where_condition];
@@ -353,6 +360,7 @@ END
 where:
 
 fieldlist
+```
 
 Identifies which fields are retrieved from which data sources.
 
@@ -390,6 +398,8 @@ Syntax:
 How to Create an Outer Join
 
 SQL
+
+```sql
 SELECT fieldlist FROM file1 {LEFT|RIGHT|FULL} JOIN file2
 ON join_condition [{LEFT|RIGHT|FULL} JOIN ...]
 WHERE where_condition
@@ -398,6 +408,7 @@ END
 where:
 
 fieldlist
+```
 
 Identifies which fields are to be retrieved from which data sources.
 
@@ -459,6 +470,8 @@ Using Qualified Field Names in SQL Joins
 In the following statement, T.A and U.B are qualified field names:
 
 SQL
+
+```sql
  SELECT T.A, T.B
  FROM T, U
  WHERE T.A = U.B;
@@ -476,6 +489,7 @@ SQL
    FROM CAR A, CAR B
    WHERE A.MODEL = B.MODEL;
 END
+```
 
 Note that all field names in the SELECT clause must be unique or qualified.
 
@@ -486,6 +500,8 @@ Using SQL Full Outer Joins
 In the following statement, B, C, and D are aliases for different data sources:
 
 SQL
+
+```sql
 SELECT
        B.FIELD1 AS B_FIELD1, B.FIELD2 AS B_FIELD2,
        D.FIELD1 AS D_FIELD1, D.FIELD2 AS D_FIELD2
@@ -496,6 +512,8 @@ WHERE B.FIELD1 < 2
 END
 
 Multiple FULL OUTER JOINS are supported. However, they generate from a few to many
+```
+
 temporary HOLD files.
 
 
@@ -615,6 +633,8 @@ Creating and Reporting From an SQL View
 The following example creates a view named XYZ:
 
 SQL
+
+```sql
 CREATE VIEW XYZ
  AS SELECT CAR, MODEL
  FROM CAR;
@@ -628,6 +648,8 @@ SQL
 END
 
 According to normal SQL data definition syntax, each CREATE VIEW statement must terminate
+```
+
 with a semicolon.
 
 Example:
@@ -664,6 +686,8 @@ The following example creates a column defined as 1.2 + SEATS:
 
 SET CDN=ON
 SQL
+
+```sql
    SELECT SEATS + 1,2
    FROM CAR;
 END
@@ -678,6 +702,8 @@ them.
 
 Qualified field names. Qualify a field name with file and file alias names. File alias names
 are described in the discussion of joins in SQL Joins on page 1913. See the Describing
+```
+
 Data With WebFOCUS Language manual for more information.
 
 Field names with embedded blanks and special characters. A SELECT list can specify field
@@ -930,7 +956,11 @@ The SQL Translator produces the following virtual fields for functions, followed
 request to display the output:
 
 SET COUNTWIDTH=ON
+
+```fex
 -SET SQLERRNUM = 0;
+```
+
 DEFINE FILE
 VIDEOTR2 TEMP
 SQLDEF01/I4 MISSING ON NEEDS ALL = HPART(TRANSDATE,'YEAR','I4');
@@ -995,6 +1025,7 @@ Example:
 
 Using the EXTRACT Function
 
+```sql
 SELECT D. EXTRACT(YEAR FROM D), EXTRACT(MONTH FROM D),
 EXTRACT(DAY FROM D) FROM T
 
@@ -1002,6 +1033,7 @@ This request produces rows similar to the following:
 
 1999-01-01     1999      1       1
 2000-03-03     2000      3       3
+```
 
 
 ## Index Optimized Retrieval

@@ -76,9 +76,11 @@ Define record selection criteria and criteria that control report formatting.
 Determine branching in Dialogue Manager, or assign a value to a Dialogue Manager amper
 variable.
 
+```fex
 -IF logical_expression [THEN] GOTO label1 [ELSE GOTO label2];
 
 -SET &name = expression;
+```
 
 Perform a calculation with the RECAP command in the Financial Modeling Language (FML).
 

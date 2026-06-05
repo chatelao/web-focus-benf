@@ -1547,8 +1547,11 @@ Controlling Display of Sort Field Values on Report Output
 The following request generates a report on which sort field values only display when they
 change (BYDISPLAY OFF).
 
+```fex
 -SET &BYDISP = OFF;
 SET BYDISPLAY = &BYDISP
+
+```
 
 ```fex
 TABLE FILE WF_RETAIL_LITE
@@ -1904,7 +1907,11 @@ The following request creates a FOCUS data source named COLLATE that has some re
 with product names that differ only by the case of one letter:
 
 CREATE FILE COLLATE
+
+```fex
 -RUN
+```
+
 MODIFY FILE COLLATE
 FIXFORM PROD_NUM/C4 PRODNAME/C30 QTY_IN_STOCK/C7 PRICE/C12 COST/C12
 CHECK OFF
@@ -4604,7 +4611,11 @@ The following procedure loads data into this data source, as long as the Master 
 available to WebFOCUS (on the path or allocated):
 
 CREATE FILE NEWGL NOMSG
+
+```fex
 -RUN
+```
+
 MODIFY FILE NEWGL
 COMPUTE TGL_ACCOUNT_LEVEL/A3=;
 COMPUTE TGL_ACCOUNT_AMOUNT/A12=;
