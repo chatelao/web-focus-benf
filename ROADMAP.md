@@ -1,4 +1,5 @@
 # ROADMAP
+- [ ] 0.69 Implement a next, modest, very small, feasible and reasonable `specifications/ROADMAP.md` step (#532)
 - [x] 0.68 Implement a next, modest, very small, feasible and reasonable `specifications/ROADMAP.md` step (#529) (completed at 2026-06-05 20:08:17)
 - [x] 0.67 Implement a next, modest, very small, feasible and reasonable `specifications/ROADMAP.md` step (#527) (completed at 2026-06-04 18:40:22)
 - [ ] 0.66 Implement a next, modest, very small, feasible and reasonable `specifications/ROADMAP.md` step (#526)
